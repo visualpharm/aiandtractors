@@ -5,106 +5,290 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ivan Braun – Entrepreneur, Investor, Speaker</title>
     <style>
-      body {
-        font-family: 'Segoe UI', Arial, sans-serif;
+      /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
+      :root {
+        --grid-columns: 12;
+        --grid-gutter: 24px;
+        --spacing-unit: 8px;
+        --color-primary: #222222;
+        --color-secondary: #777777;
+        --color-tertiary: #f0f0f0;
+        --color-accent: #e63946;
+        --color-background: #ffffff;
+      }
+      
+      * {
+        box-sizing: border-box;
         margin: 0;
-        background: #f7f7f7;
-        color: #222;
+        padding: 0;
       }
+      
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        color: var(--color-primary);
+        background-color: var(--color-tertiary);
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      h2 {
+        margin-top: -8px;
+      }
+      
       .container {
-        max-width: 800px;
-        margin: 40px auto;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-        padding: 32px 24px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: calc(var(--spacing-unit) * 3);
       }
+      
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        gap: var(--grid-gutter);
+      }
+      
+      /* Header section */
+      .header {
+        margin-bottom: calc(var(--spacing-unit) * 8);
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        gap: var(--grid-gutter);
+        align-items: center;
+      }
+      
+      .header-image {
+        grid-column: 1 / 4;
+        text-align: center;
+      }
+      
+      .header-content {
+        grid-column: 4 / -1;
+      }
+      
+      /* Section styling */
+      .section {
+        margin-bottom: calc(var(--spacing-unit) * 8);
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        gap: var(--grid-gutter);
+      }
+      
+      .section-header {
+        grid-column: 1 / 4;
+        text-align: right;
+        padding-right: calc(var(--spacing-unit) * 2);
+      }
+      
+      .section-content {
+        grid-column: 4 / -1;
+      }
+      
+      /* Typography */
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        letter-spacing: -0.02em;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        position: relative;
+      }
+      
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      p {
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      /* Lists */
+      ul {
+        list-style-type: none;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+      }
+      
+      li {
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        position: relative;
+        padding-left: calc(var(--spacing-unit) * 2);
+      }
+      
+      li:before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--color-secondary);
+      }
+      
+      /* Images */
       .profile-img {
         width: 140px;
         height: 140px;
         object-fit: cover;
         border-radius: 50%;
-        border: 4px solid #eee;
-        margin-bottom: 16px;
       }
-      h1 {
-        margin-top: 0;
-        font-size: 2.2em;
-        letter-spacing: -1px;
-      }
-      h2 {
-        margin-top: 2em;
-        font-size: 1.3em;
-        color: #555;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 4px;
-      }
-      ul {
-        padding-left: 1.2em;
-      }
-      .section {
-        margin-bottom: 2em;
-      }
-      .contact {
-        background: #f0f4fa;
-        padding: 18px 20px;
-        border-radius: 8px;
-        margin-top: 2em;
-        font-size: 1.1em;
-        text-align: center;
-      }
-      @media (max-width: 600px) {
-        .container { padding: 16px 4px; }
-        .profile-img { width: 100px; height: 100px; }
-      }
+      
+      /* Links */
       a {
+        color: var(--color-primary);
         text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+      
+      a:hover {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
+      }
+      
+      a.icon-link, a.img-link {
+        border-bottom: none;
+        display: inline-flex;
+        align-items: center;
+        margin-right: calc(var(--spacing-unit) * 3);
+      }
+      
+      /* Contact section */
+      .contact {
+        grid-column: 4 / -1;
+        padding: calc(var(--spacing-unit) * 3) 0;
+        border-top: 1px solid var(--color-tertiary);
+      }
+      
+      /* Responsive */
+      @media (max-width: 900px) {
+        .header, .section {
+          grid-template-columns: 1fr;
+        }
+        
+        .header-image, .header-content, .section-header, .section-content, .contact {
+          grid-column: 1;
+        }
+        
+        .section-header {
+          text-align: left;
+          padding-right: 0;
+          margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .header-image {
+          margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+      }
+      
+      /* Small images and icons */
+      .small-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        vertical-align: middle;
+      }
+      
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: calc(var(--spacing-unit));
+        vertical-align: middle;
+      }
+      
+      /* Utilities */
+      .subtitle {
+        color: var(--color-secondary);
+        font-size: 1.1rem;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      .location {
+        color: var(--color-secondary);
+        font-size: 0.95rem;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        display: flex;
+        align-items: center;
+      }
+      
+      .social-links {
+        margin-top: calc(var(--spacing-unit) * 3);
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div style="text-align:center;">
-        <img src="/i/ian.jpeg" alt="Ivan Braun" class="profile-img">
-        <h1>Ivan Braun</h1>
-        <div>Entrepreneur | Investor | Speaker | Advisor</div>
-        <div style="color:#888; margin-top:4px;">
-          Based in <a href="https://en.wikipedia.org/wiki/Caril%C3%B3" target="_blank" style="color:#888;">Cariló</a>, Argentina
-        </div>
-        <div style="margin-top:12px;">
-          <a href="https://www.linkedin.com/in/ivanbbb/" target="_blank" style="margin-right:12px;">
-            <img src="/i/icons8-linkedin.svg" alt="LinkedIn" style="width:28px; vertical-align:middle;"> LinkedIn
-          </a>
-          <a href="https://x.com/visualpharm" target="_blank">
-            <img src="/i/icons8-x.svg" alt="X (Twitter)" style="width:28px; vertical-align:middle;"> X
-          </a>
-        </div>
-      </div>
+      <div class="grid">
+        <!-- Header Section -->
+        <header class="header">
+          <div class="header-image">
+            <img src="/i/ian.jpeg" alt="Ivan Braun" class="profile-img">
+          </div>
+          <div class="header-content">
+            <h1>Ivan Braun</h1>
+            <div class="subtitle">Entrepreneur | Investor | Speaker | Advisor</div>
+            <div class="location">
+              Based in &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
+              <a href="/i/carilo.jpg" class="img-link" style="margin-left:8px;">
+                <img src="/i/carilo.jpg" alt="Cariló" class="small-img">
+              </a>
+            </div>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/ivanbbb/" class="icon-link">
+                <img src="/i/icons8-linkedin.svg" alt="LinkedIn" class="icon"> LinkedIn
+              </a>
+              <a href="https://x.com/visualpharm" class="icon-link">
+                <img src="/i/icons8-x.svg" alt="X (Twitter)" class="icon"> X
+              </a>
+            </div>
+          </div>
+        </header>
 
-      <div class="section">
-        <h2>Building the Future of Synthetic Media</h2>
-        <ul>
-          <li>Founder of a creative tech company delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
-          <li><a href="https://generated.photos/genyou" target="_blank">GenYOU – personalized AI selfies</a></li>
-          <li><a href="https://generated.photos/face-generator" target="_blank">Face Generator – real-time faces</a></li>
-          <li><a href="https://generated.photos/human-generator" target="_blank">Human Generator – full-body humans</a></li>
-          <li>We supply large-scale resources and custom datasets to enterprise clients and are the largest graphics supplier to Canva.</li>
-        </ul>
-      </div>
+        <!-- Experience Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Experience</h2>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a>, delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
+              <li><a href="https://generated.photos/genyou">GenYOU – personalized AI selfies</a></li>
+              <li><a href="https://generated.photos/face-generator">Face Generator – real-time faces</a></li>
+              <li><a href="https://generated.photos/human-generator">Human Generator – full-body humans</a></li>
+              <li>We supply large-scale resources and custom datasets to enterprise clients and are the largest graphics supplier to Canva.</li>
+            </ul>
+          </div>
+        </section>
 
-      <div class="section">
-        <h2>Events & Recognition</h2>
-        <ul>
-          <li>Voted Visitor's Choice at <a href="https://www.visual1st.biz" target="_blank">Visual 1st Conference</a>.</li>
-          <li>Invited speaker, <a href="https://horasis.org/horasis-global-meeting/" target="_blank">Horasis Global Meeting (São Paulo, Oct 2025)</a>.</li>
-          <li>Open to new speaking invitations on AI, product, and ethical data.</li>
-        </ul>
-      </div>
+        <!-- Events & Recognition Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Events & Recognition</h2>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>Voted Visitor's Choice at <a href="https://www.visual1st.biz">Visual 1st Conference</a>.</li>
+              <li>Invited speaker, <a href="https://horasis.org/horasis-global-meeting/">Horasis Global Meeting (São Paulo, Oct 2025)</a>.</li>
+              <li>Open to new speaking invitations on AI, product, and ethical data.</li>
+            </ul>
+          </div>
+        </section>
+
 
     
-      <div class="section">
-        <h2>Media Coverage</h2>
-        <ul>
+        <!-- Media Coverage Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Media Coverage</h2>
+          </div>
+          <div class="section-content">
+            <ul>
           <li><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">The Washington Post – "Dating apps need women. Advertisers need diversity. AI companies offer a solution: Fake people."</a></li>
           <li><a href="https://www.bbc.com/news/technology-51064933">BBC News – "Could deepfakes be used to train office workers?"</a></li>
           <li><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html">Der Spiegel – "Werbegesichter aus dem Computer: Ist hier noch irgendjemand echt?"</a></li>
@@ -112,46 +296,72 @@
           <li><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak">The Verge – "100,000 free AI-generated headshots put stock photo companies on notice"</a></li>
           <li><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU">VICE – "Generated Photos Thinks It Can Solve Diversity With 100,000 Fake AI Faces"</a></li>
           <li><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html">Daily Mail – "Artists create more than 100,000 ultra-realistic AI portraits"</a></li>
-        </ul>
-      </div>
-      <div class="section">
+            </ul>
+          </div>
+        </section>
+        <!-- Government & Regulatory Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Government & Regulatory</h2>
+          </div>
+          <div class="section-content">
+            <ul>
+            <li>Consultant on AI regulatory frameworks, creative tools, intellectual property, ethics, and governance
+              <ul>
+                <li><b>European Commission</b></li>
+                <li><b>Department of Justice</b></li>
+                <li><b>UK's Securities and Exchange Commission</b></li>
+              </ul>
+            </li>
+            </ul>
+          </div>
+        </section>
 
-        <div class="section">
-          <h2>Government & Regulatory Advisorships</h2>
-          <ul>
-            <li>Consultant to the <b>European Commission</b> on AI regulatory frameworks</li>
-            <li>Advisor to the <b>Department of Justice</b> on creative AI tools and intellectual property</li>
-            <li>Expert consultant for the <b>UK's Securities and Exchange Commission</b> on AI ethics and governance</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h2>Investment & Advisory</h2>
-          <ul>
+        <!-- Investment & Advisory Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Investment & Advisory</h2>
+          </div>
+          <div class="section-content">
+            <ul>
             <li>Startup marketing playbooks that scaled a bootstrapped product to millions of users</li>
             <li>AI bootstrapping expertise – build with minimal upfront spend, monetize early, reinvest profits</li>
             <li>Hiring & management skills, from solo founder to 150-person teams</li>
-          </ul>
-        </div>
+            </ul>
+          </div>
+        </section>
 
-        <h2>Interests & Projects</h2>
-        <ul>
+        <!-- Interests & Projects Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Interests & Projects</h2>
+          </div>
+          <div class="section-content">
+            <ul>
           <li><b>Low-tech</b> – I own and operate a tractor and a motorcycle.</li>
           <li><b>Construction</b> – I remodeled or built from scratch several houses. Especially, I enjoy applying <i>new IT management</i> to a millennia-old industry.</li>
           <li><b>Art</b> – I visit <i>art museums</i> and <i>art shows</i>.</li>
           <li><b>Classical music</b> – I like to re-listen to <i>Mahler</i> or <i>Verdi</i>.</li>
-        </ul>
-      </div>
+            </ul>
+          </div>
+        </section>
 
-      <div class="section">
-        <h2>Languages</h2>
-        <div>Fluent: Spanish, English, Portuguese, Italian · Reader: German</div>
-      </div>
+        <!-- Languages Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Languages</h2>
+          </div>
+          <div class="section-content">
+            <p>Fluent: Spanish, English, Portuguese, Italian · Reader: German</p>
+          </div>
+        </section>
 
-      <div class="contact">
-        Let's connect if you need a speaker or advisor.<br>
-        <a href="mailto:ivan@generated.photos" style="color:#0077b5;">ivan@generated.photos</a>
-      </div>
-    </div>
+        <!-- Contact Section -->
+        <div class="contact">
+          <p>Let's connect if you need a speaker or advisor.</p>
+          <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
+        </div>
+      </div> <!-- End grid -->
+    </div> <!-- End container -->
   </body>
 </html>

@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# AI Media & Advisory – Ivan Braun
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a personal/professional website for Ivan Braun, an entrepreneur, investor, speaker, and advisor based in Cariló, Argentina. The site showcases Ivan's expertise in synthetic media, AI-generated content, and advisory roles, and serves as a hub for speaking opportunities, advisory requests, and professional connections.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Professional Profile:**  
+  Overview of Ivan Braun's background, expertise, and interests in AI, synthetic media, and technology entrepreneurship.
 
-### `npm start`
+- **Product Portfolio:**  
+  Links to leading AI-driven products and tools, including GenYOU, Face Generator, and Human Generator.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Events & Recognition:**  
+  Highlights of speaking engagements and awards, including Visual 1st Conference and Horasis Global Meeting.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Media Coverage:**  
+  Curated list of major media articles and interviews.
 
-### `npm test`
+- **Contact & Social:**  
+  Direct links to LinkedIn, X (Twitter), and email for professional inquiries.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- HTML5 & CSS3
+- Static site assets (SVG, JPEG)
+- [Create React App](https://github.com/facebook/create-react-app) (for development and build tooling)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Use
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd <your-repo>
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+3. **Run locally:**
+   ```bash
+   npm start
+   ```
+   The site will be available at [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Customization
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Update `/public/index.html` for content changes.
+- Place images and icons in `/public/i/`.
+- Update social/contact links as needed.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contact
 
-## Learn More
+For speaking opportunities, advisory roles, or collaborations, please email:  
+[ivan@generated.photos](mailto:ivan@generated.photos)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Connect on [LinkedIn](https://www.linkedin.com/in/ivanbbb/) or [X (Twitter)](https://x.com/visualpharm).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Project by Ivan Braun**  
+Based in [Cariló, Argentina](https://en.wikipedia.org/wiki/Caril%C3%B3)

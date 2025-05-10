@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ivan Braun – Entrepreneur, Investor, Speaker</title>
     <!-- Fancybox CSS and JS for image zoom and navigation -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <style>
       /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
       :root {
@@ -228,14 +228,20 @@
         transform: scale(1.05);
       }
       
+      a:has(img) {
+        text-decoration: none !important;
+        border-bottom: none !important;
+      }
+      
       a img {
         text-decoration: none;
         border: none;
       }
       
       a.thumbnail-link, a.img-link {
-        text-decoration: none;
+        text-decoration: none !important;
         display: block;
+        border-bottom: none !important;
       }
       
       /* Utilities */
@@ -271,7 +277,7 @@
             <div class="subtitle">Entrepreneur | Investor | Speaker | Advisor</div>
             <div class="location">
               Based in &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
-              <a href="/i/carilo.jpg" class="img-link" style="margin-left:8px;">
+              <a href="/i/carilo.jpg" class="img-link" style="margin-left:8px;" data-fancybox>
                 <img src="/i/carilo.jpg" alt="Cariló" class="small-img">
               </a>
             </div>
@@ -286,6 +292,16 @@
           </div>
         </header>
 
+        <!-- Preface Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Introduction</h2>
+          </div>
+          <div class="section-content">
+            <p>I'm a tech founder leading a team of 150 and serving 4M users. I live in a fancy town with an ocean beach, pine forest, fiber internet, and top restaurants. What I miss is regular conversation with fellow tech entrepreneurs. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
+          </div>
+        </section>
+
         <!-- Experience Section -->
         <section class="section">
           <div class="section-header">
@@ -293,7 +309,7 @@
           </div>
           <div class="section-content">
             <ul>
-              <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a>, delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
+              <li>Founder of <a href="https://icons8.com">Icons8</a> (<a href="https://icons8.com/about">about</a>) and <a href="https://generated.photos">Generated Photos</a> (<a href="https://generated.photos/about">about</a>), delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
               <li><a href="https://generated.photos/genyou">GenYOU – personalized AI selfies</a></li>
               <li><a href="https://generated.photos/face-generator">Face Generator – real-time faces</a></li>
               <li><a href="https://generated.photos/human-generator">Human Generator – full-body humans</a></li>
@@ -314,23 +330,20 @@
               <li>Open to new speaking invitations on AI, product, and ethical data.</li>
             </ul>
             <div class="thumbnail-gallery">
-              <a href="/i/conferences/conferece-speaker.jpg" class="thumbnail-link">
+              <a href="/i/conferences/conferece-speaker.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
                 <img src="/i/conferences/conferece-speaker.jpg" alt="AI conference keynote speaker presenting on stage" class="thumbnail">
               </a>
-              <a href="/i/conferences/conference.jpeg" class="thumbnail-link">
+              <a href="/i/conferences/conference.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
                 <img src="/i/conferences/conference.jpeg" alt="AI industry panel discussion with experts" class="thumbnail">
               </a>
-              <a href="/i/conferences/fl.jpg" class="thumbnail-link">
+              <a href="/i/conferences/fl.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
                 <img src="/i/conferences/fl.jpg" alt="Tech conference networking session with attendees" class="thumbnail">
               </a>
-              <a href="/i/conferences/fl2.jpg" class="thumbnail-link">
+              <a href="/i/conferences/fl2.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
                 <img src="/i/conferences/fl2.jpg" alt="AI conference audience during presentation" class="thumbnail">
               </a>
-              <a href="/i/conferences/visual1st-awards-winners.png" class="thumbnail-link">
+              <a href="/i/conferences/visual1st-awards-winners.png" class="thumbnail-link" data-fancybox="conference-gallery">
                 <img src="/i/conferences/visual1st-awards-winners.png" alt="Visual1st Awards ceremony with winners on stage" class="thumbnail">
-              </a>
-              <a href="/i/conferences/workshop.jpg" class="thumbnail-link">
-                <img src="/i/conferences/workshop.jpg" alt="AI workshop presentation with engaged audience" class="thumbnail">
               </a>
             </div>
           </div>
@@ -420,5 +433,23 @@
         </div>
       </div> <!-- End grid -->
     </div> <!-- End container -->
+    
+    <!-- Initialize Fancybox -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        Fancybox.bind("[data-fancybox]", {
+          // Custom options
+          buttons: ["zoom", "slideShow", "fullScreen", "close"],
+          animationEffect: "fade",
+          transitionEffect: "slide",
+          clickContent: "zoom",
+          wheel: "slide",
+          touch: {
+            vertical: true,
+            momentum: true
+          }
+        });
+      });
+    </script>
   </body>
 </html>

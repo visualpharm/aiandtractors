@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ivan Braun – Entrepreneur, Investor, Speaker</title>
+    <!-- Fancybox CSS and JS for image zoom and navigation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <style>
       /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
       :root {
@@ -202,6 +205,39 @@
         vertical-align: middle;
       }
       
+      /* Thumbnail gallery styling */
+      .thumbnail-gallery {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: calc(var(--spacing-unit) * 2);
+        margin-top: calc(var(--spacing-unit) * 3);
+        overflow-x: auto;
+        padding-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      .thumbnail {
+        width: 150px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+      }
+      
+      .thumbnail:hover {
+        transform: scale(1.05);
+      }
+      
+      a img {
+        text-decoration: none;
+        border: none;
+      }
+      
+      a.thumbnail-link, a.img-link {
+        text-decoration: none;
+        display: block;
+      }
+      
       /* Utilities */
       .subtitle {
         color: var(--color-secondary);
@@ -277,6 +313,26 @@
               <li>Invited speaker, <a href="https://horasis.org/horasis-global-meeting/">Horasis Global Meeting (São Paulo, Oct 2025)</a>.</li>
               <li>Open to new speaking invitations on AI, product, and ethical data.</li>
             </ul>
+            <div class="thumbnail-gallery">
+              <a href="/i/conferences/conferece-speaker.jpg" class="thumbnail-link">
+                <img src="/i/conferences/conferece-speaker.jpg" alt="AI conference keynote speaker presenting on stage" class="thumbnail">
+              </a>
+              <a href="/i/conferences/conference.jpeg" class="thumbnail-link">
+                <img src="/i/conferences/conference.jpeg" alt="AI industry panel discussion with experts" class="thumbnail">
+              </a>
+              <a href="/i/conferences/fl.jpg" class="thumbnail-link">
+                <img src="/i/conferences/fl.jpg" alt="Tech conference networking session with attendees" class="thumbnail">
+              </a>
+              <a href="/i/conferences/fl2.jpg" class="thumbnail-link">
+                <img src="/i/conferences/fl2.jpg" alt="AI conference audience during presentation" class="thumbnail">
+              </a>
+              <a href="/i/conferences/visual1st-awards-winners.png" class="thumbnail-link">
+                <img src="/i/conferences/visual1st-awards-winners.png" alt="Visual1st Awards ceremony with winners on stage" class="thumbnail">
+              </a>
+              <a href="/i/conferences/workshop.jpg" class="thumbnail-link">
+                <img src="/i/conferences/workshop.jpg" alt="AI workshop presentation with engaged audience" class="thumbnail">
+              </a>
+            </div>
           </div>
         </section>
 
@@ -352,7 +408,8 @@
             <h2>Languages</h2>
           </div>
           <div class="section-content">
-            <p>Fluent: Spanish, English, Portuguese, Italian · Reader: German</p>
+            <p>Fluent: Spanish, English, Portuguese, Italian</p>
+            <p>Reader: German</p>
           </div>
         </section>
 

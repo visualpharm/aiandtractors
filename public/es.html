@@ -224,6 +224,11 @@
         flex-shrink: 0;
       }
       
+      /* Custom cropping for the first thumbnail */
+      .thumbnail-gallery a:first-child img {
+        object-position: top center;
+      }
+      
       .thumbnail:hover {
         transform: scale(1.05);
       }
@@ -296,7 +301,9 @@
         <!-- Header Section -->
         <header class="header">
           <div class="header-image">
-            <img src="/i/ian.jpeg" alt="Ivan Braun" class="profile-img">
+            <a href="/i/ian.jpeg" data-fancybox="profile">
+              <img src="/i/ian.jpeg" alt="Ivan Braun" class="profile-img">
+            </a>
           </div>
           <div class="header-content">
             <h1>Ivan Braun</h1>
@@ -356,6 +363,12 @@
               <li>Abierto a nuevas invitaciones para hablar sobre IA, productos y datos éticos.</li>
             </ul>
             <div class="thumbnail-gallery">
+              <a href="/i/conferences/award.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
+                <img src="/i/conferences/award.jpeg" alt="Recibiendo premio en conferencia tecnológica" class="thumbnail">
+              </a>
+              <a href="/i/conferences/presenting.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
+                <img src="/i/conferences/presenting.jpeg" alt="Presentando en conferencia de tecnología" class="thumbnail">
+              </a>
               <a href="/i/conferences/fl.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
                 <img src="/i/conferences/fl.jpg" alt="Sesión de networking en conferencia tecnológica con asistentes" class="thumbnail">
               </a>

@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ivan Braun – Entrepreneur, Investor, Speaker</title>
+    <meta name="description" content="Ivan Braun - Entrepreneur, Investor, AI Keynote Speaker, and Advisor specializing in artificial intelligence, product development, and ethical data.">
+    <meta name="keywords" content="Ivan Braun, entrepreneur, investor, ai speaker, artificial intelligence speaker, ai keynote speaker, ai conference speaker">
+    <title>Ivan Braun – Entrepreneur, Investor, AI Speaker</title>
     <!-- Fancybox CSS and JS for image zoom and navigation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
@@ -187,6 +189,25 @@
         
         .header-image {
           margin-bottom: calc(var(--spacing-unit) * 3);
+          text-align: left;
+        }
+      }
+      
+      /* Mobile specific adjustments */
+      @media (max-width: 480px) {
+        .header {
+          display: block;
+          position: relative;
+        }
+        
+        .header-image {
+          text-align: left;
+          margin-top: 40px;
+        }
+        
+        .language-switcher {
+          top: 15px;
+          right: 15px;
         }
       }
       
@@ -207,21 +228,36 @@
       
       /* Thumbnail gallery styling */
       .thumbnail-gallery {
-        display: flex;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: calc(var(--spacing-unit) * 2);
         margin-top: calc(var(--spacing-unit) * 3);
-        overflow-x: auto;
-        padding-bottom: calc(var(--spacing-unit) * 2);
+        width: 100%;
       }
       
       .thumbnail {
-        width: 150px;
+        width: 100%;
         height: 100px;
         object-fit: cover;
         border-radius: 4px;
         transition: transform 0.3s ease;
-        flex-shrink: 0;
+      }
+      
+      .thumbnail-link {
+        display: block;
+        width: 100%;
+      }
+      
+      /* Responsive adjustments for mobile */
+      @media (max-width: 480px) {
+        .thumbnail-gallery {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: calc(var(--spacing-unit));
+        }
+        
+        .thumbnail {
+          height: 80px;
+        }
       }
       
       /* Custom cropping for the first thumbnail */
@@ -275,6 +311,7 @@
         right: 20px;
         display: flex;
         gap: 10px;
+        z-index: 100;
       }
 
       .language-switcher a {
@@ -307,7 +344,7 @@
           </div>
           <div class="header-content">
             <h1>Ivan Braun</h1>
-            <div class="subtitle">Entrepreneur | Investor | Speaker | Advisor</div>
+            <div class="subtitle">Entrepreneur | Investor | AI Speaker | Advisor</div>
             <div class="location">
               Based in &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
               <a href="/i/carilo.jpg" class="img-link" style="margin-left:8px;" data-fancybox>
@@ -355,14 +392,14 @@
         <!-- Events & Recognition Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Conferences</h2>
+            <h2>Conferences & Speaking</h2>
           </div>
           <div class="section-content">
             <ul>
               <li>Invited speaker, <a href="https://horasis.org/horasis-global-meeting/">Horasis Global Meeting (São Paulo, Oct 2025)</a>.</li>
               <li>Voted Visitor's Choice at <a href="https://www.visual1st.biz">Visual 1st Conference</a>.</li>
               <li>I'll be at Rio Innovation Week in August 2025. Message me if you want to meet.</li>
-              <li>Open to new speaking invitations on AI, product, and ethical data.</li>
+              <li>Available as an AI keynote speaker and artificial intelligence speaker for conferences worldwide. Open to new speaking invitations on AI, product development, and ethical data.</li>
             </ul>
             <div class="thumbnail-gallery">
               <a href="/i/conferences/award.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
@@ -470,7 +507,7 @@
 
         <!-- Contact Section -->
         <div class="contact">
-          <p>Let's connect if you need a speaker or advisor.</p>
+          <p>Let's connect if you need a conference speaker or advisor for your startup.</p>
           <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
         </div>
       </div> <!-- End grid -->

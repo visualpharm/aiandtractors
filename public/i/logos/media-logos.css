@@ -54,7 +54,7 @@
 
 .gov-label,
 .gov-label a,
-.gov-label a:hover,
+/*.gov-label a:hover,*/
 .gov-label a:visited,
 .gov-label a:active {
   text-align: center;

@@ -52,8 +52,14 @@
   object-fit: contain;
 }
 
-.gov-label {
+.gov-label,
+.gov-label a,
+.gov-label a:hover,
+.gov-label a:visited,
+.gov-label a:active {
   text-align: center;
   font-size: 12px;
   line-height: 1.2;
+  text-decoration: none !important;
+  border-bottom: none !important;
 }

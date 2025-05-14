@@ -204,6 +204,13 @@
       
       /* Mobile specific adjustments */
       @media (max-width: 480px) {
+        .container {
+          padding-left: calc(var(--spacing-unit) * 1.5);
+          padding-right: 10px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        
         .header {
           display: block;
           position: relative;
@@ -227,6 +234,21 @@
         .section-header {
           margin-top: 10px;
           margin-bottom: 0px;
+        }
+        
+        img {
+          max-width: 100% !important;
+          height: auto !important;
+        }
+        
+        .section-content {
+          width: calc(100% - 10px);
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        
+        a {
+          word-break: break-word;
         }
       }
       
@@ -488,11 +510,31 @@
         margin-bottom: 20px;
       }
       
-      /* iPhone specific breakpoint for media outlets */
-      @media (min-width: 390px) and (max-width: 430px) {
+      /* Mobile breakpoint for media outlets */
+      @media (max-width: 480px) {
         .media-outlets {
           grid-template-columns: 1fr;
           gap: 15px;
+          width: calc(100% - 10px);
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        
+        .media-outlet {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+        }
+        
+        .media-logo {
+          width: 70px;
+          min-width: 70px;
+          margin-right: 10px;
+        }
+        
+        .media-title {
+          font-size: 0.9rem;
+          line-height: 1.3;
         }
       }
     </style>
@@ -766,9 +808,9 @@
             </ul>
             <div style="margin: 20px 0 30px; text-align: left;">
               <a href="/i/tractor-horses.jpg" data-fancybox>
-                <img src="/i/tractor-horses.jpg" alt="Tractor and horses" style="max-width: 400px; width: 100%; border-radius: 4px; display: block;">
+                <img src="/i/tractor-horses.jpg" alt="Tractor and horses" style="max-width: 100%; width: auto; border-radius: 4px; display: block;">
               </a>
-              <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit; text-align: left;">
+              <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
                 Riding a tractor is an underrated joy — and surprisingly extreme. In motocross, crashes happen in an instant. On a tractor, the horror of falling unfolds in slow motion, lasting minutes.
               </p>
             </div>

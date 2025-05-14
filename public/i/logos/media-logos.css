@@ -1,6 +1,6 @@
 .media-outlet {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 15px;
 }
 
@@ -36,7 +36,7 @@
 
 .media-logo img[alt="VICE"] {
   padding-left: 20px;
-  padding-right: 10px;
+  padding-right: 0;
   max-width: 100px;
 }
 

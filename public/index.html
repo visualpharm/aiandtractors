@@ -93,6 +93,10 @@
         grid-column: 4 / -1;
       }
       
+      .section-content p {
+        font-size: 1rem; /* 4. Regular text size */
+      }
+      
       /* Typography */
       h1 {
         font-size: 2.8rem; /* 1. Ivan Braun - big */
@@ -119,10 +123,17 @@
         margin-bottom: calc(var(--spacing-unit) * 2);
       }
       
-      .intro-text {
+      p.subtitle {
+        font-size: 1.3rem; /* Restoring original 1.3rem size */
+        color: var(--color-secondary);
+        margin-bottom: calc(var(--spacing-unit) * 2); /* Restoring original margin */
+      }
+      
+      p.intro-text {
         font-size: 1.3rem; /* 3. Same size as subtitle */
         line-height: 1.4;
         margin-bottom: calc(var(--spacing-unit) * 3);
+        color: var(--color-secondary); /* Match subtitle color */
       }
       
       /* Lists */
@@ -154,23 +165,21 @@
       
       /* Links */
       a {
-        color: #4a5d8c; /* Slightly blue, mixed with dark beige */
+        color: #3a5daa; /* More pronounced blue */
         text-decoration: none;
-        border-bottom: 1px solid currentColor;
-        transition: color 0.2s ease, border-color 0.2s ease;
+        border-bottom: none;
+        transition: color 0.2s ease;
       }
       
       a:visited {
-        color: #6a5d7c; /* Slightly purple, mixed with dark beige */
+        color: #6a4d99; /* More pronounced purple */
       }
       
       a:hover {
-        color: #8c5d5d; /* Slightly red, mixed with dark beige */
-        border-bottom-color: currentColor;
+        color: #aa3a3a; /* More pronounced red */
       }
       
       a.icon-link, a.img-link {
-        border-bottom: none;
         display: inline-flex;
         align-items: center;
         margin-right: calc(var(--spacing-unit) * 3);
@@ -357,12 +366,6 @@
       }
       
       /* Utilities */
-      .subtitle {
-        color: var(--color-secondary);
-        font-size: 1.3rem; /* 3. Entrepreneur, investor, AI speaker, advisor */
-        margin-bottom: calc(var(--spacing-unit) * 2);
-      }
-      
       .contact-row {
         display: flex;
         align-items: center;
@@ -510,7 +513,7 @@
           </div>
           <div class="header-content">
             <h1>Ivan Braun</h1>
-            <div class="subtitle">Entrepreneur, investor, AI speaker, advisor</div>
+            <p class="subtitle">Entrepreneur, investor, AI speaker, advisor</p>
             <div class="contact-row">
               <div class="location">
                 Based in &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
@@ -535,7 +538,7 @@
         <!-- Preface Section -->
         <section class="section">
           <div class="section-content">
-            <p class="intro-text">I'm a tech founder leading a team of 150 and serving 4M users. I live in a fancy town with an ocean beach, pine forest, fiber internet, and top restaurants. What I miss is <b>regular conversation with fellow tech entrepreneurs</b>. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
+            <p class="intro-text">I'm a tech founder leading a team of 150 and serving 4M users. I live in a nice town with an ocean beach, pine forest, fiber internet, and top restaurants. What I miss is <b>regular conversation with fellow tech entrepreneurs</b>. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
           </div>
         </section>
 
@@ -823,6 +826,13 @@
           </div>
         </section>
 
+        <!-- About Me Section -->
+        <section class="section">
+          <div class="section-content">
+            <p class="subtitle">I'm a tech founder leading a team of 150 and serving 4M users. I live in a nice town with an ocean beach, pine forest, fiber internet, and top restaurants. What I miss is regular conversation with fellow tech entrepreneurs. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
+          </div>
+        </section>
+
         <!-- Investment & Advisory Section -->
         <section class="section">
           <div class="section-header">
@@ -971,8 +981,12 @@
     .expand-books-link {
       margin-left: 3px;
       font-size: 0.9em;
-      color: var(--color-primary);
+      color: #3a5daa; /* Match link blue */
       cursor: pointer;
+    }
+    
+    .expand-books-link:hover {
+      color: #aa3a3a; /* Match link hover red */
     }
     
     .books-list {

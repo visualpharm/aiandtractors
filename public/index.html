@@ -74,7 +74,7 @@
       
       /* Section styling */
       .section {
-        margin-bottom: calc(var(--spacing-unit) * 8);
+        margin-bottom: 0; /* Removed 64px spacing */
         grid-column: 1 / -1;
         display: grid;
         grid-template-columns: repeat(var(--grid-columns), 1fr);
@@ -85,6 +85,8 @@
         grid-column: 1 / 4;
         text-align: right;
         padding-right: calc(var(--spacing-unit) * 2);
+        margin-top: 30px; /* Exactly 30px before H2 */
+        margin-bottom: 10px; /* 10px after H2 */
       }
       
       .section-content {
@@ -190,7 +192,8 @@
         .section-header {
           text-align: left;
           padding-right: 0;
-          margin-bottom: calc(var(--spacing-unit) * 2);
+          margin-top: 30px;
+          margin-bottom: calc(var(--spacing-unit));
         }
         
         .header-image {
@@ -214,6 +217,16 @@
         .language-switcher {
           top: 15px;
           right: 15px;
+        }
+        
+        h2 {
+          margin-top: 15px;
+          margin-bottom: 10px;
+        }
+        
+        .section-header {
+          margin-top: 10px;
+          margin-bottom: 0px;
         }
       }
       
@@ -751,10 +764,13 @@
           <li><b>Art</b> – I visit <i>art museums</i> and <i>art shows</i>. My favorite ones are Tate Modern, Metropolitan Museum of Art, Biennale in Venice, and Art Basel.</li>
           <li><b>Classical music</b> – Classical music – I'm a big fan of <i>Mahler</i>, the dude who made loud music for huge orchestras. Also, he wanted a bam! sound that past days instruments couldn't provide. We are looking for his perfect bam! sound until now.</li>
             </ul>
-            <div style="margin-top: 20px;">
+            <div style="margin: 20px 0 30px; text-align: left;">
               <a href="/i/tractor-horses.jpg" data-fancybox>
-                <img src="/i/tractor-horses.jpg" alt="Tractor and horses" style="max-width: 100%; border-radius: 4px;">
+                <img src="/i/tractor-horses.jpg" alt="Tractor and horses" style="max-width: 400px; width: 100%; border-radius: 4px; display: block;">
               </a>
+              <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit; text-align: left;">
+                Riding a tractor is an underrated joy — and surprisingly extreme. In motocross, crashes happen in an instant. On a tractor, the horror of falling unfolds in slow motion, lasting minutes.
+              </p>
             </div>
           </div>
         </section>

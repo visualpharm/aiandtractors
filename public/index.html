@@ -266,6 +266,18 @@
         }
       }
       
+      /* iPhone specific breakpoint */
+      @media (min-width: 390px) and (max-width: 430px) {
+        .thumbnail-gallery {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+        }
+        
+        .thumbnail {
+          height: 75px;
+        }
+      }
+      
       /* Custom cropping for the first thumbnail */
       .thumbnail-gallery a:first-child img {
         object-position: top center;
@@ -455,6 +467,22 @@
   </div>
   <div class="section-content">
     <link rel="stylesheet" href="i/logos/media-logos.css">
+    <style>
+      .media-outlets {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      
+      /* iPhone specific breakpoint for media outlets */
+      @media (min-width: 390px) and (max-width: 430px) {
+        .media-outlets {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+      }
+    </style>
     <div class="media-outlets">
       <div class="media-outlet">
         <div class="media-logo"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg/320px-The_Logo_of_The_Washington_Post_Newspaper.svg.png" alt="The Washington Post"></a></div>
@@ -576,7 +604,108 @@
             <h2>Experience</h2>
           </div>
           <div class="section-content">
-            <p>My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are customer development (<a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" class="icon-link book-icon"><img src="i/icons8-book.svg" alt="Book" width="20" height="20"></a>, <a href="https://www.amazon.com/Competing-Against-Luck-Innovation-Customer/dp/0062435612/ref=pd_sbs_d_sccl_3_3/136-8813947-8168505?pd_rd_w=IjQyf&content-id=amzn1.sym.ad06c767-be16-47a3-89d3-049eb4254aa7&pf_rd_p=ad06c767-be16-47a3-89d3-049eb4254aa7&pf_rd_r=988XBXJ6RVXHXBF58TR9&pd_rd_wg=5m9o4&pd_rd_r=367248b6-5ea4-4d6a-b28f-794cd7a4cdfe&pd_rd_i=0062435612&psc=1" class="icon-link book-icon"><img src="i/icons8-book.svg" alt="Book" width="20" height="20"></a>), UX design (my profession, <a href="https://www.amazon.com/About-Face-Essentials-Interaction-Design/dp/1118766571" class="icon-link book-icon"><img src="i/icons8-book.svg" alt="Book" width="20" height="20"></a>), and paywalls.</p>
+            <p>My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
+            
+            <div class="tools-container">
+              <div class="tool-block" style="background: linear-gradient(135deg, #e6d7bf 0%, #d6c6af 100%);">
+                <div class="tool-content">
+                  <h3>Customer Development</h3>
+                </div>
+                <div class="tool-books">
+                  <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" class="icon-link book-icon" title="Interviewing Users by Steve Portigal"><img src="i/icons8-book.svg" alt="Interviewing Users" width="20" height="20"></a>
+                  <a href="https://harpercollins.com/products/competing-against-luck-clayton-m-christensenkaren-dillerteadek-hall-david-s-duncan" class="icon-link book-icon" title="Competing Against Luck by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="Competing Against Luck" width="20" height="20"></a>
+                </div>
+              </div>
+              
+              <div class="tool-block" style="background: linear-gradient(135deg, #e2d5bc 0%, #d2c5ac 100%);">
+                <div class="tool-content">
+                  <h3>UX Design</h3>
+                  <p class="tool-subtitle">my profession</p>
+                </div>
+                <div class="tool-books">
+                  <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" class="icon-link book-icon" title="About Face: The Essentials of Interaction Design"><img src="i/icons8-book.svg" alt="About Face" width="20" height="20"></a>
+                  <span class="book-note">Old Jacob Nielsen books</span>
+                </div>
+              </div>
+              
+              <div class="tool-block" style="background: linear-gradient(135deg, #ded3ba 0%, #cec3aa 100%);">
+                <div class="tool-content">
+                  <h3>Paywalls</h3>
+                  <p class="tool-subtitle">monetization strategy</p>
+                </div>
+              </div>
+            </div>
+            
+            <style>
+              .tools-container {
+                display: flex;
+                gap: 20px;
+                margin: 25px 0 35px 0;
+                flex-wrap: wrap;
+              }
+              
+              .tool-block {
+                flex: 1;
+                min-width: 200px;
+                padding: 20px;
+                border-radius: 10px;
+                color: #333;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 160px;
+              }
+              
+              .tool-content {
+                flex-grow: 1;
+              }
+              
+              .tool-block h3 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+              }
+              
+              .tool-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin: -10px 0 10px 0;
+                font-style: italic;
+              }
+              
+              .tool-books {
+                margin-top: auto;
+                align-self: flex-start;
+              }
+              
+              .book-note {
+                font-size: 0.8rem;
+                margin-left: 5px;
+                opacity: 0.8;
+                vertical-align: middle;
+              }
+              
+              .tool-books a {
+                display: inline-block;
+                margin-right: 10px;
+                background: rgba(0, 0, 0, 0.05);
+                padding: 5px;
+                border-radius: 50%;
+                line-height: 0;
+                border: none !important;
+              }
+              
+              @media (max-width: 768px) {
+                .tools-container {
+                  flex-direction: column;
+                }
+                
+                .tool-block {
+                  width: 100%;
+                }
+              }
+            </style>
             <ul>
               <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a>, delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
               <li>We supply large-scale resources and custom <a href="https://generated.photos/datasets">datasets</a> to enterprise clients and are the largest graphics supplier to Canva.</li>
@@ -603,9 +732,9 @@
           <div class="section-content">
             <p>I'm a serial entrepreneur who launches <i>bootstrapped products related to AI and design</i>. My strengths are:</p>
             <ul>
-            <li><b>Marketing:</b> SEO, ProductHunt, press, mailing. I'm bad at social media.</li>
+            <li><b>Marketing:</b> SEO, ProductHunt, press, mailing (some of my favorite books: <a href="https://harpercollins.com/products/competing-against-luck-clayton-m-christensenkaren-dillerteadek-hall-david-s-duncan" class="icon-link book-icon" title="Competing Against Luck by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="Competing Against Luck" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/the-innovators-dilemma-clayton-m-christensen" class="icon-link book-icon" title="The Innovator's Dilemma by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="The Innovator's Dilemma" width="20" height="20"></a> <a href="https://www.penguinrandomhouse.com/books/227670/traction-by-gabriel-weinberg-and-justin-mares/" class="icon-link book-icon" title="Traction by Gabriel Weinberg & Justin Mares"><img src="i/icons8-book.svg" alt="Traction" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/crossing-the-chasm-3rd-edition-geoffrey-a-moore" class="icon-link book-icon" title="Crossing the Chasm by Geoffrey A. Moore"><img src="i/icons8-book.svg" alt="Crossing the Chasm" width="20" height="20"></a> <a href="https://www.hayhouse.com/ask-paperback" class="icon-link book-icon" title="Ask by Ryan Levesque"><img src="i/icons8-book.svg" alt="Ask" width="20" height="20"></a> <a href="#" id="expand-marketing-books" class="expand-books-link">expand</a>). I'm bad at social media.</li>
             <li><b>AI bootstrapping:</b> reduce spend, monetize early, reinvest profits.</li>
-            <li><b>Hiring & management:</b> from solo founder to 100+ person teams.</li>
+            <li><b>Hiring & management:</b> from solo founder to 100+ person teams (books: <a href="https://www.triballeadership.net/" class="icon-link book-icon" title="Tribal Leadership by Dave Logan, John King, and Halee Fischer-Wright"><img src="i/icons8-book.svg" alt="Tribal Leadership" width="20" height="20"></a> <a href="https://en.wikipedia.org/wiki/High_Output_Management" class="icon-link book-icon" title="High Output Management by Andrew S. Grove"><img src="i/icons8-book.svg" alt="High Output Management" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/the-effective-executive-peter-f-drucker?variant=32207495856162" class="icon-link book-icon" title="The Effective Executive by Peter F. Drucker"><img src="i/icons8-book.svg" alt="The Effective Executive" width="20" height="20"></a> <a href="https://basecamp.com/books/rework" class="icon-link book-icon" title="Rework by Jason Fried & David Heinemeier Hansson"><img src="i/icons8-book.svg" alt="Rework" width="20" height="20"></a> <a href="https://www.whatmatters.com/the-book" class="icon-link book-icon" title="Measure What Matters by John Doerr"><img src="i/icons8-book.svg" alt="Measure What Matters" width="20" height="20"></a> <a href="https://scrumguides.org/scrum-guide.html" class="icon-link book-icon" title="Scrum Guide by Chris Sims & Hillary Louise Johnson"><img src="i/icons8-book.svg" alt="Scrum Guide" width="20" height="20"></a> <a href="https://www.goodreads.com/book/show/54770.Fire_Someone_Today" class="icon-link book-icon" title="Fire Someone Today by Bob Parsons"><img src="i/icons8-book.svg" alt="Fire Someone Today" width="20" height="20"></a> <a href="https://www.bkconnection.com/books/title/humble-inquiry-second-edition" class="icon-link book-icon" title="Humble Inquiry by Edgar H. Schein"><img src="i/icons8-book.svg" alt="Humble Inquiry" width="20" height="20"></a> <a href="#" id="expand-management-books" class="expand-books-link">expand</a>).</li>
             </ul>
           </div>
         </section>
@@ -698,5 +827,159 @@
         }
       });
     </script>
-  </body>
+    <!-- Hidden book lists that will be shown when clicking on the 'Show books' links -->
+  <div id="management-books-list" class="books-list" style="display: none;">
+    <div class="books-list-container">
+      <div class="books-list-header">
+        <h3>Hiring & management</h3>
+        <button class="close-books-list">×</button>
+      </div>
+      <p>my fav books:</p>
+      <ul>
+        <li><a href="https://www.triballeadership.net/"><strong>Tribal Leadership</strong></a> <i>Dave Logan, John King, and Halee Fischer-Wright</i><br>A guide to leveraging natural groups to build thriving organizations</li>
+        <li><a href="https://en.wikipedia.org/wiki/High_Output_Management"><strong>High Output Management</strong></a> <i>Andrew S. Grove</i><br>Former Intel CEO's guide to effective management techniques</li>
+        <li><a href="https://www.harpercollins.com/products/the-effective-executive-peter-f-drucker?variant=32207495856162"><strong>The Effective Executive</strong></a> <i>Peter F. Drucker</i><br>Classic guide on getting the right things done</li>
+        <li><a href="https://basecamp.com/books/rework"><strong>Rework</strong></a> <i>Jason Fried & David Heinemeier Hansson</i><br>A different approach to work and business</li>
+        <li><a href="https://www.whatmatters.com/the-book"><strong>Measure What Matters</strong></a> <i>John Doerr</i><br>How Google, Bono, and the Gates Foundation rock the world with OKRs</li>
+        <li><a href="https://scrumguides.org/scrum-guide.html"><strong>Scrum: A Breathtakingly Brief and Agile Introduction</strong></a> <i>Chris Sims & Hillary Louise Johnson</i><br>A concise guide to the Scrum framework</li>
+        <li><a href="https://www.goodreads.com/book/show/54770.Fire_Someone_Today"><strong>Fire Someone Today</strong></a> <i>Bob Parsons</i><br>And other surprising lessons for success in business</li>
+        <li><a href="https://www.bkconnection.com/books/title/humble-inquiry-second-edition"><strong>Humble Inquiry</strong></a> <i>Edgar H. Schein</i><br>The gentle art of asking instead of telling</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="marketing-books-list" class="books-list" style="display: none;">
+    <div class="books-list-container">
+      <div class="books-list-header">
+        <h3>Marketing</h3>
+        <button class="close-books-list">×</button>
+      </div>
+      <p>my fav books:</p>
+      <ul>
+        <li><a href="https://harpercollins.com/products/competing-against-luck-clayton-m-christensenkaren-dillerteadek-hall-david-s-duncan"><strong>Competing Against Luck</strong></a> <i>Clayton M. Christensen</i><br>The story of innovation and customer choice</li>
+        <li><a href="https://www.harpercollins.com/products/the-innovators-dilemma-clayton-m-christensen"><strong>The Innovator's Dilemma</strong></a> <i>Clayton M. Christensen</i><br>When new technologies cause great firms to fail</li>
+        <li><a href="https://www.penguinrandomhouse.com/books/227670/traction-by-gabriel-weinberg-and-justin-mares/"><strong>Traction</strong></a> <i>Gabriel Weinberg & Justin Mares</i><br>How any startup can achieve explosive customer growth</li>
+        <li><a href="https://www.harpercollins.com/products/crossing-the-chasm-3rd-edition-geoffrey-a-moore"><strong>Crossing the Chasm</strong></a> <i>Geoffrey A. Moore</i><br>Marketing and selling disruptive products to mainstream customers</li>
+        <li><a href="https://www.hayhouse.com/ask-paperback"><strong>Ask</strong></a> <i>Ryan Levesque</i><br>The counterintuitive online method to discover exactly what your customers want to buy</li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    .expand-books-link {
+      margin-left: 3px;
+      font-size: 0.9em;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+    
+    .books-list {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .books-list-container {
+      background-color: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .books-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .books-list-header h3 {
+      margin: 0;
+    }
+    
+    .close-books-list {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--color-secondary);
+    }
+    
+    .books-list ul {
+      margin: 0;
+      padding: 0 0 0 20px;
+    }
+    
+    .books-list li {
+      margin-bottom: 12px;
+      line-height: 1.4;
+      padding-left: 0;
+    }
+    
+    .books-list li:before {
+      content: none;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Management books expand/collapse functionality
+      const expandManagementBooks = document.getElementById('expand-management-books');
+      const managementBooksList = document.getElementById('management-books-list');
+      
+      expandManagementBooks.addEventListener('click', function(e) {
+        e.preventDefault();
+        managementBooksList.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      
+      // Marketing books expand/collapse functionality
+      const expandMarketingBooks = document.getElementById('expand-marketing-books');
+      const marketingBooksList = document.getElementById('marketing-books-list');
+      
+      expandMarketingBooks.addEventListener('click', function(e) {
+        e.preventDefault();
+        marketingBooksList.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      
+      // Close buttons functionality
+      const closeButtons = document.querySelectorAll('.close-books-list');
+      
+      closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          managementBooksList.style.display = 'none';
+          marketingBooksList.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        });
+      });
+      
+      // Close on click outside
+      const booksLists = document.querySelectorAll('.books-list');
+      
+      booksLists.forEach(function(list) {
+        list.addEventListener('click', function(e) {
+          if (e.target === list) {
+            managementBooksList.style.display = 'none';
+            marketingBooksList.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }
+        });
+      });
+    });
+  </script>
+</body>
 </html>

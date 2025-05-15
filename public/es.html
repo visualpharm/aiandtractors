@@ -93,28 +93,41 @@
       
       /* Typography */
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem; /* 1. Ivan Braun - big */
         font-weight: 500;
         line-height: 1.2;
-        margin-bottom: calc(var(--spacing-unit) * 3);
+        margin-bottom: 0;
         letter-spacing: -0.02em;
       }
       
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem; /* 2. h2 headings */
         font-weight: 500;
         margin-bottom: calc(var(--spacing-unit) * 2);
         position: relative;
       }
       
       h3 {
-        font-size: 1.25rem;
+        font-size: 1.4rem; /* 3. Tool headings like Customer Development */
         font-weight: 500;
         margin-bottom: calc(var(--spacing-unit) * 2);
       }
       
       p {
         margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      p.subtitle {
+        font-size: 1.3rem; /* Restoring original 1.3rem size */
+        color: var(--color-secondary);
+        margin-bottom: calc(var(--spacing-unit) * 2); /* Restoring original margin */
+      }
+      
+      p.intro-text {
+        font-size: 1.3rem; /* 3. Same size as subtitle */
+        line-height: 1.4;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        color: var(--color-secondary); /* Match subtitle color */
       }
       
       /* Lists */
@@ -497,7 +510,7 @@
             <!--h2>Introducción</h2-->
           </div>
           <div class="section-content">
-            <p>Soy un fundador tecnológico que lidera un equipo de 150 personas y sirve a 4 millones de usuarios. Vivo en un pueblo encantador con playa oceánica, bosque de pinos, internet de fibra y excelentes restaurantes. Lo que extraño es <b>la conversación regular con otros emprendedores tecnológicos</b>. Busco encontrar conversaciones inspiradoras, hablar en conferencias y servir como asesor para startups.</p>
+            <p class="intro-text">Soy un fundador tecnológico que lidera un equipo de 150 personas y sirve a 4 millones de usuarios. Vivo en un pueblo encantador con playa oceánica, bosque de pinos, internet de fibra y excelentes restaurantes. Lo que extraño es <b>la conversación regular con otros emprendedores tecnológicos</b>. Busco encontrar conversaciones inspiradoras, hablar en conferencias y servir como asesor para startups.</p>
           </div>
         </section>
 
@@ -672,16 +685,29 @@
           </div>
           <div class="section-content">
             <ul>
-          <li><b>Baja tecnología</b> – Poseo y opero una motocicleta y un tractor. También he soldado algunos implementos del tractor.</li>
+          <li><b>Baja tecnología</b> – Poseo y opero una motocicleta e um trator. También he soldado algunos implementos del tractor.
+            <div style="margin: 20px 0 30px; text-align: left;">
+              <a href="/i/tractor-horses.jpg" data-fancybox>
+                <img src="https://ik.imagekit.io/icons8/tr:w-1200/i/tractor-horses.jpg" alt="Tractor y caballos" style="max-width: 600px; width: auto; border-radius: 4px; display: block;">
+              </a>
+              <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
+                Conducir un tractor es una alegría subestimada — y sorprendentemente extremo. En el motocross, los accidentes ocurren en un instante. En un tractor, el horror de caer se desarrolla en cámara lenta, durando minutos.
+              </p>
+            </div>
+          </li>
           <li><b>Construcción</b> – He remodelado o construido desde cero varias casas. Especialmente, disfruto aplicando <i>nueva gestión de TI</i> a una industria milenaria.</li>
+          <div style="margin: 20px 0 30px; text-align: left;">
+              <a href="/i/ilbuco.jpeg" data-fancybox>
+                <img src="https://ik.imagekit.io/icons8/tr:w-600/i/ilbuco.jpeg" alt="Construcción reciente" style="max-width: 300px; width: auto; border-radius: 4px; display: block;">
+              </a>
+              <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
+                Construcción reciente. Construcción reciente. Una de las innovaciones exitosas fue tener un ingeniero de QA trabajando en el registro de errores.
+              </p>
+            </div>
           <li><b>Arte</b> – Visito <i>museos de arte</i> y <i>exposiciones de arte</i>. Mis favoritos son Tate Modern, Metropolitan Museum of Art, Bienal de Venecia y Art Basel.</li>
           <li><b>Música clásica</b> – Soy un gran fan de <i>Mahler</i>, el tipo que hizo música fuerte para orquestas enormes. Además, quería un sonido ¡bam! que los instrumentos de días pasados no podían proporcionar. Seguimos buscando su sonido ¡bam! perfecto hasta ahora.</li>
             </ul>
-            <div style="margin-top: 20px;">
-              <a href="/i/tractor-horses.jpg" data-fancybox>
-                <img src="/i/tractor-horses.jpg" alt="Tractor y caballos" style="max-width: 100%; border-radius: 4px;">
-              </a>
-            </div>
+
           </div>
         </section>
 

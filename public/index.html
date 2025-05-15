@@ -185,11 +185,11 @@
         margin-right: calc(var(--spacing-unit) * 3);
       }
       
-      a.book-icon {
-        margin-right: 0;
-        position: relative;
-        top: 5px;
-      }
+a.book-icon {
+  margin-right: 0;
+  display: inline-flex;
+  align-items: center;
+}
       
       /* Contact section */
       .contact {
@@ -706,7 +706,7 @@
             <h2>Experience</h2>
           </div>
           <div class="section-content">
-            <p>My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
+            <p>I'm a serial entrepreneur who launches <i>bootstrapped products related to AI and design</i>. My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
             
             <div class="tools-container">
               <div class="tool-block" style="background: linear-gradient(135deg, #e6d7bf 0%, #d6c6af 100%);">
@@ -749,7 +749,7 @@
               
               .tool-block {
                 flex: 1;
-                min-width: 200px;
+                min-width: 260px;
                 padding: 20px;
                 border-radius: 10px;
                 color: #333;
@@ -765,37 +765,68 @@
               }
               
               .tool-block h3 {
-                margin-top: 0;
-                margin-bottom: 10px;
+                margin-top: -4px;
+                margin-bottom: 8px;
                 font-size: 1.2rem;
               }
               
               .tool-subtitle {
                 font-size: 0.85rem;
-                margin-top: 5px;
+                margin-top: 2px;
                 color: var(--color-secondary);
               }
               
-              .tool-books {
-                margin-top: auto;
-                align-self: flex-start;
+.tool-books {
+  margin-top: auto;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.book-note {
+  font-size: 0.8rem;
+  margin-left: 5px;
+  opacity: 0.8;
+}
+
+.tool-books a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 5px;
+  border-radius: 50%;
+  line-height: 0;
+  border: none !important;
+}
+              
+              /* Responsive styles for different screen sizes */
+              @media (min-width: 901px) {
+                .tools-container {
+                  display: flex;
+                  flex-direction: row;
+                }
+                
+                .tool-block {
+                  flex: 1;
+                  width: calc(33.333% - 14px);
+                }
               }
               
-              .book-note {
-                font-size: 0.8rem;
-                margin-left: 5px;
-                opacity: 0.8;
-                vertical-align: middle;
-              }
-              
-              .tool-books a {
-                display: inline-block;
-                margin-right: 10px;
-                background: rgba(0, 0, 0, 0.05);
-                padding: 5px;
-                border-radius: 50%;
-                line-height: 0;
-                border: none !important;
+              /* Middle-sized screens - prevent layout shift */
+              @media (min-width: 769px) and (max-width: 900px) {
+                .tools-container {
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  gap: 20px;
+                }
+                
+                .tool-block {
+                  width: 100%;
+                  min-width: 260px;
+                }
               }
               
               @media (max-width: 768px) {
@@ -826,20 +857,13 @@
           </div>
         </section>
 
-        <!-- About Me Section -->
-        <section class="section">
-          <div class="section-content">
-            <p class="subtitle">I'm a tech founder leading a team of 150 and serving 4M users. I live in a nice town with an ocean beach, pine forest, fiber internet, and top restaurants. What I miss is regular conversation with fellow tech entrepreneurs. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
-          </div>
-        </section>
-
         <!-- Investment & Advisory Section -->
         <section class="section">
           <div class="section-header">
             <h2>Investment & Advisory</h2>
           </div>
           <div class="section-content">
-            <p>I'm a serial entrepreneur who launches <i>bootstrapped products related to AI and design</i>. My strengths are:</p>
+            <p>As an investor and advisor, I offer my expertise in:</p>
             <ul>
             <li><b>Marketing:</b> SEO, ProductHunt, press, mailing (some of my favorite books: <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" class="icon-link book-icon" title="Competing Against Luck by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="Competing Against Luck" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/the-innovators-dilemma-clayton-m-christensen" class="icon-link book-icon" title="The Innovator's Dilemma by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="The Innovator's Dilemma" width="20" height="20"></a> <a href="https://www.penguinrandomhouse.com/books/227670/traction-by-gabriel-weinberg-and-justin-mares/" class="icon-link book-icon" title="Traction by Gabriel Weinberg & Justin Mares"><img src="i/icons8-book.svg" alt="Traction" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/crossing-the-chasm-3rd-edition-geoffrey-a-moore" class="icon-link book-icon" title="Crossing the Chasm by Geoffrey A. Moore"><img src="i/icons8-book.svg" alt="Crossing the Chasm" width="20" height="20"></a> <a href="https://www.hayhouse.com/ask-paperback" class="icon-link book-icon" title="Ask by Ryan Levesque"><img src="i/icons8-book.svg" alt="Ask" width="20" height="20"></a> <a href="#" id="expand-marketing-books" class="expand-books-link">expand</a>). I'm bad at social media.</li>
             <li><b>AI bootstrapping:</b> reduce spend, monetize early, reinvest profits.</li>
@@ -856,11 +880,7 @@
           <div class="section-content">
             <ul>
           <li><b>Low-tech</b> – I own and operate a motorcycle and a tractor. I've also welded some of the tractor implements.</li>
-          <li><b>Construction</b> – I remodeled or built from scratch several houses. Especially, I enjoy applying <i>new IT management</i> to a millennia-old industry.</li>
-          <li><b>Art</b> – I visit <i>art museums</i> and <i>art shows</i>. My favorite ones are Tate Modern, Metropolitan Museum of Art, Biennale in Venice, and Art Basel.</li>
-          <li><b>Classical music</b> – Classical music – I'm a big fan of <i>Mahler</i>, the dude who made loud music for huge orchestras. Also, he wanted a bam! sound that past days instruments couldn't provide. We are looking for his perfect bam! sound until now.</li>
-            </ul>
-            <div style="margin: 20px 0 30px; text-align: left;">
+          <div style="margin: 20px 0 30px; text-align: left;">
               <a href="/i/tractor-horses.jpg" data-fancybox>
                 <img src="https://ik.imagekit.io/icons8/tr:w-1200/i/tractor-horses.jpg" alt="Tractor and horses" style="max-width: 600px; width: auto; border-radius: 4px; display: block;">
               </a>
@@ -868,6 +888,18 @@
                 Riding a tractor is an underrated joy — and surprisingly extreme. In motocross, crashes happen in an instant. On a tractor, the horror of falling unfolds in slow motion, lasting minutes.
               </p>
             </div>
+          <li><b>Construction</b> – I remodeled or built from scratch several houses. Especially, I enjoy applying <i>new IT management</i> to a millennia-old industry.</li>
+      <div style="margin: 20px 0 30px; text-align: left;">
+          <a href="/i/ilbuco.jpeg" data-fancybox>
+            <img src="https://ik.imagekit.io/icons8/tr:w-1200/i/ilbuco.jpeg" alt="Recent build" style="max-width: 600px; width: auto; border-radius: 4px; display: block;">
+          </a>
+          <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
+            Recent build. Recent build. One of the successful innovations was having a QA engineer work on the bug log.
+          </p>
+        </div>
+          <li><b>Art</b> – I visit <i>art museums</i> and <i>art shows</i>. My favorite ones are Tate Modern, Metropolitan Museum of Art, Biennale in Venice, and Art Basel.</li>
+          <li><b>Classical music</b> – Classical music – I'm a big fan of <i>Mahler</i>, the dude who made loud music for huge orchestras. Also, he wanted a bam! sound that past days instruments couldn't provide. We are looking for his perfect bam! sound until now.</li>
+            </ul>
           </div>
         </section>
 

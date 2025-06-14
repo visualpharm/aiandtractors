@@ -1,0 +1,2 @@
+## Links to other projects
+"Recent construction including (Coliving for tech founders)[https://ilbuco.com.ar] and your (Argentinian shelter) [https://recharge.com.ar] in case of a global meltdown. One successful innovation was having a QA engineer working on error logging."

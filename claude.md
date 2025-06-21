@@ -139,4 +139,19 @@ Usá estos modelos como base para avanzar con seguridad y claridad.
 - crear emprendimiento Argentina
 
 
+# SEO Landing Pages
+Create the SEO landing pages in Spanish, Portuguese, and English for the following keywords:
+
+## English
+ai keynote speaker
+argentina ai speaker
+argentina keynote speaker
+
+# Spanish
+ia speaker
+experto en ia
+
+# Portuguese
+speaker ia
+experto em ia
 

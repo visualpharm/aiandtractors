@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Formularios esenciales para emprender en Argentina - Contratos entre socios, MoU, NDA, cesión de PI y mutuos convertibles para startups argentinas.">
+    <meta name="keywords" content="formularios startup Argentina, contrato entre socios, emprender Argentina, SAS Argentina, AFIP formularios, acuerdo fundadores">
+    <title>Formularios para Emprender en Argentina | Contratos y Documentos Startup</title>
+    <!-- Fancybox CSS and JS for image zoom and navigation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <style>
+      /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
+      :root {
+        --grid-columns: 12;
+        --grid-gutter: 24px;
+        --spacing-unit: 8px;
+        --color-primary: #222222;
+        --color-secondary: #777777;
+        --color-tertiary: #f0f0f0;
+        --color-accent: #e63946;
+        --color-background: #ffffff;
+        --color-warning: #ff6b35;
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        color: var(--color-primary);
+        background-color: var(--color-tertiary);
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: calc(var(--spacing-unit) * 3);
+      }
+      
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        gap: var(--grid-gutter);
+      }
+      
+      /* Section styling matching main page */
+      .section {
+        margin-bottom: 0;
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        gap: var(--grid-gutter);
+      }
+      
+      .section-header {
+        grid-column: 1 / 4;
+        text-align: right;
+        padding-right: calc(var(--spacing-unit) * 2);
+      }
+      
+      .section-content {
+        grid-column: 4 / -1;
+      }
+      
+      .full-width-section {
+        grid-column: 1 / -1;
+      }
+      
+      /* Typography matching main page */
+      h1 {
+        font-size: 2.8rem;
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 0;
+        letter-spacing: -0.02em;
+      }
+      
+      h2 {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        margin-top: -8px;
+        position: relative;
+      }
+      
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      h4 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      p {
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      p.subtitle {
+        font-size: 1.3rem;
+        color: var(--color-secondary);
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      p.intro-text {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        color: var(--color-secondary);
+      }
+      
+      /* Lists matching main page */
+      ul {
+        list-style-type: none;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+      }
+      
+      li {
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        position: relative;
+        padding-left: calc(var(--spacing-unit) * 2);
+      }
+      
+      li:before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        color: var(--color-secondary);
+      }
+      
+      ol {
+        margin-bottom: calc(var(--spacing-unit) * 3);
+      }
+      
+      ol li {
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        line-height: 1.6;
+        padding-left: 0;
+      }
+      
+      ol li:before {
+        content: none;
+      }
+      
+      /* Links matching main page */
+      a {
+        color: var(--color-primary);
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+      
+      a:hover {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
+      }
+      
+      .back-link {
+        border-bottom: none;
+        color: var(--color-accent);
+        font-weight: 500;
+        margin-bottom: calc(var(--spacing-unit) * 4);
+        display: inline-block;
+      }
+      
+      .back-link:hover {
+        border-bottom: 1px solid var(--color-accent);
+      }
+      
+      /* Custom boxes */
+      .warning-box {
+        background-color: #fff3cd;
+        border: 2px solid var(--color-warning);
+        border-radius: 8px;
+        padding: calc(var(--spacing-unit) * 3);
+        margin: calc(var(--spacing-unit) * 4) 0;
+      }
+      
+      .warning-box h4 {
+        color: var(--color-warning);
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      .tip-box {
+        background-color: #e7f3ff;
+        border: 1px solid #b3d9ff;
+        border-radius: 6px;
+        padding: calc(var(--spacing-unit) * 3);
+        margin: calc(var(--spacing-unit) * 3) 0;
+      }
+      
+      .steps-container {
+        background-color: #f8f9fa;
+        border-left: 4px solid var(--color-accent);
+        padding: calc(var(--spacing-unit) * 3);
+        margin: calc(var(--spacing-unit) * 3) 0;
+      }
+      
+      /* Forms grid 2x2 */
+      .forms-grid-2x2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: calc(var(--spacing-unit) * 3);
+        margin: calc(var(--spacing-unit) * 4) 0;
+      }
+      
+      .form-card {
+        background-color: var(--color-background);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: calc(var(--spacing-unit) * 3);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+      .form-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+      
+      .form-card h4 {
+        color: var(--color-accent);
+        font-size: 1.3rem;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      .download-btn {
+        display: inline-block;
+        background-color: var(--color-accent);
+        color: white;
+        padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        margin-top: calc(var(--spacing-unit) * 2);
+        transition: background-color 0.2s ease;
+      }
+      
+      .download-btn:hover {
+        background-color: #d32535;
+        border: none;
+      }
+
+      /* Language Switcher matching main page */
+      .language-switcher {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 100;
+      }
+
+      .language-switcher a {
+        text-decoration: none;
+        border: none;
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+      }
+
+      .language-switcher a.active {
+        font-weight: bold;
+        color: var(--color-primary);
+      }
+      
+      /* Responsive matching main page */
+      @media (max-width: 900px) {
+        .section {
+          grid-template-columns: 1fr;
+        }
+        
+        .section-header, .section-content {
+          grid-column: 1;
+        }
+        
+        .section-header {
+          text-align: left;
+          padding-right: 0;
+          margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+      }
+      
+      /* Mobile specific adjustments matching main page */
+      @media (max-width: 480px) {
+        .container {
+          padding-left: calc(var(--spacing-unit) * 1.5);
+          padding-right: 10px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        
+        .language-switcher {
+          top: 15px;
+          right: 15px;
+        }
+        
+        h1 {
+          font-size: 2rem;
+        }
+        
+        h2 {
+          font-size: 1.5rem;
+          margin-top: 15px;
+          margin-bottom: 10px;
+        }
+        
+        .section-header {
+          margin-top: 30px;
+          margin-bottom: 0px;
+        }
+        
+        .forms-grid-2x2 {
+          grid-template-columns: 1fr;
+          gap: calc(var(--spacing-unit) * 2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="language-switcher">
+      <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+      <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+    </div>
+    
+    <div class="container">
+      <div class="grid">
+        <!-- Header Section -->
+        <div class="section">
+          <div class="full-width-section">
+            <a href="/es" class="back-link">← Volver al perfil</a>
+            
+            <h1>📝 Formularios para Emprender en Argentina</h1>
+            <p class="subtitle">Contratos, acuerdos y documentos esenciales para crear tu startup con socios</p>
+            
+            <div class="warning-box">
+              <h4>⚠️ Importante - Descargo de Responsabilidad</h4>
+              <p><strong>Estos formularios son plantillas de referencia y NO constituyen asesoramiento legal profesional.</strong> Antes de utilizar cualquier documento, consultá con un abogado especializado en derecho societario argentino. Los formularios no han sido revisados por profesionales del derecho y cada situación empresarial es única.</p>
+            </div>
+            
+            <p class="intro-text"><strong>¿Por qué esta guía?</strong><br>
+            Iniciar un <strong>emprendimiento en Argentina</strong> con uno o más socios exige algo más que una buena idea: se necesitan acuerdos claros, un plan de acción y los <strong>formularios de AFIP</strong> correctos. Aquí encontrarás modelos listos para usar —desde un <strong>contrato entre socios</strong> hasta la cesión de propiedad intelectual— y los pasos previos para pasar de una <strong>sociedad de hecho</strong> a una SAS registrada.</p>
+          </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Qué vas a lograr</h2>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li><strong>Evitar conflictos</strong> futuros mediante un <strong>acuerdo entre socios Argentina</strong> con cláusulas de vesting, drag-along y confidencialidad</li>
+              <li><strong>Ahorrar tiempo</strong> siguiendo un checklist de <strong>pre constitución empresa Argentina</strong> con los documentos mínimos para operar antes de inscribir la sociedad</li>
+              <li><strong>Formalizar</strong> tu actividad económica presentando el <strong>formulario inicio de actividad AFIP</strong> y otros trámites clave para <strong>abrir una startup en Argentina</strong></li>
+              <li><strong>Escalar</strong> rápidamente cuando llegue la primera ronda, convirtiendo el préstamo inicial en equity sin fricciones</li>
+            </ul>
+            
+            <div class="tip-box">
+              <p><strong>💡 Tip rápido:</strong> Si recién empezás, podés funcionar como <strong>sociedad de hecho Argentina</strong> con responsabilidad ilimitada; este paquete de contratos te blinda mientras reunís el cash-flow necesario para constituir tu SAS.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Steps Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Pasos esenciales para emprender</h2>
+          </div>
+          <div class="section-content">
+            <div class="steps-container">
+              <ol>
+                <li><strong>Firmar el Contrato entre Socios (MoU 50/50%)</strong><br>
+                    <em>Fija roles, derechos de preferencia y plan de vesting</em></li>
+                
+                <li><strong>Proteger la Propiedad Intelectual</strong><br>
+                    <em>Usá nuestro fideicomiso expreso para registrar software, marcas y patentes</em></li>
+                
+                <li><strong>Financiar con un Mutuo Convertible</strong><br>
+                    <em>Recibí capital inicial sin perder control y convertí cuando levantes inversión</em></li>
+                
+                <li><strong>Presentar la Declaración de Inicio ante AFIP</strong><br>
+                    <em>Trámite online que otorga CUIT y habilita la facturación</em></li>
+                
+                <li><strong>Constituir la SAS</strong> (cuando alcance el flujo de caja objetivo)<br>
+                    <em>Inscripción 100% digital en 48–72 h, con estatuto y libros societarios electrónicos</em></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Forms Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Formularios y Plantillas</h2>
+          </div>
+          <div class="section-content">
+            <div style="text-align: center; margin-bottom: calc(var(--spacing-unit) * 4);">
+              <a href="/forms/forms-startup-argentina.zip" class="download-btn" download style="font-size: 1.1rem; padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 4);">
+                📦 Descargar Todos los Formularios (ZIP)
+              </a>
+            </div>
+            
+            <div class="forms-grid-2x2">
+              <div class="form-card">
+                <h4>🤝 MoU - Memorandum of Understanding</h4>
+                <p><strong>Acuerdo de Fundadores 50/50</strong></p>
+                <p>Contrato inicial entre socios que establece roles, responsabilidades, participaciones y plan de vesting. Incluye cláusulas de confidencialidad, no competencia y resolución de conflictos.</p>
+                <ul>
+                  <li>✅ Distribución de equity y vesting</li>
+                  <li>✅ Roles y responsabilidades</li>
+                  <li>✅ Cláusulas de salida</li>
+                  <li>✅ Confidencialidad y no competencia</li>
+                </ul>
+                <a href="/forms/MoU_Anon.docx" class="download-btn" download>📥 Descargar MoU</a>
+              </div>
+
+              <div class="form-card">
+                <h4>🔒 NDA - Non-Disclosure Agreement</h4>
+                <p><strong>Acuerdo de Confidencialidad Multilateral</strong></p>
+                <p>Protege la información sensible de tu startup cuando conversás con potenciales socios, inversores o empleados. Versión multilateral que cubre todas las partes involucradas.</p>
+                <ul>
+                  <li>✅ Protección de información confidencial</li>
+                  <li>✅ Cobertura multilateral</li>
+                  <li>✅ Penalidades por incumplimiento</li>
+                  <li>✅ Duración y alcance definidos</li>
+                </ul>
+                <a href="/forms/NDA_Anon.docx" class="download-btn" download>📥 Descargar NDA</a>
+              </div>
+
+              <div class="form-card">
+                <h4>⚖️ Cesión y Fideicomiso de PI</h4>
+                <p><strong>Propiedad Intelectual</strong></p>
+                <p>Asegura que toda la propiedad intelectual desarrollada para la startup (código, diseños, marcas) pertenezca legalmente a la empresa y no a los individuos.</p>
+                <ul>
+                  <li>✅ Cesión de derechos de autor</li>
+                  <li>✅ Protección de software y diseños</li>
+                  <li>✅ Registro de marcas y patentes</li>
+                  <li>✅ Fideicomiso expreso</li>
+                </ul>
+                <a href="/forms/PI_Fideicomiso_Anon.docx" class="download-btn" download>📥 Descargar Cesión PI</a>
+              </div>
+
+              <div class="form-card">
+                <h4>💰 Mutuo Convertible</h4>
+                <p><strong>Préstamo Convertible en Equity</strong></p>
+                <p>Permite recibir capital inicial como préstamo que se convierte automáticamente en participaciones cuando levantés una ronda de inversión formal.</p>
+                <ul>
+                  <li>✅ Financiación inmediata sin valoración</li>
+                  <li>✅ Conversión automática en equity</li>
+                  <li>✅ Descuento para inversores tempranos</li>
+                  <li>✅ Protección anti-dilución</li>
+                </ul>
+                <a href="/forms/Mutuo_Anon.docx" class="download-btn" download>📥 Descargar Mutuo</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Implementation Guide Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Guía de Implementación</h2>
+          </div>
+          <div class="section-content">
+            <h3>🚀 Antes de empezar</h3>
+            <p>Antes de firmar cualquier documento, asegurate de:</p>
+            <ul>
+              <li><strong>Conocer bien a tus socios:</strong> Trabajá juntos en un proyecto pequeño primero</li>
+              <li><strong>Definir la visión compartida:</strong> ¿Qué querés construir y hacia dónde van?</li>
+              <li><strong>Acordar el compromiso:</strong> ¿Tiempo completo o parcial? ¿Por cuánto tiempo?</li>
+              <li><strong>Establecer responsabilidades:</strong> ¿Quién hace qué? ¿Quién toma qué decisiones?</li>
+            </ul>
+
+            <h3>📝 Orden de implementación recomendado</h3>
+            <div class="steps-container">
+              <ol>
+                <li><strong>NDA primero:</strong> Antes de compartir cualquier información sensible</li>
+                <li><strong>MoU después:</strong> Una vez que decidieron trabajar juntos</li>
+                <li><strong>Cesión de PI:</strong> Antes de desarrollar cualquier producto</li>
+                <li><strong>Mutuo Convertible:</strong> Cuando necesiten capital para crecer</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Legal Considerations Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>Consideraciones legales</h2>
+          </div>
+          <div class="section-content">
+            <div class="warning-box">
+              <h4>🔍 Due Diligence Básico</h4>
+              <ul>
+                <li>Verificar que tus socios no tengan conflictos de interés</li>
+                <li>Confirmar que pueden legalmente participar en el emprendimiento</li>
+                <li>Revisar si tienen obligaciones de no competencia previas</li>
+                <li>Asegurarse de que no estén involucrados en actividades de UIF o AFIP</li>
+              </ul>
+            </div>
+
+            <h3>🏛️ Trámites con AFIP</h3>
+            <p>Para formalizar tu actividad económica en Argentina:</p>
+            <ul>
+              <li><strong>Formulario 460/J:</strong> Inscripción en el Registro Único Tributario</li>
+              <li><strong>Declaración Jurada de Inicio:</strong> Para obtener tu CUIT</li>
+              <li><strong>Alta de Actividad:</strong> Declarar qué tipo de servicios vas a ofrecer</li>
+              <li><strong>Régimen Tributario:</strong> Monotributo o Responsable Inscripto según facturación</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+          <div class="section-header">
+            <h2>¿Necesitás ayuda personalizada?</h2>
+          </div>
+          <div class="section-content">
+            <p>Si tenés preguntas específicas sobre estos formularios o querés discutir tu situación particular, no dudes en contactarme. Como emprendedor con experiencia en el ecosistema argentino, puedo ayudarte a navegar los primeros pasos de tu startup.</p>
+            
+            <div class="tip-box">
+              <p><strong>📧 Contacto:</strong> Podés encontrar mis datos de contacto en <a href="/es">mi perfil principal</a>. Estoy siempre dispuesto a ayudar a otros emprendedores argentinos.</p>
+            </div>
+            
+            <p><em>Keywords relacionados: acuerdo entre socios Argentina, cómo empezar un negocio en Argentina, pasos para emprender en Argentina, abrir una startup en Argentina, formulario inicio de actividad AFIP, pre constitución empresa Argentina, modelo contrato entre socios, sociedad de hecho Argentina, crear emprendimiento Argentina</em></p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Function to detect user's country and adjust flags
+      async function adjustFlagsByCountry() {
+        try {
+          // Use a free GeoIP API to get user's country
+          const response = await fetch('https://ipapi.co/json/');
+          if (!response.ok) throw new Error('Failed to fetch country data');
+          
+          const data = await response.json();
+          const country = data.country_code;
+          
+          // Define flag mappings
+          const flagMap = {
+            // English-speaking countries
+            'US': '🇺🇸', // United States
+            'GB': '🇬🇧', // United Kingdom
+            'AU': '🇦🇺', // Australia
+            'CA': '🇨🇦', // Canada
+            'NZ': '🇳🇿', // New Zealand
+            'IE': '🇮🇪', // Ireland
+            
+            // Spanish-speaking countries
+            'ES': '🇪🇸', // Spain
+            'AR': '🇦🇷', // Argentina
+            'MX': '🇲🇽', // Mexico
+            'CO': '🇨🇴', // Colombia
+            'CL': '🇨🇱', // Chile
+            
+            // Portuguese-speaking countries
+            'PT': '🇵🇹', // Portugal
+            'BR': '🇧🇷', // Brazil
+            'AO': '🇦🇴', // Angola
+            'MZ': '🇲🇿'  // Mozambique
+          };
+          
+          // Language to country code mappings
+          const languageCountries = {
+            'en': ['US', 'GB', 'AU', 'CA', 'NZ', 'IE'],
+            'es': ['ES', 'AR', 'MX', 'CO', 'CL'],
+            'pt': ['PT', 'BR', 'AO', 'MZ']
+          };
+          
+          // Update flags based on user's country
+          if (languageCountries.en.includes(country)) {
+            document.getElementById('en-flag').textContent = flagMap[country] || '🇺🇸';
+          }
+          
+          if (languageCountries.es.includes(country)) {
+            document.getElementById('es-flag').textContent = flagMap[country] || '🇦🇷';
+          }
+          
+          if (languageCountries.pt.includes(country)) {
+            document.getElementById('pt-flag').textContent = flagMap[country] || '🇧🇷';
+          }
+        } catch (error) {
+          console.error('Error adjusting flags:', error);
+          // Fallback to default flags if there's an error
+        }
+      }
+      
+      // Run the function when the page loads
+      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+    </script>
+  </body>
+</html>

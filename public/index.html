@@ -34,6 +34,7 @@
         color: var(--color-primary);
         background-color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
+        padding-top: 70px;
       }
       
       h2 {
@@ -388,14 +389,73 @@ a.book-icon {
         gap: 15px;
       }
       
-      /* Language Switcher */
+      /* Top Menu */
+      .top-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-tertiary);
+        z-index: 1000;
+        padding: calc(var(--spacing-unit) * 2) 0;
+      }
+      
+      .menu-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 calc(var(--spacing-unit) * 3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .logo {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: none;
+      }
+      
+      .logo:hover {
+        color: var(--color-accent);
+        border: none;
+      }
+      
+      .menu-nav {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 4);
+        align-items: center;
+      }
+      
+      .menu-nav a {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: none;
+        transition: color 0.2s ease;
+      }
+      
+      .menu-nav a:hover {
+        color: var(--color-accent);
+        border: none;
+      }
+      
+      .menu-nav a.active {
+        font-weight: 500;
+        color: var(--color-accent);
+      }
+      
+      /* Language Switcher in Menu */
       .language-switcher {
-        position: absolute;
-        top: 20px;
-        right: 20px;
         display: flex;
         gap: 10px;
-        z-index: 100;
       }
 
       .language-switcher a {
@@ -409,14 +469,63 @@ a.book-icon {
         font-weight: bold;
         color: var(--color-primary);
       }
+      
+      
+      /* Mobile menu */
+      @media (max-width: 768px) {
+        .menu-container {
+          padding: 0 calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav a {
+          font-size: 0.85rem;
+        }
+        
+        .logo {
+          font-size: 1.2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 1.5);
+        }
+        
+        .menu-nav a {
+          font-size: 0.8rem;
+        }
+        
+        .logo {
+          font-size: 1rem;
+        }
+        
+        body {
+          padding-top: 60px;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="language-switcher">
-      <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-      <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
-    </div>
+    <!-- Top Menu -->
+    <nav class="top-menu">
+      <div class="menu-container">
+        <a href="/" class="logo">Ivan Braun</a>
+        <div class="menu-nav">
+          <a href="/" class="active">Profile</a>
+          <a href="/book.html">Book</a>
+          <a href="/contact.html">Contact</a>
+          <div class="language-switcher">
+            <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+            <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+            <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     
     <script>
       // Function to detect user's country and adjust flags
@@ -499,7 +608,11 @@ a.book-icon {
       }
       
       // Run the function when the page loads
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
     <div class="container">
       <div class="grid">
@@ -853,6 +966,37 @@ a.book-icon {
                   width: 100%;
                 }
               }
+              
+              /* Footer */
+              .footer {
+                grid-column: 1 / -1;
+                padding: calc(var(--spacing-unit) * 3) 0;
+                border-top: 1px solid var(--color-tertiary);
+                margin-top: calc(var(--spacing-unit) * 6);
+                text-align: center;
+              }
+              
+              .footer-content {
+                font-size: 0.9rem;
+                color: var(--color-secondary);
+              }
+              
+              .footer-text a {
+                margin-left: calc(var(--spacing-unit) * 2);
+                font-size: 0.9rem;
+              }
+              
+              @media (max-width: 768px) {
+                .footer-text {
+                  display: block;
+                  line-height: 1.6;
+                }
+                
+                .footer-text a {
+                  display: inline-block;
+                  margin: 0 calc(var(--spacing-unit) * 1);
+                }
+              }
             </style>
             <ul>
               <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a>, delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
@@ -929,11 +1073,17 @@ a.book-icon {
           </div>
         </section>
 
-        <!-- Contact Section -->
-        <div class="contact">
-          <p>Let's connect if you need a conference speaker or advisor for your startup.</p>
-          <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
-        </div>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ai-keynote-speaker.html" class="subtle">AI Keynote Speaker</a>
+              <a href="/argentina-ai-speaker.html" class="subtle">Argentina AI Speaker</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
+            </span>
+          </div>
+        </footer>
+
       </div> <!-- End grid -->
     </div> <!-- End container -->
     

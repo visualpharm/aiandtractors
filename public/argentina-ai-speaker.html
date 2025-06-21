@@ -157,6 +157,11 @@
         border-radius: 50%;
       }
       
+      .header-image a {
+        border-bottom: none;
+        text-decoration: none;
+      }
+      
       /* Links */
       a {
         color: var(--color-primary);
@@ -209,20 +214,62 @@
         border: none;
       }
       
+      .cta-button.secondary {
+        background-color: var(--color-background);
+        color: var(--color-primary);
+        border: 2px solid var(--color-accent);
+      }
+      
+      .cta-button.secondary:hover {
+        background-color: var(--color-accent);
+        color: white;
+        border: 2px solid var(--color-accent);
+      }
+      
+      .cta-buttons {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 2);
+        margin-top: calc(var(--spacing-unit) * 3);
+      }
+      
       /* Footer */
       .footer {
         grid-column: 1 / -1;
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 4) 0;
+        padding: calc(var(--spacing-unit) * 3) 0;
         border-top: 1px solid var(--color-tertiary);
         margin-top: calc(var(--spacing-unit) * 6);
       }
       
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .footer-copyright {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+      }
+      
       .footer-links {
         display: flex;
-        justify-content: center;
-        gap: calc(var(--spacing-unit) * 4);
-        margin-bottom: calc(var(--spacing-unit) * 3);
+        gap: calc(var(--spacing-unit) * 3);
+      }
+      
+      .footer-links a {
+        font-size: 0.9rem;
+      }
+      
+      @media (max-width: 768px) {
+        .footer-content {
+          flex-direction: column;
+          gap: calc(var(--spacing-unit) * 2);
+          text-align: center;
+        }
+        
+        .cta-buttons {
+          flex-direction: column;
+        }
       }
       
       /* Language Switcher */
@@ -330,7 +377,10 @@
             <h1>Argentina AI Speaker</h1>
             <p class="subtitle">Leading Artificial Intelligence Expert from Argentina</p>
             <p class="intro-text">Based in Argentina with global reach, Ivan Braun brings unique perspectives on AI implementation in emerging markets, Latin American innovation ecosystems, and cross-cultural technology adoption.</p>
-            <a href="#contact" class="cta-button">Hire Argentina AI Expert</a>
+            <div class="cta-buttons">
+              <a href="/" class="cta-button">More about Ivan</a>
+              <a href="/contact.html" class="cta-button secondary">Contact</a>
+            </div>
           </div>
         </header>
 
@@ -405,21 +455,26 @@
             
             <p>Connect with Ivan through <a href="/">his main profile</a> to discuss how his Argentina AI expertise can enhance your next event.</p>
             
-            <a href="/" class="cta-button">Contact Argentina AI Speaker</a>
+            <div class="cta-buttons">
+              <a href="/" class="cta-button">More about Ivan</a>
+              <a href="/contact.html" class="cta-button secondary">Contact</a>
+            </div>
           </div>
         </section>
+        
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <div class="footer-copyright">© 2024 Ivan Braun</div>
+            <div class="footer-links">
+              <a href="/ai-keynote-speaker.html" class="subtle">AI Speaker</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Speaker</a>
+              <a href="/experto-ia.html" class="subtle">Experto IA</a>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="/ai-keynote-speaker.html">AI Keynote Speaker</a>
-        <a href="/experto-ia.html">Experto en IA (Español)</a>
-        <a href="/experto-ia-pt.html">Experto em IA (Português)</a>
-      </div>
-      <p>&copy; 2024 Ivan Braun. Leading Argentina AI Speaker & Technology Innovation Expert.</p>
-    </footer>
 
     <script>
       // Function to detect user's country and adjust flags

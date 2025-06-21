@@ -2,6 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+# Execution stule 
+- Perform the task exactly as described
+- Do NOT ask any questions
+- Do NOT request clarification
+- If anything is ambiguous, make a reasonable assumption and proceed
+- Return the final result directly
+
 ## Links to other projects
 "Recent construction including (Coliving for tech founders)[https://ilbuco.com.ar] and your (Argentinian shelter) [https://recharge.com.ar] in case of a global meltdown. One successful innovation was having a QA engineer working on error logging."
 
@@ -154,4 +161,14 @@ experto en ia
 # Portuguese
 speaker ia
 experto em ia
+
+# Footer
+Should be:
+"© YYYY Ivan Braun S1 S2 S3" where 
+* YYYY is the current year set programmatically
+* S1-S3 are the links to the seo pages, strictly in the same language
+
+Footers have links to the random SEO pages, but all seo pages should have at least one incoming link. 
+
+
 

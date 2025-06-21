@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ivan Braun - Expert AI Keynote Speaker specializing in artificial intelligence, machine learning, and technology innovation. Book your next conference speaker.">
-    <meta name="keywords" content="AI keynote speaker, artificial intelligence speaker, machine learning speaker, technology conference speaker, AI expert speaker">
-    <title>AI Keynote Speaker | Ivan Braun - Expert in Artificial Intelligence</title>
-    <!-- Fancybox CSS and JS for image zoom and navigation -->
+    <meta name="description" content="Contact Ivan Braun for speaking engagements, AI investment opportunities in real sectors, and advisory roles. Direct contact for professional inquiries.">
+    <meta name="keywords" content="Ivan Braun contact, AI speaker booking, investment opportunities AI, proptech AI, advisory roles">
+    <title>Contact | Ivan Braun - Speaking & Advisory</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <style>
-      /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
       :root {
         --grid-columns: 12;
         --grid-gutter: 24px;
@@ -21,6 +19,7 @@
         --color-accent: #e63946;
         --color-background: #ffffff;
         --color-subtle: #2a2a2a;
+        --color-success: #28a745;
       }
       
       * {
@@ -150,17 +149,100 @@
         color: var(--color-secondary);
       }
       
+      /* Contact Cards */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: calc(var(--spacing-unit) * 4);
+        margin: calc(var(--spacing-unit) * 4) 0;
+      }
+      
+      .contact-card {
+        background-color: var(--color-background);
+        border-radius: 8px;
+        padding: calc(var(--spacing-unit) * 4);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+      .contact-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      
+      .contact-card h3 {
+        color: var(--color-accent);
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+      
+      .contact-method {
+        display: flex;
+        align-items: center;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        padding: calc(var(--spacing-unit) * 2);
+        background-color: var(--color-tertiary);
+        border-radius: 6px;
+      }
+      
+      .contact-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: calc(var(--spacing-unit) * 2);
+        background-color: var(--color-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+      
+      .contact-info {
+        flex: 1;
+      }
+      
+      .contact-label {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+        margin-bottom: calc(var(--spacing-unit) * 0.5);
+      }
+      
+      .contact-value {
+        font-weight: 500;
+        color: var(--color-primary);
+      }
+      
+      /* Notice boxes */
+      .notice-box {
+        background-color: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: calc(var(--spacing-unit) * 3);
+        margin: calc(var(--spacing-unit) * 4) 0;
+      }
+      
+      .notice-box h4 {
+        color: #856404;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        font-size: 1.2rem;
+      }
+      
+      .do-not-contact {
+        background-color: #f8d7da;
+        border: 2px solid #dc3545;
+      }
+      
+      .do-not-contact h4 {
+        color: #721c24;
+      }
+      
       /* Images */
       .profile-img {
         width: 140px;
         height: 140px;
         object-fit: cover;
         border-radius: 50%;
-      }
-      
-      .header-image a {
-        border-bottom: none;
-        text-decoration: none;
       }
       
       /* Links */
@@ -176,14 +258,6 @@
         border-bottom-color: var(--color-accent);
       }
       
-      a.icon-link {
-        border-bottom: none;
-        display: inline-flex;
-        align-items: center;
-        margin-right: calc(var(--spacing-unit) * 3);
-      }
-      
-      /* Subtle links - almost invisible */
       a.subtle {
         color: var(--color-subtle);
         border-bottom: none;
@@ -195,40 +269,15 @@
         border-bottom: none;
       }
       
-      /* CTA Button */
-      .cta-button {
-        display: inline-block;
-        background-color: var(--color-accent);
-        color: white;
-        padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 4);
-        text-decoration: none;
-        border: none;
-        border-radius: 4px;
+      a.contact-link {
+        border-bottom: none;
+        color: var(--color-accent);
         font-weight: 500;
-        font-size: 1.1rem;
-        margin-top: calc(var(--spacing-unit) * 3);
-        transition: background-color 0.2s ease;
       }
       
-      .cta-button:hover {
-        background-color: #d32535;
-        border: none;
-      }
-      
-      /* Footer */
-      .footer {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 4) 0;
-        border-top: 1px solid var(--color-tertiary);
-        margin-top: calc(var(--spacing-unit) * 6);
-      }
-      
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: calc(var(--spacing-unit) * 4);
-        margin-bottom: calc(var(--spacing-unit) * 3);
+      a.contact-link:hover {
+        color: #d32535;
+        border-bottom: none;
       }
       
       /* Top Menu */
@@ -312,43 +361,6 @@
         color: var(--color-primary);
       }
       
-      /* Mobile menu */
-      @media (max-width: 768px) {
-        .menu-container {
-          padding: 0 calc(var(--spacing-unit) * 2);
-        }
-        
-        .menu-nav {
-          gap: calc(var(--spacing-unit) * 2);
-        }
-        
-        .menu-nav a {
-          font-size: 0.85rem;
-        }
-        
-        .logo {
-          font-size: 1.2rem;
-        }
-      }
-      
-      @media (max-width: 480px) {
-        .menu-nav {
-          gap: calc(var(--spacing-unit) * 1.5);
-        }
-        
-        .menu-nav a {
-          font-size: 0.8rem;
-        }
-        
-        .logo {
-          font-size: 1rem;
-        }
-        
-        body {
-          padding-top: 60px;
-        }
-      }
-      
       /* Responsive */
       @media (max-width: 900px) {
         .header, .section {
@@ -370,13 +382,31 @@
           text-align: left;
         }
         
-        .footer-links {
-          flex-direction: column;
-          gap: calc(var(--spacing-unit) * 2);
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: calc(var(--spacing-unit) * 3);
         }
       }
       
-      /* Mobile specific adjustments */
+      /* Mobile menu */
+      @media (max-width: 768px) {
+        .menu-container {
+          padding: 0 calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav a {
+          font-size: 0.85rem;
+        }
+        
+        .logo {
+          font-size: 1.2rem;
+        }
+      }
+      
       @media (max-width: 480px) {
         .container {
           padding-left: calc(var(--spacing-unit) * 1.5);
@@ -385,9 +415,16 @@
           box-sizing: border-box;
         }
         
-        .language-switcher {
-          top: 15px;
-          right: 15px;
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 1.5);
+        }
+        
+        .menu-nav a {
+          font-size: 0.8rem;
+        }
+        
+        .logo {
+          font-size: 1rem;
         }
         
         h1 {
@@ -409,6 +446,10 @@
           width: 120px;
           height: 120px;
         }
+        
+        body {
+          padding-top: 60px;
+        }
       }
     </style>
   </head>
@@ -420,7 +461,7 @@
         <div class="menu-nav">
           <a href="/">Profile</a>
           <a href="/book.html">Book</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/contact.html" class="active">Contact</a>
           <div class="language-switcher">
             <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
             <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
@@ -436,101 +477,95 @@
         <header class="header">
           <div class="header-image">
             <a href="/i/ian.jpeg" data-fancybox="profile">
-              <img src="/i/ian.jpeg" alt="Ivan Braun AI Keynote Speaker" class="profile-img">
+              <img src="/i/ian.jpeg" alt="Ivan Braun Contact" class="profile-img">
             </a>
           </div>
           <div class="header-content">
-            <h1>AI Keynote Speaker</h1>
-            <p class="subtitle">Expert in Artificial Intelligence & Technology Innovation</p>
-            <p class="intro-text">Transform your next event with cutting-edge insights on artificial intelligence, machine learning, and the future of technology. Ivan Braun delivers compelling keynotes that bridge the gap between complex AI concepts and practical business applications.</p>
-            <a href="#contact" class="cta-button">Book Speaking Engagement</a>
+            <h1>Contact Ivan</h1>
+            <p class="subtitle">Speaking, investing, and advisory opportunities</p>
           </div>
         </header>
 
-        <!-- Expertise Section -->
+        <!-- What I Look For / What I Don't Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Speaking Topics</h2>
+            <h2>What I Look For</h2>
           </div>
           <div class="section-content">
-            <ul>
-              <li><strong>AI Strategy for Business Leaders:</strong> How to integrate <a href="/argentina-ai-speaker.html" class="subtle">artificial intelligence</a> into your organization's strategic planning</li>
-              <li><strong>Machine Learning Applications:</strong> Real-world case studies from startups to enterprise solutions</li>
-              <li><strong>Ethics in AI Development:</strong> Responsible AI practices and data governance frameworks</li>
-              <li><strong>Future of Work & AI:</strong> Preparing teams for the <a href="/ai-innovation-consultant.html" class="subtle">AI-powered workplace</a></li>
-              <li><strong>Product Innovation with AI:</strong> Building intelligent products that users love</li>
-            </ul>
+            <div class="contact-grid">
+              <div class="contact-card">
+                <h3>✅ Looking For</h3>
+                <ul>
+                  <li><strong>Speaking:</strong> <a href="/ai-keynote-speaker.html" class="subtle">AI conferences</a>, corporate events, startup talks</li>
+                  <li><strong>Investing:</strong> AI + real sectors (PropTech, manufacturing), B2B AI tools</li>
+                  <li><strong>Advisory:</strong> Tech startups, AI implementation, remote teams</li>
+                </ul>
+              </div>
+
+              <div class="contact-card do-not-contact">
+                <h3>❌ Not Looking For</h3>
+                <ul>
+                  <li>Investment in our companies</li>
+                  <li>Acquisition offers</li>
+                  <li>General partnerships</li>
+                  <li>Sales pitches</li>
+                </ul>
+                <p><strong>Icons8 & Generated Photos:</strong> Use official support channels</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- Experience Section -->
+        <!-- Contact Information Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Speaking Experience</h2>
+            <h2>Contact</h2>
           </div>
           <div class="section-content">
-            <p>With over a decade of experience in technology leadership, Ivan has delivered keynotes at major conferences across North America, South America, and Europe. His presentations combine technical depth with business acumen, making complex AI concepts accessible to diverse audiences.</p>
-            
-            <h3>Recent Presentations</h3>
-            <ul>
-              <li><strong>Tech Summit 2024:</strong> "Building AI-First Organizations" - 500+ attendees</li>
-              <li><strong>Innovation Conference:</strong> "The Future of Human-AI Collaboration"</li>
-              <li><strong>Startup Week:</strong> "AI for Early-Stage Companies" - Workshop facilitator</li>
-              <li><strong>Corporate Leadership Series:</strong> "Implementing AI Strategy" - Executive panel</li>
-            </ul>
-            
-            <p>Ivan's unique perspective comes from building and scaling <a href="/argentina-keynote-speaker.html" class="subtle">technology companies</a> while maintaining a focus on ethical AI development and user-centered design.</p>
+            <div class="contact-grid">
+              <div class="contact-card">
+                <h3>Email</h3>
+                <div class="contact-method">
+                  <div class="contact-icon">@</div>
+                  <div class="contact-info">
+                    <div class="contact-value">
+                      <a href="mailto:ivan@generated.photos" class="contact-link">ivan@generated.photos</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <h3>Telegram</h3>
+                <div class="contact-method">
+                  <div class="contact-icon">T</div>
+                  <div class="contact-info">
+                    <div class="contact-value">
+                      <a href="https://t.me/Icons8" class="contact-link">@Icons8</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- Approach Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Speaking Approach</h2>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <div class="footer-copyright">© 2024 Ivan Braun</div>
+            <div class="footer-links">
+              <a href="/ai-keynote-speaker.html" class="subtle">AI Speaker</a>
+              <a href="/experto-ia.html" class="subtle">Experto IA</a>
+              <a href="/speaker-ia.html" class="subtle">Speaker IA</a>
+            </div>
           </div>
-          <div class="section-content">
-            <p>Every presentation is tailored to your audience and objectives. Ivan works closely with event organizers to ensure the content resonates with attendees and drives meaningful engagement.</p>
-            
-            <h3>What Makes Ivan Different</h3>
-            <ul>
-              <li><strong>Practical Focus:</strong> Real implementations, not just theoretical concepts</li>
-              <li><strong>Interactive Style:</strong> Engaging presentations with Q&A and workshop elements</li>
-              <li><strong>Global Perspective:</strong> Experience from Silicon Valley to Argentina to Europe</li>
-              <li><strong>Multilingual:</strong> Presentations available in English, Spanish, and Portuguese</li>
-            </ul>
-          </div>
-        </section>
+        </footer>
 
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-          <div class="section-header">
-            <h2>Book Ivan as Your Speaker</h2>
-          </div>
-          <div class="section-content">
-            <p>Ready to bring world-class AI expertise to your next event? Ivan is available for keynotes, workshops, panel discussions, and executive briefings.</p>
-            
-            <p><strong>Speaking Availability:</strong> Conferences, corporate events, workshops, and virtual presentations worldwide.</p>
-            
-            <p>Contact Ivan directly through <a href="/">his main profile</a> to discuss your event requirements and availability.</p>
-            
-            <a href="/" class="cta-button">View Full Profile & Contact</a>
-          </div>
-        </section>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="/argentina-ai-speaker.html">Argentina AI Speaker</a>
-        <a href="/ia-speaker.html">IA Speaker (Español)</a>
-        <a href="/speaker-ia.html">Speaker IA (Português)</a>
-      </div>
-      <p>&copy; 2024 Ivan Braun. Expert AI Keynote Speaker & Technology Innovation Leader.</p>
-    </footer>
-
     <script>
-      // Function to detect user's country and adjust flags
       async function adjustFlagsByCountry() {
         try {
           const response = await fetch('https://ipapi.co/json/');
@@ -539,7 +574,6 @@
           const data = await response.json();
           const country = data.country || data.country_code;
           
-          // Define flag mappings
           const flagMap = {
             'US': '🇺🇸', 'GB': '🇬🇧', 'AU': '🇦🇺', 'CA': '🇨🇦', 'NZ': '🇳🇿', 'IE': '🇮🇪',
             'ES': '🇪🇸', 'AR': '🇦🇷', 'MX': '🇲🇽', 'CO': '🇨🇴', 'CL': '🇨🇱',

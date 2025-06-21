@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ivan Braun - Expert AI Keynote Speaker specializing in artificial intelligence, machine learning, and technology innovation. Book your next conference speaker.">
-    <meta name="keywords" content="AI keynote speaker, artificial intelligence speaker, machine learning speaker, technology conference speaker, AI expert speaker">
-    <title>AI Keynote Speaker | Ivan Braun - Expert in Artificial Intelligence</title>
+    <meta name="description" content="Ivan Braun - Premier Argentina Keynote Speaker bringing innovation, entrepreneurship, and technology insights to global audiences from Buenos Aires.">
+    <meta name="keywords" content="argentina keynote speaker, keynote speaker argentina, technology speaker argentina, innovation speaker argentina, entrepreneur speaker">
+    <title>Argentina Keynote Speaker | Ivan Braun - Innovation from Buenos Aires</title>
     <!-- Fancybox CSS and JS for image zoom and navigation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
@@ -35,7 +35,6 @@
         color: var(--color-primary);
         background-color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
-        padding-top: 70px;
       }
       
       .container {
@@ -231,73 +230,14 @@
         margin-bottom: calc(var(--spacing-unit) * 3);
       }
       
-      /* Top Menu */
-      .top-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: var(--color-background);
-        border-bottom: 1px solid var(--color-tertiary);
-        z-index: 1000;
-        padding: calc(var(--spacing-unit) * 2) 0;
-      }
-      
-      .menu-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 calc(var(--spacing-unit) * 3);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .logo {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 1.5rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--color-primary);
-        text-decoration: none;
-        border: none;
-      }
-      
-      .logo:hover {
-        color: var(--color-accent);
-        border: none;
-      }
-      
-      .menu-nav {
-        display: flex;
-        gap: calc(var(--spacing-unit) * 4);
-        align-items: center;
-      }
-      
-      .menu-nav a {
-        font-size: 0.95rem;
-        font-weight: 400;
-        color: var(--color-primary);
-        text-decoration: none;
-        border: none;
-        transition: color 0.2s ease;
-      }
-      
-      .menu-nav a:hover {
-        color: var(--color-accent);
-        border: none;
-      }
-      
-      .menu-nav a.active {
-        font-weight: 500;
-        color: var(--color-accent);
-      }
-      
-      /* Language Switcher in Menu */
+      /* Language Switcher */
       .language-switcher {
+        position: absolute;
+        top: 20px;
+        right: 20px;
         display: flex;
         gap: 10px;
+        z-index: 100;
       }
 
       .language-switcher a {
@@ -310,43 +250,6 @@
       .language-switcher a.active {
         font-weight: bold;
         color: var(--color-primary);
-      }
-      
-      /* Mobile menu */
-      @media (max-width: 768px) {
-        .menu-container {
-          padding: 0 calc(var(--spacing-unit) * 2);
-        }
-        
-        .menu-nav {
-          gap: calc(var(--spacing-unit) * 2);
-        }
-        
-        .menu-nav a {
-          font-size: 0.85rem;
-        }
-        
-        .logo {
-          font-size: 1.2rem;
-        }
-      }
-      
-      @media (max-width: 480px) {
-        .menu-nav {
-          gap: calc(var(--spacing-unit) * 1.5);
-        }
-        
-        .menu-nav a {
-          font-size: 0.8rem;
-        }
-        
-        .logo {
-          font-size: 1rem;
-        }
-        
-        body {
-          padding-top: 60px;
-        }
       }
       
       /* Responsive */
@@ -413,22 +316,11 @@
     </style>
   </head>
   <body>
-    <!-- Top Menu -->
-    <nav class="top-menu">
-      <div class="menu-container">
-        <a href="/" class="logo">Ivan Braun</a>
-        <div class="menu-nav">
-          <a href="/">Profile</a>
-          <a href="/book.html">Book</a>
-          <a href="/contact.html">Contact</a>
-          <div class="language-switcher">
-            <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-            <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-            <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div class="language-switcher">
+      <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+      <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+    </div>
     
     <div class="container">
       <div class="grid">
@@ -436,84 +328,89 @@
         <header class="header">
           <div class="header-image">
             <a href="/i/ian.jpeg" data-fancybox="profile">
-              <img src="/i/ian.jpeg" alt="Ivan Braun AI Keynote Speaker" class="profile-img">
+              <img src="/i/ian.jpeg" alt="Ivan Braun Argentina Keynote Speaker" class="profile-img">
             </a>
           </div>
           <div class="header-content">
-            <h1>AI Keynote Speaker</h1>
-            <p class="subtitle">Expert in Artificial Intelligence & Technology Innovation</p>
-            <p class="intro-text">Transform your next event with cutting-edge insights on artificial intelligence, machine learning, and the future of technology. Ivan Braun delivers compelling keynotes that bridge the gap between complex AI concepts and practical business applications.</p>
-            <a href="#contact" class="cta-button">Book Speaking Engagement</a>
+            <h1>Argentina Keynote Speaker</h1>
+            <p class="subtitle">Innovation & Entrepreneurship from Buenos Aires to the World</p>
+            <p class="intro-text">Bringing unique perspectives from Argentina's thriving innovation ecosystem to global stages. Ivan Braun combines international business experience with deep Latin American market insights.</p>
+            <a href="#contact" class="cta-button">Book Argentina Speaker</a>
           </div>
         </header>
 
-        <!-- Expertise Section -->
+        <!-- Argentina Perspective Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Speaking Topics</h2>
+            <h2>Argentina Innovation Story</h2>
           </div>
           <div class="section-content">
+            <p>Speaking from the heart of South America's tech renaissance, Ivan offers audiences a window into how <a href="/argentina-ai-speaker.html" class="subtle">Argentina is building</a> world-class technology companies despite—and perhaps because of—unique economic and cultural challenges.</p>
+            
+            <h3>Signature Argentina Topics</h3>
             <ul>
-              <li><strong>AI Strategy for Business Leaders:</strong> How to integrate <a href="/argentina-ai-speaker.html" class="subtle">artificial intelligence</a> into your organization's strategic planning</li>
-              <li><strong>Machine Learning Applications:</strong> Real-world case studies from startups to enterprise solutions</li>
-              <li><strong>Ethics in AI Development:</strong> Responsible AI practices and data governance frameworks</li>
-              <li><strong>Future of Work & AI:</strong> Preparing teams for the <a href="/ai-innovation-consultant.html" class="subtle">AI-powered workplace</a></li>
-              <li><strong>Product Innovation with AI:</strong> Building intelligent products that users love</li>
+              <li><strong>Resilient Innovation:</strong> How Argentine entrepreneurs turn constraints into competitive advantages</li>
+              <li><strong>Global Mindset from Day One:</strong> Building internationally competitive products from Argentina</li>
+              <li><strong>Remote-First Revolution:</strong> Why Argentina became a leader in distributed technology teams</li>
+              <li><strong>Latin American Market Entry:</strong> Navigating cultural and business nuances across the region</li>
+              <li><strong>Innovation in Uncertainty:</strong> Thriving in volatile economic environments</li>
             </ul>
           </div>
         </section>
 
-        <!-- Experience Section -->
+        <!-- Speaking Experience Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Speaking Experience</h2>
+            <h2>International Stage Presence</h2>
           </div>
           <div class="section-content">
-            <p>With over a decade of experience in technology leadership, Ivan has delivered keynotes at major conferences across North America, South America, and Europe. His presentations combine technical depth with business acumen, making complex AI concepts accessible to diverse audiences.</p>
+            <p>From Buenos Aires to Silicon Valley, Ivan has delivered compelling presentations that showcase Argentina's role in the global innovation economy while providing actionable insights for international audiences.</p>
             
-            <h3>Recent Presentations</h3>
+            <h3>Recent International Engagements</h3>
             <ul>
-              <li><strong>Tech Summit 2024:</strong> "Building AI-First Organizations" - 500+ attendees</li>
-              <li><strong>Innovation Conference:</strong> "The Future of Human-AI Collaboration"</li>
-              <li><strong>Startup Week:</strong> "AI for Early-Stage Companies" - Workshop facilitator</li>
-              <li><strong>Corporate Leadership Series:</strong> "Implementing AI Strategy" - Executive panel</li>
+              <li><strong>Global Tech Summit:</strong> "The Argentina Advantage in Remote Work" - Virtual audience of 1,000+</li>
+              <li><strong>Latin America Investment Forum:</strong> Panel on emerging market innovation strategies</li>
+              <li><strong>International Startup Conference:</strong> Keynote on building global companies from Argentina</li>
+              <li><strong>Cross-Border Business Summit:</strong> Workshop on Latin American market expansion</li>
             </ul>
             
-            <p>Ivan's unique perspective comes from building and scaling <a href="/argentina-keynote-speaker.html" class="subtle">technology companies</a> while maintaining a focus on ethical AI development and user-centered design.</p>
+            <p>His presentations resonate with audiences seeking to understand how geographic and cultural diversity drives <a href="/ai-keynote-speaker.html" class="subtle">innovation and creativity</a> in technology development.</p>
           </div>
         </section>
 
-        <!-- Approach Section -->
+        <!-- Cultural Bridge Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Speaking Approach</h2>
+            <h2>Cultural Bridge Builder</h2>
           </div>
           <div class="section-content">
-            <p>Every presentation is tailored to your audience and objectives. Ivan works closely with event organizers to ensure the content resonates with attendees and drives meaningful engagement.</p>
+            <p>Ivan's unique value lies in his ability to translate between cultures, markets, and business contexts. His Argentina base provides authentic insights into Latin American innovation while his global experience ensures international relevance.</p>
             
-            <h3>What Makes Ivan Different</h3>
+            <h3>Cross-Cultural Speaking Strengths</h3>
             <ul>
-              <li><strong>Practical Focus:</strong> Real implementations, not just theoretical concepts</li>
-              <li><strong>Interactive Style:</strong> Engaging presentations with Q&A and workshop elements</li>
-              <li><strong>Global Perspective:</strong> Experience from Silicon Valley to Argentina to Europe</li>
-              <li><strong>Multilingual:</strong> Presentations available in English, Spanish, and Portuguese</li>
+              <li><strong>Bilingual Presentations:</strong> Fluent delivery in English, Spanish, and Portuguese</li>
+              <li><strong>Cultural Adaptation:</strong> Tailored content for different regional audiences</li>
+              <li><strong>Time Zone Flexibility:</strong> Accommodating global event schedules from Argentina</li>
+              <li><strong>Virtual Expertise:</strong> Mastered engaging remote presentations during the pandemic</li>
             </ul>
+            
+            <p>This cultural fluency makes Ivan particularly valuable for organizations looking to expand into Latin American markets or understand the <a href="/es/formularios.html" class="subtle">Argentina business environment</a>.</p>
           </div>
         </section>
 
         <!-- Contact Section -->
         <section class="section" id="contact">
           <div class="section-header">
-            <h2>Book Ivan as Your Speaker</h2>
+            <h2>Bring Argentina Innovation to Your Event</h2>
           </div>
           <div class="section-content">
-            <p>Ready to bring world-class AI expertise to your next event? Ivan is available for keynotes, workshops, panel discussions, and executive briefings.</p>
+            <p>Looking for a keynote speaker who can offer fresh perspectives from one of Latin America's most dynamic innovation ecosystems? Ivan brings Argentina's entrepreneurial spirit to global audiences.</p>
             
-            <p><strong>Speaking Availability:</strong> Conferences, corporate events, workshops, and virtual presentations worldwide.</p>
+            <p><strong>Perfect for:</strong> International conferences, innovation summits, Latin America business forums, entrepreneurship events, and cross-cultural business discussions.</p>
             
-            <p>Contact Ivan directly through <a href="/">his main profile</a> to discuss your event requirements and availability.</p>
+            <p>Connect with Ivan through <a href="/">his main profile</a> to explore how his Argentina perspective can enrich your next event.</p>
             
-            <a href="/" class="cta-button">View Full Profile & Contact</a>
+            <a href="/" class="cta-button">Contact Argentina Keynote Speaker</a>
           </div>
         </section>
       </div>
@@ -522,11 +419,11 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-links">
-        <a href="/argentina-ai-speaker.html">Argentina AI Speaker</a>
+        <a href="/ai-keynote-speaker.html">AI Keynote Speaker</a>
         <a href="/ia-speaker.html">IA Speaker (Español)</a>
         <a href="/speaker-ia.html">Speaker IA (Português)</a>
       </div>
-      <p>&copy; 2024 Ivan Braun. Expert AI Keynote Speaker & Technology Innovation Leader.</p>
+      <p>&copy; 2024 Ivan Braun. Premier Argentina Keynote Speaker & Innovation Leader.</p>
     </footer>
 
     <script>

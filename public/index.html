@@ -413,9 +413,9 @@ a.book-icon {
   </head>
   <body>
     <div class="language-switcher">
-      <a href="index.html" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-      <a href="es.html" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-      <a href="pt.html" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+      <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+      <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
     </div>
     
     <script>
@@ -971,9 +971,9 @@ a.book-icon {
                 const portugueseCountries = ['PT', 'BR', 'AO', 'MZ', 'GW', 'CV', 'ST', 'TL'];
                 
                 if (spanishCountries.includes(country)) {
-                  window.location.href = 'es.html';
+                  window.location.href = '/es';
                 } else if (portugueseCountries.includes(country)) {
-                  window.location.href = 'pt.html';
+                  window.location.href = '/pt';
                 }
                 
                 // Set flag to prevent repeated redirects

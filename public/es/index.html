@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ivan Braun - Empreendedor, Investidor, Palestrante Inteligência Artificial, e Consultor especializado em IA, desenvolvimento de produtos e dados éticos.">
-    <meta name="keywords" content="Ivan Braun, empreendedor, investidor, palestrante inteligência artificial, palestrante IA, palestra sobre IA">
-    <title>Ivan Braun – Empreendedor, Investidor, Palestrante Inteligência Artificial</title>
+    <meta name="description" content="Ivan Braun - Emprendedor, Inversor, Conferencista Inteligencia Artificial, y Asesor especializado en IA, desarrollo de productos y datos éticos.">
+    <meta name="keywords" content="Ivan Braun, emprendedor, inversor, conferencista inteligencia artificial, orador de IA, speaker de IA">
+    <title>Ivan Braun – Emprendedor, Inversor, Conferencista Inteligencia Artificial</title>
     <!-- Fancybox CSS and JS for image zoom and navigation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
@@ -411,9 +411,9 @@
   </head>
   <body>
     <div class="language-switcher">
-      <a href="index.html" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-      <a href="es.html" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-      <a href="pt.html" class="active" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+      <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+      <a href="/es" class="active" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
     </div>
     
     <script>
@@ -490,9 +490,9 @@
           </div>
           <div class="header-content">
             <h1>Ivan Braun</h1>
-            <div class="subtitle">Empreendedor | Investidor | Palestrante | Consultor</div>
+            <div class="subtitle">Emprendedor | Inversor | Orador | Asesor</div>
             <div class="location">
-              Localizado em &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
+              Ubicado en &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
               <a href="/i/carilo-esp.jpg" class="img-link" style="margin-left:8px;" data-fancybox>
                 <img src="/i/carilo-esp.jpg" alt="Cariló" class="small-img">
               </a>
@@ -511,54 +511,90 @@
         <!-- Preface Section -->
         <section class="section">
           <div class="section-header">
-            <!--h2>Introdução</h2-->
+            <!--h2>Introducción</h2-->
           </div>
           <div class="section-content">
-            <p class="intro-text">Sou um fundador de tecnologia liderando uma equipe de 150 pessoas e atendendo 4 milhões de usuários. Moro em uma cidade encantadora com praia oceânica, floresta de pinheiros, internet de fibra óptica e ótimos restaurantes. O que sinto falta é de <b>conversas regulares com outros empreendedores de tecnologia</b>. Estou procurando encontrar conversas inspiradoras, falar em conferências e servir como consultor para startups.</p>
+            <p class="intro-text">Soy un fundador tecnológico que lidera un equipo de 150 personas y sirve a 4 millones de usuarios. Vivo en un pueblo encantador con playa oceánica, bosque de pinos, internet de fibra y excelentes restaurantes. Lo que extraño es <b>la conversación regular con otros emprendedores tecnológicos</b>. Busco encontrar conversaciones inspiradoras, hablar en conferencias y servir como asesor para startups.</p>
           </div>
         </section>
 
         <!-- Media Coverage Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Cobertura de Mídia</h2>
+            <h2>Cobertura Mediática</h2>
           </div>
           <div class="section-content">
-            <link rel="stylesheet" href="i/logos/media-logos.css">
+            <link rel="stylesheet" href="../i/logos/media-logos.css">
+            <style>
+              .media-outlets {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+                margin-bottom: 20px;
+              }
+              
+              /* Mobile breakpoint for media outlets */
+              @media (max-width: 480px) {
+                .media-outlets {
+                  grid-template-columns: 1fr;
+                  gap: 15px;
+                  width: calc(100% - 10px);
+                  max-width: 100%;
+                  box-sizing: border-box;
+                }
+                
+                .media-outlet {
+                  width: 100%;
+                  display: flex;
+                  align-items: flex-start;
+                }
+                
+                .media-logo {
+                  width: 70px;
+                  min-width: 70px;
+                  margin-right: 10px;
+                }
+                
+                .media-title {
+                  font-size: 0.9rem;
+                  line-height: 1.3;
+                }
+              }
+            </style>
             <div class="media-outlets">
               <div class="media-outlet">
                 <div class="media-logo"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg/320px-The_Logo_of_The_Washington_Post_Newspaper.svg.png" alt="The Washington Post"></a></div>
-                <div class="media-title"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">Aplicativos de namoro precisam de mulheres. Anunciantes precisam de diversidade. Empresas de IA oferecem uma solução: pessoas falsas.</a></div>
+                <div class="media-title"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">Las aplicaciones de citas necesitan mujeres. Los anunciantes necesitan diversidad. Las empresas de IA ofrecen una solución: personas falsas.</a></div>
               </div>
               
               <div class="media-outlet">
-                <div class="media-logo"><a href="https://www.bbc.com/news/technology-51064933"><img src="i/logos/media/bbc.svg" alt="BBC"></a></div>
-                <div class="media-title"><a href="https://www.bbc.com/news/technology-51064933">Deepfakes poderiam ser usados para treinar trabalhadores de escritório?</a></div>
+                <div class="media-logo"><a href="https://www.bbc.com/news/technology-51064933"><img src="../i/logos/media/bbc.svg" alt="BBC"></a></div>
+                <div class="media-title"><a href="https://www.bbc.com/news/technology-51064933">¿Podrían los deepfakes usarse para entrenar a trabajadores de oficina?</a></div>
               </div>
               
               <div class="media-outlet">
-                <div class="media-logo"><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html"><img src="i/logos/media/der_spiegel.svg" alt="Der Spiegel"></a></div>
-                <div class="media-title"><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html">Rostos publicitários do computador: Ainda há alguém real aqui?</a></div>
+                <div class="media-logo"><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html"><img src="../i/logos/media/der_spiegel.svg" alt="Der Spiegel"></a></div>
+                <div class="media-title"><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html">Rostros publicitarios del ordenador: ¿Hay alguien real aquí?</a></div>
               </div>
               
               <div class="media-outlet">
-                <div class="media-logo"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/"><img src="i/logos/media/la_repubblica.svg" alt="La Repubblica"></a></div>
-                <div class="media-title"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/">Os 100 mil rostos de pessoas que não existem</a></div>
+                <div class="media-logo"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/"><img src="../i/logos/media/la_repubblica.svg" alt="La Repubblica"></a></div>
+                <div class="media-title"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/">Los 100 mil rostros de personas que no existen</a></div>
               </div>
               
               <div class="media-outlet">
-                <div class="media-logo"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak"><img src="i/logos/media/the_verge.svg" alt="The Verge"></a></div>
-                <div class="media-title"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak">100.000 fotos de perfil geradas por IA colocam empresas de fotos stock em alerta</a></div>
+                <div class="media-logo"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak"><img src="../i/logos/media/the_verge.svg" alt="The Verge"></a></div>
+                <div class="media-title"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak">100,000 retratos generados por IA ponen en alerta a las empresas de fotos de stock</a></div>
               </div>
               
               <div class="media-outlet">
-                <div class="media-logo"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU"><img src="i/logos/media/vice.svg" alt="VICE"></a></div>
-                <div class="media-title"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU">Generated Photos acredita que pode resolver a diversidade com 100.000 rostos falsos de IA</a></div>
+                <div class="media-logo"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU"><img src="../i/logos/media/vice.svg" alt="VICE"></a></div>
+                <div class="media-title"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU">Generated Photos cree que puede resolver la diversidad con 100,000 rostros falsos de IA</a></div>
               </div>
               
               <div class="media-outlet">
-                <div class="media-logo"><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html"><img src="i/logos/media/daily_mail.svg" alt="Daily Mail"></a></div>
-                <div class="media-title"><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html">Artistas criam mais de 100.000 retratos ultra-realistas com IA</a></div>
+                <div class="media-logo"><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html"><img src="../i/logos/media/daily_mail.svg" alt="Daily Mail"></a></div>
+                <div class="media-title"><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html">Artistas crean más de 100,000 retratos ultra realistas con IA</a></div>
               </div>
             </div>
           </div>
@@ -567,36 +603,36 @@
         <!-- Speaking Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Palestras</h2>
+            <h2>Disertaciones</h2>
           </div>
           <div class="section-content">
             <ul>
-              <li><strong>Horasis Global Meeting</strong> — São Paulo – <em>7–10 Out 2025</em> · Keynote sobre desenvolvimento de IA independente e enxuta</li>
-              <li><strong>Rio Innovation Week</strong> — Rio de Janeiro – <em>12–15 Ago 2025</em> · Presencial, aberto a reuniões</li>
-              <li><strong>Conferência Visual 1st</strong> — São Francisco – <em>2021</em> · Palestra Escolha do Visitante sobre conjuntos de dados de imagens sintéticas</li>
-              <li><strong>Disponibilidade mundial</strong> — Palestras sobre IA, design de produto e dados éticos</li>
+              <li><strong>Horasis Global Meeting</strong> — São Paulo – <em>7–10 Oct 2025</em> · Keynote sobre desarrollo de IA independiente y ágil</li>
+              <li><strong>Rio Innovation Week</strong> — Rio de Janeiro – <em>12–15 Ago 2025</em> · En persona, abierto a reuniones</li>
+              <li><strong>Conferencia Visual 1st</strong> — San Francisco – <em>2021</em> · Charla elegida por los visitantes sobre conjuntos de datos de imágenes sintéticas</li>
+              <li><strong>Disponibilidad mundial</strong> — Keynotes sobre IA, diseño de productos y datos éticos</li>
             </ul>
             <div class="thumbnail-gallery">
               <a href="/i/conferences/award.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/award.jpeg" alt="Recebendo prêmio em conferência de tecnologia" class="thumbnail">
+                <img src="/i/conferences/award.jpeg" alt="Recibiendo premio en conferencia tecnológica" class="thumbnail">
               </a>
               <a href="/i/conferences/presenting.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/presenting.jpeg" alt="Apresentando em conferência de tecnologia" class="thumbnail">
+                <img src="/i/conferences/presenting.jpeg" alt="Presentando en conferencia de tecnología" class="thumbnail">
               </a>
               <a href="/i/conferences/fl.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/fl.jpg" alt="Sessão de networking em conferência de tecnologia com participantes" class="thumbnail">
+                <img src="/i/conferences/fl.jpg" alt="Sesión de networking en conferencia tecnológica con asistentes" class="thumbnail">
               </a>
               <a href="/i/conferences/conferece-speaker.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/conferece-speaker.jpg" alt="Palestrante principal de conferência de IA apresentando no palco" class="thumbnail">
+                <img src="/i/conferences/conferece-speaker.jpg" alt="Orador principal de conferencia de IA presentando en el escenario" class="thumbnail">
               </a>
               <a href="/i/conferences/conference.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/conference.jpeg" alt="Painel de discussão da indústria de IA com especialistas" class="thumbnail">
+                <img src="/i/conferences/conference.jpeg" alt="Panel de discusión de la industria de IA con expertos" class="thumbnail">
               </a>
               <a href="/i/conferences/fl2.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/fl2.jpg" alt="Audiência de conferência de IA durante apresentação" class="thumbnail">
+                <img src="/i/conferences/fl2.jpg" alt="Audiencia de conferencia de IA durante presentación" class="thumbnail">
               </a>
               <a href="/i/conferences/visual1st-awards-winners.png" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/visual1st-awards-winners.png" alt="Cerimônia de premiação Visual1st com vencedores no palco" class="thumbnail">
+                <img src="/i/conferences/visual1st-awards-winners.png" alt="Ceremonia de premios Visual1st con ganadores en el escenario" class="thumbnail">
               </a>
             </div>
           </div>
@@ -605,14 +641,14 @@
         <!-- Awards Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Prêmios</h2>
+            <h2>Premios</h2>
           </div>
           <div class="section-content">
             <ul>
-              <li><strong>44 prêmios no Product Hunt</strong> — múltiplos prêmios <strong>#1 Produto do Dia</strong> para <a href="https://www.producthunt.com/products/icons8/awards">Icons8</a> e <a href="https://www.producthunt.com/products/generated-photos/awards">Generated Photos</a></li>
-              <li><a href="https://beststartup.us/meet-united-statess-101-top-founders-in-the-web-design-space/"><strong>Top 101 Fundadores em Design Web 2024</strong></a> — <em>American Startup Magazine</em></li>
-              <li><a href="https://www.forbes.com/companies/icons8/"><strong>Melhores Empregadores Startup da América 2022</strong></a> — <em>Forbes</em></li>
-              <li><a href="https://www.visual1st.biz/"><strong>Prêmio Escolha do Visitante 2021</strong></a> — <em>Visual 1st</em></li>
+              <li><strong>44 premios en Product Hunt</strong> — múltiples premios <strong>#1 Producto del Día</strong> para <a href="https://www.producthunt.com/products/icons8/awards">Icons8</a> y <a href="https://www.producthunt.com/products/generated-photos/awards">Generated Photos</a></li>
+              <li><a href="https://beststartup.us/meet-united-statess-101-top-founders-in-the-web-design-space/"><strong>Top 101 Fundadores en Diseño Web 2024</strong></a> — <em>American Startup Magazine</em></li>
+              <li><a href="https://www.forbes.com/companies/icons8/"><strong>Mejores Empleadores Startup de América 2022</strong></a> — <em>Forbes</em></li>
+              <li><a href="https://www.visual1st.biz/"><strong>Premio Elección del Visitante 2021</strong></a> — <em>Visual 1st</em></li>
             </ul>
           </div>
         </section>
@@ -620,10 +656,10 @@
         <!-- Government & Regulatory Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Governo e Regulação</h2>
+            <h2>Gobierno y Regulación</h2>
           </div>
           <div class="section-content">
-            <p>Consulto governos sobre regulação de IA, ferramentas criativas, propriedade intelectual e ética. As agências com as quais trabalhei:</p>
+            <p>Asesoro a gobiernos sobre regulación de IA, herramientas creativas, propiedad intelectual y ética. Las agencias con las que he trabajado:</p>
             <div class="gov-logos-container">
               <div class="gov-logo-item">
                 <div class="gov-logo">
@@ -631,7 +667,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/320px-Flag_of_Europe.svg.png" alt="European Commission">
                   </a>
                 </div>
-                <div class="gov-label"><a href="https://ec.europa.eu/">Comissão Europeia</a></div>
+                <div class="gov-label"><a href="https://ec.europa.eu/">Comisión Europea</a></div>
               </div>
               
               <div class="gov-logo-item">
@@ -640,7 +676,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Seal_of_the_United_States_Department_of_Justice.svg/320px-Seal_of_the_United_States_Department_of_Justice.svg.png" alt="Department of Justice">
                   </a>
                 </div>
-                <div class="gov-label"><a href="https://www.justice.gov/">Departamento de Justiça dos EUA</a></div>
+                <div class="gov-label"><a href="https://www.justice.gov/">Departamento de Justicia de EE.UU.</a></div>
               </div>
               
 
@@ -648,10 +684,10 @@
               <div class="gov-logo-item">
                 <div class="gov-logo">
                   <a href="https://www.gov.uk/government/organisations/competition-and-markets-authority">
-                    <img src="i/logos/media/uk_cma.svg" alt="UK Competition and Markets Authority">
+                    <img src="../i/logos/media/uk_cma.svg" alt="UK Competition and Markets Authority">
                   </a>
                 </div>
-                <div class="gov-label"><a href="https://www.gov.uk/government/organisations/competition-and-markets-authority">Autoridade de Concorrência e Mercados do Reino Unido</a></div>
+                <div class="gov-label"><a href="https://www.gov.uk/government/organisations/competition-and-markets-authority">Autoridad de Competencia y Mercados del Reino Unido</a></div>
               </div>
             </div>
           </div>
@@ -660,22 +696,22 @@
         <!-- Experience Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Experiência</h2>
+            <h2>Experiencia</h2>
           </div>
           <div class="section-content">
-            <p>Minha principal experiência é construir produtos de IA do zero, sem capital de risco, e monetizá-los cedo. Minhas três ferramentas são desenvolvimento de clientes (<a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" class="icon-link book-icon"><img src="i/icons8-book.svg" alt="Livro" width="20" height="20"></a>, <a href="https://www.amazon.com/Competing-Against-Luck-Innovation-Customer/dp/0062435612/" class="icon-link book-icon"><img src="i/icons8-book.svg" alt="Livro" width="20" height="20"></a>), design UX (minha profissão, <a href="https://www.amazon.com/About-Face-Essentials-Interaction-Design/dp/1118766571" class="icon-link book-icon"><img src="i/icons8-book.svg" alt="Livro" width="20" height="20"></a>), e paywalls.</p>
+            <p>Mi experiencia principal es construir productos de IA desde cero, sin capital de riesgo, y monetizarlos temprano. Mis tres herramientas son el desarrollo de clientes (<a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" class="icon-link book-icon"><img src="../i/icons8-book.svg" alt="Libro" width="20" height="20"></a>, <a href="https://www.amazon.com/Competing-Against-Luck-Innovation-Customer/dp/0062435612/" class="icon-link book-icon"><img src="../i/icons8-book.svg" alt="Libro" width="20" height="20"></a>), diseño UX (mi profesión, <a href="https://www.amazon.com/About-Face-Essentials-Interaction-Design/dp/1118766571" class="icon-link book-icon"><img src="../i/icons8-book.svg" alt="Libro" width="20" height="20"></a>), y paywalls.</p>
             <ul>
-              <li>Fundador da <a href="https://icons8.com">Icons8</a> e <a href="https://generated.photos">Generated Photos</a>, fornecendo imagens geradas por IA, conjuntos de dados e ferramentas de design usadas por mais de 4 milhões de designers e desenvolvedores.</li>
-              <li>Fornecemos recursos em larga escala e <a href="https://generated.photos/datasets">conjuntos de dados</a> personalizados para clientes empresariais e somos o maior fornecedor de gráficos para o Canva.</li>
-              <li><a href="https://generated.photos/genyou">GenYOU</a> – selfies personalizadas com IA</li>
-              <li><a href="https://generated.photos/face-generator">Face Generator</a> – rostos em tempo real</li>
-              <li><a href="https://generated.photos/human-generator">Human Generator</a> – humanos de corpo inteiro</li>
+              <li>Fundador de <a href="https://icons8.com">Icons8</a> y <a href="https://generated.photos">Generated Photos</a>, proporcionando imágenes generadas por IA, conjuntos de datos y herramientas de diseño utilizadas por más de 4 millones de diseñadores y desarrolladores.</li>
+              <li>Suministramos recursos a gran escala y <a href="https://generated.photos/datasets">conjuntos de datos</a> personalizados a clientes empresariales y somos el mayor proveedor de gráficos para Canva.</li>
+              <li><a href="https://generated.photos/genyou">GenYOU</a> – selfies personalizadas con IA</li>
+              <li><a href="https://generated.photos/face-generator">Face Generator</a> – rostros en tiempo real</li>
+              <li><a href="https://generated.photos/human-generator">Human Generator</a> – humanos de cuerpo completo</li>
             </ul>
             <div class="video-container" style="margin-top: 20px; margin-left: -20px;">
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
                 <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" autoplay muted loop playsinline>
-                  <source src="i/human-generator.mp4" type="video/mp4">
-                  Seu navegador não suporta a tag de vídeo.
+                  <source src="../i/human-generator.mp4" type="video/mp4">
+                  Su navegador no soporta la etiqueta de video.
                 </video>
               </div>
             </div>
@@ -685,14 +721,14 @@
         <!-- Investment & Advisory Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Investimento e Consultoria</h2>
+            <h2>Inversión y Asesoría</h2>
           </div>
           <div class="section-content">
-            <p>Sou um empreendedor em série que lança <i>produtos bootstrapped relacionados a IA e design</i>. Minhas forças são:</p>
+            <p>Soy un emprendedor en serie que lanza <i>productos autosuficientes relacionados con IA y diseño</i>. Mis fortalezas son:</p>
             <ul>
-            <li><b>Marketing:</b> SEO, ProductHunt, imprensa, mailing. Não sou bom em mídias sociais.</li>
-            <li><b>Bootstrapping de IA:</b> reduzir gastos, monetizar cedo, reinvestir lucros.</li>
-            <li><b>Contratação e gestão:</b> desde fundador solo até equipes de mais de 100 pessoas.</li>
+            <li><b>Marketing:</b> SEO, ProductHunt, prensa, mailing. No soy bueno en redes sociales.</li>
+            <li><b>Bootstrapping de IA:</b> reducir gastos, monetizar temprano, reinvertir ganancias.</li>
+            <li><b>Contratación y gestión:</b> desde fundador solitario hasta equipos de más de 100 personas.</li>
             </ul>
           </div>
         </section>
@@ -700,31 +736,31 @@
         <!-- Interests & Projects Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Hobbies</h2>
+            <h2>Aficiones</h2>
           </div>
           <div class="section-content">
             <ul>
-          <li><b>Baixa tecnologia</b> – Possuo e opero uma motocicleta e um trator. Também soldei alguns implementos do trator.
+          <li><b>Baja tecnología</b> – Poseo y opero una motocicleta e um trator. También he soldado algunos implementos del tractor.
             <div style="margin: 20px 0 30px; text-align: left;">
               <a href="/i/tractor-horses.jpg" data-fancybox>
-                <img src="https://ik.imagekit.io/icons8/tr:w-1200/i/tractor-horses.jpg" alt="Trator e cavalos" style="max-width: 600px; width: auto; border-radius: 4px; display: block;">
+                <img src="https://ik.imagekit.io/icons8/tr:w-1200/i/tractor-horses.jpg" alt="Tractor y caballos" style="max-width: 600px; width: auto; border-radius: 4px; display: block;">
               </a>
               <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
-                Andar de trator é uma alegria subestimada — e surpreendentemente radical. No motocross, as quedas acontecem num instante. No trator, o horror de cair desenrola-se em câmara lenta, durando minutos.
+                Conducir un tractor es una alegría subestimada — y sorprendentemente extremo. En el motocross, los accidentes ocurren en un instante. En un tractor, el horror de caer se desarrolla en cámara lenta, durando minutos.
               </p>
             </div>
           </li>
-          <li><b>Construção</b> – Remodelei ou construí do zero várias casas. Especialmente, gosto de aplicar <i>nova gestão de TI</i> a uma indústria milenar.</li>
+          <li><b>Construcción</b> – He remodelado o construido desde cero varias casas. Especialmente, disfruto aplicando <i>nueva gestión de TI</i> a una industria milenaria.</li>
           <div style="margin: 20px 0 30px; text-align: left;">
               <a href="/i/ilbuco.jpeg" data-fancybox>
-                <img src="https://ik.imagekit.io/icons8/tr:w-600/i/ilbuco.jpeg" alt="Construção recente" style="max-width: 300px; width: auto; border-radius: 4px; display: block;">
+                <img src="https://ik.imagekit.io/icons8/tr:w-600/i/ilbuco.jpeg" alt="Construcción reciente" style="max-width: 300px; width: auto; border-radius: 4px; display: block;">
               </a>
               <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
                 Recent construction including <a href="https://ilbuco.com.ar">Coliving for tech founders</a> and your <a href="https://recharge.com.ar">Argentinian shelter</a> in case of a global meltdown. One successful innovation was having a QA engineer working on error logging.
               </p>
             </div>
-          <li><b>Arte</b> – Visito <i>museus de arte</i> e <i>exposições de arte</i>. Meus favoritos são Tate Modern, Metropolitan Museum of Art, Bienal de Veneza e Art Basel.</li>
-          <li><b>Música clássica</b> – Sou um grande fã de <i>Mahler</i>, o cara que fez música alta para orquestras enormes. Além disso, ele queria um som bam! que os instrumentos da época não podiam fornecer. Estamos procurando seu som bam! perfeito até hoje.</li>
+          <li><b>Arte</b> – Visito <i>museos de arte</i> y <i>exposiciones de arte</i>. Mis favoritos son Tate Modern, Metropolitan Museum of Art, Bienal de Venecia y Art Basel.</li>
+          <li><b>Música clásica</b> – Soy un gran fan de <i>Mahler</i>, el tipo que hizo música fuerte para orquestas enormes. Además, quería un sonido ¡bam! que los instrumentos de días pasados no podían proporcionar. Seguimos buscando su sonido ¡bam! perfecto hasta ahora.</li>
             </ul>
 
           </div>
@@ -736,14 +772,14 @@
             <h2>Idiomas</h2>
           </div>
           <div class="section-content">
-            <p>Fluente: 🇦🇷 Espanhol, 🇺🇸 Inglês, 🇧🇷 Português, 🇮🇹 Italiano</p>
-            <p>Leitor: 🇩🇪 Alemão</p>
+            <p>Fluido: 🇦🇷 Español, 🇺🇸 Inglés, 🇧🇷 Portugués, 🇮🇹 Italiano</p>
+            <p>Lector: 🇩🇪 Alemán</p>
           </div>
         </section>
 
         <!-- Contact Section -->
         <div class="contact">
-          <p>Vamos nos conectar se você precisar de um palestrante ou consultor.</p>
+          <p>Conectemos si necesitas un orador o asesor.</p>
           <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
         </div>
       </div> <!-- End grid -->

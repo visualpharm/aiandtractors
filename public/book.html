@@ -62,6 +62,9 @@
       .header-image {
         grid-column: 1 / 4;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       
       .header-content {
@@ -168,33 +171,21 @@
       }
       
       /* Book cover */
-      .book-cover {
-        width: 200px;
-        height: 280px;
-        background: linear-gradient(135deg, var(--color-accent), #d32535);
+      .book-cover-img {
+        height: 500px;
+        width: auto;
         border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 3);
         box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        transition: transform 0.2s ease;
       }
       
-      .book-cover h3 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        line-height: 1.3;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-        color: white;
+      .book-cover-img:hover {
+        transform: scale(1.02);
       }
       
-      .book-cover .author {
-        font-size: 1rem;
-        font-weight: 400;
-        opacity: 0.9;
+      .header-image a {
+        border-bottom: none;
+        text-decoration: none;
       }
       
       /* Sample chapters */
@@ -414,13 +405,44 @@
           margin-bottom: 0px;
         }
         
-        .book-cover {
-          width: 160px;
-          height: 220px;
+        .book-cover-img {
+          height: 300px;
+          width: auto;
         }
         
         body {
           padding-top: 60px;
+        }
+      }
+      
+      /* Footer */
+      .footer {
+        grid-column: 1 / -1;
+        padding: calc(var(--spacing-unit) * 3) 0;
+        border-top: 1px solid var(--color-tertiary);
+        margin-top: calc(var(--spacing-unit) * 6);
+        text-align: center;
+      }
+      
+      .footer-content {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+      }
+      
+      .footer-text a {
+        margin-left: calc(var(--spacing-unit) * 2);
+        font-size: 0.9rem;
+      }
+      
+      @media (max-width: 768px) {
+        .footer-text {
+          display: block;
+          line-height: 1.6;
+        }
+        
+        .footer-text a {
+          display: inline-block;
+          margin: 0 calc(var(--spacing-unit) * 1);
         }
       }
     </style>
@@ -448,10 +470,9 @@
         <!-- Header Section -->
         <header class="header">
           <div class="header-image">
-            <div class="book-cover">
-              <h3>Kill the Budget<br/>and 12 Other Ways<br/>to Bootstrap</h3>
-              <div class="author">Ivan Braun</div>
-            </div>
+            <a href="/i/kill-the-budget-book.jpg" data-fancybox="book-cover">
+              <img src="/i/kill-the-budget-book.jpg" alt="Kill the Budget and 12 Other Ways to Bootstrap - Ivan Braun" class="book-cover-img">
+            </a>
           </div>
           <div class="header-content">
             <h1>Kill the Budget and 12 Other Ways to Bootstrap</h1>
@@ -468,60 +489,60 @@
           <div class="section-content">
             <h3>Part 1: Management</h3>
             <ol>
-              <li><strong>Kill Budgets, Not Dreams</strong> - Why budgets are guesswork and how to find real market prices</li>
-              <li><strong>The Screenshot Tool</strong> - Using Hubstaff to focus on process, not micromanaging results</li>
-              <li><strong>Fire the "My Life Sucks" People</strong> - Culture levels and why toxic employees destroy teams</li>
-              <li><strong>Scrum Without Being an Asshole</strong> - Using frameworks so people can't blame you personally</li>
-              <li><strong>Too Much Control vs Too Little</strong> - Finding the balance between meetings and direction</li>
+              <li><strong>Kill budgets, not dreams</strong> - Why budgets are guesswork and how to find real market prices</li>
+              <li><strong>The screenshot tool</strong> - Using Hubstaff to focus on process, not micromanaging results</li>
+              <li><strong>Fire the "my life sucks" people</strong> - Culture levels and why toxic employees destroy teams</li>
+              <li><strong>Scrum without being an asshole</strong> - Using frameworks so people can't blame you personally</li>
+              <li><strong>Too much control vs too little</strong> - Finding the balance between meetings and direction</li>
             </ol>
 
             <h3>Part 2: Marketing</h3>
             <ol start="6">
-              <li><strong>Freemium is a Pleasure</strong> - Build something viral first, add paywalls later</li>
-              <li><strong>Think About the Evil Side</strong> - Why viral products get negative press (and that's okay)</li>
-              <li><strong>SEO for Poor People</strong> - Backlinks convert to traffic, everything else is noise</li>
-              <li><strong>ChatGPT CEO is Different</strong> - Getting mentioned in the few articles AI considers authoritative</li>
+              <li><strong>Freemium is a pleasure</strong> - Build something viral first, add paywalls later</li>
+              <li><strong>Think about the evil side</strong> - Why viral products get negative press (and that's okay)</li>
+              <li><strong>SEO for poor people</strong> - Backlinks convert to traffic, everything else is noise</li>
+              <li><strong>ChatGPT CEO is different</strong> - Getting mentioned in the few articles AI considers authoritative</li>
             </ol>
 
             <h3>Part 3: Finance</h3>
             <ol start="10">
-              <li><strong>Cherry-Picking Offers</strong> - Always shopping for prices, getting the best deals</li>
-              <li><strong>Get Pleasure from Eliminating Waste</strong> - The joy of cutting inefficiencies immediately</li>
-              <li><strong>Offer Everything Except High Salary</strong> - Flexibility, learning, reduced hours before money</li>
-              <li><strong>The Zara Photoshoot</strong> - Getting what you need without inflated budgets</li>
+              <li><strong>Cherry-picking offers</strong> - Always shopping for prices, getting the best deals</li>
+              <li><strong>Get pleasure from eliminating waste</strong> - The joy of cutting inefficiencies immediately</li>
+              <li><strong>Offer everything except high salary</strong> - Flexibility, learning, reduced hours before money</li>
+              <li><strong>The Zara photoshoot</strong> - Getting what you need without inflated budgets</li>
             </ol>
           </div>
         </section>
 
-        <!-- Sample Chapters Section -->
+        <!-- Excerpt Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Sample Chapters</h2>
+            <h2>Excerpts</h2>
           </div>
           <div class="section-content">
             <div class="sample-chapter">
-              <div class="chapter-title">Kill Budgets, Not Dreams</div>
+              <div class="chapter-title">Kill budgets, not dreams</div>
               <p>Budgets are bullshit. They're some guess about optimal pricing that turns into gospel. Instead of budgets, find the real cost of things.</p>
               <p>When we were doing photoshoots with photographers, our goal was to shoot three scenes: office, home, and pajamas. We went to Zara and purchased the clothing for it. No budget would do the trick - we just got what we needed and figured out the real price.</p>
               <p>The budget mindset makes you lazy. "We have $5,000 for this" becomes an excuse to not shop around, not negotiate, not think. Kill that. Demand good prices from the market instead.</p>
             </div>
 
             <div class="sample-chapter">
-              <div class="chapter-title">The Screenshot Tool</div>
+              <div class="chapter-title">The screenshot tool</div>
               <p>I require people to have a process, not specific results. This way, I don't have to always define new results and try to guess the next objective, which is irritating and hard for them. Instead, I trust them.</p>
               <p>They work well if I give them a tracking tool like Hubstaff with screenshots. I know they're not watching YouTube or working for someone else. It's about focus on process, not micromanaging.</p>
               <p>Some people think this is controversial. But it works. I focus on results through process, instead of constantly defining new objectives.</p>
             </div>
 
             <div class="sample-chapter">
-              <div class="chapter-title">Freemium is a Pleasure</div>
+              <div class="chapter-title">Freemium is a pleasure</div>
               <p>Freemium is something people share. If it's a free product, lean toward the free side. If you create a paid product nobody uses, that's a failure. If you create a freemium product that everybody's using and it's viral - that's pleasure.</p>
               <p>You can add paywalls wherever you want later. It's much easier to monetize something people already love than to force people to pay for something they haven't tried.</p>
               <p>We had one product reach millions of users with zero ad spend. When we added premium features, people converted because they already saw the value.</p>
             </div>
 
             <div class="sample-chapter">
-              <div class="chapter-title">Always Shopping for Prices</div>
+              <div class="chapter-title">Always shopping for prices</div>
               <p>Cherry-picking offers is an art. We got $100K worth of GPU compute for $10K per year just by shopping cloud credits, trials, and beta access. Same approach works for office space, software, everything.</p>
               <p>Most people are lazy about this. They see a price and accept it. But every price is negotiable, every service has competitors, every vendor has promotions.</p>
               <p>Do it while it's worth your money. If you can get $1K by asking a simple question that takes you 3 minutes, that's $20K per hour! In contrast, getting $2 discount for the same time probably is not worth it.</p>
@@ -542,19 +563,17 @@
             <p>Whether you're a first-time founder or an experienced entrepreneur looking to optimize operations, these 13 strategies provide a framework for sustainable growth without burning through investor capital.</p>
             
             <p><strong>Coming Soon</strong> - Sign up for updates on publication and early access opportunities.</p>
-            
-            <a href="/contact.html" class="cta-button">Get Updates on Book Release</a>
           </div>
         </section>
         <!-- Footer Section -->
         <footer class="footer">
           <div class="footer-content">
-            <div class="footer-copyright">© 2024 Ivan Braun</div>
-            <div class="footer-links">
-              <a href="/ai-keynote-speaker.html" class="subtle">AI Speaker</a>
-              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Speaker</a>
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ai-keynote-speaker.html" class="subtle">AI Keynote Speaker</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
               <a href="/ia-speaker.html" class="subtle">IA Speaker</a>
-            </div>
+              <a href="/es/formularios.html" class="subtle">Formularios Argentina</a>
+            </span>
           </div>
         </footer>
 
@@ -596,7 +615,11 @@
         }
       }
       
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>

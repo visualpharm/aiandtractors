@@ -29,6 +29,7 @@
         color: var(--color-primary);
         background-color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
+        padding-top: 80px;
       }
       
       .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: calc(var(--spacing-unit) * 3); }
@@ -64,19 +65,32 @@
       .cta-button { display: inline-block; background-color: var(--color-accent); color: white; padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 4); text-decoration: none; border: none; border-radius: 4px; font-weight: 500; font-size: 1.1rem; margin-top: calc(var(--spacing-unit) * 3); transition: background-color 0.2s ease; }
       .cta-button:hover { background-color: #d32535; border: none; }
       
-      .footer { grid-column: 1 / -1; text-align: center; padding: calc(var(--spacing-unit) * 4) 0; border-top: 1px solid var(--color-tertiary); margin-top: calc(var(--spacing-unit) * 6); }
-      .footer-links { display: flex; justify-content: center; gap: calc(var(--spacing-unit) * 4); margin-bottom: calc(var(--spacing-unit) * 3); }
+      .footer { grid-column: 1 / -1; padding: calc(var(--spacing-unit) * 3) 0; border-top: 1px solid var(--color-tertiary); margin-top: calc(var(--spacing-unit) * 6); text-align: center; }
+      .footer-content { font-size: 0.9rem; color: var(--color-secondary); }
+      .footer-text a { margin-left: calc(var(--spacing-unit) * 2); font-size: 0.9rem; }
       
-      .language-switcher { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+      /* Top Menu */
+      .top-menu { position: fixed; top: 0; left: 0; right: 0; background-color: var(--color-background); border-bottom: 1px solid var(--color-tertiary); z-index: 1000; padding: calc(var(--spacing-unit) * 2) 0; }
+      .menu-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 calc(var(--spacing-unit) * 3); display: flex; justify-content: space-between; align-items: center; }
+      .logo { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-primary); text-decoration: none; border: none; }
+      .logo:hover { color: var(--color-accent); border: none; }
+      .menu-nav { display: flex; gap: calc(var(--spacing-unit) * 4); align-items: center; }
+      .menu-nav a { font-size: 0.95rem; font-weight: 400; color: var(--color-primary); text-decoration: none; border: none; transition: color 0.2s ease; }
+      .menu-nav a:hover { color: var(--color-accent); border: none; }
+      .menu-nav a.active { font-weight: 500; color: var(--color-accent); }
+      .language-switcher { display: flex; gap: 10px; }
       .language-switcher a { text-decoration: none; border: none; font-size: 0.9rem; color: var(--color-secondary); }
       .language-switcher a.active { font-weight: bold; color: var(--color-primary); }
+      @media (max-width: 768px) { .menu-container { padding: 0 calc(var(--spacing-unit) * 2); } .menu-nav { gap: calc(var(--spacing-unit) * 2); } .menu-nav a { font-size: 0.85rem; } .logo { font-size: 1.2rem; } }
+      @media (max-width: 480px) { .menu-nav { gap: calc(var(--spacing-unit) * 1.5); } .menu-nav a { font-size: 0.8rem; } .logo { font-size: 1rem; } body { padding-top: 60px; } }
       
       @media (max-width: 900px) {
         .header, .section { grid-template-columns: 1fr; }
         .header-image, .header-content, .section-header, .section-content { grid-column: 1; }
         .section-header { text-align: left; padding-right: 0; margin-bottom: calc(var(--spacing-unit) * 2); }
         .header-image { margin-bottom: calc(var(--spacing-unit) * 3); text-align: left; }
-        .footer-links { flex-direction: column; gap: calc(var(--spacing-unit) * 2); }
+        .footer-text { display: block; line-height: 1.6; }
+        .footer-text a { display: inline-block; margin: 0 calc(var(--spacing-unit) * 1); }
       }
       
       @media (max-width: 480px) {
@@ -90,11 +104,22 @@
     </style>
   </head>
   <body>
-    <div class="language-switcher">
-      <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-      <a href="/es" class="active" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
-    </div>
+    <!-- Top Menu -->
+    <nav class="top-menu">
+      <div class="menu-container">
+        <a href="/" class="logo">Ivan Braun</a>
+        <div class="menu-nav">
+          <a href="/">Profile</a>
+          <a href="/book.html">Book</a>
+          <a href="/contact.html">Contact</a>
+          <div class="language-switcher">
+            <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+            <a href="/es" class="active" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+            <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     
     <div class="container">
       <div class="grid">
@@ -108,7 +133,7 @@
             <h1>Experto en IA</h1>
             <p class="subtitle">Consultor Especializado en Inteligencia Artificial y Transformación Digital</p>
             <p class="intro-text">Más de una década de experiencia implementando soluciones de inteligencia artificial en empresas desde startups hasta corporaciones. Ivan Braun combina expertise técnico profundo con visión estratégica empresarial.</p>
-            <a href="#consulta" class="cta-button">Solicitar Consultoría IA</a>
+            <a href="/contact.html" class="cta-button">Solicitar Consultoría IA</a>
           </div>
         </header>
 
@@ -153,20 +178,23 @@
             
             <p><strong>Modalidades:</strong> Consultoría estratégica, due diligence técnico, implementación de proyectos, mentoría de equipos y advisory board positions.</p>
             
-            <a href="/es" class="cta-button">Contactar Experto en IA</a>
+            <a href="/contact.html" class="cta-button">Contactar Experto en IA</a>
           </div>
         </section>
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="/argentina-ai-speaker.html">Argentina AI Speaker (English)</a>
-        <a href="/ia-speaker.html">IA Speaker</a>
-        <a href="/experto-ia-pt.html">Experto em IA (Português)</a>
-      </div>
-      <p>&copy; 2024 Ivan Braun. Experto en IA y Consultor en Inteligencia Artificial.</p>
-    </footer>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ia-speaker.html" class="subtle">IA Speaker</a>
+              <a href="/experto-ia.html" class="subtle">Experto IA</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
+              <a href="/es/formularios.html" class="subtle">Formularios Argentina</a>
+            </span>
+          </div>
+        </footer>
 
     <script>
       async function adjustFlagsByCountry() {
@@ -198,7 +226,11 @@
           console.error('Error adjusting flags:', error);
         }
       }
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>

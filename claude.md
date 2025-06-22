@@ -149,6 +149,10 @@ Usá estos modelos como base para avanzar con seguridad y claridad.
 # SEO Landing Pages
 Create the SEO landing pages in Spanish, Portuguese, and English for the following keywords:
 
+## Speaker profiles
+Focus not on the latam/argentinian market, but on the global market. I'm an Argentinian living in Argentina and giving the international perspective on AI, not the local one.
+
+
 ## English
 ai keynote speaker
 argentina ai speaker
@@ -169,6 +173,5 @@ Should be:
 * S1-S3 are the links to the seo pages, strictly in the same language
 
 Footers have links to the random SEO pages, but all seo pages should have at least one incoming link. 
-
 
 

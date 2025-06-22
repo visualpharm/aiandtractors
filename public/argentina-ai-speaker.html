@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ivan Braun - Leading Argentina AI Speaker with deep expertise in artificial intelligence, technology innovation, and Latin American market insights.">
-    <meta name="keywords" content="argentina ai speaker, artificial intelligence argentina, ai expert argentina, technology speaker argentina, latin america ai">
+    <meta name="description" content="Ivan Braun - Argentina-based AI Speaker delivering international perspectives on artificial intelligence, global technology innovation, and cross-cultural AI implementation.">
+    <meta name="keywords" content="argentina ai speaker, international ai expert, global ai perspectives, cross-cultural ai implementation, international technology speaker">
     <title>Argentina AI Speaker | Ivan Braun - AI Expert from Argentina</title>
     <!-- Fancybox CSS and JS for image zoom and navigation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
@@ -35,6 +35,7 @@
         color: var(--color-primary);
         background-color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
+        padding-top: 80px;
       }
       
       .container {
@@ -238,33 +239,28 @@
         padding: calc(var(--spacing-unit) * 3) 0;
         border-top: 1px solid var(--color-tertiary);
         margin-top: calc(var(--spacing-unit) * 6);
+        text-align: center;
       }
       
       .footer-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .footer-copyright {
         font-size: 0.9rem;
         color: var(--color-secondary);
       }
       
-      .footer-links {
-        display: flex;
-        gap: calc(var(--spacing-unit) * 3);
-      }
-      
-      .footer-links a {
+      .footer-text a {
+        margin-left: calc(var(--spacing-unit) * 2);
         font-size: 0.9rem;
       }
       
       @media (max-width: 768px) {
-        .footer-content {
-          flex-direction: column;
-          gap: calc(var(--spacing-unit) * 2);
-          text-align: center;
+        .footer-text {
+          display: block;
+          line-height: 1.6;
+        }
+        
+        .footer-text a {
+          display: inline-block;
+          margin: 0 calc(var(--spacing-unit) * 1);
         }
         
         .cta-buttons {
@@ -272,14 +268,73 @@
         }
       }
       
-      /* Language Switcher */
+      /* Top Menu */
+      .top-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-tertiary);
+        z-index: 1000;
+        padding: calc(var(--spacing-unit) * 2) 0;
+      }
+      
+      .menu-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 calc(var(--spacing-unit) * 3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .logo {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: none;
+      }
+      
+      .logo:hover {
+        color: var(--color-accent);
+        border: none;
+      }
+      
+      .menu-nav {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 4);
+        align-items: center;
+      }
+      
+      .menu-nav a {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: none;
+        transition: color 0.2s ease;
+      }
+      
+      .menu-nav a:hover {
+        color: var(--color-accent);
+        border: none;
+      }
+      
+      .menu-nav a.active {
+        font-weight: 500;
+        color: var(--color-accent);
+      }
+      
+      /* Language Switcher in Menu */
       .language-switcher {
-        position: absolute;
-        top: 20px;
-        right: 20px;
         display: flex;
         gap: 10px;
-        z-index: 100;
       }
 
       .language-switcher a {
@@ -292,6 +347,43 @@
       .language-switcher a.active {
         font-weight: bold;
         color: var(--color-primary);
+      }
+      
+      /* Mobile menu */
+      @media (max-width: 768px) {
+        .menu-container {
+          padding: 0 calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav a {
+          font-size: 0.85rem;
+        }
+        
+        .logo {
+          font-size: 1.2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 1.5);
+        }
+        
+        .menu-nav a {
+          font-size: 0.8rem;
+        }
+        
+        .logo {
+          font-size: 1rem;
+        }
+        
+        body {
+          padding-top: 60px;
+        }
       }
       
       /* Responsive */
@@ -358,11 +450,22 @@
     </style>
   </head>
   <body>
-    <div class="language-switcher">
-      <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-      <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
-    </div>
+    <!-- Top Menu -->
+    <nav class="top-menu">
+      <div class="menu-container">
+        <a href="/" class="logo">Ivan Braun</a>
+        <div class="menu-nav">
+          <a href="/">Profile</a>
+          <a href="/book.html">Book</a>
+          <a href="/contact.html">Contact</a>
+          <div class="language-switcher">
+            <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+            <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+            <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     
     <div class="container">
       <div class="grid">
@@ -375,8 +478,8 @@
           </div>
           <div class="header-content">
             <h1>Argentina AI Speaker</h1>
-            <p class="subtitle">Leading Artificial Intelligence Expert from Argentina</p>
-            <p class="intro-text">Based in Argentina with global reach, Ivan Braun brings unique perspectives on AI implementation in emerging markets, Latin American innovation ecosystems, and cross-cultural technology adoption.</p>
+            <p class="subtitle">Global AI Expert with International Perspective from Argentina</p>
+            <p class="intro-text">An Argentina-based AI expert delivering global insights on artificial intelligence, international technology adoption, and cross-cultural innovation strategies to worldwide audiences.</p>
             <div class="cta-buttons">
               <a href="/" class="cta-button">More about Ivan</a>
               <a href="/contact.html" class="cta-button secondary">Contact</a>
@@ -384,76 +487,76 @@
           </div>
         </header>
 
-        <!-- Argentina Expertise Section -->
+        <!-- Global AI Expertise Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Argentina AI Leadership</h2>
+            <h2>International AI Perspective</h2>
           </div>
           <div class="section-content">
-            <p>As one of Argentina's leading AI voices, Ivan combines deep technical knowledge with practical experience building technology companies in Latin America. His unique position allows him to bridge Silicon Valley innovation with <a href="/argentina-keynote-speaker.html" class="subtle">Argentine entrepreneurship</a>.</p>
+            <p>Based in Argentina but thinking globally, Ivan offers international audiences unique insights on <a href="/ai-keynote-speaker.html" class="subtle">artificial intelligence</a> from a non-Silicon Valley perspective. His global approach to AI innovation transcends geographic boundaries.</p>
             
-            <h3>Argentina-Focused Speaking Topics</h3>
+            <h3>Global AI Speaking Topics</h3>
             <ul>
-              <li><strong>AI in Emerging Markets:</strong> Implementing artificial intelligence solutions in resource-constrained environments</li>
-              <li><strong>Latin American Tech Ecosystem:</strong> How Argentina is becoming a <a href="/ai-keynote-speaker.html" class="subtle">technology innovation hub</a></li>
-              <li><strong>Remote-First AI Teams:</strong> Building distributed artificial intelligence capabilities from Argentina</li>
-              <li><strong>Cross-Border AI Strategy:</strong> Scaling AI products from Argentina to global markets</li>
-              <li><strong>Startup Ecosystem Development:</strong> Fostering AI innovation in Argentina's entrepreneurial landscape</li>
+              <li><strong>International AI Strategy:</strong> Building AI solutions that work across diverse global markets</li>
+              <li><strong>Cross-Cultural AI Innovation:</strong> How cultural diversity drives better <a href="/argentina-keynote-speaker.html" class="subtle">artificial intelligence outcomes</a></li>
+              <li><strong>Global Remote AI Teams:</strong> Managing distributed AI development across time zones and cultures</li>
+              <li><strong>International AI Ethics:</strong> Navigating AI governance across different regulatory environments</li>
+              <li><strong>Worldwide AI Adoption:</strong> Understanding how different cultures approach artificial intelligence implementation</li>
             </ul>
           </div>
         </section>
 
-        <!-- Local Impact Section -->
+        <!-- International AI Experience Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Impact in Argentina</h2>
+            <h2>Global AI Leadership</h2>
           </div>
           <div class="section-content">
-            <p>Ivan's work extends beyond speaking to actively building Argentina's AI and technology ecosystem. His initiatives have helped position Argentina as a competitive player in the global AI landscape.</p>
+            <p>Ivan's international AI expertise stems from building global technology companies while based in Argentina, providing unique insights into worldwide AI trends and cross-border innovation strategies.</p>
             
-            <h3>Argentina Initiatives</h3>
+            <h3>International AI Achievements</h3>
             <ul>
-              <li><strong>Startup Mentorship:</strong> Guiding Argentine AI startups through accelerator programs</li>
-              <li><strong>University Partnerships:</strong> Collaborating with Argentine institutions on AI curriculum development</li>
-              <li><strong>Investment Bridge:</strong> Connecting Argentine startups with international investors</li>
-              <li><strong>Policy Advocacy:</strong> Contributing to AI policy discussions in Argentina</li>
+              <li><strong>Global AI Company Building:</strong> Scaling AI products across multiple international markets</li>
+              <li><strong>Cross-Border Innovation:</strong> Developing AI solutions for diverse global audiences</li>
+              <li><strong>International Team Leadership:</strong> Managing distributed AI teams across continents</li>
+              <li><strong>Worldwide AI Strategy:</strong> Consulting on AI implementation for international organizations</li>
             </ul>
             
-            <p>His work demonstrates how Argentina can leverage its talented workforce and strategic location to compete globally in <a href="/experto-ia.html" class="subtle">artificial intelligence development</a>.</p>
+            <p>This global perspective enables audiences worldwide to understand how <a href="/ia-speaker.html" class="subtle">artificial intelligence innovation</a> can thrive in any geographic or cultural context.</p>
           </div>
         </section>
 
-        <!-- Global Perspective Section -->
+        <!-- International Reach Section -->
         <section class="section">
           <div class="section-header">
-            <h2>Global Reach from Argentina</h2>
+            <h2>Worldwide AI Speaking</h2>
           </div>
           <div class="section-content">
-            <p>While based in Argentina, Ivan's expertise reaches international audiences through virtual presentations, global conferences, and cross-border consulting engagements.</p>
+            <p>From his base in Argentina, Ivan delivers AI presentations to global audiences, offering fresh international perspectives that go beyond traditional Silicon Valley viewpoints on artificial intelligence.</p>
             
-            <h3>International Speaking Experience</h3>
+            <h3>Global Speaking Capabilities</h3>
             <ul>
-              <li><strong>Virtual Global Events:</strong> Delivered keynotes to audiences across 15+ countries</li>
-              <li><strong>Cross-Cultural AI:</strong> Expertise in adapting AI solutions for different cultural contexts</li>
-              <li><strong>Time Zone Flexibility:</strong> Available for events across Americas, Europe, and Asia-Pacific</li>
-              <li><strong>Multilingual Presentations:</strong> English, Spanish, and Portuguese capabilities</li>
+              <li><strong>International AI Conferences:</strong> Keynotes delivered to audiences across 20+ countries</li>
+              <li><strong>Multilingual AI Expertise:</strong> Presentations in English, Spanish, and Portuguese for global reach</li>
+              <li><strong>Cross-Cultural Innovation:</strong> Deep understanding of how culture influences AI adoption worldwide</li>
+              <li><strong>Global Time Zone Coverage:</strong> Flexible scheduling for Americas, Europe, and Asia-Pacific events</li>
             </ul>
             
-            <p>This global perspective, combined with deep Argentina roots, provides unique insights into AI adoption patterns across different economic and cultural environments.</p>
+            <p>This international approach provides audiences with valuable insights into <a href="/speaker-ia.html" class="subtle">global AI trends</a> and cross-cultural technology innovation strategies.</p>
           </div>
         </section>
 
         <!-- Contact Section -->
         <section class="section" id="contact">
           <div class="section-header">
-            <h2>Book Argentina AI Expert</h2>
+            <h2>Book International AI Expert</h2>
           </div>
           <div class="section-content">
-            <p>Looking for an AI speaker who understands both cutting-edge technology and emerging market realities? Ivan brings the perfect combination of technical expertise and Argentina market knowledge.</p>
+            <p>Looking for an AI speaker who brings fresh international perspectives beyond Silicon Valley? Ivan offers global audiences unique insights on artificial intelligence from his Argentina base.</p>
             
-            <p><strong>Ideal for:</strong> International conferences, Argentina-focused events, Latin American tech summits, and global AI discussions requiring emerging market perspectives.</p>
+            <p><strong>Perfect for:</strong> International AI conferences, global technology summits, worldwide innovation forums, and events seeking diverse perspectives on artificial intelligence.</p>
             
-            <p>Connect with Ivan through <a href="/">his main profile</a> to discuss how his Argentina AI expertise can enhance your next event.</p>
+            <p>Connect with Ivan through <a href="/">his main profile</a> to explore how his international AI expertise can enhance your global event.</p>
             
             <div class="cta-buttons">
               <a href="/" class="cta-button">More about Ivan</a>
@@ -465,12 +568,11 @@
         <!-- Footer Section -->
         <footer class="footer">
           <div class="footer-content">
-            <div class="footer-copyright">© 2024 Ivan Braun</div>
-            <div class="footer-links">
-              <a href="/ai-keynote-speaker.html" class="subtle">AI Speaker</a>
-              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Speaker</a>
-              <a href="/experto-ia.html" class="subtle">Experto IA</a>
-            </div>
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ai-keynote-speaker.html" class="subtle">AI Keynote Speaker</a>
+              <a href="/argentina-ai-speaker.html" class="subtle">Argentina AI Speaker</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
+            </span>
           </div>
         </footer>
       </div>
@@ -513,7 +615,11 @@
         }
       }
       
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>

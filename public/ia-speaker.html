@@ -35,6 +35,7 @@
         color: var(--color-primary);
         background-color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
+        padding-top: 80px;
       }
       
       .container {
@@ -217,27 +218,89 @@
       /* Footer */
       .footer {
         grid-column: 1 / -1;
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 4) 0;
+        padding: calc(var(--spacing-unit) * 3) 0;
         border-top: 1px solid var(--color-tertiary);
         margin-top: calc(var(--spacing-unit) * 6);
+        text-align: center;
       }
       
-      .footer-links {
+      .footer-content {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+      }
+      
+      .footer-text a {
+        margin-left: calc(var(--spacing-unit) * 2);
+        font-size: 0.9rem;
+      }
+      
+      /* Top Menu */
+      .top-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-tertiary);
+        z-index: 1000;
+        padding: calc(var(--spacing-unit) * 2) 0;
+      }
+      
+      .menu-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 calc(var(--spacing-unit) * 3);
         display: flex;
-        justify-content: center;
-        gap: calc(var(--spacing-unit) * 4);
-        margin-bottom: calc(var(--spacing-unit) * 3);
+        justify-content: space-between;
+        align-items: center;
       }
       
-      /* Language Switcher */
+      .logo {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: none;
+      }
+      
+      .logo:hover {
+        color: var(--color-accent);
+        border: none;
+      }
+      
+      .menu-nav {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 4);
+        align-items: center;
+      }
+      
+      .menu-nav a {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--color-primary);
+        text-decoration: none;
+        border: none;
+        transition: color 0.2s ease;
+      }
+      
+      .menu-nav a:hover {
+        color: var(--color-accent);
+        border: none;
+      }
+      
+      .menu-nav a.active {
+        font-weight: 500;
+        color: var(--color-accent);
+      }
+      
+      /* Language Switcher in Menu */
       .language-switcher {
-        position: absolute;
-        top: 20px;
-        right: 20px;
         display: flex;
         gap: 10px;
-        z-index: 100;
       }
 
       .language-switcher a {
@@ -250,6 +313,43 @@
       .language-switcher a.active {
         font-weight: bold;
         color: var(--color-primary);
+      }
+      
+      /* Mobile menu */
+      @media (max-width: 768px) {
+        .menu-container {
+          padding: 0 calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 2);
+        }
+        
+        .menu-nav a {
+          font-size: 0.85rem;
+        }
+        
+        .logo {
+          font-size: 1.2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .menu-nav {
+          gap: calc(var(--spacing-unit) * 1.5);
+        }
+        
+        .menu-nav a {
+          font-size: 0.8rem;
+        }
+        
+        .logo {
+          font-size: 1rem;
+        }
+        
+        body {
+          padding-top: 60px;
+        }
       }
       
       /* Responsive */
@@ -273,9 +373,14 @@
           text-align: left;
         }
         
-        .footer-links {
-          flex-direction: column;
-          gap: calc(var(--spacing-unit) * 2);
+        .footer-text {
+          display: block;
+          line-height: 1.6;
+        }
+        
+        .footer-text a {
+          display: inline-block;
+          margin: 0 calc(var(--spacing-unit) * 1);
         }
       }
       
@@ -316,11 +421,22 @@
     </style>
   </head>
   <body>
-    <div class="language-switcher">
-      <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-      <a href="/es" class="active" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-      <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
-    </div>
+    <!-- Top Menu -->
+    <nav class="top-menu">
+      <div class="menu-container">
+        <a href="/" class="logo">Ivan Braun</a>
+        <div class="menu-nav">
+          <a href="/">Profile</a>
+          <a href="/book.html">Book</a>
+          <a href="/contact.html">Contact</a>
+          <div class="language-switcher">
+            <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
+            <a href="/es" class="active" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
+            <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     
     <div class="container">
       <div class="grid">
@@ -335,7 +451,7 @@
             <h1>IA Speaker</h1>
             <p class="subtitle">Experto en Inteligencia Artificial e Innovación Tecnológica</p>
             <p class="intro-text">Transforma tu próximo evento con perspectivas de vanguardia sobre inteligencia artificial, aprendizaje automático y el futuro de la tecnología. Ivan Braun ofrece conferencias magistrales que conectan conceptos complejos de IA con aplicaciones empresariales prácticas.</p>
-            <a href="#contacto" class="cta-button">Contratar Speaker IA</a>
+            <a href="/contact.html" class="cta-button">Contratar Speaker IA</a>
           </div>
         </header>
 
@@ -405,21 +521,23 @@
             
             <p>Contacta a Ivan directamente a través de <a href="/es">su perfil principal</a> para discutir los requisitos y disponibilidad de tu evento.</p>
             
-            <a href="/es" class="cta-button">Ver Perfil Completo y Contacto</a>
+            <a href="/contact.html" class="cta-button">Ver Perfil Completo y Contacto</a>
           </div>
         </section>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="/ai-keynote-speaker.html">AI Keynote Speaker (English)</a>
-        <a href="/experto-ia.html">Experto en IA</a>
-        <a href="/speaker-ia.html">Speaker IA (Português)</a>
-      </div>
-      <p>&copy; 2024 Ivan Braun. Experto IA Speaker y Líder en Innovación Tecnológica.</p>
-    </footer>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ia-speaker.html" class="subtle">IA Speaker</a>
+              <a href="/experto-ia.html" class="subtle">Experto IA</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
+              <a href="/es/formularios.html" class="subtle">Formularios Argentina</a>
+            </span>
+          </div>
+        </footer>
 
     <script>
       // Function to detect user's country and adjust flags
@@ -458,7 +576,11 @@
         }
       }
       
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>

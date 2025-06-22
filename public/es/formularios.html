@@ -10,17 +10,41 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <style>
-      /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
+      /* Modern Design System */
       :root {
         --grid-columns: 12;
-        --grid-gutter: 24px;
+        --grid-gutter: 32px;
         --spacing-unit: 8px;
-        --color-primary: #222222;
-        --color-secondary: #777777;
-        --color-tertiary: #f0f0f0;
-        --color-accent: #e63946;
+        
+        /* Beautiful Color Palette */
+        --color-primary: #1a1a1a;
+        --color-secondary: #6b7280;
+        --color-tertiary: #f8fafc;
+        --color-accent: #3b82f6;
+        --color-accent-light: #dbeafe;
         --color-background: #ffffff;
-        --color-warning: #ff6b35;
+        --color-warning: #f59e0b;
+        --color-warning-light: #fef3c7;
+        --color-success: #10b981;
+        --color-success-light: #d1fae5;
+        --color-border: #e5e7eb;
+        --color-text-muted: #9ca3af;
+        
+        /* Typography */
+        --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-display: 'Cal Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        
+        /* Shadows */
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        
+        /* Border Radius */
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 16px;
       }
       
       * {
@@ -29,20 +53,24 @@
         padding: 0;
       }
       
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
       body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        line-height: 1.5;
+        font-family: var(--font-primary);
+        line-height: 1.6;
         color: var(--color-primary);
-        background-color: var(--color-tertiary);
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         -webkit-font-smoothing: antialiased;
-        padding-top: 70px;
+        -moz-osx-font-smoothing: grayscale;
+        padding-top: 80px;
+        font-weight: 400;
       }
       
       .container {
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
-        padding: calc(var(--spacing-unit) * 3);
+        padding: calc(var(--spacing-unit) * 6);
       }
       
       .grid {
@@ -74,50 +102,64 @@
         grid-column: 1 / -1;
       }
       
-      /* Typography matching main page */
+      /* Beautiful Typography */
       h1 {
-        font-size: 2.8rem;
-        font-weight: 500;
-        line-height: 1.2;
-        margin-bottom: 0;
-        letter-spacing: -0.02em;
+        font-family: var(--font-display);
+        font-size: 2.75rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        letter-spacing: -0.025em;
+        color: var(--color-primary);
       }
       
       h2 {
-        font-size: 1.4rem;
-        font-weight: 500;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-        margin-top: -8px;
-        position: relative;
+        font-family: var(--font-display);
+        font-size: 2.25rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        margin-top: calc(var(--spacing-unit) * 3);
+        color: var(--color-primary);
+        letter-spacing: -0.02em;
       }
       
       h3 {
-        font-size: 1.4rem;
-        font-weight: 500;
-        margin-bottom: calc(var(--spacing-unit) * 2);
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        color: var(--color-primary);
       }
       
       h4 {
-        font-size: 1.2rem;
-        font-weight: 500;
+        font-size: 1.25rem;
+        font-weight: 600;
         margin-bottom: calc(var(--spacing-unit) * 2);
+        color: var(--color-primary);
       }
       
       p {
-        margin-bottom: calc(var(--spacing-unit) * 2);
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        color: var(--color-secondary);
       }
       
       p.subtitle {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        line-height: 1.5;
         color: var(--color-secondary);
-        margin-bottom: calc(var(--spacing-unit) * 2);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        font-weight: 400;
       }
       
       p.intro-text {
-        font-size: 1.3rem;
-        line-height: 1.4;
+        font-size: 1.25rem;
+        line-height: 1.6;
         margin-bottom: calc(var(--spacing-unit) * 3);
         color: var(--color-secondary);
+        font-weight: 400;
       }
       
       /* Lists matching main page */
@@ -129,14 +171,7 @@
       li {
         margin-bottom: calc(var(--spacing-unit) * 2);
         position: relative;
-        padding-left: calc(var(--spacing-unit) * 2);
-      }
-      
-      li:before {
-        content: '\2022';
-        position: absolute;
-        left: 0;
-        color: var(--color-secondary);
+        padding-left: 0;
       }
       
       ol {
@@ -178,91 +213,187 @@
         border-bottom: 1px solid var(--color-accent);
       }
       
-      /* Custom boxes */
+      /* Beautiful Content Boxes */
       .warning-box {
-        background-color: #fff3cd;
-        border: 2px solid var(--color-warning);
-        border-radius: 8px;
-        padding: calc(var(--spacing-unit) * 3);
-        margin: calc(var(--spacing-unit) * 4) 0;
+        background: linear-gradient(135deg, var(--color-background) 0%, #f1f5f9 100%);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: calc(var(--spacing-unit) * 8);
+        margin: calc(var(--spacing-unit) * 3) 0;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
       }
       
+      
       .warning-box h4 {
-        color: var(--color-warning);
-        margin-bottom: calc(var(--spacing-unit) * 2);
+        color: var(--color-primary);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        font-size: 1.375rem;
+        font-weight: 600;
+      }
+      
+      .warning-box p {
+        color: var(--color-secondary);
+        font-size: 1rem;
+        line-height: 1.6;
       }
       
       .tip-box {
-        background-color: #e7f3ff;
-        border: 1px solid #b3d9ff;
-        border-radius: 6px;
-        padding: calc(var(--spacing-unit) * 3);
+        background: linear-gradient(135deg, var(--color-background) 0%, #f1f5f9 100%);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: calc(var(--spacing-unit) * 8);
         margin: calc(var(--spacing-unit) * 3) 0;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
       }
+      
       
       .steps-container {
-        background-color: #f8f9fa;
-        border-left: 4px solid var(--color-accent);
-        padding: calc(var(--spacing-unit) * 3);
+        background: linear-gradient(135deg, var(--color-background) 0%, #f1f5f9 100%);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: calc(var(--spacing-unit) * 8);
         margin: calc(var(--spacing-unit) * 3) 0;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
       }
       
-      /* Forms grid 2x2 */
+      
+      /* Beautiful Forms Grid */
       .forms-grid-2x2 {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
         gap: calc(var(--spacing-unit) * 3);
-        margin: calc(var(--spacing-unit) * 4) 0;
+        margin: calc(var(--spacing-unit) * 3) 0;
       }
       
       .form-card {
-        background-color: var(--color-background);
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: calc(var(--spacing-unit) * 3);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background: linear-gradient(135deg, var(--color-background) 0%, #fefefe 100%);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: calc(var(--spacing-unit) * 6);
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
       }
+      
       
       .form-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-xl);
       }
       
+      
       .form-card h4 {
-        color: var(--color-accent);
-        font-size: 1.3rem;
+        color: var(--color-primary);
+        font-size: 1.375rem;
+        font-weight: 600;
         margin-bottom: calc(var(--spacing-unit) * 2);
+        display: flex;
+        align-items: center;
+        gap: calc(var(--spacing-unit) * 2);
       }
       
       .download-btn {
-        display: inline-block;
-        background-color: var(--color-accent);
+        display: inline-flex;
+        align-items: center;
+        gap: calc(var(--spacing-unit) * 2);
+        background: linear-gradient(135deg, var(--color-accent) 0%, #2563eb 100%);
         color: white;
-        padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+        padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
         text-decoration: none;
         border: none;
-        border-radius: 4px;
+        border-radius: var(--radius-md);
         font-weight: 500;
-        margin-top: calc(var(--spacing-unit) * 2);
-        transition: background-color 0.2s ease;
+        font-size: 0.9rem;
+        margin-top: 0;
+        margin-bottom: calc(var(--spacing-unit) * 4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-md);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .download-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .download-btn:hover::before {
+        left: 100%;
       }
       
       .download-btn:hover {
-        background-color: #d32535;
+        background: linear-gradient(135deg, #1d4ed8 0%, var(--color-primary) 100%);
+        border: none;
+      }
+      
+      /* ZIP Download Section */
+      .zip-download-section {
+        text-align: left;
+        margin: calc(var(--spacing-unit) * 3) 0;
+      }
+      
+      .zip-download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: calc(var(--spacing-unit) * 2);
+        background: linear-gradient(135deg, var(--color-accent) 0%, #2563eb 100%);
+        color: white;
+        text-decoration: none;
+        padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+        border-radius: var(--radius-lg);
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        box-shadow: var(--shadow-md);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .zip-download-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .zip-download-btn:hover::before {
+        left: 100%;
+      }
+      
+      .zip-download-btn:hover {
+        background: linear-gradient(135deg, #1d4ed8 0%, var(--color-primary) 100%);
         border: none;
       }
 
-      /* Top Menu */
+      /* Modern Top Menu */
       .top-menu {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        background-color: var(--color-background);
-        border-bottom: 1px solid var(--color-tertiary);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--color-border);
         z-index: 1000;
-        padding: calc(var(--spacing-unit) * 2) 0;
+        padding: calc(var(--spacing-unit) * 3) 0;
+        box-shadow: var(--shadow-sm);
       }
       
       .menu-container {
@@ -422,6 +553,37 @@
           gap: calc(var(--spacing-unit) * 2);
         }
       }
+      
+      /* Footer */
+      .footer {
+        grid-column: 1 / -1;
+        padding: calc(var(--spacing-unit) * 3) 0;
+        border-top: 1px solid var(--color-tertiary);
+        margin-top: calc(var(--spacing-unit) * 6);
+        text-align: center;
+      }
+      
+      .footer-content {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+      }
+      
+      .footer-text a {
+        margin-left: calc(var(--spacing-unit) * 2);
+        font-size: 0.9rem;
+      }
+      
+      @media (max-width: 768px) {
+        .footer-text {
+          display: block;
+          line-height: 1.6;
+        }
+        
+        .footer-text a {
+          display: inline-block;
+          margin: 0 calc(var(--spacing-unit) * 1);
+        }
+      }
     </style>
   </head>
   <body>
@@ -432,7 +594,6 @@
         <div class="menu-nav">
           <a href="/es">Perfil</a>
           <a href="/ia-speaker.html">Book</a>
-          <a href="/es/formularios.html" class="active">Formularios startup</a>
           <a href="#contact">Contacto</a>
           <div class="language-switcher">
             <a href="/" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
@@ -450,7 +611,7 @@
           <div class="full-width-section">
             <a href="/es" class="back-link">← Volver al perfil</a>
             
-            <h1>📝 Formularios para Emprender en Argentina</h1>
+            <h1>Formularios Startup para Emprender en Argentina</h1>
             <p class="subtitle">Contratos, acuerdos y documentos esenciales para crear tu startup con socios</p>
             
             <div class="warning-box">
@@ -469,10 +630,8 @@
 
         <!-- Benefits Section -->
         <section class="section">
-          <div class="section-header">
+          <div class="full-width-section">
             <h2>Qué vas a lograr</h2>
-          </div>
-          <div class="section-content">
             <ul>
               <li><strong>Evitar conflictos</strong> futuros mediante un <strong>acuerdo entre socios Argentina</strong> con cláusulas de vesting, drag-along y confidencialidad</li>
               <li><strong>Ahorrar tiempo</strong> siguiendo un checklist de <strong>pre constitución empresa Argentina</strong> con los documentos mínimos para operar antes de inscribir la sociedad</li>
@@ -488,13 +647,11 @@
 
         <!-- Steps Section -->
         <section class="section">
-          <div class="section-header">
+          <div class="full-width-section">
             <h2>Pasos esenciales para emprender</h2>
-          </div>
-          <div class="section-content">
             <div class="steps-container">
               <ol>
-                <li><strong>Firmar el Contrato entre Socios (MoU 50/50%)</strong><br>
+                <li><strong>Firmar el Contrato entre Socios (MoU)</strong><br>
                     <em>Fija roles, derechos de preferencia y plan de vesting</em></li>
                 
                 <li><strong>Proteger la Propiedad Intelectual</strong><br>
@@ -515,20 +672,19 @@
 
         <!-- Forms Section -->
         <section class="section">
-          <div class="section-header">
+          <div class="full-width-section">
             <h2>Formularios y Plantillas</h2>
-          </div>
-          <div class="section-content">
-            <div style="text-align: center; margin-bottom: calc(var(--spacing-unit) * 4);">
-              <a href="/forms/forms-startup-argentina.zip" class="download-btn" download style="font-size: 1.1rem; padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 4);">
-                📦 Descargar Todos los Formularios (ZIP)
+            <div class="zip-download-section">
+              <a href="/forms/forms-startup-argentina.zip" class="zip-download-btn" download>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 16L7 11L8.4 9.6L11 12.2V4H13V12.2L15.6 9.6L17 11L12 16ZM6 20V18H18V20H6Z" fill="white"/></svg> Descargar Todos los Formularios (ZIP)
               </a>
             </div>
             
             <div class="forms-grid-2x2">
               <div class="form-card">
                 <h4>🤝 MoU - Memorandum of Understanding</h4>
-                <p><strong>Acuerdo de Fundadores 50/50</strong></p>
+                <p><strong>Acuerdo de Fundadores</strong></p>
+                <a href="/forms/MoU_Anon.docx" class="download-btn" download><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 16L7 11L8.4 9.6L11 12.2V4H13V12.2L15.6 9.6L17 11L12 16ZM6 20V18H18V20H6Z" fill="white"/></svg> Descargar MoU</a>
                 <p>Contrato inicial entre socios que establece roles, responsabilidades, participaciones y plan de vesting. Incluye cláusulas de confidencialidad, no competencia y resolución de conflictos.</p>
                 <ul>
                   <li>✅ Distribución de equity y vesting</li>
@@ -536,12 +692,12 @@
                   <li>✅ Cláusulas de salida</li>
                   <li>✅ Confidencialidad y no competencia</li>
                 </ul>
-                <a href="/forms/MoU_Anon.docx" class="download-btn" download>📥 Descargar MoU</a>
               </div>
 
               <div class="form-card">
                 <h4>🔒 NDA - Non-Disclosure Agreement</h4>
                 <p><strong>Acuerdo de Confidencialidad Multilateral</strong></p>
+                <a href="/forms/NDA_Anon.docx" class="download-btn" download><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 16L7 11L8.4 9.6L11 12.2V4H13V12.2L15.6 9.6L17 11L12 16ZM6 20V18H18V20H6Z" fill="white"/></svg> Descargar NDA</a>
                 <p>Protege la información sensible de tu startup cuando conversás con potenciales socios, inversores o empleados. Versión multilateral que cubre todas las partes involucradas.</p>
                 <ul>
                   <li>✅ Protección de información confidencial</li>
@@ -549,12 +705,12 @@
                   <li>✅ Penalidades por incumplimiento</li>
                   <li>✅ Duración y alcance definidos</li>
                 </ul>
-                <a href="/forms/NDA_Anon.docx" class="download-btn" download>📥 Descargar NDA</a>
               </div>
 
               <div class="form-card">
                 <h4>⚖️ Cesión y Fideicomiso de PI</h4>
                 <p><strong>Propiedad Intelectual</strong></p>
+                <a href="/forms/PI_Fideicomiso_Anon.docx" class="download-btn" download><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 16L7 11L8.4 9.6L11 12.2V4H13V12.2L15.6 9.6L17 11L12 16ZM6 20V18H18V20H6Z" fill="white"/></svg> Descargar Cesión PI</a>
                 <p>Asegura que toda la propiedad intelectual desarrollada para la startup (código, diseños, marcas) pertenezca legalmente a la empresa y no a los individuos.</p>
                 <ul>
                   <li>✅ Cesión de derechos de autor</li>
@@ -562,12 +718,12 @@
                   <li>✅ Registro de marcas y patentes</li>
                   <li>✅ Fideicomiso expreso</li>
                 </ul>
-                <a href="/forms/PI_Fideicomiso_Anon.docx" class="download-btn" download>📥 Descargar Cesión PI</a>
               </div>
 
               <div class="form-card">
                 <h4>💰 Mutuo Convertible</h4>
                 <p><strong>Préstamo Convertible en Equity</strong></p>
+                <a href="/forms/Mutuo_Anon.docx" class="download-btn" download><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 16L7 11L8.4 9.6L11 12.2V4H13V12.2L15.6 9.6L17 11L12 16ZM6 20V18H18V20H6Z" fill="white"/></svg> Descargar Mutuo</a>
                 <p>Permite recibir capital inicial como préstamo que se convierte automáticamente en participaciones cuando levantés una ronda de inversión formal.</p>
                 <ul>
                   <li>✅ Financiación inmediata sin valoración</li>
@@ -575,7 +731,6 @@
                   <li>✅ Descuento para inversores tempranos</li>
                   <li>✅ Protección anti-dilución</li>
                 </ul>
-                <a href="/forms/Mutuo_Anon.docx" class="download-btn" download>📥 Descargar Mutuo</a>
               </div>
             </div>
           </div>
@@ -583,10 +738,8 @@
 
         <!-- Implementation Guide Section -->
         <section class="section">
-          <div class="section-header">
+          <div class="full-width-section">
             <h2>Guía de Implementación</h2>
-          </div>
-          <div class="section-content">
             <h3>🚀 Antes de empezar</h3>
             <p>Antes de firmar cualquier documento, asegurate de:</p>
             <ul>
@@ -610,18 +763,17 @@
 
         <!-- Legal Considerations Section -->
         <section class="section">
-          <div class="section-header">
+          <div class="full-width-section">
             <h2>Consideraciones legales</h2>
-          </div>
-          <div class="section-content">
             <div class="warning-box">
               <h4>🔍 Due Diligence Básico</h4>
-              <ul>
-                <li>Verificar que tus socios no tengan conflictos de interés</li>
-                <li>Confirmar que pueden legalmente participar en el emprendimiento</li>
-                <li>Revisar si tienen obligaciones de no competencia previas</li>
-                <li>Asegurarse de que no estén involucrados en actividades de UIF o AFIP</li>
-              </ul>
+              <ol>
+                <li>Pedir certificado de antecedentes penales del RNR.</li>
+                <li>Obtener constancia de CUIT y libre deuda (AFIP + Rentas provinciales).</li>
+                <li>Declaración jurada de conflictos de interés y chequeo de cargos vigentes en IGJ/Boletín Oficial.</li>
+                <li>Exigir copia de cláusulas de no-competencia y verificar inhabilitaciones comerciales en Concursos-Quiebras PJN.</li>
+                <li>Solicitar declaración jurada de origen de fondos y cruzar listas UIF/OFAC/ONU.</li>
+              </ol>
             </div>
 
             <h3>🏛️ Trámites con AFIP</h3>
@@ -635,21 +787,17 @@
           </div>
         </section>
 
-        <!-- Contact Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>¿Necesitás ayuda personalizada?</h2>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ia-speaker.html" class="subtle">IA Speaker</a>
+              <a href="/experto-ia.html" class="subtle">Experto en IA</a>
+              <a href="/argentina-ai-speaker.html" class="subtle">Argentina AI Speaker</a>
+            </span>
           </div>
-          <div class="section-content">
-            <p>Si tenés preguntas específicas sobre estos formularios o querés discutir tu situación particular, no dudes en contactarme. Como <a href="/experto-ia.html" class="subtle">emprendedor con experiencia</a> en el ecosistema argentino, puedo ayudarte a navegar los primeros pasos de tu startup.</p>
-            
-            <div class="tip-box">
-              <p><strong>📧 Contacto:</strong> Podés encontrar mis datos de contacto en <a href="/es">mi perfil principal</a>. Estoy siempre dispuesto a ayudar a otros emprendedores argentinos.</p>
-            </div>
-            
-            <p><em>Keywords relacionados: acuerdo entre socios Argentina, cómo empezar un negocio en Argentina, pasos para emprender en Argentina, abrir una startup en Argentina, formulario inicio de actividad AFIP, pre constitución empresa Argentina, modelo contrato entre socios, sociedad de hecho Argentina, crear emprendimiento Argentina</em></p>
-          </div>
-        </section>
+        </footer>
+
       </div>
     </div>
 
@@ -714,7 +862,11 @@
       }
       
       // Run the function when the page loads
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>

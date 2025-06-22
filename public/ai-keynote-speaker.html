@@ -35,7 +35,7 @@
         color: var(--color-primary);
         background-color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
-        padding-top: 70px;
+        padding-top: 80px;
       }
       
       .container {
@@ -218,17 +218,20 @@
       /* Footer */
       .footer {
         grid-column: 1 / -1;
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 4) 0;
+        padding: calc(var(--spacing-unit) * 3) 0;
         border-top: 1px solid var(--color-tertiary);
         margin-top: calc(var(--spacing-unit) * 6);
+        text-align: center;
       }
       
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: calc(var(--spacing-unit) * 4);
-        margin-bottom: calc(var(--spacing-unit) * 3);
+      .footer-content {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+      }
+      
+      .footer-text a {
+        margin-left: calc(var(--spacing-unit) * 2);
+        font-size: 0.9rem;
       }
       
       /* Top Menu */
@@ -370,9 +373,14 @@
           text-align: left;
         }
         
-        .footer-links {
-          flex-direction: column;
-          gap: calc(var(--spacing-unit) * 2);
+        .footer-text {
+          display: block;
+          line-height: 1.6;
+        }
+        
+        .footer-text a {
+          display: inline-block;
+          margin: 0 calc(var(--spacing-unit) * 1);
         }
       }
       
@@ -443,7 +451,7 @@
             <h1>AI Keynote Speaker</h1>
             <p class="subtitle">Expert in Artificial Intelligence & Technology Innovation</p>
             <p class="intro-text">Transform your next event with cutting-edge insights on artificial intelligence, machine learning, and the future of technology. Ivan Braun delivers compelling keynotes that bridge the gap between complex AI concepts and practical business applications.</p>
-            <a href="#contact" class="cta-button">Book Speaking Engagement</a>
+            <a href="/contact.html" class="cta-button">Book Speaking Engagement</a>
           </div>
         </header>
 
@@ -513,21 +521,23 @@
             
             <p>Contact Ivan directly through <a href="/">his main profile</a> to discuss your event requirements and availability.</p>
             
-            <a href="/" class="cta-button">View Full Profile & Contact</a>
+            <a href="/contact.html" class="cta-button">View Full Profile & Contact</a>
           </div>
         </section>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="/argentina-ai-speaker.html">Argentina AI Speaker</a>
-        <a href="/ia-speaker.html">IA Speaker (Español)</a>
-        <a href="/speaker-ia.html">Speaker IA (Português)</a>
-      </div>
-      <p>&copy; 2024 Ivan Braun. Expert AI Keynote Speaker & Technology Innovation Leader.</p>
-    </footer>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-content">
+            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
+              <a href="/ai-keynote-speaker.html" class="subtle">AI Keynote Speaker</a>
+              <a href="/argentina-ai-speaker.html" class="subtle">Argentina AI Speaker</a>
+              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
+              <a href="/es/formularios.html" class="subtle">Formularios Argentina</a>
+            </span>
+          </div>
+        </footer>
 
     <script>
       // Function to detect user's country and adjust flags
@@ -566,7 +576,11 @@
         }
       }
       
-      document.addEventListener('DOMContentLoaded', adjustFlagsByCountry);
+      document.addEventListener('DOMContentLoaded', function() {
+        adjustFlagsByCountry();
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
     </script>
   </body>
 </html>

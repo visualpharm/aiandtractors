@@ -69,6 +69,13 @@ npm test         # Run Jest tests
 - All three language versions need to be updated manually for content changes
 - Images should use ImageKit CDN integration for optimization
 
+# Layout Alignments
+- Block 2 (Hero content): left-aligned
+- Block 3 (Hero image): left-aligned  
+- Block 13 (Experience title): left-aligned
+- Block 16 (Company logos): left-aligned
+- Block 17 (Achievement bullets): right-aligned
+
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
@@ -179,3 +186,54 @@ Should be:
 Footers have links to the random SEO pages, but all seo pages should have at least one incoming link. 
 
 
+# Blocks of the frontpage
+
+ ┌─────────────────────────────────────────────────────────────────────────────────┐
+  │                                     1                                           │
+  │    ┌─────────────────────────┐                ┌─────────────────────────┐      │
+  │    │          2              │                │           3             │      │
+  │    │     Ivan Braun          │                │                         │      │
+  │    │  Tech Entrepreneur,     │                │      Robot Image        │      │
+  │    │   AI Speaker, Investor  │                │       (400px)           │      │
+  │    │                         │                │                         │      │
+  │    │  Description text...    │                │                         │      │
+  │    │                         │                │                         │      │
+  │    │  [Contact] [Visit]      │                │                         │      │
+  │    │                         │                │                         │      │
+  │    └─────────────────────────┘                └─────────────────────────┘      │
+  │                                                                                 │
+  ├─────────────────────────────────────────────────────────────────────────────────┤
+  │                                                                                 │
+  │                                        4                                        │
+  │ ┌─────────────────────────────────────────────────────────────────────────────┐ │
+  │ │ MEDIA COVERAGE                                                              │ │
+  │ │ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐                   │ │
+  │ │ │ WP  │ │ BBC │ │SPGL │ │ REP │ │VRGE │ │VICE │ │MAIL │                   │ │
+  │ │ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘                   │ │
+  │ └─────────────────────────────────────────────────────────────────────────────┘ │
+  │                                                                                 │
+  ├─────────────────────────────────────────────────────────────────────────────────┤
+  │                                     5                                           │
+  │ ┌───────────┐ ┌──────────────────────────┐ ┌─────────────────────────────────┐ │
+  │ │     6     │ │           7              │ │               8                 │ │
+  │ │EXPERIENCE │ │ Serial entrepreneur...   │ │┌─────────────┐ ┌───────────────┐│ │
+  │ │           │ │ Building bootstrapped    │ ││      9      │ │      10       ││ │
+  │ │           │ │ AI and design products.  │ ││  Icons8     │ │ → Supply...   ││ │
+  │ │           │ │ Core expertise in...     │ ││  Founder    │ │ → Leading...  ││ │
+  │ │           │ │                          │ ││             │ │               ││ │
+  │ │           │ │                          │ ││ Gen.Photos  │ │               ││ │
+  │ │           │ │                          │ ││ Eco-founder │ │               ││ │
+  │ │           │ │                          │ │└─────────────┘ └───────────────┘│ │
+  │ └───────────┘ └──────────────────────────┘ └─────────────────────────────────┘ │
+  │                                                                                 │
+  ├─────────────────────────────────────────────────────────────────────────────────┤
+  │                                                                                 │
+  │ SPEAKING                                                                        │
+  │ ┌─────┐┌─────┐┌─────────┐┌─────────┐┌─────────┐┌─────┐┌─────┐┌─────┐┌─────┐   │
+  │ │Photo││Photo││Horasis  ││Rio Innov││Visual   ││Photo││Photo││Photo││Photo│   │
+  │ │  1  ││  2  ││Global   ││Week     ││1st Conf ││  3  ││  4  ││  5  ││  6  │   │
+  │ │     ││     ││Meeting  ││         ││         ││     ││     ││     ││     │   │
+  │ └─────┘└─────┘└─────────┘└─────────┘└─────────┘└─────┘└─────┘└─────┘└─────┘   │
+  │    (all cards are rotated -5° to +5° and overlapping)                          │
+  │                                                                                 │
+  └─────────────────────────────────────────────────────────────────────────────────┘

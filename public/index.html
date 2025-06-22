@@ -9,12 +9,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
         
         :root {
             --bg-color: #ffffff;
             --primary-color: #000000;
             --secondary-color: #333333;
-            --accent-color: #2563eb;
+            --accent-color: #455dcc;
             --card-bg: #ffffff;
             --border-color: #e5e7eb;
             --hero-bg: #ffffff;
@@ -42,20 +44,61 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .nav-logo {
+            display: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-self: end;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .language-switcher a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .language-switcher a:hover {
+            opacity: 1;
+        }
+
+        .language-switcher img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-logo {
+            font-family: 'DotGothic16', monospace;
             font-size: 1.2rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--primary-color);
             text-decoration: none;
         }
@@ -100,10 +143,11 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-family: 'DotGothic16', monospace;
+            font-size: 4.32rem;
+            font-weight: 400;
             color: var(--primary-color);
-            margin: 0 0 0.5rem 0;
+            margin: 0 0 0.5rem -10px;
             line-height: 1.1;
         }
 
@@ -123,7 +167,7 @@
 
         .hero-image {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
         }
 
@@ -207,7 +251,6 @@
         .media-card {
             flex: 1;
             min-width: 160px;
-            max-width: 200px;
             background: var(--card-bg);
             padding: 0.8rem;
             border-radius: 6px;
@@ -243,6 +286,15 @@
             color: var(--secondary-color);
             margin: 0;
             line-height: 1.3;
+        }
+
+        .media-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .media-card a:hover {
+            color: var(--primary-color);
         }
 
         .bento-grid {
@@ -295,6 +347,123 @@
             left: 0;
             color: var(--accent-color);
             font-weight: 600;
+        }
+
+        .inclined-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: -20px;
+            padding: 2rem 1rem;
+            overflow: visible;
+            scroll-behavior: smooth;
+            justify-content: flex-start;
+            margin-left: -20px;
+        }
+
+        .inclined-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            flex: 0 0 auto;
+            width: 180px;
+            height: 240px;
+            transform-origin: bottom center;
+            margin-right: -20px;
+        }
+
+        .inclined-card:nth-child(4n+1) {
+            transform: rotate(-3deg);
+        }
+
+        .inclined-card:nth-child(4n+2) {
+            transform: rotate(2deg);
+        }
+
+        .inclined-card:nth-child(4n+3) {
+            transform: rotate(-1deg);
+        }
+
+        .inclined-card:nth-child(4n+4) {
+            transform: rotate(4deg);
+        }
+
+        .inclined-card:hover {
+            transform: rotate(0deg) translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .inclined-card.clicked {
+            z-index: 100;
+            transform: rotate(0deg) scale(1.1);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+            transition: none;
+        }
+
+        .conference-card {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .conference-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+        }
+
+        .conference-card .location {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .conference-card .date {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .conference-card .description {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            line-height: 1.4;
+        }
+
+        .photo-card {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 1rem;
+            color: white;
+        }
+
+        .photo-card .overlay h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .experience-card {
@@ -364,6 +533,108 @@
             .bento-grid {
                 grid-template-columns: 1fr;
             }
+
+            .inclined-grid {
+                display: none;
+            }
+
+            .mobile-conferences {
+                display: none;
+            }
+
+            .mobile-conferences-row {
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .mobile-conference-card {
+                flex: 1;
+                background: var(--card-bg);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 0.75rem;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-conference-card:hover {
+                background: #f8f9fa;
+                transform: translateY(-2px);
+            }
+
+            .mobile-conference-card h4 {
+                font-size: 0.75rem;
+                font-weight: 600;
+                margin: 0 0 0.25rem 0;
+                color: var(--accent-color);
+            }
+
+            .mobile-conference-card .location {
+                font-size: 0.65rem;
+                color: var(--secondary-color);
+                margin-bottom: 0.25rem;
+            }
+
+            .mobile-conference-card .date {
+                font-size: 0.6rem;
+                color: var(--secondary-color);
+                font-style: italic;
+            }
+
+            .mobile-photos-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+                padding: 0 2rem;
+            }
+
+            .mobile-photo {
+                aspect-ratio: 1;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #f0f0f0;
+            }
+
+            .mobile-photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .conference-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 1000;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .conference-modal.active {
+                display: flex;
+            }
+
+            .modal-content {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                margin: 2rem;
+                max-width: 400px;
+                width: 100%;
+            }
+
+            .modal-close {
+                float: right;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--secondary-color);
+            }
         }
 
         @media (max-width: 480px) {
@@ -382,19 +653,48 @@
             .cta-buttons {
                 justify-content: center;
             }
+
+            .mobile-conferences {
+                display: block;
+                padding: 1rem;
+            }
+
+            .mobile-photos-grid {
+                padding: 0 1rem;
+            }
+
+            .inclined-card {
+                width: 160px;
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="top-nav">
         <div class="nav-container">
-            <a href="/" class="nav-logo">Ivan Braun</a>
-            <ul class="nav-links">
-                <li><a href="#speaking">Speaking</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="/visit.html">Visit me</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-            </ul>
+            <div class="nav-left">
+                <a href="/" class="nav-logo">Ivan Braun</a>
+                <ul class="nav-links">
+                    <li><a href="#speaking">Speaking</a></li>
+                    <li><a href="/experience.html">Experience</a></li>
+                    <li><a href="/visit.html">Visit me</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="language-switcher">
+                    <a href="/index.html">
+                        <img src="https://img.icons8.com/color/20/usa.png" alt="English" />
+                    </a>
+                    <a href="/es.html">
+                        <img src="https://img.icons8.com/color/20/spain.png" alt="Español" />
+                    </a>
+                    <a href="/pt.html">
+                        <img src="https://img.icons8.com/color/20/brazil.png" alt="Português" />
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -402,8 +702,8 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Ivan Braun</h1>
-                <p class="subtitle">AI Speaker & Entrepreneur</p>
-                <p class="description">Tech founder leading 150+ team members, serving 4M users. Based in Cariló, Argentina. I built a house for fellow tech founders to visit - if you book it and you're a tech founder, I'll come shake your hand and have a chat.</p>
+                <p class="subtitle">Tech Entrepreneur, AI Speaker, Investor</p>
+                <p class="description">Tech founder leading 150+ team members, serving 4M users. Based in Cariló, Argentina. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
                 <div class="cta-buttons">
                     <a href="/contact.html" class="cta-button cta-primary">
                         <i class="fas fa-envelope"></i> Contact me
@@ -422,70 +722,176 @@
     </section>
 
     <div class="main-content">
-        <section class="section">
-            <h2>Media Coverage</h2>
-            <div class="media-grid">
+        <section class="section" style="margin-bottom: 0;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                <h2>Media Coverage</h2>
+            </div>
+        </section>
+        
+        <div class="media-grid" style="margin: 0; padding: 1rem 0; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding-left: 1rem; padding-right: 0;">
                 <div class="media-card">
-                    <img src="/i/logos/media/wp.svg" alt="Washington Post" class="media-logo">
-                    <h3>Dating Apps & AI</h3>
-                    <p><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">AI companies offer solution</a></p>
+                    <img src="/i/logos/media/wp.png" alt="Washington Post" class="media-logo">
+                    <h3>Fake People</h3>
+                    <p><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">Dating apps need women. Advertisers need diversity. AI companies offer a solution: Fake people.</a></p>
                 </div>
                 <div class="media-card">
                     <img src="/i/logos/media/bbc.svg" alt="BBC" class="media-logo">
-                    <h3>Deepfakes Training</h3>
-                    <p><a href="https://www.bbc.com/news/technology-51064933">Could deepfakes train workers?</a></p>
+                    <h3>Deepfakes</h3>
+                    <p><a href="https://www.bbc.com/news/technology-51064933">Could deepfakes be used to train office workers?</a></p>
                 </div>
                 <div class="media-card">
                     <img src="/i/logos/media/der_spiegel.svg" alt="Der Spiegel" class="media-logo">
                     <h3>AI Faces</h3>
-                    <p><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html">Werbegesichter Computer</a></p>
+                    <p>Werbegesichter aus dem Computer: Ist hier noch irgendjemand echt?</p>
+                </div>
+                <div class="media-card">
+                    <img src="/i/logos/media/la_repubblica.svg" alt="La Repubblica" class="media-logo">
+                    <h3>Synthetic Portraits</h3>
+                    <p><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/">I 100mila volti di persone che non esistono</a></p>
                 </div>
                 <div class="media-card">
                     <img src="/i/logos/media/the_verge.svg" alt="The Verge" class="media-logo">
-                    <h3>Tech Coverage</h3>
-                    <p>AI and synthetic media</p>
+                    <h3>Stock Photos</h3>
+                    <p><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free">100,000 free AI-generated headshots put stock photo companies on notice</a></p>
                 </div>
                 <div class="media-card">
                     <img src="/i/logos/media/vice.svg" alt="Vice" class="media-logo">
-                    <h3>Innovation</h3>
-                    <p>Bootstrapped AI stories</p>
+                    <h3>AI Diversity</h3>
+                    <p><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/">Generated Photos Thinks It Can Solve Diversity With 100,000 Fake AI Faces</a></p>
                 </div>
                 <div class="media-card">
                     <img src="/i/logos/media/daily_mail.svg" alt="Daily Mail" class="media-logo">
-                    <h3>Tech Ethics</h3>
-                    <p>Synthetic media ethics</p>
+                    <h3>AI Portraits</h3>
+                    <p><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html">Artists create more than 100,000 ultra-realistic AI portraits</a></p>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <h2>Speaking</h2>
-            <div class="bento-card">
-                <ul>
-                    <li><strong>Horasis Global Meeting</strong> — São Paulo – <em>7–10 Oct 2025</em> · Keynote on lean, independent AI development</li>
-                    <li><strong>Rio Innovation Week</strong> — Rio de Janeiro – <em>12–15 Aug 2025</em> · On-site, open for meetings</li>
-                    <li><strong>Visual 1st Conference</strong> — San Francisco – <em>2021</em> · Visitor's-Choice talk on synthetic image datasets</li>
-                    <li><strong>Worldwide availability</strong> — Keynotes on AI, product design & ethical data</li>
-                </ul>
-                <div class="thumbnail-gallery">
-                    <a href="/i/conferences/award.jpeg" data-fancybox="conference-gallery"><img src="/i/conferences/award.jpeg" alt="Receiving award" class="thumbnail"></a>
-                    <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery"><img src="/i/conferences/presenting.jpeg" alt="Presenting at conference" class="thumbnail"></a>
-                    <a href="/i/conferences/fl.jpg" data-fancybox="conference-gallery"><img src="/i/conferences/fl.jpg" alt="Conference networking" class="thumbnail"></a>
+        <div style="max-width: 1200px; margin: 0 auto; padding: 3rem 2rem;">
+            <div style="display: grid; grid-template-columns: 100px 1fr 200px 200px; gap: 2rem; align-items: start;">
+                <div style="text-align: left;">
+                    <h2 style="font-size: 0.9rem; font-weight: 500; margin: 0; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 0.5px;">Experience</h2>
+                </div>
+                <div>
+                    <p style="margin: 0; font-size: 1.1rem; line-height: 1.6; color: var(--secondary-color);">Serial entrepreneur building <strong>bootstrapped AI and design products</strong>. <a href="/experience.html" style="color: var(--accent-color); text-decoration: none;">Read more about my experience →</a></p>
+                </div>
+                <div style="text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/i/logos/icons8-icons8.svg" alt="Icons8" style="width: 24px; height: 24px; margin-right: 0.5rem;">
+                            <strong style="color: var(--primary-color);">Icons8</strong>
+                        </div>
+                        <p style="margin: 0; font-size: 0.85rem; color: var(--secondary-color);">Founder and CEO</p>
+                        <p style="margin: 0; font-size: 0.85rem; color: var(--secondary-color);">Graphics for AI age</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/i/logos/icons8-generated-photos.svg" alt="Generated Photos" style="width: 24px; height: 24px; margin-right: 0.5rem;">
+                            <strong style="color: var(--primary-color);">Generated Photos</strong>
+                        </div>
+                        <p style="margin: 0; font-size: 0.85rem; color: var(--secondary-color);">Founder and CEO</p>
+                        <p style="margin: 0; font-size: 0.85rem; color: var(--secondary-color);">Face AI and synthetic data</p>
+                    </div>
+                </div>
+                <div style="text-align: left;">
+                    <ul style="list-style: none; margin: 0; padding: 0; font-size: 1rem; line-height: 1.6; color: var(--secondary-color);">
+                        <li style="margin-bottom: 0.75rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: 600;">→</span>
+                            Supply large-scale resources and custom <a href="https://generated.photos/datasets" style="color: var(--accent-color); text-decoration: none;">datasets</a> to enterprise clients
+                        </li>
+                        <li style="margin-bottom: 0; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: 600;">→</span>
+                            Leading team of 150+ professionals serving 4M+ users globally
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="section">
-            <h2>Experience</h2>
-            <div class="bento-card experience-card">
-                <p>Serial entrepreneur building <strong>bootstrapped AI and design products</strong>. Core expertise in developing AI products from zero without venture capital, achieving early monetization and sustainable growth.</p>
-                <ul style="margin-top: 1.5rem;">
-                    <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a></li>
-                    <li>Supply large-scale resources and custom <a href="https://generated.photos/datasets">datasets</a> to enterprise clients</li>
-                    <li>Leading team of 150+ professionals serving 4M+ users globally</li>
-                </ul>
+        <section class="section" style="margin-bottom: 0;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                <h2>Speaking</h2>
             </div>
         </section>
+        
+        <div class="inclined-grid" style="margin: 0; padding: 2rem 0; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/conference.jpeg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/conference.jpeg" alt="Conference event">
+                    </a>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/workshop.jpg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/workshop.jpg" alt="Workshop event">
+                    </a>
+                </div>
+                
+                <div class="inclined-card conference-card" onclick="toggleConferenceCard(this)">
+                    <h3>Horasis Global Meeting</h3>
+                    <div class="location">São Paulo, Brazil</div>
+                    <div class="date">7–10 Oct 2025</div>
+                    <div class="description">Keynote on lean, independent AI development</div>
+                </div>
+                
+                <div class="inclined-card conference-card" onclick="toggleConferenceCard(this)">
+                    <h3>Rio Innovation Week</h3>
+                    <div class="location">Rio de Janeiro, Brazil</div>
+                    <div class="date">12–15 Aug 2025</div>
+                    <div class="description">On-site, open for meetings</div>
+                </div>
+                
+                <div class="inclined-card conference-card" onclick="toggleConferenceCard(this)">
+                    <h3>Visual 1st Conference</h3>
+                    <div class="location">San Francisco, USA</div>
+                    <div class="date">2021</div>
+                    <div class="description">Visitor's-Choice talk on synthetic image datasets</div>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/award.jpeg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/award.jpeg" alt="Receiving award">
+                    </a>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/presenting.jpeg" alt="Presenting at conference">
+                    </a>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/conferece-speaker.jpg" alt="Speaking event">
+                    </a>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/fl.jpg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/fl.jpg" alt="Conference networking">
+                    </a>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/visual1st-awards-winners.png" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/visual1st-awards-winners.png" alt="Visual 1st Conference awards">
+                    </a>
+                </div>
+                
+                <div class="inclined-card photo-card">
+                    <a href="/i/conferences/fl2.jpg" data-fancybox="conference-gallery">
+                        <img src="/i/conferences/fl2.jpg" alt="Conference networking">
+                    </a>
+                </div>
+        </div>
+
+
+        <div class="conference-modal" id="conferenceModal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeConferenceModal()">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
     </div>
 
     <footer class="footer">
@@ -495,6 +901,68 @@
       document.addEventListener("DOMContentLoaded", function() {
         Fancybox.bind("[data-fancybox]", {});
         document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
+
+      function openConferenceModal(conference) {
+        const modal = document.getElementById('conferenceModal');
+        const content = document.getElementById('modalContent');
+        
+        const conferences = {
+          horasis: {
+            title: 'Horasis Global Meeting',
+            location: 'São Paulo, Brazil',
+            date: '7–10 Oct 2025',
+            description: 'Keynote on lean, independent AI development. The Horasis Global Meeting brings together leaders from business, government, and academia to address the world\'s most pressing challenges.'
+          },
+          rio: {
+            title: 'Rio Innovation Week',
+            location: 'Rio de Janeiro, Brazil',
+            date: '12–15 Aug 2025',
+            description: 'On-site, open for meetings. Latin America\'s largest innovation event, connecting startups, corporations, and investors across the region.'
+          },
+          visual1st: {
+            title: 'Visual 1st Conference',
+            location: 'San Francisco, USA',
+            date: '2021',
+            description: 'Visitor\'s-Choice talk on synthetic image datasets. A specialized conference focusing on visual AI technologies and computer vision applications.'
+          }
+        };
+        
+        const conf = conferences[conference];
+        content.innerHTML = `
+          <h3>${conf.title}</h3>
+          <p><strong>Location:</strong> ${conf.location}</p>
+          <p><strong>Date:</strong> ${conf.date}</p>
+          <p>${conf.description}</p>
+        `;
+        
+        modal.classList.add('active');
+      }
+
+      function closeConferenceModal() {
+        document.getElementById('conferenceModal').classList.remove('active');
+      }
+
+      function toggleConferenceCard(card) {
+        // Remove clicked class from all cards
+        document.querySelectorAll('.inclined-card.clicked').forEach(c => {
+          c.classList.remove('clicked');
+        });
+        
+        // Add clicked class to the current card
+        card.classList.add('clicked');
+        
+        // Remove clicked class after 3 seconds
+        setTimeout(() => {
+          card.classList.remove('clicked');
+        }, 3000);
+      }
+
+      // Close modal when clicking outside
+      document.getElementById('conferenceModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeConferenceModal();
+        }
       });
     </script>
 </body>

@@ -1,1306 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ivan Braun - Entrepreneur, Investor, AI Keynote Speaker, and Advisor specializing in artificial intelligence, product development, and ethical data.">
-    <meta name="keywords" content="Ivan Braun, entrepreneur, investor, ai speaker, artificial intelligence speaker, ai keynote speaker, ai conference speaker">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ivan Braun – Entrepreneur, Investor, AI Speaker</title>
-    
-    <!-- Canonical and Language Alternates -->
-    <link rel="canonical" href="https://aiandtractors.com/">
-    <link rel="alternate" hreflang="en" href="https://aiandtractors.com/">
-    <link rel="alternate" hreflang="es" href="https://aiandtractors.com/es/">
-    <link rel="alternate" hreflang="pt" href="https://aiandtractors.com/pt/">
-    <link rel="alternate" hreflang="x-default" href="https://aiandtractors.com/">
-    
-    <!-- Fancybox CSS and JS for image zoom and navigation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <style>
-      /* Swiss Grid System - Based on Josef Müller-Brockmann principles */
-      :root {
-        --grid-columns: 12;
-        --grid-gutter: 24px;
-        --spacing-unit: 8px;
-        --color-primary: #222222;
-        --color-secondary: #777777;
-        --color-tertiary: #f0f0f0;
-        --color-accent: #e63946;
-        --color-background: #ffffff;
-      }
-      
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      
-      body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        line-height: 1.5;
-        color: var(--color-primary);
-        background-color: var(--color-tertiary);
-        -webkit-font-smoothing: antialiased;
-        padding-top: 70px;
-      }
-      
-      h2 {
-        margin-top: -8px;
-      }
-      
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: calc(var(--spacing-unit) * 3);
-      }
-      
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(var(--grid-columns), 1fr);
-        gap: var(--grid-gutter);
-      }
-      
-      /* Header section */
-      .header {
-      /* margin-bottom: calc(var(--spacing-unit) * 8); */
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(var(--grid-columns), 1fr);
-        gap: var(--grid-gutter);
-        align-items: center;
-      }
-      
-      .header-image {
-        grid-column: 1 / 4;
-        text-align: center;
-      }
-      
-      .header-content {
-        grid-column: 4 / -1;
-      }
-      
-      /* Section styling */
-      .section {
-        margin-bottom: 0; /* Removed 64px spacing */
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(var(--grid-columns), 1fr);
-        gap: var(--grid-gutter);
-      }
-      
-      .section-header {
-        grid-column: 1 / 4;
-        text-align: right;
-        padding-right: calc(var(--spacing-unit) * 2);
-        margin-top: 0; /* Aligned with the top of text on desktop */
-        margin-bottom: 10px; /* 10px after H2 */
-      }
-      
-      .section-content {
-        grid-column: 4 / -1;
-      }
-      
-      .section-content p {
-        font-size: 1rem; /* 4. Regular text size */
-      }
-      
-      /* Typography */
-      h1 {
-        font-size: 2.8rem; /* 1. Ivan Braun - big */
-        font-weight: 500;
-        line-height: 1.2;
-        margin-bottom: 0;
-        letter-spacing: -0.02em;
-      }
-      
-      h2 {
-        font-size: 1.8rem; /* 2. h2 headings */
-        font-weight: 500;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-        position: relative;
-      }
-      
-      h3 {
-        font-size: 1.4rem; /* 3. Tool headings like Customer Development */
-        font-weight: 500;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-      }
-      
-      p {
-        margin-bottom: calc(var(--spacing-unit) * 2);
-      }
-      
-      p.subtitle {
-        font-size: 1.3rem; /* Restoring original 1.3rem size */
-        color: var(--color-secondary);
-        margin-bottom: calc(var(--spacing-unit) * 2); /* Restoring original margin */
-      }
-      
-      p.intro-text {
-        font-size: 1.3rem; /* 3. Same size as subtitle */
-        line-height: 1.4;
-        margin-bottom: calc(var(--spacing-unit) * 3);
-        color: var(--color-secondary); /* Match subtitle color */
-      }
-      
-      /* Lists */
-      ul {
-        list-style-type: none;
-        margin-bottom: calc(var(--spacing-unit) * 3);
-      }
-      
-      li {
-        margin-bottom: calc(var(--spacing-unit) * 2);
-        position: relative;
-        padding-left: calc(var(--spacing-unit) * 2);
-      }
-      
-      li:before {
-        content: '\2022';
-        position: absolute;
-        left: 0;
-        color: var(--color-secondary);
-      }
-      
-      /* Images */
-      .profile-img {
-        width: 140px;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-      
-      /* Links */
-      a {
-        color: #3a5daa; /* More pronounced blue */
-        text-decoration: none;
-        border-bottom: none;
-        transition: color 0.2s ease;
-      }
-      
-      a:visited {
-        color: #6a4d99; /* More pronounced purple */
-      }
-      
-      a:hover {
-        color: #aa3a3a; /* More pronounced red */
-      }
-      
-      a.icon-link, a.img-link {
-        display: inline-flex;
-        align-items: center;
-        margin-right: calc(var(--spacing-unit) * 3);
-      }
-      
-a.book-icon {
-  margin-right: 0;
-  display: inline-flex;
-  align-items: center;
-}
-      
-      /* Contact section */
-      .contact {
-        grid-column: 4 / -1;
-        padding: calc(var(--spacing-unit) * 3) 0;
-        border-top: 1px solid var(--color-tertiary);
-      }
-      
-      /* Responsive */
-      @media (max-width: 900px) {
-        .header, .section {
-          grid-template-columns: 1fr;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
-        .header-image, .header-content, .section-header, .section-content, .contact {
-          grid-column: 1;
+        :root {
+            --bg-color: #ffffff;
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #2563eb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --hero-bg: #ffffff;
         }
-        
-        .section-header {
-          text-align: left;
-          padding-right: 0;
-          margin-top: 30px;
-          margin-bottom: calc(var(--spacing-unit));
-        }
-        
-        .header-image {
-          margin-bottom: calc(var(--spacing-unit) * 3);
-          text-align: left;
-        }
-      }
-      
-      /* Mobile specific adjustments */
-      @media (max-width: 480px) {
-        .container {
-          padding-left: calc(var(--spacing-unit) * 1.5);
-          padding-right: 10px;
-          max-width: 100%;
-          box-sizing: border-box;
-        }
-        
-        .header {
-          display: block;
-          position: relative;
-        }
-        
-        .header-image {
-          text-align: left;
-          margin-top: 40px;
-        }
-        
-        .language-switcher {
-          top: 15px;
-          right: 15px;
-        }
-        
-        h2 {
-          margin-top: 15px;
-          margin-bottom: 10px;
-        }
-        
-        .section-header {
-          margin-top: 30px; /* Keep the same margin on mobile */
-          margin-bottom: 0px;
-        }
-        
-        img {
-          max-width: 100% !important;
-          height: auto !important;
-        }
-        
-        .profile-img {
-          border-radius: 50% !important;
-          aspect-ratio: 1/1;
-          width: 140px;
-          height: 140px;
-          object-fit: cover !important;
-        }
-        
-        .section-content {
-          width: calc(100% - 10px);
-          max-width: 100%;
-          box-sizing: border-box;
-        }
-        
-        a {
-          word-break: break-word;
-        }
-      }
-      
-      /* Small images and icons */
-      .small-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 4px;
-        vertical-align: middle;
-      }
-      
-      .icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 5px;
-        vertical-align: middle;
-      }
-      
-      /* Thumbnail gallery styling */
-      .thumbnail-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: calc(var(--spacing-unit) * 2);
-        margin-top: calc(var(--spacing-unit) * 3);
-        width: 100%;
-      }
-      
-      .thumbnail {
-        width: 100%;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 4px;
-        transition: transform 0.3s ease;
-      }
-      
-      .thumbnail-link {
-        display: block;
-        width: 100%;
-      }
-      
-      /* Responsive adjustments for mobile */
-      @media (max-width: 480px) {
-        .thumbnail-gallery {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-          gap: calc(var(--spacing-unit));
-        }
-        
-        .thumbnail {
-          height: 80px;
-        }
-      }
-      
-      /* iPhone specific breakpoint */
-      @media (min-width: 390px) and (max-width: 430px) {
-        .thumbnail-gallery {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-        }
-        
-        .thumbnail {
-          height: 75px;
-        }
-      }
-      
-      /* Custom cropping for the first thumbnail */
-      .thumbnail-gallery a:first-child img {
-        object-position: top center;
-      }
-      
-      .thumbnail:hover {
-        transform: scale(1.05);
-      }
-      
-      a:has(img) {
-        text-decoration: none !important;
-        border-bottom: none !important;
-      }
-      
-      a img {
-        text-decoration: none;
-        border: none;
-      }
-      
-      a.thumbnail-link, a.img-link {
-        text-decoration: none !important;
-        display: block;
-        border-bottom: none !important;
-      }
-      
-      /* Utilities */
-      .contact-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        font-size: 1rem; /* 4. Regular text size */
-        color: var(--color-secondary);
-      }
-      
-      .location {
-        display: flex;
-        align-items: center;
-      }
-      
-      .social-links {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-      
-      /* Top Menu */
-      .top-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: var(--color-background);
-        border-bottom: 1px solid var(--color-tertiary);
-        z-index: 1000;
-        padding: calc(var(--spacing-unit) * 2) 0;
-      }
-      
-      .menu-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 calc(var(--spacing-unit) * 3);
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-      }
-      
-      .logo {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 1.5rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--color-primary);
-        text-decoration: none;
-        border: none;
-      }
-      
-      .logo:hover {
-        color: var(--color-accent);
-        border: none;
-      }
-      
-      .menu-nav {
-        display: flex;
-        gap: calc(var(--spacing-unit) * 4);
-        align-items: center;
-      }
-      
-      .menu-nav a {
-        font-size: 0.95rem;
-        font-weight: 400;
-        color: var(--color-primary);
-        text-decoration: none;
-        border: none;
-        transition: color 0.2s ease;
-      }
-      
-      .menu-nav a:hover {
-        color: var(--color-accent);
-        border: none;
-      }
-      
-      .menu-nav a.active {
-        font-weight: 500;
-        color: var(--color-accent);
-      }
-      
-      /* Language Switcher in Menu */
-      .language-switcher {
-        display: flex;
-        gap: 10px;
-      }
 
-      .language-switcher a {
-        text-decoration: none;
-        border: none;
-        font-size: 0.9rem;
-        color: var(--color-secondary);
-      }
+        * {
+            box-sizing: border-box;
+        }
 
-      .language-switcher a.active {
-        font-weight: bold;
-        color: var(--color-primary);
-      }
-      
-      
-      /* Mobile menu */
-      @media (max-width: 768px) {
-        .menu-container {
-          padding: 0 calc(var(--spacing-unit) * 2);
-        }
-        
-        .menu-nav {
-          gap: calc(var(--spacing-unit) * 2);
-        }
-        
-        .menu-nav a {
-          font-size: 0.85rem;
-        }
-        
-        .logo {
-          font-size: 1.2rem;
-        }
-      }
-      
-      @media (max-width: 480px) {
-        .menu-nav {
-          gap: calc(var(--spacing-unit) * 1.5);
-        }
-        
-        .menu-nav a {
-          font-size: 0.8rem;
-        }
-        
-        .logo {
-          font-size: 1rem;
-        }
-        
         body {
-          padding-top: 60px;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-      }
+
+        .top-nav {
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero-section {
+            background: var(--hero-bg);
+            padding: 4rem 0 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            line-height: 1.1;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin: 0 0 1rem 0;
+            font-weight: 400;
+        }
+
+        .hero-content .description {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 400px;
+            height: auto;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cta-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .cta-secondary:hover {
+            background: var(--bg-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .media-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .media-card {
+            flex: 1;
+            min-width: 160px;
+            max-width: 200px;
+            background: var(--card-bg);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-logo {
+            width: 70px;
+            height: 35px;
+            object-fit: contain;
+            margin-bottom: 0.4rem;
+        }
+
+        .media-card h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.3rem 0;
+            color: var(--primary-color);
+        }
+
+        .media-card p {
+            font-size: 0.7rem;
+            color: var(--secondary-color);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.15);
+        }
+
+        .bento-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .bento-card p, .bento-card ul {
+            color: var(--secondary-color);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .bento-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bento-card li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .bento-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .experience-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--card-bg) 0%, #f8fafc 100%);
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: var(--bg-color);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image img {
+                width: 300px;
+            }
+
+            .media-card {
+                min-width: 120px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-image img {
+                width: 250px;
+            }
+
+            .media-grid {
+                flex-wrap: wrap;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Top Menu -->
-    <nav class="top-menu">
-      <div class="menu-container">
-        <a href="/" class="logo" style="display: none;">Ivan Braun</a>
-        <div class="menu-nav">
-          <a href="/" class="active">Profile</a>
-          <a href="/book.html">Book</a>
-          <a href="/contact.html">Contact</a>
-          <div class="language-switcher">
-            <a href="/" class="active" id="en-link"><span id="en-flag">🇺🇸</span> EN</a>
-            <a href="/es" id="es-link"><span id="es-flag">🇦🇷</span> ES</a>
-            <a href="/pt" id="pt-link"><span id="pt-flag">🇧🇷</span> PT</a>
-          </div>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Ivan Braun</a>
+            <ul class="nav-links">
+                <li><a href="#speaking">Speaking</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="/visit.html">Visit me</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
         </div>
-      </div>
     </nav>
-    
+
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Ivan Braun</h1>
+                <p class="subtitle">AI Speaker & Entrepreneur</p>
+                <p class="description">Tech founder leading 150+ team members, serving 4M users. Based in Cariló, Argentina. I built a house for fellow tech founders to visit - if you book it and you're a tech founder, I'll come shake your hand and have a chat.</p>
+                <div class="cta-buttons">
+                    <a href="/contact.html" class="cta-button cta-primary">
+                        <i class="fas fa-envelope"></i> Contact me
+                    </a>
+                    <a href="/visit.html" class="cta-button cta-secondary">
+                        <i class="fas fa-home"></i> Visit me
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <a href="i/ivan-robot.png" data-fancybox="profile">
+                    <img src="i/ivan-robot.png" alt="Ivan Braun AI Avatar">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <section class="section">
+            <h2>Media Coverage</h2>
+            <div class="media-grid">
+                <div class="media-card">
+                    <img src="/i/logos/media/wp.svg" alt="Washington Post" class="media-logo">
+                    <h3>Dating Apps & AI</h3>
+                    <p><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">AI companies offer solution</a></p>
+                </div>
+                <div class="media-card">
+                    <img src="/i/logos/media/bbc.svg" alt="BBC" class="media-logo">
+                    <h3>Deepfakes Training</h3>
+                    <p><a href="https://www.bbc.com/news/technology-51064933">Could deepfakes train workers?</a></p>
+                </div>
+                <div class="media-card">
+                    <img src="/i/logos/media/der_spiegel.svg" alt="Der Spiegel" class="media-logo">
+                    <h3>AI Faces</h3>
+                    <p><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html">Werbegesichter Computer</a></p>
+                </div>
+                <div class="media-card">
+                    <img src="/i/logos/media/the_verge.svg" alt="The Verge" class="media-logo">
+                    <h3>Tech Coverage</h3>
+                    <p>AI and synthetic media</p>
+                </div>
+                <div class="media-card">
+                    <img src="/i/logos/media/vice.svg" alt="Vice" class="media-logo">
+                    <h3>Innovation</h3>
+                    <p>Bootstrapped AI stories</p>
+                </div>
+                <div class="media-card">
+                    <img src="/i/logos/media/daily_mail.svg" alt="Daily Mail" class="media-logo">
+                    <h3>Tech Ethics</h3>
+                    <p>Synthetic media ethics</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Speaking</h2>
+            <div class="bento-card">
+                <ul>
+                    <li><strong>Horasis Global Meeting</strong> — São Paulo – <em>7–10 Oct 2025</em> · Keynote on lean, independent AI development</li>
+                    <li><strong>Rio Innovation Week</strong> — Rio de Janeiro – <em>12–15 Aug 2025</em> · On-site, open for meetings</li>
+                    <li><strong>Visual 1st Conference</strong> — San Francisco – <em>2021</em> · Visitor's-Choice talk on synthetic image datasets</li>
+                    <li><strong>Worldwide availability</strong> — Keynotes on AI, product design & ethical data</li>
+                </ul>
+                <div class="thumbnail-gallery">
+                    <a href="/i/conferences/award.jpeg" data-fancybox="conference-gallery"><img src="/i/conferences/award.jpeg" alt="Receiving award" class="thumbnail"></a>
+                    <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery"><img src="/i/conferences/presenting.jpeg" alt="Presenting at conference" class="thumbnail"></a>
+                    <a href="/i/conferences/fl.jpg" data-fancybox="conference-gallery"><img src="/i/conferences/fl.jpg" alt="Conference networking" class="thumbnail"></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Experience</h2>
+            <div class="bento-card experience-card">
+                <p>Serial entrepreneur building <strong>bootstrapped AI and design products</strong>. Core expertise in developing AI products from zero without venture capital, achieving early monetization and sustainable growth.</p>
+                <ul style="margin-top: 1.5rem;">
+                    <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a></li>
+                    <li>Supply large-scale resources and custom <a href="https://generated.photos/datasets">datasets</a> to enterprise clients</li>
+                    <li>Leading team of 150+ professionals serving 4M+ users globally</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>© <span id="current-year">2024</span> Ivan Braun. All rights reserved.</p>
+    </footer>
     <script>
-      // Function to detect user's country and adjust flags
-      async function adjustFlagsByCountry() {
-        try {
-          // Use a free GeoIP API to get user's country
-          const response = await fetch('https://ipapi.co/json/');
-          if (!response.ok) throw new Error('Failed to fetch country data');
-          
-          console.log('Country detection API response received');
-          
-          const data = await response.json();
-          console.log('Country data received:', data);
-          
-          // Get country code - ipapi.co may return either 'country' or 'country_code'
-          const country = data.country || data.country_code;
-          console.log('Detected country code:', country);
-          
-          // Define flag mappings
-          const flagMap = {
-            // English-speaking countries
-            'US': '🇺🇸', // United States
-            'GB': '🇬🇧', // United Kingdom
-            'AU': '🇦🇺', // Australia
-            'CA': '🇨🇦', // Canada
-            'NZ': '🇳🇿', // New Zealand
-            'IE': '🇮🇪', // Ireland
-            
-            // Spanish-speaking countries
-            'ES': '🇪🇸', // Spain
-            'AR': '🇦🇷', // Argentina
-            'MX': '🇲🇽', // Mexico
-            'CO': '🇨🇴', // Colombia
-            'CL': '🇨🇱', // Chile
-            'PE': '🇵🇪', // Peru
-            'PY': '🇵🇾', // Paraguay
-            'UY': '🇺🇾', // Uruguay
-            'BO': '🇧🇴', // Bolivia
-            'EC': '🇪🇨', // Ecuador
-            'VE': '🇻🇪', // Venezuela
-            
-            // Portuguese-speaking countries
-            'PT': '🇵🇹', // Portugal
-            'BR': '🇧🇷', // Brazil
-            'AO': '🇦🇴', // Angola
-            'MZ': '🇲🇿'  // Mozambique
-          };
-          
-          // Language to country code mappings
-          const languageCountries = {
-            'en': ['US', 'GB', 'AU', 'CA', 'NZ', 'IE'],
-            'es': ['ES', 'AR', 'MX', 'CO', 'CL', 'PE', 'PY', 'UY', 'BO', 'EC', 'VE'],
-            'pt': ['PT', 'BR', 'AO', 'MZ']
-          };
-          
-          // Update flags based on user's country
-          if (languageCountries.en.includes(country)) {
-            document.getElementById('en-flag').textContent = flagMap[country] || '🇺🇸';
-          }
-          
-          // For Spanish-speaking countries
-          if (languageCountries.es.includes(country)) {
-            document.getElementById('es-flag').textContent = flagMap[country] || '🇦🇷';
-            console.log('Set Spanish flag to:', flagMap[country] || '🇦🇷');
-          } else if (['PE', 'PY', 'UY', 'BO', 'EC', 'VE'].includes(country)) {
-            // Explicitly handle specific Spanish-speaking countries that might not be detected correctly
-            document.getElementById('es-flag').textContent = flagMap[country] || '🇦🇷';
-            console.log('Set Spanish flag for specific country:', country, flagMap[country]);
-          }
-          
-          // For Portuguese-speaking countries
-          if (languageCountries.pt.includes(country)) {
-            document.getElementById('pt-flag').textContent = flagMap[country] || '🇧🇷';
-            console.log('Set Portuguese flag to:', flagMap[country] || '🇧🇷');
-          }
-        } catch (error) {
-          console.error('Error adjusting flags:', error);
-          // Fallback to default flags if there's an error
-        }
-      }
-      
-      // Run the function when the page loads
-      document.addEventListener('DOMContentLoaded', function() {
-        adjustFlagsByCountry();
-        // Set current year
+      document.addEventListener("DOMContentLoaded", function() {
+        Fancybox.bind("[data-fancybox]", {});
         document.getElementById('current-year').textContent = new Date().getFullYear();
       });
     </script>
-    <div class="container">
-      <div class="grid">
-        <!-- Header Section -->
-        <header class="header">
-          <div class="header-image">
-            <a href="/i/ian.jpeg" data-fancybox="profile">
-              <img src="https://ik.imagekit.io/icons8/i/ian.jpeg?tr=w-280,q-90" alt="Ivan Braun" class="profile-img" 
-                   srcset="https://ik.imagekit.io/icons8/i/ian.jpeg?tr=w-280,q-90 1x, https://ik.imagekit.io/icons8/i/ian.jpeg?tr=w-560,q-90 2x">
-            </a>
-          </div>
-          <div class="header-content">
-            <h1>Ivan Braun</h1>
-            <p class="subtitle">Entrepreneur, investor, AI speaker, advisor</p>
-            <div class="contact-row">
-              <div class="location">
-                Based in &nbsp;<a href="https://en.wikipedia.org/wiki/Caril%C3%B3">Cariló</a>, Argentina 
-                <a href="/i/carilo.jpg" class="img-link" style="margin-left:8px;" data-fancybox>
-                  <img src="https://ik.imagekit.io/icons8/i/carilo.jpg?tr=w-40,h-40,c-maintain_ratio,q-80" alt="Cariló" class="small-img"
-                       srcset="https://ik.imagekit.io/icons8/i/carilo.jpg?tr=w-40,h-40,c-maintain_ratio,q-80 1x, 
-                               https://ik.imagekit.io/icons8/i/carilo.jpg?tr=w-80,h-80,c-maintain_ratio,q-90 2x">
-                </a>
-              </div>
-              <div class="social-links">
-                <a href="https://www.linkedin.com/in/ivanbbb/" class="icon-link">
-                  <img src="/i/icons8-linkedin.svg" alt="LinkedIn" class="icon"> LinkedIn
-                </a>
-                <a href="https://x.com/visualpharm" class="icon-link">
-                  <img src="/i/icons8-x.svg" alt="X (Twitter)" class="icon"> X
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <!-- Preface Section -->
-        <section class="section">
-          <div class="section-content">
-            <p class="intro-text">I'm a tech founder leading a team of 150 and serving 4M users. I live in a nice town with an ocean beach, pine forest, fiber internet, and top restaurants. What I miss is <b>regular conversation with fellow tech entrepreneurs</b>. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.</p>
-          </div>
-        </section>
-
-        <!-- Media Coverage Section -->
-<section class="section">
-  <div class="section-header">
-    <h2>Media Coverage</h2>
-  </div>
-  <div class="section-content">
-    <link rel="stylesheet" href="i/logos/media-logos.css">
-    <style>
-      .media-outlets {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-        margin-bottom: 20px;
-      }
-      
-      /* Mobile breakpoint for media outlets */
-      @media (max-width: 480px) {
-        .media-outlets {
-          grid-template-columns: 1fr;
-          gap: 15px;
-          width: calc(100% - 10px);
-          max-width: 100%;
-          box-sizing: border-box;
-        }
-        
-        .media-outlet {
-          width: 100%;
-          display: flex;
-          align-items: flex-start;
-        }
-        
-        .media-logo {
-          width: 70px;
-          min-width: 70px;
-          margin-right: 10px;
-        }
-        
-        .media-title {
-          font-size: 0.9rem;
-          line-height: 1.3;
-        }
-      }
-    </style>
-    <div class="media-outlets">
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg/320px-The_Logo_of_The_Washington_Post_Newspaper.svg.png" alt="The Washington Post"></a></div>
-        <div class="media-title"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">Dating apps need women. Advertisers need diversity. AI companies offer a solution: Fake people.</a></div>
-      </div>
-      
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.bbc.com/news/technology-51064933"><img src="i/logos/media/bbc.svg" alt="BBC"></a></div>
-        <div class="media-title"><a href="https://www.bbc.com/news/technology-51064933">Could deepfakes be used to train office workers?</a></div>
-      </div>
-      
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html"><img src="i/logos/media/der_spiegel.svg" alt="Der Spiegel"></a></div>
-        <div class="media-title"><a href="https://www.spiegel.de/netzwelt/web/werbegesichter-aus-dem-computer-ist-hier-noch-irgendjemand-echt-a-1289324.html">Werbegesichter aus dem Computer: Ist hier noch irgendjemand echt?</a></div>
-      </div>
-      
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/"><img src="i/logos/media/la_repubblica.svg" alt="La Repubblica"></a></div>
-        <div class="media-title"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/">I 100mila volti di persone che non esistono</a></div>
-      </div>
-      
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak"><img src="i/logos/media/the_verge.svg" alt="The Verge"></a></div>
-        <div class="media-title"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free?fbclid=IwAR04GSt2MI1xJTB8nbW4xwZG8TFyD_g86HUCnvmk7DSEpsWHS0eZaoRadak">100,000 free AI-generated headshots put stock photo companies on notice</a></div>
-      </div>
-      
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU"><img src="i/logos/media/vice.svg" alt="VICE"></a></div>
-        <div class="media-title"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/?fbclid=IwAR1eUYCPu8hQ7A_sAgz_EOFFw4kAMFjguiRxtHPYHWeUpgcHw2iMoSAs9AU">Generated Photos Thinks It Can Solve Diversity With 100,000 Fake AI Faces</a></div>
-      </div>
-      
-      <div class="media-outlet">
-        <div class="media-logo"><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html"><img src="i/logos/media/daily_mail.svg" alt="Daily Mail"></a></div>
-        <div class="media-title"><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html">Artists create more than 100,000 ultra-realistic AI portraits</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-        <!-- Speaking Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Speaking</h2>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li><strong>Horasis Global Meeting</strong> — São Paulo – <em>7–10 Oct 2025</em> · Keynote on lean, independent AI development</li>
-              <li><strong>Rio Innovation Week</strong> — Rio de Janeiro – <em>12–15 Aug 2025</em> · On-site, open for meetings</li>
-              <li><strong>Visual 1st Conference</strong> — San Francisco – <em>2021</em> · Visitor's-Choice talk on synthetic image datasets</li>
-              <li><strong>Worldwide availability</strong> — Keynotes on AI, product design & ethical data</li>
-            </ul>
-            <div class="thumbnail-gallery">
-              <a href="/i/conferences/award.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/award.jpeg" alt="Receiving award at tech conference" class="thumbnail">
-              </a>
-              <a href="/i/conferences/presenting.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/presenting.jpeg" alt="Presenting at technology conference" class="thumbnail">
-              </a>
-              <a href="/i/conferences/fl.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/fl.jpg" alt="Tech conference networking session with attendees" class="thumbnail">
-              </a>
-              <a href="/i/conferences/conferece-speaker.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/conferece-speaker.jpg" alt="AI conference keynote speaker presenting on stage" class="thumbnail">
-              </a>
-              <a href="/i/conferences/conference.jpeg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/conference.jpeg" alt="AI industry panel discussion with experts" class="thumbnail">
-              </a>
-              <a href="/i/conferences/fl2.jpg" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/fl2.jpg" alt="AI conference audience during presentation" class="thumbnail">
-              </a>
-              <a href="/i/conferences/visual1st-awards-winners.png" class="thumbnail-link" data-fancybox="conference-gallery">
-                <img src="/i/conferences/visual1st-awards-winners.png" alt="Visual1st Awards ceremony with winners on stage" class="thumbnail">
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- Awards Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Awards</h2>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li><strong>44 Product Hunt awards</strong> — multiple <strong>#1 Product of the Day</strong> wins for <a href="https://www.producthunt.com/products/icons8/awards">Icons8</a> and <a href="https://www.producthunt.com/products/generated-photos/awards">Generated Photos</a></li>
-              <li><a href="https://beststartup.us/meet-united-statess-101-top-founders-in-the-web-design-space/"><strong>Top 101 Founders in Web Design 2024</strong></a> — <em>American Startup Magazine</em></li>
-              <li><a href="https://www.forbes.com/companies/icons8/"><strong>America's Best Startup Employers 2022</strong></a> — <em>Forbes</em></li>
-              <li><a href="https://www.visual1st.biz/"><strong>Visitor's Choice Award 2021</strong></a> — <em>Visual 1st</em></li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Government & Regulatory Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Government & Regulatory</h2>
-          </div>
-          <div class="section-content">
-            <p>I consult governments on AI regulation, creative tools, intellectual property, and ethics. The agencies I've worked with:</p>
-            <div class="gov-logos-container">
-              <div class="gov-logo-item">
-                <div class="gov-logo">
-                  <a href="https://ec.europa.eu/">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/320px-Flag_of_Europe.svg.png" alt="European Commission">
-                  </a>
-                </div>
-                <div class="gov-label"><a href="https://ec.europa.eu/">European Commission</a></div>
-              </div>
-              
-              <div class="gov-logo-item">
-                <div class="gov-logo">
-                  <a href="https://www.justice.gov/">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Seal_of_the_United_States_Department_of_Justice.svg/320px-Seal_of_the_United_States_Department_of_Justice.svg.png" alt="Department of Justice">
-                  </a>
-                </div>
-                <div class="gov-label"><a href="https://www.justice.gov/">U.S. Department of Justice</a></div>
-              </div>
-              
-              <div class="gov-logo-item">
-                <div class="gov-logo">
-                  <a href="https://www.gov.uk/government/organisations/competition-and-markets-authority">
-                    <img src="i/logos/media/uk_cma.svg" alt="UK Competition and Markets Authority">
-                  </a>
-                </div>
-                <div class="gov-label"> <a href="https://www.gov.uk/government/organisations/competition-and-markets-authority">UK Competition and Markets Authority</a></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Experience</h2>
-          </div>
-          <div class="section-content">
-            <p>I'm a serial entrepreneur who launches <i>bootstrapped products related to AI and design</i>. My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
-            
-            <div class="tools-container">
-              <div class="tool-block" style="background: linear-gradient(135deg, #e6d7bf 0%, #d6c6af 100%);">
-                <div class="tool-content">
-                  <h3>Customer Development</h3>
-                  <p class="tool-subtitle">What are the deep needs of our customers?</p>
-                </div>
-                <div class="tool-books">
-                  <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" class="icon-link book-icon" title="Interviewing Users by Steve Portigal"><img src="i/icons8-book.svg" alt="Interviewing Users" width="20" height="20"></a>
-                  <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" class="icon-link book-icon" title="Competing Against Luck by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="Competing Against Luck" width="20" height="20"></a>
-                </div>
-              </div>
-              
-              <div class="tool-block" style="background: linear-gradient(135deg, #e2d5bc 0%, #d2c5ac 100%);">
-                <div class="tool-content">
-                  <h3>UX Design</h3>
-                  <p class="tool-subtitle">Content, form, behavior.<br>My core profession.</p>
-                </div>
-                <div class="tool-books">
-                  <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" class="icon-link book-icon" title="About Face: The Essentials of Interaction Design"><img src="i/icons8-book.svg" alt="About Face" width="20" height="20"></a>
-                  <span class="book-note">Old Jacob Nielsen's books</span>
-                </div>
-              </div>
-              
-              <div class="tool-block" style="background: linear-gradient(135deg, #ded3ba 0%, #cec3aa 100%);">
-                <div class="tool-content">
-                  <h3>Monetization strategy</h3>
-                  <p class="tool-subtitle">Freemium, paywalls, limits.<br> Most heated topic.</p>
-                </div>
-              </div>
-            </div>
-            
-            <style>
-              .tools-container {
-                display: flex;
-                gap: 20px;
-                margin: 25px 0 35px 0;
-                flex-wrap: wrap;
-              }
-              
-              .tool-block {
-                flex: 1;
-                min-width: 260px;
-                padding: 20px;
-                border-radius: 10px;
-                color: #333;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 160px;
-              }
-              
-              .tool-content {
-                flex-grow: 1;
-              }
-              
-              .tool-block h3 {
-                margin-top: -4px;
-                margin-bottom: 8px;
-                font-size: 1.2rem;
-              }
-              
-              .tool-subtitle {
-                font-size: 0.85rem;
-                margin-top: 2px;
-                color: var(--color-secondary);
-              }
-              
-.tool-books {
-  margin-top: auto;
-  margin-bottom: 8px;
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-}
-
-.book-note {
-  font-size: 0.8rem;
-  margin-left: 5px;
-  opacity: 0.8;
-}
-
-.tool-books a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  background: rgba(0, 0, 0, 0.05);
-  padding: 5px;
-  border-radius: 50%;
-  line-height: 0;
-  border: none !important;
-}
-              
-              /* Responsive styles for different screen sizes */
-              @media (min-width: 901px) {
-                .tools-container {
-                  display: flex;
-                  flex-direction: row;
-                }
-                
-                .tool-block {
-                  flex: 1;
-                  width: calc(33.333% - 14px);
-                }
-              }
-              
-              /* Middle-sized screens - prevent layout shift */
-              @media (min-width: 769px) and (max-width: 900px) {
-                .tools-container {
-                  display: grid;
-                  grid-template-columns: repeat(3, 1fr);
-                  gap: 20px;
-                }
-                
-                .tool-block {
-                  width: 100%;
-                  min-width: 260px;
-                }
-              }
-              
-              @media (max-width: 768px) {
-                .tools-container {
-                  flex-direction: column;
-                }
-                
-                .tool-block {
-                  width: 100%;
-                }
-              }
-              
-              /* Footer */
-              .footer {
-                grid-column: 1 / -1;
-                padding: calc(var(--spacing-unit) * 3) 0;
-                border-top: 1px solid var(--color-tertiary);
-                margin-top: calc(var(--spacing-unit) * 6);
-                text-align: center;
-              }
-              
-              .footer-content {
-                font-size: 0.9rem;
-                color: var(--color-secondary);
-              }
-              
-              .footer-text a {
-                margin-left: calc(var(--spacing-unit) * 2);
-                font-size: 0.9rem;
-              }
-              
-              @media (max-width: 768px) {
-                .footer-text {
-                  display: block;
-                  line-height: 1.6;
-                }
-                
-                .footer-text a {
-                  display: inline-block;
-                  margin: 0 calc(var(--spacing-unit) * 1);
-                }
-              }
-            </style>
-            <ul>
-              <li>Founder of <a href="https://icons8.com">Icons8</a> and <a href="https://generated.photos">Generated Photos</a>, delivering AI-generated images, datasets, and design tools used by 4M+ designers and developers.</li>
-              <li>We supply large-scale resources and custom <a href="https://generated.photos/datasets">datasets</a> to enterprise clients and are the largest graphics supplier to Canva.</li>
-              <li><a href="https://generated.photos/genyou">GenYOU</a> – personalized AI selfies</li>
-              <li><a href="https://generated.photos/face-generator">Face Generator</a> – real-time faces</li>
-              <li><a href="https://generated.photos/human-generator">Human Generator</a> – full-body humans</li>
-            </ul>
-            <div class="video-container" style="margin-top: 20px; margin-left: -20px;">
-              <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" autoplay muted loop playsinline>
-                  <source src="i/human-generator.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Investment & Advisory Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Investment & Advisory</h2>
-          </div>
-          <div class="section-content">
-            <p>As an investor and advisor, I offer my expertise in:</p>
-            <ul>
-            <li><b>Marketing:</b> SEO, ProductHunt, press, mailing (some of my favorite books: <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" class="icon-link book-icon" title="Competing Against Luck by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="Competing Against Luck" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/the-innovators-dilemma-clayton-m-christensen" class="icon-link book-icon" title="The Innovator's Dilemma by Clayton M. Christensen"><img src="i/icons8-book.svg" alt="The Innovator's Dilemma" width="20" height="20"></a> <a href="https://www.penguinrandomhouse.com/books/227670/traction-by-gabriel-weinberg-and-justin-mares/" class="icon-link book-icon" title="Traction by Gabriel Weinberg & Justin Mares"><img src="i/icons8-book.svg" alt="Traction" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/crossing-the-chasm-3rd-edition-geoffrey-a-moore" class="icon-link book-icon" title="Crossing the Chasm by Geoffrey A. Moore"><img src="i/icons8-book.svg" alt="Crossing the Chasm" width="20" height="20"></a> <a href="https://www.hayhouse.com/ask-paperback" class="icon-link book-icon" title="Ask by Ryan Levesque"><img src="i/icons8-book.svg" alt="Ask" width="20" height="20"></a> <a href="#" id="expand-marketing-books" class="expand-books-link">expand</a>). I'm bad at social media.</li>
-            <li><b>AI bootstrapping:</b> reduce spend, monetize early, reinvest profits.</li>
-            <li><b>Hiring & management:</b> from solo founder to 100+ person teams (books: <a href="https://www.triballeadership.net/" class="icon-link book-icon" title="Tribal Leadership by Dave Logan, John King, and Halee Fischer-Wright"><img src="i/icons8-book.svg" alt="Tribal Leadership" width="20" height="20"></a> <a href="https://en.wikipedia.org/wiki/High_Output_Management" class="icon-link book-icon" title="High Output Management by Andrew S. Grove"><img src="i/icons8-book.svg" alt="High Output Management" width="20" height="20"></a> <a href="https://www.harpercollins.com/products/the-effective-executive-peter-f-drucker?variant=32207495856162" class="icon-link book-icon" title="The Effective Executive by Peter F. Drucker"><img src="i/icons8-book.svg" alt="The Effective Executive" width="20" height="20"></a> <a href="https://basecamp.com/books/rework" class="icon-link book-icon" title="Rework by Jason Fried & David Heinemeier Hansson"><img src="i/icons8-book.svg" alt="Rework" width="20" height="20"></a> <a href="https://www.whatmatters.com/the-book" class="icon-link book-icon" title="Measure What Matters by John Doerr"><img src="i/icons8-book.svg" alt="Measure What Matters" width="20" height="20"></a> <a href="https://scrumguides.org/scrum-guide.html" class="icon-link book-icon" title="Scrum Guide by Chris Sims & Hillary Louise Johnson"><img src="i/icons8-book.svg" alt="Scrum Guide" width="20" height="20"></a> <a href="https://www.goodreads.com/book/show/54770.Fire_Someone_Today" class="icon-link book-icon" title="Fire Someone Today by Bob Parsons"><img src="i/icons8-book.svg" alt="Fire Someone Today" width="20" height="20"></a> <a href="https://www.bkconnection.com/books/title/humble-inquiry-second-edition" class="icon-link book-icon" title="Humble Inquiry by Edgar H. Schein"><img src="i/icons8-book.svg" alt="Humble Inquiry" width="20" height="20"></a> <a href="#" id="expand-management-books" class="expand-books-link">expand</a>).</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Interests & Projects Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Hobbies</h2>
-          </div>
-          <div class="section-content">
-            <ul>
-          <li><b>Low-tech</b> – I own and operate a motorcycle and a tractor. I've also welded some of the tractor implements.</li>
-          <div style="margin: 20px 0 30px; text-align: left;">
-              <a href="/i/tractor-horses.jpg" data-fancybox>
-                <img src="https://ik.imagekit.io/icons8/tr:w-1200/i/tractor-horses.jpg" alt="Tractor and horses" style="max-width: 600px; width: auto; border-radius: 4px; display: block;">
-              </a>
-              <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
-                Riding a tractor is an underrated joy — and surprisingly extreme. In motocross, crashes happen in an instant. On a tractor, the horror of falling unfolds in slow motion, lasting minutes.
-              </p>
-            </div>
-          <li><b>Construction</b> – I remodeled or built from scratch several houses. Especially, I enjoy applying <i>new IT management</i> to a millennia-old industry.</li>
-      <div style="margin: 20px 0 30px; text-align: left;">
-          <a href="/i/ilbuco.jpeg" data-fancybox>
-            <img src="https://ik.imagekit.io/icons8/tr:w-600/i/ilbuco.jpeg" alt="Recent build" style="max-width:300px; width: auto; border-radius: 4px; display: block;">
-          </a>
-          <p style="font-size: 0.9rem; font-style: italic; margin: 8px 0 15px; max-width: 100%; line-height: 1.4; color: inherit;">
-            Recent construction including <a href="https://ilbuco.com.ar">Coliving for tech founders</a> and your <a href="https://recharge.com.ar">Argentinian shelter</a> in case of a global meltdown. One successful innovation was having a QA engineer working on error logging.
-          </p>
-        </div>
-          <li><b>Art</b> – I visit <i>art museums</i> and <i>art shows</i>. My favorite ones are Tate Modern, Metropolitan Museum of Art, Biennale in Venice, and Art Basel.</li>
-          <li><b>Classical music</b> – Classical music – I'm a big fan of <i>Mahler</i>, the dude who made loud music for huge orchestras. Also, he wanted a bam! sound that past days instruments couldn't provide. We are looking for his perfect bam! sound until now.</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Languages Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2>Languages</h2>
-          </div>
-          <div class="section-content">
-            <p>Fluent: 🇦🇷 Spanish, 🇺🇸 English, 🇧🇷 Portuguese, 🇮🇹 Italian</p>
-            <p>Reader: 🇩🇪 German</p>
-          </div>
-        </section>
-
-        <!-- Footer Section -->
-        <footer class="footer">
-          <div class="footer-content">
-            <span class="footer-text">© <span id="current-year">2024</span> Ivan Braun 
-              <a href="/ai-keynote-speaker.html" class="subtle">AI Keynote Speaker</a>
-              <a href="/argentina-ai-speaker.html" class="subtle">Argentina AI Speaker</a>
-              <a href="/argentina-keynote-speaker.html" class="subtle">Argentina Keynote Speaker</a>
-            </span>
-          </div>
-        </footer>
-
-      </div> <!-- End grid -->
-    </div> <!-- End container -->
-    
-    <!-- Initialize Fancybox -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        Fancybox.bind("[data-fancybox]", {
-          // Custom options
-          buttons: ["zoom", "slideShow", "fullScreen", "close"],
-          animationEffect: "fade",
-          transitionEffect: "slide",
-          clickContent: "zoom",
-          wheel: "slide",
-          touch: {
-            vertical: true,
-            momentum: true
-          }
-        });
-        
-        // Language detection and redirection
-        if (!sessionStorage.getItem('languageRedirected')) {
-          // Use a GeoIP service to detect user's country
-          fetch('https://ipapi.co/json/')
-            .then(response => response.json())
-            .then(data => {
-              const country = data.country;
-              const currentPath = window.location.pathname;
-              
-              // Only redirect if we're on the main page and not already on a language-specific page
-              if (currentPath === '/' || currentPath === '/index.html') {
-                // Spanish-speaking countries
-                const spanishCountries = ['ES', 'AR', 'BO', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'SV', 'GT', 'HN', 'MX', 'NI', 'PA', 'PY', 'PE', 'PR', 'UY', 'VE'];
-                
-                // Portuguese-speaking countries
-                const portugueseCountries = ['PT', 'BR', 'AO', 'MZ', 'GW', 'CV', 'ST', 'TL'];
-                
-                if (spanishCountries.includes(country)) {
-                  window.location.href = '/es';
-                } else if (portugueseCountries.includes(country)) {
-                  window.location.href = '/pt';
-                }
-                
-                // Set flag to prevent repeated redirects
-                sessionStorage.setItem('languageRedirected', 'true');
-              }
-            })
-            .catch(error => {
-              console.error('Error detecting country:', error);
-            });
-        }
-      });
-    </script>
-    <!-- Hidden book lists that will be shown when clicking on the 'Show books' links -->
-  <div id="management-books-list" class="books-list" style="display: none;">
-    <div class="books-list-container">
-      <div class="books-list-header">
-        <h3>Hiring & management</h3>
-        <button class="close-books-list">×</button>
-      </div>
-      <p>my fav books:</p>
-      <ul>
-        <li><a href="https://www.triballeadership.net/"><strong>Tribal Leadership</strong></a> <i>Dave Logan, John King, and Halee Fischer-Wright</i><br>A guide to leveraging natural groups to build thriving organizations</li>
-        <li><a href="https://en.wikipedia.org/wiki/High_Output_Management"><strong>High Output Management</strong></a> <i>Andrew S. Grove</i><br>Former Intel CEO's guide to effective management techniques</li>
-        <li><a href="https://www.harpercollins.com/products/the-effective-executive-peter-f-drucker?variant=32207495856162"><strong>The Effective Executive</strong></a> <i>Peter F. Drucker</i><br>Classic guide on getting the right things done</li>
-        <li><a href="https://basecamp.com/books/rework"><strong>Rework</strong></a> <i>Jason Fried & David Heinemeier Hansson</i><br>A different approach to work and business</li>
-        <li><a href="https://www.whatmatters.com/the-book"><strong>Measure What Matters</strong></a> <i>John Doerr</i><br>How Google, Bono, and the Gates Foundation rock the world with OKRs</li>
-        <li><a href="https://scrumguides.org/scrum-guide.html"><strong>Scrum: A Breathtakingly Brief and Agile Introduction</strong></a> <i>Chris Sims & Hillary Louise Johnson</i><br>A concise guide to the Scrum framework</li>
-        <li><a href="https://www.goodreads.com/book/show/54770.Fire_Someone_Today"><strong>Fire Someone Today</strong></a> <i>Bob Parsons</i><br>And other surprising lessons for success in business</li>
-        <li><a href="https://www.bkconnection.com/books/title/humble-inquiry-second-edition"><strong>Humble Inquiry</strong></a> <i>Edgar H. Schein</i><br>The gentle art of asking instead of telling</li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="marketing-books-list" class="books-list" style="display: none;">
-    <div class="books-list-container">
-      <div class="books-list-header">
-        <h3>Marketing</h3>
-        <button class="close-books-list">×</button>
-      </div>
-      <p>my fav books:</p>
-      <ul>
-        <li><a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266"><strong>Competing Against Luck</strong></a> <i>Clayton M. Christensen</i><br>The story of innovation and customer choice</li>
-        <li><a href="https://www.harpercollins.com/products/the-innovators-dilemma-clayton-m-christensen"><strong>The Innovator's Dilemma</strong></a> <i>Clayton M. Christensen</i><br>When new technologies cause great firms to fail</li>
-        <li><a href="https://www.penguinrandomhouse.com/books/227670/traction-by-gabriel-weinberg-and-justin-mares/"><strong>Traction</strong></a> <i>Gabriel Weinberg & Justin Mares</i><br>How any startup can achieve explosive customer growth</li>
-        <li><a href="https://www.harpercollins.com/products/crossing-the-chasm-3rd-edition-geoffrey-a-moore"><strong>Crossing the Chasm</strong></a> <i>Geoffrey A. Moore</i><br>Marketing and selling disruptive products to mainstream customers</li>
-        <li><a href="https://www.hayhouse.com/ask-paperback"><strong>Ask</strong></a> <i>Ryan Levesque</i><br>The counterintuitive online method to discover exactly what your customers want to buy</li>
-      </ul>
-    </div>
-  </div>
-
-  <style>
-    .expand-books-link {
-      margin-left: 3px;
-      font-size: 0.9em;
-      color: #3a5daa; /* Match link blue */
-      cursor: pointer;
-    }
-    
-    .expand-books-link:hover {
-      color: #aa3a3a; /* Match link hover red */
-    }
-    
-    .books-list {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .books-list-container {
-      background-color: white;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      padding: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-    
-    .books-list-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-    
-    .books-list-header h3 {
-      margin: 0;
-    }
-    
-    .close-books-list {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--color-secondary);
-    }
-    
-    .books-list ul {
-      margin: 0;
-      padding: 0 0 0 20px;
-    }
-    
-    .books-list li {
-      margin-bottom: 12px;
-      line-height: 1.4;
-      padding-left: 0;
-    }
-    
-    .books-list li:before {
-      content: none;
-    }
-  </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Management books expand/collapse functionality
-      const expandManagementBooks = document.getElementById('expand-management-books');
-      const managementBooksList = document.getElementById('management-books-list');
-      
-      expandManagementBooks.addEventListener('click', function(e) {
-        e.preventDefault();
-        managementBooksList.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      });
-      
-      // Marketing books expand/collapse functionality
-      const expandMarketingBooks = document.getElementById('expand-marketing-books');
-      const marketingBooksList = document.getElementById('marketing-books-list');
-      
-      expandMarketingBooks.addEventListener('click', function(e) {
-        e.preventDefault();
-        marketingBooksList.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      });
-      
-      // Close buttons functionality
-      const closeButtons = document.querySelectorAll('.close-books-list');
-      
-      closeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-          managementBooksList.style.display = 'none';
-          marketingBooksList.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        });
-      });
-      
-      // Close on click outside
-      const booksLists = document.querySelectorAll('.books-list');
-      
-      booksLists.forEach(function(list) {
-        list.addEventListener('click', function(e) {
-          if (e.target === list) {
-            managementBooksList.style.display = 'none';
-            marketingBooksList.style.display = 'none';
-            document.body.style.overflow = 'auto';
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>

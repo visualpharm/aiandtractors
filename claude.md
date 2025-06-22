@@ -12,6 +12,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Links to other projects
 "Recent construction including (Coliving for tech founders)[https://ilbuco.com.ar] and your (Argentinian shelter) [https://recharge.com.ar] in case of a global meltdown. One successful innovation was having a QA engineer working on error logging."
 
+### Link style
+Never use target="_blank". 
+For contacts, prefer linking to our internal contats page, not linkedin of email.
+
 ## Project Overview
 This is Ivan Braun's personal website - a multilingual portfolio showcasing his work as an entrepreneur, AI speaker, and advisor. The project uses a **hybrid architecture** that combines React development tooling with static HTML deployment.
 

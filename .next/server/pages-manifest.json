@@ -2,9 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/contact": "pages/contact.js",
-  "/experience": "pages/experience.js",
+  "/": "pages/index.js",
   "/visit": "pages/visit.js",
-  "/book": "pages/book.js",
-  "/": "pages/index.js"
+  "/experience": "pages/experience.js",
+  "/argentina-ai-speaker": "pages/argentina-ai-speaker.js",
+  "/ai-keynote-speaker": "pages/ai-keynote-speaker.js"
 }

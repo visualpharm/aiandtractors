@@ -28,25 +28,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/book": [
+    "/ai-keynote-speaker": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/book.js"
+      "static/chunks/pages/ai-keynote-speaker.js"
     ],
-    "/contact": [
+    "/argentina-ai-speaker": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/contact.js"
+      "static/chunks/pages/argentina-ai-speaker.js"
     ],
     "/experience": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/experience.js"
-    ],
-    "/visit": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/visit.js"
     ]
   },
   "ampFirstPages": []

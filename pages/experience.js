@@ -23,10 +23,10 @@ const translations = {
     genYou: "GenYOU – personalized AI selfies",
     faceGen: "Face Generator – real-time faces", 
     humanGen: "Human Generator – full-body humans",
-    toolsIntro: "My three tools are:",
+    toolsIntro: "My three areas of expertise are:",
     booksFormed: "Books that formed me:",
     learningHardWay: "Learning it all hard way",
-    products: "Products"
+    products: "PRODUCTS WE'VE LAUNCHED"
   },
   es: {
     title: "Experiencia - Ivan Braun",
@@ -44,10 +44,10 @@ const translations = {
     genYou: "GenYOU – selfies de IA personalizadas",
     faceGen: "Face Generator – caras en tiempo real",
     humanGen: "Human Generator – humanos de cuerpo completo",
-    toolsIntro: "Mis tres herramientas son:",
+    toolsIntro: "Mis tres áreas de especialización son:",
     booksFormed: "Libros que me formaron:",
     learningHardWay: "Aprendiéndolo todo por las malas",
-    products: "Productos"
+    products: "PRODUCTOS QUE HEMOS LANZADO"
   },
   pt: {
     title: "Experiência - Ivan Braun",
@@ -65,10 +65,10 @@ const translations = {
     genYou: "GenYOU – selfies de IA personalizadas",
     faceGen: "Face Generator – rostos em tempo real",
     humanGen: "Human Generator – humanos de corpo inteiro",
-    toolsIntro: "Minhas três ferramentas são:",
+    toolsIntro: "Minhas três áreas de especialização são:",
     booksFormed: "Livros que me formaram:",
     learningHardWay: "Aprendendo tudo da maneira difícil",
-    products: "Produtos"
+    products: "PRODUTOS QUE LANÇAMOS"
   }
 }
 
@@ -95,66 +95,110 @@ export default function Experience() {
       <Head>
         <title>{pageTitle}</title>
         <link rel="canonical" href={`https://ivanbraun.com/experience${locale === 'en' ? '' : '/' + locale}`} />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
       </Head>
 
-      <div className="container">
-        <div className="hero-section">
-          <div className="hero-layout">
-            <div className="hero-content">
-              <h1>{t.heading}</h1>
-              <div className="description">
-                <p>{t.intro}</p>
+      <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="bg-gray-50 py-16 px-0 -mx-8 mb-12">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="max-w-3xl">
+                <h1 className="text-6xl font-bold mb-6 text-gray-900 leading-tight" style={{ fontFamily: "'DotGothic16', sans-serif" }}>{t.heading}</h1>
+                <div>
+                  <p className="text-base text-gray-600 mb-4 leading-relaxed">{t.intro}</p>
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <img src="/i/experience.png" alt="Ivan Braun Experience" className="max-w-full max-h-96 h-auto w-auto" />
               </div>
             </div>
-            <div className="hero-image">
-              <img src="/i/experience.png" alt="Ivan Braun Experience" className="experience-image" />
+          </div>
+        </div>
+
+        {/* WORK HISTORY */}
+        <div className="mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+            <div className="text-left">
+              <h2 className="text-sm font-medium m-0 text-gray-600 uppercase tracking-wider">WORK HISTORY</h2>
+            </div>
+            <div>
+              <p className="m-0 text-lg leading-relaxed text-gray-600">
+                I'm a tech founder leading a team of 150 and serving 4M users.
+              </p>
+            </div>
+            <div className="text-left">
+              <div className="mb-4">
+                <div className="flex items-center mb-2">
+                  <img src="/i/logos/icons8-icons8.svg" alt="Icons8" className="w-6 h-6 mr-2" />
+                  <strong className="text-gray-900">
+                    <a href="https://icons8.com" className="text-gray-900 no-underline hover:text-blue-600">Icons8</a>
+                  </strong>
+                </div>
+                <p className="m-0 text-sm text-gray-600 italic">Founder and CEO</p>
+                <p className="m-0 text-sm text-gray-600">Graphics for AI age</p>
+              </div>
+            </div>
+            <div className="text-left">
+              <div>
+                <div className="flex items-center mb-2">
+                  <img src="/i/logos/icons8-generated-photos.svg" alt="Generated Photos" className="w-6 h-6 mr-2" />
+                  <strong className="text-gray-900">
+                    <a href="https://generated.photos" className="text-gray-900 no-underline hover:text-blue-600">Generated Photos</a>
+                  </strong>
+                </div>
+                <p className="m-0 text-sm text-gray-600">Face AI and synthetic data</p>
+                <p className="m-0 text-sm text-gray-600 italic">Founder and CEO</p>
+              </div>
             </div>
           </div>
         </div>
         
-        <h2 className="fun-title"><span className="fun-title-fill">{t.toolsIntro}</span></h2>
+        <h2 className="text-sm font-medium mb-8 text-gray-600 uppercase tracking-wider">{t.toolsIntro}</h2>
         
-        <div className="tools-section">
-          <div className="tool-card">
-            <h4>{t.customerDev}</h4>
-            <p>{t.booksFormed}</p>
-            <div className="book-covers">
-              <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" target="_blank" rel="noopener noreferrer">
-                <img src="/i/books/interviewing-users.jpg" alt="Interviewing Users" className="book-cover" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8">
+          <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-8 pt-8 pb-6 flex flex-col items-start text-left">
+            <h4 className="text-lg font-medium mb-3 text-gray-900">{t.customerDev}</h4>
+            <p className="text-base text-gray-600 mb-4 leading-relaxed">{t.booksFormed}</p>
+            <div className="flex gap-4 items-center flex-wrap mt-4">
+              <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" target="_blank" rel="noopener noreferrer" className="inline-block no-underline border-0 leading-none">
+                <img src="/i/books/interviewing-users.jpg" alt="Interviewing Users" className="h-24 w-auto max-w-36 object-contain rounded shadow-md transition-transform duration-300 hover:scale-125 hover:z-10 hover:relative hover:shadow-lg block mx-1" style={{ transformOrigin: "center bottom" }} />
               </a>
-              <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" target="_blank" rel="noopener noreferrer">
-                <img src="/i/books/competing-against-luck.jpg" alt="Competing Against Luck" className="book-cover" />
-              </a>
-            </div>
-          </div>
-          
-          <div className="tool-card">
-            <h4>{t.uxDesign}, {t.uxSubtitle}</h4>
-            <p>{t.booksFormed}</p>
-            <div className="book-covers">
-              <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" target="_blank" rel="noopener noreferrer">
-                <img src="/i/books/about-face.webp" alt="About Face" className="book-cover" />
-              </a>
-              <a href="https://www.nngroup.com/books/designing-web-usability/" target="_blank" rel="noopener noreferrer">
-                <img src="/i/books/designing-web-usability.jpg" alt="Designing Web Usability" className="book-cover" />
+              <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" target="_blank" rel="noopener noreferrer" className="inline-block no-underline border-0 leading-none">
+                <img src="/i/books/competing-against-luck.jpg" alt="Competing Against Luck" className="h-24 w-auto max-w-36 object-contain rounded shadow-md transition-transform duration-300 hover:scale-125 hover:z-10 hover:relative hover:shadow-lg block mx-1" style={{ transformOrigin: "center bottom" }} />
               </a>
             </div>
           </div>
           
-          <div className="tool-card">
-            <h4>{t.paywalls}</h4>
-            <p>{t.learningHardWay}</p>
+          <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-8 pt-8 pb-6 flex flex-col items-start text-left">
+            <h4 className="text-lg font-medium mb-3 text-gray-900">{t.uxDesign}, {t.uxSubtitle}</h4>
+            <p className="text-base text-gray-600 mb-4 leading-relaxed">{t.booksFormed}</p>
+            <div className="flex gap-4 items-center flex-wrap mt-4">
+              <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" target="_blank" rel="noopener noreferrer" className="inline-block no-underline border-0 leading-none">
+                <img src="/i/books/about-face.webp" alt="About Face" className="h-24 w-auto max-w-36 object-contain rounded shadow-md transition-transform duration-300 hover:scale-125 hover:z-10 hover:relative hover:shadow-lg block mx-1" style={{ transformOrigin: "center bottom" }} />
+              </a>
+              <a href="https://www.nngroup.com/books/designing-web-usability/" target="_blank" rel="noopener noreferrer" className="inline-block no-underline border-0 leading-none">
+                <img src="/i/books/designing-web-usability.jpg" alt="Designing Web Usability" className="h-24 w-auto max-w-36 object-contain rounded shadow-md transition-transform duration-300 hover:scale-125 hover:z-10 hover:relative hover:shadow-lg block mx-1" style={{ transformOrigin: "center bottom" }} />
+              </a>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-8 pt-8 pb-6 flex flex-col items-start text-left">
+            <h4 className="text-lg font-medium mb-3 text-gray-900">{t.paywalls}</h4>
+            <p className="text-base text-gray-600 mb-4 leading-relaxed">{t.learningHardWay}</p>
           </div>
         </div>
         
-        <SmallCards 
-          title={t.products}
-          items={[
-            {
-              title: "Synthetic data",
-              description: "Custom datasets for enterprise clients",
-              link: "https://generated.photos/datasets"
-            },
+        {/* PRODUCTS WE'VE LAUNCHED */}
+        <div className="mb-12">
+          <h2 className="text-sm font-medium mb-8 text-gray-600 uppercase tracking-wider">{t.products}</h2>
+          <SmallCards 
+            title=""
+            items={[
+              {
+                title: "Synthetic data",
+                description: "Custom datasets for enterprise clients",
+                link: "https://generated.photos/datasets"
+              },
             {
               title: "Largest graphics supplier to Canva",
               description: "Industry partnership providing design assets"
@@ -181,16 +225,27 @@ export default function Experience() {
               description: "Industry standard for icons, now with AI generator",
               link: "https://icons8.com/icons"
             }
-          ]}
-        />
+            ]}
+          />
+        </div>
 
-        <LargeCards 
-          title="Key Achievements"
-          items={[
-            {
-              title: "4M+ Users Globally",
-              description: "Serving millions of designers and developers worldwide with AI-generated content and design tools"
-            },
+        <div className="mb-12 mt-8 rounded-xl overflow-hidden border border-gray-200">
+          <video autoPlay muted loop playsInline className="w-full h-auto block">
+            <source src="/i/human-generator.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        {/* Achievements */}
+        <div className="mb-12">
+          <h2 className="text-sm font-medium mb-8 text-gray-600 uppercase tracking-wider">ACHIEVEMENTS</h2>
+          <SmallCards 
+            title=""
+            items={[
+              {
+                title: "4M+ Users Globally",
+                description: "Serving millions of designers and developers worldwide with AI-generated content and design tools"
+              },
             {
               title: "150+ Team Members",
               description: "Leading a distributed team of professionals across multiple time zones and countries"
@@ -215,232 +270,62 @@ export default function Experience() {
               title: "Global Perspective",
               description: "Operating from Argentina while building products used worldwide, bringing unique international insights"
             }
-          ]}
-        />
-        
-        <div className="video-container">
-          <video autoPlay muted loop playsInline>
-            <source src="/i/human-generator.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            ]}
+          />
+        </div>
+
+        {/* Metrics */}
+        <div className="mb-12">
+          <div className="flex flex-nowrap justify-center gap-4 md:gap-8 lg:gap-16 mt-8 overflow-x-auto" style={{ paddingTop: '32px', paddingBottom: '60px' }}>
+            {[
+              { number: '4M', icon: '👥', label: 'users', sublabel: 'Globally' },
+              { number: '150', icon: '👥', label: 'team', sublabel: '' },
+              { number: '$0', icon: '', label: 'equity sold', sublabel: '' },
+              { number: '$0', icon: '', label: 'debt', sublabel: '' },
+              { number: `${new Date().getFullYear() - 2002}`, icon: '', label: 'years', sublabel: 'creative tech' },
+              { number: '$54.6K', icon: '', label: 'avg server', sublabel: 'price' },
+              { number: '1st', icon: '', label: 'vendor of', sublabel: 'Canva' }
+            ].map((metric, index) => (
+              <div key={index} className="text-center flex-shrink-0 min-w-[80px] max-w-[120px]">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary">
+                  {metric.number} {metric.icon}
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mt-1 md:mt-2 leading-tight break-words">
+                  {metric.label}
+                  {metric.sublabel && <><br/>{metric.sublabel}</>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* GOVERNMENT & REGULATORY */}
+        <div className="mb-12">
+          <h2 className="text-sm font-medium mb-8 text-gray-600 uppercase tracking-wider">GOVERNMENT & REGULATORY</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-8 w-full">
+            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Government & Regulatory</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">I consult governments on AI regulation, creative tools, intellectual property, and ethics. The agencies I've worked with:</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <span className="fi fi-eu text-6xl mb-4 block"></span>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">European Commission</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">AI regulation and policy consultation for the European Union</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <span className="fi fi-us text-6xl mb-4 block"></span>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">U.S. Department of Justice</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Antitrust and competition matters related to creative tech</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <span className="fi fi-gb text-6xl mb-4 block"></span>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">UK Competition and Markets Authority</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Antitrust and competition matters related to creative tech</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <style jsx>{`
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .section-heading {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.8rem;
-            color: var(--secondary-color);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2rem;
-        }
-
-        .hero-section {
-            background: var(--hero-bg);
-            padding: 4rem 0 2rem 0;
-            margin-bottom: 3rem;
-        }
-
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin: 0 0 1.5rem 0;
-            color: var(--primary-color);
-            line-height: 1.1;
-            font-family: 'DotGothic16', sans-serif;
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .experience-image {
-            max-width: 100%;
-            max-height: 400px;
-            height: auto;
-            width: auto;
-        }
-
-        @media (min-width: 768px) {
-            .hero-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .hero-image {
-                justify-content: center;
-            }
-        }
-
-        .fun-title {
-            margin-top: 28px !important;
-            margin-bottom: 0 !important;
-            position: relative;
-            display: inline-block;
-            font-size: 3rem;
-            font-weight: 400 !important;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            line-height: 1.1;
-        }
-
-        .fun-title-fill {
-            position: relative;
-            color: #222;
-            font-size: 2.5rem !important;
-            font-weight: 400 !important;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            z-index: 2;
-            text-shadow:
-                -1px 0 0 #dd9e8e,
-                1px 0 0 #53cb82;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin: 0 0 1rem 0;
-            font-weight: 400;
-        }
-
-        .description p {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            margin: 0 0 1rem 0;
-            line-height: 1.6;
-        }
-        
-        .tools-intro {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin: 1.5rem 0;
-            line-height: 1.4;
-            font-weight: 400;
-        }
-
-        .tools-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .tool-card {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 32px rgba(69,93,204,0.07), 0 1.5px 4px rgba(0,0,0,0.03);
-            padding: 2rem 1.5rem 1.5rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            transition: all 0.3s ease;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .tool-card h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin: 0 0 1.5rem 0;
-            color: var(--primary-color);
-            line-height: 1.1;
-            font-family: 'DotGothic16', sans-serif;
-        }
-
-        .tool-card p {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            margin: 0 0 1rem 0;
-            line-height: 1.5;
-        }
-
-        .book-covers {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .book-covers a {
-            display: inline-block;
-            text-decoration: none;
-            border: none;
-            line-height: 0; /* Remove extra space below images */
-        }
-
-        .book-cover {
-            height: 100px;
-            width: auto;
-            max-width: 150px; /* Adjusted for larger height */
-            object-fit: contain;
-            border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: block;
-            transform-origin: center bottom;
-            margin: 0 5px;
-        }
-
-        .book-cover:hover {
-            transform: scale(1.3);
-            z-index: 1;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-
-
-        .video-container {
-            margin-top: 2rem;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .video-container video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .experience-grid {
-                display: block;
-            }
-            
-            .experience-grid > div {
-                margin-bottom: 2rem;
-            }
-
-            .tools-section {
-                grid-template-columns: 1fr;
-            }
-        }
-      `}</style>
     </Layout>
   )
 }

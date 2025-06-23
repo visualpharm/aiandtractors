@@ -16,9 +16,6 @@ export default function FormulariosStartupArgentina() {
 
       <div className="forms-page">
         <div className="container">
-          <div className="breadcrumb">
-            <Link href="/es">← Volver al inicio</Link>
-          </div>
 
           <header className="page-header">
             <h1>🚀 Cómo iniciar un emprendimiento con socios en Argentina</h1>

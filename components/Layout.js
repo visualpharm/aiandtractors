@@ -47,6 +47,37 @@ export default function Layout({ children }) {
   
   const t = translations[locale] || translations.en
   
+  // Footer links pool with randomization
+  const getRandomFooterLinks = () => {
+    const linkPools = {
+      en: [
+        { href: "/ai-keynote-speaker", text: "AI Keynote Speaker" },
+        { href: "/argentina-ai-speaker", text: "Argentina AI Speaker" },
+        { href: "/argentina-keynote-speaker", text: "Argentina Keynote Speaker" },
+        { href: "https://recharge.com.ar", text: "Shelter Argentina" },
+        { href: "https://ilbuco.com.ar", text: "Coliving Argentina" }
+      ],
+      es: [
+        { href: "/es/ia-speaker", text: "IA Speaker" },
+        { href: "/es/experto-ia", text: "Experto en IA" },
+        { href: "/es/formularios-startup-argentina", text: "Formularios Startup Argentina" },
+        { href: "https://recharge.com.ar", text: "Refugio Argentina" },
+        { href: "https://ilbuco.com.ar", text: "Coliving Argentina" }
+      ],
+      pt: [
+        { href: "/pt/speaker-ia", text: "Speaker IA" },
+        { href: "/pt/experto-ia", text: "Experto em IA" },
+        { href: "https://recharge.com.ar", text: "Abrigo Argentina" },
+        { href: "https://ilbuco.com.ar", text: "Coliving Argentina" }
+      ]
+    }
+    
+    const pool = linkPools[locale] || linkPools.en
+    // Shuffle and take 3-4 random links
+    const shuffled = [...pool].sort(() => Math.random() - 0.5)
+    return shuffled.slice(0, Math.min(4, shuffled.length))
+  }
+  
   // Helper function to get language-aware URL
   const getLocalizedUrl = (path) => {
     if (locale === 'en') return path
@@ -150,27 +181,9 @@ export default function Layout({ children }) {
         <div className="footer-content">
           <p>© {new Date().getFullYear()} Ivan Braun</p>
           <div className="footer-links">
-            {locale === 'en' && (
-              <>
-                <Link href="/ai-keynote-speaker">AI Keynote Speaker</Link>
-                <Link href="/argentina-ai-speaker">Argentina AI Speaker</Link>
-                <Link href="/argentina-keynote-speaker">Argentina Keynote Speaker</Link>
-              </>
-            )}
-            {locale === 'es' && (
-              <>
-                <Link href="/es/ia-speaker">IA Speaker</Link>
-                <Link href="/es/experto-ia">Experto en IA</Link>
-                <Link href="/es/formularios-startup-argentina">Formularios Startup Argentina</Link>
-              </>
-            )}
-            {locale === 'pt' && (
-              <>
-                <Link href="/pt/speaker-ia">Speaker IA</Link>
-                <Link href="/pt/experto-ia">Experto em IA</Link>
-                <Link href="/pt/speaker-ia">Palestrante IA Brasil</Link>
-              </>
-            )}
+            {getRandomFooterLinks().map((link, index) => (
+              <Link key={index} href={link.href}>{link.text}</Link>
+            ))}
           </div>
         </div>
       </footer>

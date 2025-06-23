@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import SmallCards from '../components/SmallCards'
@@ -21,7 +22,11 @@ const translations = {
     enterpriseDesc: "We supply large-scale resources and custom datasets to enterprise clients and are the largest graphics supplier to Canva.",
     genYou: "GenYOU – personalized AI selfies",
     faceGen: "Face Generator – real-time faces", 
-    humanGen: "Human Generator – full-body humans"
+    humanGen: "Human Generator – full-body humans",
+    toolsIntro: "My three tools are:",
+    booksFormed: "Books that formed me:",
+    learningHardWay: "Learning it all hard way",
+    products: "Products"
   },
   es: {
     title: "Experiencia - Ivan Braun",
@@ -38,7 +43,11 @@ const translations = {
     enterpriseDesc: "Suministramos recursos a gran escala y conjuntos de datos personalizados a clientes empresariales y somos el mayor proveedor de gráficos para Canva.",
     genYou: "GenYOU – selfies de IA personalizadas",
     faceGen: "Face Generator – caras en tiempo real",
-    humanGen: "Human Generator – humanos de cuerpo completo"
+    humanGen: "Human Generator – humanos de cuerpo completo",
+    toolsIntro: "Mis tres herramientas son:",
+    booksFormed: "Libros que me formaron:",
+    learningHardWay: "Aprendiéndolo todo por las malas",
+    products: "Productos"
   },
   pt: {
     title: "Experiência - Ivan Braun",
@@ -55,13 +64,27 @@ const translations = {
     enterpriseDesc: "Fornecemos recursos em larga escala e conjuntos de dados personalizados para clientes empresariais e somos o maior fornecedor de gráficos para o Canva.",
     genYou: "GenYOU – selfies de IA personalizadas",
     faceGen: "Face Generator – rostos em tempo real",
-    humanGen: "Human Generator – humanos de corpo inteiro"
+    humanGen: "Human Generator – humanos de corpo inteiro",
+    toolsIntro: "Minhas três ferramentas são:",
+    booksFormed: "Livros que me formaram:",
+    learningHardWay: "Aprendendo tudo da maneira difícil",
+    products: "Produtos"
   }
 }
 
 export default function Experience() {
   const router = useRouter()
-  const { locale = 'en' } = router
+  // For static export, detect locale from path
+  const getLocaleFromPath = () => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname
+      if (path.startsWith('/es')) return 'es'
+      if (path.startsWith('/pt')) return 'pt'
+    }
+    return 'en'
+  }
+  
+  const locale = getLocaleFromPath()
   const t = translations[locale] || translations.en
   
   // Set page title
@@ -80,12 +103,19 @@ export default function Experience() {
             <div className="hero-content">
               <h1>{t.heading}</h1>
               <div className="description">
-                <p>I'm a serial entrepreneur who launches bootstrapped products related to AI and design. My core experience is building AI products from zero, with no venture capital, and monetize them early.</p>
-                <h2 className="tools-intro">My three tools are:</h2>
+                <p>{t.intro}</p>
+                <h2 className="tools-intro">{t.toolsIntro}</h2>
               </div>
             </div>
             <div className="hero-image">
-              <img src="/i/experience.png" alt="Ivan Braun Experience" className="experience-image" />
+              <Image 
+                src="/i/test-large-image.jpg" 
+                alt="Ivan Braun Experience" 
+                width={800}
+                height={600}
+                className="experience-image" 
+                priority
+              />
             </div>
           </div>
         </div>
@@ -93,7 +123,7 @@ export default function Experience() {
         <div className="tools-section">
           <div className="tool-card">
             <h4>{t.customerDev}</h4>
-            <p>Books that formed me:</p>
+            <p>{t.booksFormed}</p>
             <div className="book-covers">
               <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" target="_blank" rel="noopener noreferrer">
                 <img src="/i/books/interviewing-users.jpg" alt="Interviewing Users" className="book-cover" />
@@ -106,7 +136,7 @@ export default function Experience() {
           
           <div className="tool-card">
             <h4>{t.uxDesign}, {t.uxSubtitle}</h4>
-            <p>Books that formed me:</p>
+            <p>{t.booksFormed}</p>
             <div className="book-covers">
               <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" target="_blank" rel="noopener noreferrer">
                 <img src="/i/books/about-face.webp" alt="About Face" className="book-cover" />
@@ -119,12 +149,12 @@ export default function Experience() {
           
           <div className="tool-card">
             <h4>{t.paywalls}</h4>
-            <p>Learning it all hard way</p>
+            <p>{t.learningHardWay}</p>
           </div>
         </div>
         
         <SmallCards 
-          title="Products"
+          title={t.products}
           items={[
             {
               title: "Synthetic data",

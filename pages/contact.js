@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
+import Icon from '../components/Icon'
 
 const translations = {
   en: {
@@ -8,8 +9,8 @@ const translations = {
     description: "Get in touch with Ivan Braun for speaking engagements, consulting, or investment opportunities.",
     heading: "Contact",
     intro: "I'm always interested in connecting with fellow entrepreneurs, potential clients, and anyone passionate about AI and innovation.",
-    lookingFor: "✅ Looking For",
-    notLookingFor: "❌ Not Looking For",
+    lookingFor: "Looking For",
+    notLookingFor: "Not Looking For",
     getInTouch: "Get in Touch",
     speaking: "Speaking",
     speakingDesc: "AI conferences, corporate events, startup talks",
@@ -22,8 +23,8 @@ const translations = {
     generalPartnerships: "General partnerships", 
     salesPitches: "Sales pitches",
     supportChannels: "Icons8 & Generated Photos: please use official support channels",
-    email: "📧 Email:",
-    telegram: "📲 Telegram:",
+    email: "Email:",
+    telegram: "Telegram:",
     location: "Location:"
   },
   es: {
@@ -31,8 +32,8 @@ const translations = {
     description: "Ponte en contacto con Ivan Braun para conferencias, consultoría u oportunidades de inversión.",
     heading: "Contacto",
     intro: "Siempre estoy interesado en conectar con otros emprendedores, clientes potenciales y cualquier persona apasionada por la IA y la innovación.",
-    lookingFor: "✅ Busco",
-    notLookingFor: "❌ No Busco", 
+    lookingFor: "Busco",
+    notLookingFor: "No Busco", 
     getInTouch: "Ponte en Contacto",
     speaking: "Conferencias",
     speakingDesc: "Conferencias de IA, eventos corporativos, charlas para startups",
@@ -45,8 +46,8 @@ const translations = {
     generalPartnerships: "Asociaciones generales",
     salesPitches: "Pitches de ventas", 
     supportChannels: "Icons8 & Generated Photos: usa los canales oficiales de soporte",
-    email: "📧 Email:",
-    telegram: "📲 Telegram:",
+    email: "Email:",
+    telegram: "Telegram:",
     location: "Ubicación:"
   },
   pt: {
@@ -54,8 +55,8 @@ const translations = {
     description: "Entre em contato com Ivan Braun para palestras, consultoria ou oportunidades de investimento.",
     heading: "Contato", 
     intro: "Estou sempre interessado em me conectar com outros empreendedores, clientes potenciais e qualquer pessoa apaixonada por IA e inovação.",
-    lookingFor: "✅ Procurando Por",
-    notLookingFor: "❌ Não Procurando Por",
+    lookingFor: "Procurando Por",
+    notLookingFor: "Não Procurando Por",
     getInTouch: "Entre em Contato",
     speaking: "Palestras",
     speakingDesc: "Conferências de IA, eventos corporativos, talks para startups",
@@ -68,8 +69,8 @@ const translations = {
     generalPartnerships: "Parcerias gerais",
     salesPitches: "Pitches de vendas",
     supportChannels: "Icons8 & Generated Photos: use os canais oficiais de suporte",
-    email: "📧 Email:",
-    telegram: "📲 Telegram:", 
+    email: "Email:",
+    telegram: "Telegram:", 
     location: "Localização:"
   }
 }
@@ -113,7 +114,7 @@ export default function Contact() {
         
         <div className="contact-content">
           <div className="contact-section">
-            <h2 className="section-title">{t.lookingFor}</h2>
+            <h2 className="section-title"><Icon name="checkmark" />{t.lookingFor}</h2>
             <ul className="looking-for-list">
               <li><strong>{t.speaking}</strong>: {t.speakingDesc}</li>
               <li><strong>{t.investing}</strong>: {t.investingDesc}</li>
@@ -122,7 +123,7 @@ export default function Contact() {
           </div>
           
           <div className="contact-section">
-            <h2 className="section-title">{t.notLookingFor}</h2>
+            <h2 className="section-title"><Icon name="cancel" />{t.notLookingFor}</h2>
             <ul className="not-looking-for-list">
               <li>{t.investmentInCompanies}</li>
               <li>{t.acquisitionOffers}</li>
@@ -136,10 +137,10 @@ export default function Contact() {
             <h2 className="section-title">{t.getInTouch}</h2>
             <div className="contact-info">
               <div className="contact-item">
-                <strong>{t.email}</strong> <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
+                <Icon name="email" /><strong>{t.email}</strong> <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
               </div>
               <div className="contact-item">
-                <strong>{t.telegram}</strong> <a href="https://t.me/Icons8">@Icons8</a>
+                <Icon name="telegram" /><strong>{t.telegram}</strong> <a href="https://t.me/Icons8">@Icons8</a>
               </div>
               <div className="contact-item">
                 <strong>{t.location}</strong> Cariló, Argentina

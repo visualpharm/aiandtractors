@@ -268,3 +268,6 @@ Text: I’ve built a villa to invite fellow tech founders. It’s a great expens
 If you book it, I’ll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired). 
 
 The buttons should be Book and Learn more.
+
+# TItle fonts
+For all the titles, once and forever. All pages have DotGothic16 titles. The only exception is the book page, which uses Cormorant

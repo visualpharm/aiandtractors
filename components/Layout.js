@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import Image from 'next/image'
+import Script from 'next/script'
 
 const translations = {
   en: {
@@ -50,10 +52,16 @@ export default function Layout({ children }) {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
-        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet" />
       </Head>
+      <Script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js" strategy="afterInteractive" />
+
+      {/* Global typography */}
+      <style jsx global>{`
+        h1 {
+          font-family: 'DotGothic16', sans-serif;
+        }
+      `}</style>
       
       <nav className="top-nav">
         <div className="nav-container">
@@ -68,14 +76,47 @@ export default function Layout({ children }) {
           </div>
           <div className="nav-right">
             <div className="language-switcher">
-              <Link href="/">
-                <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" alt="English" />
+              <Link href="/" style={{ display: 'flex' }}>
+                <Image 
+                  src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
+                  alt="English" 
+                  width={24}
+                  height={24}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)'
+                  }}
+                />
               </Link>
-              <Link href="/es">
-                <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" alt="Español" />
+              <Link href="/es" style={{ display: 'flex' }}>
+                <Image 
+                  src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" 
+                  alt="Español" 
+                  width={24}
+                  height={24}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)'
+                  }}
+                />
               </Link>
-              <Link href="/pt">
-                <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" alt="Português" />
+              <Link href="/pt" style={{ display: 'flex' }}>
+                <Image 
+                  src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" 
+                  alt="Português" 
+                  width={24}
+                  height={24}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)'
+                  }}
+                />
               </Link>
             </div>
           </div>

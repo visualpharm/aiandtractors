@@ -73,9 +73,14 @@ export default function Experience() {
 
       <div className="container">
         <div className="hero-section">
-          <div className="hero-content">
-            <h1 className="fun-title"><span className="fun-title-fill">Experience</span></h1>
-            <p className="description">I'm a serial entrepreneur who launches bootstrapped products related to AI and design. My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
+          <div className="hero-layout">
+            <div className="hero-content">
+              <h1 className="fun-title"><span className="fun-title-fill">Experience</span></h1>
+              <p className="description">I'm a serial entrepreneur who launches bootstrapped products related to AI and design. My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
+            </div>
+            <div className="hero-image">
+              <img src="/i/experience.png" alt="Ivan Braun Experience" className="experience-image" />
+            </div>
           </div>
         </div>
         
@@ -84,8 +89,12 @@ export default function Experience() {
             <h4>{t.customerDev}</h4>
             <p>Books that formed me:</p>
             <div className="book-covers">
-              <img src="https://m.media-amazon.com/images/I/51MEnn8ZvbL.jpg" alt="Interviewing Users" className="book-cover" />
-              <img src="/i/books/competing-against-luck.jpg" alt="Competing Against Luck" className="book-cover" />
+              <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" target="_blank" rel="noopener noreferrer">
+                <img src="/i/books/interviewing-users.jpg" alt="Interviewing Users" className="book-cover" />
+              </a>
+              <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" target="_blank" rel="noopener noreferrer">
+                <img src="/i/books/competing-against-luck.jpg" alt="Competing Against Luck" className="book-cover" />
+              </a>
             </div>
           </div>
           
@@ -93,8 +102,19 @@ export default function Experience() {
             <h4>{t.uxDesign}, {t.uxSubtitle}</h4>
             <p>Books that formed me:</p>
             <div className="book-covers">
-              <img src="https://m.media-amazon.com/images/I/51Rhf2DWNtL.jpg" alt="About Face" className="book-cover" />
-              <img src="https://media.nngroup.com/media/images/bookCover.2e16d0ba.fill-400x600.png" alt="Designing Web Usability" className="book-cover" />
+              <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" target="_blank" rel="noopener noreferrer">
+                <img src="/i/books/about-face.webp" alt="About Face" className="book-cover" />
+              </a>
+              <a href="https://www.nngroup.com/books/designing-web-usability/" target="_blank" rel="noopener noreferrer">
+                <img 
+                src="https://media.nngroup.com/media/books/designing-web-usability.jpg" 
+                alt="Designing Web Usability" 
+                className="book-cover" 
+                onError={(e) => {
+                  e.target.src = 'https://via.placeholder.com/150x200?text=Book+Cover';
+                }} 
+              />
+              </a>
             </div>
           </div>
           
@@ -206,8 +226,38 @@ export default function Experience() {
             margin-bottom: 3rem;
         }
 
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
         .hero-content {
             max-width: 800px;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .experience-image {
+            max-width: 100%;
+            max-height: 400px;
+            height: auto;
+            width: auto;
+        }
+
+        @media (min-width: 768px) {
+            .hero-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero-image {
+                justify-content: center;
+            }
         }
 
         .fun-title {
@@ -217,16 +267,17 @@ export default function Experience() {
             display: inline-block;
             font-size: 3rem;
             font-weight: 400 !important;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            font-family: 'Cormorant', serif !important;
             line-height: 1.1;
+            color: #950303;
         }
 
         .fun-title-fill {
             position: relative;
-            color: #222;
+            color: #950303;
             font-size: 2.5rem !important;
             font-weight: 400 !important;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            font-family: 'Cormorant', serif !important;
             z-index: 2;
             text-shadow:
                 -1px 0 0 #dd9e8e,
@@ -288,17 +339,37 @@ export default function Experience() {
 
         .book-covers {
             display: flex;
-            gap: 0.5rem;
-            align-items: flex-start;
+            gap: 1rem;
+            align-items: center;
             flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .book-covers a {
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            line-height: 0; /* Remove extra space below images */
         }
 
         .book-cover {
-            width: 20px;
-            height: 30px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            height: 100px;
+            width: auto;
+            max-width: 150px; /* Adjusted for larger height */
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: block;
+            transform-origin: center bottom;
+            margin: 0 5px;
+        }
+
+        .book-cover:hover {
+            transform: scale(1.3);
+            z-index: 1;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
 

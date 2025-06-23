@@ -9,6 +9,7 @@ export default function Book() {
       <Head>
         <title>Book - Ivan Braun</title>
         <meta name="description" content="The book by Ivan Braun on building AI companies without venture capital." />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="container">
@@ -16,7 +17,7 @@ export default function Book() {
           <div className="hero-content">
             <div className="hero-layout">
               <div className="hero-text">
-                <h1 className="fun-title"><span className="fun-title-fill">Zero to AI</span></h1>
+                <h1 className="book-title text-6xl md:text-8xl font-normal mb-4" style={{ fontFamily: 'Cormorant', color: '#950303' }}>Zero to AI</h1>
                 <p className="subtitle">A no-nonsense guide to building and scaling tech companies without traditional funding. Based on real experience growing teams of 150+ people and serving millions of users, this book offers practical lessons in management, marketing, and finance that actually work when you're bootstrapping.</p>
               </div>
               <div className="hero-image">
@@ -36,23 +37,23 @@ export default function Book() {
               title=""
               items={[
                 {
-                  title: "1. Kill budgets, not dreams",
+                  title: "Kill budgets, not dreams",
                   description: "Why budgets are guesswork and how to find real market prices"
                 },
                 {
-                  title: "2. The screenshot tool",
+                  title: "The screenshot tool",
                   description: "Using Hubstaff to focus on process, not micromanaging results"
                 },
                 {
-                  title: "3. Fire the \"my life sucks\" people",
+                  title: "Fire the \"my life sucks\" people",
                   description: "Culture levels and why toxic employees destroy teams"
                 },
                 {
-                  title: "4. Scrum without being an asshole",
+                  title: "Scrum without being an asshole",
                   description: "Using frameworks so people can't blame you personally"
                 },
                 {
-                  title: "5. Too much control vs too little",
+                  title: "Too much control vs too little",
                   description: "Finding the balance between meetings and direction"
                 }
               ]}
@@ -66,19 +67,19 @@ export default function Book() {
               title=""
               items={[
                 {
-                  title: "6. Freemium is a pleasure",
+                  title: "Freemium is a pleasure",
                   description: "Build something viral first, add paywalls later"
                 },
                 {
-                  title: "7. Think about the evil side",
+                  title: "Think about the evil side",
                   description: "Why viral products get negative press (and that's okay)"
                 },
                 {
-                  title: "8. SEO for poor people",
+                  title: "SEO for poor people",
                   description: "Backlinks convert to traffic, everything else is noise"
                 },
                 {
-                  title: "9. ChatGPT CEO is different",
+                  title: "ChatGPT CEO is different",
                   description: "Getting mentioned in the few articles AI considers authoritative"
                 }
               ]}
@@ -92,19 +93,19 @@ export default function Book() {
               title=""
               items={[
                 {
-                  title: "10. Cherry-picking offers",
+                  title: "Cherry-picking offers",
                   description: "Always shopping for prices, getting the best deals"
                 },
                 {
-                  title: "11. Get pleasure from eliminating waste",
+                  title: "Get pleasure from eliminating waste",
                   description: "The joy of cutting inefficiencies immediately"
                 },
                 {
-                  title: "12. Offer everything except high salary",
+                  title: "Offer everything except high salary",
                   description: "Flexibility, learning, reduced hours before money"
                 },
                 {
-                  title: "13. The Zara photoshoot",
+                  title: "The Zara photoshoot",
                   description: "Getting what you need without inflated budgets"
                 }
               ]}
@@ -116,48 +117,75 @@ export default function Book() {
               <h2 className="fun-title"><span className="fun-title-fill">Excerpts</span></h2>
             </div>
             
-            <div className="excerpts-grid">
-              <div className="excerpt-block">
-                <h3>Kill budgets, not dreams</h3>
-                <p>Budgets are bullshit. They're some guess about optimal pricing that turns into gospel. Instead of budgets, find the real cost of things.</p>
-                <p>When we were doing photoshoots with photographers, our goal was to shoot three scenes: office, home, and pajamas. We went to Zara and purchased the clothing for it. No budget would do the trick - we just got what we needed and figured out the real price.</p>
-                <p>The budget mindset makes you lazy. "We have $5,000 for this" becomes an excuse to not shop around, not negotiate, not think. Kill that. Demand good prices from the market instead.</p>
+            <div className="grid grid-cols-8 gap-4">
+              {/* Row 1 */}
+              <div className="col-span-8 md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Kill budgets, not dreams</h3>
+                <div className="text-gray-700 space-y-3">
+                  <p>Budgets are bullshit. They're some guess about optimal pricing that turns into gospel. Instead of budgets, find the real cost of things.</p>
+                  <p>When we were doing photoshoots with photographers, our goal was to shoot three scenes: office, home, and pajamas. We went to Zara and purchased the clothing for it. No budget would do the trick - we just got what we needed and figured out the real price.</p>
+                  <p>The budget mindset makes you lazy. "We have $5,000 for this" becomes an excuse to not shop around, not negotiate, not think. Kill that. Demand good prices from the market instead.</p>
+                </div>
               </div>
+
               
-              <div className="excerpt-block">
-                <h3>The screenshot tool</h3>
-                <p>I require people to have a process, not specific results. This way, I don't have to always define new results and try to guess the next objective, which is irritating and hard for them. Instead, I trust them.</p>
-                <p>They work well if I give them a tracking tool like Hubstaff with screenshots. I know they're not watching YouTube or working for someone else. It's about focus on process, not micromanaging.</p>
-                <p>Some people think this is controversial. But it works. I focus on results through process, instead of constantly defining new objectives.</p>
+              {/* Row 2 */}
+              <div className="col-span-8 md:col-span-4 md:col-start-5 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">The screenshot tool</h3>
+                <div className="text-gray-700 space-y-3">
+                  <p>I require people to have a process, not specific results. This way, I don't have to always define new results and try to guess the next objective, which is irritating and hard for them. Instead, I trust them.</p>
+                  <p>They work well if I give them a tracking tool like Hubstaff with screenshots. I know they're not watching YouTube or working for someone else. It's about focus on process, not micromanaging.</p>
+                  <p>Some people think this is controversial. But it works. I focus on results through process, instead of constantly defining new objectives.</p>
+                </div>
               </div>
+
               
-              <div className="excerpt-block">
-                <h3>Freemium is a pleasure</h3>
-                <p>Freemium is something people share. If it's a free product, lean toward the free side. If you create a paid product nobody uses, that's a failure. If you create a freemium product that everybody's using and it's viral - that's pleasure.</p>
-                <p>You can add paywalls wherever you want later. It's much easier to monetize something people already love than to force people to pay for something they haven't tried.</p>
-                <p>We had one product reach millions of users with zero ad spend. When we added premium features, people converted because they already saw the value.</p>
-              </div>
+              {/* Spacer before Row 2 left indent */}
+
               
-              <div className="excerpt-block">
-                <h3>Always shopping for prices</h3>
-                <p>Cherry-picking offers is an art. We got $100K worth of GPU compute for $10K per year just by shopping cloud credits, trials, and beta access. Same approach works for office space, software, everything.</p>
-                <p>Most people are lazy about this. They see a price and accept it. But every price is negotiable, every service has competitors, every vendor has promotions.</p>
-                <p>Do it while it's worth your money. If you can get $1K by asking a simple question that takes you 3 minutes, that's $20K per hour! In contrast, getting $2 discount for the same time probably is not worth it.</p>
+              {/* Row 3 */}
+              <div className="col-span-8 md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Freemium is a pleasure</h3>
+                <div className="text-gray-700 space-y-3">
+                  <p>Freemium is something people share. If it's a free product, lean toward the free side. If you create a paid product nobody uses, that's a failure. If you create a freemium product that everybody's using and it's viral - that's pleasure.</p>
+                  <p>You can add paywalls wherever you want later. It's much easier to monetize something people already love than to force people to pay for something they haven't tried.</p>
+                  <p>We had one product reach millions of users with zero ad spend. When we added premium features, people converted because they already saw the value.</p>
+                </div>
               </div>
+
               
-              <div className="excerpt-block">
-                <h3>Offer everything except high salary</h3>
-                <p>Flexibility, learning, reduced hours before money. When hiring, most people focus on salary first. But there's so much more you can offer: flexible schedules, remote work, learning opportunities, interesting projects.</p>
-                <p>We found talented developers who valued remote work over $20K salary increases. Designers who preferred creative freedom over corporate benefits. When you can't compete on salary, compete on everything else.</p>
-                <p>The key is finding people who value what you can offer. Don't try to convince someone who only cares about money. Find the people who care about what you actually have.</p>
+              {/* Row 4 */}
+              <div className="col-span-8 md:col-span-4 md:col-start-5 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Always shopping for prices</h3>
+                <div className="text-gray-700 space-y-3">
+                  <p>Cherry-picking offers is an art. We got $100K worth of GPU compute for $10K per year just by shopping cloud credits, trials, and beta access. Same approach works for office space, software, everything.</p>
+                  <p>Most people are lazy about this. They see a price and accept it. But every price is negotiable, every service has competitors, every vendor has promotions.</p>
+                  <p>Do it while it's worth your money. If you can get $1K by asking a simple question that takes you 3 minutes, that's $20K per hour! In contrast, getting $2 discount for the same time probably is not worth it.</p>
+                </div>
               </div>
+
               
-              <div className="excerpt-block">
-                <h3>Think about the evil side</h3>
-                <p>Why viral products get negative press (and that's okay). When something goes viral, people will find the worst possible use case and write about it. Plan for this. Our face generation tool got criticized for deepfakes. Our icon library got called "cookie cutter design."</p>
-                <p>The negative coverage often drives more users than positive reviews. People hear about the controversy, try the product to see what the fuss is about, and become regular users. Don't be afraid of some negative press if your product is genuinely useful.</p>
-                <p>Just make sure the core product serves a real need. Controversy around a useless product kills it. Controversy around a useful product spreads it.</p>
+              {/* Row 5 */}
+              <div className="col-span-8 md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Offer everything except high salary</h3>
+                <div className="text-gray-700 space-y-3">
+                  <p>Flexibility, learning, reduced hours before money. When hiring, most people focus on salary first. But there's so much more you can offer: flexible schedules, remote work, learning opportunities, interesting projects.</p>
+                  <p>We found talented developers who valued remote work over $20K salary increases. Designers who preferred creative freedom over corporate benefits. When you can't compete on salary, compete on everything else.</p>
+                  <p>The key is finding people who value what you can offer. Don't try to convince someone who only cares about money. Find the people who care about what you actually have.</p>
+                </div>
               </div>
+
+              
+              {/* Row 6 */}
+              <div className="col-span-8 md:col-span-4 md:col-start-5 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Think about the evil side</h3>
+                <div className="text-gray-700 space-y-3">
+                  <p>Why viral products get negative press (and that's okay). When something goes viral, people will find the worst possible use case and write about it. Plan for this. Our face generation tool got criticized for deepfakes. Our icon library got called "cookie cutter design."</p>
+                  <p>The negative coverage often drives more users than positive reviews. People hear about the controversy, try the product to see what the fuss is about, and become regular users. Don't be afraid of some negative press if your product is genuinely useful.</p>
+                  <p>Just make sure the core product serves a real need. Controversy around a useless product kills it. Controversy around a useful product spreads it.</p>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -260,6 +288,21 @@ export default function Book() {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
+        .book-title {
+          font-family: 'Cormorant', serif;
+          font-size: 3.75rem; /* 6xl */
+          line-height: 1;
+          color: #950303;
+          margin-bottom: 1rem;
+          font-weight: 400;
+        }
+        
+        @media (min-width: 768px) {
+          .book-title {
+            font-size: 6rem; /* 8xl */
+          }
+        }
+        
         .fun-title {
             margin-top: 28px !important;
             margin-bottom: 0 !important;
@@ -281,6 +324,15 @@ export default function Book() {
             text-shadow:
                 -1px 0 0 #dd9e8e,
                 1px 0 0 #53cb82;
+        }
+        
+        .pixel-font {
+            font-family: 'Press Start 2P', 'Courier New', monospace !important;
+            text-shadow: none !important;
+            font-size: 2rem !important;
+            letter-spacing: -1px;
+            display: inline-block;
+            line-height: 1.2;
         }
 
         .subtitle {
@@ -307,17 +359,8 @@ export default function Book() {
             margin-top: 2rem;
         }
         
-        .excerpts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .excerpt-block {
-            
-        }
-        
+        /* Excerpt content styling */
+                
         .excerpt-block h3 {
             font-size: 1.2rem;
             font-weight: 600;

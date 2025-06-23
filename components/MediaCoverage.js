@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const translations = {
   en: { title: "Media Coverage" },
@@ -22,37 +23,100 @@ export default function MediaCoverage() {
         
         <div className="media-grid">
           <div className="media-card">
-            <img src="/i/logos/media/wp.png" alt="Washington Post" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '91px' }}>
+              <Image 
+                src="/i/logos/media/wp.png" 
+                alt="Washington Post" 
+                width={80}  /* 20% smaller */
+                height={40}  /* 20% smaller */
+                className="media-logo"
+              />
+            </div>
             <h3>Fake People</h3>
             <p><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/">Dating apps need women. Advertisers need diversity. AI companies offer a solution: Fake people.</a></p>
           </div>
           <div className="media-card">
-            <img src="/i/logos/media/bbc.svg" alt="BBC" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '63px' }}>
+              <Image 
+                src="/i/logos/media/bbc.svg" 
+                alt="BBC" 
+                width={100}
+                height={50}
+                className="media-logo"
+              />
+            </div>
             <h3>Deepfakes</h3>
             <p><a href="https://www.bbc.com/news/technology-51064933">Could deepfakes be used to train office workers?</a></p>
           </div>
           <div className="media-card">
-            <img src="/i/logos/media/der_spiegel.svg" alt="Der Spiegel" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '70px' }}>
+              <Image 
+                src="/i/logos/media/der_spiegel.svg" 
+                alt="Der Spiegel" 
+                width={130}  /* 30% larger */
+                height={39}  /* 30% larger */
+                className="media-logo"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
             <h3>AI Faces</h3>
             <p>Werbegesichter aus dem Computer: Ist hier noch irgendjemand echt?</p>
           </div>
           <div className="media-card">
-            <img src="/i/logos/media/la_repubblica.svg" alt="La Repubblica" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '63px' }}>
+              <Image 
+                src="/i/logos/media/la_repubblica.svg" 
+                alt="La Repubblica" 
+                width={130}  /* 30% larger */
+                height={65}  /* 30% larger */
+                className="media-logo"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
             <h3>Synthetic Portraits</h3>
             <p><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/">I 100mila volti di persone che non esistono</a></p>
           </div>
           <div className="media-card">
-            <img src="/i/logos/media/the_verge.svg" alt="The Verge" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '72px' }}>  {/* Adjusted for larger logo */}
+              <Image 
+                src="/i/logos/media/the_verge.svg" 
+                alt="The Verge" 
+                width={120}  /* 20% larger */
+                height={60}  /* 20% larger */
+                className="media-logo"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
             <h3>Stock Photos</h3>
             <p><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free">100,000 free AI-generated headshots put stock photo companies on notice</a></p>
           </div>
           <div className="media-card">
-            <img src="/i/logos/media/vice.svg" alt="Vice" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '70px' }}>
+              <Image 
+                src="/i/logos/media/vice.svg" 
+                alt="Vice" 
+                width={100}
+                height={50}
+                className="media-logo"
+                style={{
+                  height: '100%',
+                  width: 'auto',
+                }}
+              />
+            </div>
             <h3>AI Diversity</h3>
             <p><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/">Generated Photos Thinks It Can Solve Diversity With 100,000 Fake AI Faces</a></p>
           </div>
           <div className="media-card">
-            <img src="/i/logos/media/daily_mail.svg" alt="Daily Mail" className="media-logo" />
+            <div className="media-logo-wrapper" style={{ width: '103px' }}>
+              <Image 
+                src="/i/logos/media/daily_mail.svg" 
+                alt="Daily Mail" 
+                width={100}
+                height={50}
+                className="media-logo"
+              />
+            </div>
             <h3>AI Portraits</h3>
             <p><a href="https://www.dailymail.co.uk/sciencetech/article-7499107/Artists-create-100-000-ultra-realistic-AI-portraits.html">Artists create more than 100,000 ultra-realistic AI portraits</a></p>
           </div>
@@ -116,11 +180,21 @@ export default function MediaCoverage() {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        .media-logo-wrapper {
+          height: 30px;
+          width: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+        
         .media-logo {
-            width: 70px;
-            height: 35px;
-            object-fit: contain;
-            margin-bottom: 0.4rem;
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
         }
 
         .media-card h3 {

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const translations = {
   en: {
@@ -43,23 +44,53 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
             <p className="subtitle">{subtitle}</p>
             <p className="description">{description}</p>
             <div className="cta-buttons">
-              <button 
-                className="cta-button cta-primary"
-                onClick={() => router.push('/contact')}
-              >
-                <p className="framer-text">{t.contact}</p>
-              </button>
-              <button 
-                className="cta-button cta-secondary"
-                onClick={() => router.push('/visit')}
-              >
-                <p className="framer-text">{t.visit}</p>
-              </button>
+              {imageUrl ? (
+                <>
+                  <button 
+                    className="cta-button cta-primary"
+                    onClick={() => window.open('https://book.ilbuco.com.ar/', '_self')}
+                  >
+                    <p className="framer-text">Book</p>
+                  </button>
+                  <button 
+                    className="cta-button cta-secondary"
+                    onClick={() => window.open('https://ilbuco.com.ar', '_self')}
+                  >
+                    <p className="framer-text">Learn more</p>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    className="cta-button cta-primary"
+                    onClick={() => router.push('/contact')}
+                  >
+                    <p className="framer-text">{t.contact}</p>
+                  </button>
+                  <button 
+                    className="cta-button cta-secondary"
+                    onClick={() => router.push('/visit')}
+                  >
+                    <p className="framer-text">{t.visit}</p>
+                  </button>
+                </>
+              )}
             </div>
           </div>
           <div className="hero-image">
             <a href={imageUrl || "/i/ivan-robot.png"} data-fancybox="profile">
-              <img src={imageUrl || "/i/ivan-robot.png"} alt={imageUrl ? "Ivan Braun's location in Cariló" : "Ivan Braun AI Avatar"} />
+              <Image 
+                src={imageUrl || "/i/ivan-robot.png"} 
+                alt={imageUrl ? "Ivan Braun's location in Cariló" : "Ivan Braun AI Avatar"}
+                width={500}
+                height={500}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+                priority
+              />
             </a>
           </div>
         </div>

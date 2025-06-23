@@ -1,13 +1,15 @@
-import LargeCards from './LargeCards'
+import LargeCards from './LargeCards';
 
 export default function Awards() {
   return (
-    <section className="awards-section">
-      <div className="main-grid">
-        <div className="full-width">
-          <h2 className="fun-title"><span className="fun-title-fill">Awards & Recognition</span></h2>
-        </div>
-        
+    <section className="bg-white py-16 -mt-20 mb-5">
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 mt-8">
+        <h2 className="text-3xl font-semibold text-gray-900 mb-6">Awards & Recognition</h2>
+      </div>
+
+      {/* Awards Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <LargeCards 
           title=""
           items={[
@@ -34,116 +36,23 @@ export default function Awards() {
           ]}
         />
         
-        <div className="full-width" style={{ marginTop: '28px' }}>
-          <div className="metrics-row">
-            <div className="metric">
-              <div className="metric-number">4M+</div>
-              <div className="metric-label">Users Globally</div>
-            </div>
-            <div className="metric">
-              <div className="metric-number">150+</div>
-              <div className="metric-label">Team Members</div>
-            </div>
-            <div className="metric">
-              <div className="metric-number">0</div>
-              <div className="metric-label">Equity Sold</div>
-            </div>
-            <div className="metric">
-              <div className="metric-number">0</div>
-              <div className="metric-label">Debt</div>
-            </div>
+        {/* Metrics */}
+        <div className="mt-7">
+          <div className="flex flex-wrap justify-center gap-16 mt-8">
+            {[
+              { number: '4M+', label: 'Users Globally' },
+              { number: '150+', label: 'Team Members' },
+              { number: '0', label: 'Equity Sold' },
+              { number: '0', label: 'Debt' }
+            ].map((metric, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl font-semibold text-primary">{metric.number}</div>
+                <div className="text-sm uppercase tracking-wider text-gray-500 mt-2">{metric.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .awards-section {
-          background: #fff;
-          padding: 4rem 0 0.375rem 0;
-          margin: 3rem 0;
-        }
-
-        .main-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          max-width: 1200px;
-          margin: 0 auto 4rem auto;
-          padding: 0 2rem;
-          font-family: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
-        }
-        
-        .full-width {
-          width: 100%;
-          margin-bottom: 0.5rem;
-        }
-        
-        .full-width h2 {
-          font-size: 1.6rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
-        }
-        
-        .fun-title {
-          margin-top: 28px !important;
-          margin-bottom: 0 !important;
-          position: relative;
-          display: inline-block;
-          font-size: 3rem;
-          font-weight: 400 !important;
-          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-          line-height: 1.1;
-        }
-        
-        .fun-title-fill {
-          position: relative;
-          color: #222;
-          font-size: 2.5rem !important;
-          font-weight: 400 !important;
-          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-          z-index: 2;
-          text-shadow:
-            -1px 0 0 #dd9e8e,
-            1px 0 0 #53cb82;
-        }
-
-        .metrics-row {
-          display: flex;
-          justify-content: center;
-          gap: 4rem;
-          flex-wrap: wrap;
-          margin-top: 2rem;
-        }
-
-        .metric {
-          text-align: center;
-        }
-
-        .metric-number {
-          font-size: 2.5rem;
-          font-weight: 600;
-          color: var(--primary-color);
-          line-height: 1;
-          margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-          font-size: 0.9rem;
-          color: var(--secondary-color);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 768px) {
-          .metrics-row {
-            gap: 2rem;
-          }
-          
-          .metric-number {
-            font-size: 2rem;
-          }
-        }
-      `}</style>
     </section>
-  )
+  );
 }

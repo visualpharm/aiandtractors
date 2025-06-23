@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Image from 'next/image'
 
 const translations = {
   en: { title: "Speaking" },
@@ -46,8 +47,18 @@ export default function Speaking() {
       
       <div className="inclined-grid">
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/conference.jpeg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/conference.jpeg" alt="Conference event" />
+          <a href="/i/conferences/conference.jpeg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image 
+              src="/i/conferences/conference.jpeg" 
+              alt="Conference event" 
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
         
@@ -79,8 +90,18 @@ export default function Speaking() {
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/award.jpeg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/award.jpeg" alt="Receiving award" />
+          <a href="/i/conferences/award.jpeg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image 
+              src="/i/conferences/award.jpeg" 
+              alt="Receiving award" 
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
         
@@ -91,26 +112,66 @@ export default function Speaking() {
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/conferece-speaker.jpg" alt="Speaking event" />
+          <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image 
+              src="/i/conferences/conferece-speaker.jpg" 
+              alt="Speaking event" 
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/fl.jpg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/fl.jpg" alt="Conference networking" />
+          <a href="/i/conferences/fl.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image 
+              src="/i/conferences/fl.jpg" 
+              alt="Conference networking" 
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/visual1st-awards-winners.png" data-fancybox="conference-gallery">
-            <img src="/i/conferences/visual1st-awards-winners.png" alt="Visual 1st Conference awards" />
+          <a href="/i/conferences/visual1st-awards-winners.png" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image 
+              src="/i/conferences/visual1st-awards-winners.png" 
+              alt="Visual 1st Conference awards" 
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/fl2.jpg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/fl2.jpg" alt="Conference networking" />
+          <a href="/i/conferences/fl2.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image 
+              src="/i/conferences/fl2.jpg" 
+              alt="Conference networking" 
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
       </div>
@@ -221,20 +282,23 @@ export default function Speaking() {
         }
 
         .photo-card {
-            position: relative;
-            height: 240px;
-            overflow: hidden;
+          position: relative;
+          overflow: hidden;
         }
-
+        
+        .photo-card a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+        
         .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
+          transition: transform 0.3s ease;
         }
-
+        
         .photo-card:hover img {
-            transform: scale(1.1);
+          transform: scale(1.05);
         }
 
         .photo-card .overlay {

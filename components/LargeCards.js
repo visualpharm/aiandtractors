@@ -1,141 +1,64 @@
+import React from 'react';
+import Image from 'next/image';
+
 export default function LargeCards({ title, items }) {
   return (
-    <>
-      <div className="large-cards-section">
-        <h3 className="section-heading" style={{ paddingLeft: '0' }}>{title}</h3>
-        <div className="card-grid fullwidth-cards">
-          {items.map((item, index) => (
-            <div key={index} className="card">
-              {item.logo && <img src={item.logo} alt={item.title} className="card-logo" />}
-              <div className="card-text">
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
+    <div className="my-8">
+      {title && (
+        <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3 px-4">
+          {title}
+        </h3>
+      )}
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-2 sm:px-4"
+      >
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col items-center text-center h-full p-5 md:p-7 border border-gray-100"
+            tabIndex={0}
+            aria-label={`${item.title}, ${item.description}`}
+          >
+            {item.logo && (
+              <div className={`relative w-full mb-4 ${item.title.toLowerCase().includes('verge') ? 'max-h-[166px] scale-[1.3]' : 'max-h-32'}`}>
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <div className="relative w-full h-full flex items-center justify-center p-4">
+                    <div className="relative w-full h-full" style={{
+                      aspectRatio: '2/1',
+                      maxHeight: item.title.toLowerCase().includes('verge') ? '130px' : '100px',
+                      margin: '0 auto'
+                    }}>
+                      <img
+                        src={item.logo}
+                        alt={item.title}
+                        className="media-logo"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          objectPosition: 'center',
+                          display: 'block'
+                        }}
+                        loading="lazy"
+                        draggable="false"
+                        decoding="async"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
+            )}
+            <div className="flex-1 flex flex-col justify-center w-full">
+              <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-1 leading-tight">
+                {item.title}
+              </h4>
+              <p className="text-xs md:text-sm text-gray-500 leading-snug">
+                {item.description}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-
-      <style jsx>{`
-        .large-cards-section {
-          margin: 2rem 0;
-        }
-
-        .section-heading {
-          padding: 10px;
-          font-size: 0.9rem;
-          font-weight: 500;
-          margin-bottom: 0.8rem;
-          color: var(--secondary-color);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-top: 0;
-          margin-left: 0;
-          text-align: left;
-        }
-
-        .card-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 2rem;
-          width: 100%;
-        }
-
-        .card-grid.fullwidth-cards {
-          padding-left: 8px;
-          padding-right: 8px;
-        }
-
-        .fullwidth-cards {
-          width: 100vw;
-          position: relative;
-          left: 50%;
-          right: 50%;
-          margin-left: -50vw;
-          margin-right: -50vw;
-          max-width: 100vw;
-          padding: 0;
-          gap: 0.7rem;
-        }
-
-        .fullwidth-cards .card {
-          border-radius: 6px;
-          border: 1px solid var(--border-color);
-          background: var(--card-bg);
-          padding: 1rem 1.2rem 1rem 1.2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          text-align: left;
-          transition: all 0.3s ease;
-          justify-content: space-between;
-          min-height: 180px;
-        }
-
-        .fullwidth-cards .card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .fullwidth-cards .card h4 {
-          font-size: 1.2rem;
-          margin: 0;
-          padding: 0;
-          color: var(--primary-color);
-          font-weight: 600;
-          line-height: 1.2;
-        }
-
-        .fullwidth-cards .card p {
-          font-size: 1rem;
-          color: var(--secondary-color);
-          margin: 0;
-          line-height: 1.5;
-          text-align: left;
-        }
-
-        .card-logo {
-          height: 70px;
-          object-fit: contain;
-          margin-bottom: auto;
-          align-self: flex-start;
-        }
-
-        .card-logo[src*="BEST-STARTUP"] {
-          width: 180px;
-          height: auto;
-          margin-top: 1rem;
-        }
-
-        .card-logo[src*="forbes"] {
-          height: 91px;
-        }
-
-        .card-logo[src*="product-hunt"] {
-          height: 80.5px;
-        }
-
-        .card-logo[src*="Visual-1st"] {
-          height: 80px;
-        }
-
-        .card-text {
-          margin-top: auto;
-        }
-
-        @media (max-width: 900px) {
-          .card-grid {
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-          }
-        }
-
-        @media (max-width: 600px) {
-          .card {
-            padding: 1.2rem 0.7rem 1rem 0.7rem;
-          }
-        }
-      `}</style>
-    </>
-  )
+    </div>
+  );
 }

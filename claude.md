@@ -195,29 +195,9 @@ Footers have links to the random SEO pages, but all seo pages should have at lea
 ## CRT Headline Effect: .fun-title (Argentina Keynote Speaker)
 
 **Purpose:**
-A visually distinctive section headline styled to evoke the look of old CRT monitors, used for the "Global AI Perspective from Argentina" section on the Argentina Keynote Speaker SEO page.
+A visually distinctive section headline styled to evoke the look of old CRT monitors, used for H2 titles.
 
-**Design Spec:**
-- **Font:** 'Helvetica Neue', Helvetica, Arial, sans-serif (prioritize Helvetica Neue for Mac)
-- **Font Size:** 2.5rem (visibly large)
-- **Font Weight:** 400 (NOT bold)
-- **Text Color:** #222 (very dark gray)
-- **Effect:** CRT-style chromatic aberration using colored text shadows
-    - **Left Shadow:** -1px horizontal offset, color #dd9e8e (orange)
-    - **Right Shadow:** +1px horizontal offset, color #53cb82 (green)
-    - **No vertical offset, no blur**
-- **Implementation:**
-    - Use a parent element `.fun-title` for layout/spacing.
-    - Apply the actual effect and font size on a child span `.fun-title-fill` with:
-      ```css
-      font-size: 2.5rem !important;
-      font-weight: 400 !important;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-      color: #222;
-      text-shadow: -1px 0 0 #dd9e8e, 1px 0 0 #53cb82;
-      ```
-- **Result:**
-  - The text appears large, non-bold, and crisp, with a subtle green glow on the right and orange on the left, mimicking CRT monitor ghosting. No outline or stroke.
+The text appears large, non-bold, and crisp, with a subtle green glow on the right and orange on the left, mimicking CRT monitor ghosting.
 
 ---
 

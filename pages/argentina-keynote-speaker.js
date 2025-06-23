@@ -17,11 +17,13 @@ export default function ArgentinaKeynoteSpeaker() {
       <div className="main-grid">
         <div className="full-width">
           <h2 className="fun-title"><span className="fun-title-fill">Global AI Perspective from Argentina</span></h2>
-          <p>
-            Based in Buenos Aires but thinking globally, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Argentina while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
-          </p>
+          <div className="narrow-text">
+  <p>
+    Based in Buenos Aires but thinking globally, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Argentina while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
+  </p>
+</div>
         </div>
-        <h2 className="section-heading">Topics for Speeches</h2>
+        <h3 className="section-heading">Topics for Speeches</h3>
         <div className="card-grid fullwidth-cards">
           <div className="card">
             <h3>Global AI adoption</h3>
@@ -44,14 +46,25 @@ export default function ArgentinaKeynoteSpeaker() {
             <p>How diverse perspectives drive better AI solutions</p>
           </div>
         </div>
-        {/* --- International AI Expert Section --- */}
+        {/* --- Conference Images Gallery --- */}
+<div className="conference-gallery">
+  <a href="/i/conferences/award.jpeg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/award.jpeg" alt="Conference award" /></a>
+  <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/conferece-speaker.jpg" alt="Ivan Braun speaking at conference" /></a>
+  <a href="/i/conferences/conference.jpeg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/conference.jpeg" alt="Conference overview" /></a>
+  <a href="/i/conferences/fl.jpg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/fl.jpg" alt="Conference audience" /></a>
+  <a href="/i/conferences/fl2.jpg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/fl2.jpg" alt="Ivan presenting on stage" /></a>
+  <a href="/i/conferences/presenting.jpeg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/presenting.jpeg" alt="Ivan Braun presenting" /></a>
+  <a href="/i/conferences/visual1st-awards-winners.png" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/visual1st-awards-winners.png" alt="Visual1st awards winners" /></a>
+
+</div>
+{/* --- International AI Expert Section --- */}
         <div className="full-width">
-          <h2>International AI Expert</h2>
+          <h2 className="fun-title"><span className="fun-title-fill">International AI Expert</span></h2>
           <p>
             Ivan's unique value lies in combining deep AI expertise with an international mindset. Based in Argentina but building global AI companies, he offers audiences perspectives on technology innovation that transcend geographic and cultural boundaries.
           </p>
         </div>
-        <div className="card-grid">
+        <div className="card-grid fullwidth-cards">
           <div className="card">
             <h3>Multilingual AI presentations</h3>
             <p>Fluent delivery in English, Spanish, and Portuguese</p>
@@ -71,22 +84,26 @@ export default function ArgentinaKeynoteSpeaker() {
         </div>
         {/* --- Contact/CTA Section --- */}
         <div className="full-width">
-          <h2>Bring International AI Expertise to Your Event</h2>
+          <h2 className="fun-title"><span className="fun-title-fill">Bring International AI Expertise to Your Event</span></h2>
           <p>
             Looking for an AI keynote speaker who offers fresh international perspectives beyond Silicon Valley? Ivan brings global AI expertise and cross-cultural innovation insights to audiences worldwide.
           </p>
           <p><strong>Perfect for:</strong> AI conferences, international technology summits, future of work events, innovation forums, and global business discussions on artificial intelligence.</p>
           <div className="cta-buttons">
-            <a href="/" className="cta-button">More about Ivan</a>
-            <a href="/contact" className="cta-button secondary">Contact</a>
-          </div>
+  <button className="cta-button cta-primary" onClick={() => window.location.href = '/'}>
+    <p className="framer-text">More about Ivan</p>
+  </button>
+  <button className="cta-button cta-secondary" onClick={() => window.location.href = '/contact'}>
+    <p className="framer-text">Contact</p>
+  </button>
+</div>
         </div>
       </div>
       <style jsx>{`
         .main-grid {
           display: flex;
           flex-direction: column;
-          gap: 3.5rem;
+          gap: 0;
           max-width: 1200px;
           margin: 0 auto 4rem auto;
           padding: 0 2rem;
@@ -102,14 +119,15 @@ export default function ArgentinaKeynoteSpeaker() {
           margin-bottom: 1rem;
         }
         .fun-title {
-          position: relative;
-          display: inline-block;
-          font-size: 3rem;
-          font-weight: 400 !important;
-          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-          margin-bottom: 1rem;
-          line-height: 1.1;
-        }
+  margin-top: 28px !important;
+  margin-bottom: 0 !important;
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 400 !important;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  line-height: 1.1;
+}
         .fun-title-stroke {
           position: absolute;
           left: 0;
@@ -145,6 +163,10 @@ export default function ArgentinaKeynoteSpeaker() {
           grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
           gap: 2rem;
           width: 100%;
+        }
+        .card-grid.fullwidth-cards {
+          padding-left: 8px;
+          padding-right: 8px;
         }
         .card {
           background: #fff;
@@ -213,6 +235,7 @@ export default function ArgentinaKeynoteSpeaker() {
           }
         }
         .section-heading {
+  padding: 10px;
           font-size: 0.9rem;
           font-weight: 500;
           margin-bottom: 0.8rem;
@@ -263,7 +286,40 @@ export default function ArgentinaKeynoteSpeaker() {
           line-height: 1.5;
           text-align: left;
         }
-      `}</style>
+        .conference-gallery {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  display: flex;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  gap: 4px;
+  justify-content: stretch;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 0;
+}
+.gallery-img {
+  flex: 1 1 0;
+  height: 180px;
+  min-width: 0;
+}
+.gallery-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: zoom-in;
+  transition: transform 0.2s;
+  display: block;
+}
+.gallery-img img:hover {
+  transform: scale(1.04);
+}
+
+      `}
+    </style>
     </Layout>
   );
 }

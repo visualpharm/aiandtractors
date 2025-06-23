@@ -1,0 +1,41 @@
+/* Prevent horizontal scrolling */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all elements respect their container's width */
+* {
+  box-sizing: border-box;
+}
+
+/* Make images and embedded content responsive */
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure tables are responsive */
+table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Fix for pre and code blocks */
+pre,
+code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Ensure full viewport width is respected */
+body {
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
+}

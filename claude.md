@@ -12,8 +12,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Links to other projects
 "Recent construction including (Coliving for tech founders)[https://ilbuco.com.ar] and your (Argentinian shelter) [https://recharge.com.ar] in case of a global meltdown. One successful innovation was having a QA engineer working on error logging."
 
+### Link style
+Never use target="_blank". 
+For contacts, prefer linking to our internal contats page, not linkedin of email.
+
 ## Project Overview
-This is Ivan Braun's personal website - a multilingual portfolio showcasing his work as an entrepreneur, AI speaker, and advisor. The project uses a **hybrid architecture** that combines React development tooling with static HTML deployment.
+This is Ivan Braun's personal website - a multilingual portfolio showcasing his work as an entrepreneur, AI speaker, and advisor.
+
+This project is a next.js project. It uses 
 
 ## Development Commands
 ```bash
@@ -64,6 +70,16 @@ npm test         # Run Jest tests
 - This hybrid approach provides modern dev tooling while maintaining static HTML benefits
 - All three language versions need to be updated manually for content changes
 - Images should use ImageKit CDN integration for optimization
+
+# Layout Alignments
+- Block 2 (Hero content): left-aligned
+- Block 3 (Hero image): left-aligned  
+- Block 13 (Experience title): left-aligned
+- Block 16 (Company logos): left-aligned
+- Block 17 (Achievement bullets): right-aligned
+
+# Linkware Innovation (2012)
+Ivan invented the linkware model in 2012 after Icons8 had success with free icon packs. The model works as: Use for a link → SEO boost. Pay those who value a link more than $15 that the license costs. His inspiration was the requirement to credit photos that photographers had, but without a link requirement at the time. This innovation helped monetize free resources while providing SEO value to users who could provide backlinks.
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
@@ -175,3 +191,117 @@ Should be:
 Footers have links to the random SEO pages, but all seo pages should have at least one incoming link. 
 
 
+# Blocks of the frontpage
+
+---
+
+## CRT Headline Effect: .fun-title (Argentina Keynote Speaker)
+
+**Purpose:**
+A visually distinctive section headline styled to evoke the look of old CRT monitors, used for H2 titles.
+
+The text appears large, non-bold, and crisp, with a subtle green glow on the right and orange on the left, mimicking CRT monitor ghosting.
+
+---
+
+
+ ┌─────────────────────────────────────────────────────────────────────────────────┐
+  │                                     1                                           │
+  │    ┌─────────────────────────┐                ┌─────────────────────────┐      │
+  │    │          2              │                │           3             │      │
+  │    │     Ivan Braun          │                │                         │      │
+  │    │  Tech Entrepreneur,     │                │      Robot Image        │      │
+  │    │   AI Speaker, Investor  │                │       (400px)           │      │
+  │    │                         │                │                         │      │
+  │    │  Description text...    │                │                         │      │
+  │    │                         │                │                         │      │
+  │    │  [Contact] [Visit]      │                │                         │      │
+  │    │                         │                │                         │      │
+  │    └─────────────────────────┘                └─────────────────────────┘      │
+  │                                                                                 │
+  ├─────────────────────────────────────────────────────────────────────────────────┤
+  │                                                                                 │
+  │                                        4                                        │
+  │ ┌─────────────────────────────────────────────────────────────────────────────┐ │
+  │ │ MEDIA COVERAGE                                                              │ │
+  │ │ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐                   │ │
+  │ │ │ WP  │ │ BBC │ │SPGL │ │ REP │ │VRGE │ │VICE │ │MAIL │                   │ │
+  │ │ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘                   │ │
+  │ └─────────────────────────────────────────────────────────────────────────────┘ │
+  │                                                                                 │
+  ├─────────────────────────────────────────────────────────────────────────────────┤
+  │                                     5                                           │
+  │ ┌───────────┐ ┌──────────────────────────┐ ┌─────────────────────────────────┐ │
+  │ │     6     │ │           7              │ │               8                 │ │
+  │ │EXPERIENCE │ │ Serial entrepreneur...   │ │┌─────────────┐ ┌───────────────┐│ │
+  │ │           │ │ Building bootstrapped    │ ││      9      │ │      10       ││ │
+  │ │           │ │ AI and design products.  │ ││  Icons8     │ │ → Supply...   ││ │
+  │ │           │ │ Core expertise in...     │ ││  Founder    │ │ → Leading...  ││ │
+  │ │           │ │                          │ ││             │ │               ││ │
+  │ │           │ │                          │ ││ Gen.Photos  │ │               ││ │
+  │ │           │ │                          │ ││ Eco-founder │ │               ││ │
+  │ │           │ │                          │ │└─────────────┘ └───────────────┘│ │
+  │ └───────────┘ └──────────────────────────┘ └─────────────────────────────────┘ │
+  │                                                                                 │
+  ├─────────────────────────────────────────────────────────────────────────────────┤
+  │                                                                                 │
+  │ SPEAKING                                                                        │
+  │ ┌─────┐┌─────┐┌─────────┐┌─────────┐┌─────────┐┌─────┐┌─────┐┌─────┐┌─────┐   │
+  │ │Photo││Photo││Horasis  ││Rio Innov││Visual   ││Photo││Photo││Photo││Photo│   │
+  │ │  1  ││  2  ││Global   ││Week     ││1st Conf ││  3  ││  4  ││  5  ││  6  │   │
+  │ │     ││     ││Meeting  ││         ││         ││     ││     ││     ││     │   │
+  │ └─────┘└─────┘└─────────┘└─────────┘└─────────┘└─────┘└─────┘└─────┘└─────┘   │
+  │    (all cards are rotated -5° to +5° and overlapping)                          │
+  │                                                                                 │
+  └─────────────────────────────────────────────────────────────────────────────────┘
+
+  Every time i refer a block by its number, it's the number in the diagram above.
+  Every time i ask to make a block wider, means occupy another column or two in the grid,
+  but always align to the grid. It's better to have a design where content is overfilling,
+  than to break the grid.
+
+
+  # Visit me
+
+Text: I’ve built a villa to invite fellow tech founders. It’s a great expensive build in the beautiful place the pine forest meets the ocean. It’s 4 hours from Buenos Aires.
+
+If you book it, I’ll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired). 
+
+the buttons must be Book and Learn more. first leasd to 
+  https://book.ilbuco.com.ar/ second to https://ilbuco.com.ar
+
+  # Contact
+
+  Here is the content:
+
+  ---
+
+## 📬 Contact Ivan
+
+**Speaking, investing, and advisory opportunities**
+
+### ✅ Looking For
+- **Speaking**: AI conferences, corporate events, startup talks  
+- **Investing**: AI + real sectors (e.g., PropTech, manufacturing), B2B AI tools  
+- **Advisory**: Tech startups, AI implementation, remote teams
+
+### ❌ Not Looking For
+- Investment in my companies  
+- Acquisition offers  
+- General partnerships  
+- Sales pitches  
+- Icons8 & Generated Photos: please use official support channels
+
+**📧 Email**: ivan@generated.photos  
+**📲 Telegram**: [@Icons8](https://t.me/Icons8)
+
+
+# Styling 
+
+## Title Styles
+- **fun-title**: CRT headline effect for major section breaks. Large (2.5-3rem), Helvetica Neue font, orange/green text shadow for CRT monitor look.
+- **cards-title**: Small uppercase labels for component/section headers. 0.9rem, uppercase, letter-spacing, gray color.
+
+Fun title h2 always has Helvetica Neue font not Cormorant.
+Never draw the icons, use icons8 mcp.
+Make LargeCards 100%. It’s always 100% wide from one side of the screen to another. if its organic width is less than 2/3 of the screen, align to the left, but to the side of the screen, ignore the page margins.

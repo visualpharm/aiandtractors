@@ -1,13 +1,94 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 
+const translations = {
+  en: {
+    title: "Contact - Ivan Braun",
+    description: "Get in touch with Ivan Braun for speaking engagements, consulting, or investment opportunities.",
+    heading: "Contact",
+    intro: "I'm always interested in connecting with fellow entrepreneurs, potential clients, and anyone passionate about AI and innovation.",
+    lookingFor: "✅ Looking For",
+    notLookingFor: "❌ Not Looking For",
+    getInTouch: "Get in Touch",
+    speaking: "Speaking",
+    speakingDesc: "AI conferences, corporate events, startup talks",
+    investing: "Investing", 
+    investingDesc: "AI + real sectors (e.g., PropTech, manufacturing), B2B AI tools",
+    advisory: "Advisory",
+    advisoryDesc: "Tech startups, AI implementation, remote teams",
+    investmentInCompanies: "Investment in my companies",
+    acquisitionOffers: "Acquisition offers",
+    generalPartnerships: "General partnerships", 
+    salesPitches: "Sales pitches",
+    supportChannels: "Icons8 & Generated Photos: please use official support channels",
+    email: "📧 Email:",
+    telegram: "📲 Telegram:",
+    location: "Location:"
+  },
+  es: {
+    title: "Contacto - Ivan Braun",  
+    description: "Ponte en contacto con Ivan Braun para conferencias, consultoría u oportunidades de inversión.",
+    heading: "Contacto",
+    intro: "Siempre estoy interesado en conectar con otros emprendedores, clientes potenciales y cualquier persona apasionada por la IA y la innovación.",
+    lookingFor: "✅ Busco",
+    notLookingFor: "❌ No Busco", 
+    getInTouch: "Ponte en Contacto",
+    speaking: "Conferencias",
+    speakingDesc: "Conferencias de IA, eventos corporativos, charlas para startups",
+    investing: "Invirtiendo",
+    investingDesc: "IA + sectores reales (ej: PropTech, manufactura), herramientas B2B de IA", 
+    advisory: "Consultoría",
+    advisoryDesc: "Startups tecnológicas, implementación de IA, equipos remotos",
+    investmentInCompanies: "Inversión en mis empresas",
+    acquisitionOffers: "Ofertas de adquisición",
+    generalPartnerships: "Asociaciones generales",
+    salesPitches: "Pitches de ventas", 
+    supportChannels: "Icons8 & Generated Photos: usa los canales oficiales de soporte",
+    email: "📧 Email:",
+    telegram: "📲 Telegram:",
+    location: "Ubicación:"
+  },
+  pt: {
+    title: "Contato - Ivan Braun",
+    description: "Entre em contato com Ivan Braun para palestras, consultoria ou oportunidades de investimento.",
+    heading: "Contato", 
+    intro: "Estou sempre interessado em me conectar com outros empreendedores, clientes potenciais e qualquer pessoa apaixonada por IA e inovação.",
+    lookingFor: "✅ Procurando Por",
+    notLookingFor: "❌ Não Procurando Por",
+    getInTouch: "Entre em Contato",
+    speaking: "Palestras",
+    speakingDesc: "Conferências de IA, eventos corporativos, talks para startups",
+    investing: "Investindo", 
+    investingDesc: "IA + setores reais (ex: PropTech, manufatura), ferramentas B2B de IA",
+    advisory: "Consultoria",
+    advisoryDesc: "Startups de tecnologia, implementação de IA, equipes remotas",
+    investmentInCompanies: "Investimento nas minhas empresas",
+    acquisitionOffers: "Ofertas de aquisição", 
+    generalPartnerships: "Parcerias gerais",
+    salesPitches: "Pitches de vendas",
+    supportChannels: "Icons8 & Generated Photos: use os canais oficiais de suporte",
+    email: "📧 Email:",
+    telegram: "📲 Telegram:", 
+    location: "Localização:"
+  }
+}
+
 export default function Contact() {
+  const router = useRouter()
+  const { locale } = router
+  const t = translations[locale] || translations.en
+
   return (
     <Layout>
       <Head>
-        <title>Contact - Ivan Braun</title>
-        <meta name="description" content="Get in touch with Ivan Braun for speaking engagements, consulting, or investment opportunities." />
+        <title>{t.title}</title>
+        <meta name="description" content={t.description} />
         <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet" />
+        <link rel="canonical" href={`https://ivanbraun.com${locale === 'en' ? '' : '/' + locale}/contact`} />
+        <link rel="alternate" hrefLang="en" href="https://ivanbraun.com/contact" />
+        <link rel="alternate" hrefLang="es" href="https://ivanbraun.com/es/contact" />
+        <link rel="alternate" hrefLang="pt" href="https://ivanbraun.com/pt/contact" />
       </Head>
 
       <div className="container">

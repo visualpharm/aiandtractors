@@ -2,10 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": "out",
   "trailingSlash": false,
-  "cleanUrls": true,
-  "functions": {
-    "pages/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "cleanUrls": true
 }

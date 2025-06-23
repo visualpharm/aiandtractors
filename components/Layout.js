@@ -160,15 +160,15 @@ export default function Layout({ children }) {
             {locale === 'es' && (
               <>
                 <Link href="/es/ia-speaker">IA Speaker</Link>
-                <Link href="/es/experto-en-ia">Experto en IA</Link>
+                <Link href="/es/experto-ia">Experto en IA</Link>
                 <Link href="/es/formularios-startup-argentina">Formularios Startup Argentina</Link>
               </>
             )}
             {locale === 'pt' && (
               <>
                 <Link href="/pt/speaker-ia">Speaker IA</Link>
-                <Link href="/pt/experto-em-ia">Experto em IA</Link>
-                <Link href="/pt/palestrante-ia-brasil">Palestrante IA Brasil</Link>
+                <Link href="/pt/experto-ia">Experto em IA</Link>
+                <Link href="/pt/speaker-ia">Palestrante IA Brasil</Link>
               </>
             )}
           </div>

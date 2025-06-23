@@ -76,7 +76,17 @@ const translations = {
 
 export default function Contact() {
   const router = useRouter()
-  const { locale } = router
+  // For static export, detect locale from path
+  const getLocaleFromPath = () => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname
+      if (path.startsWith('/es')) return 'es'
+      if (path.startsWith('/pt')) return 'pt'
+    }
+    return 'en'
+  }
+  
+  const locale = getLocaleFromPath()
   const t = translations[locale] || translations.en
 
   return (
@@ -94,46 +104,45 @@ export default function Contact() {
       <div className="container">
         <div className="hero-section">
           <div className="hero-content">
-            <h1 className="main-title">Contact</h1>
+            <h1 className="main-title">{t.heading}</h1>
             <p className="description">
-              I'm always interested in connecting with fellow entrepreneurs, potential clients, 
-              and anyone passionate about AI and innovation.
+              {t.intro}
             </p>
           </div>
         </div>
         
         <div className="contact-content">
           <div className="contact-section">
-            <h2 className="section-title">✅ Looking For</h2>
+            <h2 className="section-title">{t.lookingFor}</h2>
             <ul className="looking-for-list">
-              <li><strong>Speaking</strong>: AI conferences, corporate events, startup talks</li>
-              <li><strong>Investing</strong>: AI + real sectors (e.g., PropTech, manufacturing), B2B AI tools</li>
-              <li><strong>Advisory</strong>: Tech startups, AI implementation, remote teams</li>
+              <li><strong>{t.speaking}</strong>: {t.speakingDesc}</li>
+              <li><strong>{t.investing}</strong>: {t.investingDesc}</li>
+              <li><strong>{t.advisory}</strong>: {t.advisoryDesc}</li>
             </ul>
           </div>
           
           <div className="contact-section">
-            <h2 className="section-title">❌ Not Looking For</h2>
+            <h2 className="section-title">{t.notLookingFor}</h2>
             <ul className="not-looking-for-list">
-              <li>Investment in my companies</li>
-              <li>Acquisition offers</li>
-              <li>General partnerships</li>
-              <li>Sales pitches</li>
-              <li>Icons8 & Generated Photos: please use official support channels</li>
+              <li>{t.investmentInCompanies}</li>
+              <li>{t.acquisitionOffers}</li>
+              <li>{t.generalPartnerships}</li>
+              <li>{t.salesPitches}</li>
+              <li>{t.supportChannels}</li>
             </ul>
           </div>
           
           <div className="contact-section">
-            <h2 className="section-title">Get in Touch</h2>
+            <h2 className="section-title">{t.getInTouch}</h2>
             <div className="contact-info">
               <div className="contact-item">
-                <strong>📧 Email:</strong> <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
+                <strong>{t.email}</strong> <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
               </div>
               <div className="contact-item">
-                <strong>📲 Telegram:</strong> <a href="https://t.me/Icons8">@Icons8</a>
+                <strong>{t.telegram}</strong> <a href="https://t.me/Icons8">@Icons8</a>
               </div>
               <div className="contact-item">
-                <strong>Location:</strong> Cariló, Argentina
+                <strong>{t.location}</strong> Cariló, Argentina
               </div>
             </div>
           </div>

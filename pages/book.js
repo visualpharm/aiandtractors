@@ -1,15 +1,133 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import LargeCards from '../components/LargeCards'
 import Link from 'next/link'
 
+const translations = {
+  en: {
+    title: "Book - Ivan Braun",
+    description: "The book by Ivan Braun on building AI companies without venture capital.",
+    subtitle: "A no-nonsense guide to building and scaling tech companies without traditional funding. Based on real experience growing teams of 150+ people and serving millions of users, this book offers practical lessons in management, marketing, and finance that actually work when you're bootstrapping.",
+    part1: "Part 1: Management",
+    part2: "Part 2: Marketing", 
+    part3: "Part 3: Finance",
+    killBudgets: "Kill budgets, not dreams",
+    killBudgetsDesc: "Why budgets are guesswork and how to find real market prices",
+    screenshotTool: "The screenshot tool",
+    screenshotToolDesc: "Using Hubstaff to focus on process, not micromanaging results",
+    fireNegative: "Fire the \"my life sucks\" people",
+    fireNegativeDesc: "Culture levels and why toxic employees destroy teams",
+    noMeetings: "No meetings, no timezones",
+    noMeetingsDesc: "Building a global team without traditional management overhead",
+    customerDev: "Customer development",
+    customerDevDesc: "Getting 10,000 customers before building your first feature",
+    socialProof: "Social proof that works",
+    socialProofDesc: "Beyond testimonials: real tactics that convert visitors",
+    organicGrowth: "Organic growth without ads",
+    organicGrowthDesc: "Content strategies that actually drive sustainable growth",
+    viralLoops: "Viral loops and network effects",
+    viralLoopsDesc: "Engineering word-of-mouth into your product design",
+    bootstrapFinance: "Bootstrap finance basics",
+    bootstrapFinanceDesc: "Cash flow management when every dollar counts",
+    pricingStrategy: "Pricing strategy without research",
+    pricingStrategyDesc: "Setting prices based on value, not competition",
+    revenueDiversification: "Revenue diversification",
+    revenueDiversificationDesc: "Multiple income streams to weather any storm",
+    exitStrategies: "Exit strategies for bootstrappers",
+    exitStrategiesDesc: "When and how to consider acquisition offers"
+  },
+  es: {
+    title: "Libro - Ivan Braun",
+    description: "El libro de Ivan Braun sobre construir empresas de IA sin capital de riesgo.",
+    subtitle: "Una guía práctica para construir y escalar empresas tecnológicas sin financiamiento tradicional. Basado en experiencia real dirigiendo equipos de más de 150 personas y sirviendo a millones de usuarios, este libro ofrece lecciones prácticas en gestión, marketing y finanzas que realmente funcionan cuando estás bootstrapping.",
+    part1: "Parte 1: Gestión",
+    part2: "Parte 2: Marketing",
+    part3: "Parte 3: Finanzas", 
+    killBudgets: "Mata los presupuestos, no los sueños",
+    killBudgetsDesc: "Por qué los presupuestos son conjeturas y cómo encontrar precios reales de mercado",
+    screenshotTool: "La herramienta de captura de pantalla",
+    screenshotToolDesc: "Usando Hubstaff para enfocarse en el proceso, no microgestionar resultados",
+    fireNegative: "Despide a la gente \"mi vida apesta\"",
+    fireNegativeDesc: "Niveles de cultura y por qué los empleados tóxicos destruyen equipos",
+    noMeetings: "Sin reuniones, sin zonas horarias",
+    noMeetingsDesc: "Construyendo un equipo global sin la sobrecarga de gestión tradicional",
+    customerDev: "Desarrollo de clientes",
+    customerDevDesc: "Conseguir 10,000 clientes antes de construir tu primera funcionalidad",
+    socialProof: "Prueba social que funciona",
+    socialProofDesc: "Más allá de testimonios: tácticas reales que convierten visitantes",
+    organicGrowth: "Crecimiento orgánico sin anuncios",
+    organicGrowthDesc: "Estrategias de contenido que realmente impulsan crecimiento sostenible",
+    viralLoops: "Bucles virales y efectos de red",
+    viralLoopsDesc: "Ingeniar el boca a boca en el diseño de tu producto",
+    bootstrapFinance: "Finanzas básicas de bootstrap",
+    bootstrapFinanceDesc: "Gestión de flujo de efectivo cuando cada dólar cuenta",
+    pricingStrategy: "Estrategia de precios sin investigación",
+    pricingStrategyDesc: "Establecer precios basados en valor, no en competencia",
+    revenueDiversification: "Diversificación de ingresos",
+    revenueDiversificationDesc: "Múltiples fuentes de ingresos para capear cualquier tormenta",
+    exitStrategies: "Estrategias de salida para bootstrappers",
+    exitStrategiesDesc: "Cuándo y cómo considerar ofertas de adquisición"
+  },
+  pt: {
+    title: "Livro - Ivan Braun",
+    description: "O livro de Ivan Braun sobre construir empresas de IA sem capital de risco.",
+    subtitle: "Um guia prático para construir e escalar empresas de tecnologia sem financiamento tradicional. Baseado em experiência real liderando equipes de mais de 150 pessoas e servindo milhões de usuários, este livro oferece lições práticas em gestão, marketing e finanças que realmente funcionam quando você está fazendo bootstrap.",
+    part1: "Parte 1: Gestão",
+    part2: "Parte 2: Marketing",
+    part3: "Parte 3: Finanças",
+    killBudgets: "Mate os orçamentos, não os sonhos",
+    killBudgetsDesc: "Por que orçamentos são suposições e como encontrar preços reais de mercado",
+    screenshotTool: "A ferramenta de screenshot",
+    screenshotToolDesc: "Usando Hubstaff para focar no processo, não microgerenciar resultados",
+    fireNegative: "Demita as pessoas \"minha vida é péssima\"",
+    fireNegativeDesc: "Níveis de cultura e por que funcionários tóxicos destroem equipes",
+    noMeetings: "Sem reuniões, sem fusos horários",
+    noMeetingsDesc: "Construindo uma equipe global sem sobrecarga de gestão tradicional",
+    customerDev: "Desenvolvimento de clientes",
+    customerDevDesc: "Conseguir 10.000 clientes antes de construir sua primeira funcionalidade",
+    socialProof: "Prova social que funciona",
+    socialProofDesc: "Além de depoimentos: táticas reais que convertem visitantes",
+    organicGrowth: "Crescimento orgânico sem anúncios",
+    organicGrowthDesc: "Estratégias de conteúdo que realmente impulsionam crescimento sustentável",
+    viralLoops: "Loops virais e efeitos de rede",
+    viralLoopsDesc: "Engenharia do boca a boca no design do seu produto",
+    bootstrapFinance: "Finanças básicas de bootstrap",
+    bootstrapFinanceDesc: "Gestão de fluxo de caixa quando cada real conta",
+    pricingStrategy: "Estratégia de preços sem pesquisa",
+    pricingStrategyDesc: "Definir preços baseados em valor, não em competição",
+    revenueDiversification: "Diversificação de receita",
+    revenueDiversificationDesc: "Múltiplas fontes de renda para resistir a qualquer tempestade",
+    exitStrategies: "Estratégias de saída para bootstrappers",
+    exitStrategiesDesc: "Quando e como considerar ofertas de aquisição"
+  }
+}
+
 export default function Book() {
+  const router = useRouter()
+  // For static export, detect locale from path
+  const getLocaleFromPath = () => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname
+      if (path.startsWith('/es')) return 'es'
+      if (path.startsWith('/pt')) return 'pt'
+    }
+    return 'en'
+  }
+  
+  const locale = getLocaleFromPath()
+  const t = translations[locale] || translations.en
+
   return (
     <Layout>
       <Head>
-        <title>Book - Ivan Braun</title>
-        <meta name="description" content="The book by Ivan Braun on building AI companies without venture capital." />
+        <title>{t.title}</title>
+        <meta name="description" content={t.description} />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="canonical" href={`https://ivanbraun.com${locale === 'en' ? '' : '/' + locale}/book`} />
+        <link rel="alternate" hrefLang="en" href="https://ivanbraun.com/book" />
+        <link rel="alternate" hrefLang="es" href="https://ivanbraun.com/es/book" />
+        <link rel="alternate" hrefLang="pt" href="https://ivanbraun.com/pt/book" />
       </Head>
 
       <div className="container">
@@ -18,7 +136,7 @@ export default function Book() {
             <div className="hero-layout">
               <div className="hero-text">
                 <h1 className="book-title text-6xl md:text-8xl font-normal mb-4" style={{ fontFamily: 'Cormorant', color: '#950303' }}>Zero to AI</h1>
-                <p className="subtitle">A no-nonsense guide to building and scaling tech companies without traditional funding. Based on real experience growing teams of 150+ people and serving millions of users, this book offers practical lessons in management, marketing, and finance that actually work when you're bootstrapping.</p>
+                <p className="subtitle">{t.subtitle}</p>
               </div>
               <div className="hero-image">
                 <img src="/i/zero-to-ai.jpg" alt="Kill the Budget and 12 Other Ways to Bootstrap book cover" className="book-cover-large" />
@@ -30,23 +148,23 @@ export default function Book() {
         <div className="book-content">
           <div className="main-grid">
             <div className="full-width">
-              <h2 className="fun-title"><span className="fun-title-fill">Part 1: Management</span></h2>
+              <h2 className="fun-title"><span className="fun-title-fill">{t.part1}</span></h2>
             </div>
             
             <LargeCards 
               title=""
               items={[
                 {
-                  title: "Kill budgets, not dreams",
-                  description: "Why budgets are guesswork and how to find real market prices"
+                  title: t.killBudgets,
+                  description: t.killBudgetsDesc
                 },
                 {
-                  title: "The screenshot tool",
-                  description: "Using Hubstaff to focus on process, not micromanaging results"
+                  title: t.screenshotTool,
+                  description: t.screenshotToolDesc
                 },
                 {
-                  title: "Fire the \"my life sucks\" people",
-                  description: "Culture levels and why toxic employees destroy teams"
+                  title: t.fireNegative,
+                  description: t.fireNegativeDesc
                 },
                 {
                   title: "Scrum without being an asshole",
@@ -60,7 +178,7 @@ export default function Book() {
             />
             
             <div className="full-width">
-              <h2 className="fun-title"><span className="fun-title-fill">Part 2: Marketing</span></h2>
+              <h2 className="fun-title"><span className="fun-title-fill">{t.part2}</span></h2>
             </div>
             
             <LargeCards 

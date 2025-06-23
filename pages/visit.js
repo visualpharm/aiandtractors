@@ -1,22 +1,65 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import LargeCards from '../components/LargeCards'
 import CTAButtons from '../components/CTAButtons'
 
+const translations = {
+  en: {
+    title: "Visit - Ivan Braun",
+    description: "Visit Ivan Braun in Cariló, Argentina. Information about location, accommodation, and meeting arrangements.",
+    heading: "Visit Me in Cariló",
+    villaDescription: "I've built a villa to invite fellow tech founders. It's a great expensive build in the beautiful place the pine forest meets the ocean. It's 4 hours from Buenos Aires.",
+    visitText: "If you book it, I'll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired)."
+  },
+  es: {
+    title: "Visitarme - Ivan Braun", 
+    description: "Visita a Ivan Braun en Cariló, Argentina. Información sobre ubicación, alojamiento y citas.",
+    heading: "Visitarme en Cariló",
+    villaDescription: "He construido una villa para invitar a otros fundadores tecnológicos. Es una construcción costosa en el hermoso lugar donde el bosque de pinos se encuentra con el océano. Está a 4 horas de Buenos Aires.",
+    visitText: "Si la reservas, haré mi mejor esfuerzo para visitarte, darte la mano y charlar (a veces por horas, así que échame cuando te canses)."
+  },
+  pt: {
+    title: "Me Visitar - Ivan Braun",
+    description: "Visite Ivan Braun em Cariló, Argentina. Informações sobre localização, acomodação e encontros.",
+    heading: "Me Visite em Cariló", 
+    villaDescription: "Construí uma villa para convidar outros fundadores de tecnologia. É uma construção cara e bonita no lugar onde a floresta de pinheiros encontra o oceano. Fica a 4 horas de Buenos Aires.",
+    visitText: "Se você reservar, farei o meu melhor para visitá-lo, apertar as mãos e conversar (às vezes por horas, então me expulse quando estiver cansado)."
+  }
+}
+
 export default function Visit() {
+  const router = useRouter()
+  // For static export, detect locale from path
+  const getLocaleFromPath = () => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname
+      if (path.startsWith('/es')) return 'es'
+      if (path.startsWith('/pt')) return 'pt'
+    }
+    return 'en'
+  }
+  
+  const locale = getLocaleFromPath()
+  const t = translations[locale] || translations.en
+
   return (
     <Layout>
       <Head>
-        <title>Visit - Ivan Braun</title>
-        <meta name="description" content="Visit Ivan Braun in Cariló, Argentina. Information about location, accommodation, and meeting arrangements." />
+        <title>{t.title}</title>
+        <meta name="description" content={t.description} />
+        <link rel="canonical" href={`https://ivanbraun.com${locale === 'en' ? '' : '/' + locale}/visit`} />
+        <link rel="alternate" hrefLang="en" href="https://ivanbraun.com/visit" />
+        <link rel="alternate" hrefLang="es" href="https://ivanbraun.com/es/visit" />
+        <link rel="alternate" hrefLang="pt" href="https://ivanbraun.com/pt/visit" />
       </Head>
 
       <Hero
-        title="Visit Me in Cariló"
+        title={t.heading}
         subtitle=""
-        description="I've built a villa to invite fellow tech founders. It's a great expensive build in the beautiful place the pine forest meets the ocean. It's 4 hours from Buenos Aires."
-        introText="If you book it, I'll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired)."
+        description={t.villaDescription}
+        introText={t.visitText}
         imageUrl="/i/hero-villa-exterior.jpeg"
       />
       

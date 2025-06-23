@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import LargeCards from './LargeCards'
+import Head from 'next/head'
 
 const translations = {
   en: {
@@ -10,8 +11,8 @@ const translations = {
     departmentOfJustice: "U.S. Department of Justice", 
     ukCma: "UK Competition and Markets Authority",
     euDesc: "AI regulation and policy consultation for the European Union",
-    usDesc: "Antitrust and competition matters related to AI and technology",
-    ukDesc: "Competition and markets authority consultation on AI technologies"
+    usDesc: "Antitrust and competition matters related to creative tech",
+    ukDesc: "Antitrust and competition matters related to creative tech"
   },
   es: {
     title: "Gobierno y Regulación",
@@ -20,8 +21,8 @@ const translations = {
     departmentOfJustice: "Departamento de Justicia de EE.UU.",
     ukCma: "Autoridad de Competencia y Mercados del Reino Unido",
     euDesc: "Consultoría en regulación y políticas de IA para la Unión Europea",
-    usDesc: "Asuntos antimonopolio y competencia relacionados con IA y tecnología",
-    ukDesc: "Consultoría en autoridad de competencia y mercados sobre tecnologías de IA"
+    usDesc: "Asuntos antimonopolio y competencia relacionados con tecnología creativa",
+    ukDesc: "Asuntos antimonopolio y competencia relacionados con tecnología creativa"
   },
   pt: {
     title: "Governo e Regulamentação",
@@ -30,8 +31,8 @@ const translations = {
     departmentOfJustice: "Departamento de Justiça dos EUA",
     ukCma: "Autoridade de Concorrência e Mercados do Reino Unido",
     euDesc: "Consultoria em regulamentação e políticas de IA para a União Europeia",
-    usDesc: "Questões antitruste e de concorrência relacionadas à IA e tecnologia",
-    ukDesc: "Consultoria em autoridade de concorrência e mercados sobre tecnologias de IA"
+    usDesc: "Questões antitruste e de concorrência relacionadas à tecnologia criativa",
+    ukDesc: "Questões antitruste e de concorrência relacionadas à tecnologia criativa"
   }
 }
 
@@ -44,79 +45,51 @@ export default function Government() {
     {
       title: t.europeanCommission,
       description: t.euDesc,
-      logo: "/i/icons8-flag-eu.svg",
+      flagClass: "fi fi-eu",
       link: "https://ec.europa.eu/"
     },
     {
       title: t.departmentOfJustice,
       description: t.usDesc, 
-      logo: "/i/icons8-flag-us.svg",
+      flagClass: "fi fi-us",
       link: "https://www.justice.gov/"
     },
     {
       title: t.ukCma,
       description: t.ukDesc,
-      logo: "/i/icons8-flag-uk.svg", 
+      flagClass: "fi fi-gb", 
       link: "https://www.gov.uk/government/organisations/competition-and-markets-authority"
     }
   ]
 
+  // Create items with intro text in first card
+  const govItemsWithIntro = [
+    {
+      title: t.title,
+      description: t.description,
+      isIntro: true
+    },
+    ...govItems
+  ]
+
   return (
-    <section className="section">
-      <div className="container">
-        <h2 className="cards-title">{t.title}</h2>
-        
-        <div className="section-content">
-          <p>{t.description}</p>
-        </div>
-      </div>
-      
-      <div className="cards-fullwidth">
-        <LargeCards items={govItems} />
-      </div>
+    <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"
+        />
+      </Head>
+      <section className="section">
+        <LargeCards items={govItemsWithIntro} />
+      </section>
 
       <style jsx>{`
         .section {
           background: var(--hero-bg);
           padding: 0;
         }
-
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2rem;
-        }
-
-        .cards-title {
-          font-size: 0.9rem;
-          font-weight: 500;
-          margin-bottom: 0.8rem;
-          color: var(--secondary-color);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .section-content p {
-          font-size: 1rem;
-          color: var(--secondary-color);
-          margin-bottom: 2rem;
-          line-height: 1.6;
-        }
-
-        .cards-fullwidth {
-          width: 100vw;
-          margin-left: calc(-50vw + 50%);
-          padding-left: 2rem;
-          padding-right: 2rem;
-        }
-
-        @media (max-width: 768px) {
-          .cards-fullwidth {
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
-        }
       `}</style>
-    </section>
+    </>
   )
 }

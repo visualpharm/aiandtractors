@@ -2,10 +2,10 @@ import LargeCards from './LargeCards';
 
 export default function Awards() {
   return (
-    <section className="bg-white pt-16 pb-0 -mt-20 mb-5">
+    <section className="bg-gray-50 pt-16 pb-0 -mt-20 mb-5">
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 mt-8">
-        <h2 className="cards-title">Awards & Recognition</h2>
+        <h2 className="text-sm font-medium mb-3 text-gray-600 uppercase tracking-wider">Awards & Recognition</h2>
       </div>
 
       {/* Awards Grid */}
@@ -37,33 +37,31 @@ export default function Awards() {
         />
         
         {/* Metrics */}
-        <div className="mt-7" style={{ paddingTop: '32px' }}>
-          <div className="flex flex-wrap justify-center gap-16 mt-8">
+        <div className="mt-7" style={{ paddingTop: '32px', paddingBottom: '60px' }}>
+          <div className="flex flex-nowrap justify-center gap-4 md:gap-8 lg:gap-16 mt-8 overflow-x-auto">
             {[
-              { number: '4M+', label: 'Users Globally' },
-              { number: '150+', label: 'Team Members' },
-              { number: '0', label: 'Equity Sold' },
-              { number: '0', label: 'Debt' }
+              { number: '4M', icon: '👥', label: 'users', sublabel: 'Globally' },
+              { number: '150', icon: '👥', label: 'team', sublabel: '' },
+              { number: '$0', icon: '', label: 'equity sold', sublabel: '' },
+              { number: '$0', icon: '', label: 'debt', sublabel: '' },
+              { number: `${new Date().getFullYear() - 2002}`, icon: '', label: 'years', sublabel: 'creative tech' },
+              { number: '$54.6K', icon: '', label: 'avg server', sublabel: 'price' },
+              { number: '1st', icon: '', label: 'vendor of', sublabel: 'Canva' }
             ].map((metric, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl font-semibold text-primary">{metric.number}</div>
-                <div className="text-sm uppercase tracking-wider text-gray-500 mt-2">{metric.label}</div>
+              <div key={index} className="text-center flex-shrink-0 min-w-[80px] max-w-[120px]">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary">
+                  {metric.number} {metric.icon}
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mt-1 md:mt-2 leading-tight break-words">
+                  {metric.label}
+                  {metric.sublabel && <><br/>{metric.sublabel}</>}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        .cards-title {
-          font-size: 0.9rem;
-          font-weight: 500;
-          margin-bottom: 0.8rem;
-          color: var(--secondary-color);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-      `}</style>
     </section>
   );
 }

@@ -223,7 +223,7 @@ export default function Book() {
                 <p className="subtitle">{t.subtitle}</p>
               </div>
               <div className="hero-image">
-                <img src="/i/zero-to-ai.jpg" alt="Kill the Budget and 12 Other Ways to Bootstrap book cover" className="book-cover-large" />
+                <img src="/i/books/zero-to-ai.jpg" alt="Zero to AI book cover" className="book-cover-large" />
               </div>
             </div>
           </div>

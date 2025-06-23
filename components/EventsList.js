@@ -197,7 +197,15 @@ export default function EventsList({
     if (filterCountry !== 'all') query.country = filterCountry
     
     const queryString = Object.keys(query).length > 0 ? '?' + new URLSearchParams(query).toString() : ''
-    return `/eventos-tech-${targetYear}${queryString}`
+    
+    // Use language-appropriate URL pattern
+    const urlPatterns = {
+      es: `/eventos-tech-${targetYear}`,
+      en: `/tech-events-${targetYear}`, 
+      pt: `/eventos-tech-${targetYear}-pt`
+    }
+    
+    return `${urlPatterns[language] || urlPatterns.es}${queryString}`
   }
 
   return (
@@ -217,20 +225,24 @@ export default function EventsList({
         ))}
       </Head>
 
-      <div className="container">
+      <div className="max-w-6xl mx-auto px-8 py-12">
         {/* Header */}
-        <div className="header-section">
-          <h1>Eventos Tech Latam {year}</h1>
-          <p className="subtitle">{description}</p>
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold mb-4 text-gray-900 leading-tight">Eventos Tech Latam {year}</h1>
+          <p className="text-2xl text-gray-600 mb-4">{description}</p>
         </div>
 
         {/* Year Navigation */}
-        <div className="year-nav">
+        <div className="flex justify-center gap-4 mb-12 flex-wrap">
           {years.map(y => (
             <a 
               key={y}
               href={buildYearURL(y)} 
-              className={year === y ? 'active' : ''}
+              className={`px-6 py-3 rounded-lg border font-medium transition-all duration-300 ${
+                year === y 
+                  ? 'bg-blue-600 text-white border-blue-600' 
+                  : 'bg-white text-gray-900 border-gray-300 hover:bg-blue-600 hover:text-white hover:border-blue-600'
+              }`}
             >
               {y}
             </a>
@@ -238,35 +250,43 @@ export default function EventsList({
         </div>
 
         {/* Filters and Sorting */}
-        <div className="controls">
-          <div className="filters">
-            <div className="filter-group">
-              <label>{t.sortBy}</label>
-              <select value={sortBy} onChange={(e) => {
-                const newSort = e.target.value
-                setSortBy(newSort)
-                updateURL(newSort, filterTag, filterCountry)
-              }}>
+        <div className="mb-8">
+          <div className="flex gap-8 flex-wrap items-end md:flex-row flex-col md:gap-8 gap-4">
+            <div className="flex flex-row items-center gap-3">
+              <label className="text-sm font-medium text-gray-600">{t.sortBy}</label>
+              <select 
+                value={sortBy} 
+                onChange={(e) => {
+                  const newSort = e.target.value
+                  setSortBy(newSort)
+                  updateURL(newSort, filterTag, filterCountry)
+                }}
+                className="px-2 py-2 border border-gray-300 rounded bg-white min-w-[150px]"
+              >
                 <option value="popularity">{t.popularity}</option>
                 <option value="date">{t.date}</option>
                 <option value="attendees">{t.attendees}</option>
               </select>
             </div>
 
-            <div className="filter-group">
-              <label>{t.category}</label>
-              <select value={filterTag} onChange={(e) => {
-                const newTag = e.target.value
-                setFilterTag(newTag)
-                updateURL(sortBy, newTag, filterCountry)
-              }}>
+            <div className="flex flex-row items-center gap-3">
+              <label className="text-sm font-medium text-gray-600">{t.category}</label>
+              <select 
+                value={filterTag} 
+                onChange={(e) => {
+                  const newTag = e.target.value
+                  setFilterTag(newTag)
+                  updateURL(sortBy, newTag, filterCountry)
+                }}
+                className="px-2 py-2 border border-gray-300 rounded bg-white min-w-[150px]"
+              >
                 <option value="general tech">{t.generalTech}</option>
                 <option value="gaming">{t.gaming}</option>
               </select>
             </div>
 
-            <div className="filter-group">
-              <label>{t.country}</label>
+            <div className="flex flex-row items-center gap-3">
+              <label className="text-sm font-medium text-gray-600">{t.country}</label>
               <div className="country-dropdown-wrapper">
                 <div 
                   className="country-dropdown-trigger"
@@ -332,39 +352,43 @@ export default function EventsList({
         </div>
 
         {/* Events List */}
-        <div className="events-grid">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {filteredAndSortedEvents.map(event => {
             const { formatted: dateFormatted, isPast } = formatDate(event.date, event.endDate)
             return (
-              <div key={event.id} className={`event-card ${isPast ? 'past' : ''}`}>
-                <div className="event-header">
-                  <h3>{event.name}</h3>
-                  <div className="rating">
+              <div key={event.id} className={`bg-white rounded-xl p-6 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${isPast ? 'opacity-60 bg-gray-50' : ''}`}>
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-semibold text-gray-900 flex-1 mr-4">{event.name}</h3>
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     {renderStars(event.rating)}
-                    <span className="rating-text">({event.rating}/5)</span>
+                    <span className="text-sm text-gray-600">({event.rating}/5)</span>
                   </div>
                 </div>
                 
-                <div className="event-meta">
-                  <div className="location">📍 {event.location}</div>
-                  <div className="date">
+                <div className="mb-4 text-sm text-gray-600 space-y-1">
+                  <div>📍 {event.location}</div>
+                  <div className="flex items-center gap-2">
                     📅 {event.confirmed ? dateFormatted : event.approximateDate}
-                    {!event.confirmed && <span className="unconfirmed-badge">{t.probableDate}</span>}
+                    {!event.confirmed && <span className="inline-block ml-2 px-2 py-1 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl text-xs font-medium">{t.probableDate}</span>}
                   </div>
-                  <div className="attendees">👥 {event.attendees.toLocaleString()} {t.attendeesText}</div>
+                  <div>👥 {event.attendees.toLocaleString()} {t.attendeesText}</div>
                 </div>
 
-                <p className="description">{event.description}</p>
+                <p className="mb-4 leading-relaxed text-gray-900">{event.description}</p>
                 
-                <div className="focus">
+                <div className="mb-4 text-sm text-gray-600">
                   <strong>Enfoque:</strong> {event.focus}
                 </div>
 
-                <div className="tags">
+                <div className="flex flex-wrap gap-2">
                   {event.tags.map(tag => (
                     <span 
                       key={tag} 
-                      className={`tag ${filterTag === tag ? 'active' : ''}`}
+                      className={`px-3 py-1 rounded-full text-sm cursor-pointer transition-all duration-300 border ${
+                        filterTag === tag 
+                          ? 'bg-blue-600 text-white border-blue-600' 
+                          : 'bg-gray-100 text-gray-600 border-transparent hover:bg-blue-600 hover:text-white'
+                      }`}
                       onClick={() => {
                         setFilterTag(tag)
                         updateURL(sortBy, tag, filterCountry)
@@ -381,96 +405,7 @@ export default function EventsList({
       </div>
 
       <style jsx>{`
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 3rem 2rem;
-        }
-
-        .header-section {
-          text-align: center;
-          margin-bottom: 3rem;
-        }
-
-        h1 {
-          font-size: 3.5rem;
-          font-weight: 700;
-          margin: 0 0 1rem 0;
-          color: var(--primary-color);
-          line-height: 1.1;
-        }
-
-        .subtitle {
-          font-size: 1.5rem;
-          color: var(--secondary-color);
-          margin-bottom: 1rem;
-        }
-
-        .intro {
-          font-size: 1.1rem;
-          color: var(--secondary-color);
-          max-width: 800px;
-          margin: 0 auto;
-          line-height: 1.6;
-        }
-
-        .year-nav {
-          display: flex;
-          justify-content: center;
-          gap: 1rem;
-          margin-bottom: 3rem;
-          flex-wrap: wrap;
-        }
-
-        .year-nav a {
-          padding: 0.75rem 1.5rem;
-          background: var(--card-bg);
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          text-decoration: none;
-          color: var(--primary-color);
-          font-weight: 500;
-          transition: all 0.3s ease;
-        }
-
-        .year-nav a:hover,
-        .year-nav a.active {
-          background: var(--primary-color);
-          color: white;
-          border-color: var(--primary-color);
-        }
-
-        .controls {
-          margin-bottom: 2rem;
-        }
-
-        .filters {
-          display: flex;
-          gap: 2rem;
-          flex-wrap: wrap;
-          align-items: end;
-        }
-
-        .filter-group {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        .filter-group label {
-          font-size: 0.9rem;
-          font-weight: 500;
-          color: var(--secondary-color);
-        }
-
-        .filter-group select {
-          padding: 0.5rem;
-          border: 1px solid var(--border-color);
-          border-radius: 4px;
-          background: white;
-          min-width: 150px;
-        }
+        /* Custom styles for complex country dropdown */
 
         .country-dropdown-wrapper {
           position: relative;
@@ -482,7 +417,7 @@ export default function EventsList({
           align-items: center;
           justify-content: space-between;
           padding: 0.5rem 0.75rem;
-          border: 1px solid var(--border-color);
+          border: 1px solid #d1d5db;
           border-radius: 4px;
           background: white;
           cursor: pointer;
@@ -490,7 +425,7 @@ export default function EventsList({
         }
 
         .country-dropdown-trigger:hover {
-          border-color: var(--primary-color);
+          border-color: #2563eb;
         }
 
         .dropdown-arrow {
@@ -505,7 +440,7 @@ export default function EventsList({
           right: 0;
           z-index: 100;
           background: white;
-          border: 1px solid var(--border-color);
+          border: 1px solid #d1d5db;
           border-radius: 8px;
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
           margin-top: 2px;
@@ -516,7 +451,7 @@ export default function EventsList({
         .dropdown-left {
           flex: 1;
           padding: 0.5rem;
-          border-right: 1px solid var(--border-color);
+          border-right: 1px solid #d1d5db;
         }
 
         .dropdown-right {
@@ -539,11 +474,11 @@ export default function EventsList({
         }
 
         .country-dropdown-option:hover {
-          background: var(--color-tertiary);
+          background: #f3f4f6;
         }
 
         .country-dropdown-option.active {
-          background: var(--primary-color);
+          background: #2563eb;
           color: white;
         }
 
@@ -572,7 +507,6 @@ export default function EventsList({
           line-height: 1;
         }
 
-
         .country-text {
           font-size: 0.9rem;
           font-weight: 500;
@@ -588,139 +522,7 @@ export default function EventsList({
           opacity: 0.9;
         }
 
-        .events-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: 2rem;
-        }
-
-        .event-card {
-          background: var(--card-bg);
-          border-radius: 12px;
-          padding: 1.5rem;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
-          border: 1px solid var(--border-color);
-        }
-
-        .event-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .event-card.past {
-          opacity: 0.6;
-          background: var(--color-tertiary);
-        }
-
-        .event-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: start;
-          margin-bottom: 1rem;
-        }
-
-        .event-header h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--primary-color);
-          margin: 0;
-          flex: 1;
-          margin-right: 1rem;
-        }
-
-        .rating {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          flex-shrink: 0;
-        }
-
-        .rating-text {
-          font-size: 0.85rem;
-          color: var(--secondary-color);
-        }
-
-        .event-meta {
-          margin-bottom: 1rem;
-          font-size: 0.9rem;
-          color: var(--secondary-color);
-        }
-
-        .event-meta > div {
-          margin-bottom: 0.25rem;
-        }
-
-        .unconfirmed-badge {
-          display: inline-block;
-          margin-left: 0.5rem;
-          padding: 0.15rem 0.5rem;
-          background: #fef3cd;
-          color: #856404;
-          border: 1px solid #ffeaa7;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
-        }
-
-        .description {
-          margin-bottom: 1rem;
-          line-height: 1.5;
-          color: var(--primary-color);
-        }
-
-        .focus {
-          margin-bottom: 1rem;
-          font-size: 0.9rem;
-          color: var(--secondary-color);
-        }
-
-        .tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-
-        .tag {
-          padding: 0.25rem 0.75rem;
-          background: var(--color-tertiary);
-          border-radius: 20px;
-          font-size: 0.8rem;
-          color: var(--secondary-color);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border: 1px solid transparent;
-        }
-
-        .tag:hover,
-        .tag.active {
-          background: var(--primary-color);
-          color: white;
-        }
-
         @media (max-width: 768px) {
-          .events-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .filters {
-            flex-direction: column;
-            gap: 1rem;
-          }
-
-          .filter-group select {
-            width: 100%;
-          }
-
-          .event-header {
-            flex-direction: column;
-            gap: 0.5rem;
-          }
-
-          .event-header h3 {
-            margin-right: 0;
-          }
-
           .country-dropdown-content {
             min-width: 300px;
             flex-direction: column;
@@ -728,7 +530,7 @@ export default function EventsList({
 
           .dropdown-left {
             border-right: none;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #d1d5db;
           }
 
           .dropdown-right {

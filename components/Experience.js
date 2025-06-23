@@ -41,54 +41,43 @@ export default function Experience() {
 
   return (
     <>
-      <div style={{maxWidth: '1200px', margin: '0 auto', padding: '3rem 2rem'}}>
-        <div style={{display: 'grid', gridTemplateColumns: '100px 0.5fr 200px 180px', gap: '2rem', alignItems: 'start'}}>
-          <div style={{textAlign: 'left'}}>
-            <h2 style={{fontSize: '0.9rem', fontWeight: '500', margin: '0', color: 'var(--secondary-color)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>{t.title}</h2>
+      <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+          <div className="text-left">
+            <h2 className="text-sm font-medium m-0 text-gray-600 uppercase tracking-wider">{t.title}</h2>
           </div>
           <div>
-            <p style={{margin: '0', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--secondary-color)'}}>
-              I'm a tech founder leading a team of 150 and serving 4M users. <Link href="/experience" style={{color: 'var(--accent-color)', textDecoration: 'none'}}>{t.readMore}</Link>
+            <p className="m-0 text-lg leading-relaxed text-gray-600">
+              I'm a tech founder leading a team of 150 and serving 4M users. <Link href="/experience" className="text-blue-600 no-underline hover:text-gray-900">{t.readMore}</Link>
             </p>
           </div>
-          <div style={{textAlign: 'left'}}>
-            <div style={{marginBottom: '1rem'}}>
-              <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
-                <img src="/i/logos/icons8-icons8.svg" alt="Icons8" style={{width: '24px', height: '24px', marginRight: '0.5rem'}} />
-                <strong style={{color: 'var(--primary-color)'}}>
-                  <a href="https://icons8.com" style={{color: 'var(--primary-color)', textDecoration: 'none'}}>Icons8</a>
+          <div className="text-left">
+            <div className="mb-4">
+              <div className="flex items-center mb-2">
+                <img src="/i/logos/icons8-icons8.svg" alt="Icons8" className="w-6 h-6 mr-2" />
+                <strong className="text-gray-900">
+                  <a href="https://icons8.com" className="text-gray-900 no-underline hover:text-blue-600">Icons8</a>
                 </strong>
               </div>
-              <p style={{margin: '0', fontSize: '0.85rem', color: 'var(--secondary-color)', fontStyle: 'italic'}}>{t.founderCEO}</p>
-              <p style={{margin: '0', fontSize: '0.85rem', color: 'var(--secondary-color)'}}>{t.icons8Desc}</p>
+              <p className="m-0 text-sm text-gray-600 italic">{t.founderCEO}</p>
+              <p className="m-0 text-sm text-gray-600">{t.icons8Desc}</p>
             </div>
           </div>
-          <div style={{textAlign: 'left'}}>
+          <div className="text-left">
             <div>
-              <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
-                <img src="/i/logos/icons8-generated-photos.svg" alt="Generated Photos" style={{width: '24px', height: '24px', marginRight: '0.5rem'}} />
-                <strong style={{color: 'var(--primary-color)'}}>
-                  <a href="https://generated.photos" style={{color: 'var(--primary-color)', textDecoration: 'none'}}>Generated Photos</a>
+              <div className="flex items-center mb-2">
+                <img src="/i/logos/icons8-generated-photos.svg" alt="Generated Photos" className="w-6 h-6 mr-2" />
+                <strong className="text-gray-900">
+                  <a href="https://generated.photos" className="text-gray-900 no-underline hover:text-blue-600">Generated Photos</a>
                 </strong>
               </div>
-              <p style={{margin: '0', fontSize: '0.85rem', color: 'var(--secondary-color)'}}>{t.genPhotosDesc}</p>
-              <p style={{margin: '0', fontSize: '0.85rem', color: 'var(--secondary-color)', fontStyle: 'italic'}}>{t.founderCEO}</p>
+              <p className="m-0 text-sm text-gray-600">{t.genPhotosDesc}</p>
+              <p className="m-0 text-sm text-gray-600 italic">{t.founderCEO}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          div[style*="grid-template-columns"] {
-            display: block !important;
-          }
-          
-          div[style*="grid-template-columns"] > div {
-            margin-bottom: 2rem;
-          }
-        }
-      `}</style>
     </>
   )
 }

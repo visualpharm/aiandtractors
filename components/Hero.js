@@ -37,58 +37,61 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
 
   return (
     <>
-      <section className="hero-section">
-        <div className="hero-container">
-          <div className="hero-content">
-            <h1>{title}</h1>
-            <p className="subtitle">{subtitle}</p>
-            <p className="description">{description}</p>
-            <div className="cta-buttons">
+      <section className="bg-gray-50 py-16 flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="text-left">
+            <h1 className="text-6xl md:text-7xl font-normal text-gray-900 mb-2 -ml-2 leading-tight" style={{ fontFamily: "'DotGothic16', monospace" }}>
+              {title}
+            </h1>
+            <p className="text-xl text-gray-600 mb-4 font-normal">
+              {subtitle}
+            </p>
+            <p className="text-base text-gray-600 mb-6 leading-relaxed">
+              {description}
+            </p>
+            <div className="flex gap-4 flex-wrap">
               {imageUrl ? (
                 <>
                   <button 
-                    className="cta-button cta-primary"
+                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg"
                     onClick={() => window.open('https://book.ilbuco.com.ar/', '_self')}
                   >
-                    <p className="framer-text">Book</p>
+                    <p className="font-medium tracking-tight leading-tight m-0">Book</p>
                   </button>
                   <button 
-                    className="cta-button cta-secondary"
+                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg"
                     onClick={() => window.open('https://ilbuco.com.ar', '_self')}
                   >
-                    <p className="framer-text">Learn more</p>
+                    <p className="font-medium tracking-tight leading-tight m-0">Learn more</p>
                   </button>
                 </>
               ) : (
                 <>
                   <button 
-                    className="cta-button cta-primary"
+                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg"
                     onClick={() => router.push('/contact')}
                   >
-                    <p className="framer-text">{t.contact}</p>
+                    <p className="font-medium tracking-tight leading-tight m-0">{t.contact}</p>
                   </button>
                   <button 
-                    className="cta-button cta-secondary"
+                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg"
                     onClick={() => router.push('/visit')}
                   >
-                    <p className="framer-text">{t.visit}</p>
+                    <p className="font-medium tracking-tight leading-tight m-0">{t.visit}</p>
                   </button>
                 </>
               )}
             </div>
           </div>
-          <div className="hero-image">
+          <div className="flex justify-center items-center">
             <a href={imageUrl || "/i/ivan-robot.png"} data-fancybox="profile">
               <Image 
                 src={imageUrl || "/i/ivan-robot.png"} 
                 alt={imageUrl ? "Ivan Braun's location in Cariló" : "Ivan Braun AI Avatar"}
                 width={500}
-                height={500}
+                height={400}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
+                className="w-full max-w-[505px] h-[400px] md:h-[400px] object-cover drop-shadow-lg transition-transform duration-300 hover:scale-105"
                 priority
               />
             </a>
@@ -96,157 +99,6 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
         </div>
       </section>
 
-      <style jsx>{`
-        .hero-section {
-            background: var(--hero-bg);
-            padding: 4rem 0 2rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-family: 'DotGothic16', monospace;
-            font-size: 4.32rem;
-            font-weight: 400;
-            color: var(--primary-color);
-            margin: 0 0 0.5rem -10px;
-            line-height: 1.1;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin: 0 0 1rem 0;
-            font-weight: 400;
-        }
-
-        .hero-content .description {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-
-        .hero-image img {
-            width: 505px;
-            height: auto;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
-            transition: transform 0.3s ease;
-        }
-
-        .hero-image img:hover {
-            transform: scale(1.05);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .framer-text {
-            font-family: "Inter", "Inter Placeholder", sans-serif;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            line-height: 120%;
-            margin: 0;
-        }
-
-        .cta-primary {
-            background: var(--accent-color);
-        }
-
-        .cta-primary .framer-text {
-            color: rgb(255, 255, 255);
-        }
-
-        .cta-primary:hover {
-            background: #3a4db8;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(69, 93, 204, 0.3);
-        }
-
-        .cta-secondary {
-            background: white;
-            border: 2px solid var(--border-color);
-        }
-
-        .cta-secondary .framer-text {
-            color: var(--primary-color);
-        }
-
-        .cta-secondary:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(69, 93, 204, 0.2);
-        }
-
-        .cta-secondary:hover .framer-text {
-            color: rgb(255, 255, 255);
-        }
-
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-image img {
-                width: 300px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-image img {
-                width: 250px;
-            }
-
-            .cta-buttons {
-                justify-content: center;
-            }
-        }
-      `}</style>
     </>
   )
 }

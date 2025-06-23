@@ -298,10 +298,11 @@ the buttons must be Book and Learn more. first leasd to
 
 # Styling 
 
-## Title Styles
-- **fun-title**: CRT headline effect for major section breaks. Large (2.5-3rem), Helvetica Neue font, orange/green text shadow for CRT monitor look.
-- **cards-title**: Small uppercase labels for component/section headers. 0.9rem, uppercase, letter-spacing, gray color.
-
-Fun title h2 always has Helvetica Neue font not Cormorant.
+Fun title h2  always has Helvetica Neue font not Cormorant.
 Never draw the icons, use icons8 mcp.
+
 Make LargeCards 100%. It’s always 100% wide from one side of the screen to another. if its organic width is less than 2/3 of the screen, align to the left, but to the side of the screen, ignore the page margins.
+
+
+# Tech
+It's a next.js app, so don't search for index.html.

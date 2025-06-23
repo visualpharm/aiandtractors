@@ -201,13 +201,13 @@ export default function Layout({ children }) {
         @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
         
         :root {
-            --bg-color: #ffffff;
+            --bg-color: #f9fafb;
             --primary-color: #000000;
             --secondary-color: #333333;
             --accent-color: #455dcc;
             --card-bg: #ffffff;
             --border-color: #e5e7eb;
-            --hero-bg: #ffffff;
+            --hero-bg: #f9fafb;
         }
 
         * {

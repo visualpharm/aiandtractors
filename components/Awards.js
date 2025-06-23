@@ -2,10 +2,10 @@ import LargeCards from './LargeCards';
 
 export default function Awards() {
   return (
-    <section className="bg-white py-16 -mt-20 mb-5">
+    <section className="bg-white pt-16 pb-0 -mt-20 mb-5">
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 mt-8">
-        <h2 className="text-3xl font-semibold text-gray-900 mb-6">Awards & Recognition</h2>
+        <h2 className="cards-title">Awards & Recognition</h2>
       </div>
 
       {/* Awards Grid */}
@@ -37,7 +37,7 @@ export default function Awards() {
         />
         
         {/* Metrics */}
-        <div className="mt-7">
+        <div className="mt-7" style={{ paddingTop: '32px' }}>
           <div className="flex flex-wrap justify-center gap-16 mt-8">
             {[
               { number: '4M+', label: 'Users Globally' },
@@ -53,6 +53,17 @@ export default function Awards() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .cards-title {
+          font-size: 0.9rem;
+          font-weight: 500;
+          margin-bottom: 0.8rem;
+          color: var(--secondary-color);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      `}</style>
     </section>
   );
 }

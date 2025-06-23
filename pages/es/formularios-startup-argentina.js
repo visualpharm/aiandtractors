@@ -27,35 +27,72 @@ export default function FormulariosStartupArgentina() {
             <p><strong><Icon name="warning" />Importante:</strong> Todos los modelos son plantillas de referencia y <strong>no sustituyen asesoría legal profesional</strong>.</p>
           </div>
 
-          <section className="why-section">
-            <h2>¿Por qué esta guía?</h2>
-            <p>Iniciar un <strong>emprendimiento en Argentina</strong> con uno o más socios exige algo más que una buena idea: se necesitan acuerdos claros, un plan de acción y los <strong>formularios de AFIP</strong> correctos. Aquí encontrarás modelos listos para usar —desde un <strong>contrato entre socios</strong> hasta la cesión de propiedad intelectual— y los pasos previos para pasar de una <strong>sociedad de hecho</strong> a una SAS registrada.</p>
+          <section className="forms-section">
+            <h2 className="documents-title">Formularios y plantillas que encontrarás aquí</h2>
+            <div className="forms-grid">
+              <div className="form-card">
+                <h3><Icon name="scroll" />MoU (Acuerdo de Fundadores)</h3>
+                <p>Memorando de entendimiento entre socios fundadores con cláusulas de vesting y responsabilidades.</p>
+                <a href="/forms/MoU_Anon.docx" className="download-btn" download>Descargar MoU</a>
+              </div>
+              
+              <div className="form-card">
+                <h3><Icon name="scale" />Cesión y Fideicomiso de PI</h3>
+                <p>Protección y transferencia de propiedad intelectual desarrollada durante el emprendimiento.</p>
+                <a href="/forms/PI_Fideicomiso_Anon.docx" className="download-btn" download>Descargar Fideicomiso</a>
+              </div>
+              
+              <div className="form-card">
+                <h3><Icon name="dollar" />Mutuo Convertible</h3>
+                <p>Contrato de préstamo que se convierte en participación accionaria en futuras rondas.</p>
+                <a href="/forms/Mutuo_Anon.docx" className="download-btn" download>Descargar Mutuo</a>
+              </div>
+              
+              <div className="form-card">
+                <h3><Icon name="shh" />NDA multilateral</h3>
+                <p>Acuerdo de confidencialidad entre múltiples partes para proteger información sensible.</p>
+                <a href="/forms/NDA_Anon.docx" className="download-btn" download>Descargar NDA</a>
+              </div>
+              
+              <div className="form-card">
+                <h3><Icon name="checkmark" />Checklist Due Diligence</h3>
+                <p>Lista de verificación para UIF, AFIP, antecedentes y cumplimiento regulatorio.</p>
+                <a href="/forms/forms-startup-argentina.zip" className="download-btn" download>Descargar Pack Completo</a>
+              </div>
+            </div>
           </section>
 
-          <section className="benefits-section">
-            <h2>Qué vas a lograr con esta página</h2>
+          <div className="why-section">
+            <h2 className="fun-title"><span className="fun-title-fill">¿Por qué esta guía?</span></h2>
+            <p>Iniciar un <strong>emprendimiento en Argentina</strong> con uno o más socios exige algo más que una buena idea: se necesitan acuerdos claros, un plan de acción y los <strong>formularios de AFIP</strong> correctos. Aquí encontrarás modelos listos para usar —desde un <strong>contrato entre socios</strong> hasta la cesión de propiedad intelectual— y los pasos previos para pasar de una <strong>sociedad de hecho</strong> a una SAS registrada.</p>
+          </div>
+
+          <div className="benefits-section">
+            <div className="container">
+              <h3 className="section-label">QUÉ VAS A LOGRAR CON ESTA PÁGINA</h3>
+            </div>
             <div className="benefits-grid">
-              <div className="benefit-card">
+              <div className="benefit-card large-card">
                 <h3><Icon name="shield" />Evitar conflictos</h3>
                 <p>futuros mediante un <strong>acuerdo entre socios Argentina</strong> con cláusulas de vesting, drag-along y confidencialidad.</p>
               </div>
               
-              <div className="benefit-card">
+              <div className="benefit-card large-card">
                 <h3><Icon name="clock" />Ahorrar tiempo</h3>
                 <p>siguiendo un checklist de <strong>pre constitución empresa Argentina</strong> con los documentos mínimos para operar antes de inscribir la sociedad.</p>
               </div>
               
-              <div className="benefit-card">
+              <div className="benefit-card large-card">
                 <h3><Icon name="clipboard" />Formalizar</h3>
                 <p>tu actividad económica presentando el <strong>formulario inicio de actividad AFIP</strong> y otros trámites clave para <strong>abrir una startup en Argentina</strong>.</p>
               </div>
               
-              <div className="benefit-card">
+              <div className="benefit-card large-card">
                 <h3><Icon name="trending-up" />Escalar</h3>
                 <p>rápidamente cuando llegue la primera ronda, convirtiendo el préstamo inicial en equity sin fricciones.</p>
               </div>
             </div>
-          </section>
+          </div>
 
           <div className="tip-box">
             <p><strong><Icon name="lightbulb" />Tip rápido:</strong> Si recién empezás, podés funcionar como <strong>sociedad de hecho Argentina</strong> con responsabilidad ilimitada; este paquete de contratos te blinda mientras reunís el cash-flow necesario para constituir tu SAS.</p>
@@ -67,7 +104,7 @@ export default function FormulariosStartupArgentina() {
               <div className="step">
                 <span className="step-number">1</span>
                 <div className="step-content">
-                  <h3>Firmar el Contrato entre Socios (MoU 50 / 50 %)</h3>
+                  <h3>Firmar el Contrato entre Socios</h3>
                   <p>Fija roles, derechos de preferencia y plan de vesting.</p>
                 </div>
               </div>
@@ -106,45 +143,6 @@ export default function FormulariosStartupArgentina() {
             </div>
           </section>
 
-          <section className="forms-section">
-            <h2>Formularios y plantillas que encontrarás aquí</h2>
-            <div className="forms-grid">
-              <div className="form-card">
-                <h3><Icon name="scroll" />MoU (Acuerdo de Fundadores)</h3>
-                <p>Memorando de entendimiento entre socios fundadores con cláusulas de vesting y responsabilidades.</p>
-                <a href="/forms/MoU_Anon.docx" className="download-btn" download>Descargar MoU</a>
-              </div>
-              
-              <div className="form-card">
-                <h3><Icon name="scale" />Cesión y Fideicomiso de PI</h3>
-                <p>Protección y transferencia de propiedad intelectual desarrollada durante el emprendimiento.</p>
-                <a href="/forms/PI_Fideicomiso_Anon.docx" className="download-btn" download>Descargar Fideicomiso</a>
-              </div>
-              
-              <div className="form-card">
-                <h3><Icon name="dollar" />Mutuo Convertible</h3>
-                <p>Contrato de préstamo que se convierte en participación accionaria en futuras rondas.</p>
-                <a href="/forms/Mutuo_Anon.docx" className="download-btn" download>Descargar Mutuo</a>
-              </div>
-              
-              <div className="form-card">
-                <h3><Icon name="shh" />NDA multilateral</h3>
-                <p>Acuerdo de confidencialidad entre múltiples partes para proteger información sensible.</p>
-                <a href="/forms/NDA_Anon.docx" className="download-btn" download>Descargar NDA</a>
-              </div>
-              
-              <div className="form-card">
-                <h3><Icon name="checkmark" />Checklist Due Diligence</h3>
-                <p>Lista de verificación para UIF, AFIP, antecedentes y cumplimiento regulatorio.</p>
-                <a href="/forms/forms-startup-argentina.zip" className="download-btn" download>Descargar Pack Completo</a>
-              </div>
-            </div>
-          </section>
-
-          <section className="cta-section">
-            <h2>¿Listo para crear tu emprendimiento en Argentina?</h2>
-            <p>Usá estos modelos como base para avanzar con seguridad y claridad.</p>
-          </section>
 
           <section className="keywords-section">
             <h3><Icon name="search" />Keywords objetivo (integradas)</h3>
@@ -232,11 +230,71 @@ export default function FormulariosStartupArgentina() {
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
+        .why-section {
+          background: transparent;
+          padding: 2rem 0;
+          margin-bottom: 2rem;
+          box-shadow: none;
+          border-radius: 0;
+        }
+
+        .benefits-section {
+          background: transparent;
+          padding: 2rem;
+          margin-bottom: 2rem;
+          box-shadow: none;
+          border-radius: 0;
+          width: 100vw;
+          margin-left: calc(-50vw + 50%);
+        }
+
         h2 {
           font-size: 1.8rem;
           font-weight: 600;
           color: var(--primary-color);
           margin: 0 0 1.5rem 0;
+        }
+
+        .fun-title {
+          margin-top: 28px !important;
+          margin-bottom: 2rem !important;
+          position: relative;
+          display: inline-block;
+          font-size: 3rem;
+          font-weight: 400 !important;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          line-height: 1.1;
+        }
+
+        .fun-title-fill {
+          position: relative;
+          color: #222;
+          font-size: 2.5rem !important;
+          font-weight: 400 !important;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          z-index: 2;
+          text-shadow:
+            -1px 0 0 #dd9e8e,
+            1px 0 0 #53cb82;
+        }
+
+        .section-label {
+          font-family: 'DotGothic16', monospace;
+          font-size: 0.9rem;
+          font-weight: 400;
+          color: var(--secondary-color);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin: 0 0 2rem 0;
+        }
+
+        .documents-title {
+          font-family: 'DotGothic16', monospace;
+          font-size: 3rem;
+          font-weight: 400;
+          color: var(--primary-color);
+          margin: 0 0 3rem 0;
+          line-height: 1.1;
         }
 
         h3 {
@@ -248,7 +306,7 @@ export default function FormulariosStartupArgentina() {
 
         .benefits-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-template-columns: repeat(4, 1fr);
           gap: 1.5rem;
         }
 
@@ -257,6 +315,15 @@ export default function FormulariosStartupArgentina() {
           padding: 1.5rem;
           border-radius: 8px;
           border: 1px solid var(--border-color);
+        }
+
+        .large-card {
+          padding: 2.5rem;
+          min-height: 180px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
         }
 
         .benefit-card h3 {
@@ -444,8 +511,21 @@ export default function FormulariosStartupArgentina() {
             font-size: 2rem;
           }
 
-          .benefits-grid, .forms-grid {
+          .documents-title {
+            font-size: 2rem;
+          }
+
+          .benefits-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .forms-grid {
             grid-template-columns: 1fr;
+          }
+
+          .large-card {
+            min-height: auto;
+            padding: 2rem;
           }
 
           .cta-buttons {

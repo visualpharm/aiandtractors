@@ -267,7 +267,41 @@ Text: I’ve built a villa to invite fellow tech founders. It’s a great expens
 
 If you book it, I’ll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired). 
 
-The buttons should be Book and Learn more.
+the buttons must be Book and Learn more. first leasd to 
+  https://book.ilbuco.com.ar/ second to https://ilbuco.com.ar
 
-# TItle fonts
-For all the titles, once and forever. All pages have DotGothic16 titles. The only exception is the book page, which uses Cormorant
+  # Contact
+
+  Here is the content:
+
+  ---
+
+## 📬 Contact Ivan
+
+**Speaking, investing, and advisory opportunities**
+
+### ✅ Looking For
+- **Speaking**: AI conferences, corporate events, startup talks  
+- **Investing**: AI + real sectors (e.g., PropTech, manufacturing), B2B AI tools  
+- **Advisory**: Tech startups, AI implementation, remote teams
+
+### ❌ Not Looking For
+- Investment in my companies  
+- Acquisition offers  
+- General partnerships  
+- Sales pitches  
+- Icons8 & Generated Photos: please use official support channels
+
+**📧 Email**: ivan@generated.photos  
+**📲 Telegram**: [@Icons8](https://t.me/Icons8)
+
+
+# Styling 
+
+## Title Styles
+- **fun-title**: CRT headline effect for major section breaks. Large (2.5-3rem), Helvetica Neue font, orange/green text shadow for CRT monitor look.
+- **cards-title**: Small uppercase labels for component/section headers. 0.9rem, uppercase, letter-spacing, gray color.
+
+Fun title h2 always has Helvetica Neue font not Cormorant.
+Never draw the icons, use icons8 mcp.
+Make LargeCards 100%. It’s always 100% wide from one side of the screen to another. if its organic width is less than 2/3 of the screen, align to the left, but to the side of the screen, ignore the page margins.

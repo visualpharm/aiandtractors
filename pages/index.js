@@ -6,6 +6,7 @@ import MediaCoverage from '../components/MediaCoverage'
 import Experience from '../components/Experience'
 import Awards from '../components/Awards'
 import Speaking from '../components/Speaking'
+import Government from '../components/Government'
 
 const translations = {
   en: {
@@ -55,6 +56,7 @@ export default function Home() {
       <Experience />
       <Speaking />
       <Awards />
+      <Government />
     </Layout>
   )
 }

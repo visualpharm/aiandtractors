@@ -104,21 +104,15 @@ export default function Experience() {
               <h1>{t.heading}</h1>
               <div className="description">
                 <p>{t.intro}</p>
-                <h2 className="tools-intro">{t.toolsIntro}</h2>
               </div>
             </div>
             <div className="hero-image">
-              <Image 
-                src="/i/test-large-image.jpg" 
-                alt="Ivan Braun Experience" 
-                width={800}
-                height={600}
-                className="experience-image" 
-                priority
-              />
+              <img src="/i/experience.png" alt="Ivan Braun Experience" className="experience-image" />
             </div>
           </div>
         </div>
+        
+        <h2 className="fun-title"><span className="fun-title-fill">{t.toolsIntro}</span></h2>
         
         <div className="tools-section">
           <div className="tool-card">
@@ -305,17 +299,16 @@ export default function Experience() {
             display: inline-block;
             font-size: 3rem;
             font-weight: 400 !important;
-            font-family: 'Cormorant', serif !important;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
             line-height: 1.1;
-            color: #950303;
         }
 
         .fun-title-fill {
             position: relative;
-            color: #950303;
+            color: #222;
             font-size: 2.5rem !important;
             font-weight: 400 !important;
-            font-family: 'Cormorant', serif !important;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
             z-index: 2;
             text-shadow:
                 -1px 0 0 #dd9e8e,

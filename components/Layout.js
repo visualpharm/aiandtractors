@@ -10,6 +10,7 @@ const translations = {
     speaking: "Speaking",
     experience: "Experience", 
     book: "Book",
+    events: "Tech Events",
     visit: "Visit me",
     contact: "Contact"
   },
@@ -17,6 +18,7 @@ const translations = {
     speaking: "Conferencias",
     experience: "Experiencia",
     book: "Libro",
+    events: "Eventos Tech",
     visit: "Visitarme", 
     contact: "Contacto"
   },
@@ -24,6 +26,7 @@ const translations = {
     speaking: "Palestras",
     experience: "Experiência",
     book: "Livro",
+    events: "Eventos Tech",
     visit: "Me visitar",
     contact: "Contato"
   }
@@ -54,6 +57,7 @@ export default function Layout({ children }) {
         { href: "/ai-keynote-speaker", text: "AI Keynote Speaker" },
         { href: "/argentina-ai-speaker", text: "Argentina AI Speaker" },
         { href: "/argentina-keynote-speaker", text: "Argentina Keynote Speaker" },
+        { href: "/eventos-tech-2025", text: "Tech Events 2025" },
         { href: "https://recharge.com.ar", text: "Shelter Argentina" },
         { href: "https://ilbuco.com.ar", text: "Coliving Argentina" }
       ],
@@ -61,12 +65,15 @@ export default function Layout({ children }) {
         { href: "/es/ia-speaker", text: "IA Speaker" },
         { href: "/es/experto-ia", text: "Experto en IA" },
         { href: "/es/formularios-startup-argentina", text: "Formularios Startup Argentina" },
+        { href: "/eventos-tech-2025", text: "Eventos Tech 2025" },
+        { href: "/eventos-tech-2026", text: "Eventos Tech 2026" },
         { href: "https://recharge.com.ar", text: "Refugio Argentina" },
         { href: "https://ilbuco.com.ar", text: "Coliving Argentina" }
       ],
       pt: [
         { href: "/pt/speaker-ia", text: "Speaker IA" },
         { href: "/pt/experto-ia", text: "Experto em IA" },
+        { href: "/eventos-tech-2025", text: "Eventos Tech 2025" },
         { href: "https://recharge.com.ar", text: "Abrigo Argentina" },
         { href: "https://ilbuco.com.ar", text: "Coliving Argentina" }
       ]
@@ -118,6 +125,7 @@ export default function Layout({ children }) {
             <ul className="nav-links">
               <li><Link href={getLocalizedUrl('/experience')}>{t.experience}</Link></li>
               <li><Link href={getLocalizedUrl('/book')}>{t.book}</Link></li>
+              <li><Link href="/eventos-tech-2025">{t.events}</Link></li>
               <li><Link href={getLocalizedUrl('/visit')}>{t.visit}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>

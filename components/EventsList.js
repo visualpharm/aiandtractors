@@ -293,7 +293,10 @@ export default function EventsList({
                 
                 <div className="event-meta">
                   <div className="location">📍 {event.location}</div>
-                  <div className="date">📅 {dateFormatted}</div>
+                  <div className="date">
+                    📅 {event.confirmed ? dateFormatted : event.approximateDate}
+                    {!event.confirmed && <span className="unconfirmed-badge">Fecha probable</span>}
+                  </div>
                   <div className="attendees">👥 {event.attendees.toLocaleString()} asistentes</div>
                 </div>
 
@@ -592,6 +595,18 @@ export default function EventsList({
 
         .event-meta > div {
           margin-bottom: 0.25rem;
+        }
+
+        .unconfirmed-badge {
+          display: inline-block;
+          margin-left: 0.5rem;
+          padding: 0.15rem 0.5rem;
+          background: #fef3cd;
+          color: #856404;
+          border: 1px solid #ffeaa7;
+          border-radius: 12px;
+          font-size: 0.75rem;
+          font-weight: 500;
         }
 
         .description {

@@ -3,19 +3,66 @@ import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Layout from './Layout'
 
+// Language translations
+const translations = {
+  es: {
+    sortBy: "Ordenar por",
+    category: "Categoría", 
+    country: "País",
+    popularity: "Popularidad",
+    date: "Fecha",
+    attendees: "Asistentes",
+    allCountries: "Todos",
+    probableDate: "Fecha probable",
+    generalTech: "General Tech",
+    gaming: "Gaming",
+    attendeesText: "asistentes"
+  },
+  en: {
+    sortBy: "Sort by",
+    category: "Category",
+    country: "Country", 
+    popularity: "Popularity",
+    date: "Date",
+    attendees: "Attendees",
+    allCountries: "All",
+    probableDate: "Probable date",
+    generalTech: "General Tech",
+    gaming: "Gaming",
+    attendeesText: "attendees"
+  },
+  pt: {
+    sortBy: "Ordenar por",
+    category: "Categoria",
+    country: "País",
+    popularity: "Popularidade", 
+    date: "Data",
+    attendees: "Participantes",
+    allCountries: "Todos",
+    probableDate: "Data provável",
+    generalTech: "Tech Geral",
+    gaming: "Gaming",
+    attendeesText: "participantes"
+  }
+}
+
 export default function EventsList({ 
   year, 
   events, 
   title, 
   description, 
   metaDescription, 
-  keywords 
+  keywords,
+  language = 'es'
 }) {
   const router = useRouter()
   const [sortBy, setSortBy] = useState('popularity')
   const [filterTag, setFilterTag] = useState('general tech')
   const [filterCountry, setFilterCountry] = useState('all')
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false)
+  
+  // Translation helper
+  const t = translations[language] || translations.es
 
   // Load filters from URL on mount
   useEffect(() => {
@@ -64,7 +111,8 @@ export default function EventsList({
   const countryFlags = {
     'Brasil': '/i/books/brasil.png',
     'México': '🇲🇽', 
-    'Colombia': '🇨🇴'
+    'Colombia': '🇨🇴',
+    'Argentina': '🇦🇷'
   }
 
   // Filter and sort events
@@ -122,9 +170,16 @@ export default function EventsList({
     const now = new Date()
     const isPast = date < now
     
+    const localeMap = {
+      es: 'es-ES',
+      en: 'en-US', 
+      pt: 'pt-BR'
+    }
+    const locale = localeMap[language] || 'es-ES'
+    
     const options = { day: 'numeric', month: 'short' }
-    const formattedStart = date.toLocaleDateString('es-ES', options)
-    const formattedEnd = endDate.toLocaleDateString('es-ES', options)
+    const formattedStart = date.toLocaleDateString(locale, options)
+    const formattedEnd = endDate.toLocaleDateString(locale, options)
     
     return {
       formatted: `${formattedStart} - ${formattedEnd}`,
@@ -165,9 +220,8 @@ export default function EventsList({
       <div className="container">
         {/* Header */}
         <div className="header-section">
-          <h1>Eventos Tech {year}</h1>
-          <p className="subtitle">Conferencias tecnológicas destacadas en Latinoamérica</p>
-          <p className="intro">{description}</p>
+          <h1>Eventos Tech Latam {year}</h1>
+          <p className="subtitle">{description}</p>
         </div>
 
         {/* Year Navigation */}
@@ -187,38 +241,38 @@ export default function EventsList({
         <div className="controls">
           <div className="filters">
             <div className="filter-group">
-              <label>Ordenar por</label>
+              <label>{t.sortBy}</label>
               <select value={sortBy} onChange={(e) => {
                 const newSort = e.target.value
                 setSortBy(newSort)
                 updateURL(newSort, filterTag, filterCountry)
               }}>
-                <option value="popularity">Popularidad</option>
-                <option value="date">Fecha</option>
-                <option value="attendees">Asistentes</option>
+                <option value="popularity">{t.popularity}</option>
+                <option value="date">{t.date}</option>
+                <option value="attendees">{t.attendees}</option>
               </select>
             </div>
 
             <div className="filter-group">
-              <label>Categoría</label>
+              <label>{t.category}</label>
               <select value={filterTag} onChange={(e) => {
                 const newTag = e.target.value
                 setFilterTag(newTag)
                 updateURL(sortBy, newTag, filterCountry)
               }}>
-                <option value="general tech">General Tech</option>
-                <option value="gaming">Gaming</option>
+                <option value="general tech">{t.generalTech}</option>
+                <option value="gaming">{t.gaming}</option>
               </select>
             </div>
 
             <div className="filter-group">
-              <label>País</label>
+              <label>{t.country}</label>
               <div className="country-dropdown-wrapper">
                 <div 
                   className="country-dropdown-trigger"
                   onClick={() => setCountryDropdownOpen(!countryDropdownOpen)}
                 >
-                  <span>{filterCountry === 'all' ? 'Todos' : filterCountry}</span>
+                  <span>{filterCountry === 'all' ? t.allCountries : filterCountry}</span>
                   <span className="dropdown-arrow">▼</span>
                 </div>
                 
@@ -234,7 +288,7 @@ export default function EventsList({
                         }}
                       >
                         <span className="country-flag">🌎</span>
-                        <span className="country-text">Todos</span>
+                        <span className="country-text">{t.allCountries}</span>
                         <span className="country-count">({events.length})</span>
                       </div>
                       {allCountries.map(country => (
@@ -295,9 +349,9 @@ export default function EventsList({
                   <div className="location">📍 {event.location}</div>
                   <div className="date">
                     📅 {event.confirmed ? dateFormatted : event.approximateDate}
-                    {!event.confirmed && <span className="unconfirmed-badge">Fecha probable</span>}
+                    {!event.confirmed && <span className="unconfirmed-badge">{t.probableDate}</span>}
                   </div>
-                  <div className="attendees">👥 {event.attendees.toLocaleString()} asistentes</div>
+                  <div className="attendees">👥 {event.attendees.toLocaleString()} {t.attendeesText}</div>
                 </div>
 
                 <p className="description">{event.description}</p>

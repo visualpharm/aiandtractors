@@ -157,6 +157,36 @@ export const events2025 = [
     popularity: 82,
     confirmed: false,
     approximateDate: "Última semana de octubre"
+  },
+  {
+    id: 11,
+    name: "Nerdearla 2025",
+    location: "Buenos Aires, Argentina",
+    date: "2025-09-23",
+    endDate: "2025-09-27",
+    attendees: 16000,
+    rating: 3.0,
+    description: "Conferencia comunitaria creada por sysarmy; charlas técnicas de software libre, IA, seguridad, DevOps y cultura nerd, con hackatones y workshops gratuitos.",
+    focus: "Tecnología & desarrollo de software open-source",
+    tags: ["general tech"],
+    country: "Argentina",
+    popularity: 75,
+    confirmed: true
+  },
+  {
+    id: 12,
+    name: "Argentina Game Show (AGS) 2025",
+    location: "Tecnópolis, Buenos Aires, Argentina",
+    date: "2025-10-10",
+    endDate: "2025-10-12",
+    attendees: 110000,
+    rating: 5.0,
+    description: "Feria gamer más grande del país; lanza títulos AAA, torneos esports internacionales, cosplay y conciertos temáticos; stands de hardware y VR.",
+    focus: "Gaming & esports masivos",
+    tags: ["gaming"],
+    country: "Argentina",
+    popularity: 96,
+    confirmed: true
   }
 ]
 
@@ -320,6 +350,38 @@ export const events2026 = [
     popularity: 82,
     confirmed: false,
     approximateDate: "Última semana de octubre"
+  },
+  {
+    id: 11,
+    name: "Nerdearla 2026",
+    location: "Buenos Aires, Argentina",
+    date: "2026-09-25",
+    endDate: "2026-09-27",
+    attendees: 17000,
+    rating: 3.0,
+    description: "Edición híbrida con 5 días de charlas deep-tech (backend, IA ética, SRE), laboratorios 'hands-on', comunidad open-source latinoamericana.",
+    focus: "Tech & comunidad dev",
+    tags: ["general tech"],
+    country: "Argentina",
+    popularity: 76,
+    confirmed: false,
+    approximateDate: "Última semana de septiembre"
+  },
+  {
+    id: 12,
+    name: "Argentina Game Show (AGS) 2026",
+    location: "Tecnópolis, Buenos Aires, Argentina",
+    date: "2026-10-09",
+    endDate: "2026-10-11",
+    attendees: 115000,
+    rating: 5.0,
+    description: "Expo gamer regional con publishers globales, arena de esports y espacios de creators; crece con zona indie y realidad mixta.",
+    focus: "Gaming & cultura gamer",
+    tags: ["gaming"],
+    country: "Argentina",
+    popularity: 97,
+    confirmed: false,
+    approximateDate: "Segunda semana de octubre"
   }
 ]
 
@@ -483,6 +545,38 @@ export const events2027 = [
     popularity: 82,
     confirmed: false,
     approximateDate: "Última semana de octubre"
+  },
+  {
+    id: 11,
+    name: "Nerdearla 2027",
+    location: "Buenos Aires, Argentina",
+    date: "2027-09-24",
+    endDate: "2027-09-26",
+    attendees: 18000,
+    rating: 3.0,
+    description: "Continúa formato híbrido; foco en IA generativa, ciberseguridad avanzada y prácticas DevOps escalables; accesible y gratuito.",
+    focus: "Tech & dev community",
+    tags: ["general tech"],
+    country: "Argentina",
+    popularity: 77,
+    confirmed: false,
+    approximateDate: "Última semana de septiembre"
+  },
+  {
+    id: 12,
+    name: "Argentina Game Show (AGS) 2027",
+    location: "Tecnópolis, Buenos Aires, Argentina",
+    date: "2027-10-08",
+    endDate: "2027-10-10",
+    attendees: 120000,
+    rating: 5.0,
+    description: "Amplía pabellones con arenas VR/AR, finales de ligas LATAM de esports y showcases de hardware next-gen.",
+    focus: "Gaming mega-expo",
+    tags: ["gaming"],
+    country: "Argentina",
+    popularity: 98,
+    confirmed: false,
+    approximateDate: "Segunda semana de octubre"
   }
 ]
 
@@ -646,5 +740,37 @@ export const events2028 = [
     popularity: 82,
     confirmed: false,
     approximateDate: "Última semana de octubre"
+  },
+  {
+    id: 11,
+    name: "Nerdearla 2028",
+    location: "Buenos Aires, Argentina",
+    date: "2028-09-22",
+    endDate: "2028-09-24",
+    attendees: 19000,
+    rating: 3.5,
+    description: "Versión 15.º aniversario; track de IA responsable, hardware hacking y workshops \"low-cost cloud\"; mantiene acceso gratuito y comunidad global.",
+    focus: "Tech innovación abierta",
+    tags: ["general tech"],
+    country: "Argentina",
+    popularity: 78,
+    confirmed: false,
+    approximateDate: "Última semana de septiembre"
+  },
+  {
+    id: 12,
+    name: "Argentina Game Show (AGS) 2028",
+    location: "Tecnópolis, Buenos Aires, Argentina",
+    date: "2028-10-13",
+    endDate: "2028-10-15",
+    attendees: 125000,
+    rating: 5.0,
+    description: "BGS-style latino con triple cifra de miles de gamers; presentación de plataformas cloud-gaming, competiciones de mobile-esports y experiencias inmersivas.",
+    focus: "Gaming & entretenimiento",
+    tags: ["gaming"],
+    country: "Argentina",
+    popularity: 99,
+    confirmed: false,
+    approximateDate: "Segunda semana de octubre"
   }
 ]

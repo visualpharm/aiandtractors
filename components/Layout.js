@@ -47,8 +47,8 @@ export default function Layout({ children }) {
   
   const t = translations[locale] || translations.en
   
-  // Footer links pool with randomization
-  const getRandomFooterLinks = () => {
+  // Footer links pool - deterministic selection based on current page
+  const getFooterLinks = () => {
     const linkPools = {
       en: [
         { href: "/ai-keynote-speaker", text: "AI Keynote Speaker" },
@@ -73,9 +73,8 @@ export default function Layout({ children }) {
     }
     
     const pool = linkPools[locale] || linkPools.en
-    // Shuffle and take 3-4 random links
-    const shuffled = [...pool].sort(() => Math.random() - 0.5)
-    return shuffled.slice(0, Math.min(4, shuffled.length))
+    // Take first 4 links deterministically to avoid hydration mismatch
+    return pool.slice(0, Math.min(4, pool.length))
   }
   
   // Helper function to get language-aware URL
@@ -181,7 +180,7 @@ export default function Layout({ children }) {
         <div className="footer-content">
           <p>© {new Date().getFullYear()} Ivan Braun</p>
           <div className="footer-links">
-            {getRandomFooterLinks().map((link, index) => (
+            {getFooterLinks().map((link, index) => (
               <Link key={index} href={link.href}>{link.text}</Link>
             ))}
           </div>

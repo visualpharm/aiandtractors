@@ -1,10 +1,11 @@
 {
   "buildCommand": "npm run build",
-  "rewrites": [
-    { "source": "/argentina-keynote-speaker", "destination": "/argentina-keynote-speaker.html" },
-    { "source": "/argentina-keynote-speaker/", "destination": "/argentina-keynote-speaker.html" }
-  ],
   "outputDirectory": "out",
-  "trailingSlash": true,
-  "cleanUrls": false
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "functions": {
+    "pages/api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }

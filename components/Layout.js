@@ -46,6 +46,24 @@ export default function Layout({ children }) {
   }, [router.asPath])
   
   const t = translations[locale] || translations.en
+  
+  // Helper function to get language-aware URL
+  const getLocalizedUrl = (path) => {
+    if (locale === 'en') return path
+    return `/${locale}${path}`
+  }
+  
+  // Helper function to switch language for current page
+  const getCurrentPageInLocale = (targetLocale) => {
+    const currentPath = router.pathname
+    const currentBasePath = currentPath.replace(/^\/(?:es|pt)\//, '/').replace(/^\/es$/, '/').replace(/^\/pt$/, '/')
+    
+    if (targetLocale === 'en') {
+      return currentBasePath === '/' ? '/' : currentBasePath
+    }
+    
+    return currentBasePath === '/' ? `/${targetLocale}` : `/${targetLocale}${currentBasePath}`
+  }
 
   return (
     <>
@@ -66,17 +84,17 @@ export default function Layout({ children }) {
       <nav className="top-nav">
         <div className="nav-container">
           <div className="nav-left">
-            <Link href="/" className="nav-logo">Ivan Braun</Link>
+            <Link href={getLocalizedUrl('/')} className="nav-logo">Ivan Braun</Link>
             <ul className="nav-links">
-              <li><Link href="/experience">{t.experience}</Link></li>
-              <li><Link href="/book">{t.book}</Link></li>
-              <li><Link href="/visit">{t.visit}</Link></li>
-              <li><Link href="/contact">{t.contact}</Link></li>
+              <li><Link href={getLocalizedUrl('/experience')}>{t.experience}</Link></li>
+              <li><Link href={getLocalizedUrl('/book')}>{t.book}</Link></li>
+              <li><Link href={getLocalizedUrl('/visit')}>{t.visit}</Link></li>
+              <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>
           </div>
           <div className="nav-right">
             <div className="language-switcher">
-              <Link href="/" style={{ display: 'flex' }}>
+              <Link href={getCurrentPageInLocale('en')} style={{ display: 'flex' }}>
                 <Image 
                   src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
                   alt="English" 
@@ -86,11 +104,12 @@ export default function Layout({ children }) {
                     width: '24px',
                     height: '24px',
                     borderRadius: '50%',
-                    border: '1px solid var(--border-color)'
+                    border: '1px solid var(--border-color)',
+                    opacity: locale === 'en' ? 1 : 0.7
                   }}
                 />
               </Link>
-              <Link href="/es" style={{ display: 'flex' }}>
+              <Link href={getCurrentPageInLocale('es')} style={{ display: 'flex' }}>
                 <Image 
                   src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" 
                   alt="Español" 
@@ -100,11 +119,12 @@ export default function Layout({ children }) {
                     width: '24px',
                     height: '24px',
                     borderRadius: '50%',
-                    border: '1px solid var(--border-color)'
+                    border: '1px solid var(--border-color)',
+                    opacity: locale === 'es' ? 1 : 0.7
                   }}
                 />
               </Link>
-              <Link href="/pt" style={{ display: 'flex' }}>
+              <Link href={getCurrentPageInLocale('pt')} style={{ display: 'flex' }}>
                 <Image 
                   src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" 
                   alt="Português" 
@@ -114,7 +134,8 @@ export default function Layout({ children }) {
                     width: '24px',
                     height: '24px',
                     borderRadius: '50%',
-                    border: '1px solid var(--border-color)'
+                    border: '1px solid var(--border-color)',
+                    opacity: locale === 'pt' ? 1 : 0.7
                   }}
                 />
               </Link>

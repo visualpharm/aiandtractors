@@ -52,8 +52,8 @@ export default function Speaking() {
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/workshop.jpg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/workshop.jpg" alt="Workshop event" />
+          <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery">
+            <img src="/i/conferences/presenting.jpeg" alt="Presenting at conference" />
           </a>
         </div>
         

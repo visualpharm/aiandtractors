@@ -1,4 +1,5 @@
-import Head from 'next/head';
+import Head from 'next/head'
+import CTAButtons from '../components/CTAButtons';
 import Script from 'next/script';
 
 import Layout from '../components/Layout';
@@ -17,32 +18,30 @@ export default function ArgentinaKeynoteSpeaker() {
       <div className="main-grid">
         <div className="full-width">
           <h2 className="fun-title"><span className="fun-title-fill">Global AI Perspective from Argentina</span></h2>
-          <div className="narrow-text">
-  <p>
-    Based in Buenos Aires but thinking globally, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Argentina while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
-  </p>
-</div>
+          <p>
+  Based in Buenos Aires but thinking globally, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Argentina while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
+</p>
         </div>
-        <h3 className="section-heading">Topics for Speeches</h3>
+        <h3 className="section-heading" style={{ paddingLeft: '0' }}>Topics for Speeches</h3>
         <div className="card-grid fullwidth-cards">
           <div className="card">
-            <h3>Global AI adoption</h3>
+            <h4>Global AI adoption</h4>
             <p>How different cultures and economies approach artificial intelligence</p>
           </div>
           <div className="card">
-            <h3>Remote-first AI teams</h3>
+            <h4>Remote-first AI teams</h4>
             <p>Building distributed AI companies across time zones and cultures</p>
           </div>
           <div className="card">
-            <h3>AI in emerging markets</h3>
+            <h4>AI in emerging markets</h4>
             <p>Unique challenges and opportunities in non-Silicon Valley contexts</p>
           </div>
           <div className="card">
-            <h3>International AI ethics</h3>
+            <h4>International AI ethics</h4>
             <p>Navigating AI governance across different regulatory environments</p>
           </div>
           <div className="card">
-            <h3>Cross-cultural innovation</h3>
+            <h4>Cross-cultural innovation</h4>
             <p>How diverse perspectives drive better AI solutions</p>
           </div>
         </div>
@@ -66,37 +65,32 @@ export default function ArgentinaKeynoteSpeaker() {
         </div>
         <div className="card-grid fullwidth-cards">
           <div className="card">
-            <h3>Multilingual AI presentations</h3>
+            <h4>Multilingual AI presentations</h4>
             <p>Fluent delivery in English, Spanish, and Portuguese</p>
           </div>
           <div className="card">
-            <h3>Cross-cultural tech insights</h3>
+            <h4>Cross-cultural tech insights</h4>
             <p>How different cultures approach AI adoption and ethics</p>
           </div>
           <div className="card">
-            <h3>Global time zone expertise</h3>
+            <h4>Global time zone expertise</h4>
             <p>Managing international AI teams and projects</p>
           </div>
           <div className="card">
-            <h3>Virtual AI leadership</h3>
+            <h4>Virtual AI leadership</h4>
             <p>Pioneering remote AI company operations</p>
           </div>
         </div>
         {/* --- Contact/CTA Section --- */}
-        <div className="full-width">
-          <h2 className="fun-title"><span className="fun-title-fill">Bring International AI Expertise to Your Event</span></h2>
+        <div className="full-width" style={{ marginTop: '28px' }}>
+          <h2 className="fun-title" style={{ paddingLeft: '0' }}><span className="fun-title-fill">Bring International AI Expertise to Your Event</span></h2>
           <p>
             Looking for an AI keynote speaker who offers fresh international perspectives beyond Silicon Valley? Ivan brings global AI expertise and cross-cultural innovation insights to audiences worldwide.
           </p>
           <p><strong>Perfect for:</strong> AI conferences, international technology summits, future of work events, innovation forums, and global business discussions on artificial intelligence.</p>
-          <div className="cta-buttons">
-  <button className="cta-button cta-primary" onClick={() => window.location.href = '/'}>
-    <p className="framer-text">More about Ivan</p>
-  </button>
-  <button className="cta-button cta-secondary" onClick={() => window.location.href = '/contact'}>
-    <p className="framer-text">Contact</p>
-  </button>
-</div>
+          <div style={{ marginTop: '40px' }}>
+            <CTAButtons />
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -195,7 +189,7 @@ export default function ArgentinaKeynoteSpeaker() {
           margin-top: 1.5rem;
         }
         .cta-button {
-          padding: 1rem 2.5rem;
+          padding: 0.8rem 1.8rem;
           border-radius: 8px;
           border: none;
           cursor: pointer;
@@ -204,18 +198,43 @@ export default function ArgentinaKeynoteSpeaker() {
           align-items: center;
           justify-content: center;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          font-family: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
-          font-size: 1rem;
+          height: 42px;
+        }
+        .framer-text {
+          font-family: "Inter", "Inter Placeholder", sans-serif;
           font-weight: 500;
+          font-size: 0.9rem;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+          margin: 0;
+          white-space: nowrap;
         }
-        .cta-button.secondary {
-          background: #f4f4f4;
-          color: #222;
-          border: 2px solid #e63946;
+        .cta-primary {
+          background: var(--accent-color);
         }
-        .cta-button.secondary:hover {
-          background: #e63946;
-          color: #fff;
+        .cta-primary .framer-text {
+          color: rgb(255, 255, 255);
+        }
+        .cta-primary:hover {
+          background: #3a4db8;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(69, 93, 204, 0.25);
+        }
+        .cta-secondary {
+          background: white;
+          border: 1px solid var(--border-color);
+        }
+        .cta-secondary .framer-text {
+          color: var(--primary-color);
+        }
+        .cta-secondary:hover {
+          background: var(--accent-color);
+          border-color: var(--accent-color);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(69, 93, 204, 0.2);
+        }
+        .cta-secondary:hover .framer-text {
+          color: rgb(255, 255, 255);
         }
         @media (max-width: 900px) {
           .main-grid {
@@ -278,6 +297,14 @@ export default function ArgentinaKeynoteSpeaker() {
           margin: 0 0 0.4rem 0;
           color: var(--primary-color);
           text-align: left;
+        }
+        .fullwidth-cards .card h4 {
+          font-size: 1.2rem;
+          margin: 0;
+          padding: 0;
+          color: var(--primary-color);
+          font-weight: 600;
+          line-height: 1.2;
         }
         .fullwidth-cards .card p {
           font-size: 1rem;

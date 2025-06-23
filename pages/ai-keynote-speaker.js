@@ -12,263 +12,162 @@ export default function AIKeynoteSpeaker() {
         <link rel="canonical" href="https://ivanbraun.com/ai-keynote-speaker" />
       </Head>
 
-      <div className="seo-page">
+      <div className="container">
         <div className="hero-section">
-          <div className="container">
-            <h1>AI Keynote Speaker</h1>
-            <p className="lead">International expert in artificial intelligence, synthetic media, and lean AI development available for your next conference.</p>
-            
-            <div className="cta-section">
-              <Link href="/contact" className="cta-button primary">Book Ivan as Speaker</Link>
-              <Link href="/#speaking" className="cta-button secondary">View Speaking Experience</Link>
+          <div className="hero-grid">
+            <div className="hero-content">
+              <h1 className="fun-title"><span className="fun-title-fill">AI Keynote Speaker</span></h1>
+              <p className="description">International expert in artificial intelligence, synthetic media, and lean AI development available for your next conference. Transform your event with cutting-edge insights that bridge complex AI concepts with practical business applications.</p>
+            </div>
+            <div className="hero-image">
+              <img src="/i/ivan-robot.png" alt="Ivan Braun AI Avatar" />
             </div>
           </div>
         </div>
 
-        <div className="content-section">
-          <div className="container">
-            <div className="expertise-grid">
-              <div className="expertise-card">
-                <h3>🤖 AI Product Development</h3>
-                <p>From zero to 4M+ users without venture capital. Learn how to build and monetize AI products using lean, bootstrapped approaches.</p>
-              </div>
-              
-              <div className="expertise-card">
-                <h3>🎭 Synthetic Media Ethics</h3>
-                <p>Navigate the complex world of AI-generated content, deepfakes, and synthetic data with practical insights from industry experience.</p>
-              </div>
-              
-              <div className="expertise-card">
-                <h3>🚀 Scaling AI Teams</h3>
-                <p>From solo founder to leading 150+ professionals. Practical strategies for building and managing AI-focused organizations.</p>
-              </div>
-            </div>
-
-            <div className="speaking-topics">
-              <h2>Popular Speaking Topics</h2>
-              <ul>
-                <li><strong>The Future of Synthetic Media:</strong> Opportunities and challenges in AI-generated content</li>
-                <li><strong>Bootstrapping AI Products:</strong> Building successful AI companies without VC funding</li>
-                <li><strong>Ethics in AI Development:</strong> Responsible innovation in synthetic media</li>
-                <li><strong>From Idea to 4M Users:</strong> Scaling AI products globally</li>
-                <li><strong>The AI Entrepreneur's Playbook:</strong> Practical strategies for AI startups</li>
-              </ul>
-            </div>
-
-            <div className="credentials">
-              <h2>Speaking Credentials</h2>
-              <div className="credentials-grid">
-                <div>
-                  <h4>🎯 Upcoming Events</h4>
-                  <ul>
-                    <li>Horasis Global Meeting (São Paulo, Oct 2025)</li>
-                    <li>Rio Innovation Week (Rio de Janeiro, Aug 2025)</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4>🏆 Recognition</h4>
-                  <ul>
-                    <li>Visitor's Choice Award at Visual 1st Conference</li>
-                    <li>Featured in BBC, Washington Post, The Verge</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4>🌍 Global Reach</h4>
-                  <ul>
-                    <li>Serving 4M+ users globally</li>
-                    <li>Leading team of 150+ professionals</li>
-                    <li>Fluent in Spanish, English, Portuguese, Italian</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        <div className="card-grid">
+          <div className="card">
+            <h3>🤖 AI Product Development</h3>
+            <p>From zero to 4M+ users without venture capital. Learn how to build and monetize AI products using lean, bootstrapped approaches.</p>
+          </div>
+          
+          <div className="card">
+            <h3>🎭 Synthetic Media Ethics</h3>
+            <p>Navigate the complex world of AI-generated content, deepfakes, and synthetic data with practical insights from industry experience.</p>
+          </div>
+          
+          <div className="card">
+            <h3>🚀 Scaling AI Teams</h3>
+            <p>From solo founder to leading 150+ professionals. Practical strategies for building and managing AI-focused organizations.</p>
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        .seo-page {
-          min-height: 100vh;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
+
 
         .hero-section {
-          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-          padding: 6rem 0 4rem 0;
-          text-align: center;
+            background: var(--hero-bg);
+            padding: 4rem 0 2rem 0;
+            margin-bottom: 3rem;
         }
 
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2rem;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        h1 {
-          font-family: 'DotGothic16', monospace;
-          font-size: 3.5rem;
-          font-weight: 400;
-          color: var(--primary-color);
-          margin: 0 0 1rem 0;
-          line-height: 1.1;
+        .fun-title {
+            margin-top: 28px !important;
+            margin-bottom: 0 !important;
+            position: relative;
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 400 !important;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            line-height: 1.1;
         }
 
-        .lead {
-          font-size: 1.25rem;
-          color: var(--secondary-color);
-          margin: 0 0 3rem 0;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
+        .fun-title-fill {
+            position: relative;
+            color: #222;
+            font-size: 2.5rem !important;
+            font-weight: 400 !important;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            z-index: 2;
+            text-shadow:
+                -1px 0 0 #dd9e8e,
+                1px 0 0 #53cb82;
         }
 
-        .cta-section {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-          flex-wrap: wrap;
+        .hero-content .description {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin: 0;
+            line-height: 1.6;
         }
 
-        .cta-button {
-          padding: 1rem 2rem;
-          border-radius: 50px;
-          text-decoration: none;
-          font-weight: 500;
-          transition: all 0.3s ease;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
+        .hero-image {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
 
-        .cta-button.primary {
-          background: var(--primary-color);
-          color: white;
+        .hero-image img {
+            width: 400px;
+            height: auto;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
         }
 
-        .cta-button.primary:hover {
-          background: var(--secondary-color);
-          transform: translateY(-2px);
+        .hero-image img:hover {
+            transform: scale(1.05);
         }
 
-        .cta-button.secondary {
-          background: transparent;
-          color: var(--primary-color);
-          border: 2px solid var(--primary-color);
+        .card-grid {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
         }
 
-        .cta-button.secondary:hover {
-          background: var(--primary-color);
-          color: white;
-          transform: translateY(-2px);
+        .card {
+            flex: 1;
+            min-width: 160px;
+            background: var(--card-bg);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .content-section {
-          padding: 4rem 0;
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .expertise-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
-          margin-bottom: 4rem;
+        .card h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.3rem 0;
+            color: var(--primary-color);
         }
 
-        .expertise-card {
-          background: var(--card-bg);
-          padding: 2rem;
-          border-radius: 12px;
-          border: 1px solid var(--border-color);
-          transition: all 0.3s ease;
-        }
-
-        .expertise-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .expertise-card h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          margin: 0 0 1rem 0;
-          color: var(--primary-color);
-        }
-
-        .speaking-topics {
-          margin-bottom: 4rem;
-        }
-
-        .speaking-topics h2 {
-          font-size: 2rem;
-          font-weight: 600;
-          margin: 0 0 2rem 0;
-          color: var(--primary-color);
-        }
-
-        .speaking-topics ul {
-          list-style: none;
-          padding: 0;
-        }
-
-        .speaking-topics li {
-          margin-bottom: 1rem;
-          padding-left: 1.5rem;
-          position: relative;
-          line-height: 1.6;
-        }
-
-        .speaking-topics li::before {
-          content: '→';
-          position: absolute;
-          left: 0;
-          color: var(--accent-color);
-          font-weight: 600;
-        }
-
-        .credentials h2 {
-          font-size: 2rem;
-          font-weight: 600;
-          margin: 0 0 2rem 0;
-          color: var(--primary-color);
-        }
-
-        .credentials-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-        }
-
-        .credentials-grid h4 {
-          font-size: 1.1rem;
-          font-weight: 600;
-          margin: 0 0 1rem 0;
-          color: var(--primary-color);
-        }
-
-        .credentials-grid ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .credentials-grid li {
-          margin-bottom: 0.5rem;
-          color: var(--secondary-color);
+        .card p {
+            font-size: 0.7rem;
+            color: var(--secondary-color);
+            margin: 0;
+            line-height: 1.4;
         }
 
         @media (max-width: 768px) {
-          h1 {
-            font-size: 2.5rem;
-          }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
 
-          .cta-section {
-            flex-direction: column;
-            align-items: center;
-          }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
 
-          .expertise-grid {
-            grid-template-columns: 1fr;
-          }
+            .hero-image img {
+                width: 300px;
+            }
+
+            .card-grid {
+                flex-direction: column;
+            }
         }
       `}</style>
     </Layout>

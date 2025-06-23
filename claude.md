@@ -78,6 +78,9 @@ npm test         # Run Jest tests
 - Block 16 (Company logos): left-aligned
 - Block 17 (Achievement bullets): right-aligned
 
+# Linkware Innovation (2012)
+Ivan invented the linkware model in 2012 after Icons8 had success with free icon packs. The model works as: Use for a link → SEO boost. Pay those who value a link more than $15 that the license costs. His inspiration was the requirement to credit photos that photographers had, but without a link requirement at the time. This innovation helped monetize free resources while providing SEO value to users who could provide backlinks.
+
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
@@ -256,3 +259,12 @@ The text appears large, non-bold, and crisp, with a subtle green glow on the rig
   Every time i ask to make a block wider, means occupy another column or two in the grid,
   but always align to the grid. It's better to have a design where content is overfilling,
   than to break the grid.
+
+
+  # Visit me
+
+Text: I’ve built a villa to invite fellow tech founders. It’s a great expensive build in the beautiful place the pine forest meets the ocean. It’s 4 hours from Buenos Aires.
+
+If you book it, I’ll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired). 
+
+The buttons should be Book and Learn more.

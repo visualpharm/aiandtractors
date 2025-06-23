@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
+import SmallCards from '../components/SmallCards'
+import LargeCards from '../components/LargeCards'
 import Link from 'next/link'
 
 const translations = {
@@ -70,56 +72,108 @@ export default function Experience() {
       </Head>
 
       <div className="container">
-        <Link href="/" className="back-link">{t.backLink}</Link>
-        
         <div className="hero-section">
           <div className="hero-content">
-            <h1>Ivan Braun's Experience</h1>
-            <p className="subtitle">Building AI products from zero without venture capital</p>
-            <p className="description">{t.intro}</p>
+            <h1 className="fun-title"><span className="fun-title-fill">Experience</span></h1>
+            <p className="description">I'm a serial entrepreneur who launches bootstrapped products related to AI and design. My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
           </div>
         </div>
         
         <div className="tools-section">
-          <div className="tool-block">
-            <h3>{t.customerDev}</h3>
-            <div className="tool-books">
-              <a href="https://rosenfeldmedia.com/books/interviewing-users-second-edition/" className="book-link">
-                <i className="fas fa-book"></i> Interviewing Users
-              </a>
-              <a href="https://www.harpercollins.com/products/competing-against-luck-clayton-m-christensentaddy-hallkaren-dillondavid-s-duncan?variant=32207691743266" className="book-link">
-                <i className="fas fa-book"></i> Competing Against Luck
-              </a>
+          <div className="tool-card">
+            <h4>{t.customerDev}</h4>
+            <p>Books that formed me:</p>
+            <div className="book-covers">
+              <img src="https://m.media-amazon.com/images/I/51MEnn8ZvbL.jpg" alt="Interviewing Users" className="book-cover" />
+              <img src="/i/books/competing-against-luck.jpg" alt="Competing Against Luck" className="book-cover" />
             </div>
           </div>
           
-          <div className="tool-block">
-            <h3>{t.uxDesign}</h3>
-            <p className="tool-subtitle">{t.uxSubtitle}</p>
-            <div className="tool-books">
-              <a href="https://www.wiley.com/en-us/About+Face%3A+The+Essentials+of+Interaction+Design%2C+4th+Edition-p-9781118766576" className="book-link">
-                <i className="fas fa-book"></i> About Face
-              </a>
-              <span className="book-note">Old Jacob Nielsen books</span>
+          <div className="tool-card">
+            <h4>{t.uxDesign}, {t.uxSubtitle}</h4>
+            <p>Books that formed me:</p>
+            <div className="book-covers">
+              <img src="https://m.media-amazon.com/images/I/51Rhf2DWNtL.jpg" alt="About Face" className="book-cover" />
+              <img src="https://media.nngroup.com/media/images/bookCover.2e16d0ba.fill-400x600.png" alt="Designing Web Usability" className="book-cover" />
             </div>
           </div>
           
-          <div className="tool-block">
-            <h3>{t.paywalls}</h3>
-            <p className="tool-subtitle">{t.paywallsSubtitle}</p>
+          <div className="tool-card">
+            <h4>{t.paywalls}</h4>
+            <p>Learning it all hard way</p>
           </div>
         </div>
         
-        <div className="details-section">
-          <ul className="experience-list">
-            <li>{t.companyDesc}</li>
-            <li>{t.enterpriseDesc}</li>
-            <li><a href="https://generated.photos/genyou">{t.genYou}</a></li>
-            <li><a href="https://generated.photos/face-generator">{t.faceGen}</a></li>
-            <li><a href="https://generated.photos/human-generator">{t.humanGen}</a></li>
-          </ul>
-        </div>
+        <SmallCards 
+          title="Products"
+          items={[
+            {
+              title: "Synthetic data",
+              description: "Custom datasets for enterprise clients",
+              link: "https://generated.photos/datasets"
+            },
+            {
+              title: "Largest graphics supplier to Canva",
+              description: "Industry partnership providing design assets"
+            },
+            {
+              title: "GenYOU",
+              description: "Personalized AI selfies"
+            },
+            {
+              title: "Face Generator",
+              description: "Technology behind our synthetic data"
+            },
+            {
+              title: "Human Generator",
+              description: "Full-body humans"
+            },
+            {
+              title: "Ouch Generator",
+              description: "Generates AI images that don't look Midjourney",
+              link: "https://icons8.com/illustration-generator"
+            },
+            {
+              title: "Icons",
+              description: "Industry standard for icons, now with AI generator",
+              link: "https://icons8.com/icons"
+            }
+          ]}
+        />
 
+        <LargeCards 
+          title="Key Achievements"
+          items={[
+            {
+              title: "4M+ Users Globally",
+              description: "Serving millions of designers and developers worldwide with AI-generated content and design tools"
+            },
+            {
+              title: "150+ Team Members",
+              description: "Leading a distributed team of professionals across multiple time zones and countries"
+            },
+            {
+              title: "Bootstrap Success",
+              description: "Built profitable AI companies without venture capital, focusing on early monetization and sustainable growth"
+            },
+            {
+              title: "International Speaker",
+              description: "Regular keynote speaker at AI conferences, sharing insights on building successful AI products"
+            },
+            {
+              title: "Synthetic Media Pioneer",
+              description: "Early innovator in AI-generated human faces and synthetic dataset creation for enterprise clients"
+            },
+            {
+              title: "Linkware Inventor (2012)",
+              description: "I invented the linkware model: Use for a link → SEO boost. Pay those who value a link more than $15 that the license costs. My inspiration was the requirement to credit photographers, but without a link requirement at the time."
+            },
+            {
+              title: "Global Perspective",
+              description: "Operating from Argentina while building products used worldwide, bringing unique international insights"
+            }
+          ]}
+        />
         
         <div className="video-container">
           <video autoPlay muted loop playsInline>
@@ -136,141 +190,118 @@ export default function Experience() {
             padding: 3rem 2rem;
         }
 
-        .back-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            display: inline-block;
-            font-size: 0.9rem;
-        }
-
-        .back-link:hover {
-            color: var(--primary-color);
-        }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: 100px 0.5fr 1fr;
-            gap: 2rem;
-            align-items: start;
-            margin-bottom: 3rem;
-        }
-
-        .title-section {
-            text-align: left;
-        }
-
-        .section-title {
+        .section-heading {
             font-size: 0.9rem;
             font-weight: 500;
-            margin: 0;
+            margin-bottom: 0.8rem;
             color: var(--secondary-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-top: 2rem;
         }
 
-        .description-section {
-            text-align: left;
+        .hero-section {
+            background: var(--hero-bg);
+            padding: 4rem 0 2rem 0;
+            margin-bottom: 3rem;
         }
 
-        .description {
-            margin: 0;
-            fontSize: 1.1rem;
-            line-height: 1.6;
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .fun-title {
+            margin-top: 28px !important;
+            margin-bottom: 0 !important;
+            position: relative;
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 400 !important;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            line-height: 1.1;
+        }
+
+        .fun-title-fill {
+            position: relative;
+            color: #222;
+            font-size: 2.5rem !important;
+            font-weight: 400 !important;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            z-index: 2;
+            text-shadow:
+                -1px 0 0 #dd9e8e,
+                1px 0 0 #53cb82;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
             color: var(--secondary-color);
+            margin: 0 0 1rem 0;
+            font-weight: 400;
+        }
+
+        .hero-content .description {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin: 0;
+            line-height: 1.6;
         }
 
         .tools-section {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .details-section {
-            grid-column: span 3;
-            margin-top: 2rem;
-        }
-
-        .tool-block {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            text-align: left;
-        }
-
-        .tool-block h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0 0 0.5rem 0;
-            color: var(--primary-color);
-        }
-
-        .tool-subtitle {
-            font-size: 0.85rem;
-            color: var(--secondary-color);
-            margin: 0 0 1rem 0;
-            font-style: italic;
-        }
-
-        .tool-books {
+        .tool-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(69,93,204,0.07), 0 1.5px 4px rgba(0,0,0,0.03);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            align-items: flex-start;
+            text-align: left;
+            transition: all 0.3s ease;
         }
 
-        .book-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: opacity 0.3s ease;
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .book-link:hover {
-            opacity: 0.7;
-        }
-
-        .book-note {
-            font-size: 0.8rem;
-            color: var(--secondary-color);
-            font-style: italic;
-        }
-
-        .experience-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--secondary-color);
-        }
-
-        .experience-list li {
-            margin-bottom: 0.75rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .experience-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
+        .tool-card h4 {
+            font-size: 1.2rem;
             font-weight: 600;
-        }
-
-        .experience-list a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .experience-list a:hover {
+            margin: 0 0 0.4rem 0;
             color: var(--primary-color);
+            line-height: 1.2;
         }
+
+        .tool-card p {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin: 0 0 1rem 0;
+            line-height: 1.5;
+        }
+
+        .book-covers {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .book-cover {
+            width: 20px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+
 
         .video-container {
             margin-top: 2rem;

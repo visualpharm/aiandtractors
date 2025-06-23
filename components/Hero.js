@@ -17,7 +17,7 @@ const translations = {
   }
 }
 
-export default function Hero({ title, subtitle, description, introText }) {
+export default function Hero({ title, subtitle, description, introText, imageUrl }) {
   const router = useRouter()
   const [locale, setLocale] = useState('en')
   
@@ -58,8 +58,8 @@ export default function Hero({ title, subtitle, description, introText }) {
             </div>
           </div>
           <div className="hero-image">
-            <a href="/i/ivan-robot.png" data-fancybox="profile">
-              <img src="/i/ivan-robot.png" alt="Ivan Braun AI Avatar" />
+            <a href={imageUrl || "/i/ivan-robot.png"} data-fancybox="profile">
+              <img src={imageUrl || "/i/ivan-robot.png"} alt={imageUrl ? "Ivan Braun's location in Cariló" : "Ivan Braun AI Avatar"} />
             </a>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function Hero({ title, subtitle, description, introText }) {
         }
 
         .hero-image img {
-            width: 400px;
+            width: 505px;
             height: auto;
             filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
             transition: transform 0.3s ease;

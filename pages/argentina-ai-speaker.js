@@ -1,6 +1,9 @@
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import Link from 'next/link'
+import CTAButtons from '../components/CTAButtons';
+import Script from 'next/script';
+
+import Layout from '../components/Layout';
+import Hero from '../components/Hero';
 
 export default function ArgentinaAISpeaker() {
   return (
@@ -12,374 +15,347 @@ export default function ArgentinaAISpeaker() {
         <link rel="canonical" href="https://ivanbraun.com/argentina-ai-speaker" />
       </Head>
 
-      <div className="seo-page">
-        <div className="hero-section">
-          <div className="container">
-            <h1>Argentina AI Speaker</h1>
-            <p className="lead">International AI perspective from Argentina. Bridging global AI innovation with Latin American entrepreneurship.</p>
-            
-            <div className="location-badge">
-              <span>📍 Based in Cariló, Argentina</span>
-              <span>🌍 Speaking Globally</span>
-            </div>
-            
-            <div className="cta-section">
-              <Link href="/contact" className="cta-button primary">Book Ivan for Your Event</Link>
-              <Link href="/#speaking" className="cta-button secondary">View Speaking Portfolio</Link>
-            </div>
+      <Hero
+        title="Argentina AI Speaker"
+        subtitle="International AI Expert from Buenos Aires"
+        description="A globally-minded AI expert based in Argentina, offering unique international perspectives on artificial intelligence, technology innovation, and entrepreneurship from South America."
+        introText="Transform your next event with cutting-edge insights on artificial intelligence from an international perspective. Ivan Braun delivers compelling keynotes that bridge the gap between AI innovation and practical business applications across cultures."
+      />
+
+      {/* --- Global AI Perspective Section --- */}
+      <div className="main-grid">
+        <div className="full-width">
+          <h2 className="fun-title"><span className="fun-title-fill">Argentina AI Innovation Hub</span></h2>
+          <p>
+  Based in Argentina but thinking globally, Ivan brings a unique South American perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Buenos Aires while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation across emerging markets.
+</p>
+        </div>
+        <h3 className="section-heading" style={{ paddingLeft: '0' }}>AI Topics from Argentina</h3>
+        <div className="card-grid fullwidth-cards">
+          <div className="card">
+            <h4>Bootstrapped AI Development</h4>
+            <p>Building successful AI companies without venture capital from emerging markets</p>
+          </div>
+          <div className="card">
+            <h4>Global AI Product Strategy</h4>
+            <p>Scaling AI products from Argentina to serve millions of users worldwide</p>
+          </div>
+          <div className="card">
+            <h4>Cross-Cultural AI Ethics</h4>
+            <p>Navigating AI governance and ethics across different cultural and regulatory environments</p>
+          </div>
+          <div className="card">
+            <h4>Latin American AI Innovation</h4>
+            <p>Unique opportunities and challenges in South American AI development</p>
+          </div>
+          <div className="card">
+            <h4>Remote AI Team Leadership</h4>
+            <p>Managing distributed AI teams across multiple time zones and cultures</p>
+          </div>
+        </div>
+        {/* --- Conference Images Gallery --- */}
+<div className="conference-gallery">
+  <a href="/i/conferences/award.jpeg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/award.jpeg" alt="Conference award" /></a>
+  <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/conferece-speaker.jpg" alt="Ivan Braun speaking at conference" /></a>
+  <a href="/i/conferences/conference.jpeg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/conference.jpeg" alt="Conference overview" /></a>
+  <a href="/i/conferences/fl.jpg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/fl.jpg" alt="Conference audience" /></a>
+  <a href="/i/conferences/fl2.jpg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/fl2.jpg" alt="Ivan presenting on stage" /></a>
+  <a href="/i/conferences/presenting.jpeg" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/presenting.jpeg" alt="Ivan Braun presenting" /></a>
+  <a href="/i/conferences/visual1st-awards-winners.png" data-fancybox="gallery" className="gallery-img"><img src="/i/conferences/visual1st-awards-winners.png" alt="Visual1st awards winners" /></a>
+
+</div>
+
+{/* --- International AI Expert Section --- */}
+        <div className="full-width">
+          <h2 className="fun-title"><span className="fun-title-fill">International AI Expert</span></h2>
+          <p>
+            Ivan's unique value lies in combining deep AI expertise with an international mindset. Based in Argentina but building global AI companies, he offers audiences perspectives on technology innovation that transcend geographic and cultural boundaries.
+          </p>
+        </div>
+        <div className="card-grid fullwidth-cards">
+          <div className="card">
+            <h4>Multilingual AI presentations</h4>
+            <p>Fluent delivery in English, Spanish, and Portuguese</p>
+          </div>
+          <div className="card">
+            <h4>Emerging market AI insights</h4>
+            <p>How Latin America approaches AI adoption and innovation</p>
+          </div>
+          <div className="card">
+            <h4>Global time zone expertise</h4>
+            <p>Managing international AI teams and projects</p>
+          </div>
+          <div className="card">
+            <h4>Bootstrapped AI leadership</h4>
+            <p>Building profitable AI companies without venture capital</p>
           </div>
         </div>
 
-        <div className="content-section">
-          <div className="container">
-            <div className="value-proposition">
-              <h2>Why an Argentina-Based AI Speaker?</h2>
-              <div className="value-grid">
-                <div className="value-card">
-                  <h3>🌎 Global Perspective</h3>
-                  <p>Operating from Argentina while serving 4M+ users globally provides unique insights into international AI product development and market expansion.</p>
-                </div>
-                
-                <div className="value-card">
-                  <h3>🚀 Bootstrapped Innovation</h3>
-                  <p>Building successful AI companies without venture capital - a perspective especially valuable for emerging markets and resource-conscious entrepreneurs.</p>
-                </div>
-                
-                <div className="value-card">
-                  <h3>🤝 Cultural Bridge</h3>
-                  <p>Fluent in multiple languages (Spanish, English, Portuguese, Italian) with experience in diverse global markets and cultural contexts.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="regional-focus">
-              <h2>Regional Expertise & Global Reach</h2>
-              <div className="expertise-sections">
-                <div className="section">
-                  <h3>Latin American AI Innovation</h3>
-                  <ul>
-                    <li>Bootstrapping AI startups in emerging markets</li>
-                    <li>Navigating regulatory landscapes across LATAM</li>
-                    <li>Building global products from regional bases</li>
-                    <li>Cultural considerations in AI product design</li>
-                  </ul>
-                </div>
-                
-                <div className="section">
-                  <h3>International Market Entry</h3>
-                  <ul>
-                    <li>Scaling from Argentina to global markets</li>
-                    <li>Cross-cultural AI product development</li>
-                    <li>Remote team management across time zones</li>
-                    <li>International partnership strategies</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="speaking-experience">
-              <h2>Speaking Experience</h2>
-              <div className="experience-grid">
-                <div className="experience-item">
-                  <h4>🇧🇷 Upcoming: Horasis Global Meeting</h4>
-                  <p>São Paulo, Brazil (October 2025) - Keynote on lean, independent AI development</p>
-                </div>
-                
-                <div className="experience-item">
-                  <h4>🇧🇷 Upcoming: Rio Innovation Week</h4>
-                  <p>Rio de Janeiro, Brazil (August 2025) - Latin America's largest innovation event</p>
-                </div>
-                
-                <div className="experience-item">
-                  <h4>🇺🇸 Visual 1st Conference</h4>
-                  <p>San Francisco, USA (2021) - Visitor's-Choice talk on synthetic image datasets</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="media-coverage">
-              <h2>International Media Recognition</h2>
-              <p>Featured in major global publications discussing AI innovation and synthetic media:</p>
-              <div className="media-list">
-                <span>BBC News</span>
-                <span>Washington Post</span>
-                <span>The Verge</span>
-                <span>Der Spiegel</span>
-                <span>La Repubblica</span>
-                <span>Vice</span>
-                <span>Daily Mail</span>
-              </div>
-            </div>
+        {/* --- Contact/CTA Section --- */}
+        <div className="full-width" style={{ marginTop: '28px' }}>
+          <h2 className="fun-title" style={{ paddingLeft: '0' }}><span className="fun-title-fill">Bring Argentina AI Expertise to Your Event</span></h2>
+          <p>
+            Looking for an AI speaker who offers fresh international perspectives from South America? Ivan brings global AI expertise and cross-cultural innovation insights to audiences worldwide.
+          </p>
+          <p><strong>Perfect for:</strong> AI conferences, international technology summits, future of work events, innovation forums, and global business discussions on artificial intelligence from emerging markets.</p>
+          <div style={{ marginTop: '40px' }}>
+            <CTAButtons />
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        .seo-page {
-          min-height: 100vh;
-        }
-
-        .hero-section {
-          background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%);
-          padding: 6rem 0 4rem 0;
-          text-align: center;
-        }
-
-        .container {
+        .main-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
           max-width: 1200px;
-          margin: 0 auto;
+          margin: 0 auto 4rem auto;
           padding: 0 2rem;
+          font-family: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
         }
-
-        h1 {
-          font-family: 'DotGothic16', monospace;
-          font-size: 3.5rem;
-          font-weight: 400;
-          color: var(--primary-color);
-          margin: 0 0 1rem 0;
-          line-height: 1.1;
-        }
-
-        .lead {
-          font-size: 1.25rem;
-          color: var(--secondary-color);
-          margin: 0 0 2rem 0;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .location-badge {
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-bottom: 3rem;
-          flex-wrap: wrap;
-        }
-
-        .location-badge span {
-          background: rgba(255, 255, 255, 0.9);
-          padding: 0.5rem 1rem;
-          border-radius: 25px;
-          font-size: 0.9rem;
-          color: var(--secondary-color);
-          border: 1px solid var(--border-color);
-        }
-
-        .cta-section {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-
-        .cta-button {
-          padding: 1rem 2rem;
-          border-radius: 50px;
-          text-decoration: none;
-          font-weight: 500;
-          transition: all 0.3s ease;
-        }
-
-        .cta-button.primary {
-          background: var(--primary-color);
-          color: white;
-        }
-
-        .cta-button.primary:hover {
-          background: var(--secondary-color);
-          transform: translateY(-2px);
-        }
-
-        .cta-button.secondary {
-          background: transparent;
-          color: var(--primary-color);
-          border: 2px solid var(--primary-color);
-        }
-
-        .cta-button.secondary:hover {
-          background: var(--primary-color);
-          color: white;
-          transform: translateY(-2px);
-        }
-
-        .content-section {
-          padding: 4rem 0;
-        }
-
-        .value-proposition {
-          margin-bottom: 4rem;
-        }
-
-        .value-proposition h2 {
-          font-size: 2rem;
-          font-weight: 600;
-          margin: 0 0 2rem 0;
-          color: var(--primary-color);
-          text-align: center;
-        }
-
-        .value-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
-        }
-
-        .value-card {
-          background: var(--card-bg);
-          padding: 2rem;
-          border-radius: 12px;
-          border: 1px solid var(--border-color);
-          transition: all 0.3s ease;
-        }
-
-        .value-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .value-card h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          margin: 0 0 1rem 0;
-          color: var(--primary-color);
-        }
-
-        .regional-focus {
-          margin-bottom: 4rem;
-        }
-
-        .regional-focus h2 {
-          font-size: 2rem;
-          font-weight: 600;
-          margin: 0 0 2rem 0;
-          color: var(--primary-color);
-        }
-
-        .expertise-sections {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: 2rem;
-        }
-
-        .section {
-          background: var(--card-bg);
-          padding: 2rem;
-          border-radius: 12px;
-          border: 1px solid var(--border-color);
-        }
-
-        .section h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          margin: 0 0 1rem 0;
-          color: var(--primary-color);
-        }
-
-        .section ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .section li {
+        .full-width {
+          width: 100%;
           margin-bottom: 0.5rem;
-          padding-left: 1.5rem;
-          position: relative;
-          color: var(--secondary-color);
         }
-
-        .section li::before {
-          content: '→';
+        .full-width h2 {
+          font-size: 1.6rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+        }
+        .fun-title {
+  margin-top: 28px !important;
+  margin-bottom: 0 !important;
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 400 !important;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  line-height: 1.1;
+}
+        .fun-title-stroke {
           position: absolute;
           left: 0;
-          color: var(--accent-color);
-          font-weight: 600;
+          top: 0;
+          width: 100%;
+          color: transparent;
+          font-weight: 400 !important;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          -webkit-text-stroke: 1px #53cb82;
+          text-stroke: 1px #53cb82;
+          z-index: 1;
+          pointer-events: none;
+          user-select: none;
         }
-
-        .speaking-experience {
-          margin-bottom: 4rem;
+        .fun-title-fill {
+          position: relative;
+          color: #222;
+          font-size: 2.5rem !important;
+          font-weight: 400 !important;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          z-index: 2;
+          text-shadow:
+            -1px 0 0 #dd9e8e,
+            1px 0 0 #53cb82;
         }
-
-        .speaking-experience h2 {
-          font-size: 2rem;
-          font-weight: 600;
-          margin: 0 0 2rem 0;
-          color: var(--primary-color);
+        .full-width p {
+          font-size: 1.12rem;
+          color: #333;
+          margin-bottom: 0.7rem;
         }
-
-        .experience-grid {
+        .card-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 2rem;
+          width: 100%;
         }
-
-        .experience-item {
-          background: var(--card-bg);
-          padding: 1.5rem;
+        .card-grid.fullwidth-cards {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+        .card {
+          background: #fff;
+          border-radius: 18px;
+          box-shadow: 0 4px 32px rgba(69,93,204,0.07), 0 1.5px 4px rgba(0,0,0,0.03);
+          padding: 2rem 1.5rem 1.5rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          font-family: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
+        }
+        .card h3 {
+          font-size: 1.15rem;
+          font-weight: 600;
+          margin-bottom: 0.6rem;
+        }
+        .card p {
+          font-size: 1rem;
+          color: #444;
+          margin-bottom: 0;
+        }
+        .cta-buttons {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-top: 1.5rem;
+        }
+        .cta-button {
+          padding: 0.8rem 1.8rem;
           border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          height: 42px;
+        }
+        .framer-text {
+          font-family: "Inter", "Inter Placeholder", sans-serif;
+          font-weight: 500;
+          font-size: 0.9rem;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+          margin: 0;
+          white-space: nowrap;
+        }
+        .cta-primary {
+          background: var(--accent-color);
+        }
+        .cta-primary .framer-text {
+          color: rgb(255, 255, 255);
+        }
+        .cta-primary:hover {
+          background: #3a4db8;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(69, 93, 204, 0.25);
+        }
+        .cta-secondary {
+          background: white;
           border: 1px solid var(--border-color);
         }
-
-        .experience-item h4 {
+        .cta-secondary .framer-text {
+          color: var(--primary-color);
+        }
+        .cta-secondary:hover {
+          background: var(--accent-color);
+          border-color: var(--accent-color);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(69, 93, 204, 0.2);
+        }
+        .cta-secondary:hover .framer-text {
+          color: rgb(255, 255, 255);
+        }
+        @media (max-width: 900px) {
+          .main-grid {
+            padding: 0 0.5rem;
+          }
+          .card-grid {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+          }
+        }
+        @media (max-width: 600px) {
+          .main-grid {
+            padding: 0 0.2rem;
+          }
+          .card {
+            padding: 1.2rem 0.7rem 1rem 0.7rem;
+          }
+        }
+        .section-heading {
+  padding: 10px;
+          font-size: 0.9rem;
+          font-weight: 500;
+          margin-bottom: 0.8rem;
+          color: var(--secondary-color);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-top: 0;
+          margin-left: 0;
+          text-align: left;
+        }
+        .fullwidth-cards {
+          width: 100vw;
+          position: relative;
+          left: 50%;
+          right: 50%;
+          margin-left: -50vw;
+          margin-right: -50vw;
+          max-width: 100vw;
+          padding: 0;
+          gap: 0.7rem;
+        }
+        .fullwidth-cards .card {
+          border-radius: 6px;
+          border: 1px solid var(--border-color);
+          background: var(--card-bg);
+          padding: 1rem 1.2rem 1rem 1.2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+          transition: all 0.3s ease;
+        }
+        .fullwidth-cards .card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .fullwidth-cards .card h3 {
           font-size: 1.1rem;
           font-weight: 600;
-          margin: 0 0 0.5rem 0;
+          margin: 0 0 0.4rem 0;
           color: var(--primary-color);
+          text-align: left;
         }
-
-        .experience-item p {
+        .fullwidth-cards .card h4 {
+          font-size: 1.2rem;
           margin: 0;
-          color: var(--secondary-color);
-          font-size: 0.9rem;
-        }
-
-        .media-coverage h2 {
-          font-size: 2rem;
-          font-weight: 600;
-          margin: 0 0 1rem 0;
+          padding: 0;
           color: var(--primary-color);
+          font-weight: 600;
+          line-height: 1.2;
         }
-
-        .media-coverage p {
-          margin-bottom: 1.5rem;
+        .fullwidth-cards .card p {
+          font-size: 1rem;
           color: var(--secondary-color);
+          margin: 0;
+          line-height: 1.5;
+          text-align: left;
         }
+        .conference-gallery {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  display: flex;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  gap: 4px;
+  justify-content: stretch;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 0;
+}
+.gallery-img {
+  flex: 1 1 0;
+  height: 180px;
+  min-width: 0;
+}
+.gallery-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: zoom-in;
+  transition: transform 0.2s;
+  display: block;
+}
+.gallery-img img:hover {
+  transform: scale(1.04);
+}
 
-        .media-list {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-        }
-
-        .media-list span {
-          background: var(--card-bg);
-          padding: 0.5rem 1rem;
-          border-radius: 20px;
-          border: 1px solid var(--border-color);
-          font-size: 0.9rem;
-          color: var(--secondary-color);
-        }
-
-        @media (max-width: 768px) {
-          h1 {
-            font-size: 2.5rem;
-          }
-
-          .location-badge {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .cta-section {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .value-grid, .expertise-sections, .experience-grid {
-            grid-template-columns: 1fr;
-          }
-        }
       `}</style>
     </Layout>
   )

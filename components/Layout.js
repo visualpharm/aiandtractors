@@ -7,18 +7,21 @@ const translations = {
   en: {
     speaking: "Speaking",
     experience: "Experience", 
+    book: "Book",
     visit: "Visit me",
     contact: "Contact"
   },
   es: {
     speaking: "Conferencias",
     experience: "Experiencia",
+    book: "Libro",
     visit: "Visitarme", 
     contact: "Contacto"
   },
   pt: {
     speaking: "Palestras",
     experience: "Experiência",
+    book: "Livro",
     visit: "Me visitar",
     contact: "Contato"
   }
@@ -57,8 +60,8 @@ export default function Layout({ children }) {
           <div className="nav-left">
             <Link href="/" className="nav-logo">Ivan Braun</Link>
             <ul className="nav-links">
-              <li><Link href="/#speaking">{t.speaking}</Link></li>
               <li><Link href="/experience">{t.experience}</Link></li>
+              <li><Link href="/book">{t.book}</Link></li>
               <li><Link href="/visit">{t.visit}</Link></li>
               <li><Link href="/contact">{t.contact}</Link></li>
             </ul>
@@ -69,7 +72,7 @@ export default function Layout({ children }) {
                 <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" alt="English" />
               </Link>
               <Link href="/es">
-                <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/es.svg" alt="Español" />
+                <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" alt="Español" />
               </Link>
               <Link href="/pt">
                 <img src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" alt="Português" />

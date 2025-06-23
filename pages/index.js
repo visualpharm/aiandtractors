@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import MediaCoverage from '../components/MediaCoverage'
 import Experience from '../components/Experience'
+import Awards from '../components/Awards'
 import Speaking from '../components/Speaking'
 
 const translations = {
@@ -53,6 +54,7 @@ export default function Home() {
       <MediaCoverage />
       <Experience />
       <Speaking />
+      <Awards />
     </Layout>
   )
 }

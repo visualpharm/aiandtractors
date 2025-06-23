@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "rewrites": [
+    { "source": "/argentina-keynote-speaker", "destination": "/argentina-keynote-speaker.html" },
+    { "source": "/argentina-keynote-speaker/", "destination": "/argentina-keynote-speaker.html" }
+  ],
+  "outputDirectory": "out",
+  "trailingSlash": true,
+  "cleanUrls": false
+}

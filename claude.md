@@ -17,7 +17,9 @@ Never use target="_blank".
 For contacts, prefer linking to our internal contats page, not linkedin of email.
 
 ## Project Overview
-This is Ivan Braun's personal website - a multilingual portfolio showcasing his work as an entrepreneur, AI speaker, and advisor. The project uses a **hybrid architecture** that combines React development tooling with static HTML deployment.
+This is Ivan Braun's personal website - a multilingual portfolio showcasing his work as an entrepreneur, AI speaker, and advisor.
+
+This project is a next.js project. It uses 
 
 ## Development Commands
 ```bash
@@ -237,3 +239,8 @@ Footers have links to the random SEO pages, but all seo pages should have at lea
   │    (all cards are rotated -5° to +5° and overlapping)                          │
   │                                                                                 │
   └─────────────────────────────────────────────────────────────────────────────────┘
+
+  Every time i refer a block by its number, it's the number in the diagram above.
+  Every time i ask to make a block wider, means occupy another column or two in the grid,
+  but always align to the grid. It's better to have a design where content is overfilling,
+  than to break the grid.

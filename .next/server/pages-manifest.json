@@ -1,0 +1,8 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/argentina-keynote-speaker": "pages/argentina-keynote-speaker.js",
+  "/": "pages/index.js",
+  "/argentina-ai-speaker": "pages/argentina-ai-speaker.js"
+}

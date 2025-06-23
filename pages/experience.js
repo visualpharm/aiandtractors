@@ -112,14 +112,7 @@ export default function Experience() {
                 <img src="/i/books/about-face.webp" alt="About Face" className="book-cover" />
               </a>
               <a href="https://www.nngroup.com/books/designing-web-usability/" target="_blank" rel="noopener noreferrer">
-                <img 
-                src="https://media.nngroup.com/media/books/designing-web-usability.jpg" 
-                alt="Designing Web Usability" 
-                className="book-cover" 
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/150x200?text=Book+Cover';
-                }} 
-              />
+                <img src="/i/books/designing-web-usability.jpg" alt="Designing Web Usability" className="book-cover" />
               </a>
             </div>
           </div>

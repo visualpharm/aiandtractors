@@ -16,7 +16,7 @@ export default function ArgentinaKeynoteSpeaker() {
       {/* --- Global AI Perspective Section --- */}
       <div className="main-grid">
         <div className="full-width">
-          <h2 className="fun-title"><span className="fun-title-stroke">Global AI Perspective from Argentina</span><span className="fun-title-fill">Global AI Perspective from Argentina</span></h2>
+          <h2 className="fun-title"><span className="fun-title-fill">Global AI Perspective from Argentina</span></h2>
           <p>
             Based in Buenos Aires but thinking globally, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Argentina while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
           </p>
@@ -127,9 +127,13 @@ export default function ArgentinaKeynoteSpeaker() {
         .fun-title-fill {
           position: relative;
           color: #222;
+          font-size: 2.5rem !important;
           font-weight: 400 !important;
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
           z-index: 2;
+          text-shadow:
+            -1px 0 0 #dd9e8e,
+            1px 0 0 #53cb82;
         }
         .full-width p {
           font-size: 1.12rem;

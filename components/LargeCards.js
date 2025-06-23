@@ -10,17 +10,17 @@ export default function LargeCards({ title, items }) {
         </h3>
       )}
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-2 sm:px-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-2 sm:px-4 max-w-7xl mx-auto"
       >
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col items-center text-center h-full p-5 md:p-7 border border-gray-100"
+            className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col h-full p-5 md:p-7 border border-gray-100 text-left"
             tabIndex={0}
             aria-label={`${item.title}, ${item.description}`}
           >
             {item.logo && (
-              <div className={`relative w-full mb-4 ${item.title.toLowerCase().includes('verge') ? 'max-h-[166px] scale-[1.3]' : 'max-h-32'}`}>
+              <div className={`relative w-full mb-4 ${item.title.toLowerCase().includes('verge') ? 'max-h-[166px] scale-[1.3]' : 'max-h-32'}`} style={{marginLeft: 0}}>
                 <div className="relative w-full h-full flex items-center justify-center">
                   <div className="relative w-full h-full flex items-center justify-center p-4">
                     <div className="relative w-full h-full" style={{

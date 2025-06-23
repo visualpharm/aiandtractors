@@ -2,11 +2,11 @@ export default function SmallCards({ title, items }) {
   return (
     <>
       <div className="small-cards-section">
-        <div style={{maxWidth: '1200px', margin: 0, padding: '0 2rem'}}>
+        <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <h3 className="section-heading">{title}</h3>
         </div>
         
-        <div className="small-cards-grid">
+        <div className="small-cards-grid" style={{justifyContent: 'flex-start', paddingLeft: '2rem'}}>
           {items.map((item, index) => (
             <div key={index} className="small-card">
               {item.logo && (
@@ -28,6 +28,10 @@ export default function SmallCards({ title, items }) {
       <style jsx>{`
         .small-cards-section {
           margin: 2rem 0;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 0 2rem;
         }
 
         .section-heading {

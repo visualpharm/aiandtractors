@@ -4,6 +4,9 @@ export default function Document() {
   return (
     <Html lang="en" className="scroll-smooth">
       <Head>
+        <link rel="icon" href="/i/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/i/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/i/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 

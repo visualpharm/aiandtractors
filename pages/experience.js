@@ -61,13 +61,16 @@ const translations = {
 
 export default function Experience() {
   const router = useRouter()
-  const { locale } = router
+  const { locale = 'en' } = router
   const t = translations[locale] || translations.en
+  
+  // Set page title
+  const pageTitle = t.title
 
   return (
     <Layout>
       <Head>
-        <title>{t.title}</title>
+        <title>{pageTitle}</title>
         <link rel="canonical" href={`https://ivanbraun.com/experience${locale === 'en' ? '' : '/' + locale}`} />
       </Head>
 
@@ -75,8 +78,11 @@ export default function Experience() {
         <div className="hero-section">
           <div className="hero-layout">
             <div className="hero-content">
-              <h1 className="fun-title"><span className="fun-title-fill">Experience</span></h1>
-              <p className="description">I'm a serial entrepreneur who launches bootstrapped products related to AI and design. My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:</p>
+              <h1>{t.heading}</h1>
+              <div className="description">
+                <p>I'm a serial entrepreneur who launches bootstrapped products related to AI and design. My core experience is building AI products from zero, with no venture capital, and monetize them early.</p>
+                <h2 className="tools-intro">My three tools are:</h2>
+              </div>
             </div>
             <div className="hero-image">
               <img src="/i/experience.png" alt="Ivan Braun Experience" className="experience-image" />
@@ -237,6 +243,15 @@ export default function Experience() {
             max-width: 800px;
         }
 
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+            color: var(--primary-color);
+            line-height: 1.1;
+            font-family: 'DotGothic16', sans-serif;
+        }
+
         .hero-image {
             display: flex;
             justify-content: center;
@@ -291,11 +306,19 @@ export default function Experience() {
             font-weight: 400;
         }
 
-        .hero-content .description {
+        .description p {
             font-size: 1rem;
             color: var(--secondary-color);
-            margin: 0;
+            margin: 0 0 1rem 0;
             line-height: 1.6;
+        }
+        
+        .tools-intro {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin: 1.5rem 0;
+            line-height: 1.4;
+            font-weight: 400;
         }
 
         .tools-section {
@@ -322,12 +345,13 @@ export default function Experience() {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .tool-card h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0 0 0.4rem 0;
+        .tool-card h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
             color: var(--primary-color);
-            line-height: 1.2;
+            line-height: 1.1;
+            font-family: 'DotGothic16', sans-serif;
         }
 
         .tool-card p {

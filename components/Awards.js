@@ -80,7 +80,7 @@ export default function Awards({ language = 'en' }) {
       </div>
 
       {/* Awards Grid */}
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-8" style={{ paddingTop: '28px' }}>
         <LargeCards 
           title=""
           items={[

@@ -32,14 +32,15 @@ const translations = {
 export default function Home() {
   const router = useRouter()
   const { locale } = router
-  const t = translations[locale] || translations.en
+  const language = locale || 'en'
+  const t = translations[language] || translations.en
 
   return (
     <Layout>
       <Head>
         <title>{t.title}</title>
         <meta name="description" content={t.description} />
-        <link rel="canonical" href={`https://ivanbraun.com${locale === 'en' ? '' : '/' + locale}`} />
+        <link rel="canonical" href={`https://ivanbraun.com${language === 'en' ? '' : '/' + language}`} />
         <link rel="alternate" hrefLang="en" href="https://ivanbraun.com" />
         <link rel="alternate" hrefLang="es" href="https://ivanbraun.com/es" />
         <link rel="alternate" hrefLang="pt" href="https://ivanbraun.com/pt" />
@@ -50,13 +51,14 @@ export default function Home() {
         subtitle={t.subtitle}
         description={t.description}
         introText={t.introText}
+        language={language}
       />
       
-      <MediaCoverage />
-      <Experience />
-      <Speaking />
-      <Awards />
-      <Government />
+      <MediaCoverage language={language} />
+      <Experience language={language} />
+      <Speaking language={language} />
+      <Awards language={language} />
+      <Government language={language} />
     </Layout>
   )
 }

@@ -1,0 +1,91 @@
+# Ivan Braun - Personal Website
+
+## Project Overview
+This is Ivan Braun's personal website - a multilingual portfolio showcasing his work as an entrepreneur, AI speaker, and advisor. The site presents Ivan as a tech founder who has built bootstrapped AI and design products, serving 4M+ users globally with a team of 150+ professionals.
+
+## Tech Stack
+- **Framework**: Next.js 15.3.4 with React 19.1.0
+- **Styling**: Tailwind CSS utility-first framework
+- **Languages**: Multilingual support (English, Spanish, Portuguese)
+- **Deployment**: Static HTML generation
+- **Images**: ImageKit CDN integration
+
+## Architecture
+- **Development**: React with Create React App for modern dev experience
+- **Production**: Static HTML files served directly (no React in production)
+- **Key Insight**: Uses React tooling benefits while maintaining static HTML performance
+
+## Directory Structure
+```
+/
+├── public/           # Production website content (deployed files)
+│   ├── index.html   # English version (main)
+│   ├── es.html      # Spanish version
+│   ├── pt.html      # Portuguese version
+│   └── i/           # Images and media assets
+├── pages/           # Next.js pages
+│   ├── index.js     # English homepage
+│   ├── es/          # Spanish pages
+│   └── pt/          # Portuguese pages
+├── components/      # React components
+├── data/           # Event data for tech conferences
+└── CLAUDE.md       # AI assistant instructions
+```
+
+## Key Features
+- **Multilingual Portfolio**: Three language versions (EN/ES/PT) with automatic detection
+- **Event Listings**: Dynamic tech conference calendars for Latin America
+- **Speaking Engagements**: Conference presentations and keynotes
+- **Media Coverage**: Featured in Washington Post, BBC, Der Spiegel, etc.
+- **Company Showcases**: Icons8 (graphics platform) and Generated.Photos (AI faces)
+- **Government Relations**: Work with EU Commission, US DOJ, UK CMA
+
+## Homepage Sections
+1. **Hero**: Introduction with contact/visit buttons
+2. **Media Coverage**: Press mentions and articles
+3. **Experience**: Company background and achievements
+4. **Speaking**: Conference presentations and photos
+5. **Awards**: Recognition and metrics (4M users, 150 team)
+6. **Government**: Regulatory work and compliance
+
+## Language Support
+- **English** (`/`): Default language, international audience
+- **Spanish** (`/es/`): Latin American market focus
+- **Portuguese** (`/pt/`): Brazilian market focus
+
+## Content Management
+- **Static HTML**: Edit files directly in `public/` directory for production
+- **React Components**: Development files in `src/` and `components/`
+- **Images**: Add to `public/i/` with ImageKit optimization
+- **Events**: Manage conference data in `data/eventsData.js`
+
+## SEO Landing Pages
+Dedicated pages for speaker keywords:
+- AI keynote speaker
+- Argentina AI speaker  
+- IA speaker (Spanish)
+- Speaker IA (Portuguese)
+
+## Special Features
+- **Villa Invitation**: Offers to host tech founders at his villa in Argentina
+- **Startup Forms**: Legal documents for Argentine entrepreneurs
+- **Event Calendar**: Tech conferences with filtering and search
+- **Linkware Innovation**: Ivan's 2012 invention of the linkware business model
+
+## Development Commands
+```bash
+npm install      # Install dependencies
+npm start        # Start development server
+npm run build    # Build for production
+npm test         # Run tests
+```
+
+## Content Focus
+Ivan positions himself as:
+- Serial entrepreneur building bootstrapped products
+- AI speaker for international conferences
+- Advisor for startups and tech companies
+- Expert in regulatory compliance and government relations
+- Host for tech founder networking in Argentina
+
+The website emphasizes his global reach while being based in Argentina, serving as a bridge between Latin American and international tech communities.

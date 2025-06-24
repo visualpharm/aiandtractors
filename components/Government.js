@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 import LargeCards from './LargeCards'
 import Head from 'next/head'
 
@@ -36,10 +34,8 @@ const translations = {
   }
 }
 
-export default function Government() {
-  const router = useRouter()
-  const { locale } = router
-  const t = translations[locale] || translations.en
+export default function Government({ language = 'en' }) {
+  const t = translations[language] || translations.en
 
   const govItems = [
     {
@@ -81,7 +77,9 @@ export default function Government() {
         />
       </Head>
       <section className="section">
-        <LargeCards items={govItemsWithIntro} />
+        <div className="max-w-6xl mx-auto px-8">
+          <LargeCards items={govItemsWithIntro} />
+        </div>
       </section>
 
       <style jsx>{`

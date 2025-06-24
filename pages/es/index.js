@@ -3,15 +3,21 @@ import Layout from '../../components/Layout'
 import Hero from '../../components/Hero'
 import MediaCoverage from '../../components/MediaCoverage'
 import Experience from '../../components/Experience'
+import Awards from '../../components/Awards'
 import Speaking from '../../components/Speaking'
+import Government from '../../components/Government'
 
-export default function HomeES() {
-  const t = {
+const translations = {
+  es: {
     title: "Ivan Braun – Emprendedor, Inversor, Speaker IA",
-    description: "Fundador tecnológico liderando más de 150 miembros del equipo, sirviendo a 4M usuarios. Basado en Cariló, Argentina. Busco conversaciones inspiradoras, hablar en conferencias y servir como asesor de startups.",
+    description: "Fundador tecnológico liderando más de 150 miembros del equipo, sirviendo a 4M usuarios. Basado en Cariló, Argentina.",
     subtitle: "Emprendedor Tecnológico, Speaker IA, Inversor",
     introText: "Busco conversaciones inspiradoras, hablar en conferencias y servir como asesor de startups."
   }
+}
+
+export default function HomeES() {
+  const t = translations.es
 
   return (
     <Layout>
@@ -29,11 +35,14 @@ export default function HomeES() {
         subtitle={t.subtitle}
         description={t.description}
         introText={t.introText}
+        language="es"
       />
       
-      <MediaCoverage />
-      <Experience />
-      <Speaking />
+      <MediaCoverage language="es" />
+      <Experience language="es" />
+      <Speaking language="es" />
+      <Awards language="es" />
+      <Government language="es" />
     </Layout>
   )
 }

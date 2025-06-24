@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Image from 'next/image'
 
@@ -8,10 +7,8 @@ const translations = {
   pt: { title: "Palestras" }
 }
 
-export default function Speaking() {
-  const router = useRouter()
-  const { locale } = router
-  const t = translations[locale] || translations.en
+export default function Speaking({ language = 'en' }) {
+  const t = translations[language] || translations.en
 
   useEffect(() => {
     // Initialize Fancybox when component mounts
@@ -40,7 +37,7 @@ export default function Speaking() {
   return (
     <>
       <section className="section" style={{marginBottom: 0}}>
-        <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+        <div className="max-w-6xl mx-auto px-8">
           <h2>{t.title}</h2>
         </div>
       </section>
@@ -50,7 +47,7 @@ export default function Speaking() {
           <a href="/i/conferences/conference.jpeg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 
               src="/i/conferences/conference.jpeg" 
-              alt="Conference event" 
+              alt={t.conferenceEvent} 
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{
@@ -64,36 +61,36 @@ export default function Speaking() {
         
         <div className="inclined-card photo-card">
           <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/presenting.jpeg" alt="Presenting at conference" />
+            <img src="/i/conferences/presenting.jpeg" alt={t.presentingAt} />
           </a>
         </div>
         
         <div className="inclined-card conference-card" onClick={toggleConferenceCard}>
-          <h3>Horasis Global Meeting</h3>
-          <div className="location">São Paulo, Brazil</div>
-          <div className="date">7–10 Oct 2025</div>
-          <div className="description">Keynote on lean, independent AI development</div>
+          <h3>{t.horasislTitle}</h3>
+          <div className="location">{t.horasislLocation}</div>
+          <div className="date">{t.horasislDate}</div>
+          <div className="description">{t.horasislDescription}</div>
         </div>
         
         <div className="inclined-card conference-card" onClick={toggleConferenceCard}>
-          <h3>Rio Innovation Week</h3>
-          <div className="location">Rio de Janeiro, Brazil</div>
-          <div className="date">12–15 Aug 2025</div>
-          <div className="description">On-site, open for meetings</div>
+          <h3>{t.rioTitle}</h3>
+          <div className="location">{t.rioLocation}</div>
+          <div className="date">{t.rioDate}</div>
+          <div className="description">{t.rioDescription}</div>
         </div>
         
         <div className="inclined-card conference-card" onClick={toggleConferenceCard}>
-          <h3>Visual 1st Conference</h3>
-          <div className="location">San Francisco, USA</div>
-          <div className="date">2021</div>
-          <div className="description">Visitor's-Choice talk on synthetic image datasets</div>
+          <h3>{t.visual1stTitle}</h3>
+          <div className="location">{t.visual1stLocation}</div>
+          <div className="date">{t.visual1stDate}</div>
+          <div className="description">{t.visual1stDescription}</div>
         </div>
         
         <div className="inclined-card photo-card">
           <a href="/i/conferences/award.jpeg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 
               src="/i/conferences/award.jpeg" 
-              alt="Receiving award" 
+              alt={t.receivingAward} 
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{
@@ -107,7 +104,7 @@ export default function Speaking() {
         
         <div className="inclined-card photo-card">
           <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/presenting.jpeg" alt="Presenting at conference" />
+            <img src="/i/conferences/presenting.jpeg" alt={t.presentingAt} />
           </a>
         </div>
         
@@ -115,7 +112,7 @@ export default function Speaking() {
           <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 
               src="/i/conferences/conferece-speaker.jpg" 
-              alt="Speaking event" 
+              alt={t.speakingEvent} 
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{
@@ -131,7 +128,7 @@ export default function Speaking() {
           <a href="/i/conferences/fl.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 
               src="/i/conferences/fl.jpg" 
-              alt="Conference networking" 
+              alt={t.conferenceNetworking} 
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{
@@ -147,7 +144,7 @@ export default function Speaking() {
           <a href="/i/conferences/visual1st-awards-winners.png" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 
               src="/i/conferences/visual1st-awards-winners.png" 
-              alt="Visual 1st Conference awards" 
+              alt={t.visual1stAwards} 
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{
@@ -163,7 +160,7 @@ export default function Speaking() {
           <a href="/i/conferences/fl2.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 
               src="/i/conferences/fl2.jpg" 
-              alt="Conference networking" 
+              alt={t.conferenceNetworking} 
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{

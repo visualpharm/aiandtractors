@@ -10,12 +10,12 @@ export default function LargeCards({ title, items }) {
         </h3>
       )}
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-8 w-full"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 w-full"
       >
         {items.map((item, index) => (
           <div
             key={index}
-            className={`bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col h-full p-5 md:p-7 border border-gray-100 text-left ${
+            className={`bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col h-full p-5 md:p-7 border border-gray-100 text-left mx-2 ${
               item.isIntro ? 'lg:col-span-1' : ''
             }`}
             tabIndex={0}

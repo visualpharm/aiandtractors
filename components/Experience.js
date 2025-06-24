@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 const translations = {
@@ -34,21 +33,19 @@ const translations = {
   }
 }
 
-export default function Experience() {
-  const router = useRouter()
-  const { locale } = router
-  const t = translations[locale] || translations.en
+export default function Experience({ language = 'en' }) {
+  const t = translations[language] || translations.en
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-8 py-12">
+      <div className="max-w-6xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
           <div className="text-left">
             <h2 className="text-sm font-medium m-0 text-gray-600 uppercase tracking-wider">{t.title}</h2>
           </div>
           <div>
             <p className="m-0 text-lg leading-relaxed text-gray-600">
-              I'm a tech founder leading a team of 150 and serving 4M users. <Link href="/experience" className="text-blue-600 no-underline hover:text-gray-900">{t.readMore}</Link>
+              {t.description} <Link href="/experience" className="text-blue-600 no-underline hover:text-gray-900">{t.readMore}</Link>
             </p>
           </div>
           <div className="text-left">

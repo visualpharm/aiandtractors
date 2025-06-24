@@ -16,7 +16,9 @@ const translations = {
     probableDate: "Fecha probable",
     generalTech: "General Tech",
     gaming: "Gaming",
-    attendeesText: "asistentes"
+    attendeesText: "asistentes",
+    focus: "Enfoque",
+    mainTitle: "Eventos Tech Latam"
   },
   en: {
     sortBy: "Sort by",
@@ -29,7 +31,9 @@ const translations = {
     probableDate: "Probable date",
     generalTech: "General Tech",
     gaming: "Gaming",
-    attendeesText: "attendees"
+    attendeesText: "attendees",
+    focus: "Focus",
+    mainTitle: "Tech Events Latam"
   },
   pt: {
     sortBy: "Ordenar por",
@@ -42,7 +46,9 @@ const translations = {
     probableDate: "Data provável",
     generalTech: "Tech Geral",
     gaming: "Gaming",
-    attendeesText: "participantes"
+    attendeesText: "participantes",
+    focus: "Foco",
+    mainTitle: "Eventos Tech Latam"
   }
 }
 
@@ -53,16 +59,29 @@ export default function EventsList({
   description, 
   metaDescription, 
   keywords,
-  language = 'es'
+  language
 }) {
   const router = useRouter()
+  
+  // Auto-detect language from URL if not provided
+  const getLanguageFromPath = () => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname
+      if (path.includes('-pt') || path.startsWith('/pt')) return 'pt'
+      if (path.startsWith('/es')) return 'es'
+      if (path.includes('tech-events')) return 'en'
+    }
+    return 'es' // default to Spanish
+  }
+  
+  const detectedLanguage = language || getLanguageFromPath()
   const [sortBy, setSortBy] = useState('popularity')
   const [filterTag, setFilterTag] = useState('general tech')
   const [filterCountry, setFilterCountry] = useState('all')
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false)
   
   // Translation helper
-  const t = translations[language] || translations.es
+  const t = translations[detectedLanguage] || translations.es
 
   // Load filters from URL on mount
   useEffect(() => {
@@ -205,7 +224,7 @@ export default function EventsList({
       pt: `/eventos-tech-${targetYear}-pt`
     }
     
-    return `${urlPatterns[language] || urlPatterns.es}${queryString}`
+    return `${urlPatterns[detectedLanguage] || urlPatterns.es}${queryString}`
   }
 
   return (
@@ -228,7 +247,7 @@ export default function EventsList({
       <div className="max-w-6xl mx-auto px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4 text-gray-900 leading-tight">Eventos Tech Latam {year}</h1>
+          <h1 className="text-5xl font-bold mb-4 text-gray-900 leading-tight">{t.mainTitle} {year}</h1>
           <p className="text-2xl text-gray-600 mb-4">{description}</p>
         </div>
 
@@ -377,7 +396,7 @@ export default function EventsList({
                 <p className="mb-4 leading-relaxed text-gray-900">{event.description}</p>
                 
                 <div className="mb-4 text-sm text-gray-600">
-                  <strong>Enfoque:</strong> {event.focus}
+                  <strong>{t.focus}:</strong> {event.focus}
                 </div>
 
                 <div className="flex flex-wrap gap-2">

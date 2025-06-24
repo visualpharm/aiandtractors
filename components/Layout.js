@@ -191,6 +191,7 @@ export default function Layout({ children }) {
             {getFooterLinks().map((link, index) => (
               <Link key={index} href={link.href}>{link.text}</Link>
             ))}
+            <a href="https://www.instagram.com/braun.ivan/" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
         </div>
       </footer>
@@ -346,6 +347,19 @@ export default function Layout({ children }) {
             color: var(--accent-color);
         }
 
+        @media (max-width: 1024px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+            
+            .footer-links {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .footer-content {
                 flex-direction: column;
@@ -354,6 +368,7 @@ export default function Layout({ children }) {
             
             .footer-links {
                 justify-content: center;
+                gap: 1rem;
             }
         }
 

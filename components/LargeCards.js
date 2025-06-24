@@ -37,32 +37,34 @@ export default function LargeCards({ title, items }) {
             
             {/* Regular logo for other cards */}
             {item.logo && (
-              <div className={`relative w-full mb-4 ${item.title.toLowerCase().includes('verge') ? 'max-h-[166px] scale-[1.3]' : 'max-h-32'}`} style={{marginLeft: 0}}>
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="relative w-full h-full flex items-center justify-center p-4">
-                    <div className="relative w-full h-full" style={{
-                      aspectRatio: '2/1',
-                      maxHeight: item.title.toLowerCase().includes('verge') ? '130px' : '100px',
-                      margin: '0 auto'
-                    }}>
-                      <img
-                        src={item.logo}
-                        alt={item.title}
-                        className="media-logo"
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'contain',
-                          objectPosition: 'center',
-                          display: 'block'
-                        }}
-                        loading="lazy"
-                        draggable="false"
-                        decoding="async"
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div className="relative w-full mb-4 max-h-32">
+                <img
+                  src={item.logo}
+                  alt={item.title}
+                  className={`media-logo ${
+                    item.title.toLowerCase().includes('verge') ? 'scale-[1.3]' : 
+                    item.logo && item.logo.includes('product-hunt') ? 'scale-[1.3]' : 
+                    item.logo && item.logo.includes('Visual-1st.png') ? 'scale-[0.7]' :
+                    item.logo && item.logo.includes('BEST-STARTUP') ? 'scale-[0.6]' :
+                    ''
+                  }`}
+                  style={{
+                    width: 'auto',
+                    height: '80px',
+                    maxWidth: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'top left',
+                    display: 'block',
+                    transformOrigin: 'top left',
+                    ...(item.logo && item.logo.includes('product-hunt') ? {
+                      marginTop: '-15px',
+                      marginLeft: '-15px'
+                    } : {})
+                  }}
+                  loading="lazy"
+                  draggable="false"
+                  decoding="async"
+                />
               </div>
             )}
             

@@ -2,9 +2,69 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 
 const translations = {
-  en: { title: "Speaking" },
-  es: { title: "Conferencias" },
-  pt: { title: "Palestras" }
+  en: { 
+    title: "Speaking",
+    horasislTitle: "Horasis Global Meeting",
+    horasislLocation: "Zurich, Switzerland",
+    horasislDate: "May 2024",
+    horasislDescription: "AI regulation and ethical frameworks",
+    rioTitle: "Rio Innovation Week",
+    rioLocation: "Rio de Janeiro, Brazil", 
+    rioDate: "September 2023",
+    rioDescription: "Creative AI and the future of design",
+    visual1stTitle: "Visual 1st Conference",
+    visual1stLocation: "Buenos Aires, Argentina",
+    visual1stDate: "November 2023", 
+    visual1stDescription: "Bootstrapping global creative platforms",
+    conferenceEvent: "Conference presentation",
+    presentingAt: "Presenting at conference",
+    receivingAward: "Receiving award",
+    speakingEvent: "Speaking event",
+    conferenceNetworking: "Conference networking",
+    visual1stAwards: "Visual 1st Awards winners"
+  },
+  es: { 
+    title: "Conferencias",
+    horasislTitle: "Horasis Global Meeting",
+    horasislLocation: "Zurich, Suiza",
+    horasislDate: "Mayo 2024",
+    horasislDescription: "Regulación de IA y marcos éticos",
+    rioTitle: "Rio Innovation Week",
+    rioLocation: "Río de Janeiro, Brasil",
+    rioDate: "Septiembre 2023", 
+    rioDescription: "IA creativa y el futuro del diseño",
+    visual1stTitle: "Conferencia Visual 1st",
+    visual1stLocation: "Buenos Aires, Argentina",
+    visual1stDate: "Noviembre 2023",
+    visual1stDescription: "Plataformas creativas globales autofinanciadas",
+    conferenceEvent: "Presentación en conferencia",
+    presentingAt: "Presentando en conferencia",
+    receivingAward: "Recibiendo premio",
+    speakingEvent: "Evento de conferencia",
+    conferenceNetworking: "Networking de conferencia",
+    visual1stAwards: "Ganadores de premios Visual 1st"
+  },
+  pt: { 
+    title: "Palestras",
+    horasislTitle: "Horasis Global Meeting",
+    horasislLocation: "Zurique, Suíça",
+    horasislDate: "Maio 2024",
+    horasislDescription: "Regulamentação de IA e frameworks éticos",
+    rioTitle: "Rio Innovation Week", 
+    rioLocation: "Rio de Janeiro, Brasil",
+    rioDate: "Setembro 2023",
+    rioDescription: "IA criativa e o futuro do design",
+    visual1stTitle: "Conferência Visual 1st",
+    visual1stLocation: "Buenos Aires, Argentina", 
+    visual1stDate: "Novembro 2023",
+    visual1stDescription: "Plataformas criativas globais autofinanciadas",
+    conferenceEvent: "Apresentação em conferência",
+    presentingAt: "Apresentando em conferência", 
+    receivingAward: "Recebendo prêmio",
+    speakingEvent: "Evento de palestra",
+    conferenceNetworking: "Networking de conferência",
+    visual1stAwards: "Vencedores de prêmios Visual 1st"
+  }
 }
 
 export default function Speaking({ language = 'en' }) {

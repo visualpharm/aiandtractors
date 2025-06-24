@@ -1,5 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "trailingSlash": false,
+  "trailingSlash": true,
   "cleanUrls": true
 }

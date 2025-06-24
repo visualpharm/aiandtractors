@@ -304,5 +304,24 @@ Never draw the icons, use icons8 mcp.
 Make LargeCards 100%. It’s always 100% wide from one side of the screen to another. if its organic width is less than 2/3 of the screen, align to the left, but to the side of the screen, ignore the page margins.
 
 
-# Tech
+# Frontend framework
 It's a next.js app, so don't search for index.html.
+
+# Experience section content
+I founded a design agency and turned it to two business:
+1. Icons8, design resources for developers and designers
+2. Generated Photos, creative AI tools.
+
+I'll tell how I got my experience, and it wasn't the easy way. By speaking, managing, investing, and advising I want your path be 10x easier than mine.
+
+## I was dumb
+I was 20 and knew nothing about management when my boss made me manage a team of 12 developers. Why did he do that? Because my salary was the highest. 
+
+I wasn't even a developer, I could write code, but not it wasn't competetive skill. Agile didn't exist; Scrum wasn't popular, and the dominating practices were too hard to grasp. I remember walking into a bookstore in Singapore with my boss and he bought several books whose titles I didn't understand. I asked him which book would help me to manage my team and he said "none yet."  
+
+So, point of view: a 20 year designer surrouned and not listened by a bunch of older and smarter guys (one of whome was an academic physisist of 55 years). I had to invent IT management from scratch. 
+
+What did I do? I managed horribly. I remember one dev postponing the deadline after deadline with no progress. My solution: to pass the task to another dev. I remember them both being confused and not understanding why I did that. I didn't understand either, but I had to do something.
+
+## Managing for my own money
+I started understanding what I do when I started paying the salaries out of my pocket. I hired an account manager when I was 24. Remote work wasn't a thing, so we sat at the office in my apartment. Somehow I didn't realize she's sitting on a stool until she ruined her back. I've bought the chair she chose the next day, and it costed me her monthly salary, but it was a 

@@ -98,7 +98,7 @@ export default function Experience() {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
       </Head>
 
-      <div className="max-w-6xl mx-auto px-8 py-12">
+      <div className="max-w-6xl mx-auto px-8 py-12" style={{ paddingTop: '42px' }}>
         <div className="bg-gray-50 py-16 px-0 -mx-8 mb-12">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">

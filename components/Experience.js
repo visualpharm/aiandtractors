@@ -38,7 +38,7 @@ export default function Experience({ language = 'en' }) {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-8" style={{ paddingTop: '42px' }}>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
           <div className="text-left">
             <h2 className="text-sm font-medium m-0 text-gray-600 uppercase tracking-wider">{t.title}</h2>

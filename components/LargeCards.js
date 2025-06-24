@@ -85,11 +85,21 @@ export default function LargeCards({ title, items }) {
               </div>
             )}
             
-            <div className="flex-1 flex flex-col justify-center w-full">
-              <h4 className={`font-semibold text-gray-900 mb-1 leading-tight ${
-                item.isIntro ? 'text-sm uppercase tracking-wider text-gray-500 mb-3' : 'text-base md:text-lg'
+            <div className={`flex-1 flex flex-col justify-start w-full ${
+              item.logo && item.logo.includes('product-hunt') ? 'mt-4' : ''
+            }`}>
+              <h4 className={`font-semibold text-gray-900 leading-tight ${
+                item.isIntro ? 'text-sm uppercase tracking-wider text-gray-500' : 'text-base md:text-lg'
               }`}>
-                {item.title}
+                {item.title.includes('Award') ? (
+                  <>
+                    {item.title.replace(' Award', '')}
+                    <br />
+                    Award
+                  </>
+                ) : (
+                  item.title
+                )}
               </h4>
               <p className={`text-gray-500 leading-snug ${
                 item.isIntro ? 'text-sm md:text-base' : 'text-xs md:text-sm'

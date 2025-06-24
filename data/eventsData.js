@@ -11,7 +11,8 @@ export const events2025 = [
     focus: "Emprendimiento, startups e innovación",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 85,
+    popularity: 45,
+    aiPresence: 65,
     confirmed: true
   },
   {
@@ -26,7 +27,8 @@ export const events2025 = [
     focus: "Desarrollo de talento en tecnología, emprendimiento, programación",
     tags: ["general tech"],
     country: "México",
-    popularity: 92,
+    popularity: 72,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Abril"
   },
@@ -42,7 +44,8 @@ export const events2025 = [
     focus: "Tendencias tecnológicas globales y emprendimiento",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 88,
+    popularity: 58,
+    aiPresence: 70,
     confirmed: false,
     approximateDate: "Principios de junio"
   },
@@ -58,7 +61,8 @@ export const events2025 = [
     focus: "Soluciones tecnológicas para el sector financiero",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 90,
+    popularity: 68,
+    aiPresence: 55,
     confirmed: false,
     approximateDate: "Junio"
   },
@@ -74,7 +78,8 @@ export const events2025 = [
     focus: "Cultura tecnológica y emprendimiento",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 95,
+    popularity: 45,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Mediados de junio – mediados de julio"
   },
@@ -90,25 +95,10 @@ export const events2025 = [
     focus: "Innovación abierta y transformación digital multisectorial",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 98,
+    popularity: 85,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Agosto"
-  },
-  {
-    id: 7,
-    name: "Gamergy México 2025",
-    location: "Ciudad de México, México",
-    date: "2025-08-20",
-    endDate: "2025-08-22",
-    attendees: 70000,
-    rating: 4.5,
-    description: "Festival de videojuegos y esports de origen español.",
-    focus: "Experiencia gamer total",
-    tags: ["gaming"],
-    country: "México",
-    popularity: 87,
-    confirmed: false,
-    approximateDate: "Agosto (fin de mes)"
   },
   {
     id: 8,
@@ -122,25 +112,10 @@ export const events2025 = [
     focus: "Tecnologías de la información y comunicaciones",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 78,
+    popularity: 35,
+    aiPresence: 40,
     confirmed: false,
     approximateDate: "Finales de septiembre – comienzos de octubre"
-  },
-  {
-    id: 9,
-    name: "Brasil Game Show 2025",
-    location: "São Paulo, Brasil",
-    date: "2025-10-20",
-    endDate: "2025-10-24",
-    attendees: 330000,
-    rating: 5.0,
-    description: "La feria de videojuegos más grande de América Latina.",
-    focus: "Expo gamer masiva con lanzamientos y campeonatos",
-    tags: ["gaming"],
-    country: "Brasil",
-    popularity: 100,
-    confirmed: false,
-    approximateDate: "Segunda semana de octubre"
   },
   {
     id: 10,
@@ -154,7 +129,8 @@ export const events2025 = [
     focus: "Ecosistemas digitales y contenido 4.0",
     tags: ["general tech"],
     country: "Colombia",
-    popularity: 82,
+    popularity: 42,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de octubre"
   },
@@ -170,24 +146,10 @@ export const events2025 = [
     focus: "Tecnología & desarrollo de software open-source",
     tags: ["general tech"],
     country: "Argentina",
-    popularity: 75,
+    popularity: 25,
+    aiPresence: 45,
     confirmed: true
   },
-  {
-    id: 12,
-    name: "Argentina Game Show (AGS) 2025",
-    location: "Tecnópolis, Buenos Aires, Argentina",
-    date: "2025-10-10",
-    endDate: "2025-10-12",
-    attendees: 110000,
-    rating: 5.0,
-    description: "Feria gamer más grande del país; lanza títulos AAA, torneos esports internacionales, cosplay y conciertos temáticos; stands de hardware y VR.",
-    focus: "Gaming & esports masivos",
-    tags: ["gaming"],
-    country: "Argentina",
-    popularity: 96,
-    confirmed: true
-  }
 ]
 
 export const events2026 = [
@@ -203,7 +165,8 @@ export const events2026 = [
     focus: "Emprendimiento, startups e innovación con temas de futuro del trabajo, IA, sostenibilidad",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 85,
+    popularity: 45,
+    aiPresence: 65,
     confirmed: false,
     approximateDate: "Marzo – principios de abril"
   },
@@ -219,7 +182,8 @@ export const events2026 = [
     focus: "Desarrollo de talento en tecnología, emprendimiento, programación, robótica y economía creativa",
     tags: ["general tech"],
     country: "México",
-    popularity: 92,
+    popularity: 72,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Abril"
   },
@@ -235,7 +199,8 @@ export const events2026 = [
     focus: "Tendencias tecnológicas globales y emprendimiento, con ponentes de alto nivel del mundo tech y empresarial",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 88,
+    popularity: 58,
+    aiPresence: 70,
     confirmed: false,
     approximateDate: "Principios de junio"
   },
@@ -251,7 +216,8 @@ export const events2026 = [
     focus: "Soluciones tecnológicas para el sector financiero (banca digital, pagos, seguridad, IA en finanzas)",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 90,
+    popularity: 68,
+    aiPresence: 55,
     confirmed: false,
     approximateDate: "Junio"
   },
@@ -267,7 +233,8 @@ export const events2026 = [
     focus: "Cultura tecnológica y emprendimiento, con maratones de programación, hackathons, talleres 24h y keynotes",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 95,
+    popularity: 85,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Mediados de junio – mediados de julio"
   },
@@ -283,25 +250,10 @@ export const events2026 = [
     focus: "Innovación abierta y transformación digital multisectorial (tecnología, negocios, sustentabilidad, IA)",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 98,
+    popularity: 95,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Agosto"
-  },
-  {
-    id: 7,
-    name: "Gamergy México 2026",
-    location: "Ciudad de México, México",
-    date: "2026-08-20",
-    endDate: "2026-08-22",
-    attendees: 70000,
-    rating: 4.5,
-    description: "Festival de videojuegos y esports de origen español, consolidado como uno de los mayores eventos gamer de habla hispana.",
-    focus: "Experiencia gamer total – competiciones de esports, zonas para jugar lanzamientos, meet & greet con streamers",
-    tags: ["gaming"],
-    country: "México",
-    popularity: 87,
-    confirmed: false,
-    approximateDate: "Agosto (fin de mes)"
   },
   {
     id: 8,
@@ -315,25 +267,10 @@ export const events2026 = [
     focus: "Tecnologías de la información y comunicaciones (ICT), con foco en networking B2B, telecom, transformación digital",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 78,
+    popularity: 35,
+    aiPresence: 40,
     confirmed: false,
     approximateDate: "Finales de septiembre – comienzos de octubre"
-  },
-  {
-    id: 9,
-    name: "Brasil Game Show 2026",
-    location: "São Paulo, Brasil",
-    date: "2026-10-20",
-    endDate: "2026-10-24",
-    attendees: 330000,
-    rating: 5.0,
-    description: "La feria de videojuegos más grande de América Latina (y una de las mayores del mundo). BGS 2023 marcó récord con 328.503 visitantes.",
-    focus: "Expo gamer masiva con lanzamientos de videojuegos, campeonatos de esports, conciertos temáticos y cosplay",
-    tags: ["gaming"],
-    country: "Brasil",
-    popularity: 100,
-    confirmed: false,
-    approximateDate: "Segunda semana de octubre"
   },
   {
     id: 10,
@@ -347,7 +284,8 @@ export const events2026 = [
     focus: "Ecosistemas digitales y contenido 4.0 con ejes en IA, animación digital, videojuegos, EdTech, TravelTech, Fintech",
     tags: ["general tech"],
     country: "Colombia",
-    popularity: 82,
+    popularity: 42,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de octubre"
   },
@@ -363,26 +301,11 @@ export const events2026 = [
     focus: "Tech & comunidad dev",
     tags: ["general tech"],
     country: "Argentina",
-    popularity: 76,
+    popularity: 26,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de septiembre"
   },
-  {
-    id: 12,
-    name: "Argentina Game Show (AGS) 2026",
-    location: "Tecnópolis, Buenos Aires, Argentina",
-    date: "2026-10-09",
-    endDate: "2026-10-11",
-    attendees: 115000,
-    rating: 5.0,
-    description: "Expo gamer regional con publishers globales, arena de esports y espacios de creators; crece con zona indie y realidad mixta.",
-    focus: "Gaming & cultura gamer",
-    tags: ["gaming"],
-    country: "Argentina",
-    popularity: 97,
-    confirmed: false,
-    approximateDate: "Segunda semana de octubre"
-  }
 ]
 
 export const events2027 = [
@@ -398,7 +321,8 @@ export const events2027 = [
     focus: "Emprendimiento, inversión y tecnología emergente – conecta startups latinoamericanas con inversores globales",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 85,
+    popularity: 45,
+    aiPresence: 65,
     confirmed: false,
     approximateDate: "Marzo – principios de abril"
   },
@@ -414,7 +338,8 @@ export const events2027 = [
     focus: "Capacitación tecnológica y emprendimiento joven – hackathons, talleres prácticos de programación/robótica",
     tags: ["general tech"],
     country: "México",
-    popularity: 92,
+    popularity: 72,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Abril"
   },
@@ -430,7 +355,8 @@ export const events2027 = [
     focus: "Tendencias tech mundiales, startups e inversión – escenarios paralelos sobre tecnología, IA, marketing digital",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 88,
+    popularity: 58,
+    aiPresence: 70,
     confirmed: false,
     approximateDate: "Principios de junio"
   },
@@ -446,7 +372,8 @@ export const events2027 = [
     focus: "Innovación financiera – pagos digitales, blockchain en banca, ciberseguridad financiera",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 90,
+    popularity: 68,
+    aiPresence: 55,
     confirmed: false,
     approximateDate: "Mediados de junio"
   },
@@ -462,7 +389,8 @@ export const events2027 = [
     focus: "Cultura maker y futuro tecnológico – charlas de innovación, competencias de desarrollo de software",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 95,
+    popularity: 85,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Final de junio – principios de julio"
   },
@@ -478,25 +406,10 @@ export const events2027 = [
     focus: "Innovación 360° – desde emprendimiento tecnológico hasta impacto social y sustentabilidad",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 98,
+    popularity: 95,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Mediados de agosto"
-  },
-  {
-    id: 7,
-    name: "Gamergy México 2027",
-    location: "Ciudad de México, México",
-    date: "2027-08-20",
-    endDate: "2027-08-22",
-    attendees: 70000,
-    rating: 4.5,
-    description: "Esta 'fiesta gamer' anual seguirá atrayendo decenas de miles de videojugadores mexicanos.",
-    focus: "Videojuegos y deportes electrónicos – escenarios de esports profesionales, exhibiciones de juegos inéditos",
-    tags: ["gaming"],
-    country: "México",
-    popularity: 87,
-    confirmed: false,
-    approximateDate: "Últimos días de agosto"
   },
   {
     id: 8,
@@ -510,25 +423,10 @@ export const events2027 = [
     focus: "Telecom e infraestructura tech – 5G avanzado, conectividad rural, cloud computing",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 78,
+    popularity: 35,
+    aiPresence: 40,
     confirmed: false,
     approximateDate: "Principios de octubre"
-  },
-  {
-    id: 9,
-    name: "Brasil Game Show 2027",
-    location: "São Paulo, Brasil",
-    date: "2027-10-20",
-    endDate: "2027-10-24",
-    attendees: 300000,
-    rating: 5.0,
-    description: "La BGS continuará como evento récord: se anticipa superar nuevamente los 320 mil asistentes logrados en años anteriores.",
-    focus: "Celebración masiva de la cultura gamer – cientos de stands de desarrolladoras de videojuegos",
-    tags: ["gaming"],
-    country: "Brasil",
-    popularity: 100,
-    confirmed: false,
-    approximateDate: "Mitad de octubre"
   },
   {
     id: 10,
@@ -542,7 +440,8 @@ export const events2027 = [
     focus: "Agenda académica y feria tecnológica de economía digital – incluye tracks en inteligencia artificial",
     tags: ["general tech"],
     country: "Colombia",
-    popularity: 82,
+    popularity: 42,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de octubre"
   },
@@ -558,26 +457,11 @@ export const events2027 = [
     focus: "Tech & dev community",
     tags: ["general tech"],
     country: "Argentina",
-    popularity: 77,
+    popularity: 28,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de septiembre"
   },
-  {
-    id: 12,
-    name: "Argentina Game Show (AGS) 2027",
-    location: "Tecnópolis, Buenos Aires, Argentina",
-    date: "2027-10-08",
-    endDate: "2027-10-10",
-    attendees: 120000,
-    rating: 5.0,
-    description: "Amplía pabellones con arenas VR/AR, finales de ligas LATAM de esports y showcases de hardware next-gen.",
-    focus: "Gaming mega-expo",
-    tags: ["gaming"],
-    country: "Argentina",
-    popularity: 98,
-    confirmed: false,
-    approximateDate: "Segunda semana de octubre"
-  }
 ]
 
 export const events2028 = [
@@ -593,7 +477,8 @@ export const events2028 = [
     focus: "Innovación y networking de alto nivel – startups compitiendo por premios, inversores buscando el próximo 'unicornio' latino",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 85,
+    popularity: 45,
+    aiPresence: 65,
     confirmed: false,
     approximateDate: "Marzo – principios de abril"
   },
@@ -609,7 +494,8 @@ export const events2028 = [
     focus: "Innovación juvenil – laboratorios de innovación abierta, maratones de desarrollo de apps",
     tags: ["general tech"],
     country: "México",
-    popularity: 92,
+    popularity: 72,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Abril"
   },
@@ -625,7 +511,8 @@ export const events2028 = [
     focus: "Tecnología global – cierre de ciclo con presencia de 'tech celebrities', debates sobre el futuro de la innovación",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 88,
+    popularity: 58,
+    aiPresence: 70,
     confirmed: false,
     approximateDate: "Finales de mayo – principios de junio"
   },
@@ -641,7 +528,8 @@ export const events2028 = [
     focus: "Fintech y banca del futuro – showcases de IA aplicada a finanzas, tendencias en open banking",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 90,
+    popularity: 68,
+    aiPresence: 55,
     confirmed: false,
     approximateDate: "Mediados de junio"
   },
@@ -657,7 +545,8 @@ export const events2028 = [
     focus: "Innovación colaborativa – proyectos open-source desarrollados en vivo, competencias de startups universitarias",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 95,
+    popularity: 85,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Final de junio – principios de julio"
   },
@@ -673,25 +562,10 @@ export const events2028 = [
     focus: "Transformación e impacto – convergencia de sectores público, privado y academia para impulsar agendas de transformación digital",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 98,
+    popularity: 95,
+    aiPresence: 50,
     confirmed: false,
     approximateDate: "Mediados de agosto"
-  },
-  {
-    id: 7,
-    name: "Gamergy México 2028",
-    location: "Ciudad de México, México",
-    date: "2028-08-20",
-    endDate: "2028-08-22",
-    attendees: 75000,
-    rating: 4.5,
-    description: "La escena gamer latinoamericana seguirá teniendo en Gamergy una de sus vitrinas principales.",
-    focus: "Entretenimiento gamer – un festival interactivo donde los asistentes pueden competir, probar tecnologías de juego",
-    tags: ["gaming"],
-    country: "México",
-    popularity: 87,
-    confirmed: false,
-    approximateDate: "Últimos días de agosto"
   },
   {
     id: 8,
@@ -705,25 +579,10 @@ export const events2028 = [
     focus: "Conectividad y transformación digital, con foco en tecnologías como 6G (futuras redes móviles), IA en telecomunicaciones",
     tags: ["general tech"],
     country: "Brasil",
-    popularity: 78,
+    popularity: 35,
+    aiPresence: 40,
     confirmed: false,
     approximateDate: "Principios de octubre"
-  },
-  {
-    id: 9,
-    name: "Brasil Game Show 2028",
-    location: "São Paulo, Brasil",
-    date: "2028-10-20",
-    endDate: "2028-10-24",
-    attendees: 300000,
-    rating: 5.0,
-    description: "La BGS 2028 probablemente establecerá otro hito de asistencia, manteniendo su estatus como mega-evento gamer.",
-    focus: "Celebración del gaming a gran escala – oportunidades de jugar títulos antes de su lanzamiento",
-    tags: ["gaming"],
-    country: "Brasil",
-    popularity: 100,
-    confirmed: false,
-    approximateDate: "Mitad de octubre"
   },
   {
     id: 10,
@@ -737,7 +596,8 @@ export const events2028 = [
     focus: "Ecosistema digital latinoamericano – articulando gobierno, sector privado y comunidad tech",
     tags: ["general tech"],
     country: "Colombia",
-    popularity: 82,
+    popularity: 42,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de octubre"
   },
@@ -753,24 +613,9 @@ export const events2028 = [
     focus: "Tech innovación abierta",
     tags: ["general tech"],
     country: "Argentina",
-    popularity: 78,
+    popularity: 35,
+    aiPresence: 45,
     confirmed: false,
     approximateDate: "Última semana de septiembre"
   },
-  {
-    id: 12,
-    name: "Argentina Game Show (AGS) 2028",
-    location: "Tecnópolis, Buenos Aires, Argentina",
-    date: "2028-10-13",
-    endDate: "2028-10-15",
-    attendees: 125000,
-    rating: 5.0,
-    description: "BGS-style latino con triple cifra de miles de gamers; presentación de plataformas cloud-gaming, competiciones de mobile-esports y experiencias inmersivas.",
-    focus: "Gaming & entretenimiento",
-    tags: ["gaming"],
-    country: "Argentina",
-    popularity: 99,
-    confirmed: false,
-    approximateDate: "Segunda semana de octubre"
-  }
 ]

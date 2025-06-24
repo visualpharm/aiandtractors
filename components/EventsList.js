@@ -206,7 +206,33 @@ export default function EventsList({
     }
   }
 
-  const years = ['2025', '2026', '2027', '2028']
+  // Function to check if a year should be hidden (all events have ended)
+  const isYearPast = (yearString) => {
+    // For simplicity, we'll check if all events in the current events array are past
+    // This works because each page only loads events for one year
+    if (!events || events.length === 0) return false
+    
+    const now = new Date()
+    const latestEventEnd = Math.max(...events.map(event => new Date(event.endDate).getTime()))
+    
+    return latestEventEnd < now.getTime()
+  }
+
+  // Get all available years and filter out past ones
+  const allYears = ['2025', '2026', '2027', '2028']
+  
+  // Filter years - if current year is past, don't show years before it
+  const currentYearIndex = allYears.indexOf(year)
+  const currentEventsPast = events.length > 0 && isYearPast(year)
+  
+  let availableYears = allYears
+  
+  // If current year events are all past, filter out this year and earlier years
+  if (currentEventsPast) {
+    availableYears = allYears.filter((y, index) => index > currentYearIndex)
+  }
+  
+  const years = availableYears.length > 0 ? availableYears : allYears
 
   // Build year URLs with current filters
   const buildYearURL = (targetYear) => {

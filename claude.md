@@ -330,6 +330,5 @@ Somehow I didn't realize she's sitting on a stool until she ruined her back. I'v
 
 That's my lesson: when you spend your own money, management is much easier.
 
-
-
+# Que hacer en Carilo
 

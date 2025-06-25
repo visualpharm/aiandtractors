@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import EventsList from '../components/EventsList'
 import { events2025 } from '../data/eventsData'
@@ -27,7 +26,7 @@ const translations = {
 export default function EventosTech2025() {
   const router = useRouter()
   const { locale } = router
-  const language = locale || 'es'
+  const language = locale || 'en'
   const t = translations[language] || translations.es
 
   return (

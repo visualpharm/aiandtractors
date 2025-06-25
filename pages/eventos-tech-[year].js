@@ -38,14 +38,9 @@ export default function EventosTechYear() {
   const router = useRouter()
   const { year } = router.query
 
-  // Return loading state while router is loading
-  if (!router.isReady || !year) {
-    return <div>Loading...</div>
-  }
-
   // Redirect to first available year if current year is past
   useEffect(() => {
-    if (year && eventsData[year]) {
+    if (router.isReady && year && eventsData[year]) {
       const yearEvents = eventsData[year]
       if (isYearPast(yearEvents)) {
         const firstAvailableYear = getFirstAvailableYear()
@@ -56,6 +51,11 @@ export default function EventosTechYear() {
       }
     }
   }, [year, router])
+
+  // Return loading state while router is loading
+  if (!router.isReady || !year) {
+    return <div>Loading...</div>
+  }
 
   // Check if year is past and redirect
   const yearEvents = eventsData[year] || []

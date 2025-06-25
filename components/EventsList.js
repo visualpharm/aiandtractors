@@ -259,7 +259,7 @@ export default function EventsList({
       en: 'en-US', 
       pt: 'pt-BR'
     }
-    const locale = localeMap[language] || 'es-ES'
+    const locale = localeMap[detectedLanguage] || 'es-ES'
     
     const options = { day: 'numeric', month: 'short' }
     const formattedStart = date.toLocaleDateString(locale, options)

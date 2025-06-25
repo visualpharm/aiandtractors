@@ -1,6 +1,4 @@
-import Head from 'next/head'
 import CTAButtons from '../components/CTAButtons';
-import Script from 'next/script';
 
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';

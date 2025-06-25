@@ -7,7 +7,7 @@ export default function EventosTech2025ES() {
       year="2025"
       events={events2025}
       title="Eventos Tech 2025 - Conferencias de Tecnología en Latinoamérica"
-      description="Every time I look for conferences, I realize there is no single trusted source for ones. They're too generic, outdated, listing every possible small meetup, etc. So I've launched the ChatGPT research and fact checked it lightly. Since I needed to store the results somewhere, I vibe coded this section and shared it with you. Beware of hallucinations and double check it all."
+      description="Cada vez que busco conferencias, me doy cuenta de que no hay una fuente única confiable. Son demasiado genéricas, desactualizadas, listando cada pequeño meetup posible, etc. Así que lancé la investigación con ChatGPT y verifiqué ligeramente los hechos. Como necesitaba almacenar los resultados en algún lugar, programé esta sección a la ligera y la compartí contigo. Cuidado con las alucinaciones y verifica todo."
       metaDescription="Calendario completo de eventos tech 2025 en Latinoamérica. Las mejores conferencias de tecnología, IA, fintech, gaming y startups. Más de 10 eventos con +800,000 asistentes."
       keywords="eventos tech 2025, conferencias tecnología, eventos IA, fintech, gaming, startups latinoamérica"
       language="es"

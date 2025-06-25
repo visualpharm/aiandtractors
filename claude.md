@@ -324,4 +324,12 @@ So, point of view: a 20 year designer surrouned and not listened by a bunch of o
 What did I do? I managed horribly. I remember one dev postponing the deadline after deadline with no progress. My solution: to pass the task to another dev. I remember them both being confused and not understanding why I did that. I didn't understand either, but I had to do something.
 
 ## Managing for my own money
-I started understanding what I do when I started paying the salaries out of my pocket. I hired an account manager when I was 24. Remote work wasn't a thing, so we sat at the office in my apartment. Somehow I didn't realize she's sitting on a stool until she ruined her back. I've bought the chair she chose the next day, and it costed me her monthly salary, but it was a 
+I started understanding what I do when I started paying the salaries out of my pocket. I hired an account manager when I was 24. Remote work wasn't a thing, so we sat at the office in my apartment. 
+
+Somehow I didn't realize she's sitting on a stool until she ruined her back. I've bought the chair she chose the next day, and it costed me her monthly salary, but it was an easy spend for me, because I was spending my own money. I didn't have the budget constraints, I didn't have to navigate the burocracy, I didn't have the company norms to stick to. I just bought the chair.
+
+That's my lesson: when you spend your own money, management is much easier.
+
+
+
+

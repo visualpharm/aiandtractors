@@ -198,6 +198,16 @@ export default function EventsList({
   const filteredAndSortedEvents = useMemo(() => {
     let filtered = events
 
+    // Filter out past events for current year
+    const now = new Date()
+    const currentYear = now.getFullYear()
+    if (parseInt(year) === currentYear) {
+      filtered = filtered.filter(event => {
+        const eventDate = new Date(event.endDate || event.date)
+        return eventDate >= now
+      })
+    }
+
     // Filter by country
     if (filterCountry !== 'all') {
       filtered = filtered.filter(event => event.country === filterCountry)
@@ -218,7 +228,7 @@ export default function EventsList({
     })
 
     return sorted
-  }, [filterCountry, sortBy, events])
+  }, [filterCountry, sortBy, events, year])
 
   const renderPopularity = (popularity) => {
     return (
@@ -452,20 +462,20 @@ export default function EventsList({
             return (
               <div key={event.id} className={`bg-white rounded-xl p-6 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${isPast ? 'opacity-60 bg-gray-50' : ''}`}>
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold text-gray-900 flex-1 mr-4">{translatedEvent.name}</h3>
+                  <div className="flex-1 mr-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{translatedEvent.name}</h3>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <div>📍 {translatedEvent.location}</div>
+                      <div className="flex items-center gap-2">
+                        📅 {translatedEvent.confirmed ? dateFormatted : translatedEvent.date}
+                      </div>
+                      <div>👥 {translatedEvent.attendees.toLocaleString()} {t.attendeesText}</div>
+                    </div>
+                  </div>
                   <div className="flex flex-col gap-2 flex-shrink-0">
                     {renderPopularity(translatedEvent.popularity)}
                     {renderAIPresence(translatedEvent.aiPresence)}
                   </div>
-                </div>
-                
-                <div className="mb-4 text-sm text-gray-600 space-y-1">
-                  <div>📍 {translatedEvent.location}</div>
-                  <div className="flex items-center gap-2">
-                    📅 {translatedEvent.confirmed ? dateFormatted : translatedEvent.approximateDate}
-                    {!translatedEvent.confirmed && <span className="inline-block ml-2 px-2 py-1 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl text-xs font-medium">{t.probableDate}</span>}
-                  </div>
-                  <div>👥 {translatedEvent.attendees.toLocaleString()} {t.attendeesText}</div>
                 </div>
 
                 <p className="mb-4 leading-relaxed text-gray-900">{translatedEvent.description}</p>

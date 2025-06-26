@@ -104,23 +104,6 @@ export const events = {
       focus: "Open innovation and multi-sector digital transformation"
     },
     {
-      id: 7,
-      name: "Gamergy México",
-      location: "Mexico City, Mexico",
-      country: "Mexico",
-      region: "Latin America",
-      date: "2025-08-20",
-      endDate: "2025-08-22",
-      attendees: 70000,
-      popularity: 87,
-      aiPresence: 25,
-      rating: 4.5,
-      confirmed: true,
-      tags: ["gaming"],
-      description: "Video game and esports festival of Spanish origin.",
-      focus: "Total gamer experience"
-    },
-    {
       id: 8,
       name: "Futurecom",
       location: "São Paulo, Brazil",
@@ -136,23 +119,6 @@ export const events = {
       tags: ["general tech"],
       description: "Leading Latin American congress on telecommunications, IT and connectivity.",
       focus: "Information and communication technologies"
-    },
-    {
-      id: 9,
-      name: "Brasil Game Show",
-      location: "São Paulo, Brazil",
-      country: "Brazil",
-      region: "Latin America",
-      date: "2025-10-20",
-      endDate: "2025-10-24",
-      attendees: 330000,
-      popularity: 100,
-      aiPresence: 20,
-      rating: 5.0,
-      confirmed: true,
-      tags: ["gaming"],
-      description: "The largest video game fair in Latin America.",
-      focus: "Massive gamer expo with launches and championships"
     },
     {
       id: 10,
@@ -277,23 +243,6 @@ export const events = {
       focus: "Open innovation and multi-sector digital transformation (technology, business, sustainability, AI)"
     },
     {
-      id: 17,
-      name: "Gamergy México",
-      location: "Mexico City, Mexico",
-      country: "Mexico",
-      region: "Latin America",
-      date: "2026-08-20",
-      endDate: "2026-08-22",
-      attendees: 70000,
-      popularity: 87,
-      aiPresence: 30,
-      rating: 4.5,
-      confirmed: false,
-      tags: ["gaming"],
-      description: "Video game and esports festival of Spanish origin, consolidated as one of the largest gamer events in the Spanish-speaking world.",
-      focus: "Total gamer experience – esports competitions, zones to play releases, meet & greet with streamers"
-    },
-    {
       id: 18,
       name: "Futurecom",
       location: "São Paulo, Brazil",
@@ -309,23 +258,6 @@ export const events = {
       tags: ["general tech"],
       description: "Leading Latin American congress on telecommunications, IT and connectivity (24+ editions).",
       focus: "Information and communication technologies (ICT), with focus on B2B networking, telecom, digital transformation"
-    },
-    {
-      id: 19,
-      name: "Brasil Game Show",
-      location: "São Paulo, Brazil",
-      country: "Brazil",
-      region: "Latin America",
-      date: "2026-10-20",
-      endDate: "2026-10-24",
-      attendees: 330000,
-      popularity: 100,
-      aiPresence: 25,
-      rating: 5.0,
-      confirmed: false,
-      tags: ["gaming"],
-      description: "The largest video game fair in Latin America (and one of the largest in the world). BGS 2023 set a record with 328,503 visitors.",
-      focus: "Massive gamer expo with video game launches, esports championships, themed concerts and cosplay"
     },
     {
       id: 20,
@@ -450,23 +382,6 @@ export const events = {
       focus: "360° innovation – from tech entrepreneurship to social impact and sustainability"
     },
     {
-      id: 27,
-      name: "Gamergy México",
-      location: "Mexico City, Mexico",
-      country: "Mexico",
-      region: "Latin America",
-      date: "2027-08-20",
-      endDate: "2027-08-22",
-      attendees: 70000,
-      popularity: 87,
-      aiPresence: 35,
-      rating: 4.5,
-      confirmed: false,
-      tags: ["gaming"],
-      description: "This annual 'gamer party' will continue to attract tens of thousands of Mexican video game players.",
-      focus: "Video games and electronic sports – professional esports stages, unreleased game exhibitions"
-    },
-    {
       id: 28,
       name: "Futurecom",
       location: "São Paulo, Brazil",
@@ -482,23 +397,6 @@ export const events = {
       tags: ["general tech"],
       description: "Telecommunications and digital transformation trade fair-congress now in its 25th+ edition.",
       focus: "Telecom and tech infrastructure – advanced 5G, rural connectivity, cloud computing"
-    },
-    {
-      id: 29,
-      name: "Brasil Game Show",
-      location: "São Paulo, Brazil",
-      country: "Brazil",
-      region: "Latin America",
-      date: "2027-10-20",
-      endDate: "2027-10-24",
-      attendees: 300000,
-      popularity: 100,
-      aiPresence: 30,
-      rating: 5.0,
-      confirmed: false,
-      tags: ["gaming"],
-      description: "BGS will continue as a record event: it's anticipated to again surpass the 320 thousand attendees achieved in previous years.",
-      focus: "Massive celebration of gamer culture – hundreds of video game developer stands"
     },
     {
       id: 30,
@@ -623,23 +521,6 @@ export const events = {
       focus: "Transformation and impact – convergence of public, private and academic sectors to drive digital transformation agendas"
     },
     {
-      id: 37,
-      name: "Gamergy México",
-      location: "Mexico City, Mexico",
-      country: "Mexico",
-      region: "Latin America",
-      date: "2028-08-20",
-      endDate: "2028-08-22",
-      attendees: 75000,
-      popularity: 87,
-      aiPresence: 40,
-      rating: 4.5,
-      confirmed: false,
-      tags: ["gaming"],
-      description: "The Latin American gamer scene will continue to have Gamergy as one of its main showcases.",
-      focus: "Gamer entertainment – an interactive festival where attendees can compete, try gaming technologies"
-    },
-    {
       id: 38,
       name: "Futurecom",
       location: "São Paulo, Brazil",
@@ -655,23 +536,6 @@ export const events = {
       tags: ["general tech"],
       description: "At almost 30 years of history, Futurecom remains a reference in regional telecom and IT.",
       focus: "Connectivity and digital transformation, with focus on technologies like 6G (future mobile networks), AI in telecommunications"
-    },
-    {
-      id: 39,
-      name: "Brasil Game Show",
-      location: "São Paulo, Brazil",
-      country: "Brazil",
-      region: "Latin America",
-      date: "2028-10-20",
-      endDate: "2028-10-24",
-      attendees: 300000,
-      popularity: 100,
-      aiPresence: 35,
-      rating: 5.0,
-      confirmed: false,
-      tags: ["gaming"],
-      description: "BGS 2028 will probably establish another attendance milestone, maintaining its status as a mega-gamer event.",
-      focus: "Large-scale gaming celebration – opportunities to play titles before their release"
     },
     {
       id: 40,

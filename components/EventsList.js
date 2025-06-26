@@ -198,13 +198,18 @@ export default function EventsList({
   const filteredAndSortedEvents = useMemo(() => {
     let filtered = events
 
-    // Filter out past events for current year
-    const now = new Date()
-    const currentYear = now.getFullYear()
+    // Filter out past events for current year (use date string comparison to avoid constantly changing dates)
+    const currentYear = new Date().getFullYear()
+    const today = new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+    
     if (parseInt(year) === currentYear) {
       filtered = filtered.filter(event => {
-        const eventDate = new Date(event.endDate || event.date)
-        return eventDate >= now
+        const eventEndDate = event.endDate || event.date
+        // Only filter if the event has a proper date format (not just month names like "April")
+        if (eventEndDate && eventEndDate.includes('-')) {
+          return eventEndDate >= today
+        }
+        return true // Keep events with approximate dates like "April"
       })
     }
 
@@ -217,7 +222,10 @@ export default function EventsList({
     const sorted = [...filtered].sort((a, b) => {
       switch (sortBy) {
         case 'date':
-          return new Date(a.date) - new Date(b.date)
+          // Handle mixed date formats safely
+          const aDate = a.date && a.date.includes('-') ? new Date(a.date) : new Date()
+          const bDate = b.date && b.date.includes('-') ? new Date(b.date) : new Date()
+          return aDate - bDate
         case 'popularity':
           return b.popularity - a.popularity
         case 'attendees':

@@ -17,18 +17,8 @@ const nextConfig = {
     return [
       // Redirect invalid years to latest valid year
       {
-        source: '/tech-events-2027',
-        destination: '/tech-events-2026',
-        permanent: false,
-      },
-      {
-        source: '/tech-events-2028',
-        destination: '/tech-events-2026', 
-        permanent: false,
-      },
-      {
         source: '/tech-events-2029',
-        destination: '/tech-events-2026',
+        destination: '/tech-events-2028',
         permanent: false,
       },
       // Redirect old Spanish routes to English

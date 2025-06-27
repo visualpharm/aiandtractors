@@ -279,7 +279,7 @@ export default function EventsList({
     }
     const locale = localeMap[detectedLanguage] || 'es-ES'
     
-    const options = { day: 'numeric', month: 'short' }
+    const options = { day: 'numeric', month: 'long', year: 'numeric' }
     const formattedStart = date.toLocaleDateString(locale, options)
     const formattedEnd = endDate.toLocaleDateString(locale, options)
     
@@ -332,7 +332,7 @@ export default function EventsList({
       pt: `/eventos-tech-${targetYear}-pt`
     }
     
-    return `${urlPatterns[detectedLanguage] || urlPatterns.es}${queryString}`
+    return `${urlPatterns[detectedLanguage] || urlPatterns.en}${queryString}`
   }
 
   return (

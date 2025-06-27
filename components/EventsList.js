@@ -355,7 +355,10 @@ export default function EventsList({
       <div className="max-w-6xl mx-auto px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4 text-gray-900 leading-tight">{title}</h1>
+          <h1 className="text-5xl font-bold mb-4 text-gray-900 leading-tight">
+            <span className="inline-block bg-[#7f58ca] text-white text-3xl px-6 py-2 rounded-md font-medium mb-3" style={{fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'}}>{title.split(' - ')[0]}</span>
+            <span className="block text-5xl">{title.split(' - ')[1]}</span>
+          </h1>
           <p className="text-2xl text-gray-600 mb-4">{description}</p>
         </div>
 

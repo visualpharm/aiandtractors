@@ -279,12 +279,31 @@ export default function EventsList({
     }
     const locale = localeMap[detectedLanguage] || 'es-ES'
     
-    const options = { day: 'numeric', month: 'long', year: 'numeric' }
-    const formattedStart = date.toLocaleDateString(locale, options)
-    const formattedEnd = endDate.toLocaleDateString(locale, options)
+    // Smart date range formatting
+    let formatted
+    if (date.getFullYear() === endDate.getFullYear()) {
+      if (date.getMonth() === endDate.getMonth()) {
+        // Same month: "July 14-19, 2028"
+        const month = date.toLocaleDateString(locale, { month: 'long' })
+        const year = date.getFullYear()
+        const startDay = date.getDate()
+        const endDay = endDate.getDate()
+        formatted = `${month} ${startDay}-${endDay}, ${year}`
+      } else {
+        // Same year, different months: "June 20 - July 5, 2028"
+        const startFormatted = date.toLocaleDateString(locale, { day: 'numeric', month: 'long' })
+        const endFormatted = endDate.toLocaleDateString(locale, { day: 'numeric', month: 'long' })
+        formatted = `${startFormatted} - ${endFormatted}, ${date.getFullYear()}`
+      }
+    } else {
+      // Different years: "Dec 28, 2028 - Jan 3, 2029"
+      const startFormatted = date.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' })
+      const endFormatted = endDate.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' })
+      formatted = `${startFormatted} - ${endFormatted}`
+    }
     
     return {
-      formatted: `${formattedStart} - ${formattedEnd}`,
+      formatted,
       isPast
     }
   }
@@ -478,7 +497,7 @@ export default function EventsList({
                     <div className="text-sm text-gray-600 space-y-1">
                       <div>📍 {translatedEvent.location}</div>
                       <div className="flex items-center gap-2">
-                        📅 {translatedEvent.confirmed ? dateFormatted : translatedEvent.date}
+                        📅 {translatedEvent.confirmed ? dateFormatted : (translatedEvent.approximateDate || dateFormatted)}
                       </div>
                       <div>👥 {translatedEvent.attendees.toLocaleString()} {t.attendeesText}</div>
                     </div>

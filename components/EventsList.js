@@ -20,7 +20,27 @@ const translations = {
     focus: "Focus",
     mainTitle: "Tech Events Latam",
     popularityLabel: "Popularity",
-    aiFocusLabel: "AI Focus"
+    aiFocusLabel: "AI Focus",
+    technologyConferences: "Technology Conferences",
+    in: "in",
+    countryDescriptions: {
+      'Brasil': "Brazil hosts some of Latin America's largest technology conferences, including Campus Party Brasil with 100,000+ attendees, Febraban Tech focusing on fintech innovation, and Rio Innovation Week attracting 150,000+ participants.",
+      'México': "Mexico is a growing tech hub hosting major events like Jalisco Talent Land with 40,000+ attendees and Gamergy México, the largest gaming festival in Latin America with cutting-edge esports competitions.",
+      'Colombia': "Colombia leads digital transformation in Latin America with Colombia 4.0 Bogotá, the flagship digital economy event organized by the Ministry of ICT, featuring AI, EdTech, and fintech innovations.",
+      'Argentina': "Argentina's tech scene features community-driven events like Nerdearla focusing on open-source development and Argentina Game Show, one of the largest gaming exhibitions in South America."
+    },
+    countryTitles: {
+      'Brasil': 'Campus Party, Febraban Tech, Web Summit Rio',
+      'México': 'Jalisco Talent Land, Gamergy México',
+      'Colombia': 'Colombia 4.0 Bogotá',
+      'Argentina': 'Nerdearla, Argentina Game Show'
+    },
+    countryMetaDescriptions: {
+      'Brasil': 'Campus Party Brasil, Febraban Tech, Web Summit Rio, and Rio Innovation Week. Complete calendar of Brazil\'s major tech events.',
+      'México': 'Jalisco Talent Land, Gamergy México gaming festival. Complete calendar of Mexico\'s major technology events.',
+      'Colombia': 'Colombia 4.0 Bogotá digital economy event. Complete calendar of Colombia\'s major tech conferences.',
+      'Argentina': 'Nerdearla open-source conference, Argentina Game Show. Complete calendar of Argentina\'s tech events.'
+    }
   },
   es: {
     sortBy: "Ordenar por",
@@ -37,7 +57,27 @@ const translations = {
     focus: "Enfoque",
     mainTitle: "Eventos Tech Latam",
     popularityLabel: "Popularidad",
-    aiFocusLabel: "Enfoque IA"
+    aiFocusLabel: "Enfoque IA",
+    technologyConferences: "Conferencias de Tecnología",
+    in: "en",
+    countryDescriptions: {
+      'Brasil': "Brasil alberga algunas de las conferencias tecnológicas más grandes de América Latina, incluyendo Campus Party Brasil con más de 100,000 asistentes, Febraban Tech enfocado en innovación fintech, y Rio Innovation Week que atrae a más de 150,000 participantes.",
+      'México': "México es un centro tecnológico en crecimiento que alberga eventos importantes como Jalisco Talent Land con más de 40,000 asistentes y Gamergy México, el festival de gaming más grande de América Latina con competencias de esports de vanguardia.",
+      'Colombia': "Colombia lidera la transformación digital en América Latina con Colombia 4.0 Bogotá, el evento insignia de economía digital organizado por el Ministerio TIC, presentando innovaciones en IA, EdTech y fintech.",
+      'Argentina': "La escena tecnológica de Argentina presenta eventos impulsados por la comunidad como Nerdearla enfocado en desarrollo de código abierto y Argentina Game Show, una de las exhibiciones de gaming más grandes de Sudamérica."
+    },
+    countryTitles: {
+      'Brasil': 'Campus Party, Febraban Tech, Web Summit Rio',
+      'México': 'Jalisco Talent Land, Gamergy México',
+      'Colombia': 'Colombia 4.0 Bogotá',
+      'Argentina': 'Nerdearla, Argentina Game Show'
+    },
+    countryMetaDescriptions: {
+      'Brasil': 'Campus Party Brasil, Febraban Tech, Web Summit Rio y Rio Innovation Week. Calendario completo de los principales eventos tecnológicos de Brasil.',
+      'México': 'Jalisco Talent Land, festival de gaming Gamergy México. Calendario completo de los principales eventos tecnológicos de México.',
+      'Colombia': 'Evento de economía digital Colombia 4.0 Bogotá. Calendario completo de las principales conferencias tecnológicas de Colombia.',
+      'Argentina': 'Conferencia de código abierto Nerdearla, Argentina Game Show. Calendario completo de eventos tecnológicos de Argentina.'
+    }
   },
   pt: {
     sortBy: "Ordenar por",
@@ -54,7 +94,27 @@ const translations = {
     focus: "Foco",
     mainTitle: "Eventos Tech Latam",
     popularityLabel: "Popularidade",
-    aiFocusLabel: "Foco IA"
+    aiFocusLabel: "Foco IA",
+    technologyConferences: "Conferências de Tecnologia",
+    in: "no",
+    countryDescriptions: {
+      'Brasil': "O Brasil hospeda algumas das maiores conferências de tecnologia da América Latina, incluindo Campus Party Brasil com mais de 100.000 participantes, Febraban Tech focado em inovação fintech, e Rio Innovation Week atraindo mais de 150.000 participantes.",
+      'México': "O México é um centro tecnológico em crescimento que hospeda grandes eventos como Jalisco Talent Land com mais de 40.000 participantes e Gamergy México, o maior festival de gaming da América Latina com competições de esports de ponta.",
+      'Colombia': "A Colômbia lidera a transformação digital na América Latina com Colombia 4.0 Bogotá, o evento principal de economia digital organizado pelo Ministério TIC, apresentando inovações em IA, EdTech e fintech.",
+      'Argentina': "A cena tecnológica da Argentina apresenta eventos orientados pela comunidade como Nerdearla focado em desenvolvimento de código aberto e Argentina Game Show, uma das maiores exposições de gaming da América do Sul."
+    },
+    countryTitles: {
+      'Brasil': 'Campus Party, Febraban Tech, Web Summit Rio',
+      'México': 'Jalisco Talent Land, Gamergy México',
+      'Colombia': 'Colombia 4.0 Bogotá',
+      'Argentina': 'Nerdearla, Argentina Game Show'
+    },
+    countryMetaDescriptions: {
+      'Brasil': 'Campus Party Brasil, Febraban Tech, Web Summit Rio e Rio Innovation Week. Calendário completo dos principais eventos tecnológicos do Brasil.',
+      'México': 'Jalisco Talent Land, festival de gaming Gamergy México. Calendário completo dos principais eventos tecnológicos do México.',
+      'Colombia': 'Evento de economia digital Colombia 4.0 Bogotá. Calendário completo das principais conferências tecnológicas da Colômbia.',
+      'Argentina': 'Conferência de código aberto Nerdearla, Argentina Game Show. Calendário completo de eventos tecnológicos da Argentina.'
+    }
   }
 }
 
@@ -73,12 +133,48 @@ export default function EventsList({
   const { locale } = router
   const detectedLanguage = language || locale || 'en'
   
+  
   const [sortBy, setSortBy] = useState('popularity')
   const [filterCountry, setFilterCountry] = useState('all')
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false)
   
   // Translation helper
   const t = translations[detectedLanguage] || translations.en
+
+  // Helper functions for country-specific content
+  const normalizeCountryName = (country) => {
+    const mapping = {
+      'Brazil': 'Brasil',
+      'Mexico': 'México'
+    }
+    return mapping[country] || country
+  }
+
+  const getCountryDescription = (country, language) => {
+    const normalizedCountry = normalizeCountryName(country)
+    const t = translations[language] || translations.en
+    return t.countryDescriptions?.[normalizedCountry] || description
+  }
+
+  const getCountryTitle = (country, language, year) => {
+    const normalizedCountry = normalizeCountryName(country)
+    const t = translations[language] || translations.en
+    const eventNames = t.countryTitles?.[normalizedCountry]
+    if (eventNames) {
+      return `Tech Events ${year} - ${t.technologyConferences} ${t.in} ${country} | ${eventNames}`
+    }
+    return title
+  }
+
+  const getCountryMetaDescription = (country, language, year) => {
+    const normalizedCountry = normalizeCountryName(country)
+    const t = translations[language] || translations.en
+    const countryMeta = t.countryMetaDescriptions?.[normalizedCountry]
+    if (countryMeta) {
+      return `Tech Events ${year} - ${t.technologyConferences} ${t.in} ${country}. ${countryMeta}`
+    }
+    return metaDescription
+  }
 
   // Event content translation utility
   const translateEventContent = (event, language) => {
@@ -357,8 +453,17 @@ export default function EventsList({
   return (
     <Layout>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
+        <title>
+          {filterCountry !== 'all' 
+            ? getCountryTitle(filterCountry, detectedLanguage, year)
+            : title
+          }
+        </title>
+        <meta name="description" content={
+          filterCountry !== 'all'
+            ? getCountryMetaDescription(filterCountry, detectedLanguage, year)
+            : metaDescription
+        } />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href={`https://ivanbraun.com/eventos-tech-${year}`} />
         {years.map(y => (
@@ -375,10 +480,19 @@ export default function EventsList({
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 text-gray-900 leading-tight">
-            <span className="inline-block bg-[#7f58ca] text-white text-3xl px-6 py-2 rounded-md font-medium mb-3" style={{fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'}}>{title.split(' - ')[0]}</span>
-            <span className="block text-5xl">{title.split(' - ')[1]}</span>
+            <span className="inline-block bg-[#7f58ca] text-white text-3xl px-6 py-2 rounded-md font-medium mb-3" style={{fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'}}>
+              {filterCountry !== 'all' ? `Tech Events ${year}` : title.split(' - ')[0]}
+            </span>
+            <span className="block text-5xl">
+              {filterCountry !== 'all' ? `${t.technologyConferences} ${t.in} ${filterCountry}` : title.split(' - ')[1]}
+            </span>
           </h1>
-          <p className="text-2xl text-gray-600 mb-4">{description}</p>
+          <p className="text-2xl text-gray-600 mb-4">
+            {filterCountry !== 'all' 
+              ? getCountryDescription(filterCountry, detectedLanguage)
+              : description
+            }
+          </p>
         </div>
 
         {/* Year Navigation */}

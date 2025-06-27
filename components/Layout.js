@@ -93,6 +93,25 @@ export default function Layout({ children }) {
   // Helper function to switch language for current page
   const getCurrentPageInLocale = (targetLocale) => {
     const currentPath = router.pathname
+    const currentQuery = router.query
+    
+    // Handle events pages specifically
+    if (currentPath.includes('eventos-tech') || currentPath.includes('tech-events')) {
+      const year = currentQuery.year || currentPath.match(/\d{4}/)?.[0] || '2025'
+      const queryString = Object.keys(router.query).length > 0 
+        ? '?' + new URLSearchParams(router.query).toString()
+        : ''
+      
+      if (targetLocale === 'en') {
+        return `/tech-events-${year}${queryString}`
+      } else if (targetLocale === 'es') {
+        return `/eventos-tech-${year}${queryString}` 
+      } else if (targetLocale === 'pt') {
+        return `/eventos-tech-${year}-pt${queryString}`
+      }
+    }
+    
+    // Handle other pages
     const currentBasePath = currentPath.replace(/^\/(?:es|pt)\//, '/').replace(/^\/es$/, '/').replace(/^\/pt$/, '/')
     
     if (targetLocale === 'en') {
@@ -125,7 +144,7 @@ export default function Layout({ children }) {
             <ul className="nav-links">
               <li><Link href={getLocalizedUrl('/experience')}>{t.experience}</Link></li>
               <li><Link href={getLocalizedUrl('/book')}>{t.book}</Link></li>
-              <li><Link href="/eventos-tech-2025">{t.events}</Link></li>
+              <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'}>{t.events}</Link></li>
               <li><Link href={getLocalizedUrl('/visit')}>{t.visit}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>

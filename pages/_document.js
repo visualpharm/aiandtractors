@@ -27,6 +27,16 @@ export default function Document() {
       <body className="font-sans antialiased">
         <Main />
         <NextScript />
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              if (typeof Fancybox !== 'undefined') {
+                Fancybox.bind("[data-fancybox]", {});
+              }
+            });
+          `
+        }}></script>
       </body>
     </Html>
   )

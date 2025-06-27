@@ -88,6 +88,59 @@ ALWAYS prefer editing an existing file to creating a new one.
 NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
 
 
+
+# The Great Vanishing: How Businesses Erased Humans from Their Visual Identity
+/ai-replaced-people page content
+
+**TL;DR:** Icons8's research shows that in the last six months, people have completely disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
+
+(6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.)[illustrations-with-people-hugge.png]
+(Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.)[illustrations-without-people-hugge.png]
+The striking example of our (3D modelled illustrations)[https://icons8.com/illustrations/style--3d-hygge].
+
+## The Way Things Were
+
+For over 20 years, Icons8 has been creating computer graphics to visualize how businesses want to be seen. One thing remained constant: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.
+
+As a company with dozens of in-house artists, we track what clients search for, download, and actually use. For years, our most popular content featured teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.
+
+## The Great Vanishing
+
+But our constant research reveals something apocalyptic has happened in the last six months.
+
+[IMAGE PLACEHOLDER]
+
+Have you noticed something? People disappeared. It's like a post-apocalypse—as if humanity simply vanished from the corporate landscape, leaving behind only AI, machines and technology operating on their own.
+
+What we see now is a dramatic shift toward AI representations in every form—neural networks, robotic interfaces, abstract data flows, and isolated technology operating without human oversight. Agentic AI takes the place of people. Where we once showed professionals with multiple monitors or gadgets of the latest generation, such as Apple Vision, doing the job efficiently, now one of our most popular illustrations is robots working on a computer.
+
+[IMAGE PLACEHOLDER]
+
+## What This Means
+
+What does this transformation mean for how businesses see themselves? People want to see themselves as AI companies now. 
+
+Before, we showed professionals with multiple monitors or gadgets of the latest generation, such as Apple Vision, doing the job efficiently. 
+
+Now, one of our most popular illustrations is robots working on a computer.
+
+## The New Reality
+
+Being a people company is not cool anymore. Being an AI company is everything. Agentic AI takes the place of people. The shareholder value lies in this transformation.
+
+Maybe this reveals what companies always thought but were afraid to say—that people are the problem, not the solution.
+
+
+## Image captions
+### Image pair 1 captions
+Left image: 3D Realistic People - Before AI
+Right image: AI Icons Grid - After AI
+
+### Final comparison captions  
+Left image: Multiple illustrations showing teamwork and collaboration
+Right image: Almost all people disappeared, replaced with AI representations
+
+
 # es/formularios-startup-argentina
 Here are the startup forms for Argentina. Make this page only available in Spanish. Make it formatted for reading, with blocks, bulleted lists, emoji, bold, and italics.
 
@@ -330,5 +383,5 @@ Somehow I didn't realize she's sitting on a stool until she ruined her back. I'v
 
 That's my lesson: when you spend your own money, management is much easier.
 
-# Que hacer en Carilo
+
 

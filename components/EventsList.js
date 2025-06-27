@@ -257,8 +257,10 @@ export default function EventsList({
 
   // Country flag mapping
   const countryFlags = {
-    'Brasil': '/i/books/brasil.png',
-    'México': '🇲🇽', 
+    'Brasil': '/i/icons8-flag-brasil.svg',
+    'Brazil': '/i/icons8-flag-brasil.svg',
+    'México': '🇲🇽',
+    'Mexico': '🇲🇽', 
     'Colombia': '🇨🇴',
     'Argentina': '🇦🇷'
   }
@@ -541,14 +543,14 @@ export default function EventsList({
                             setCountryDropdownOpen(false)
                           }}
                         >
-                          {country === 'Brasil' ? (
+                          {countryFlags[country] && countryFlags[country].startsWith('/') ? (
                             <img 
                               src={countryFlags[country]} 
-                              alt="Brasil flag" 
+                              alt={`${country} flag`} 
                               className="country-flag-image-small"
                             />
                           ) : (
-                            <span className="country-flag">{countryFlags[country]}</span>
+                            <span className="country-flag">{countryFlags[country] || '🌍'}</span>
                           )}
                           <span className="country-text">{country}</span>
                           <span className="country-count">({countryCounts[country]})</span>

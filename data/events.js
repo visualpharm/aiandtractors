@@ -16,7 +16,8 @@ export const events = {
       confirmed: true,
       tags: ["general tech"],
       description: "Annual innovation and startup event connecting entrepreneurs, investors, and corporations.",
-      focus: "Entrepreneurship, startups, and innovation"
+      focus: "Entrepreneurship, startups, and innovation",
+      mapsUrl: "https://maps.google.com/maps?q=Porto+Alegre,+Brazil"
     },
     {
       id: 2,
@@ -33,7 +34,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Mexico's largest technology and young talent festival, supported by the state of Jalisco.",
-      focus: "Technology talent development, entrepreneurship, programming"
+      focus: "Technology talent development, entrepreneurship, programming",
+      mapsUrl: "https://maps.google.com/maps?q=Guadalajara,+Mexico"
     },
     {
       id: 3,
@@ -50,7 +52,8 @@ export const events = {
       confirmed: true,
       tags: ["general tech"],
       description: "Latin American version of the global Web Summit congress.",
-      focus: "Global technology trends and entrepreneurship"
+      focus: "Global technology trends and entrepreneurship",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 4,
@@ -67,7 +70,8 @@ export const events = {
       confirmed: true,
       tags: ["fintech"],
       description: "The largest financial technology event in Latin America.",
-      focus: "Technology solutions for the financial sector"
+      focus: "Technology solutions for the financial sector",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 5,
@@ -84,7 +88,8 @@ export const events = {
       confirmed: true,
       tags: ["general tech"],
       description: "The largest geek/tech festival in the region, with thousands of participants camping on-site.",
-      focus: "Technology culture and entrepreneurship"
+      focus: "Technology culture and entrepreneurship",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 6,
@@ -101,7 +106,8 @@ export const events = {
       confirmed: true,
       tags: ["general tech"],
       description: "Massive innovation and technology conference.",
-      focus: "Open innovation and multi-sector digital transformation"
+      focus: "Open innovation and multi-sector digital transformation",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 8,
@@ -118,7 +124,8 @@ export const events = {
       confirmed: true,
       tags: ["general tech"],
       description: "Leading Latin American congress on telecommunications, IT and connectivity.",
-      focus: "Information and communication technologies"
+      focus: "Information and communication technologies",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 10,
@@ -135,7 +142,8 @@ export const events = {
       confirmed: true,
       tags: ["general tech"],
       description: "Annual digital economy meeting organized by Colombia's Ministry of ICT.",
-      focus: "Digital ecosystems and 4.0 content"
+      focus: "Digital ecosystems and 4.0 content",
+      mapsUrl: "https://maps.google.com/maps?q=Bogotá,+Colombia"
     }
   ],
   
@@ -155,7 +163,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Annual innovation and startup event connecting entrepreneurs, investors, and corporations. Will celebrate its 5th edition in 2026.",
-      focus: "Entrepreneurship, startups and innovation with themes of future of work, AI, sustainability"
+      focus: "Entrepreneurship, startups and innovation with themes of future of work, AI, sustainability",
+      mapsUrl: "https://maps.google.com/maps?q=Porto+Alegre,+Brazil"
     },
     {
       id: 12,
@@ -172,7 +181,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Mexico's largest technology and young talent festival, supported by the state of Jalisco.",
-      focus: "Technology talent development, entrepreneurship, programming, robotics and creative economy"
+      focus: "Technology talent development, entrepreneurship, programming, robotics and creative economy",
+      mapsUrl: "https://maps.google.com/maps?q=Guadalajara,+Mexico"
     },
     {
       id: 13,
@@ -189,7 +199,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Latin American version of the global Web Summit congress. Brings together tens of thousands of tech enthusiasts, startups and investors.",
-      focus: "Global technology trends and entrepreneurship, with high-level speakers from the tech and business world"
+      focus: "Global technology trends and entrepreneurship, with high-level speakers from the tech and business world",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 14,
@@ -206,7 +217,8 @@ export const events = {
       confirmed: false,
       tags: ["fintech"],
       description: "The largest financial technology event in Latin America (formerly known as CIAB FEBRABAN).",
-      focus: "Technology solutions for the financial sector (digital banking, payments, security, AI in finance)"
+      focus: "Technology solutions for the financial sector (digital banking, payments, security, AI in finance)",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 15,
@@ -223,7 +235,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "The largest geek/tech festival in the region, with thousands of participants camping on-site. The 2026 edition (16th) expects over 100,000 visitors.",
-      focus: "Technology culture and entrepreneurship, with programming marathons, hackathons, 24h workshops and keynotes"
+      focus: "Technology culture and entrepreneurship, with programming marathons, hackathons, 24h workshops and keynotes",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 16,
@@ -240,7 +253,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Massive innovation and technology conference that had nearly 155,000 people over four days in 2023.",
-      focus: "Open innovation and multi-sector digital transformation (technology, business, sustainability, AI)"
+      focus: "Open innovation and multi-sector digital transformation (technology, business, sustainability, AI)",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 18,
@@ -257,7 +271,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Leading Latin American congress on telecommunications, IT and connectivity (24+ editions).",
-      focus: "Information and communication technologies (ICT), with focus on B2B networking, telecom, digital transformation"
+      focus: "Information and communication technologies (ICT), with focus on B2B networking, telecom, digital transformation",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 20,
@@ -274,7 +289,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Annual flagship digital economy meeting organized by Colombia's Ministry of ICT (free admission).",
-      focus: "Digital ecosystems and 4.0 content with focus on AI, digital animation, video games, EdTech, TravelTech, Fintech"
+      focus: "Digital ecosystems and 4.0 content with focus on AI, digital animation, video games, EdTech, TravelTech, Fintech",
+      mapsUrl: "https://maps.google.com/maps?q=Bogotá,+Colombia"
     }
   ],
 
@@ -294,7 +310,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Fifth edition of this startup and innovation event. Similar or greater attendance to the ~23 thousand people of previous editions is anticipated.",
-      focus: "Entrepreneurship, investment and emerging technology – connects Latin American startups with global investors"
+      focus: "Entrepreneurship, investment and emerging technology – connects Latin American startups with global investors",
+      mapsUrl: "https://maps.google.com/maps?q=Porto+Alegre,+Brazil"
     },
     {
       id: 22,
@@ -311,7 +328,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Great Mexican youth technology and innovation forum. After breaking the record with 40 thousand attendees in 2023, it's expected to maintain its scale in 2027.",
-      focus: "Technology training and youth entrepreneurship – hackathons, practical programming/robotics workshops"
+      focus: "Technology training and youth entrepreneurship – hackathons, practical programming/robotics workshops",
+      mapsUrl: "https://maps.google.com/maps?q=Guadalajara,+Mexico"
     },
     {
       id: 23,
@@ -328,7 +346,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Third edition of Web Summit in Brazil, part of the agreement that keeps this mega-event in Rio until at least 2028.",
-      focus: "Global tech trends, startups and investment – parallel stages on technology, AI, digital marketing"
+      focus: "Global tech trends, startups and investment – parallel stages on technology, AI, digital marketing",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 24,
@@ -345,7 +364,8 @@ export const events = {
       confirmed: false,
       tags: ["fintech"],
       description: "Latin American congress on banking and financial technology, in its 36th edition. After the record of 55 thousand visitors in 2024.",
-      focus: "Financial innovation – digital payments, blockchain in banking, financial cybersecurity"
+      focus: "Financial innovation – digital payments, blockchain in banking, financial cybersecurity",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 25,
@@ -362,7 +382,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Technology and scientific meeting for developers, students and entrepreneurs. In 2027 it will offer a 24h arena with thousands of campers.",
-      focus: "Maker culture and technological future – innovation talks, software development competitions"
+      focus: "Maker culture and technological future – innovation talks, software development competitions",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 26,
@@ -379,7 +400,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Will continue consolidated as one of the largest tech events in LatAm, after attracting 155 thousand people in 2023.",
-      focus: "360° innovation – from tech entrepreneurship to social impact and sustainability"
+      focus: "360° innovation – from tech entrepreneurship to social impact and sustainability",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 28,
@@ -396,7 +418,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Telecommunications and digital transformation trade fair-congress now in its 25th+ edition.",
-      focus: "Telecom and tech infrastructure – advanced 5G, rural connectivity, cloud computing"
+      focus: "Telecom and tech infrastructure – advanced 5G, rural connectivity, cloud computing",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 30,
@@ -413,7 +436,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "In its 13th edition (approx.), this digital content summit will continue growing after the ~25k attendances in 2024.",
-      focus: "Academic agenda and digital economy technology fair – includes artificial intelligence tracks"
+      focus: "Academic agenda and digital economy technology fair – includes artificial intelligence tracks",
+      mapsUrl: "https://maps.google.com/maps?q=Bogotá,+Colombia"
     }
   ],
 
@@ -433,7 +457,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "By 2028, this startup summit will have solidified its position in LatAm. Given its sustained growth.",
-      focus: "Innovation and high-level networking – startups competing for prizes, investors looking for the next Latin 'unicorn'"
+      focus: "Innovation and high-level networking – startups competing for prizes, investors looking for the next Latin 'unicorn'",
+      mapsUrl: "https://maps.google.com/maps?q=Porto+Alegre,+Brazil"
     },
     {
       id: 32,
@@ -450,7 +475,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "The Mexican tech talent expo will continue in 2028 fostering massive participation of young people from across the country.",
-      focus: "Youth innovation – open innovation labs, app development marathons"
+      focus: "Youth innovation – open innovation labs, app development marathons",
+      mapsUrl: "https://maps.google.com/maps?q=Guadalajara,+Mexico"
     },
     {
       id: 33,
@@ -467,7 +493,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "Last year of the agreement initially signed to hold Web Summit in Rio (2023–2028), probably crowning a successful series.",
-      focus: "Global technology – series finale with presence of 'tech celebrities', debates about the future of innovation"
+      focus: "Global technology – series finale with presence of 'tech celebrities', debates about the future of innovation",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 34,
@@ -484,7 +511,8 @@ export const events = {
       confirmed: false,
       tags: ["fintech"],
       description: "Approximate 38th edition of the largest Latin fintech congress. After visitor records in 2024–25.",
-      focus: "Fintech and banking of the future – AI applied to finance showcases, open banking trends"
+      focus: "Fintech and banking of the future – AI applied to finance showcases, open banking trends",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 35,
@@ -501,7 +529,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "The 20th edition of this tech festival will maintain its spirit of massive tech community.",
-      focus: "Collaborative innovation – open-source projects developed live, university startup competitions"
+      focus: "Collaborative innovation – open-source projects developed live, university startup competitions",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 36,
@@ -518,7 +547,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "With each annual edition, RIW has grown (155k in 2023); in 2028 it could break the mark of 160 thousand attendees.",
-      focus: "Transformation and impact – convergence of public, private and academic sectors to drive digital transformation agendas"
+      focus: "Transformation and impact – convergence of public, private and academic sectors to drive digital transformation agendas",
+      mapsUrl: "https://maps.google.com/maps?q=Rio+de+Janeiro,+Brazil"
     },
     {
       id: 38,
@@ -535,7 +565,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "At almost 30 years of history, Futurecom remains a reference in regional telecom and IT.",
-      focus: "Connectivity and digital transformation, with focus on technologies like 6G (future mobile networks), AI in telecommunications"
+      focus: "Connectivity and digital transformation, with focus on technologies like 6G (future mobile networks), AI in telecommunications",
+      mapsUrl: "https://maps.google.com/maps?q=São+Paulo,+Brazil"
     },
     {
       id: 40,
@@ -552,7 +583,8 @@ export const events = {
       confirmed: false,
       tags: ["general tech"],
       description: "For its 14th edition, Colombia 4.0 would continue growing as a regional meeting point in digital economy.",
-      focus: "Latin American digital ecosystem – articulating government, private sector and tech community"
+      focus: "Latin American digital ecosystem – articulating government, private sector and tech community",
+      mapsUrl: "https://maps.google.com/maps?q=Bogotá,+Colombia"
     }
   ]
 }

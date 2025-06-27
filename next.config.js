@@ -40,13 +40,19 @@ const nextConfig = {
       // Redirect old Portuguese routes to English
       {
         source: '/pt/eventos-tech-:year',
-        destination: '/tech-events-:year',
+        destination: '/tech-events-:year-pt',
         permanent: true,
       },
       {
         source: '/pt/tech-events-:year',
-        destination: '/tech-events-:year',
+        destination: '/tech-events-:year-pt',
         permanent: true,
+      },
+      // Handle direct access to Portuguese version
+      {
+        source: '/tech-events-:year-pt',
+        destination: '/tech-events-:year-pt',
+        permanent: false,
       },
     ]
   },

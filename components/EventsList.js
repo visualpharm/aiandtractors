@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Layout from './Layout'
+import { eventTranslations } from '../data/eventTranslations'
 
 // Language translations
 const translations = {
@@ -176,67 +177,39 @@ export default function EventsList({
     return metaDescription
   }
 
-  // Event content translation utility
+  // Enhanced event content translation utility
   const translateEventContent = (event, language) => {
-    if (language === 'es') return event // Return original Spanish content
+    if (language === 'en') return event // Return original English content
     
-    // Comprehensive translation mappings for event content
-    const translations = {
-      // Event descriptions
-      'Evento anual de innovación y startups que conecta emprendedores, inversores y corporaciones.': 'Annual innovation and startup event connecting entrepreneurs, investors and corporations.',
-      'Festival tecnológico y de talento joven más grande de México, apoyado por el estado de Jalisco.': 'Mexico\'s largest technology and young talent festival, supported by the state of Jalisco.',
-      'Versión latinoamericana del congreso global Web Summit.': 'Latin American version of the global Web Summit congress.',
-      'El mayor evento de tecnología financiera en América Latina.': 'The largest financial technology event in Latin America.',
-      'El mayor festival geek/tech de la región, con miles de campuseros acampando onsite.': 'The largest geek/tech festival in the region, with thousands of participants camping on-site.',
-      'Conferencia masiva de innovación y tecnología.': 'Massive innovation and technology conference.',
-      'Principal congreso latinoamericano de telecomunicaciones, TI y conectividad.': 'Leading Latin American congress on telecommunications, IT and connectivity.',
-      'Encuentro anual de economía digital organizado por el Ministerio TIC de Colombia.': 'Annual digital economy meeting organized by Colombia\'s Ministry of ICT.',
-      'Conferencia comunitaria creada por sysarmy; charlas técnicas de software libre, IA, seguridad, DevOps y cultura nerd, con hackatones y workshops gratuitos.': 'Community conference created by sysarmy; technical talks on open source software, AI, security, DevOps and nerd culture, with free hackathons and workshops.',
-      'Evento anual de innovación y startups que conecta emprendedores, inversores y corporaciones. Celebrará su 5ª edición en 2026.': 'Annual innovation and startup event connecting entrepreneurs, investors and corporations. Will celebrate its 5th edition in 2026.',
-      'El mayor evento de tecnología financiera en América Latina (antes conocido como CIAB FEBRABAN).': 'The largest financial technology event in Latin America (formerly known as CIAB FEBRABAN).',
-      'El mayor festival geek/tech de la región, con miles de campuseros acampando onsite. La edición 2026 (16ª) espera más de 100.000 visitantes.': 'The largest geek/tech festival in the region, with thousands of participants camping on-site. The 2026 edition (16th) expects over 100,000 visitors.',
-      'Versión latinoamericana del congreso global Web Summit. Reúne decenas de miles de entusiastas tech, startups e inversores.': 'Latin American version of the global Web Summit congress. Brings together tens of thousands of tech enthusiasts, startups and investors.',
-      'Conferencia masiva de innovación y tecnología que contó con cerca de 155.000 personas durante cuatro días en 2023.': 'Massive innovation and technology conference that had nearly 155,000 people over four days in 2023.',
-      'Encuentro anual insignia de economía digital organizado por el Ministerio TIC de Colombia (entrada gratuita).': 'Annual flagship digital economy meeting organized by Colombia\'s Ministry of ICT (free admission).',
-      'Principal congreso latinoamericano de telecomunicaciones, TI y conectividad (24+ ediciones).': 'Leading Latin American congress on telecommunications, IT and connectivity (24+ editions).',
-      'Feria-congreso de telecomunicaciones y transformación digital ya en su 25ª+ edición.': 'Telecommunications and digital transformation trade fair-congress now in its 25th+ edition.',
-      'Congreso latinoamericano de tecnología bancaria y financiera, en su 36ª edición. Tras el récord de 55 mil visitantes en 2024.': 'Latin American congress on banking and financial technology, in its 36th edition. After the record of 55 thousand visitors in 2024.',
-      
-      // Focus areas
-      'Emprendimiento, startups e innovación': 'Entrepreneurship, startups and innovation',
-      'Desarrollo de talento en tecnología, emprendimiento, programación': 'Technology talent development, entrepreneurship, programming',
-      'Tendencias tecnológicas globales y emprendimiento': 'Global technology trends and entrepreneurship',
-      'Soluciones tecnológicas para el sector financiero': 'Technology solutions for the financial sector',
-      'Cultura tecnológica y emprendimiento': 'Technology culture and entrepreneurship',
-      'Innovación abierta y transformación digital multisectorial': 'Open innovation and multi-sector digital transformation',
-      'Tecnologías de la información y comunicaciones': 'Information and communication technologies',
-      'Ecosistemas digitales y contenido 4.0': 'Digital ecosystems and content 4.0',
-      'Tecnología & desarrollo de software open-source': 'Technology & open-source software development',
-      'Emprendimiento, startups e innovación con temas de futuro del trabajo, IA, sostenibilidad': 'Entrepreneurship, startups and innovation with themes of future of work, AI, sustainability',
-      'Desarrollo de talento en tecnología, emprendimiento, programación, robótica y economía creativa': 'Technology talent development, entrepreneurship, programming, robotics and creative economy',
-      'Soluciones tecnológicas para el sector financiero (banca digital, pagos, seguridad, IA en finanzas)': 'Technology solutions for the financial sector (digital banking, payments, security, AI in finance)',
-      'Tendencias tecnológicas globales y emprendimiento, con ponentes de alto nivel del mundo tech y empresarial': 'Global technology trends and entrepreneurship, with high-level speakers from the tech and business world',
-      'Cultura tecnológica y emprendimiento, con maratones de programación, hackathons, talleres 24h y keynotes': 'Technology culture and entrepreneurship, with programming marathons, hackathons, 24h workshops and keynotes',
-      'Innovación abierta y transformación digital multisectorial (tecnología, negocios, sustentabilidad, IA)': 'Open innovation and multi-sector digital transformation (technology, business, sustainability, AI)',
-      'Tecnologías de la información y comunicaciones (ICT), con foco en networking B2B, telecom, transformación digital': 'Information and communication technologies (ICT), with focus on B2B networking, telecom, digital transformation',
-      'Ecosistemas digitales y contenido 4.0 con ejes en IA, animación digital, videojuegos, EdTech, TravelTech, Fintech': 'Digital ecosystems and content 4.0 with focus on AI, digital animation, video games, EdTech, TravelTech, Fintech',
-      'Tech & desarrollo de software open-source': 'Tech & open-source software development',
-      'Tech & comunidad dev': 'Tech & dev community',
-      'Fintech y banca del futuro – showcases de IA aplicada a finanzas, tendencias en open banking': 'Fintech and banking of the future – AI applied to finance showcases, open banking trends',
-      'Telecom e infraestructura tech – 5G avanzado, conectividad rural, cloud computing': 'Telecom and tech infrastructure – advanced 5G, rural connectivity, cloud computing',
-      'Innovación financiera – pagos digitales, blockchain en banca, ciberseguridad financiera': 'Financial innovation – digital payments, blockchain in banking, financial cybersecurity'
-    }
-
     const translatedEvent = { ...event }
     
-    // Translate description if mapping exists
-    if (translations[event.description]) {
-      translatedEvent.description = translations[event.description]
+    // Translate description using translation dictionary
+    if (eventTranslations.descriptions[event.description] && eventTranslations.descriptions[event.description][language]) {
+      translatedEvent.description = eventTranslations.descriptions[event.description][language]
     }
     
-    // Translate focus if mapping exists  
-    if (translations[event.focus]) {
-      translatedEvent.focus = translations[event.focus]
+    // Translate focus using translation dictionary
+    if (eventTranslations.focus[event.focus] && eventTranslations.focus[event.focus][language]) {
+      translatedEvent.focus = eventTranslations.focus[event.focus][language]
+    }
+
+    // Translate country names in locations
+    if (event.location && eventTranslations.locations) {
+      let translatedLocation = event.location
+      Object.keys(eventTranslations.locations).forEach(englishCountry => {
+        if (eventTranslations.locations[englishCountry][language]) {
+          translatedLocation = translatedLocation.replace(
+            englishCountry, 
+            eventTranslations.locations[englishCountry][language]
+          )
+        }
+      })
+      translatedEvent.location = translatedLocation
+    }
+
+    // Update country field for consistency
+    if (event.country && eventTranslations.locations[event.country] && eventTranslations.locations[event.country][language]) {
+      translatedEvent.country = eventTranslations.locations[event.country][language]
     }
 
     return translatedEvent

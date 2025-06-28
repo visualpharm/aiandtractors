@@ -169,14 +169,41 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Hero illustration */}
-      <HeroImages 
-        beforeImage="/ai-replaced-people/illustrations-with-people-hugge.png"
-        afterImage="/ai-replaced-people/illustrations-without-people-hugge.png"
-        beforeAlt="Corporate imagery showing people in professional settings"
-        afterAlt="Corporate imagery showing technology without people"
-        beforeCaption="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people."
-        afterCaption="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own."
-      />
+      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-2 h-[50vh] overflow-visible" style={{ transform: 'translateY(-25px)' }}>
+        <div className="relative w-full h-full">
+          <div className="relative h-[50vh]">
+            {/* First image - slightly overlapping from left */}
+            <div className="absolute left-[1%] top-[-10%] w-[52%] h-[90%] rounded-xl overflow-hidden shadow-2xl transform -rotate-[7deg] z-30 bg-white p-4">
+              <div className="relative w-full h-full">
+                <Image 
+                  src="/ai-replaced-people/illustrations-with-people-hugge.png" 
+                  alt="Corporate imagery showing people in professional settings"
+                  fill
+                  className="object-contain"
+                  sizes="50vw"
+                  priority
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
+                />
+              </div>
+            </div>
+            
+            {/* Second image - slightly overlapping from right */}
+            <div className="absolute right-[1%] bottom-[5%] w-[52%] h-[90%] rounded-xl overflow-hidden shadow-2xl transform rotate-[4deg] z-20 bg-white p-4">
+              <div className="relative w-full h-full">
+                <Image 
+                  src="/ai-replaced-people/illustrations-without-people-hugge.png" 
+                  alt="Corporate imagery showing technology without people"
+                  fill
+                  className="object-contain"
+                  sizes="50vw"
+                  priority
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div className="max-w-4xl mx-auto px-8">
         <div className="prose prose-lg max-w-none space-y-6">

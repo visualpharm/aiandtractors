@@ -34,11 +34,11 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Hero illustration */}
-      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-8 h-[60vh] overflow-visible">
+      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-2 h-[50vh] overflow-visible">
         <div className="relative w-full h-full">
           <div className="relative h-[50vh]">
             {/* First image - slightly overlapping from left */}
-            <div className="absolute left-[15%] top-[5%] w-[50%] h-[80%] rounded-xl overflow-hidden shadow-2xl transform -rotate-[7deg] z-10 bg-white p-4">
+            <div className="absolute left-[1%] top-[-10%] w-[52%] h-[90%] rounded-xl overflow-hidden shadow-2xl transform -rotate-[7deg] z-30 bg-white p-4">
               <div className="relative w-full h-full">
                 <Image 
                   src="/ai-replaced-people/illustrations-with-people-hugge.png" 
@@ -53,7 +53,7 @@ export default function AIReplacedPeople() {
             </div>
             
             {/* Second image - slightly overlapping from right */}
-            <div className="absolute right-[15%] bottom-[5%] w-[50%] h-[80%] rounded-xl overflow-hidden shadow-2xl transform rotate-[7deg] z-20 bg-white p-4">
+            <div className="absolute right-[1%] bottom-[5%] w-[52%] h-[90%] rounded-xl overflow-hidden shadow-2xl transform rotate-[4deg] z-20 bg-white p-4">
               <div className="relative w-full h-full">
                 <Image 
                   src="/ai-replaced-people/illustrations-without-people-hugge.png" 

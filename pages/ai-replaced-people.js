@@ -34,7 +34,7 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Hero illustration */}
-      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-2 h-[50vh] overflow-visible">
+      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-2 h-[50vh] overflow-visible" style={{ transform: 'translateY(-25px)' }}>
         <div className="relative w-full h-full">
           <div className="relative h-[50vh]">
             {/* First image - slightly overlapping from left */}

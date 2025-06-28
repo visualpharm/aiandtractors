@@ -27,7 +27,7 @@ export default function AIReplacedPeople() {
               <span className="inline-block bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">
                 TL;DR
               </span>
-              Icons8's research shows that in the last six months, people have disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
+              <a href="https://icons8.com" className="text-blue-600 hover:underline">Icons8</a>'s research shows that in the last six months, people have disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
             </div>
           </div>
         </div>
@@ -127,7 +127,8 @@ export default function AIReplacedPeople() {
               />
             </a>
             <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
-              6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.
+              <span className="inline-block bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">6 months ago</span>
+              Creating illustrations was creating people. Businesses liked buying the images of people.
             </p>
           </div>
           <div className="text-center lg:w-1/2">
@@ -144,7 +145,8 @@ export default function AIReplacedPeople() {
               />
             </a>
             <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
-              Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.
+              <span className="inline-block bg-green-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">Now</span>
+              People vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.
             </p>
           </div>
         </div>
@@ -156,7 +158,7 @@ export default function AIReplacedPeople() {
           
           <p className="mb-4" style={{ fontSize: '19px', lineHeight: '1.55' }}>In our people vs robots comparison:</p>
           <ul className="mb-6 ml-6" style={{ fontSize: '19px', lineHeight: '1.55' }}>
-            <li className="mb-2">• People decreased from 28+ to 17</li>
+            <li className="mb-2">• People decreased from 28+ to 20</li>
             <li className="mb-2">• While robots increased from 3 to 12</li>
           </ul>
           
@@ -165,6 +167,7 @@ export default function AIReplacedPeople() {
             <li className="mb-2">• People almost completely disappeared</li>
             <li className="mb-2">• Teamwork disappeared</li>
             <li className="mb-2">• We have more robots than people</li>
+            <li className="mb-2">• We have multiple representations of AI instead</li>
           </ul>
         </div>
       </div>
@@ -186,7 +189,8 @@ export default function AIReplacedPeople() {
               />
             </a>
             <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
-              6 months ago: people interact with people
+              <span className="inline-block bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">6 months ago</span>
+              People interact with people
             </p>
           </div>
           <div className="text-center lg:w-1/2">
@@ -203,7 +207,8 @@ export default function AIReplacedPeople() {
               />
             </a>
             <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
-              After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots
+              <span className="inline-block bg-green-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">Now</span>
+              People decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots
             </p>
           </div>
         </div>
@@ -211,7 +216,11 @@ export default function AIReplacedPeople() {
 
       <div className="max-w-4xl mx-auto px-8">
         <div className="prose prose-lg max-w-none space-y-6">
-          <p className="mb-6" style={{ fontSize: '19px', lineHeight: '1.55' }}>We have multiple representations of AI instead: spheres, robots, sparkles.</p>
+          <h2 className="text-2xl font-bold mt-16 mb-6" style={{ fontSize: '26px', lineHeight: '1.3' }}>What this means</h2>
+          
+          <p className="mb-6" style={{ fontSize: '19px', lineHeight: '1.55' }}>What we see now is a dramatic shift toward AI representations in every form—neural networks, robotic interfaces, abstract data flows, and isolated technology operating without human oversight. Agentic AI takes the place of people.</p>
+          
+          <p className="mb-6" style={{ fontSize: '19px', lineHeight: '1.55' }}>What does this transformation mean for businesses? They want to see themselves as AI companies now. People are either a less desired alternative or are simply irrelevant.</p>
         </div>
       </div>
       
@@ -232,7 +241,8 @@ export default function AIReplacedPeople() {
               />
             </a>
             <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
-              6 months ago: 10 images of people, including teamwork
+              <span className="inline-block bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">6 months ago</span>
+              10 images of people, including teamwork
             </p>
           </div>
           <div className="text-center lg:w-1/2">
@@ -249,7 +259,8 @@ export default function AIReplacedPeople() {
               />
             </a>
             <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
-              Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too
+              <span className="inline-block bg-green-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">Now</span>
+              Only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too
             </p>
           </div>
         </div>
@@ -263,8 +274,8 @@ export default function AIReplacedPeople() {
           <table className="w-full my-6 border-collapse border border-gray-300 bg-white shadow-sm" style={{ fontSize: '17px', lineHeight: '1.5', borderRadius: '8px', overflow: 'hidden' }}>
             <thead>
               <tr className="bg-gray-50">
-                <th className="text-left p-4 font-semibold border-b border-gray-300">Before</th>
-                <th className="text-left p-4 font-semibold border-b border-gray-300 border-l border-gray-300">After</th>
+                <th className="text-left p-4 font-semibold border-b border-gray-300">Six months ago</th>
+                <th className="text-left p-4 font-semibold border-b border-gray-300 border-l border-gray-300">Now</th>
               </tr>
             </thead>
             <tbody>

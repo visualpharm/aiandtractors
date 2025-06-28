@@ -338,15 +338,17 @@ That's my lesson: when you spend your own money, management is much easier.
 
 **TL;DR:** Icons8's research shows that in the last six months, people have completely disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
 
-## The Way Things Were
+## Our business: visualizing corporate identity (COLLAPSIBLE - COLLAPSED BY DEFAULT)
 
-For over 20 years, Icons8 has been creating computer graphics to visualize how businesses want to be seen. One thing remained constant: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.
+For over 20 years, Icons8 has served businesses by creating graphics that visualize how they want to be seen. Our clients are businesses, and they buy pictures of how they want to be portrayed. One thing remained constant throughout these years: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.
 
-As a company with dozens of in-house artists, we track what clients search for, download, and actually use. For years, our most popular content featured teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.
+## Our analytics: tracking business tastes at scale (COLLAPSIBLE - COLLAPSED BY DEFAULT)
 
-## The Great Vanishing
+As a company with dozens of in-house artists, we dedicate vast resources to analyze business tastes. We use comprehensive analytics for that—download counts, search patterns, and usage metrics. We track the leaders of downloads and understand how business preferences evolve. For years, the leaders were human-centered: teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.
 
-But our constant research reveals something apocalyptic has happened in the last six months. The most striking example are our (3D modeled illustrations)[https://icons8.com/illustrations/style--3d-hygge]:
+## The great vanishing
+
+But our constant research reveals something apocalyptic has happened in the last six months. The numbers are stark: people imagery in our 3D illustration pack dropped 87.5%—from 8 human-centered illustrations to just 1. The most striking example are our (3D modeled illustrations)[https://icons8.com/illustrations/style--3d-hygge]:
 
 (6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.)[illustrations-with-people-hugge.png]
 (Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.)[illustrations-without-people-hugge.png]

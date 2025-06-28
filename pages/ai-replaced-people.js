@@ -111,14 +111,14 @@ export default function AIReplacedPeople() {
         </div>
       </div>
         
-      <div className="w-full my-12">
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          <div className="text-center md:w-1/2">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] my-8">
+        <div className="flex flex-col lg:flex-row gap-4 items-start px-4">
+          <div className="text-center lg:w-1/2">
             <a href="/ai-replaced-people/illustrations-with-people-hugge.png" 
                data-fancybox="gallery" 
                data-caption="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people."
-               className="block bg-white rounded-lg shadow-lg p-3 cursor-pointer hover:shadow-xl transition-shadow"
-               style={{ width: '100%', maxWidth: '600px' }}>
+               className="block bg-white rounded-lg shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow mx-auto"
+               style={{ maxWidth: '90vw' }}>
               <img 
                 src="/ai-replaced-people/illustrations-with-people-hugge.png" 
                 alt="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people." 
@@ -126,16 +126,16 @@ export default function AIReplacedPeople() {
                 style={{ aspectRatio: '2359/1617' }}
               />
             </a>
-            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '16px', lineHeight: '1.5' }}>
               6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.
             </p>
           </div>
-          <div className="text-center md:w-1/2">
+          <div className="text-center lg:w-1/2">
             <a href="/ai-replaced-people/illustrations-without-people-hugge.png" 
                data-fancybox="gallery" 
                data-caption="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own."
-               className="block bg-white rounded-lg shadow-lg p-3 cursor-pointer hover:shadow-xl transition-shadow"
-               style={{ width: '100%', maxWidth: '600px' }}>
+               className="block bg-white rounded-lg shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow mx-auto"
+               style={{ maxWidth: '90vw' }}>
               <img 
                 src="/ai-replaced-people/illustrations-without-people-hugge.png" 
                 alt="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own." 
@@ -143,7 +143,7 @@ export default function AIReplacedPeople() {
                 style={{ aspectRatio: '2408/1568' }}
               />
             </a>
-            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.
             </p>
           </div>
@@ -158,14 +158,14 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Second image pair - people vs robots */}
-      <div className="w-full my-12">
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          <div className="text-center md:w-1/2">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] my-8">
+        <div className="flex flex-col lg:flex-row gap-4 items-start px-4">
+          <div className="text-center lg:w-1/2">
             <a href="/ai-replaced-people/people.png" 
                data-fancybox="gallery" 
                data-caption="6 months ago: people interact with people"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
-               style={{ width: '100%', maxWidth: '600px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-4 mx-auto"
+               style={{ maxWidth: '90vw' }}>
               <img 
                 src="/ai-replaced-people/people.png" 
                 alt="6 months ago: people interact with people" 
@@ -173,16 +173,16 @@ export default function AIReplacedPeople() {
                 style={{ aspectRatio: '2204/1907' }}
               />
             </a>
-            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               6 months ago: people interact with people
             </p>
           </div>
-          <div className="text-center md:w-1/2">
+          <div className="text-center lg:w-1/2">
             <a href="/ai-replaced-people/robots.png" 
                data-fancybox="gallery" 
                data-caption="After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
-               style={{ width: '100%', maxWidth: '600px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-4 mx-auto"
+               style={{ maxWidth: '90vw' }}>
               <img 
                 src="/ai-replaced-people/robots.png" 
                 alt="After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots" 
@@ -190,7 +190,7 @@ export default function AIReplacedPeople() {
                 style={{ aspectRatio: '2126/1810' }}
               />
             </a>
-            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots
             </p>
           </div>
@@ -204,14 +204,14 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Third image pair - overall comparison */}
-      <div className="w-full my-12">
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          <div className="text-center md:w-1/2">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] my-8">
+        <div className="flex flex-col lg:flex-row gap-4 items-start px-4">
+          <div className="text-center lg:w-1/2">
             <a href="/ai-replaced-people/overall-people.png" 
                data-fancybox="gallery" 
                data-caption="6 months ago: 10 images of people, including teamwork"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
-               style={{ width: '100%', maxWidth: '600px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-4 mx-auto"
+               style={{ maxWidth: '90vw' }}>
               <img 
                 src="/ai-replaced-people/overall-people.png" 
                 alt="6 months ago: 10 images of people, including teamwork" 
@@ -219,16 +219,16 @@ export default function AIReplacedPeople() {
                 style={{ aspectRatio: '1844/1719' }}
               />
             </a>
-            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               6 months ago: 10 images of people, including teamwork
             </p>
           </div>
-          <div className="text-center md:w-1/2">
+          <div className="text-center lg:w-1/2">
             <a href="/ai-replaced-people/overall-no-people.png" 
                data-fancybox="gallery" 
                data-caption="Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
-               style={{ width: '100%', maxWidth: '600px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-4 mx-auto"
+               style={{ maxWidth: '90vw' }}>
               <img 
                 src="/ai-replaced-people/overall-no-people.png" 
                 alt="Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too" 
@@ -236,7 +236,7 @@ export default function AIReplacedPeople() {
                 style={{ aspectRatio: '1964/1926' }}
               />
             </a>
-            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+            <p className="mt-4 text-gray-600 max-w-lg mx-auto px-4" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too
             </p>
           </div>

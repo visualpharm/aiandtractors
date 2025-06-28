@@ -89,67 +89,6 @@ NEVER proactively create documentation files (*.md) or README files. Only create
 
 
 
-# The Great Vanishing: How Businesses Erased Humans from Their Visual Identity
-/ai-replaced-people page content
-
-**TL;DR:** Icons8's research shows that in the last six months, people have completely disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
-
-## The Way Things Were
-
-For over 20 years, Icons8 has been creating computer graphics to visualize how businesses want to be seen. One thing remained constant: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.
-
-As a company with dozens of in-house artists, we track what clients search for, download, and actually use. For years, our most popular content featured teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.
-
-## The Great Vanishing
-
-But our constant research reveals something apocalyptic has happened in the last six months. The most striking example are our (3D modeled illustrations)[https://icons8.com/illustrations/style--3d-hygge]:
-
-(6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.)[illustrations-with-people-hugge.png]
-(Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.)[illustrations-without-people-hugge.png]
-
-
-**People disappeared.** It's like a post-apocalypse—as if humanity simply vanished from the corporate landscape, leaving behind only AI, machines and technology operating on their own.
-
-Our other illustration pack shows that people are fewer. They pair with robots, and give way to robots. 
-
-
-(6 months ago: people interact with people)[people.png]
-(After: people almost halved, giving way to 4x more robots, and something unpopular before: people with robots)[robots.png]
-
-Our overall leaders, heavily dominated by icons, show the same trend. People almost completely disappeared. Teamwork disappeard. We have more robots than people. We have multiple representations of AI instead: spheres, robots, sparkles.
-
-(6 months ago: 10 images of people, including teamwork)[overall-people.png]
-(6 months ago: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too)[overall-no-people.png]
-
-What we see now is a dramatic shift toward AI representations in every form—neural networks, robotic interfaces, abstract data flows, and isolated technology operating without human oversight. Agentic AI takes the place of people. Where we once showed professionals with multiple monitors or gadgets of the latest generation, such as Apple Vision, doing the job efficiently, now one of our most popular illustrations is robots working on a computer.
-
-[IMAGE PLACEHOLDER]
-
-## What This Means
-
-What does this transformation mean for how businesses see themselves? People want to see themselves as AI companies now. 
-
-Before, we showed professionals with multiple monitors or gadgets of the latest generation, such as Apple Vision, doing the job efficiently. 
-
-Now, one of our most popular illustrations is robots working on a computer.
-
-## The New Reality
-
-Being a people company is not cool anymore. Being an AI company is everything. Agentic AI takes the place of people. The shareholder value lies in this transformation.
-
-Maybe this reveals what companies always thought but were afraid to say—that people are the problem, not the solution.
-
-
-## Image captions
-### Image pair 1 captions
-Left image: 3D Realistic People - Before AI
-Right image: AI Icons Grid - After AI
-
-### Final comparison captions  
-Left image: Multiple illustrations showing teamwork and collaboration
-Right image: Almost all people disappeared, replaced with AI representations
-
-
 # es/formularios-startup-argentina
 Here are the startup forms for Argentina. Make this page only available in Spanish. Make it formatted for reading, with blocks, bulleted lists, emoji, bold, and italics.
 
@@ -394,3 +333,52 @@ That's my lesson: when you spend your own money, management is much easier.
 
 
 
+# The Great Vanishing: How Businesses Erased Humans from Their Visual Identity
+/ai-replaced-people page content
+
+**TL;DR:** Icons8's research shows that in the last six months, people have completely disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
+
+## The Way Things Were
+
+For over 20 years, Icons8 has been creating computer graphics to visualize how businesses want to be seen. One thing remained constant: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.
+
+As a company with dozens of in-house artists, we track what clients search for, download, and actually use. For years, our most popular content featured teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.
+
+## The Great Vanishing
+
+But our constant research reveals something apocalyptic has happened in the last six months. The most striking example are our (3D modeled illustrations)[https://icons8.com/illustrations/style--3d-hygge]:
+
+(6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.)[illustrations-with-people-hugge.png]
+(Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.)[illustrations-without-people-hugge.png]
+
+
+**People disappeared.** It's like a post-apocalypse—as if humanity simply vanished from the corporate landscape, leaving behind only AI, machines and technology operating on their own.
+
+Our other illustration pack shows that people are fewer. They pair with robots, and give way to robots. 
+
+
+(6 months ago: people interact with people)[people.png]
+(After: people almost halved, giving way to 4x more robots, and something unpopular before: people with robots)[robots.png]
+
+Our overall leaders, heavily dominated by icons, show the same trend. People almost completely disappeared. Teamwork disappeard. We have more robots than people. We have multiple representations of AI instead: spheres, robots, sparkles.
+
+(6 months ago: 10 images of people, including teamwork)[overall-people.png]
+(6 months ago: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too)[overall-no-people.png]
+
+What we see now is a dramatic shift toward AI representations in every form—neural networks, robotic interfaces, abstract data flows, and isolated technology operating without human oversight. Agentic AI takes the place of people. Where we once showed professionals with multiple monitors or gadgets of the latest generation, such as Apple Vision, doing the job efficiently, now one of our most popular illustrations is robots working on a computer.
+
+[IMAGE PLACEHOLDER]
+
+## What This Means
+
+What does this transformation mean for how businesses see themselves? People want to see themselves as AI companies now. 
+
+Before, we showed professionals with multiple monitors or gadgets of the latest generation, such as Apple Vision, doing the job efficiently. 
+
+Now, one of our most popular illustrations is robots working on a computer.
+
+## The New Reality
+
+Being a people company is not cool anymore. Being an AI company is everything. Agentic AI takes the place of people. The shareholder value lies in this transformation.
+
+Maybe this reveals what companies always thought but were afraid to say—that people are the problem, not the solution.

@@ -25,34 +25,36 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Hero illustration */}
-      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-20 h-[80vh] max-h-[800px] overflow-visible">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-full h-full max-w-6xl mx-auto">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
-              <div className="relative h-[60vh] max-h-[700px]">
-                {/* First image - larger and overlapping from left */}
-                <div className="absolute -left-32 -top-16 w-[60vw] h-[70vh] max-w-3xl rounded-xl overflow-hidden shadow-2xl transform rotate-3 z-10">
-                  <Image 
-                    src="/ai-replaced-people/illustrations-with-people-hugge.png" 
-                    alt="Corporate imagery showing people in professional settings"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 60vw"
-                    priority
-                  />
-                </div>
-                
-                {/* Second image - larger and overlapping from right */}
-                <div className="absolute -right-32 -bottom-16 w-[60vw] h-[70vh] max-w-3xl rounded-xl overflow-hidden shadow-2xl transform -rotate-3 z-20">
-                  <Image 
-                    src="/ai-replaced-people/illustrations-without-people-hugge.png" 
-                    alt="Corporate imagery showing technology without people"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 60vw"
-                    priority
-                  />
-                </div>
+      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-20 h-[100vh] overflow-visible">
+        <div className="relative w-full h-full">
+          <div className="relative h-[80vh]">
+            {/* First image - 60% width overlapping from left */}
+            <div className="absolute left-[10%] top-[10%] w-[60%] h-[70%] rounded-xl overflow-hidden shadow-2xl transform rotate-2 z-10 bg-white p-4">
+              <div className="relative w-full h-full">
+                <Image 
+                  src="/ai-replaced-people/illustrations-with-people-hugge.png" 
+                  alt="Corporate imagery showing people in professional settings"
+                  fill
+                  className="object-contain"
+                  sizes="60vw"
+                  priority
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
+                />
+              </div>
+            </div>
+            
+            {/* Second image - 60% width overlapping from right */}
+            <div className="absolute right-[10%] bottom-[10%] w-[60%] h-[70%] rounded-xl overflow-hidden shadow-2xl transform -rotate-2 z-20 bg-white p-4">
+              <div className="relative w-full h-full">
+                <Image 
+                  src="/ai-replaced-people/illustrations-without-people-hugge.png" 
+                  alt="Corporate imagery showing technology without people"
+                  fill
+                  className="object-contain"
+                  sizes="60vw"
+                  priority
+                  style={{ objectFit: 'contain', objectPosition: 'center' }}
+                />
               </div>
             </div>
           </div>
@@ -61,56 +63,56 @@ export default function AIReplacedPeople() {
       
       <div className="max-w-4xl mx-auto px-8">
         <div className="text-center mb-12">
-          <div className="text-xl font-medium text-gray-600 mb-8">
+          <div className="font-medium text-gray-600 mb-8" style={{ fontSize: '17px', lineHeight: '1.55' }}>
             <strong>TL;DR:</strong> Icons8's research shows that in the last six months, people have disappeared from corporate imagery, replaced by AI and robots. Companies no longer want to appear as "people companies"—being an AI company is everything now.
           </div>
         </div>
         
         <div className="prose prose-lg max-w-none space-y-6">
-          <h2 className="text-3xl font-bold mt-12 mb-6">Our Business: Visualizing Corporate Identity</h2>
-          <p className="mb-6">For over 20 years, Icons8 has served businesses by creating graphics that visualize how they want to be seen. Our clients are businesses, and they buy pictures of how they want to be portrayed. One thing remained constant throughout these years: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.</p>
+          <h2 className="text-2xl font-bold mt-12 mb-6" style={{ fontSize: '28px', lineHeight: '1.3' }}>Our business: visualizing corporate identity</h2>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>For over 20 years, Icons8 has served businesses by creating graphics that visualize how they want to be seen. Our clients are businesses, and they buy pictures of how they want to be portrayed. One thing remained constant throughout these years: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.</p>
 
-          <h2 className="text-3xl font-bold mt-12 mb-6">Our Analytics: Tracking Business Tastes at Scale</h2>
-          <p className="mb-6">As a company with dozens of in-house artists, we dedicate vast resources to analyze business tastes. We use comprehensive analytics for that—download counts, search patterns, and usage metrics. We track the leaders of downloads and understand how business preferences evolve. For years, the leaders were human-centered: teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.</p>
+          <h2 className="text-2xl font-bold mt-12 mb-6" style={{ fontSize: '28px', lineHeight: '1.3' }}>Our analytics: tracking business tastes at scale</h2>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>As a company with dozens of in-house artists, we dedicate vast resources to analyze business tastes. We use comprehensive analytics for that—download counts, search patterns, and usage metrics. We track the leaders of downloads and understand how business preferences evolve. For years, the leaders were human-centered: teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.</p>
 
-          <h2 className="text-3xl font-bold mt-12 mb-6">The Great Vanishing</h2>
-          <p className="mb-6">But our constant research reveals something apocalyptic has happened in the last six months. The numbers are stark: people imagery in our 3D illustration pack dropped 87.5%—from 8 human-centered illustrations to just 1. The most striking example are our <a href="https://icons8.com/illustrations/style--3d-hygge" className="text-blue-600 hover:underline">3D modeled illustrations</a>.</p>
+          <h2 className="text-2xl font-bold mt-12 mb-6" style={{ fontSize: '28px', lineHeight: '1.3' }}>The great vanishing</h2>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>But our constant research reveals something apocalyptic has happened in the last six months. The numbers are stark: people imagery in our 3D illustration pack dropped 87.5%—from 8 human-centered illustrations to just 1. The most striking example are our <a href="https://icons8.com/illustrations/style--3d-hygge" className="text-blue-600 hover:underline">3D modeled illustrations</a>.</p>
         </div>
       </div>
         
-      <div className="w-full px-4 sm:px-8 my-12">
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="text-center flex-1">
+      <div className="w-full my-12">
+        <div className="flex flex-col md:flex-row gap-6 items-start">
+          <div className="text-center md:w-1/2">
             <a href="/ai-replaced-people/illustrations-with-people-hugge.png" 
                data-fancybox="gallery" 
                data-caption="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people."
-               className="block w-full h-80 md:h-96 bg-white rounded-lg shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow">
-              <div className="w-full h-full flex items-center justify-center">
-                <img 
-                  src="/ai-replaced-people/illustrations-with-people-hugge.png" 
-                  alt="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people." 
-                  className="max-w-full max-h-full object-contain rounded"
-                />
-              </div>
+               className="block bg-white rounded-lg shadow-lg p-3 cursor-pointer hover:shadow-xl transition-shadow"
+               style={{ width: '100%', maxWidth: '600px' }}>
+              <img 
+                src="/ai-replaced-people/illustrations-with-people-hugge.png" 
+                alt="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people." 
+                className="w-full h-auto object-contain rounded"
+                style={{ aspectRatio: '2359/1617' }}
+              />
             </a>
-            <p className="mt-4 text-sm text-gray-600 max-w-sm mx-auto">
+            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               6 months ago: creating illustrations was creating people. Businesses liked buying the images of people.
             </p>
           </div>
-          <div className="text-center flex-1">
+          <div className="text-center md:w-1/2">
             <a href="/ai-replaced-people/illustrations-without-people-hugge.png" 
                data-fancybox="gallery" 
                data-caption="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own."
-               className="block w-full h-80 md:h-96 bg-white rounded-lg shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow">
-              <div className="w-full h-full flex items-center justify-center">
-                <img 
-                  src="/ai-replaced-people/illustrations-without-people-hugge.png" 
-                  alt="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own." 
-                  className="max-w-full max-h-full object-contain rounded"
-                />
-              </div>
+               className="block bg-white rounded-lg shadow-lg p-3 cursor-pointer hover:shadow-xl transition-shadow"
+               style={{ width: '100%', maxWidth: '600px' }}>
+              <img 
+                src="/ai-replaced-people/illustrations-without-people-hugge.png" 
+                alt="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own." 
+                className="w-full h-auto object-contain rounded"
+                style={{ aspectRatio: '2408/1568' }}
+              />
             </a>
-            <p className="mt-4 text-sm text-gray-600 max-w-sm mx-auto">
+            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own.
             </p>
           </div>
@@ -119,45 +121,45 @@ export default function AIReplacedPeople() {
       
       <div className="max-w-4xl mx-auto px-8">
         <div className="prose prose-lg max-w-none space-y-6">
-          <p className="mb-6"><strong>People disappeared.</strong> But it's worse than disappearing—they became fragments. Human representation is often reduced to floating hands holding objects—a phone, a cup, making an OK sign. Humans became disembodied appendages to their devices. It's like a post-apocalypse where humanity was reduced to body parts interfacing with technology operating on its own.</p>
-          <p className="mb-6">Our other illustration pack confirms the trend. In our people vs robots comparison, people decreased from 28+ to 17, while robots increased from 3 to 12—a 4x jump. While human activities became more diverse, the overall shift moved toward technology-centric rather than human-centric representations.</p>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}><strong>People disappeared.</strong> But it's worse than disappearing—they became fragments. Human representation is often reduced to floating hands holding objects—a phone, a cup, making an OK sign. Humans became disembodied appendages to their devices. It's like a post-apocalypse where humanity was reduced to body parts interfacing with technology operating on its own.</p>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>Our other illustration pack confirms the trend. In our people vs robots comparison, people decreased from 28+ to 17, while robots increased from 3 to 12—a 4x jump. While human activities became more diverse, the overall shift moved toward technology-centric rather than human-centric representations.</p>
         </div>
       </div>
       
       {/* Second image pair - people vs robots */}
-      <div className="w-full my-12 flex justify-center">
-        <div className="flex flex-col lg:flex-row gap-6 items-end">
-          <div className="text-center">
+      <div className="w-full my-12">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          <div className="text-center md:w-1/2">
             <a href="/ai-replaced-people/people.png" 
                data-fancybox="gallery" 
                data-caption="6 months ago: people interact with people"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-               style={{ width: '560px', height: '487px', padding: '20px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
+               style={{ width: '100%', maxWidth: '600px' }}>
               <img 
                 src="/ai-replaced-people/people.png" 
                 alt="6 months ago: people interact with people" 
-                className="w-full h-full object-contain rounded"
-                style={{ width: '520px', height: '447px' }}
+                className="w-full h-auto object-contain rounded"
+                style={{ aspectRatio: '2204/1907' }}
               />
             </a>
-            <p className="mt-4 text-sm text-gray-600 max-w-sm mx-auto">
+            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               6 months ago: people interact with people
             </p>
           </div>
-          <div className="text-center">
+          <div className="text-center md:w-1/2">
             <a href="/ai-replaced-people/robots.png" 
                data-fancybox="gallery" 
                data-caption="After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-               style={{ width: '541px', height: '462px', padding: '20px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
+               style={{ width: '100%', maxWidth: '600px' }}>
               <img 
                 src="/ai-replaced-people/robots.png" 
                 alt="After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots" 
-                className="w-full h-full object-contain rounded"
-                style={{ width: '501px', height: '422px' }}
+                className="w-full h-auto object-contain rounded"
+                style={{ aspectRatio: '2126/1810' }}
               />
             </a>
-            <p className="mt-4 text-sm text-gray-600 max-w-sm mx-auto">
+            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               After: people decreased significantly, giving way to 4x more robots, and something unpopular before: people with robots
             </p>
           </div>
@@ -166,44 +168,44 @@ export default function AIReplacedPeople() {
 
       <div className="max-w-4xl mx-auto px-8">
         <div className="prose prose-lg max-w-none space-y-6">
-          <p className="mb-6">Our overall leaders, heavily dominated by icons, show the same trend. People almost completely disappeared. Teamwork disappeared. We have more robots than people. We have multiple representations of AI instead: spheres, robots, sparkles.</p>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>Our overall leaders, heavily dominated by icons, show the same trend. People almost completely disappeared. Teamwork disappeared. We have more robots than people. We have multiple representations of AI instead: spheres, robots, sparkles.</p>
         </div>
       </div>
       
       {/* Third image pair - overall comparison */}
-      <div className="w-full my-12 flex justify-center">
-        <div className="flex flex-col lg:flex-row gap-6 items-end">
-          <div className="text-center">
+      <div className="w-full my-12">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          <div className="text-center md:w-1/2">
             <a href="/ai-replaced-people/overall-people.png" 
                data-fancybox="gallery" 
                data-caption="6 months ago: 10 images of people, including teamwork"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-               style={{ width: '471px', height: '440px', padding: '20px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
+               style={{ width: '100%', maxWidth: '600px' }}>
               <img 
                 src="/ai-replaced-people/overall-people.png" 
                 alt="6 months ago: 10 images of people, including teamwork" 
-                className="w-full h-full object-contain rounded"
-                style={{ width: '431px', height: '400px' }}
+                className="w-full h-auto object-contain rounded"
+                style={{ aspectRatio: '1844/1719' }}
               />
             </a>
-            <p className="mt-4 text-sm text-gray-600 max-w-sm mx-auto">
+            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               6 months ago: 10 images of people, including teamwork
             </p>
           </div>
-          <div className="text-center">
+          <div className="text-center md:w-1/2">
             <a href="/ai-replaced-people/overall-no-people.png" 
                data-fancybox="gallery" 
                data-caption="Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too"
-               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-               style={{ width: '501px', height: '492px', padding: '20px' }}>
+               className="block bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow p-3"
+               style={{ width: '100%', maxWidth: '600px' }}>
               <img 
                 src="/ai-replaced-people/overall-no-people.png" 
                 alt="Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too" 
-                className="w-full h-full object-contain rounded"
-                style={{ width: '461px', height: '452px' }}
+                className="w-full h-auto object-contain rounded"
+                style={{ aspectRatio: '1964/1926' }}
               />
             </a>
-            <p className="mt-4 text-sm text-gray-600 max-w-sm mx-auto">
+            <p className="mt-4 text-gray-600 max-w-sm mx-auto" style={{ fontSize: '14px', lineHeight: '1.5' }}>
               Now: only 2 illustrations of people made it. People are dominated not only by robots, but by AI-representing spheres too
             </p>
           </div>
@@ -212,8 +214,8 @@ export default function AIReplacedPeople() {
 
       <div className="max-w-4xl mx-auto px-8">
         <div className="prose prose-lg max-w-none space-y-6">
-          <h2 className="text-3xl font-bold mt-12 mb-6">The New Reality</h2>
-          <p className="mb-6">What we see now is a dramatic shift where agentic AI takes the place of people. But there's a fascinating inversion: as robots gained expressive blue eyes and emotional design language, humans lost their faces entirely. AI evolved from abstract geometric shapes to beings with distinct personalities, while humans devolved from collaborative teams to faceless fragments.</p>
+          <h2 className="text-2xl font-bold mt-12 mb-6" style={{ fontSize: '28px', lineHeight: '1.3' }}>The new reality</h2>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>What we see now is a dramatic shift where agentic AI takes the place of people. But there's a fascinating inversion: as robots gained expressive blue eyes and emotional design language, humans lost their faces entirely. AI evolved from abstract geometric shapes to beings with distinct personalities, while humans devolved from collaborative teams to faceless fragments.</p>
           
           <table className="w-full my-6">
             <thead>
@@ -238,13 +240,13 @@ export default function AIReplacedPeople() {
             </tbody>
           </table>
           
-          <p className="mt-10 mb-8 leading-relaxed">Being a people company is not cool anymore. Being an AI company is everything. Agentic AI takes the place of people. The shareholder value lies in this transformation.</p>
+          <p className="mt-10 mb-8" style={{ fontSize: '17px', lineHeight: '1.55' }}>Being a people company is not cool anymore. Being an AI company is everything. Agentic AI takes the place of people. The shareholder value lies in this transformation.</p>
           
-          <p className="mb-8 leading-relaxed">Perhaps we're witnessing the most honest corporate communication in decades. This shift doesn't just correspond to Robotaxi, future Robotaxi farms, and drone delivery startups, but the broadest range of businesses. For the first time, companies are showing us exactly how they see the future of work: a world where humans are optional.</p>
+          <p className="mb-8" style={{ fontSize: '17px', lineHeight: '1.55' }}>Perhaps we're witnessing the most honest corporate communication in decades. This shift doesn't just correspond to Robotaxi, future Robotaxi farms, and drone delivery startups, but the broadest range of businesses. For the first time, companies are showing us exactly how they see the future of work: a world where humans are optional.</p>
 
-          <h2 className="text-3xl font-bold mt-16 mb-6">Why Do We Still Bother Creating Human Graphics?</h2>
+          <h2 className="text-2xl font-bold mt-16 mb-6" style={{ fontSize: '28px', lineHeight: '1.3' }}>Why do we still bother creating human graphics?</h2>
           
-          <p className="mb-6">Generated images were once not only novel but priced. Our own dataset <a href="https://generated.photos" className="text-blue-600 hover:underline">Generated Photos</a> made the headlines of The Verge and Washington Post — but mass adoption has made them ubiquitous and cheap. They're now perceived as a sign of underinvestment. By contrast, human-drawn images remain expensive, so they still make a company look well-off.</p>
+          <p className="mb-6" style={{ fontSize: '17px', lineHeight: '1.55' }}>Generated images were once not only novel but priced. Our own dataset <a href="https://generated.photos" className="text-blue-600 hover:underline">Generated Photos</a> made the headlines of The Verge and Washington Post — but mass adoption has made them ubiquitous and cheap. They're now perceived as a sign of underinvestment. By contrast, human-drawn images remain expensive, so they still make a company look well-off.</p>
 
           <table className="w-full my-6">
             <thead>
@@ -273,7 +275,7 @@ export default function AIReplacedPeople() {
             </tbody>
           </table>
 
-          <p className="mt-10 mb-8 leading-relaxed">We not only have to create illustrations by hand; they must look created by hand. That keeps us running in front of the latest image-generation model. We draw whatever it still can't do, and we will do it in the next years, months, or weeks before giving up to AI.</p>
+          <p className="mt-10 mb-8" style={{ fontSize: '17px', lineHeight: '1.55' }}>We not only have to create illustrations by hand; they must look created by hand. That keeps us running in front of the latest image-generation model. We draw whatever it still can't do, and we will do it in the next years, months, or weeks before giving up to AI.</p>
         </div>
       </div>
     </Layout>

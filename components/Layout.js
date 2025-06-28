@@ -11,6 +11,7 @@ const translations = {
     experience: "Experience", 
     book: "Book",
     events: "Tech Events",
+    vanishedPeople: "Vanished People",
     visit: "Visit me",
     contact: "Contact"
   },
@@ -19,6 +20,7 @@ const translations = {
     experience: "Experiencia",
     book: "Libro",
     events: "Eventos Tech",
+    vanishedPeople: "Gente Desaparecida",
     visit: "Visitarme", 
     contact: "Contacto"
   },
@@ -27,6 +29,7 @@ const translations = {
     experience: "Experiência",
     book: "Livro",
     events: "Eventos Tech",
+    vanishedPeople: "Pessoas Desaparecidas",
     visit: "Me visitar",
     contact: "Contato"
   }
@@ -145,6 +148,7 @@ export default function Layout({ children }) {
               <li><Link href={getLocalizedUrl('/experience')}>{t.experience}</Link></li>
               <li><Link href={getLocalizedUrl('/book')}>{t.book}</Link></li>
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'}>{t.events}</Link></li>
+              <li><Link href="/ai-replaced-people">{t.vanishedPeople}</Link></li>
               <li><Link href={getLocalizedUrl('/visit')}>{t.visit}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>

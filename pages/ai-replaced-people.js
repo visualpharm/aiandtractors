@@ -331,8 +331,22 @@ export default function AIReplacedPeople() {
 
           <p className="mt-10 mb-8" style={{ fontSize: '19px', lineHeight: '1.55' }}>We not only have to create illustrations by hand; they must look created by hand. That keeps us running in front of the latest image-generation model. We draw whatever it still can't do, and we will do it in the next years, <del>months, or weeks before giving up to AI</del>.</p>
           
-          <div className="bg-gray-100 p-6 rounded-lg" style={{ fontSize: '19px', lineHeight: '1.55', marginTop: '100px', marginBottom: '100px' }}>
+          <div className="bg-gray-100 p-6 rounded-lg" style={{ fontSize: '19px', lineHeight: '1.55', marginTop: '30px', marginBottom: '30px' }}>
             You can find the work of our human artists at <a href="https://icons8.com/illustrations" className="text-blue-600 hover:underline">https://icons8.com/illustrations</a>
+          </div>
+
+          <div className="bg-gray-100 p-6 rounded-lg" style={{ fontSize: '18px', lineHeight: '1.6', marginTop: '40px', marginBottom: '40px' }}>
+            <div className="mb-3">
+              <span className="inline-block bg-gray-500 text-white px-3 py-1 rounded text-sm font-medium">
+                Reader Commentary
+              </span>
+            </div>
+            <blockquote className="italic text-gray-700 mb-3">
+              "The concept of The Spectacle and the idea that images and representation become more real than the thing itself. We're actively walking through the door of abstraction in a way that we leave our humanity and ultimately our real connection behind."
+            </blockquote>
+            <cite className="text-gray-600 text-sm">
+              — faptain-calcon22 on <a href="https://www.reddit.com/r/Design/comments/1lmev4r/ai_fallout_businesses_erased_people_from_their/" className="hover:underline">Reddit</a>
+            </cite>
           </div>
         </div>
       </div>

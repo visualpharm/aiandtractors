@@ -22,7 +22,7 @@ export default function AIReplacedPeople() {
             </h1>
           </div>
           
-          <div className="bg-gray-100 p-6 rounded-lg mb-8 text-left">
+          <div className="bg-gray-100 p-6 rounded-lg mb-8 text-center">
             <div className="font-normal text-gray-600" style={{ fontSize: '19px', lineHeight: '1.55' }}>
               <span className="inline-block bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium mr-2">
                 TL;DR

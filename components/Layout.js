@@ -20,7 +20,7 @@ const translations = {
     experience: "Experiencia",
     book: "Libro",
     events: "Eventos Tech",
-    vanishedPeople: "Gente Desaparecida",
+    vanishedPeople: "Diseño sin Personas",
     visit: "Visitarme", 
     contact: "Contacto"
   },
@@ -29,7 +29,7 @@ const translations = {
     experience: "Experiência",
     book: "Livro",
     events: "Eventos Tech",
-    vanishedPeople: "Pessoas Desaparecidas",
+    vanishedPeople: "Design sem Pessoas",
     visit: "Me visitar",
     contact: "Contato"
   }
@@ -114,6 +114,17 @@ export default function Layout({ children }) {
       }
     }
     
+    // Handle ai-replaced-people pages specifically
+    if (currentPath.includes('ai-replaced-people') || currentPath.includes('la-gran-desaparicion') || currentPath.includes('o-grande-desaparecimento')) {
+      if (targetLocale === 'en') {
+        return '/ai-replaced-people'
+      } else if (targetLocale === 'es') {
+        return '/es/la-gran-desaparicion'
+      } else if (targetLocale === 'pt') {
+        return '/pt/o-grande-desaparecimento'
+      }
+    }
+    
     // Handle other pages
     const currentBasePath = currentPath.replace(/^\/(?:es|pt)\//, '/').replace(/^\/es$/, '/').replace(/^\/pt$/, '/')
     
@@ -148,7 +159,7 @@ export default function Layout({ children }) {
               <li><Link href={getLocalizedUrl('/experience')}>{t.experience}</Link></li>
               <li><Link href={getLocalizedUrl('/book')}>{t.book}</Link></li>
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'}>{t.events}</Link></li>
-              <li><Link href="/ai-replaced-people">{t.vanishedPeople}</Link></li>
+              <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'}>{t.vanishedPeople}</Link></li>
               <li><Link href={getLocalizedUrl('/visit')}>{t.visit}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>

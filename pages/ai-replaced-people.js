@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Layout from '../components/Layout';
+import HeroImages from '../components/HeroImages';
 
 export default function AIReplacedPeople() {
   return (
@@ -13,13 +14,147 @@ export default function AIReplacedPeople() {
 
       <div className="max-w-3xl mx-auto px-6 py-12 text-lg leading-relaxed">
         <div className="text-center mb-8">
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <div className="inline-block bg-green-500 text-white px-3 py-1 rounded-md font-medium mb-2" style={{ fontSize: '26px', lineHeight: '1.3' }}>
               The Great Vanishing
             </div>
-            <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-6" style={{ fontFamily: 'DotGothic16, monospace' }}>
-              How Businesses Erased Humans from Their Visual Identity
-            </h1>
+            <div className="relative">
+              <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-6" style={{ fontFamily: 'DotGothic16, monospace' }}>
+                How Businesses Erased Humans from Their Visual Identity
+              </h1>
+              {/* Floating people icons around title */}
+              <img 
+                src="/ai-replaced-people/people-icon1.png" 
+                alt="" 
+                className="absolute hidden lg:block xl:block"
+                style={{ 
+                  width: '220px',
+                  height: '220px',
+                  top: '-80px', 
+                  left: '-280px', 
+                  transform: 'rotate(-15deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              <img 
+                src="/ai-replaced-people/people-icon2.png" 
+                alt="" 
+                className="absolute hidden lg:block xl:block"
+                style={{ 
+                  width: '300px',
+                  height: '300px',
+                  top: '-60px', 
+                  right: '-320px', 
+                  transform: 'rotate(25deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              
+              {/* Medium-large breakpoint versions (between md and lg) */}
+              <img 
+                src="/ai-replaced-people/people-icon1.png" 
+                alt="" 
+                className="absolute hidden md:block lg:hidden"
+                style={{ 
+                  width: '200px',
+                  height: '200px',
+                  top: '-120px', 
+                  left: '-220px', 
+                  transform: 'rotate(-15deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              <img 
+                src="/ai-replaced-people/people-icon2.png" 
+                alt="" 
+                className="absolute hidden md:block lg:hidden"
+                style={{ 
+                  width: '250px',
+                  height: '250px',
+                  top: '-90px', 
+                  right: '-220px', 
+                  transform: 'rotate(25deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              <img 
+                src="/ai-replaced-people/people-icon3.png" 
+                alt="" 
+                className="absolute hidden md:block lg:hidden"
+                style={{ 
+                  width: '120px',
+                  height: '120px',
+                  bottom: '-130px', 
+                  left: '-140px', 
+                  transform: 'rotate(10deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              
+              <img 
+                src="/ai-replaced-people/people-icon3.png" 
+                alt="" 
+                className="absolute hidden sm:block md:block lg:block xl:block"
+                style={{ 
+                  width: '125px',
+                  height: '125px',
+                  bottom: '-180px', 
+                  left: '-160px', 
+                  transform: 'rotate(10deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              
+              {/* Mobile responsive versions */}
+              <img 
+                src="/ai-replaced-people/people-icon1.png" 
+                alt="" 
+                className="absolute block md:hidden"
+                style={{ 
+                  width: '120px',
+                  height: '120px',
+                  top: '-110px', 
+                  left: '-40px', 
+                  transform: 'rotate(-15deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              <img 
+                src="/ai-replaced-people/people-icon2.png" 
+                alt="" 
+                className="absolute block md:hidden"
+                style={{ 
+                  width: '133px',
+                  height: '133px',
+                  top: '-100px', 
+                  right: '-50px', 
+                  transform: 'rotate(25deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+              <img 
+                src="/ai-replaced-people/people-icon3.png" 
+                alt="" 
+                className="absolute block md:hidden"
+                style={{ 
+                  width: '97px',
+                  height: '97px',
+                  bottom: '-30px', 
+                  left: '15px', 
+                  transform: 'rotate(10deg)',
+                  zIndex: 1,
+                  mixBlendMode: 'darken'
+                }}
+              />
+            </div>
           </div>
           
           <div className="bg-gray-100 p-6 rounded-lg mb-8 text-center">
@@ -34,41 +169,14 @@ export default function AIReplacedPeople() {
       </div>
       
       {/* Hero illustration */}
-      <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] my-2 h-[50vh] overflow-visible" style={{ transform: 'translateY(-25px)' }}>
-        <div className="relative w-full h-full">
-          <div className="relative h-[50vh]">
-            {/* First image - slightly overlapping from left */}
-            <div className="absolute left-[1%] top-[-10%] w-[52%] h-[90%] rounded-xl overflow-hidden shadow-2xl transform -rotate-[7deg] z-30 bg-white p-4">
-              <div className="relative w-full h-full">
-                <Image 
-                  src="/ai-replaced-people/illustrations-with-people-hugge.png" 
-                  alt="Corporate imagery showing people in professional settings"
-                  fill
-                  className="object-contain"
-                  sizes="50vw"
-                  priority
-                  style={{ objectFit: 'contain', objectPosition: 'center' }}
-                />
-              </div>
-            </div>
-            
-            {/* Second image - slightly overlapping from right */}
-            <div className="absolute right-[1%] bottom-[5%] w-[52%] h-[90%] rounded-xl overflow-hidden shadow-2xl transform rotate-[4deg] z-20 bg-white p-4">
-              <div className="relative w-full h-full">
-                <Image 
-                  src="/ai-replaced-people/illustrations-without-people-hugge.png" 
-                  alt="Corporate imagery showing technology without people"
-                  fill
-                  className="object-contain"
-                  sizes="50vw"
-                  priority
-                  style={{ objectFit: 'contain', objectPosition: 'center' }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeroImages 
+        beforeImage="/ai-replaced-people/illustrations-with-people-hugge.png"
+        afterImage="/ai-replaced-people/illustrations-without-people-hugge.png"
+        beforeAlt="Corporate imagery showing people in professional settings"
+        afterAlt="Corporate imagery showing technology without people"
+        beforeCaption="6 months ago: creating illustrations was creating people. Businesses liked buying the images of people."
+        afterCaption="Now: people vanished, leaving empty machinery. Businesses prefer the empty world of computers, functioning on their own."
+      />
       
       <div className="max-w-4xl mx-auto px-8">
         <div className="prose prose-lg max-w-none space-y-6">

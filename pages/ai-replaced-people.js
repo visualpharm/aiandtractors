@@ -74,11 +74,15 @@ export default function AIReplacedPeople() {
         <div className="prose prose-lg max-w-none space-y-6">
           {/* Collapsible: Our business section */}
           <details className="group">
-            <summary className="cursor-pointer list-none">
-              <h2 className="inline text-2xl font-bold mt-16 mb-6 group-open:mb-6" style={{ fontSize: '26px', lineHeight: '1.3' }}>
-                Our business: visualizing corporate identity 
-                <span className="ml-2 text-gray-400 group-open:rotate-90 transition-transform">▶</span>
-              </h2>
+            <summary className="cursor-pointer list-none hover:underline">
+              <div className="inline font-normal mt-16 mb-6 group-open:mb-6 group-open:text-2xl group-open:font-bold transition-all text-blue-600 group-open:text-gray-900" style={{ fontSize: '19px', lineHeight: '1.55' }}>
+                <span className="group-open:text-[26px] group-open:leading-[1.3] transition-all">
+                  Our business: visualizing corporate identity
+                </span>
+                <svg className="ml-2 w-5 h-5 text-blue-600 group-open:text-gray-400 group-open:rotate-90 transition-all inline-block" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </div>
             </summary>
             <div className="mt-4">
               <p className="mb-6" style={{ fontSize: '19px', lineHeight: '1.55' }}>For over 20 years, Icons8 has served businesses by creating graphics that visualize how they want to be seen. Our clients are businesses, and they buy pictures of how they want to be portrayed. One thing remained constant throughout these years: businesses valued teamwork and wanted to appear as cohesive teams of professionals with great culture and shared success.</p>
@@ -87,11 +91,15 @@ export default function AIReplacedPeople() {
 
           {/* Collapsible: Our analytics section */}
           <details className="group">
-            <summary className="cursor-pointer list-none">
-              <h2 className="inline text-2xl font-bold mt-16 mb-6 group-open:mb-6" style={{ fontSize: '26px', lineHeight: '1.3' }}>
-                Our analytics: tracking business tastes at scale
-                <span className="ml-2 text-gray-400 group-open:rotate-90 transition-transform">▶</span>
-              </h2>
+            <summary className="cursor-pointer list-none hover:underline">
+              <div className="inline font-normal mt-16 mb-6 group-open:mb-6 group-open:text-2xl group-open:font-bold transition-all text-blue-600 group-open:text-gray-900" style={{ fontSize: '19px', lineHeight: '1.55' }}>
+                <span className="group-open:text-[26px] group-open:leading-[1.3] transition-all">
+                  Our analytics: tracking business tastes at scale
+                </span>
+                <svg className="ml-2 w-5 h-5 text-blue-600 group-open:text-gray-400 group-open:rotate-90 transition-all inline-block" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </div>
             </summary>
             <div className="mt-4">
               <p className="mb-6" style={{ fontSize: '19px', lineHeight: '1.55' }}>As a company with dozens of in-house artists, we dedicate vast resources to analyze business tastes. We use comprehensive analytics for that—download counts, search patterns, and usage metrics. We track the leaders of downloads and understand how business preferences evolve. For years, the leaders were human-centered: teams collaborating, diverse groups working together, professionals engaging face-to-face. The world we visualized was alive, bustling with human activity.</p>

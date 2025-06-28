@@ -329,7 +329,11 @@ export default function AIReplacedPeople() {
             </tbody>
           </table>
 
-          <p className="mt-10 mb-8" style={{ fontSize: '19px', lineHeight: '1.55' }}>We not only have to create illustrations by hand; they must look created by hand. That keeps us running in front of the latest image-generation model. We draw whatever it still can't do, and we will do it in the next years, months, or weeks before giving up to AI.</p>
+          <p className="mt-10 mb-8" style={{ fontSize: '19px', lineHeight: '1.55' }}>We not only have to create illustrations by hand; they must look created by hand. That keeps us running in front of the latest image-generation model. We draw whatever it still can't do, and we will do it in the next years, <del>months, or weeks before giving up to AI</del>.</p>
+          
+          <div className="bg-gray-100 p-6 rounded-lg" style={{ fontSize: '19px', lineHeight: '1.55', marginTop: '100px', marginBottom: '100px' }}>
+            You can find the work of our human artists at <a href="https://icons8.com/illustrations" className="text-blue-600 hover:underline">https://icons8.com/illustrations</a>
+          </div>
         </div>
       </div>
     </Layout>

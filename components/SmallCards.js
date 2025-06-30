@@ -12,14 +12,14 @@ export default function SmallCards({ title, items }) {
               {item.logo && (
                 <img src={item.logo} alt={item.title} className="small-card-logo" />
               )}
-              <h4>{item.title}</h4>
-              <p>
+              <h4>
                 {item.link ? (
-                  <a href={item.link} target="_blank" rel="noopener">{item.description}</a>
+                  <a href={item.link} target="_blank" rel="noopener">{item.title}</a>
                 ) : (
-                  item.description
+                  item.title
                 )}
-              </p>
+              </h4>
+              <p>{item.description}</p>
             </div>
           ))}
         </div>
@@ -90,6 +90,15 @@ export default function SmallCards({ title, items }) {
           font-size: 0.8rem;
           font-weight: 600;
           margin: 0 0 0.3rem 0;
+          color: var(--primary-color);
+        }
+
+        .small-card h4 a {
+          color: var(--accent-color);
+          text-decoration: none;
+        }
+
+        .small-card h4 a:hover {
           color: var(--primary-color);
         }
 

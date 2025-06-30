@@ -10,7 +10,7 @@ const translations = {
   en: {
     title: "Experience - Ivan Braun",
     heading: "Experience",
-    subtitle: "Building AI products from zero without venture capital",
+    subtitle: "Here I'll tell my story and make it short and useful",
     intro: "My core experience is building AI products from zero, with no venture capital, and monetize them early. My three tools are:",
     backLink: "← Back to home",
     customerDev: "Customer Development",
@@ -26,12 +26,19 @@ const translations = {
     toolsIntro: "My Areas of Expertise",
     booksFormed: "Books that formed me:",
     learningHardWay: "Learning it all hard way",
+    storyIntro: "I founded a design agency and turned it into businesses: <a href='https://icons8.com' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>Icons8</a> and <a href='https://generated.photos' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>Generated Photos</a>. Here's the useful part. Here are my challenges. By reading this, you will pass your challenges 10 times easier than I had, since I was dumb about how to manage people if you don't know what you are doing.",
+    wasDumb: "I was dumb",
+    wasDumbText: "I was 20 and knew nothing about management when my boss made me manage a team of 12 developers. Why did he do that? Because my salary was the highest. I wasn't even a developer, I could write code, but it wasn't a competitive skill. Agile didn't exist; Scrum wasn't popular, and the dominating practices were too hard to grasp.\n\nI remember walking into a bookstore in Singapore with my boss and he bought several books whose titles I didn't understand. I asked him which book would help me to manage my team and he said \"none yet.\"\n\nSo, point of view: a 20 year designer surrounded and not listened by a bunch of older and smarter guys (one of whom was an academic physicist of 55 years). I had to invent IT management from scratch.\n\nWhat did I do? I managed horribly. I remember one dev postponing the deadline after deadline with no progress. My solution: to pass the task to another dev. I remember them both being confused and not understanding why I did that. I didn't understand either, but I had to do something.\n\nMy advice: read at least one book, at least Peter Drucker. I didn't do it at the time, and I regret it.",
+    managingMoney: "Managing for my own money",
+    managingMoneyText: "I started understanding what I do when I started paying the salaries out of my pocket. I hired an account manager when I was 24. Remote work wasn't a thing, so we sat at the office in my apartment.\n\nSomehow I didn't realize she's sitting on a stool until she ruined her back. I've bought the chair she chose the next day, and it costed me her monthly salary, but it was an easy spend for me, because I was spending my own money. I didn't have the budget constraints, I didn't have to navigate the bureaucracy, I didn't have the company norms to stick to. I just bought the chair.\n\nThat's my lesson: when you spend your own money, management is much easier.",
+    pickingFruit: "Picking the low-hanging fruit",
+    pickingFruitText: "When we decided to make stock photography, we did it on a scale. The idea of the time was to shoot the photos and compose them into realistic-looking collages. That was Generative AI before Generative AI. That was MidJourney without proper tech. Of course, it failed. We've left, and it left us 70,000 photos. To make them matching, we were shooting them with the same light setup, same camera height, and professional makeup and hairstyle. In other words, we had an impressive dataset for Generative AI.\n\nWhen NVIDIA released StyleGAN, we made the photos better than NVIDIA did. It used the dataset from Flickr with diverse, poorly lit, unprofessionally shot photos. Our generated photos were an instant hit, landing international press and the chain of venture capital, with Forbes calling.\n\nMy lesson: use whatever you have at hand to get your next product. In other words, build products on the shoulders of previous work.",
     products: "PRODUCTS WE'VE LAUNCHED"
   },
   es: {
     title: "Experiencia - Ivan Braun",
     heading: "Experiencia",
-    subtitle: "Construyendo productos de IA desde cero sin capital de riesgo",
+    subtitle: "Aquí contaré mi historia y la haré corta y útil",
     intro: "Mi experiencia principal es construir productos de IA desde cero, sin capital de riesgo, y monetizarlos temprano. Mis tres herramientas son:",
     backLink: "← Volver al inicio",
     customerDev: "Desarrollo de Cliente",
@@ -47,12 +54,19 @@ const translations = {
     toolsIntro: "Mis Áreas de Especialización",
     booksFormed: "Libros que me formaron:",
     learningHardWay: "Aprendiéndolo todo por las malas",
+    storyIntro: "Fundé una agencia de diseño y la convertí en negocios: <a href='https://icons8.com' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>Icons8</a> y <a href='https://generated.photos' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>Generated Photos</a>. Esta es la parte útil. Estos son mis desafíos. Al leer esto, pasarás tus desafíos 10 veces más fácil de lo que los tuve, ya que era tonto sobre cómo gestionar personas si no sabes lo que estás haciendo.",
+    wasDumb: "Era tonto",
+    wasDumbText: "Tenía 20 años y no sabía nada sobre gestión cuando mi jefe me hizo gestionar un equipo de 12 desarrolladores. ¿Por qué lo hizo? Porque mi salario era el más alto. Ni siquiera era desarrollador, podía escribir código, pero no era una habilidad competitiva. Agile no existía; Scrum no era popular, y las prácticas dominantes eran demasiado difíciles de entender.\n\nRecuerdo entrar a una librería en Singapur con mi jefe y él compró varios libros cuyos títulos no entendía. Le pregunté qué libro me ayudaría a gestionar mi equipo y me dijo \"ninguno todavía\".\n\nEntonces, punto de vista: un diseñador de 20 años rodeado y no escuchado por un grupo de tipos mayores y más inteligentes (uno de los cuales era un físico académico de 55 años). Tuve que inventar la gestión de TI desde cero.\n\n¿Qué hice? Gestioné horriblemente. Recuerdo a un desarrollador posponiendo fecha tras fecha sin progreso. Mi solución: pasar la tarea a otro desarrollador. Recuerdo que ambos estaban confundidos y no entendían por qué hice eso. Yo tampoco lo entendía, pero tenía que hacer algo.\n\nMi consejo: lee al menos un libro, al menos Peter Drucker. No lo hice en ese momento, y me arrepiento.",
+    managingMoney: "Gestionando con mi propio dinero",
+    managingMoneyText: "Empecé a entender lo que hacía cuando comencé a pagar los salarios de mi bolsillo. Contraté a una gerente de cuentas cuando tenía 24 años. El trabajo remoto no existía, así que nos sentamos en la oficina en mi apartamento.\n\nDe alguna manera no me di cuenta de que estaba sentada en un taburete hasta que se lastimó la espalda. Compré la silla que ella eligió al día siguiente, y me costó su salario mensual, pero fue un gasto fácil para mí, porque estaba gastando mi propio dinero. No tenía restricciones presupuestarias, no tenía que navegar la burocracia, no tenía normas de empresa a las que adherirme. Simplemente compré la silla.\n\nEsa es mi lección: cuando gastas tu propio dinero, la gestión es mucho más fácil.",
+    pickingFruit: "Eligiendo la fruta madura",
+    pickingFruitText: "Cuando decidimos hacer fotografía de stock, lo hicimos a escala. La idea de la época era tomar las fotos y componerlas en collages de aspecto realista. Eso era IA Generativa antes de la IA Generativa. Eso era MidJourney sin la tecnología adecuada. Por supuesto, falló. Nos fuimos, y nos dejó 70,000 fotos. Para que coincidieran, las estábamos tomando con la misma configuración de luz, la misma altura de cámara, y maquillaje y peinado profesional. En otras palabras, teníamos un conjunto de datos impresionante para IA Generativa.\n\nCuando NVIDIA lanzó StyleGAN, hicimos las fotos mejor que NVIDIA. Usó el conjunto de datos de Flickr con fotos diversas, mal iluminadas, tomadas sin profesionalismo. Nuestras fotos generadas fueron un éxito instantáneo, llegando a la prensa internacional y la cadena de capital de riesgo, con Forbes llamando.\n\nMi lección: usa lo que tengas a mano para obtener tu próximo producto. En otras palabras, construye productos sobre los hombros del trabajo anterior.",
     products: "PRODUCTOS QUE HEMOS LANZADO"
   },
   pt: {
     title: "Experiência - Ivan Braun",
     heading: "Experiência", 
-    subtitle: "Construindo produtos de IA do zero sem capital de risco",
+    subtitle: "Aqui vou contar minha história e torná-la curta e útil",
     intro: "Minha experiência principal é construir produtos de IA do zero, sem capital de risco, e monetizá-los cedo. Minhas três ferramentas são:",
     backLink: "← Voltar ao início",
     customerDev: "Desenvolvimento de Cliente",
@@ -68,6 +82,13 @@ const translations = {
     toolsIntro: "Minhas Áreas de Especialização",
     booksFormed: "Livros que me formaram:",
     learningHardWay: "Aprendendo tudo da maneira difícil",
+    storyIntro: "Fundei uma agência de design e a transformei em negócios: <a href='https://icons8.com' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>Icons8</a> e <a href='https://generated.photos' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>Generated Photos</a>. Esta é a parte útil. Estes são meus desafios. Ao ler isto, você passará por seus desafios 10 vezes mais facilmente do que eu tive, já que eu era burro sobre como gerenciar pessoas se você não sabe o que está fazendo.",
+    wasDumb: "Eu era burro",
+    wasDumbText: "Eu tinha 20 anos e não sabia nada sobre gestão quando meu chefe me fez gerenciar uma equipe de 12 desenvolvedores. Por que ele fez isso? Porque meu salário era o mais alto. Eu nem era desenvolvedor, podia escrever código, mas não era uma habilidade competitiva. Agile não existia; Scrum não era popular, e as práticas dominantes eram muito difíceis de entender.\n\nLembro-me de entrar numa livraria em Singapura com meu chefe e ele comprou vários livros cujos títulos eu não entendia. Perguntei-lhe que livro me ajudaria a gerenciar minha equipe e ele disse \"nenhum ainda\".\n\nEntão, ponto de vista: um designer de 20 anos cercado e não ouvido por um grupo de caras mais velhos e inteligentes (um dos quais era um físico acadêmico de 55 anos). Tive que inventar a gestão de TI do zero.\n\nO que eu fiz? Gerenciei horrivelmente. Lembro-me de um dev adiando prazo após prazo sem progresso. Minha solução: passar a tarefa para outro dev. Lembro-me de ambos ficando confusos e não entendendo por que fiz isso. Eu também não entendia, mas tinha que fazer algo.\n\nMeu conselho: leia pelo menos um livro, pelo menos Peter Drucker. Não fiz isso na época, e me arrependo.",
+    managingMoney: "Gerenciando com meu próprio dinheiro",
+    managingMoneyText: "Comecei a entender o que fazia quando comecei a pagar os salários do meu bolso. Contratei uma gerente de contas quando tinha 24 anos. Trabalho remoto não existia, então nos sentamos no escritório no meu apartamento.\n\nDe alguma forma não percebi que ela estava sentada num banquinho até ela machucar as costas. Comprei a cadeira que ela escolheu no dia seguinte, e me custou o salário mensal dela, mas foi um gasto fácil para mim, porque estava gastando meu próprio dinheiro. Não tinha restrições orçamentárias, não tinha que navegar a burocracia, não tinha normas da empresa para seguir. Simplesmente comprei a cadeira.\n\nEssa é minha lição: quando você gasta seu próprio dinheiro, a gestão é muito mais fácil.",
+    pickingFruit: "Colhendo frutos fáceis",
+    pickingFruitText: "Quando decidimos fazer fotografia de stock, fizemos isso em escala. A ideia da época era tirar as fotos e compô-las em colagens de aparência realista. Isso era IA Generativa antes da IA Generativa. Isso era MidJourney sem a tecnologia adequada. Claro, falhou. Saímos, e isso nos deixou 70.000 fotos. Para fazê-las combinar, estávamos tirando-as com a mesma configuração de luz, mesma altura da câmera, e maquiagem e penteado profissionais. Em outras palavras, tínhamos um conjunto de dados impressionante para IA Generativa.\n\nQuando a NVIDIA lançou o StyleGAN, fizemos as fotos melhores que a NVIDIA fez. Ela usou o conjunto de dados do Flickr com fotos diversas, mal iluminadas, tiradas sem profissionalismo. Nossas fotos geradas foram um sucesso instantâneo, chegando à imprensa internacional e à cadeia de capital de risco, com a Forbes ligando.\n\nMinha lição: use o que você tem à mão para obter seu próximo produto. Em outras palavras, construa produtos nos ombros do trabalho anterior.",
     products: "PRODUTOS QUE LANÇAMOS"
   }
 }
@@ -104,9 +125,49 @@ export default function Experience() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="max-w-3xl">
                 <h1 className="text-6xl font-bold mb-6 text-gray-900 leading-tight" style={{ fontFamily: "'DotGothic16', sans-serif" }}>{t.heading}</h1>
+                <p className="text-xl text-gray-600 leading-relaxed">{t.subtitle}</p>
               </div>
               <div className="flex justify-center items-center">
                 <img src="/i/experience.png" alt="Ivan Braun Experience" className="max-w-full max-h-96 h-auto w-auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* MY STORY & WORK HISTORY */}
+        <div className="mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+            <div className="text-left">
+              <h2 className="text-sm font-medium m-0 text-gray-600 uppercase tracking-wider">MY STORY</h2>
+            </div>
+            <div className="md:col-span-3">
+              <p className="text-lg text-gray-700 leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t.storyIntro }}></p>
+              
+              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.wasDumb}</h3>
+                <div className="text-gray-700 leading-relaxed">
+                  {t.wasDumbText.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.managingMoney}</h3>
+                <div className="text-gray-700 leading-relaxed">
+                  {t.managingMoneyText.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.pickingFruit}</h3>
+                <div className="text-gray-700 leading-relaxed">
+                  {t.pickingFruitText.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

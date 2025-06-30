@@ -1,0 +1,48 @@
+.panel {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  min-height: 300px;
+  overflow: hidden; /* Ensure content doesn't overflow the border radius */
+  display: flex;
+  flex-direction: column;
+}
+
+.panelContent {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Create the solid color bottom section */
+.panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%; /* Adjust this to control the height of the colored section */
+  z-index: 0;
+  border-radius: 0 0 1rem 1rem; /* Match the panel's border radius */
+}
+
+/* Blue panel */
+.blue::after {
+  background-color: #dbeafe;
+}
+
+/* Green panel */
+.green::after {
+  background-color: #d1fae5;
+}
+
+/* Purple panel */
+.purple::after {
+  background-color: #ede9fe;
+}

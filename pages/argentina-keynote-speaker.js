@@ -8,8 +8,8 @@ export default function ArgentinaKeynoteSpeaker() {
     <Layout>
       <Hero
         title="Argentina Keynote Speaker"
-        subtitle="AI Expert & International Innovation Leader from Buenos Aires"
-        description="A globally-minded AI expert based in Argentina, offering unique international perspectives on artificial intelligence, technology innovation, and the future of work from the heart of South America."
+        subtitle="AI Expert & International Innovation Leader from San Francisco & Argentina"
+        description="A globally-minded AI expert based in San Francisco and Argentina, offering unique international perspectives on artificial intelligence, technology innovation, and the future of work."
         introText="Transform your next event with cutting-edge insights on artificial intelligence, machine learning, and the future of technology. Ivan Braun delivers compelling keynotes that bridge the gap between complex AI concepts and practical business applications."
       />
       {/* --- Global AI Perspective Section --- */}
@@ -17,7 +17,7 @@ export default function ArgentinaKeynoteSpeaker() {
         <div className="full-width">
           <h2 className="fun-title"><span className="fun-title-fill">Global AI Perspective from Argentina</span></h2>
           <p>
-  Based in Buenos Aires but thinking globally, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living in Argentina while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
+  Based in San Francisco and Argentina, Ivan brings a unique international perspective to <a href="/ai-keynote-speaker" className="subtle">artificial intelligence</a> discussions. Living between Silicon Valley and South America while building global AI companies provides distinctive insights on technology adoption, innovation, and cultural differences in AI implementation.
 </p>
         </div>
         <h3 className="section-heading" style={{ paddingLeft: '0' }}>Topics for Speeches</h3>

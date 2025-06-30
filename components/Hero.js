@@ -44,17 +44,17 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
             <p className="text-base text-gray-600 mb-6 leading-relaxed">
               {description}
             </p>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex gap-4 flex-nowrap">
               {imageUrl ? (
                 <>
                   <button 
-                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg"
+                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
                     onClick={() => window.open('https://book.ilbuco.com.ar/', '_self')}
                   >
                     <p className="font-medium tracking-tight leading-tight m-0">{t.book}</p>
                   </button>
                   <button 
-                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg"
+                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
                     onClick={() => window.open('https://ilbuco.com.ar', '_self')}
                   >
                     <p className="font-medium tracking-tight leading-tight m-0">{t.learnMore}</p>
@@ -63,13 +63,13 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
               ) : (
                 <>
                   <button 
-                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg"
+                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
                     onClick={() => window.location.href = '/contact'}
                   >
                     <p className="font-medium tracking-tight leading-tight m-0">{t.contact}</p>
                   </button>
                   <button 
-                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg"
+                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
                     onClick={() => window.location.href = '/visit'}
                   >
                     <p className="font-medium tracking-tight leading-tight m-0">{t.visit}</p>
@@ -86,7 +86,7 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
                 width={500}
                 height={400}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="w-full max-w-[505px] h-[400px] md:h-[400px] object-cover drop-shadow-lg transition-transform duration-300 hover:scale-105"
+                className="w-full max-w-[505px] h-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
                 priority
               />
             </a>

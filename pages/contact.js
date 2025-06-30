@@ -143,7 +143,7 @@ export default function Contact() {
                 <Icon name="telegram" /><strong>{t.telegram}</strong> <a href="https://t.me/Icons8">@Icons8</a>
               </div>
               <div className="contact-item">
-                <strong>{t.location}</strong> Cariló, Argentina
+                <strong>{t.location}</strong> San Francisco & Cariló, Argentina
               </div>
             </div>
           </div>

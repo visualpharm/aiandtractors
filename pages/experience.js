@@ -23,7 +23,7 @@ const translations = {
     genYou: "GenYOU – personalized AI selfies",
     faceGen: "Face Generator – real-time faces", 
     humanGen: "Human Generator – full-body humans",
-    toolsIntro: "My three areas of expertise are:",
+    toolsIntro: "My Areas of Expertise",
     booksFormed: "Books that formed me:",
     learningHardWay: "Learning it all hard way",
     products: "PRODUCTS WE'VE LAUNCHED"
@@ -44,7 +44,7 @@ const translations = {
     genYou: "GenYOU – selfies de IA personalizadas",
     faceGen: "Face Generator – caras en tiempo real",
     humanGen: "Human Generator – humanos de cuerpo completo",
-    toolsIntro: "Mis tres áreas de especialización son:",
+    toolsIntro: "Mis Áreas de Especialización",
     booksFormed: "Libros que me formaron:",
     learningHardWay: "Aprendiéndolo todo por las malas",
     products: "PRODUCTOS QUE HEMOS LANZADO"
@@ -65,7 +65,7 @@ const translations = {
     genYou: "GenYOU – selfies de IA personalizadas",
     faceGen: "Face Generator – rostos em tempo real",
     humanGen: "Human Generator – humanos de corpo inteiro",
-    toolsIntro: "Minhas três áreas de especialização são:",
+    toolsIntro: "Minhas Áreas de Especialização",
     booksFormed: "Livros que me formaram:",
     learningHardWay: "Aprendendo tudo da maneira difícil",
     products: "PRODUTOS QUE LANÇAMOS"
@@ -104,9 +104,6 @@ export default function Experience() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="max-w-3xl">
                 <h1 className="text-6xl font-bold mb-6 text-gray-900 leading-tight" style={{ fontFamily: "'DotGothic16', sans-serif" }}>{t.heading}</h1>
-                <div>
-                  <p className="text-base text-gray-600 mb-4 leading-relaxed">{t.intro}</p>
-                </div>
               </div>
               <div className="flex justify-center items-center">
                 <img src="/i/experience.png" alt="Ivan Braun Experience" className="max-w-full max-h-96 h-auto w-auto" />
@@ -153,7 +150,10 @@ export default function Experience() {
           </div>
         </div>
         
-        <h2 className="text-sm font-medium mb-8 text-gray-600 uppercase tracking-wider">{t.toolsIntro}</h2>
+        <div className="mb-8">
+          <h2 className="text-sm font-medium mb-4 text-gray-600 uppercase tracking-wider">{t.toolsIntro}</h2>
+          <p className="text-base text-gray-600 leading-relaxed">{t.intro}</p>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8">
           <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-8 pt-8 pb-6 flex flex-col items-start text-left">

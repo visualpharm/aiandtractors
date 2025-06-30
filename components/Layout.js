@@ -38,6 +38,7 @@ const translations = {
 export default function Layout({ children }) {
   const router = useRouter()
   const [locale, setLocale] = useState('en')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
   useEffect(() => {
     // Detect locale from path
@@ -154,18 +155,19 @@ export default function Layout({ children }) {
       <nav className="top-nav">
         <div className="nav-container">
           <div className="nav-left">
-            <Link href={getLocalizedUrl('/')} className="nav-logo">Ivan Braun</Link>
+            {router.pathname !== '/' && router.pathname !== '/es' && router.pathname !== '/pt' && (
+              <Link href={getLocalizedUrl('/')} className="nav-logo">Ivan Braun</Link>
+            )}
             <ul className="nav-links">
               <li><Link href={getLocalizedUrl('/experience')}>{t.experience}</Link></li>
               <li><Link href={getLocalizedUrl('/book')}>{t.book}</Link></li>
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'}>{t.events}</Link></li>
               <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'}>{t.vanishedPeople}</Link></li>
-              <li><Link href={getLocalizedUrl('/visit')}>{t.visit}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>
           </div>
           <div className="nav-right">
-            <div className="language-switcher">
+            <div className="language-switcher desktop-only">
               <Link href={getCurrentPageInLocale('en')} style={{ display: 'flex' }}>
                 <Image 
                   src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
@@ -212,9 +214,93 @@ export default function Layout({ children }) {
                 />
               </Link>
             </div>
+            <button 
+              className="mobile-menu-button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}>
+          <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
+            <div className="mobile-menu-header">
+              <button 
+                className="mobile-menu-close"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <ul className="mobile-nav-links">
+              <li><Link href={getLocalizedUrl('/experience')} onClick={() => setMobileMenuOpen(false)}>{t.experience}</Link></li>
+              <li><Link href={getLocalizedUrl('/book')} onClick={() => setMobileMenuOpen(false)}>{t.book}</Link></li>
+              <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'} onClick={() => setMobileMenuOpen(false)}>{t.events}</Link></li>
+              <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'} onClick={() => setMobileMenuOpen(false)}>{t.vanishedPeople}</Link></li>
+              <li><Link href={getLocalizedUrl('/contact')} onClick={() => setMobileMenuOpen(false)}>{t.contact}</Link></li>
+              <li className="mobile-language-row">
+                <Link href={getCurrentPageInLocale('en')} onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex' }}>
+                  <Image 
+                    src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
+                    alt="English" 
+                    width={24}
+                    height={24}
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      border: '1px solid var(--border-color)',
+                      opacity: locale === 'en' ? 1 : 0.7
+                    }}
+                  />
+                </Link>
+                <Link href={getCurrentPageInLocale('es')} onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex' }}>
+                  <Image 
+                    src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" 
+                    alt="Español" 
+                    width={24}
+                    height={24}
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      border: '1px solid var(--border-color)',
+                      opacity: locale === 'es' ? 1 : 0.7
+                    }}
+                  />
+                </Link>
+                <Link href={getCurrentPageInLocale('pt')} onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex' }}>
+                  <Image 
+                    src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" 
+                    alt="Português" 
+                    width={24}
+                    height={24}
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      border: '1px solid var(--border-color)',
+                      opacity: locale === 'pt' ? 1 : 0.7
+                    }}
+                  />
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
 
       <main>{children}</main>
       
@@ -428,9 +514,175 @@ export default function Layout({ children }) {
             }
         }
 
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            width: 20px;
+            height: 16px;
+            position: relative;
+            transform: rotate(0deg);
+            transition: 0.3s ease-in-out;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--primary-color);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: 0.25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 7px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 14px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            top: 7px;
+            transform: rotate(135deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            top: 7px;
+            transform: rotate(-135deg);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100%;
+            background: var(--bg-color);
+            padding: 2rem;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-title {
+            color: var(--secondary-color);
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            flex: 1;
+        }
+
+        .mobile-language-row {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-language-row a {
+            display: flex;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-language-row a:hover {
+            opacity: 1 !important;
+        }
+
+        .desktop-only {
+            display: flex;
+        }
+
+        .mobile-nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary-color);
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+            
+            .desktop-only {
+                display: none;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+            }
+            
+            .mobile-menu-overlay {
+                display: block;
             }
         }
       `}</style>

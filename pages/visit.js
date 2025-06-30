@@ -10,21 +10,21 @@ const translations = {
     title: "Visit - Ivan Braun",
     description: "Visit Ivan Braun in Cariló, Argentina. Information about location, accommodation, and meeting arrangements.",
     heading: "Visit Me in Cariló",
-    villaDescription: "I've built a villa to invite fellow tech founders. It's a great expensive build in the beautiful place the pine forest meets the ocean. It's 4 hours from Buenos Aires.",
+    villaDescription: "I live in a beautiful beach town, but I feel a little bit lonely here at times because I don't have any fellow tech founders or tech-minded people around. That's why I built Il Buco - a villa to invite like-minded people. It's an incredible build where the pine forest meets the ocean, just 4 hours from Buenos Aires.",
     visitText: "If you book it, I'll do my best to visit you, shake hands, and chit chat (sometimes for hours, so push me out when tired)."
   },
   es: {
     title: "Visitarme - Ivan Braun", 
     description: "Visita a Ivan Braun en Cariló, Argentina. Información sobre ubicación, alojamiento y citas.",
     heading: "Visitarme en Cariló",
-    villaDescription: "He construido una villa para invitar a otros fundadores tecnológicos. Es una construcción costosa en el hermoso lugar donde el bosque de pinos se encuentra con el océano. Está a 4 horas de Buenos Aires.",
+    villaDescription: "Vivo en un hermoso pueblo costero, pero a veces me siento un poco solo aquí porque no tengo compañeros fundadores de tecnología o personas con mentalidad tecnológica cerca. Por eso construí Il Buco - una villa para invitar a personas afines. Es una construcción increíble donde el bosque de pinos se encuentra con el océano, a solo 4 horas de Buenos Aires.",
     visitText: "Si la reservas, haré mi mejor esfuerzo para visitarte, darte la mano y charlar (a veces por horas, así que échame cuando te canses)."
   },
   pt: {
     title: "Me Visitar - Ivan Braun",
     description: "Visite Ivan Braun em Cariló, Argentina. Informações sobre localização, acomodação e encontros.",
     heading: "Me Visite em Cariló", 
-    villaDescription: "Construí uma villa para convidar outros fundadores de tecnologia. É uma construção cara e bonita no lugar onde a floresta de pinheiros encontra o oceano. Fica a 4 horas de Buenos Aires.",
+    villaDescription: "Moro em uma bela cidade litorânea, mas às vezes me sinto um pouco sozinho aqui porque não tenho colegas fundadores de tecnologia ou pessoas com mentalidade tecnológica por perto. É por isso que construí Il Buco - uma villa para convidar pessoas com ideias afins. É uma construção incrível onde a floresta de pinheiros encontra o oceano, a apenas 4 horas de Buenos Aires.",
     visitText: "Se você reservar, farei o meu melhor para visitá-lo, apertar as mãos e conversar (às vezes por horas, então me expulse quando estiver cansado)."
   }
 }

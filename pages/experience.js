@@ -143,18 +143,18 @@ export default function Experience() {
             <div className="md:col-span-3">
               <p className="text-lg text-gray-700 leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t.storyIntro }}></p>
               
-              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+              <div className={`bg-white rounded-2xl shadow-lg p-8 mb-8 ${t.wasDumbText.includes('My advice:') || t.wasDumbText.includes('Mi consejo:') || t.wasDumbText.includes('Meu conselho:') ? 'border-b-4 border-blue-500' : ''}`}>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.wasDumb}</h3>
                 <div className="text-gray-700 leading-relaxed">
                   {t.wasDumbText.split('\n\n').map((paragraph, index) => {
                     if (paragraph.startsWith('My advice:') || paragraph.startsWith('Mi consejo:') || paragraph.startsWith('Meu conselho:')) {
                       return (
-                        <div key={index} className="mb-4 last:mb-0 bg-blue-100 p-4 rounded-lg border-b-4 border-blue-500">
+                        <div key={index} className="mb-4 last:mb-0">
                           <div className="flex items-start">
                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500 text-white mr-3 mt-1 flex-shrink-0">
                               💡 ADVICE
                             </span>
-                            <p className="mb-0 text-blue-900">{paragraph}</p>
+                            <p className="mb-0 text-gray-700">{paragraph}</p>
                           </div>
                         </div>
                       )
@@ -164,18 +164,18 @@ export default function Experience() {
                 </div>
               </div>
               
-              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+              <div className={`bg-white rounded-2xl shadow-lg p-8 mb-8 ${t.managingMoneyText.includes('That\'s my lesson:') || t.managingMoneyText.includes('Esa es mi lección:') || t.managingMoneyText.includes('Essa é minha lição:') ? 'border-b-4 border-green-500' : ''}`}>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.managingMoney}</h3>
                 <div className="text-gray-700 leading-relaxed">
                   {t.managingMoneyText.split('\n\n').map((paragraph, index) => {
                     if (paragraph.startsWith('That\'s my lesson:') || paragraph.startsWith('Esa es mi lección:') || paragraph.startsWith('Essa é minha lição:')) {
                       return (
-                        <div key={index} className="mb-4 last:mb-0 bg-green-100 p-4 rounded-lg border-b-4 border-green-500">
+                        <div key={index} className="mb-4 last:mb-0">
                           <div className="flex items-start">
                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white mr-3 mt-1 flex-shrink-0">
                               🎯 LESSON
                             </span>
-                            <p className="mb-0 text-green-900">{paragraph}</p>
+                            <p className="mb-0 text-gray-700">{paragraph}</p>
                           </div>
                         </div>
                       )
@@ -185,18 +185,18 @@ export default function Experience() {
                 </div>
               </div>
               
-              <div className="bg-white rounded-2xl shadow-lg p-8">
+              <div className={`bg-white rounded-2xl shadow-lg p-8 ${t.pickingFruitText.includes('My lesson:') || t.pickingFruitText.includes('Mi lección:') || t.pickingFruitText.includes('Minha lição:') ? 'border-b-4 border-purple-500' : ''}`}>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.pickingFruit}</h3>
                 <div className="text-gray-700 leading-relaxed">
                   {t.pickingFruitText.split('\n\n').map((paragraph, index) => {
                     if (paragraph.startsWith('My lesson:') || paragraph.startsWith('Mi lección:') || paragraph.startsWith('Minha lição:')) {
                       return (
-                        <div key={index} className="mb-4 last:mb-0 bg-purple-100 p-4 rounded-lg border-b-4 border-purple-500">
+                        <div key={index} className="mb-4 last:mb-0">
                           <div className="flex items-start">
                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-500 text-white mr-3 mt-1 flex-shrink-0">
                               💎 LESSON
                             </span>
-                            <p className="mb-0 text-purple-900">{paragraph}</p>
+                            <p className="mb-0 text-gray-700">{paragraph}</p>
                           </div>
                         </div>
                       )

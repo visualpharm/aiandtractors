@@ -146,27 +146,63 @@ export default function Experience() {
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.wasDumb}</h3>
                 <div className="text-gray-700 leading-relaxed">
-                  {t.wasDumbText.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
-                  ))}
+                  {t.wasDumbText.split('\n\n').map((paragraph, index) => {
+                    if (paragraph.startsWith('My advice:') || paragraph.startsWith('Mi consejo:') || paragraph.startsWith('Meu conselho:')) {
+                      return (
+                        <div key={index} className="mb-4 last:mb-0 bg-blue-100 p-4 rounded-lg border-b-4 border-blue-500">
+                          <div className="flex items-start">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500 text-white mr-3 mt-1 flex-shrink-0">
+                              💡 ADVICE
+                            </span>
+                            <p className="mb-0 text-blue-900">{paragraph}</p>
+                          </div>
+                        </div>
+                      )
+                    }
+                    return <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
+                  })}
                 </div>
               </div>
               
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.managingMoney}</h3>
                 <div className="text-gray-700 leading-relaxed">
-                  {t.managingMoneyText.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
-                  ))}
+                  {t.managingMoneyText.split('\n\n').map((paragraph, index) => {
+                    if (paragraph.startsWith('That\'s my lesson:') || paragraph.startsWith('Esa es mi lección:') || paragraph.startsWith('Essa é minha lição:')) {
+                      return (
+                        <div key={index} className="mb-4 last:mb-0 bg-green-100 p-4 rounded-lg border-b-4 border-green-500">
+                          <div className="flex items-start">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white mr-3 mt-1 flex-shrink-0">
+                              🎯 LESSON
+                            </span>
+                            <p className="mb-0 text-green-900">{paragraph}</p>
+                          </div>
+                        </div>
+                      )
+                    }
+                    return <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
+                  })}
                 </div>
               </div>
               
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.pickingFruit}</h3>
                 <div className="text-gray-700 leading-relaxed">
-                  {t.pickingFruitText.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
-                  ))}
+                  {t.pickingFruitText.split('\n\n').map((paragraph, index) => {
+                    if (paragraph.startsWith('My lesson:') || paragraph.startsWith('Mi lección:') || paragraph.startsWith('Minha lição:')) {
+                      return (
+                        <div key={index} className="mb-4 last:mb-0 bg-purple-100 p-4 rounded-lg border-b-4 border-purple-500">
+                          <div className="flex items-start">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-500 text-white mr-3 mt-1 flex-shrink-0">
+                              💎 LESSON
+                            </span>
+                            <p className="mb-0 text-purple-900">{paragraph}</p>
+                          </div>
+                        </div>
+                      )
+                    }
+                    return <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
+                  })}
                 </div>
               </div>
             </div>

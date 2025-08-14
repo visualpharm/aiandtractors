@@ -54,6 +54,12 @@ const nextConfig = {
         destination: '/tech-events-:year-pt',
         permanent: false,
       },
+      // Redirect ilbuco.com.ar path
+      {
+        source: '/que-hacer-en-carilo-cuando-llueve',
+        destination: '/que-hacer-en-carilo/cuando-llueve',
+        permanent: true,
+      },
     ]
   },
 };

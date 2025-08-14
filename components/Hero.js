@@ -32,7 +32,7 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
 
   return (
     <>
-      <section className="bg-gray-50 py-16 flex items-center justify-center">
+      <section className="bg-gray-50 py-8 md:py-16 flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
           <div className="text-left">
             <h1 className="text-6xl md:text-7xl font-normal text-gray-900 mb-2 -ml-2 leading-tight" style={{ fontFamily: "'DotGothic16', monospace" }}>
@@ -86,7 +86,7 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
                 width={500}
                 height={400}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="w-full max-w-[505px] h-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
+                className="w-full max-w-[480px] sm:max-w-[510px] md:max-w-[505px] h-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
                 priority
               />
             </a>

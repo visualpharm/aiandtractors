@@ -11,20 +11,20 @@ import Government from '../components/Government'
 const translations = {
   en: {
     title: "Ivan Braun – Entrepreneur, Investor, AI Speaker",
-    description: "Tech founder leading 150+ team members, serving 4M users. Based in San Francisco and Cariló, Argentina. Recent construction including coliving for tech founders and Argentinian shelter in case of a global meltdown. One successful innovation was having a QA engineer working on error logging. I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups.",
-    subtitle: "Tech Entrepreneur, AI Speaker, Investor",
+    description: "Founded and bootstrapped Icons8 and Generated Photos, serving 4M+ users with AI-powered creative tools. Built remote teams of 150+ people. Pioneer in AI implementation for design and creative industries. International speaker on AI transformation and bootstrapped growth.",
+    subtitle: "AI Pioneer • Creative Tech • 4M Users",
     introText: "I'm looking to find inspiring conversations, speak at conferences, and serve as an advisor for startups."
   },
   es: {
     title: "Ivan Braun – Emprendedor, Inversor, Speaker IA",
-    description: "Fundador tecnológico liderando más de 150 miembros del equipo, sirviendo a 4M usuarios. Basado en San Francisco y Cariló, Argentina. Construcción reciente incluyendo coliving para fundadores de tecnología y refugio argentino en caso de colapso global. Una innovación exitosa fue tener un ingeniero QA trabajando en el registro de errores.",
-    subtitle: "Emprendedor Tecnológico, Speaker IA, Inversor",
+    description: "Fundó y bootstrapped Icons8 y Generated Photos, sirviendo a más de 4M usuarios con herramientas creativas impulsadas por IA. Construyó equipos remotos de más de 150 personas. Pionero en implementación de IA para industrias de diseño y creativas. Speaker internacional sobre transformación IA y crecimiento bootstrapped.",
+    subtitle: "Pionero IA • Tecnología Creativa • 4M Usuarios",
     introText: "Busco conversaciones inspiradoras, hablar en conferencias y servir como asesor de startups."
   },
   pt: {
     title: "Ivan Braun – Empreendedor, Investidor, Speaker IA",
-    description: "Fundador de tecnologia liderando mais de 150 membros da equipe, servindo 4M usuários. Baseado em San Francisco e Cariló, Argentina. Construção recente incluindo coliving para fundadores de tecnologia e abrigo argentino em caso de colapso global. Uma inovação bem-sucedida foi ter um engenheiro QA trabalhando no registro de erros.",
-    subtitle: "Empreendedor Tecnológico, Speaker IA, Investidor",
+    description: "Fundou e fez bootstrapped de Icons8 e Generated Photos, servindo mais de 4M usuários com ferramentas criativas alimentadas por IA. Construiu equipes remotas de mais de 150 pessoas. Pioneiro na implementação de IA para indústrias de design e criativas. Palestrante internacional sobre transformação IA e crescimento bootstrapped.",
+    subtitle: "Pioneiro IA • Tecnologia Criativa • 4M Usuários",
     introText: "Procuro conversas inspiradoras, palestrar em conferências e servir como consultor de startups."
   }
 }

@@ -109,7 +109,7 @@ export default function Awards({ language = 'en' }) {
         
         {/* Metrics */}
         <div className="mt-7" style={{ paddingTop: '32px', paddingBottom: '60px' }}>
-          <div className="flex flex-nowrap justify-center gap-4 md:gap-8 lg:gap-16 mt-8 overflow-x-auto">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-16 mt-8">
             {[
               { number: '4M', icon: '👥', label: t.users, sublabel: t.globally },
               { number: '150', icon: '👥', label: t.team, sublabel: '' },
@@ -117,7 +117,7 @@ export default function Awards({ language = 'en' }) {
               { number: '$0', icon: '', label: t.debt, sublabel: '' },
               { number: `${new Date().getFullYear() - 2002}`, icon: '', label: t.years, sublabel: t.creativeTech },
               { number: '$54.6K', icon: '', label: t.avgServer, sublabel: t.price },
-              { number: '1st', icon: '', label: t.vendor, sublabel: t.canva }
+              { number: '#1', icon: '', label: t.vendor, sublabel: t.canva }
             ].map((metric, index) => (
               <div key={index} className="text-center flex-shrink-0 min-w-[80px] max-w-[120px]">
                 <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary">

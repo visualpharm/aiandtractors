@@ -2,8 +2,8 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 
-// Google Places API key provided by the user
-const API_KEY = 'AIzaSyApWB31P9OccXFXHH0nak_iRBsK2FMrsds';
+// Google Places API key from environment variable
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
 const PLACES_API_URL = 'https://maps.googleapis.com/maps/api/place';
 
 export default async function handler(req, res) {

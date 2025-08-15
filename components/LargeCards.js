@@ -41,12 +41,12 @@ export default function LargeCards({ title, items }) {
             {/* Corner stripe for Product Hunt card */}
             {item.logo && item.logo.includes('product-hunt') && (
               <div 
-                className="absolute bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold py-2 px-12 transform rotate-45"
+                className="absolute bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold py-1.5 px-16 transform rotate-45"
                 style={{
                   boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-                  top: '16px',
-                  right: '-35px',
-                  width: '150px',
+                  top: '18px',
+                  right: '-50px',
+                  width: '200px',
                   textAlign: 'center',
                   fontSize: '18px',
                   whiteSpace: 'nowrap'

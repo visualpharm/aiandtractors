@@ -27,7 +27,7 @@ const translations = {
   }
 }
 
-export default function Hero({ title, subtitle, description, introText, imageUrl, language = 'en' }) {
+export default function Hero({ title, subtitle, description, descriptionWithLinks, introText, imageUrl, language = 'en' }) {
   const t = translations[language] || translations.en
 
   return (
@@ -35,14 +35,14 @@ export default function Hero({ title, subtitle, description, introText, imageUrl
       <section className="bg-gray-50 py-8 md:py-16 flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
           <div className="text-left">
-            <h1 className="text-6xl md:text-7xl font-normal text-gray-900 mb-2 -ml-2 leading-tight" style={{ fontFamily: "'DotGothic16', monospace" }}>
+            <h1 className="text-6xl md:text-7xl font-normal text-gray-900 mb-4 -ml-2 leading-tight" style={{ fontFamily: "'DotGothic16', monospace" }}>
               {title}
             </h1>
-            <p className="text-xl text-gray-600 mb-4 font-normal">
+            <p className="text-xl text-gray-600 font-normal" style={{ marginBottom: '14px' }}>
               {subtitle}
             </p>
-            <p className="text-base text-gray-600 mb-6 leading-relaxed">
-              {description}
+            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              {descriptionWithLinks || description}
             </p>
             <div className="flex gap-4 flex-nowrap">
               {imageUrl ? (

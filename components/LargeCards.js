@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-export default function LargeCards({ title, items }) {
+export default function LargeCards({ title, items, ribbonText = "45 times" }) {
   return (
     <div className="w-full">
       {title && (
@@ -52,7 +52,7 @@ export default function LargeCards({ title, items }) {
                   whiteSpace: 'nowrap'
                 }}
               >
-                45 times
+                {ribbonText}
               </div>
             )}
             {/* Flag icon for government agencies */}

@@ -64,7 +64,7 @@ export default function MediaCoverage({ language = 'en' }) {
           <h2 className="text-sm font-medium my-2 text-gray-600 uppercase tracking-wider">{t.title}</h2>
         </section>
         
-        <div className="flex flex-nowrap gap-3 m-0 p-0 w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] pl-0 pr-0 overflow-x-auto">
+        <div className="flex flex-wrap gap-3 m-0 p-0">
           <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div className="h-[30px] w-[91px] flex items-center justify-center mb-2">
               <Image 

@@ -5,6 +5,7 @@ const translations = {
     title: "Awards & Recognition",
     awards44: "Product of the Day and other awards",
     productHunt: "ProductHunt",
+    times45: "45 times",
     top101Founders: "Top 101 Founders in Web Design",
     americanStartup: "American Startup Magazine",
     bestEmployers: "America's Best Startup Employers",
@@ -27,6 +28,7 @@ const translations = {
     title: "Premios y Reconocimientos",
     awards44: "Producto del Día y otros premios",
     productHunt: "ProductHunt",
+    times45: "45 veces",
     top101Founders: "Top 101 Fundadores en Diseño Web",
     americanStartup: "American Startup Magazine",
     bestEmployers: "Mejores Empleadores Startup de América",
@@ -49,6 +51,7 @@ const translations = {
     title: "Prêmios e Reconhecimentos",
     awards44: "Produto do Dia e outros prêmios",
     productHunt: "ProductHunt",
+    times45: "45 vezes",
     top101Founders: "Top 101 Fundadores em Web Design",
     americanStartup: "American Startup Magazine",
     bestEmployers: "Melhores Empregadores Startup da América",
@@ -83,6 +86,7 @@ export default function Awards({ language = 'en' }) {
       <div className="max-w-6xl mx-auto px-8" style={{ paddingTop: '28px' }}>
         <LargeCards 
           title=""
+          ribbonText={t.times45}
           items={[
             {
               title: t.awards44,

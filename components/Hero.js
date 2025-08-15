@@ -44,35 +44,35 @@ export default function Hero({ title, subtitle, description, descriptionWithLink
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               {descriptionWithLinks || description}
             </p>
-            <div className="flex gap-4 flex-nowrap">
+            <div className="flex gap-4 flex-row">
               {imageUrl ? (
                 <>
                   <button 
-                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
+                    className="px-6 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg max-w-[200px] flex-1"
                     onClick={() => window.open('https://book.ilbuco.com.ar/', '_self')}
                   >
-                    <p className="font-medium tracking-tight leading-tight m-0">{t.book}</p>
+                    <p className="font-medium tracking-tight leading-tight m-0 truncate">{t.book}</p>
                   </button>
                   <button 
-                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
+                    className="px-6 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg max-w-[200px] flex-1"
                     onClick={() => window.open('https://ilbuco.com.ar', '_self')}
                   >
-                    <p className="font-medium tracking-tight leading-tight m-0">{t.learnMore}</p>
+                    <p className="font-medium tracking-tight leading-tight m-0 truncate">{t.learnMore}</p>
                   </button>
                 </>
               ) : (
                 <>
                   <button 
-                    className="px-10 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
+                    className="px-6 py-4 bg-blue-600 text-white rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-700 hover:-translate-y-1 hover:shadow-lg max-w-[200px] flex-1"
                     onClick={() => window.location.href = '/contact'}
                   >
-                    <p className="font-medium tracking-tight leading-tight m-0">{t.contact}</p>
+                    <p className="font-medium tracking-tight leading-tight m-0 truncate">{t.contact}</p>
                   </button>
                   <button 
-                    className="px-10 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
+                    className="px-6 py-4 bg-white text-gray-900 rounded-lg cursor-pointer transition-all duration-300 inline-flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg max-w-[200px] flex-1"
                     onClick={() => window.location.href = '/visit'}
                   >
-                    <p className="font-medium tracking-tight leading-tight m-0">{t.visit}</p>
+                    <p className="font-medium tracking-tight leading-tight m-0 truncate">{t.visit}</p>
                   </button>
                 </>
               )}

@@ -10,8 +10,8 @@ import Government from '../../components/Government'
 const translations = {
   es: {
     title: "Ivan Braun – Emprendedor, Inversor, Speaker IA",
-    description: "Fundador tecnológico liderando más de 150 miembros del equipo, sirviendo a 4M usuarios. Basado en Cariló, Argentina.",
-    subtitle: "Emprendedor Tecnológico, Speaker IA, Inversor",
+    description: "Fundó y bootstrapped Icons8 y Generated Photos, sirviendo a más de 4M usuarios con herramientas creativas y funciones impulsadas por IA. Construyó equipo remoto de 150 personas. Speaker internacional sobre transformación IA y crecimiento bootstrapped.",
+    subtitle: "Pionero IA • Tecnología Creativa • 4M Usuarios",
     introText: "Busco conversaciones inspiradoras, hablar en conferencias y servir como asesor de startups."
   }
 }
@@ -34,6 +34,11 @@ export default function HomeES() {
         title="Ivan Braun"
         subtitle={t.subtitle}
         description={t.description}
+        descriptionWithLinks={
+          <>
+            Fundó y bootstrapped <a href="https://icons8.com" className="text-blue-600 no-underline hover:text-gray-900">Icons8</a> y <a href="https://generated.photos" className="text-blue-600 no-underline hover:text-gray-900">Generated Photos</a>, sirviendo a más de 4M usuarios con herramientas creativas y funciones impulsadas por IA. Construyó equipo remoto de 150 personas. Speaker internacional sobre transformación IA y crecimiento bootstrapped.
+          </>
+        }
         introText={t.introText}
         language="es"
       />

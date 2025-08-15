@@ -15,7 +15,7 @@ export default function LargeCards({ title, items }) {
         {items.map((item, index) => (
           <div
             key={index}
-            className={`bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col h-full p-5 md:p-7 border border-gray-100 text-left ${
+            className={`bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col h-full p-5 md:p-7 border border-gray-100 text-left overflow-hidden ${
               item.isIntro ? 'lg:col-span-1' : ''
             } ${
               item.logo && item.logo.includes('product-hunt') ? 'relative z-10' : ''
@@ -38,6 +38,23 @@ export default function LargeCards({ title, items }) {
             tabIndex={0}
             aria-label={`${item.title}, ${item.description}`}
           >
+            {/* Corner stripe for Product Hunt card */}
+            {item.logo && item.logo.includes('product-hunt') && (
+              <div 
+                className="absolute bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold py-2 px-12 transform rotate-45"
+                style={{
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                  top: '16px',
+                  right: '-35px',
+                  width: '150px',
+                  textAlign: 'center',
+                  fontSize: '18px',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                45 times
+              </div>
+            )}
             {/* Flag icon for government agencies */}
             {item.flagClass && (
               <div className="mb-4 flex justify-start">
@@ -88,7 +105,7 @@ export default function LargeCards({ title, items }) {
             <div className={`flex-1 flex flex-col justify-start w-full ${
               item.logo && item.logo.includes('product-hunt') ? 'mt-4' : ''
             }`}>
-              <h4 className={`font-semibold text-gray-900 leading-tight ${
+              <h4 className={`font-semibold text-gray-900 leading-tight mb-1.5 ${
                 item.isIntro ? 'text-sm uppercase tracking-wider text-gray-500' : 'text-base md:text-lg'
               }`}>
                 {item.title.includes('Award') ? (

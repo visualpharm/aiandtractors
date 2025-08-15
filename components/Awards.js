@@ -3,7 +3,7 @@ import LargeCards from './LargeCards';
 const translations = {
   en: {
     title: "Awards & Recognition",
-    awards44: "Products of the Day and others",
+    awards44: "Product of the Day and other awards",
     productHunt: "ProductHunt",
     top101Founders: "Top 101 Founders in Web Design",
     americanStartup: "American Startup Magazine",
@@ -25,7 +25,7 @@ const translations = {
   },
   es: {
     title: "Premios y Reconocimientos",
-    awards44: "Productos del Día y otros",
+    awards44: "Producto del Día y otros premios",
     productHunt: "ProductHunt",
     top101Founders: "Top 101 Fundadores en Diseño Web",
     americanStartup: "American Startup Magazine",
@@ -47,7 +47,7 @@ const translations = {
   },
   pt: {
     title: "Prêmios e Reconhecimentos",
-    awards44: "Produtos do Dia e outros",
+    awards44: "Produto do Dia e outros prêmios",
     productHunt: "ProductHunt",
     top101Founders: "Top 101 Fundadores em Web Design",
     americanStartup: "American Startup Magazine",

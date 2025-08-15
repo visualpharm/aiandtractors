@@ -255,13 +255,14 @@ export default function Layout({ children }) {
                   <Image 
                     src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
                     alt="English" 
-                    width={24}
-                    height={24}
+                    width={32}
+                    height={32}
                     style={{
-                      width: '24px',
-                      height: '24px',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: '50%',
                       border: '1px solid var(--border-color)',
+                      objectFit: 'cover',
                       opacity: locale === 'en' ? 1 : 0.7
                     }}
                   />
@@ -270,13 +271,14 @@ export default function Layout({ children }) {
                   <Image 
                     src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" 
                     alt="Español" 
-                    width={24}
-                    height={24}
+                    width={32}
+                    height={32}
                     style={{
-                      width: '24px',
-                      height: '24px',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: '50%',
                       border: '1px solid var(--border-color)',
+                      objectFit: 'cover',
                       opacity: locale === 'es' ? 1 : 0.7
                     }}
                   />
@@ -285,13 +287,14 @@ export default function Layout({ children }) {
                   <Image 
                     src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" 
                     alt="Português" 
-                    width={24}
-                    height={24}
+                    width={32}
+                    height={32}
                     style={{
-                      width: '24px',
-                      height: '24px',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: '50%',
                       border: '1px solid var(--border-color)',
+                      objectFit: 'cover',
                       opacity: locale === 'pt' ? 1 : 0.7
                     }}
                   />

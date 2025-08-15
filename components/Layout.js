@@ -214,6 +214,53 @@ export default function Layout({ children }) {
                 />
               </Link>
             </div>
+            <div className="language-switcher mobile-only">
+              <Link href={getCurrentPageInLocale('en')} style={{ display: 'flex' }}>
+                <Image 
+                  src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
+                  alt="English" 
+                  width={24}
+                  height={24}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)',
+                    opacity: locale === 'en' ? 1 : 0.7
+                  }}
+                />
+              </Link>
+              <Link href={getCurrentPageInLocale('es')} style={{ display: 'flex' }}>
+                <Image 
+                  src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" 
+                  alt="Español" 
+                  width={24}
+                  height={24}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)',
+                    opacity: locale === 'es' ? 1 : 0.7
+                  }}
+                />
+              </Link>
+              <Link href={getCurrentPageInLocale('pt')} style={{ display: 'flex' }}>
+                <Image 
+                  src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" 
+                  alt="Português" 
+                  width={24}
+                  height={24}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)',
+                    opacity: locale === 'pt' ? 1 : 0.7
+                  }}
+                />
+              </Link>
+            </div>
             <button 
               className="mobile-menu-button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -250,56 +297,6 @@ export default function Layout({ children }) {
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'} onClick={() => setMobileMenuOpen(false)}>{t.events}</Link></li>
               <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'} onClick={() => setMobileMenuOpen(false)}>{t.vanishedPeople}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')} onClick={() => setMobileMenuOpen(false)}>{t.contact}</Link></li>
-              <li className="mobile-language-row">
-                <Link href={getCurrentPageInLocale('en')} onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex' }}>
-                  <Image 
-                    src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" 
-                    alt="English" 
-                    width={32}
-                    height={32}
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      border: '1px solid var(--border-color)',
-                      objectFit: 'cover',
-                      opacity: locale === 'en' ? 1 : 0.7
-                    }}
-                  />
-                </Link>
-                <Link href={getCurrentPageInLocale('es')} onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex' }}>
-                  <Image 
-                    src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ar.svg" 
-                    alt="Español" 
-                    width={32}
-                    height={32}
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      border: '1px solid var(--border-color)',
-                      objectFit: 'cover',
-                      opacity: locale === 'es' ? 1 : 0.7
-                    }}
-                  />
-                </Link>
-                <Link href={getCurrentPageInLocale('pt')} onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex' }}>
-                  <Image 
-                    src="https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg" 
-                    alt="Português" 
-                    width={32}
-                    height={32}
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      border: '1px solid var(--border-color)',
-                      objectFit: 'cover',
-                      opacity: locale === 'pt' ? 1 : 0.7
-                    }}
-                  />
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -656,6 +653,10 @@ export default function Layout({ children }) {
         .desktop-only {
             display: flex;
         }
+        
+        .mobile-only {
+            display: none;
+        }
 
         .mobile-nav-links a {
             color: var(--secondary-color);
@@ -678,6 +679,12 @@ export default function Layout({ children }) {
             
             .desktop-only {
                 display: none;
+            }
+            
+            .mobile-only {
+                display: flex;
+                gap: 0.5rem;
+                margin-right: 1rem;
             }
             
             .mobile-menu-button {

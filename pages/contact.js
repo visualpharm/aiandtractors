@@ -23,8 +23,10 @@ const translations = {
     generalPartnerships: "General partnerships", 
     salesPitches: "Sales pitches",
     supportChannels: "Icons8 & Generated Photos: please use official support channels",
+    name: "Name:",
     email: "Email:",
-    telegram: "Telegram:",
+    phone: "Phone & WhatsApp:",
+    address: "Address:",
     location: "Location:"
   },
   es: {
@@ -46,8 +48,10 @@ const translations = {
     generalPartnerships: "Asociaciones generales",
     salesPitches: "Pitches de ventas", 
     supportChannels: "Icons8 & Generated Photos: usa los canales oficiales de soporte",
+    name: "Nombre:",
     email: "Email:",
-    telegram: "Telegram:",
+    phone: "Teléfono y WhatsApp:",
+    address: "Dirección:",
     location: "Ubicación:"
   },
   pt: {
@@ -69,8 +73,10 @@ const translations = {
     generalPartnerships: "Parcerias gerais",
     salesPitches: "Pitches de vendas",
     supportChannels: "Icons8 & Generated Photos: use os canais oficiais de suporte",
+    name: "Nome:",
     email: "Email:",
-    telegram: "Telegram:", 
+    phone: "Telefone e WhatsApp:",
+    address: "Endereço:",
     location: "Localização:"
   }
 }
@@ -137,13 +143,16 @@ export default function Contact() {
             <h2 className="section-title">{t.getInTouch}</h2>
             <div className="contact-info">
               <div className="contact-item">
-                <Icon name="email" /><strong>{t.email}</strong> <a href="mailto:ivan@generated.photos">ivan@generated.photos</a>
+                <strong>Andres Duffau</strong>
               </div>
               <div className="contact-item">
-                <Icon name="telegram" /><strong>{t.telegram}</strong> <a href="https://t.me/Icons8">@Icons8</a>
+                <Icon name="email" /><strong>{t.email}</strong> <a href="mailto:ilbucodicarilo@gmail.com">ilbucodicarilo@gmail.com</a>
               </div>
               <div className="contact-item">
-                <strong>{t.location}</strong> San Francisco & Cariló, Argentina
+                <Icon name="whatsapp" /><strong>{t.phone}</strong> <a href="https://wa.me/541133943379">+54 11 3394 3379</a>
+              </div>
+              <div className="contact-item">
+                <Icon name="map-pin" /><strong>{t.address}</strong> Cariló, Argentina
               </div>
             </div>
           </div>

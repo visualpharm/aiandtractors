@@ -163,11 +163,21 @@ export default function Speaking({ language = 'en' }) {
         </div>
         
         <div className="inclined-card photo-card">
-          <a href="/i/conferences/presenting.jpeg" data-fancybox="conference-gallery">
-            <img src="/i/conferences/presenting.jpeg" alt={t.presentingAt} />
+          <a href="/i/conferences/horasis.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
+            <Image
+              src="/i/conferences/horasis.jpg"
+              alt={t.presentingAt}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </a>
         </div>
-        
+
         <div className="inclined-card photo-card">
           <a href="/i/conferences/conferece-speaker.jpg" data-fancybox="conference-gallery" style={{ display: 'block', width: '100%', height: '100%' }}>
             <Image 

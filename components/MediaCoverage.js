@@ -59,14 +59,14 @@ export default function MediaCoverage({ language = 'en' }) {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-8">
-        <section className="m-0 p-0">
+      <div className="w-full px-0">
+        <section className="m-0 p-0 max-w-6xl mx-auto px-8">
           <h2 className="text-sm font-medium my-2 text-gray-600 uppercase tracking-wider">{t.title}</h2>
         </section>
-        
-        <div className="flex flex-wrap gap-3 m-0 p-0">
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[91px] flex items-center justify-center mb-2">
+
+        <div className="media-outlets-container">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/wp.png" 
                 alt="Washington Post" 
@@ -78,8 +78,8 @@ export default function MediaCoverage({ language = 'en' }) {
             <h3 className="text-sm font-semibold mb-1 text-gray-900">{t.fakePeople}</h3>
             <p className="text-xs text-gray-600 m-0 leading-tight"><a href="https://www.washingtonpost.com/technology/2020/01/07/dating-apps-need-women-advertisers-need-diversity-ai-companies-offer-solution-fake-people/" className="text-blue-600 no-underline hover:text-gray-900">{t.wpDescription}</a></p>
           </div>
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[63px] flex items-center justify-center mb-2">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/bbc.svg" 
                 alt="BBC" 
@@ -91,8 +91,8 @@ export default function MediaCoverage({ language = 'en' }) {
             <h3 className="text-sm font-semibold mb-1 text-gray-900">{t.deepfakes}</h3>
             <p className="text-xs text-gray-600 m-0 leading-tight"><a href="https://www.bbc.com/news/technology-51064933" className="text-blue-600 no-underline hover:text-gray-900">{t.bbcDescription}</a></p>
           </div>
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[70px] flex items-center justify-center mb-2">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/der_spiegel.svg" 
                 alt="Der Spiegel" 
@@ -104,8 +104,8 @@ export default function MediaCoverage({ language = 'en' }) {
             <h3 className="text-sm font-semibold mb-1 text-gray-900">{t.aiFaces}</h3>
             <p className="text-xs text-gray-600 m-0 leading-tight">{t.spiegelDescription}</p>
           </div>
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[63px] flex items-center justify-center mb-2">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/la_repubblica.svg" 
                 alt="La Repubblica" 
@@ -117,8 +117,8 @@ export default function MediaCoverage({ language = 'en' }) {
             <h3 className="text-sm font-semibold mb-1 text-gray-900">{t.syntheticPortraits}</h3>
             <p className="text-xs text-gray-600 m-0 leading-tight"><a href="https://www.repubblica.it/tecnologia/2019/09/26/news/volti_generated_photos_deepfake-236979821/" className="text-blue-600 no-underline hover:text-gray-900">{t.repubblicaDescription}</a></p>
           </div>
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[72px] flex items-center justify-center mb-2">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/the_verge.svg" 
                 alt="The Verge" 
@@ -130,8 +130,8 @@ export default function MediaCoverage({ language = 'en' }) {
             <h3 className="text-sm font-semibold mb-1 text-gray-900">{t.stockPhotos}</h3>
             <p className="text-xs text-gray-600 m-0 leading-tight"><a href="https://www.theverge.com/2019/9/20/20875362/100000-fake-ai-photos-stock-photography-royalty-free" className="text-blue-600 no-underline hover:text-gray-900">{t.vergeDescription}</a></p>
           </div>
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[70px] flex items-center justify-center mb-2">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/vice.svg" 
                 alt="Vice" 
@@ -143,8 +143,8 @@ export default function MediaCoverage({ language = 'en' }) {
             <h3 className="text-sm font-semibold mb-1 text-gray-900">{t.aiDiversity}</h3>
             <p className="text-xs text-gray-600 m-0 leading-tight"><a href="https://www.vice.com/en/article/generated-photos-thinks-it-can-solve-diversity-with-100000-fake-ai-faces/" className="text-blue-600 no-underline hover:text-gray-900">{t.viceDescription}</a></p>
           </div>
-          <div className="flex-1 min-w-[160px] bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[30px] w-[103px] flex items-center justify-center mb-2">
+          <div className="bg-white p-3 rounded-md border border-gray-200 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="h-[30px] w-full flex items-center justify-center mb-2">
               <Image 
                 src="/i/logos/media/daily_mail.svg" 
                 alt="Daily Mail" 
@@ -159,6 +159,45 @@ export default function MediaCoverage({ language = 'en' }) {
         </div>
       </div>
 
+      <style jsx>{`
+        .media-outlets-container {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 12px;
+          padding: 0 16px;
+        }
+
+        @media (max-width: 1400px) {
+          .media-outlets-container {
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+          }
+
+          .media-outlets-container > div:nth-child(n+5) {
+            grid-column: span 1;
+          }
+
+          .media-outlets-container > div:nth-child(5) {
+            grid-column: 1 / 2;
+          }
+
+          .media-outlets-container > div:nth-child(6) {
+            grid-column: 2 / 3;
+          }
+
+          .media-outlets-container > div:nth-child(7) {
+            grid-column: 3 / 4;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .media-outlets-container {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </>
   )
 }

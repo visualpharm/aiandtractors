@@ -70,6 +70,7 @@ export default function Home() {
       />
       
       <MediaCoverage language={language} />
+      <div style={{ height: '30px' }} />
       <Experience language={language} />
       <Speaking language={language} />
       <Awards language={language} />

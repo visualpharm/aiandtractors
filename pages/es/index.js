@@ -44,6 +44,7 @@ export default function HomeES() {
       />
       
       <MediaCoverage language="es" />
+      <div style={{ height: '30px' }} />
       <Experience language="es" />
       <Speaking language="es" />
       <Awards language="es" />

@@ -194,7 +194,57 @@ export default function MediaCoverage({ language = 'en' }) {
 
         @media (max-width: 768px) {
           .media-outlets-container {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px;
+            padding: 0 16px;
+            max-width: 100%;
+            margin: 0 auto;
+          }
+
+          .media-outlets-container > div {
+            padding: 16px 12px;
+            grid-column: auto !important;
+          }
+
+          .media-outlets-container h3 {
+            font-size: 0.85rem;
+          }
+
+          .media-outlets-container p {
+            font-size: 0.75rem;
+            line-height: 1.4;
+          }
+
+          .media-outlets-container .h-\[30px\] {
+            height: 28px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .media-outlets-container {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px;
+            padding: 0 12px;
+          }
+
+          .media-outlets-container > div {
+            padding: 14px 10px;
+            grid-column: auto !important;
+          }
+
+          .media-outlets-container h3 {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .media-outlets-container p {
+            font-size: 0.7rem;
+            line-height: 1.3;
+          }
+
+          .media-outlets-container .h-\[30px\] {
+            height: 26px;
+            margin-bottom: 0.5rem;
           }
         }
       `}</style>

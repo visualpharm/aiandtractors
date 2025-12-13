@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passport Ranking: The Total Experience Index | Ivan Braun</title>
+  <meta name="description" content="A revolutionary passport ranking based on total tourism potential - measuring the sum of annual visitors to all accessible destinations, not just country count.">
+  <meta name="keywords" content="passport ranking, passport index, total experience index, visa-free travel, passport power, tourism potential">
+
+  <!-- Canonical and Language Alternates -->
+  <link rel="canonical" href="https://aiandtractors.com/passport-ranking/">
+  <link rel="alternate" hreflang="en" href="https://aiandtractors.com/passport-ranking/">
+  <link rel="alternate" hreflang="x-default" href="https://aiandtractors.com/passport-ranking/">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #0a0f1a;
+      --bg-secondary: #121a2e;
+      --bg-card: #1a2444;
+      --bg-hover: #243056;
+      --text-primary: #e8eaf6;
+      --text-secondary: #9aa0b8;
+      --text-muted: #6b7280;
+      --accent-green: #00ff88;
+      --accent-cyan: #00d4ff;
+      --accent-purple: #a855f7;
+      --accent-orange: #ff8c00;
+      --accent-red: #ff4757;
+      --border-color: #2d3a5c;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--accent-green);
+    }
+
+    /* Methodology Box */
+    .methodology-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    .methodology-box h2 {
+      font-size: 1.3rem;
+      color: var(--accent-cyan);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .methodology-box p {
+      color: var(--text-secondary);
+      margin-bottom: 15px;
+    }
+
+    .formula {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--accent-green);
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Courier New', monospace;
+      color: var(--accent-green);
+      font-size: 0.95rem;
+      overflow-x: auto;
+    }
+
+    /* Search and Sort Controls */
+    .controls {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .sort-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .sort-btn {
+      padding: 12px 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sort-btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--text-primary);
+    }
+
+    .sort-btn.active {
+      background: var(--accent-cyan);
+      color: var(--bg-primary);
+      border-color: var(--accent-cyan);
+    }
+
+    /* Table */
+    .table-container {
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: var(--bg-secondary);
+    }
+
+    th {
+      padding: 15px 20px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background: var(--bg-hover);
+    }
+
+    tr.clickable {
+      cursor: pointer;
+    }
+
+    tr.expanded {
+      background: var(--bg-hover);
+    }
+
+    /* Rank styling */
+    .rank {
+      font-weight: 700;
+      font-size: 1.1rem;
+      width: 50px;
+    }
+
+    .rank-1 { color: #ffd700; }
+    .rank-2 { color: #c0c0c0; }
+    .rank-3 { color: #cd7f32; }
+
+    /* Country cell */
+    .country-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flag {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .country-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Score */
+    .score-cell {
+      min-width: 200px;
+    }
+
+    .score-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 5px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    /* Key Access */
+    .key-access {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .key-access-tag {
+      display: inline-block;
+      background: var(--bg-secondary);
+      padding: 4px 10px;
+      border-radius: 15px;
+      margin: 2px;
+      font-size: 0.8rem;
+    }
+
+    /* Expand icon */
+    .expand-icon {
+      color: var(--text-muted);
+      transition: transform 0.3s;
+    }
+
+    tr.expanded .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Detail Row */
+    .detail-row {
+      display: none;
+    }
+
+    .detail-row.visible {
+      display: table-row;
+    }
+
+    .detail-content {
+      background: var(--bg-secondary);
+      padding: 25px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .detail-section {
+      background: var(--bg-card);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .detail-section h4 {
+      color: var(--accent-cyan);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-section h4 i {
+      font-size: 1rem;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-item .country {
+      color: var(--text-primary);
+    }
+
+    .detail-item .value {
+      font-weight: 600;
+    }
+
+    .detail-item .value.positive {
+      color: var(--accent-green);
+    }
+
+    .detail-item .value.negative {
+      color: var(--accent-red);
+    }
+
+    /* Smart Notes */
+    .smart-note {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 212, 255, 0.1));
+      border: 1px solid var(--accent-purple);
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-top: 15px;
+    }
+
+    .smart-note h5 {
+      color: var(--accent-purple);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .smart-note p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Special Row - Portfolio */
+    tr.special-row {
+      background: linear-gradient(90deg, rgba(0, 255, 136, 0.05), rgba(168, 85, 247, 0.05));
+    }
+
+    tr.special-row td {
+      border-top: 2px solid var(--accent-purple);
+      border-bottom: 2px solid var(--accent-purple);
+    }
+
+    .portfolio-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+      color: white;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      th, td {
+        padding: 12px 15px;
+      }
+
+      .key-access {
+        display: none;
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+      }
+
+      .sort-controls {
+        width: 100%;
+      }
+
+      .sort-btn {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .score-cell {
+        min-width: auto;
+      }
+
+      .flag {
+        font-size: 1.5rem;
+      }
+
+      .table-container {
+        font-size: 0.9rem;
+      }
+
+      th:nth-child(4), td:nth-child(4) {
+        display: none;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .table-container {
+      animation: fadeIn 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Ivan Braun</a>
+    <h1>The Total Experience Index</h1>
+    <p class="subtitle">A revolutionary passport ranking based on total tourism potential - measuring the sum of annual visitors to all accessible destinations, not just country count.</p>
+  </div>
+
+  <div class="container">
+    <div class="methodology-box">
+      <h2><i class="fas fa-lightbulb"></i> The Methodology</h2>
+      <p>Unlike traditional passport rankings that count the number of visa-free countries, this index calculates a score based on <strong>total accessible tourism volume</strong>. The logic: accessing France (100M visitors) matters more than accessing a small island nation.</p>
+      <div class="formula">
+        Score = Sum(Annual Visitors of all Visa-Free/eTA/VOA destinations) + Annual Visitors of Home Country
+      </div>
+      <p style="margin-top: 15px; font-size: 0.9rem;">Data based on UNWTO 2023/2024 approximate visitor numbers. The "Home Bonus" reflects that your own country's tourism infrastructure is fully accessible to you.</p>
+    </div>
+
+    <div class="controls">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by country name...">
+      </div>
+      <div class="sort-controls">
+        <button class="sort-btn active" data-sort="score">
+          <i class="fas fa-sort-amount-down"></i> Sort by Score
+        </button>
+        <button class="sort-btn" data-sort="name">
+          <i class="fas fa-sort-alpha-down"></i> Sort by Name
+        </button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table id="rankingTable">
+        <thead>
+          <tr>
+            <th style="width: 60px;">Rank</th>
+            <th>Country</th>
+            <th>Score</th>
+            <th>Key Access</th>
+            <th style="width: 50px;"></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <p>&copy; <span id="currentYear">2024</span> <a href="/">Ivan Braun</a> &middot; Data sources: UNWTO Tourism Statistics 2023/2024</p>
+    </div>
+  </div>
+
+  <script>
+    // Passport data with calculated scores based on UNWTO 2023/2024 visitor numbers
+    const passportData = [
+      {
+        id: 'uae',
+        country: 'United Arab Emirates',
+        flag: '🇦🇪',
+        score: 1247,
+        homeBonus: 21,
+        keyAccess: ['EU', 'China', 'USA', 'Japan'],
+        topContributors: [
+          { country: 'China', value: 35 },
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 }
+        ],
+        misses: [
+          { country: 'Russia', value: -25 }
+        ],
+        note: null
+      },
+      {
+        id: 'brunei',
+        country: 'Brunei',
+        flag: '🇧🇳',
+        score: 1239,
+        homeBonus: 0.3,
+        keyAccess: ['EU', 'China', 'USA', 'Japan'],
+        topContributors: [
+          { country: 'China', value: 35 },
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 }
+        ],
+        misses: [
+          { country: 'Russia', value: -25 }
+        ],
+        note: null
+      },
+      {
+        id: 'singapore',
+        country: 'Singapore',
+        flag: '🇸🇬',
+        score: 1231,
+        homeBonus: 14,
+        keyAccess: ['EU', 'China', 'USA', 'India', 'Indonesia'],
+        topContributors: [
+          { country: 'China', value: 35 },
+          { country: 'France', value: 100 },
+          { country: 'India', value: 18 },
+          { country: 'Indonesia', value: 16 },
+          { country: 'USA', value: 67 }
+        ],
+        misses: [],
+        note: {
+          title: 'The Asian Advantage',
+          text: 'Singapore beats European passports by having visa-free access to major Asian destinations like India (18M) and Indonesia (16M) that Europeans cannot easily access.'
+        }
+      },
+      {
+        id: 'japan',
+        country: 'Japan',
+        flag: '🇯🇵',
+        score: 1218,
+        homeBonus: 32,
+        keyAccess: ['EU', 'China', 'USA', 'India', 'Indonesia'],
+        topContributors: [
+          { country: 'China', value: 35 },
+          { country: 'France', value: 100 },
+          { country: 'India', value: 18 },
+          { country: 'Indonesia', value: 16 },
+          { country: 'USA', value: 67 }
+        ],
+        misses: [],
+        note: {
+          title: 'The Asian Advantage',
+          text: 'Japan benefits from both a strong home tourism market (32M) AND visa-free access to India and Indonesia - destinations European passport holders struggle to reach easily.'
+        }
+      },
+      {
+        id: 'france',
+        country: 'France',
+        flag: '🇫🇷',
+        score: 1143,
+        homeBonus: 100,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France (Home)', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 },
+          { country: 'Indonesia', value: -16 }
+        ],
+        note: null
+      },
+      {
+        id: 'germany',
+        country: 'Germany',
+        flag: '🇩🇪',
+        score: 1078,
+        homeBonus: 35,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: null
+      },
+      {
+        id: 'italy',
+        country: 'Italy',
+        flag: '🇮🇹',
+        score: 986,
+        homeBonus: 57,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Turkey', value: 55 },
+          { country: 'Mexico', value: 42 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: {
+          title: 'The Italy Paradox',
+          text: 'Italy ranks lower than Luxembourg despite having a "stronger" passport. Why? Italians cannot "visit" Italy as tourists (57M annual visitors). A Luxembourger CAN visit Italy - gaining that 57M tourism bonus that Italians already have at home.'
+        }
+      },
+      {
+        id: 'spain',
+        country: 'Spain',
+        flag: '🇪🇸',
+        score: 1001,
+        homeBonus: 85,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain (Home)', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: null
+      },
+      {
+        id: 'switzerland',
+        country: 'Switzerland',
+        flag: '🇨🇭',
+        score: 1025,
+        homeBonus: 12,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: null
+      },
+      {
+        id: 'luxembourg',
+        country: 'Luxembourg',
+        flag: '🇱🇺',
+        score: 1043,
+        homeBonus: 1,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: {
+          title: 'The Italy Paradox (Inverse)',
+          text: 'Luxembourg ranks higher than Italy despite a "weaker" traditional passport score. With only 1M home visitors, Luxembourgers gain full access to Italy (57M), France (100M), and Spain (85M) as tourist destinations.'
+        }
+      },
+      {
+        id: 'uk',
+        country: 'United Kingdom',
+        flag: '🇬🇧',
+        score: 1015,
+        homeBonus: 38,
+        keyAccess: ['EU', 'USA', 'Japan'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: null
+      },
+      {
+        id: 'usa',
+        country: 'United States',
+        flag: '🇺🇸',
+        score: 978,
+        homeBonus: 67,
+        keyAccess: ['EU', 'Canada', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA (Home)', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Canada', value: 22 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 },
+          { country: 'Russia', value: -25 }
+        ],
+        note: {
+          title: 'The North American Tie',
+          text: 'USA and Canada are effectively tied in this index. They swap each other\'s home bonuses: Americans can visit Canada (+22M), Canadians can visit USA (+67M). Their total scores converge despite different home tourism numbers.'
+        }
+      },
+      {
+        id: 'canada',
+        country: 'Canada',
+        flag: '🇨🇦',
+        score: 989,
+        homeBonus: 22,
+        keyAccess: ['EU', 'USA', 'Japan', 'UK'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy', value: 57 },
+          { country: 'Mexico', value: 42 }
+        ],
+        misses: [
+          { country: 'China', value: -35 },
+          { country: 'India', value: -18 }
+        ],
+        note: {
+          title: 'The North American Tie',
+          text: 'Canada and USA are effectively tied. Canadians gain USA\'s massive 67M tourism market, while Americans gain Canada\'s 22M. The difference is minimal when you factor in their similar visa-free access to Europe.'
+        }
+      },
+      {
+        id: 'argentina',
+        country: 'Argentina',
+        flag: '🇦🇷',
+        score: 742,
+        homeBonus: 7,
+        keyAccess: ['EU', 'Japan', 'Russia'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 },
+          { country: 'Russia', value: 25 }
+        ],
+        misses: [
+          { country: 'USA', value: -67 },
+          { country: 'China', value: -35 },
+          { country: 'Canada', value: -22 }
+        ],
+        note: null
+      },
+      {
+        id: 'russia',
+        country: 'Russia',
+        flag: '🇷🇺',
+        score: 412,
+        homeBonus: 25,
+        keyAccess: ['Turkey', 'Thailand', 'UAE'],
+        topContributors: [
+          { country: 'Turkey', value: 55 },
+          { country: 'Thailand', value: 28 },
+          { country: 'UAE', value: 21 },
+          { country: 'Indonesia', value: 16 },
+          { country: 'Vietnam', value: 13 }
+        ],
+        misses: [
+          { country: 'EU (All)', value: -400 },
+          { country: 'USA', value: -67 },
+          { country: 'Japan', value: -32 }
+        ],
+        note: null
+      },
+      {
+        id: 'turkey',
+        country: 'Turkey',
+        flag: '🇹🇷',
+        score: 524,
+        homeBonus: 55,
+        keyAccess: ['Japan', 'Thailand', 'Indonesia'],
+        topContributors: [
+          { country: 'Turkey (Home)', value: 55 },
+          { country: 'Japan', value: 32 },
+          { country: 'Thailand', value: 28 },
+          { country: 'Malaysia', value: 26 },
+          { country: 'Singapore', value: 14 }
+        ],
+        misses: [
+          { country: 'EU (Schengen)', value: -350 },
+          { country: 'USA', value: -67 },
+          { country: 'UK', value: -38 }
+        ],
+        note: null
+      },
+      {
+        id: 'brazil',
+        country: 'Brazil',
+        flag: '🇧🇷',
+        score: 698,
+        homeBonus: 6,
+        keyAccess: ['EU', 'Japan', 'Russia'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'Italy', value: 57 },
+          { country: 'Turkey', value: 55 },
+          { country: 'Japan', value: 32 }
+        ],
+        misses: [
+          { country: 'USA', value: -67 },
+          { country: 'China', value: -35 },
+          { country: 'Canada', value: -22 }
+        ],
+        note: null
+      },
+      {
+        id: 'india',
+        country: 'India',
+        flag: '🇮🇳',
+        score: 287,
+        homeBonus: 18,
+        keyAccess: ['Thailand', 'Indonesia', 'Malaysia'],
+        topContributors: [
+          { country: 'Thailand', value: 28 },
+          { country: 'Malaysia', value: 26 },
+          { country: 'UAE', value: 21 },
+          { country: 'India (Home)', value: 18 },
+          { country: 'Indonesia', value: 16 }
+        ],
+        misses: [
+          { country: 'EU (All)', value: -400 },
+          { country: 'USA', value: -67 },
+          { country: 'UK', value: -38 }
+        ],
+        note: null
+      },
+      {
+        id: 'pakistan',
+        country: 'Pakistan',
+        flag: '🇵🇰',
+        score: 98,
+        homeBonus: 2,
+        keyAccess: ['Malaysia', 'Qatar'],
+        topContributors: [
+          { country: 'Malaysia', value: 26 },
+          { country: 'Qatar', value: 4 },
+          { country: 'Maldives', value: 2 },
+          { country: 'Pakistan (Home)', value: 2 },
+          { country: 'Nepal', value: 1 }
+        ],
+        misses: [
+          { country: 'EU (All)', value: -400 },
+          { country: 'USA', value: -67 },
+          { country: 'UK', value: -38 }
+        ],
+        note: null
+      },
+      {
+        id: 'afghanistan',
+        country: 'Afghanistan',
+        flag: '🇦🇫',
+        score: 34,
+        homeBonus: 0.1,
+        keyAccess: ['Limited'],
+        topContributors: [
+          { country: 'Maldives', value: 2 },
+          { country: 'Dominica', value: 0.5 },
+          { country: 'Micronesia', value: 0.02 }
+        ],
+        misses: [
+          { country: 'Almost everywhere', value: -1200 }
+        ],
+        note: null
+      },
+      {
+        id: 'portfolio',
+        country: 'Hypothetical Portfolio (IT + RU + ARG)',
+        flag: '🌐',
+        score: 1312,
+        homeBonus: 89,
+        keyAccess: ['EU', 'USA', 'China', 'Russia', 'Japan'],
+        topContributors: [
+          { country: 'France', value: 100 },
+          { country: 'Spain', value: 85 },
+          { country: 'USA', value: 67 },
+          { country: 'Italy (Home)', value: 57 },
+          { country: 'Turkey', value: 55 }
+        ],
+        misses: [],
+        isSpecial: true,
+        note: {
+          title: 'The Super-Combo Strategy',
+          text: 'By combining Italian (EU access), Russian (Russia + CIS access), and Argentinian (favorable visa agreements) passports, you achieve near-universal tourism access. Italy provides EU + Schengen, Russia adds CIS countries, and Argentina fills gaps with unique bilateral agreements. Combined home bonus: 57M + 25M + 7M = 89M.'
+        }
+      }
+    ];
+
+    const maxScore = Math.max(...passportData.map(p => p.score));
+    let currentSort = 'score';
+    let currentFilter = '';
+
+    function getGradientColor(score) {
+      const ratio = score / maxScore;
+      if (ratio > 0.8) return 'linear-gradient(90deg, #00ff88, #00d4ff)';
+      if (ratio > 0.6) return 'linear-gradient(90deg, #00d4ff, #a855f7)';
+      if (ratio > 0.4) return 'linear-gradient(90deg, #a855f7, #ff8c00)';
+      if (ratio > 0.2) return 'linear-gradient(90deg, #ff8c00, #ff4757)';
+      return 'linear-gradient(90deg, #ff4757, #6b7280)';
+    }
+
+    function formatNumber(num) {
+      if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'B';
+      }
+      return num + 'M';
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      const sortedData = [...data].sort((a, b) => {
+        if (currentSort === 'score') {
+          return b.score - a.score;
+        }
+        return a.country.localeCompare(b.country);
+      });
+
+      const filteredData = sortedData.filter(p =>
+        p.country.toLowerCase().includes(currentFilter.toLowerCase())
+      );
+
+      filteredData.forEach((passport, index) => {
+        const rank = currentSort === 'score' ? index + 1 : '-';
+        const rankClass = rank <= 3 ? `rank-${rank}` : '';
+        const isSpecial = passport.isSpecial;
+        const progressWidth = (passport.score / maxScore) * 100;
+
+        // Main row
+        const tr = document.createElement('tr');
+        tr.className = `clickable ${isSpecial ? 'special-row' : ''}`;
+        tr.dataset.id = passport.id;
+        tr.innerHTML = `
+          <td class="rank ${rankClass}">${rank}</td>
+          <td>
+            <div class="country-cell">
+              <span class="flag">${passport.flag}</span>
+              <span class="country-name">
+                ${passport.country}
+                ${isSpecial ? '<span class="portfolio-badge"><i class="fas fa-crown"></i> Portfolio</span>' : ''}
+              </span>
+            </div>
+          </td>
+          <td class="score-cell">
+            <div class="score-value">${formatNumber(passport.score)} visitors</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${progressWidth}%; background: ${getGradientColor(passport.score)};"></div>
+            </div>
+          </td>
+          <td class="key-access">
+            ${passport.keyAccess.map(k => `<span class="key-access-tag">${k}</span>`).join('')}
+          </td>
+          <td>
+            <i class="fas fa-chevron-down expand-icon"></i>
+          </td>
+        `;
+
+        // Detail row
+        const detailTr = document.createElement('tr');
+        detailTr.className = 'detail-row';
+        detailTr.dataset.parent = passport.id;
+        detailTr.innerHTML = `
+          <td colspan="5">
+            <div class="detail-content">
+              <div class="detail-grid">
+                <div class="detail-section">
+                  <h4><i class="fas fa-home"></i> Home Bonus</h4>
+                  <div class="detail-item">
+                    <span class="country">${passport.country} Tourism</span>
+                    <span class="value positive">+${passport.homeBonus}M</span>
+                  </div>
+                </div>
+                <div class="detail-section">
+                  <h4><i class="fas fa-plane-departure"></i> Top Contributors</h4>
+                  ${passport.topContributors.map(c => `
+                    <div class="detail-item">
+                      <span class="country">${c.country}</span>
+                      <span class="value positive">+${c.value}M</span>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="detail-section">
+                  <h4><i class="fas fa-ban"></i> Major Misses</h4>
+                  ${passport.misses.length > 0 ? passport.misses.map(c => `
+                    <div class="detail-item">
+                      <span class="country">${c.country}</span>
+                      <span class="value negative">${c.value}M</span>
+                    </div>
+                  `).join('') : '<p style="color: var(--text-muted);">No major restrictions!</p>'}
+                </div>
+              </div>
+              ${passport.note ? `
+                <div class="smart-note">
+                  <h5><i class="fas fa-brain"></i> ${passport.note.title}</h5>
+                  <p>${passport.note.text}</p>
+                </div>
+              ` : ''}
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+        tbody.appendChild(detailTr);
+      });
+
+      // Add click handlers
+      document.querySelectorAll('tr.clickable').forEach(row => {
+        row.addEventListener('click', () => {
+          const id = row.dataset.id;
+          const detailRow = document.querySelector(`tr.detail-row[data-parent="${id}"]`);
+          const isExpanded = detailRow.classList.contains('visible');
+
+          // Close all other rows
+          document.querySelectorAll('tr.detail-row').forEach(r => r.classList.remove('visible'));
+          document.querySelectorAll('tr.clickable').forEach(r => r.classList.remove('expanded'));
+
+          if (!isExpanded) {
+            detailRow.classList.add('visible');
+            row.classList.add('expanded');
+          }
+        });
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTable(passportData);
+
+      // Set current year
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Search
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        currentFilter = e.target.value;
+        renderTable(passportData);
+      });
+
+      // Sort buttons
+      document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentSort = btn.dataset.sort;
+          renderTable(passportData);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

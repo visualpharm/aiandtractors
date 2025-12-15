@@ -630,7 +630,7 @@ export default function PassportRanking() {
           </div>
 
           <div className="footer-info">
-            <p>Data sources: UNWTO Tourism Statistics 2023/2024, <a href="https://github.com/ilyankou/passport-index-dataset" target="_blank" rel="noopener noreferrer">Passport Index Dataset</a> by Ilya Ilyankou</p>
+            <p>Data sources: UNWTO Tourism Statistics 2023/2024, <a href="https://github.com/ilyankou/passport-index-dataset">github.com/ilyankou/passport-index-dataset</a></p>
           </div>
         </div>
       </div>
@@ -1093,6 +1093,15 @@ export default function PassportRanking() {
           padding: 2rem;
           color: var(--secondary-color);
           font-size: 0.85rem;
+        }
+
+        .footer-info a {
+          color: #2563eb;
+          text-decoration: underline;
+        }
+
+        .footer-info a:hover {
+          color: #1d4ed8;
         }
 
         @media (max-width: 768px) {

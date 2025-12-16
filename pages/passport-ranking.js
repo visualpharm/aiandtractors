@@ -24,7 +24,7 @@ const ZoomableGroup = dynamic(
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 
 // Comprehensive passport data with calculated scores based on UNWTO 2023/2024 visitor numbers
-// Score = Sum of annual visitors to visa-free destinations + home country visitors
+// Score = Sum of annual visitors to visa-free destinations
 // Data sources: UNWTO, Henley Passport Index, various visa databases
 const passportData = [
   // Top Tier (1200+)
@@ -325,7 +325,7 @@ passportData.forEach(p => {
 
 // Generate CSV data
 function generateCSV(data) {
-  const headers = ['Rank', 'Country', 'Score (Millions)', 'Home Bonus', 'Region', 'Key Access', 'Top Contributors', 'Major Misses', 'Note']
+  const headers = ['Rank', 'Country', 'Score (Millions)', 'Region', 'Key Access', 'Top Contributors', 'Major Misses', 'Note']
   const sortedData = [...data].sort((a, b) => b.score - a.score)
 
   const rows = sortedData.map((p, index) => {
@@ -333,7 +333,6 @@ function generateCSV(data) {
       index + 1,
       p.country,
       p.score,
-      p.homeBonus,
       regionMap[p.id] || 'Unknown',
       p.keyAccess.join('; '),
       p.topContributors.map(c => `${c.country}: ${c.value}M`).join('; '),
@@ -415,9 +414,9 @@ export default function PassportRanking() {
             <h2>The Methodology</h2>
             <p>Unlike traditional passport rankings that count the number of visa-free countries, this index calculates a score based on <strong>total accessible tourism volume</strong>. The logic: accessing France (100M visitors) matters more than accessing a small island nation.</p>
             <div className="formula">
-              Score = Sum(Annual Visitors of all Visa-Free/eTA/VOA destinations) + Annual Visitors of Home Country
+              Score = Sum(Annual Visitors of all Visa-Free/eTA/VOA destinations)
             </div>
-            <p className="small-text">Data based on UNWTO 2023/2024 approximate visitor numbers. The "Home Bonus" reflects that your own country's tourism infrastructure is fully accessible to you.</p>
+            <p className="small-text">Data based on UNWTO 2023/2024 approximate visitor numbers.</p>
           </div>
 
           <div className="map-container">
@@ -588,11 +587,6 @@ export default function PassportRanking() {
                           <td colSpan="5">
                             <div className="detail-content">
                               <div className="detail-grid">
-                                <div className="detail-section home-bonus-section">
-                                  <h4>Home Bonus</h4>
-                                  <div className="home-bonus-value">+{passport.homeBonus}M</div>
-                                  <div className="home-bonus-desc">Visitors to {passport.country} per year</div>
-                                </div>
                                 <div className="detail-section">
                                   <h4>Top Contributors</h4>
                                   {sortedContributors.map((c, i) => (
@@ -1003,7 +997,7 @@ export default function PassportRanking() {
 
         .detail-grid {
           display: grid;
-          grid-template-columns: 160px 1fr 1fr 1.5fr;
+          grid-template-columns: 1fr 1fr 1.5fr;
           gap: 1rem;
           max-width: 100%;
         }
@@ -1023,25 +1017,6 @@ export default function PassportRanking() {
           margin-bottom: 0.75rem;
         }
 
-        .home-bonus-section {
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .home-bonus-value {
-          font-size: 2rem;
-          font-weight: 600;
-          color: #16a34a;
-        }
-
-        .home-bonus-desc {
-          font-size: 0.75rem;
-          color: var(--secondary-color);
-          margin-top: 0.5rem;
-          line-height: 1.3;
-        }
 
         .commentary-section {
           background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(34, 197, 94, 0.1));
@@ -1183,10 +1158,6 @@ export default function PassportRanking() {
 
           .detail-grid {
             grid-template-columns: 1fr;
-          }
-
-          .home-bonus-section {
-            max-width: none;
           }
 
           .controls {

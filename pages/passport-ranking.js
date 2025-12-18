@@ -26,6 +26,9 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 
 // Import calculated passport data from data pipeline
 import calculatedData from '../data/calculated-passport-scores.json'
+import tourismRaw from '../data/unwto-tourism-2023.json'
+
+const tourismData = tourismRaw.data
 
 // Algorithm: Score = Sum of annual visitors (in millions) to all visa-free/VOA/ETA destinations
 // Data Sources:
@@ -205,6 +208,9 @@ export default function PassportRanking() {
   const [tooltipContent, setTooltipContent] = React.useState('')
   const [tooltipPosition, setTooltipPosition] = React.useState({ x: 0, y: 0 })
   const [showMethodology, setShowMethodology] = React.useState(false)
+  const [selectedIds, setSelectedIds] = React.useState(new Set())
+  const [showComparison, setShowComparison] = React.useState(false)
+  const [showAllDifferences, setShowAllDifferences] = React.useState(false)
 
   const sortedData = [...passportData].sort((a, b) => {
     if (currentSort === 'score') {
@@ -229,6 +235,66 @@ export default function PassportRanking() {
       }
       return newSet
     })
+  }
+
+  const toggleSelection = (id) => {
+    setSelectedIds(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(id)) {
+        newSet.delete(id)
+      } else {
+        newSet.add(id)
+      }
+      return newSet
+    })
+  }
+
+  // Get selected passports for comparison
+  const selectedPassports = passportData.filter(p => selectedIds.has(p.id))
+
+  // Get unified differences across all selected passports
+  // Returns destinations where at least one passport has access and at least one doesn't
+  const getUnifiedDifferences = (passports) => {
+    if (passports.length < 2) return []
+
+    // Build access sets for each passport
+    const accessSets = passports.map(p => new Set(p.visaFreeDestinations || []))
+
+    // Get all unique destinations across all passports
+    const allDestinations = new Set()
+    accessSets.forEach(set => set.forEach(d => allDestinations.add(d)))
+
+    // Filter to only destinations where access differs
+    const differences = []
+    allDestinations.forEach(destination => {
+      const accessPattern = passports.map((_, i) => accessSets[i].has(destination))
+      const hasAccess = accessPattern.some(a => a)
+      const lacksAccess = accessPattern.some(a => !a)
+
+      // Only include if there's a difference (some have, some don't)
+      if (hasAccess && lacksAccess) {
+        differences.push({
+          destination,
+          tourism: tourismData[destination] || 0,
+          access: accessPattern // [true, false, true] for each passport
+        })
+      }
+    })
+
+    // Sort by tourism value (highest first)
+    differences.sort((a, b) => b.tourism - a.tourism)
+
+    return differences
+  }
+
+  // Calculate region counts
+  const regionCounts = {
+    all: passportData.length,
+    Europe: passportData.filter(p => regionMap[p.id] === 'Europe').length,
+    Asia: passportData.filter(p => regionMap[p.id] === 'Asia').length,
+    Americas: passportData.filter(p => regionMap[p.id] === 'Americas').length,
+    Africa: passportData.filter(p => regionMap[p.id] === 'Africa').length,
+    Oceania: passportData.filter(p => regionMap[p.id] === 'Oceania').length
   }
 
   return (
@@ -360,6 +426,83 @@ export default function PassportRanking() {
             </div>
           )}
 
+          {showComparison && selectedPassports.length >= 2 && (
+            <div className="modal-overlay" onClick={() => { setShowComparison(false); setShowAllDifferences(false); }}>
+              <div className="modal-content comparison-modal" onClick={e => e.stopPropagation()}>
+                <button className="modal-close" onClick={() => { setShowComparison(false); setShowAllDifferences(false); }}>×</button>
+                <h2>Passport Comparison</h2>
+
+                {(() => {
+                  const differences = getUnifiedDifferences(selectedPassports)
+                  const displayLimit = 30
+                  const displayedDiffs = showAllDifferences ? differences : differences.slice(0, displayLimit)
+                  const hiddenCount = differences.length - displayLimit
+
+                  return (
+                    <div className="comparison-content">
+                      <table className="comparison-table unified-table">
+                        <thead>
+                          <tr>
+                            <th className="dest-header">Destination</th>
+                            {selectedPassports.map(p => (
+                              <th key={p.id} className="passport-header">
+                                <span className="comparison-flag">{p.flag}</span>
+                                <span className="passport-name">{p.country}</span>
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {displayedDiffs.map((diff, i) => (
+                            <tr key={i}>
+                              <td className="dest-cell">
+                                <span className="dest-name">{diff.destination}</span>
+                                {diff.tourism > 0 && (
+                                  <span className="dest-tourism">({diff.tourism}M)</span>
+                                )}
+                              </td>
+                              {diff.access.map((hasAccess, j) => (
+                                <td key={j} className={`access-cell ${hasAccess ? 'has-access' : 'no-access'}`}>
+                                  {hasAccess ? '✅' : '❌'}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                          {differences.length === 0 && (
+                            <tr>
+                              <td colSpan={selectedPassports.length + 1} className="no-differences">
+                                These passports have identical visa-free access!
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                      {!showAllDifferences && hiddenCount > 0 && (
+                        <button
+                          className="show-more-link"
+                          onClick={() => setShowAllDifferences(true)}
+                        >
+                          {hiddenCount} more...
+                        </button>
+                      )}
+                      {showAllDifferences && hiddenCount > 0 && (
+                        <button
+                          className="show-more-link"
+                          onClick={() => setShowAllDifferences(false)}
+                        >
+                          Show less
+                        </button>
+                      )}
+                      <div className="comparison-summary">
+                        <p>{differences.length} destinations with different access across {selectedPassports.length} passports</p>
+                      </div>
+                    </div>
+                  )
+                })()}
+              </div>
+            </div>
+          )}
+
           <div className="map-container">
             <h2>Global Passport Power Map</h2>
             {tooltipContent && (
@@ -445,12 +588,12 @@ export default function PassportRanking() {
                 value={currentRegion}
                 onChange={(e) => setCurrentRegion(e.target.value)}
               >
-                <option value="all">All Regions</option>
-                <option value="Europe">Europe</option>
-                <option value="Asia">Asia</option>
-                <option value="Americas">Americas</option>
-                <option value="Africa">Africa</option>
-                <option value="Oceania">Oceania</option>
+                <option value="all">All Regions ({regionCounts.all})</option>
+                <option value="Europe">Europe ({regionCounts.Europe})</option>
+                <option value="Asia">Asia ({regionCounts.Asia})</option>
+                <option value="Americas">Americas ({regionCounts.Americas})</option>
+                <option value="Africa">Africa ({regionCounts.Africa})</option>
+                <option value="Oceania">Oceania ({regionCounts.Oceania})</option>
               </select>
               <select
                 className="filter-select"
@@ -469,15 +612,37 @@ export default function PassportRanking() {
             </div>
           </div>
 
-          <div className="results-count">
-            Showing {filteredData.length} of {passportData.length} passports
-          </div>
+          <div className="table-wrapper">
+            {selectedIds.size < 2 ? (
+              <div className="compare-hint-row">
+                <div className="hint-spacer"></div>
+                <div className="hint-arrow-cell">↓</div>
+                <div className="hint-text">Choose 2+ to compare</div>
+              </div>
+            ) : (
+              <div className="compare-actions-row">
+                <span className="selected-count">{selectedIds.size} selected</span>
+                <button
+                  className="compare-btn"
+                  onClick={() => setShowComparison(true)}
+                >
+                  Compare
+                </button>
+                <button
+                  className="clear-btn"
+                  onClick={() => setSelectedIds(new Set())}
+                >
+                  Clear
+                </button>
+              </div>
+            )}
 
           <div className="table-container">
             <table>
               <thead>
                 <tr>
                   <th className="rank-col">Rank</th>
+                  <th className="checkbox-col"></th>
                   <th className="country-col">Country</th>
                   <th className="score-col">Visitors</th>
                   <th className="access-col">Key Access</th>
@@ -549,6 +714,14 @@ export default function PassportRanking() {
                               {rank}
                             </td>
                           )}
+                          <td className="checkbox-cell">
+                            <input
+                              type="checkbox"
+                              checked={selectedIds.has(passport.id)}
+                              onChange={() => toggleSelection(passport.id)}
+                              onClick={(e) => e.stopPropagation()}
+                            />
+                          </td>
                         <td className="country-cell">
                           <span className="flag">{passport.flag}</span>
                           <span className="country-name">{passport.country}</span>
@@ -573,7 +746,7 @@ export default function PassportRanking() {
                       </tr>
                       {isExpanded && (
                         <tr className="detail-row">
-                          <td colSpan="5">
+                          <td colSpan="6">
                             <div className="detail-content">
                               <div className="detail-grid">
                                 <div className="detail-section">
@@ -611,6 +784,7 @@ export default function PassportRanking() {
                 })()}
               </tbody>
             </table>
+          </div>
           </div>
 
           <div className="footer-info">
@@ -932,12 +1106,6 @@ export default function PassportRanking() {
           flex-wrap: wrap;
         }
 
-        .results-count {
-          color: var(--secondary-color);
-          font-size: 0.9rem;
-          margin-bottom: 1rem;
-        }
-
         .search-box {
           flex: 1;
           min-width: 200px;
@@ -1009,10 +1177,11 @@ export default function PassportRanking() {
           border-bottom: 1px solid var(--border-color);
         }
 
-        .rank-col { width: 8%; }
-        .country-col { width: 20%; }
-        .score-col { width: 15%; }
-        .access-col { width: 52%; }
+        .checkbox-col { width: 4%; }
+        .rank-col { width: 6%; }
+        .country-col { width: 18%; }
+        .score-col { width: 14%; }
+        .access-col { width: 53%; }
         .expand-col { width: 5%; }
 
         tbody tr.clickable {
@@ -1337,6 +1506,357 @@ export default function PassportRanking() {
           .legend-label {
             font-size: 0.7rem;
           }
+
+          .checkbox-col {
+            width: 30px;
+          }
+
+          .comparison-bar {
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: center;
+          }
+
+          .comparison-table {
+            font-size: 0.8rem;
+          }
+
+          .comparison-header {
+            padding: 0.5rem;
+          }
+
+          .comparison-flag {
+            font-size: 1.2rem;
+          }
+
+          .pairwise-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* Checkbox cell styling */
+        .checkbox-cell {
+          text-align: center;
+          padding: 0.5rem;
+        }
+
+        .checkbox-cell input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+          accent-color: var(--accent-color);
+        }
+
+        /* Comparison bar */
+        .comparison-bar {
+          position: sticky;
+          top: 0;
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          padding: 0.75rem 1rem;
+          margin-bottom: 1rem;
+          z-index: 100;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .compare-hint {
+          color: var(--secondary-color);
+          font-size: 0.9rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .hint-arrow {
+          font-size: 1.2rem;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+
+        .compare-actions {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .selected-count {
+          color: var(--primary-color);
+          font-weight: 500;
+        }
+
+        .compare-btn {
+          background: var(--accent-color);
+          color: white;
+          border: none;
+          padding: 0.5rem 1.25rem;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.2s;
+        }
+
+        .compare-btn:hover {
+          background: #3347b0;
+        }
+
+        .clear-btn {
+          background: transparent;
+          color: var(--secondary-color);
+          border: 1px solid var(--border-color);
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+          border-color: var(--secondary-color);
+          color: var(--primary-color);
+        }
+
+        /* Table wrapper for sticky hint row */
+        .table-wrapper {
+          position: relative;
+        }
+
+        .compare-hint-row {
+          display: flex;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          background: var(--card-bg);
+          z-index: 100;
+          padding: 0.5rem 0;
+          margin-bottom: 0.5rem;
+        }
+
+        .hint-spacer {
+          width: 6%;
+        }
+
+        .hint-arrow-cell {
+          width: 4%;
+          text-align: center;
+          font-size: 1.2rem;
+          color: var(--secondary-color);
+          animation: pulse 2s infinite;
+        }
+
+        .hint-text {
+          color: var(--secondary-color);
+          font-size: 0.85rem;
+        }
+
+        .compare-actions-row {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          position: sticky;
+          top: 0;
+          background: var(--card-bg);
+          z-index: 100;
+          padding: 0.5rem 0;
+          margin-bottom: 0.5rem;
+        }
+
+        /* Comparison modal */
+        .comparison-modal {
+          max-width: 900px;
+        }
+
+        .comparison-content {
+          margin-top: 1.5rem;
+        }
+
+        .comparison-table {
+          width: 100%;
+          border-collapse: collapse;
+          table-layout: fixed;
+        }
+
+        .comparison-header {
+          background: var(--bg-color);
+          padding: 1rem;
+          text-align: center;
+          font-weight: 600;
+          color: var(--primary-color);
+          border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-flag {
+          font-size: 1.5rem;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .comparison-cell {
+          padding: 0.5rem 1rem;
+          border-bottom: 1px solid var(--border-color);
+          vertical-align: top;
+        }
+
+        .comparison-cell:first-child {
+          border-right: 1px solid var(--border-color);
+        }
+
+        .dest-name {
+          color: var(--primary-color);
+        }
+
+        .dest-tourism {
+          color: var(--secondary-color);
+          font-size: 0.85rem;
+          margin-left: 0.5rem;
+        }
+
+        .no-differences {
+          text-align: center;
+          padding: 2rem;
+          color: var(--secondary-color);
+          font-style: italic;
+        }
+
+        .comparison-summary {
+          margin-top: 1.5rem;
+          padding: 1rem;
+          background: var(--bg-color);
+          border-radius: 8px;
+        }
+
+        .comparison-summary p {
+          margin: 0.5rem 0;
+          color: var(--secondary-color);
+        }
+
+        /* Multi-country comparison */
+        .multi-select-note {
+          color: var(--secondary-color);
+          margin-bottom: 1.5rem;
+        }
+
+        .pairwise-comparison {
+          margin-bottom: 2rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .pairwise-comparison:last-child {
+          border-bottom: none;
+        }
+
+        .pairwise-comparison h3 {
+          color: var(--primary-color);
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+        }
+
+        .pairwise-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
+
+        .pairwise-col h4 {
+          color: var(--accent-color);
+          font-size: 0.9rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .pairwise-col ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .pairwise-col li {
+          padding: 0.35rem 0;
+          color: var(--primary-color);
+          font-size: 0.9rem;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .pairwise-col li:last-child {
+          border-bottom: none;
+        }
+
+        .pairwise-col li.more {
+          color: var(--secondary-color);
+          font-style: italic;
+        }
+
+        /* Unified comparison table */
+        .unified-table {
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .unified-table th,
+        .unified-table td {
+          padding: 0.75rem;
+          text-align: center;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .dest-header {
+          text-align: left !important;
+          min-width: 180px;
+          background: var(--bg-color);
+        }
+
+        .passport-header {
+          background: var(--bg-color);
+          min-width: 80px;
+        }
+
+        .passport-header .passport-name {
+          font-size: 0.75rem;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .dest-cell {
+          text-align: left !important;
+        }
+
+        .access-cell {
+          font-size: 1rem;
+        }
+
+        .access-cell.has-access {
+          background: rgba(34, 197, 94, 0.1);
+        }
+
+        .access-cell.no-access {
+          background: rgba(239, 68, 68, 0.1);
+        }
+
+        .show-more-link {
+          display: block;
+          width: 100%;
+          padding: 0.75rem;
+          margin-top: 0.5rem;
+          background: none;
+          border: none;
+          color: var(--accent-color);
+          font-size: 0.9rem;
+          cursor: pointer;
+          text-align: center;
+          transition: background 0.2s;
+        }
+
+        .show-more-link:hover {
+          background: var(--bg-color);
+          text-decoration: underline;
         }
       `}</style>
     </Layout>

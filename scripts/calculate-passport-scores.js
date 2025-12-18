@@ -225,6 +225,9 @@ function calculatePassportScores() {
     if (visaFreeCountries.includes('United Kingdom')) keyAccess.push('UK')
     if (visaFreeCountries.includes('India')) keyAccess.push('India')
 
+    // Get list of all visa-free destination names for comparison feature
+    const visaFreeDestinations = access.visaFree.map(d => d.country)
+
     results.push({
       id: passport.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, ''),
       country: passport,
@@ -234,7 +237,8 @@ function calculatePassportScores() {
       topContributors: topContributors,
       misses: majorMisses,
       visaFreeCount: access.visaFree.length,
-      visaRequiredCount: access.visaRequired.length
+      visaRequiredCount: access.visaRequired.length,
+      visaFreeDestinations: visaFreeDestinations
     })
   })
 

@@ -453,98 +453,166 @@ export default function PassportRanking() {
 
           {showMethodology && (
             <div className="modal-overlay" onClick={() => setShowMethodology(false)}>
-              <div className="modal-content" onClick={e => e.stopPropagation()}>
+              <div className="modal-content methodology-modal" onClick={e => e.stopPropagation()}>
                 <button className="modal-close" onClick={() => setShowMethodology(false)}>×</button>
                 <h2>Data Sources & Methodology</h2>
 
-                <div className="methodology-section">
-                  <h3>Visa Requirements Data</h3>
-                  <p><strong>Source:</strong> <a href="https://github.com/ilyankou/passport-index-dataset" target="_blank" rel="noopener noreferrer">Passport Index Dataset</a> (Ilya Ilyankou)</p>
-                  <p>An open-source dataset tracking visa requirements between 199 passports and 227 destinations. Updated regularly to reflect the latest visa policy changes.</p>
-                  <p><strong>Access types counted as visa-free:</strong></p>
-                  <ul>
-                    <li>Visa-free entry (any number of days)</li>
-                    <li>Visa on arrival (VOA)</li>
-                    <li>Electronic Travel Authorization (eTA/ETA)</li>
-                  </ul>
-                  <p><strong>Access types NOT counted:</strong></p>
-                  <ul>
-                    <li>Traditional visa required</li>
-                    <li>e-Visa (requires pre-approval)</li>
-                  </ul>
-                </div>
+                <div className="methodology-section highlight-section">
+                  <h3>Why This Ranking Is Different</h3>
+                  <p>Traditional passport rankings like the <strong>Henley Passport Index</strong> count visa-free destinations equally. A passport with access to 190 countries ranks higher than one with 185, regardless of which countries those are.</p>
+                  <p>This creates a fundamental problem: <strong>not all destinations are equal</strong>. Access to France (100M annual visitors) matters more than access to Palau (100K visitors).</p>
 
-                <div className="methodology-section">
-                  <h3>Tourism Data</h3>
-                  <p><strong>Primary Source:</strong> <a href="https://www.unwto.org/tourism-statistics/tourism-statistics-database" target="_blank" rel="noopener noreferrer">UNWTO World Tourism Barometer 2024/2025</a></p>
-                  <p><strong>Baseline Data:</strong> <a href="https://data.worldbank.org/indicator/ST.INT.ARVL" target="_blank" rel="noopener noreferrer">World Bank International Tourism Arrivals</a> (2019 as baseline)</p>
-
-                  <h4>Year Selection Logic</h4>
-                  <p>We use 2024 estimates based on UNWTO reports, which indicate tourism has recovered to approximately 102% of pre-pandemic (2019) levels globally. For countries without 2024 data:</p>
-                  <ul>
-                    <li><strong>2019 baseline preferred</strong> over 2020-2022 pandemic years</li>
-                    <li>Regional recovery rates applied based on UNWTO regional data</li>
-                    <li>Asia-Pacific: slower recovery (~85% of 2019)</li>
-                    <li>Middle East: exceeded 2019 levels (+20%)</li>
-                    <li>Europe & Americas: ~95-100% of 2019</li>
-                  </ul>
-                </div>
-
-                <div className="methodology-section">
-                  <h3>Notable Data Adjustments</h3>
-                  <table className="adjustments-table">
-                    <thead>
-                      <tr>
-                        <th>Country</th>
-                        <th>Adjustment</th>
-                        <th>Reason</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>China</td>
-                        <td>35M (2024 est.)</td>
-                        <td>Expanded visa-free policy to 50+ countries in 2024-2025; slower recovery from COVID restrictions</td>
-                      </tr>
-                      <tr>
-                        <td>Russia</td>
-                        <td>8M (2024 est.)</td>
-                        <td>Significantly reduced from pre-2022 levels due to international sanctions</td>
-                      </tr>
-                      <tr>
-                        <td>Japan</td>
-                        <td>35M (2024 est.)</td>
-                        <td>Strong recovery post-COVID border reopening in late 2022</td>
-                      </tr>
-                      <tr>
-                        <td>Schengen Zone</td>
-                        <td>Aggregated</td>
-                        <td>27 countries grouped as single entry for "Top Contributors" display</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="methodology-section">
-                  <h3>Algorithm</h3>
-                  <div className="formula">
-                    Passport Score = Sum of (Annual Visitors in millions) for all visa-free/VOA/eTA destinations
+                  <div className="comparison-example">
+                    <h4>Example: South Korea vs Singapore</h4>
+                    <div className="example-grid">
+                      <div className="example-col">
+                        <div className="example-flag">🇸🇬</div>
+                        <div className="example-country">Singapore</div>
+                        <div className="example-stat">#1 on Henley Index</div>
+                        <div className="example-detail">195 visa-free destinations</div>
+                      </div>
+                      <div className="example-col">
+                        <div className="example-flag">🇰🇷</div>
+                        <div className="example-country">South Korea</div>
+                        <div className="example-stat">#1 on Total Experience Index</div>
+                        <div className="example-detail">167 visa-free destinations</div>
+                      </div>
+                    </div>
+                    <p className="example-explanation">South Korea has <strong>fewer</strong> visa-free destinations than Singapore, but leads our ranking because it has visa-free access to <strong>China</strong> (65.7M visitors). Singapore requires a visa for China, losing access to the world's 4th largest tourism market.</p>
+                    <p className="example-explanation">The key insight: <em>quality of access matters more than quantity</em>.</p>
                   </div>
-                  <p>This approach weights destinations by their actual tourism activity, making access to major tourist destinations more valuable than access to smaller nations with limited visitor infrastructure.</p>
+                </div>
+
+                <div className="methodology-section">
+                  <h3>The Formula</h3>
+                  <div className="formula">
+                    Passport Score = Σ (Annual Visitors) for all visa-free destinations
+                  </div>
+                  <p>For each passport, we sum the annual international tourist arrivals (in millions) of every country that can be accessed without a traditional visa. This weights destinations by their actual tourism activity.</p>
+                  <p><strong>Access types that count:</strong> Visa-free entry, Visa on arrival (VOA), Electronic Travel Authorization (eTA)</p>
+                  <p><strong>Access types that don't count:</strong> Traditional visa required, e-Visa (requires pre-approval)</p>
                 </div>
 
                 <div className="methodology-section">
                   <h3>Limitations</h3>
                   <ul>
-                    <li>Tourism data may lag 1-2 years behind current figures</li>
-                    <li>Visa policies change frequently; dataset may not reflect changes in the last few months</li>
-                    <li>Some small nations have estimated visitor numbers</li>
-                    <li>Transit visa-free arrangements (e.g., China's 144-hour transit) not counted</li>
+                    <li><strong>Tourism ≠ Travel value:</strong> Business travel, family visits, and personal preferences aren't captured by tourism volume</li>
+                    <li><strong>Data lag:</strong> Tourism data may be 1-2 years behind. We use COVID-aware logic to prefer 2019 data over 2020-2022 pandemic years</li>
+                    <li><strong>Policy changes:</strong> Visa policies change frequently; our corrections try to keep up but may miss recent changes</li>
+                    <li><strong>Transit visas:</strong> Special arrangements like China's 144-hour transit visa aren't counted</li>
+                    <li><strong>Small nations:</strong> Some countries have estimated or zero visitor data</li>
                   </ul>
+                </div>
+
+                <div className="methodology-section">
+                  <h3>Data Sources</h3>
+
+                  <h4>1. Visa Requirements</h4>
+                  <p><strong>Primary:</strong> <a href="https://github.com/ilyankou/passport-index-dataset" target="_blank" rel="noopener noreferrer">Passport Index Dataset</a> by Ilya Ilyankou</p>
+                  <p>Open-source dataset tracking visa requirements between 199 passports and 227 destinations.</p>
+
+                  <h4>2. Tourism Statistics</h4>
+                  <p><strong>Primary:</strong> <a href="https://www.unwto.org/tourism-statistics/key-tourism-statistics" target="_blank" rel="noopener noreferrer">UN Tourism (UNWTO) Inbound Arrivals Dataset</a></p>
+                  <p>Official UN tourism statistics with COVID-aware year selection: we prefer 2019 baseline over 2020-2022 pandemic years when those are the most recent available.</p>
+                </div>
+
+                <div className="methodology-section">
+                  <h3>Manual Corrections (December 2025)</h3>
+                  <p>We maintain two correction files to keep data current:</p>
+
+                  <h4>Visa Policy Updates (66 corrections)</h4>
+                  <table className="adjustments-table">
+                    <thead>
+                      <tr>
+                        <th>Policy Change</th>
+                        <th>Countries Affected</th>
+                        <th>Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>China visa-free expansion</td>
+                        <td>Argentina, Brazil, Chile, Peru, Uruguay, Russia</td>
+                        <td><a href="https://www.visaforchina.cn/" target="_blank" rel="noopener noreferrer">visaforchina.cn</a></td>
+                      </tr>
+                      <tr>
+                        <td>Namibia ends visa-free access</td>
+                        <td>47 countries (US, UK, Germany, etc.)</td>
+                        <td><a href="https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/" target="_blank" rel="noopener noreferrer">Schengen Visa Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>Brazil introduces visas</td>
+                        <td>USA, Canada, Australia</td>
+                        <td>2025 policy change</td>
+                      </tr>
+                      <tr>
+                        <td>Vietnam visa exemption</td>
+                        <td>Belgium, Netherlands, Poland (45 days)</td>
+                        <td>2025 policy change</td>
+                      </tr>
+                      <tr>
+                        <td>Bolivia visa-free expansion</td>
+                        <td>USA, Israel, South Korea, South Africa</td>
+                        <td>2025 policy change</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <h4>Tourism Data Updates (6 countries)</h4>
+                  <p>Countries with severely outdated UN data:</p>
+                  <table className="adjustments-table">
+                    <thead>
+                      <tr>
+                        <th>Country</th>
+                        <th>Old Data</th>
+                        <th>Updated</th>
+                        <th>Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Russia</td>
+                        <td>19.9M (2005)</td>
+                        <td>9.7M (2024)</td>
+                        <td><a href="https://tass.com/economy/1942339" target="_blank" rel="noopener noreferrer">TASS</a></td>
+                      </tr>
+                      <tr>
+                        <td>Australia</td>
+                        <td>5.1M (2006)</td>
+                        <td>7.6M (2024)</td>
+                        <td><a href="https://www.statista.com/statistics/620187/australia-number-of-international-visitors/" target="_blank" rel="noopener noreferrer">Statista</a></td>
+                      </tr>
+                      <tr>
+                        <td>Syria</td>
+                        <td>5.1M (2011)</td>
+                        <td>1.5M (2023)</td>
+                        <td><a href="https://tradingeconomics.com/syria/international-tourism-number-of-arrivals-wb-data.html" target="_blank" rel="noopener noreferrer">Trading Economics</a></td>
+                      </tr>
+                      <tr>
+                        <td>Zimbabwe</td>
+                        <td>2.1M (2001)</td>
+                        <td>1.6M (2023)</td>
+                        <td><a href="https://tradingeconomics.com/zimbabwe/tourist-arrivals" target="_blank" rel="noopener noreferrer">Trading Economics</a></td>
+                      </tr>
+                      <tr>
+                        <td>Pakistan</td>
+                        <td>1.0M (2012)</td>
+                        <td>1.0M (2023)</td>
+                        <td><a href="https://www.statista.com/statistics/1336006/number-international-tourists-pakistan/" target="_blank" rel="noopener noreferrer">Statista</a></td>
+                      </tr>
+                      <tr>
+                        <td>Cameroon</td>
+                        <td>0.8M (2012)</td>
+                        <td>1.1M (2023)</td>
+                        <td><a href="https://data.worldbank.org/indicator/ST.INT.ARVL?locations=CM" target="_blank" rel="noopener noreferrer">World Bank</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
                 <div className="methodology-section last-updated">
                   <p><strong>Last Updated:</strong> December 2025</p>
+                  <p className="disclaimer">This is an independent ranking for informational purposes. Always verify visa requirements with official sources before traveling.</p>
                 </div>
               </div>
             </div>
@@ -1244,6 +1312,93 @@ export default function PassportRanking() {
         .last-updated p {
           color: var(--secondary-color);
           font-size: 0.85rem;
+        }
+
+        .last-updated .disclaimer {
+          font-style: italic;
+          margin-top: 0.5rem;
+        }
+
+        /* Methodology modal enhancements */
+        .methodology-modal {
+          max-width: 900px;
+        }
+
+        .highlight-section {
+          background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+          border: 1px solid rgba(99, 102, 241, 0.2);
+          border-radius: 8px;
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .comparison-example {
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          padding: 1.25rem;
+          margin-top: 1rem;
+        }
+
+        .comparison-example h4 {
+          color: var(--primary-color);
+          font-size: 1rem;
+          margin-bottom: 1rem;
+          text-align: center;
+        }
+
+        .example-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .example-col {
+          text-align: center;
+          padding: 1rem;
+          background: var(--bg-color);
+          border-radius: 8px;
+        }
+
+        .example-flag {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .example-country {
+          font-weight: 600;
+          color: var(--primary-color);
+          font-size: 1.1rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .example-stat {
+          color: var(--accent-color);
+          font-weight: 600;
+          font-size: 0.85rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .example-detail {
+          color: var(--secondary-color);
+          font-size: 0.8rem;
+        }
+
+        .example-explanation {
+          color: var(--secondary-color);
+          font-size: 0.9rem;
+          line-height: 1.6;
+          margin-bottom: 0.5rem;
+        }
+
+        .example-explanation:last-child {
+          margin-bottom: 0;
+        }
+
+        .example-explanation em {
+          color: var(--primary-color);
+          font-style: italic;
         }
 
         .controls {

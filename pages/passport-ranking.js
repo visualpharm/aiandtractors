@@ -850,13 +850,15 @@ export default function PassportRanking() {
                               {rank}
                             </td>
                           )}
-                          <td className="checkbox-cell">
-                            <input
-                              type="checkbox"
-                              checked={selectedIds.has(passport.id)}
-                              onChange={() => toggleSelection(passport.id)}
-                              onClick={(e) => e.stopPropagation()}
-                            />
+                          <td className="checkbox-cell" onClick={(e) => { e.stopPropagation(); toggleSelection(passport.id); }}>
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedIds.has(passport.id)}
+                                onChange={() => toggleSelection(passport.id)}
+                                onClick={(e) => e.stopPropagation()}
+                              />
+                            </label>
                           </td>
                         <td className="country-cell">
                           <span className={`flag ${passport.isCombo ? 'combo-flags' : ''}`}>{passport.isCombo ? passport.flags : passport.flag}</span>
@@ -1686,7 +1688,16 @@ export default function PassportRanking() {
         /* Checkbox cell styling - larger click area */
         .checkbox-cell {
           text-align: center;
-          padding: 0.5rem;
+          padding: 0;
+          cursor: pointer;
+        }
+
+        .checkbox-label {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 15px;
+          cursor: pointer;
         }
 
         .checkbox-cell input[type="checkbox"] {
@@ -1694,9 +1705,6 @@ export default function PassportRanking() {
           height: 18px;
           cursor: pointer;
           accent-color: var(--accent-color);
-          padding: 15px;
-          margin: -15px;
-          box-sizing: content-box;
         }
 
         /* Table wrapper */

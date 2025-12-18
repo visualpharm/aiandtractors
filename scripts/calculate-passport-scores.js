@@ -21,12 +21,13 @@ const path = require('path')
 
 // Load datasets
 const tourismData = require('../data/unwto-tourism-2023.json')
+const tourismAdjustments = require('../data/tourism-adjustments.json')
 const visaCorrections = require('../data/visa-corrections.json')
 const passportCsvPath = path.join(__dirname, '../data/passport-index-tidy.csv')
 
 // Country name mappings (passport dataset -> tourism dataset)
+// Note: Most mappings are now handled in extract-unwto-data.js
 const countryNameMap = {
-  'Czech Republic': 'Czechia',
   'United States': 'United States',
   'Ivory Coast': 'Ivory Coast',
   'Timor-Leste': 'Timor-Leste',
@@ -141,8 +142,15 @@ function isVisaFreeAccess(requirement) {
 }
 
 // Get tourism value for a destination
+// Priority: 1) Manual adjustments, 2) UNWTO data
 function getTourismValue(destination) {
   const mappedName = countryNameMap[destination] || destination
+
+  // Check if we have a manual adjustment for this country
+  if (tourismAdjustments.adjustments[mappedName]) {
+    return tourismAdjustments.adjustments[mappedName].value
+  }
+
   return tourismData.data[mappedName] || 0
 }
 
@@ -292,20 +300,24 @@ const results = calculatePassportScores()
 // Output JSON
 const outputPath = path.join(__dirname, '../data/calculated-passport-scores.json')
 const correctionsCount = visaCorrections.corrections ? visaCorrections.corrections.length : 0
+const tourismAdjustmentsCount = Object.keys(tourismAdjustments.adjustments).length
 fs.writeFileSync(outputPath, JSON.stringify({
   _metadata: {
     generatedAt: new Date().toISOString(),
     algorithm: 'Sum of annual visitors (millions) to all visa-free/VOA/ETA destinations',
     tourismSource: 'UNWTO Tourism Statistics 2023/2024',
     visaSource: 'github.com/ilyankou/passport-index-dataset',
-    correctionsApplied: correctionsCount,
-    correctionsLastUpdated: visaCorrections._metadata ? visaCorrections._metadata.lastUpdated : null
+    visaCorrectionsApplied: correctionsCount,
+    visaCorrectionsLastUpdated: visaCorrections._metadata ? visaCorrections._metadata.lastUpdated : null,
+    tourismAdjustmentsApplied: tourismAdjustmentsCount,
+    tourismAdjustmentsLastUpdated: tourismAdjustments._metadata ? tourismAdjustments._metadata.lastUpdated : null
   },
   results: results
 }, null, 2))
 
 console.log(`Generated ${results.length} passport scores`)
 console.log(`Applied ${correctionsCount} visa corrections`)
+console.log(`Applied ${tourismAdjustmentsCount} tourism adjustments (countries with outdated UN data)`)
 console.log(`Output saved to: ${outputPath}`)
 console.log('\nTop 10:')
 results.slice(0, 10).forEach((r, i) => {

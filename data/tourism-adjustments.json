@@ -1,0 +1,78 @@
+{
+  "_metadata": {
+    "description": "Manual adjustments for countries with outdated UN Tourism data",
+    "purpose": "Override old/missing UN data with recent statistics from various sources",
+    "unit": "millions of international tourist arrivals",
+    "lastUpdated": "2025-01-15",
+    "sources": {
+      "statista": "https://www.statista.com",
+      "worldBank": "https://data.worldbank.org",
+      "ceicData": "https://www.ceicdata.com",
+      "tradingEconomics": "https://tradingeconomics.com",
+      "tourismAustralia": "https://www.tourism.australia.com",
+      "tass": "https://tass.com"
+    }
+  },
+  "adjustments": {
+    "Russia": {
+      "value": 9.7,
+      "year": 2024,
+      "originalYear": 2005,
+      "originalValue": 19.9,
+      "reason": "UN data from 2005 is severely outdated. Russia had ~20M pre-pandemic but tourism dropped significantly after 2022 Ukraine invasion and international sanctions",
+      "source": "TASS/Deputy PM Dmitry Chernyshenko statement",
+      "sourceUrl": "https://tass.com/economy/1942339",
+      "notes": "Down from ~24M in 2019 pre-pandemic. 2024 shows recovery to 9.7M mostly from China, CIS countries"
+    },
+    "Australia": {
+      "value": 7.6,
+      "year": 2024,
+      "originalYear": 2006,
+      "originalValue": 5.1,
+      "reason": "UN data from 2006 is outdated. Australia recovered to 7.6M in 2024, still below 2019 peak of 8.7M",
+      "source": "Tourism Australia / Statista",
+      "sourceUrl": "https://www.statista.com/statistics/620187/australia-number-of-international-visitors/",
+      "notes": "Recovery from COVID, 2024 at 89% of 2019 levels"
+    },
+    "Syria": {
+      "value": 1.5,
+      "year": 2023,
+      "originalYear": 2011,
+      "originalValue": 5.1,
+      "reason": "Civil war devastated tourism. Pre-war Syria had 8.5M tourists in 2010, dropped 98% by 2015. Partial recovery to ~1.5-2M by 2023, mostly Lebanese/Arab visitors. December 2024 regime change creates further uncertainty",
+      "source": "Syrian Guides / Trading Economics",
+      "sourceUrl": "https://tradingeconomics.com/syria/international-tourism-number-of-arrivals-wb-data.html",
+      "notes": "Numbers may include returning Syrian diaspora using foreign passports. Political instability continues"
+    },
+    "Zimbabwe": {
+      "value": 1.6,
+      "year": 2023,
+      "originalYear": 2001,
+      "originalValue": 2.1,
+      "reason": "UN data from 2001 is outdated. Zimbabwe recovering, reached 1.6M in 2023 (up from 1M in 2022), below 2018 peak of 2.6M",
+      "source": "Trading Economics / Zimbabwe Tourism Authority",
+      "sourceUrl": "https://tradingeconomics.com/zimbabwe/tourist-arrivals",
+      "notes": "Tourism receipts reached $1.1B in 2023. H1 2024 showed 27% growth"
+    },
+    "Pakistan": {
+      "value": 1.0,
+      "year": 2023,
+      "originalYear": 2012,
+      "originalValue": 1.0,
+      "reason": "UN data from 2012. Pakistan reached record ~1M tourists in 2023, 115% surge vs 2022. Previously stagnated at ~300K/year",
+      "source": "Statista / World Tourism Barometer",
+      "sourceUrl": "https://www.statista.com/statistics/1336006/number-international-tourists-pakistan/",
+      "notes": "Launched 'Salam Pakistan' tourism brand in 2023. Recovery to 92% of pre-pandemic levels"
+    },
+    "Cameroon": {
+      "value": 1.1,
+      "year": 2023,
+      "originalYear": 2012,
+      "originalValue": 0.8,
+      "reason": "UN data from 2012. Cameroon had 1.02M visitors in 2019. Estimated ~1.1M in 2023 based on projections",
+      "source": "World Bank / Report Linker projections",
+      "sourceUrl": "https://data.worldbank.org/indicator/ST.INT.ARVL?locations=CM",
+      "notes": "2023 figure is an estimate. Peak was 1.08M in 2017"
+    }
+  }
+}

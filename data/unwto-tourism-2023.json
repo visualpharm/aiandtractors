@@ -1,209 +1,1268 @@
 {
   "_metadata": {
-    "source": "UNWTO World Tourism Barometer 2024/2025 + World Bank baseline",
-    "url": "https://www.untourism.int/news/international-tourism-to-reach-pre-pandemic-levels-in-2024",
-    "unit": "millions of international tourist arrivals",
-    "note": "2024 estimates based on UNWTO reports (tourism at ~102% of 2019 levels). Countries adjusted for post-COVID recovery patterns.",
-    "lastUpdated": "2024-12"
+    "source": "UN Tourism (UNWTO) Inbound Arrivals Dataset",
+    "downloadUrl": "https://www.unwto.org/tourism-statistics/key-tourism-statistics",
+    "dataFile": "UN_Tourism_inbound_arrivals_10_2025.xlsx",
+    "unit": "millions of international tourist arrivals (overnight visitors)",
+    "yearSelectionLogic": "Most recent year available, except prefer 2019 over 2020-2022 (COVID years)",
+    "extractedAt": "2025-12-18T16:00:07.525Z"
   },
   "data": {
-    "France": 100,
-    "Spain": 94,
-    "United States": 77,
-    "Turkey": 56,
-    "Italy": 57,
-    "Mexico": 42,
-    "United Kingdom": 40,
-    "Germany": 40,
-    "China": 35,
-    "Japan": 35,
-    "Austria": 32,
-    "Greece": 36,
-    "Thailand": 35,
-    "Saudi Arabia": 30,
-    "Portugal": 30,
-    "Malaysia": 27,
-    "Russia": 8,
-    "Canada": 23,
-    "Poland": 24,
-    "Croatia": 20,
-    "United Arab Emirates": 25,
-    "Netherlands": 21,
-    "India": 18,
-    "Hungary": 18,
-    "Morocco": 16,
-    "Czechia": 14,
-    "Indonesia": 17,
-    "Singapore": 16,
-    "Sweden": 8,
-    "Vietnam": 18,
-    "Romania": 13,
-    "Bahrain": 12,
-    "South Korea": 18,
-    "Switzerland": 12,
-    "Belgium": 10,
-    "Egypt": 15,
-    "Ireland": 12,
-    "Norway": 7,
-    "Slovakia": 6,
-    "Bulgaria": 10,
-    "South Africa": 10,
-    "Hong Kong": 35,
-    "Philippines": 5,
-    "Argentina": 8,
-    "Denmark": 12,
-    "Slovenia": 5,
-    "Australia": 10,
-    "New Zealand": 4,
-    "Taiwan": 6,
-    "Israel": 4,
-    "Finland": 4,
-    "Lithuania": 3,
+    "Spain": 93.8,
+    "France": 90.9,
+    "United States": 79.4,
+    "China": 65.7,
+    "Italy": 57.7,
+    "Turkey": 51.2,
+    "Mexico": 45,
+    "Thailand": 39.9,
+    "United Kingdom": 38.2,
+    "Germany": 37.4,
+    "Japan": 36.9,
+    "Austria": 31.9,
+    "Greece": 31.3,
+    "Saudi Arabia": 29.7,
+    "Portugal": 29,
+    "Malaysia": 26.1,
+    "Hong Kong": 21.9,
+    "United Arab Emirates": 21.6,
+    "India": 20.4,
+    "Netherlands": 20.1,
+    "Canada": 19.9,
+    "Russia": 19.9,
+    "Poland": 19.7,
+    "Croatia": 17.4,
+    "South Korea": 16.4,
+    "Macau": 16,
+    "Czech Republic": 14.7,
+    "Denmark": 14.7,
+    "Indonesia": 13.6,
+    "Romania": 13.4,
+    "Hungary": 13.2,
+    "Singapore": 13,
+    "Morocco": 12.9,
+    "Egypt": 12.9,
+    "Switzerland": 11.8,
+    "Albania": 11.5,
+    "Ireland": 11,
+    "Kazakhstan": 10.4,
+    "Belgium": 9.6,
+    "Tunisia": 9.4,
+    "South Africa": 8.9,
+    "Dominican Republic": 8.5,
+    "Philippines": 8.3,
+    "Uzbekistan": 8,
+    "Taiwan": 7.9,
+    "Bulgaria": 7.8,
+    "Vietnam": 7.6,
+    "Sweden": 7.6,
+    "Brazil": 6.8,
+    "Argentina": 6.6,
+    "Cambodia": 6.6,
+    "Norway": 5.9,
+    "Chile": 5.2,
+    "Jordan": 5.2,
+    "Australia": 5.1,
+    "Georgia": 5.1,
+    "Slovenia": 5.1,
+    "Syria": 5.1,
+    "Israel": 4.6,
+    "Finland": 4.5,
+    "Laos": 4.4,
+    "Peru": 4.4,
+    "Cuba": 4.3,
+    "Andorra": 4.2,
+    "Colombia": 4.2,
     "Cyprus": 4,
-    "Estonia": 4,
-    "Latvia": 3,
-    "Tunisia": 10,
-    "Colombia": 6,
-    "Brazil": 6,
-    "Peru": 5,
-    "Chile": 5,
-    "Dominican Republic": 10,
-    "Cuba": 2,
-    "Jamaica": 3,
-    "Costa Rica": 4,
-    "Panama": 3,
-    "Ecuador": 2,
-    "Uruguay": 3,
-    "Paraguay": 1,
-    "Bolivia": 1,
-    "Venezuela": 0.5,
-    "Kenya": 2,
-    "Tanzania": 2,
-    "Ethiopia": 1,
-    "Rwanda": 1,
-    "Uganda": 1,
-    "Nigeria": 1,
-    "Ghana": 1,
-    "Senegal": 1,
-    "Ivory Coast": 2,
-    "Cameroon": 1,
-    "Jordan": 6,
-    "Lebanon": 2,
-    "Oman": 4,
-    "Kuwait": 1,
-    "Qatar": 4,
-    "Iran": 6,
-    "Iraq": 1,
-    "Pakistan": 1,
-    "Bangladesh": 0.5,
-    "Sri Lanka": 2,
-    "Nepal": 1,
-    "Maldives": 2,
-    "Cambodia": 7,
-    "Laos": 2,
-    "Myanmar": 0.5,
-    "Mongolia": 1,
-    "Kazakhstan": 3,
-    "Uzbekistan": 7,
-    "Azerbaijan": 3,
-    "Georgia": 8,
-    "Armenia": 2,
-    "Ukraine": 1,
-    "Belarus": 0.5,
-    "Moldova": 0.5,
-    "Serbia": 3,
-    "Bosnia and Herzegovina": 1,
-    "North Macedonia": 1,
-    "Montenegro": 3,
-    "Albania": 11,
-    "Kosovo": 0.5,
+    "Bahrain": 3.8,
+    "Malta": 3.6,
+    "Estonia": 3.3,
+    "El Salvador": 3.2,
+    "New Zealand": 3.2,
+    "Puerto Rico": 3.2,
+    "Uruguay": 3.1,
+    "Azerbaijan": 2.9,
+    "Costa Rica": 2.9,
+    "Jamaica": 2.7,
+    "Oman": 2.7,
+    "Qatar": 2.6,
+    "Montenegro": 2.5,
+    "Ukraine": 2.5,
+    "Lithuania": 2.4,
+    "Serbia": 2.4,
+    "Armenia": 2.2,
+    "Belarus": 2.2,
+    "Zimbabwe": 2.1,
     "Iceland": 2,
-    "Malta": 3,
-    "Luxembourg": 2,
-    "Monaco": 0.5,
-    "Andorra": 8,
-    "San Marino": 0.2,
-    "Liechtenstein": 0.1,
-    "Vatican City": 0.1,
-    "Brunei": 0.5,
-    "Bahamas": 9,
-    "Barbados": 1,
-    "Trinidad and Tobago": 0.5,
-    "Grenada": 0.2,
-    "St. Lucia": 0.4,
-    "St. Vincent and the Grenadines": 0.1,
-    "Dominica": 0.1,
-    "Antigua and Barbuda": 0.3,
-    "St. Kitts and Nevis": 0.2,
-    "Seychelles": 0.4,
-    "Mauritius": 1,
-    "Fiji": 1,
-    "Papua New Guinea": 0.1,
-    "Solomon Islands": 0.05,
-    "Vanuatu": 0.1,
-    "Samoa": 0.2,
-    "Tonga": 0.1,
-    "Kiribati": 0.01,
-    "Marshall Islands": 0.01,
-    "Micronesia": 0.02,
-    "Palau": 0.1,
-    "Nauru": 0.01,
-    "Tuvalu": 0.01,
-    "Timor-Leste": 0.1,
-    "Comoros": 0.05,
-    "Cape Verde": 1,
-    "Sao Tome and Principe": 0.03,
-    "Equatorial Guinea": 0.01,
-    "Gabon": 0.2,
-    "Congo": 0.3,
-    "DR Congo": 0.2,
-    "Central African Republic": 0.01,
-    "Chad": 0.05,
-    "Niger": 0.1,
-    "Mali": 0.2,
-    "Burkina Faso": 0.1,
-    "Benin": 0.3,
-    "Togo": 0.4,
-    "Guinea": 0.1,
-    "Guinea-Bissau": 0.05,
-    "Sierra Leone": 0.05,
-    "Liberia": 0.05,
-    "Gambia": 0.3,
-    "Mauritania": 0.1,
-    "Western Sahara": 0.01,
-    "Algeria": 3,
-    "Libya": 0.1,
-    "Sudan": 0.5,
-    "South Sudan": 0.01,
-    "Eritrea": 0.01,
-    "Djibouti": 0.1,
-    "Somalia": 0.01,
-    "Madagascar": 0.3,
-    "Malawi": 0.2,
-    "Zambia": 1,
-    "Zimbabwe": 2,
-    "Botswana": 2,
-    "Namibia": 2,
     "Mozambique": 2,
-    "Angola": 0.5,
-    "Lesotho": 0.3,
-    "Eswatini": 0.3,
-    "Burundi": 0.05,
-    "North Korea": 0.01,
-    "Turkmenistan": 0.1,
-    "Tajikistan": 1,
-    "Kyrgyzstan": 2,
-    "Afghanistan": 0.01,
-    "Syria": 0.1,
-    "Yemen": 0.01,
-    "Belize": 1,
-    "Guatemala": 3,
-    "El Salvador": 2,
-    "Honduras": 2,
-    "Nicaragua": 1,
-    "Haiti": 0.3,
+    "Sri Lanka": 1.9,
+    "Lebanon": 1.9,
+    "Latvia": 1.9,
+    "Bahamas": 1.8,
+    "Guatemala": 1.8,
+    "Panama": 1.8,
+    "Maldives": 1.7,
+    "Botswana": 1.5,
+    "Rwanda": 1.5,
+    "Uganda": 1.5,
+    "Kenya": 1.4,
+    "Mauritius": 1.4,
+    "Senegal": 1.4,
+    "Tanzania": 1.4,
+    "Nicaragua": 1.3,
+    "Zambia": 1.3,
+    "Bolivia": 1.2,
+    "Bosnia and Herzegovina": 1.2,
+    "Nepal": 1.2,
+    "Palestine": 1.1,
+    "Ghana": 1.1,
+    "Aruba": 1.1,
+    "Paraguay": 1.1,
+    "Luxembourg": 1,
+    "Malawi": 1,
+    "Pakistan": 1,
+    "Fiji": 0.9,
+    "Iran": 0.9,
+    "Namibia": 0.9,
+    "Togo": 0.9,
+    "Myanmar": 0.8,
+    "Cameroon": 0.8,
+    "Cape Verde": 0.8,
+    "Sudan": 0.8,
+    "North Macedonia": 0.8,
+    "Barbados": 0.7,
+    "Guadeloupe": 0.7,
+    "Guam": 0.7,
+    "Honduras": 0.7,
+    "Mongolia": 0.7,
+    "Eswatini": 0.7,
+    "Gambia": 0.6,
+    "Martinique": 0.6,
+    "Belize": 0.5,
+    "Cayman Islands": 0.5,
+    "DR Congo": 0.5,
+    "Ethiopia": 0.5,
+    "Curaçao": 0.5,
+    "Nigeria": 0.5,
+    "Northern Mariana Islands": 0.5,
+    "Réunion": 0.5,
+    "Turks and Caicos Islands": 0.5,
+    "United States Virgin Islands": 0.5,
+    "Madagascar": 0.4,
+    "Saint Lucia": 0.4,
+    "Seychelles": 0.4,
+    "Venezuela": 0.4,
+    "Yemen": 0.4,
+    "Antigua and Barbuda": 0.3,
+    "Bangladesh": 0.3,
+    "Bermuda": 0.3,
+    "Bhutan": 0.3,
+    "British Virgin Islands": 0.3,
+    "Brunei": 0.3,
+    "Burundi": 0.3,
+    "Benin": 0.3,
+    "Gabon": 0.3,
     "Guyana": 0.3,
+    "Haiti": 0.3,
+    "Lesotho": 0.3,
+    "Monaco": 0.3,
+    "Moldova": 0.3,
+    "Sint Maarten (Dutch part)": 0.3,
     "Suriname": 0.3,
-    "Macau": 35
+    "Trinidad and Tobago": 0.3,
+    "Angola": 0.2,
+    "Congo": 0.2,
+    "Cook Islands": 0.2,
+    "French Polynesia": 0.2,
+    "Djibouti": 0.2,
+    "Grenada": 0.2,
+    "Kyrgyzstan": 0.2,
+    "Mali": 0.2,
+    "Niger": 0.2,
+    "Papua New Guinea": 0.2,
+    "Samoa": 0.2,
+    "Central African Republic": 0.1,
+    "Chad": 0.1,
+    "Dominica": 0.1,
+    "French Guiana": 0.1,
+    "Guinea": 0.1,
+    "Kuwait": 0.1,
+    "Liechtenstein": 0.1,
+    "New Caledonia": 0.1,
+    "Vanuatu": 0.1,
+    "Palau": 0.1,
+    "Guinea-Bissau": 0.1,
+    "Timor-Leste": 0.1,
+    "Saint Kitts and Nevis": 0.1,
+    "Anguilla": 0.1,
+    "Saint Vincent and the Grenadines": 0.1,
+    "San Marino": 0.1,
+    "Sierra Leone": 0.1,
+    "Tonga": 0.1,
+    "Burkina Faso": 0.1,
+    "Bonaire": 0.1,
+    "American Samoa": 0,
+    "Solomon Islands": 0,
+    "Comoros": 0,
+    "Kiribati": 0,
+    "Libya": 0,
+    "Mauritania": 0,
+    "Montserrat": 0,
+    "Niue": 0,
+    "Micronesia": 0,
+    "Marshall Islands": 0,
+    "Sao Tome and Principe": 0,
+    "Tajikistan": 0,
+    "Turkmenistan": 0,
+    "Tuvalu": 0,
+    "Saba": 0,
+    "St. Eustatius": 0
+  },
+  "yearInfo": {
+    "Albania": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "American Samoa": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Andorra": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Angola": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Antigua and Barbuda": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Azerbaijan": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Argentina": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Australia": {
+      "year": 2006,
+      "latestAvailable": 2006,
+      "covidAdjusted": false
+    },
+    "Austria": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Bahamas": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Bahrain": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Bangladesh": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Armenia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Barbados": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Belgium": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Bermuda": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Bhutan": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Bolivia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Bosnia and Herzegovina": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Botswana": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Brazil": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Belize": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Solomon Islands": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "British Virgin Islands": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Brunei": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Bulgaria": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Myanmar": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Burundi": {
+      "year": 2017,
+      "latestAvailable": 2017,
+      "covidAdjusted": false
+    },
+    "Belarus": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Cambodia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Cameroon": {
+      "year": 2012,
+      "latestAvailable": 2012,
+      "covidAdjusted": false
+    },
+    "Canada": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Cape Verde": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Cayman Islands": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Central African Republic": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Sri Lanka": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Chad": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Chile": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "China": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Taiwan": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Colombia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Comoros": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Congo": {
+      "year": 2018,
+      "latestAvailable": 2018,
+      "covidAdjusted": false
+    },
+    "DR Congo": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Cook Islands": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Costa Rica": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Croatia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Cuba": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Cyprus": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Czech Republic": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Benin": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Denmark": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Dominica": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Dominican Republic": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "El Salvador": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Ethiopia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Estonia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Fiji": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Finland": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "France": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "French Guiana": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "French Polynesia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Djibouti": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Gabon": {
+      "year": 2005,
+      "latestAvailable": 2005,
+      "covidAdjusted": false
+    },
+    "Georgia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Gambia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Palestine": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Germany": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Ghana": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Kiribati": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Greece": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Grenada": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Guadeloupe": {
+      "year": 2018,
+      "latestAvailable": 2018,
+      "covidAdjusted": false
+    },
+    "Guam": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Guatemala": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Guinea": {
+      "year": 2017,
+      "latestAvailable": 2017,
+      "covidAdjusted": false
+    },
+    "Guyana": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Haiti": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Honduras": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Hong Kong": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Hungary": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Iceland": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "India": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Indonesia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Iran": {
+      "year": 2021,
+      "latestAvailable": 2021,
+      "covidAdjusted": false
+    },
+    "Ireland": {
+      "year": 2019,
+      "latestAvailable": 2019,
+      "covidAdjusted": false
+    },
+    "Israel": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Italy": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Jamaica": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Japan": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Kazakhstan": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Jordan": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Kenya": {
+      "year": 2017,
+      "latestAvailable": 2017,
+      "covidAdjusted": false
+    },
+    "South Korea": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Kuwait": {
+      "year": 2023,
+      "latestAvailable": 2023,
+      "covidAdjusted": false
+    },
+    "Kyrgyzstan": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Laos": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Lebanon": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Lesotho": {
+      "year": 2013,
+      "latestAvailable": 2013,
+      "covidAdjusted": false
+    },
+    "Latvia": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Libya": {
+      "year": 2008,
+      "latestAvailable": 2008,
+      "covidAdjusted": false
+    },
+    "Liechtenstein": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Lithuania": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Luxembourg": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Macau": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Madagascar": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Malawi": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Malaysia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Maldives": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Mali": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Malta": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Martinique": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Mauritania": {
+      "year": 2000,
+      "latestAvailable": 2000,
+      "covidAdjusted": false
+    },
+    "Mauritius": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Mexico": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Monaco": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Mongolia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Moldova": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Montenegro": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Montserrat": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Morocco": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Mozambique": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Oman": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Namibia": {
+      "year": 2023,
+      "latestAvailable": 2023,
+      "covidAdjusted": false
+    },
+    "Nepal": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Netherlands": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Curaçao": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Aruba": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Sint Maarten (Dutch part)": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "New Caledonia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Vanuatu": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "New Zealand": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Nicaragua": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Niger": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Nigeria": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Niue": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Norway": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Northern Mariana Islands": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Micronesia": {
+      "year": 2019,
+      "latestAvailable": 2019,
+      "covidAdjusted": false
+    },
+    "Marshall Islands": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Palau": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Pakistan": {
+      "year": 2012,
+      "latestAvailable": 2012,
+      "covidAdjusted": false
+    },
+    "Panama": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Papua New Guinea": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Paraguay": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Peru": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Philippines": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Poland": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Portugal": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Guinea-Bissau": {
+      "year": 2019,
+      "latestAvailable": 2019,
+      "covidAdjusted": false
+    },
+    "Timor-Leste": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Puerto Rico": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Qatar": {
+      "year": 2022,
+      "latestAvailable": 2022,
+      "covidAdjusted": false
+    },
+    "Réunion": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Romania": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Russia": {
+      "year": 2005,
+      "latestAvailable": 2005,
+      "covidAdjusted": false
+    },
+    "Rwanda": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Saint Kitts and Nevis": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Anguilla": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Saint Lucia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Saint Vincent and the Grenadines": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "San Marino": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Sao Tome and Principe": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Saudi Arabia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Senegal": {
+      "year": 2017,
+      "latestAvailable": 2017,
+      "covidAdjusted": false
+    },
+    "Serbia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Seychelles": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Sierra Leone": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Singapore": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Vietnam": {
+      "year": 2015,
+      "latestAvailable": 2015,
+      "covidAdjusted": false
+    },
+    "Slovenia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "South Africa": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Zimbabwe": {
+      "year": 2001,
+      "latestAvailable": 2001,
+      "covidAdjusted": false
+    },
+    "Spain": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Sudan": {
+      "year": 2018,
+      "latestAvailable": 2018,
+      "covidAdjusted": false
+    },
+    "Suriname": {
+      "year": 2017,
+      "latestAvailable": 2017,
+      "covidAdjusted": false
+    },
+    "Eswatini": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Sweden": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Switzerland": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Syria": {
+      "year": 2011,
+      "latestAvailable": 2011,
+      "covidAdjusted": false
+    },
+    "Tajikistan": {
+      "year": 2001,
+      "latestAvailable": 2001,
+      "covidAdjusted": false
+    },
+    "Thailand": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Togo": {
+      "year": 2019,
+      "latestAvailable": 2020,
+      "covidAdjusted": true
+    },
+    "Tonga": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Trinidad and Tobago": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "United Arab Emirates": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Tunisia": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Turkey": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Turkmenistan": {
+      "year": 2007,
+      "latestAvailable": 2007,
+      "covidAdjusted": false
+    },
+    "Turks and Caicos Islands": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Tuvalu": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Uganda": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Ukraine": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "North Macedonia": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Egypt": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "United Kingdom": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Tanzania": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "United States": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "United States Virgin Islands": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Burkina Faso": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Uruguay": {
+      "year": 2019,
+      "latestAvailable": 2019,
+      "covidAdjusted": false
+    },
+    "Uzbekistan": {
+      "year": 2024,
+      "latestAvailable": 2024,
+      "covidAdjusted": false
+    },
+    "Venezuela": {
+      "year": 2017,
+      "latestAvailable": 2017,
+      "covidAdjusted": false
+    },
+    "Samoa": {
+      "year": 2019,
+      "latestAvailable": 2022,
+      "covidAdjusted": true
+    },
+    "Yemen": {
+      "year": 2015,
+      "latestAvailable": 2015,
+      "covidAdjusted": false
+    },
+    "Zambia": {
+      "year": 2019,
+      "latestAvailable": 2021,
+      "covidAdjusted": true
+    },
+    "Bonaire": {
+      "year": 2010,
+      "latestAvailable": 2010,
+      "covidAdjusted": false
+    },
+    "Saba": {
+      "year": 2010,
+      "latestAvailable": 2010,
+      "covidAdjusted": false
+    },
+    "St. Eustatius": {
+      "year": 2010,
+      "latestAvailable": 2010,
+      "covidAdjusted": false
+    }
   }
 }

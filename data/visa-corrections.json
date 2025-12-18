@@ -1,0 +1,542 @@
+{
+  "_metadata": {
+    "description": "Manual corrections to passport-index-tidy.csv for outdated visa policies",
+    "lastUpdated": "2025-12-18",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Visa_policy_of_mainland_China",
+      "https://us.china-embassy.gov.cn/eng/lsfw/zj/notice/",
+      "https://www.visaforchina.cn/",
+      "ChatGPT 2025 visa policy updates compilation"
+    ]
+  },
+  "corrections": [
+    {
+      "passport": "Argentina",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China unilateral visa-free policy effective June 1, 2025 until Dec 31, 2026",
+      "source": "https://www.visaforchina.cn/DEL3_EN/tongzhigonggao/327343163872251904.html"
+    },
+    {
+      "passport": "Russia",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China visa-free policy for Russia effective Sept 15, 2025 until Sept 14, 2026",
+      "source": "https://us.china-embassy.gov.cn/eng/lsfw/zj/notice/"
+    },
+    {
+      "passport": "Brazil",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China unilateral visa-free policy effective June 1, 2025 until Dec 31, 2026",
+      "source": "https://www.visaforchina.cn/DEL3_EN/tongzhigonggao/327343163872251904.html"
+    },
+    {
+      "passport": "Chile",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China unilateral visa-free policy effective June 1, 2025 until Dec 31, 2026",
+      "source": "https://www.visaforchina.cn/DEL3_EN/tongzhigonggao/327343163872251904.html"
+    },
+    {
+      "passport": "Peru",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China unilateral visa-free policy effective June 1, 2025 until Dec 31, 2026",
+      "source": "https://www.visaforchina.cn/DEL3_EN/tongzhigonggao/327343163872251904.html"
+    },
+    {
+      "passport": "Uruguay",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China unilateral visa-free policy effective June 1, 2025 until Dec 31, 2026",
+      "source": "https://www.visaforchina.cn/DEL3_EN/tongzhigonggao/327343163872251904.html"
+    },
+    {
+      "passport": "United States",
+      "destination": "Brazil",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Brazil introduced visas for USA citizens effective 2025-04-10",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Canada",
+      "destination": "Brazil",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Brazil introduced visas for Canada citizens effective 2025-04-10",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Australia",
+      "destination": "Brazil",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Brazil introduced visas for Australia citizens effective 2025-04-10",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "India",
+      "destination": "Philippines",
+      "oldValue": "visa required",
+      "newValue": "14",
+      "reason": "Philippines withdrew visa requirement for India (14 days) effective 2025-06-08",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Myanmar",
+      "destination": "Malaysia",
+      "oldValue": "e-visa",
+      "newValue": "30",
+      "reason": "Mutual visa waiver Myanmar-Malaysia effective 2025-10-01",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Malaysia",
+      "destination": "Myanmar",
+      "oldValue": "e-visa",
+      "newValue": "30",
+      "reason": "Mutual visa waiver Myanmar-Malaysia effective 2025-10-01",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "United States",
+      "destination": "Bolivia",
+      "oldValue": "visa on arrival",
+      "newValue": "90",
+      "reason": "Bolivia withdrew visa requirement for USA effective 2025-12-01",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Israel",
+      "destination": "Bolivia",
+      "oldValue": "visa on arrival",
+      "newValue": "90",
+      "reason": "Bolivia withdrew visa requirement for Israel effective 2025-12-01",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "South Korea",
+      "destination": "Bolivia",
+      "oldValue": "visa on arrival",
+      "newValue": "90",
+      "reason": "Bolivia withdrew visa requirement for South Korea effective 2025-12-01",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "South Africa",
+      "destination": "Bolivia",
+      "oldValue": "visa on arrival",
+      "newValue": "90",
+      "reason": "Bolivia withdrew visa requirement for South Africa effective 2025-12-01",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Belgium",
+      "destination": "Vietnam",
+      "oldValue": "e-visa",
+      "newValue": "45",
+      "reason": "Vietnam expanded visa exemption for 12 European countries (45 days) effective 2025-08-15",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Netherlands",
+      "destination": "Vietnam",
+      "oldValue": "e-visa",
+      "newValue": "45",
+      "reason": "Vietnam expanded visa exemption for 12 European countries (45 days) effective 2025-08-15",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Poland",
+      "destination": "Vietnam",
+      "oldValue": "e-visa",
+      "newValue": "45",
+      "reason": "Vietnam expanded visa exemption for 12 European countries (45 days) effective 2025-08-15",
+      "source": "ChatGPT 2025 visa updates"
+    },
+    {
+      "passport": "Armenia",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Australia",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Austria",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Azerbaijan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Belarus",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Belgium",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Canada",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Denmark",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Finland",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "France",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Germany",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Iceland",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Ireland",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Italy",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Japan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Kazakhstan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Kyrgyzstan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Liechtenstein",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Luxembourg",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Moldova",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Netherlands",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "New Zealand",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Norway",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Portugal",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Spain",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Sweden",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Switzerland",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Tajikistan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Turkmenistan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Ukraine",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Uzbekistan",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "United Kingdom",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "United States",
+      "destination": "Namibia",
+      "oldValue": "visa-free",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for 33 nationalities effective 2025-04-01",
+      "source": "https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/"
+    },
+    {
+      "passport": "Bulgaria",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Croatia",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Czech Republic",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Estonia",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Greece",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Hungary",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Latvia",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Lithuania",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Poland",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Romania",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Slovakia",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Slovenia",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Malta",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "Cyprus",
+      "destination": "Namibia",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    }
+  ]
+}

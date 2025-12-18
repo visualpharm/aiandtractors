@@ -21,6 +21,7 @@ const path = require('path')
 
 // Load datasets
 const tourismData = require('../data/unwto-tourism-2023.json')
+const visaCorrections = require('../data/visa-corrections.json')
 const passportCsvPath = path.join(__dirname, '../data/passport-index-tidy.csv')
 
 // Country name mappings (passport dataset -> tourism dataset)
@@ -78,6 +79,20 @@ const countryFlags = {
   'Vatican City': '🇻🇦', 'Venezuela': '🇻🇪', 'Vietnam': '🇻🇳', 'Yemen': '🇾🇪', 'Zambia': '🇿🇲', 'Zimbabwe': '🇿🇼'
 }
 
+// Build corrections lookup map
+function buildCorrectionsMap() {
+  const corrections = {}
+  if (visaCorrections && visaCorrections.corrections) {
+    visaCorrections.corrections.forEach(c => {
+      const key = `${c.passport}|${c.destination}`
+      corrections[key] = c.newValue
+    })
+  }
+  return corrections
+}
+
+const correctionsMap = buildCorrectionsMap()
+
 // Parse CSV
 function parseCSV(csvContent) {
   const lines = csvContent.trim().split('\n')
@@ -90,6 +105,13 @@ function parseCSV(csvContent) {
     headers.forEach((header, index) => {
       row[header] = values[index]
     })
+
+    // Apply visa corrections
+    const correctionKey = `${row.Passport}|${row.Destination}`
+    if (correctionsMap[correctionKey]) {
+      row.Requirement = correctionsMap[correctionKey]
+    }
+
     data.push(row)
   }
   return data
@@ -131,6 +153,9 @@ function calculatePassportScores() {
 
   // Group by passport
   const passportAccess = {}
+  // Count how many passports have visa-free access to each destination
+  const destinationAccessCount = {}
+
   visaData.forEach(row => {
     const passport = row.Passport
     const destination = row.Destination
@@ -149,6 +174,8 @@ function calculatePassportScores() {
         requirement: requirement,
         tourismValue: getTourismValue(destination)
       })
+      // Track how many passports can access this destination
+      destinationAccessCount[destination] = (destinationAccessCount[destination] || 0) + 1
     } else {
       passportAccess[passport].visaRequired.push({
         country: destination,
@@ -157,6 +184,8 @@ function calculatePassportScores() {
       })
     }
   })
+
+  const totalPassports = Object.keys(passportAccess).length
 
   // Calculate scores
   const results = []
@@ -172,39 +201,47 @@ function calculatePassportScores() {
       'Norway', 'Poland', 'Portugal', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland'
     ]
 
-    // Get top contributors with Schengen aggregation
+    // Get top contributors with Schengen aggregation (for expanded dropdown)
     const visaFreeWithValue = access.visaFree.filter(d => d.tourismValue > 0)
-
-    // Calculate Schengen total
     const schengenDestinations = visaFreeWithValue.filter(d => schengenCountriesList.includes(d.country))
     const schengenTotal = schengenDestinations.reduce((sum, d) => sum + d.tourismValue, 0)
     const hasSchengenAccess = schengenDestinations.length > 0
 
-    // Get non-Schengen destinations
     const nonSchengenDestinations = visaFreeWithValue
       .filter(d => !schengenCountriesList.includes(d.country))
       .sort((a, b) => b.tourismValue - a.tourismValue)
 
-    // Build top contributors list
     const topContributors = []
-
     if (hasSchengenAccess) {
-      // Add Schengen as first item with aggregated value
       topContributors.push({ country: 'Schengen Zone', value: Math.round(schengenTotal) })
     }
-
-    // Add top non-Schengen countries (4 if Schengen present, 5 otherwise)
     const nonSchengenLimit = hasSchengenAccess ? 4 : 5
     nonSchengenDestinations.slice(0, nonSchengenLimit).forEach(d => {
       topContributors.push({ country: d.country, value: d.tourismValue })
     })
 
+    // Calculate unique access - destinations where fewer passports have access (for Key Access column)
+    // Sort by: 1) fewest passports have access, 2) highest tourism value as tiebreaker
+    const uniqueAccessList = access.visaFree
+      .filter(d => d.tourismValue > 0)
+      .map(d => ({
+        country: d.country,
+        value: d.tourismValue,
+        accessCount: destinationAccessCount[d.country] || 0
+      }))
+      .sort((a, b) => {
+        if (a.accessCount !== b.accessCount) return a.accessCount - b.accessCount
+        return b.value - a.value
+      })
+      .slice(0, 5)
+      .map(d => d.country)
+
     // Get major misses (highest tourism value destinations requiring visa)
-    // Show top 4 visa-required destinations regardless of tourism value
+    // Show top 5 visa-required destinations regardless of tourism value
     const majorMisses = access.visaRequired
       .filter(d => d.tourismValue > 0) // Only exclude countries with no tourism data
       .sort((a, b) => b.tourismValue - a.tourismValue)
-      .slice(0, 4)
+      .slice(0, 5)
       .map(d => ({ country: d.country, value: -d.tourismValue }))
 
     // Determine key access regions
@@ -234,6 +271,7 @@ function calculatePassportScores() {
       flag: countryFlags[passport] || '🏳️',
       score: Math.round(score),
       keyAccess: keyAccess.slice(0, 5),
+      uniqueAccess: uniqueAccessList,
       topContributors: topContributors,
       misses: majorMisses,
       visaFreeCount: access.visaFree.length,
@@ -253,17 +291,21 @@ const results = calculatePassportScores()
 
 // Output JSON
 const outputPath = path.join(__dirname, '../data/calculated-passport-scores.json')
+const correctionsCount = visaCorrections.corrections ? visaCorrections.corrections.length : 0
 fs.writeFileSync(outputPath, JSON.stringify({
   _metadata: {
     generatedAt: new Date().toISOString(),
     algorithm: 'Sum of annual visitors (millions) to all visa-free/VOA/ETA destinations',
     tourismSource: 'UNWTO Tourism Statistics 2023/2024',
-    visaSource: 'github.com/ilyankou/passport-index-dataset'
+    visaSource: 'github.com/ilyankou/passport-index-dataset',
+    correctionsApplied: correctionsCount,
+    correctionsLastUpdated: visaCorrections._metadata ? visaCorrections._metadata.lastUpdated : null
   },
   results: results
 }, null, 2))
 
 console.log(`Generated ${results.length} passport scores`)
+console.log(`Applied ${correctionsCount} visa corrections`)
 console.log(`Output saved to: ${outputPath}`)
 console.log('\nTop 10:')
 results.slice(0, 10).forEach((r, i) => {

@@ -174,7 +174,7 @@ function generateCSV(data) {
       p.score,
       regionMap[p.id] || 'Unknown',
       p.keyAccess.join('; '),
-      p.topContributors.map(c => `${c.country}: ${c.value}M`).join('; '),
+      p.uniqueContributors.map(c => `${c.country}: ${c.value}%`).join('; '),
       p.misses.map(m => `${m.country}: ${m.value}M`).join('; '),
       p.note ? p.note.text : ''
     ]
@@ -211,8 +211,130 @@ export default function PassportRanking() {
   const [selectedIds, setSelectedIds] = React.useState(new Set())
   const [showComparison, setShowComparison] = React.useState(false)
   const [showAllDifferences, setShowAllDifferences] = React.useState(false)
+  const [combos, setCombos] = React.useState([])
 
-  const sortedData = [...passportData].sort((a, b) => {
+  // Country name mapping from visa data to tourism data
+  const countryNameMap = {
+    'Czech Republic': 'Czechia',
+    'Timor-Leste': 'Timor-Leste',
+    'Democratic Republic of the Congo': 'DR Congo',
+    'Republic of the Congo': 'Congo',
+    'Swaziland': 'Eswatini',
+    'Macedonia': 'North Macedonia',
+    'Burma': 'Myanmar',
+    'Ivory Coast': 'Ivory Coast',
+  }
+
+  // Create a passport combo from selected passports
+  const createCombo = () => {
+    const selectedPassportsList = passportData.filter(p => selectedIds.has(p.id))
+    if (selectedPassportsList.length < 2) return
+
+    // Calculate union of all visa-free destinations
+    const allDestinations = new Set()
+    selectedPassportsList.forEach(p => {
+      (p.visaFreeDestinations || []).forEach(d => allDestinations.add(d))
+    })
+
+    // Calculate score (sum of tourism for all unique destinations)
+    const score = [...allDestinations].reduce((sum, dest) => {
+      // Try direct lookup first, then mapped name
+      const mappedName = countryNameMap[dest] || dest
+      return sum + (tourismData[dest] || tourismData[mappedName] || 0)
+    }, 0)
+
+    // Calculate key access for combo (major destinations)
+    const comboKeyAccess = []
+    const schengenCountries = ['Austria', 'Belgium', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Italy', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland']
+    const hasSchengen = schengenCountries.some(c => allDestinations.has(c))
+    if (hasSchengen) comboKeyAccess.push('Schengen')
+    if (allDestinations.has('United States')) comboKeyAccess.push('USA')
+    if (allDestinations.has('China')) comboKeyAccess.push('China')
+    if (allDestinations.has('Japan')) comboKeyAccess.push('Japan')
+    if (allDestinations.has('Russia')) comboKeyAccess.push('Russia')
+    if (allDestinations.has('United Kingdom')) comboKeyAccess.push('UK')
+    if (allDestinations.has('India')) comboKeyAccess.push('India')
+
+    // Calculate top contributors for combo (for expanded dropdown)
+    const comboTopContributors = []
+    if (hasSchengen) {
+      const schengenTotal = schengenCountries.reduce((sum, c) => {
+        const mapped = countryNameMap[c] || c
+        return sum + (allDestinations.has(c) ? (tourismData[c] || tourismData[mapped] || 0) : 0)
+      }, 0)
+      comboTopContributors.push({ country: 'Schengen Zone', value: Math.round(schengenTotal) })
+    }
+    const nonSchengenDests = [...allDestinations].filter(d => !schengenCountries.includes(d))
+    const destWithValues = nonSchengenDests.map(d => {
+      const mapped = countryNameMap[d] || d
+      return { country: d, value: tourismData[d] || tourismData[mapped] || 0 }
+    }).sort((a, b) => b.value - a.value)
+    comboTopContributors.push(...destWithValues.slice(0, 4))
+
+    // Calculate unique access for combo (for Key Access column)
+    const destinationAccessCount = {}
+    passportData.forEach(p => {
+      (p.visaFreeDestinations || []).forEach(d => {
+        destinationAccessCount[d] = (destinationAccessCount[d] || 0) + 1
+      })
+    })
+
+    const comboUniqueAccess = [...allDestinations]
+      .map(d => ({
+        country: d,
+        accessCount: destinationAccessCount[d] || 0,
+        value: tourismData[d] || tourismData[countryNameMap[d]] || 0
+      }))
+      .sort((a, b) => {
+        if (a.accessCount !== b.accessCount) return a.accessCount - b.accessCount
+        return b.value - a.value
+      })
+      .slice(0, 5)
+      .map(d => d.country)
+
+    // Calculate top visa-required (misses) for combo - countries NO passport in combo can access
+    const allPassportDests = new Set()
+    passportData.forEach(p => {
+      (p.visaFreeDestinations || []).forEach(d => allPassportDests.add(d))
+    })
+    const comboMisses = [...allPassportDests]
+      .filter(d => !allDestinations.has(d))
+      .map(d => {
+        const mapped = countryNameMap[d] || d
+        return { country: d, value: -(tourismData[d] || tourismData[mapped] || 0) }
+      })
+      .filter(m => m.value < 0)
+      .sort((a, b) => a.value - b.value)
+      .slice(0, 5)
+
+    const newCombo = {
+      id: `combo_${Date.now()}`,
+      passportIds: [...selectedIds],
+      passports: selectedPassportsList,
+      flags: selectedPassportsList.map(p => p.flag).join(''),
+      country: 'Combo',
+      score: Math.round(score),
+      visaFreeDestinations: [...allDestinations],
+      visaFreeCount: allDestinations.size,
+      keyAccess: comboKeyAccess.slice(0, 5),
+      uniqueAccess: comboUniqueAccess,
+      topContributors: comboTopContributors.slice(0, 5),
+      misses: comboMisses,
+      isCombo: true
+    }
+
+    setCombos(prev => [...prev, newCombo])
+    setSelectedIds(new Set())
+  }
+
+  // Remove a combo
+  const removeCombo = (comboId) => {
+    setCombos(prev => prev.filter(c => c.id !== comboId))
+  }
+
+  // Merge combos with passport data and sort
+  const dataWithCombos = [...passportData, ...combos]
+  const sortedData = dataWithCombos.sort((a, b) => {
     if (currentSort === 'score') {
       return b.score - a.score
     }
@@ -220,6 +342,8 @@ export default function PassportRanking() {
   })
 
   const filteredData = sortedData.filter(p => {
+    // Combos always show (don't filter by region/search)
+    if (p.isCombo) return true
     const matchesSearch = p.country.toLowerCase().includes(currentFilter.toLowerCase())
     const matchesRegion = currentRegion === 'all' || regionMap[p.id] === currentRegion
     return matchesSearch && matchesRegion
@@ -249,8 +373,8 @@ export default function PassportRanking() {
     })
   }
 
-  // Get selected passports for comparison
-  const selectedPassports = passportData.filter(p => selectedIds.has(p.id))
+  // Get selected passports for comparison (includes both regular passports and combos)
+  const selectedPassports = [...passportData, ...combos].filter(p => selectedIds.has(p.id))
 
   // Get unified differences across all selected passports
   // Returns destinations where at least one passport has access and at least one doesn't
@@ -446,7 +570,9 @@ export default function PassportRanking() {
                             <th className="dest-header">Destination</th>
                             {selectedPassports.map(p => (
                               <th key={p.id} className="passport-header">
-                                <span className="comparison-flag">{p.flag}</span>
+                                <span className={`comparison-flag ${p.isCombo ? 'combo-flags' : ''}`}>
+                                  {p.isCombo ? p.flags : p.flag}
+                                </span>
                                 <span className="passport-name">{p.country}</span>
                               </th>
                             ))}
@@ -613,29 +739,41 @@ export default function PassportRanking() {
           </div>
 
           <div className="table-wrapper">
-            {selectedIds.size < 2 ? (
-              <div className="compare-hint-row">
-                <div className="hint-spacer"></div>
-                <div className="hint-arrow-cell">↓</div>
-                <div className="hint-text">Choose 2+ to compare</div>
+            <div className="compare-bar">
+              <div className="bar-arrow-cell">
+                {selectedIds.size < 2 && (
+                  <svg className="curved-arrow" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M 21 5 C 17.144531 5 14 8.144531 14 12 L 14 42.585938 L 3.707031 32.292969 C 3.519531 32.097656 3.261719 31.992188 2.992188 31.988281 C 2.582031 31.992188 2.21875 32.238281 2.0625 32.613281 C 1.910156 32.992188 2 33.421875 2.292969 33.707031 L 14.203125 45.621094 C 14.261719 45.691406 14.324219 45.753906 14.394531 45.8125 L 15 46.414063 L 15.609375 45.808594 C 15.675781 45.753906 15.738281 45.691406 15.792969 45.625 C 15.792969 45.621094 15.796875 45.621094 15.796875 45.617188 L 27.707031 33.707031 C 27.96875 33.457031 28.074219 33.082031 27.980469 32.734375 C 27.890625 32.382813 27.617188 32.109375 27.265625 32.019531 C 26.917969 31.925781 26.542969 32.03125 26.292969 32.292969 L 16 42.585938 L 16 12 C 16 9.226563 18.226563 7 21 7 L 47 7 C 47.359375 7.003906 47.695313 6.816406 47.878906 6.503906 C 48.058594 6.191406 48.058594 5.808594 47.878906 5.496094 C 47.695313 5.183594 47.359375 4.996094 47 5 Z"/>
+                  </svg>
+                )}
               </div>
-            ) : (
-              <div className="compare-actions-row">
-                <span className="selected-count">{selectedIds.size} selected</span>
-                <button
-                  className="compare-btn"
-                  onClick={() => setShowComparison(true)}
-                >
-                  Compare
-                </button>
-                <button
-                  className="clear-btn"
-                  onClick={() => setSelectedIds(new Set())}
-                >
-                  Clear
-                </button>
+              <div className="bar-content">
+                {selectedIds.size < 2 ? (
+                  <span className="hint-text">Choose 2+ to compare</span>
+                ) : (
+                  <>
+                    <button
+                      className="compare-btn-small"
+                      onClick={() => setShowComparison(true)}
+                    >
+                      Compare {selectedIds.size}
+                    </button>
+                    <button
+                      className="combo-btn-small"
+                      onClick={createCombo}
+                    >
+                      Passport combo
+                    </button>
+                    <button
+                      className="clear-btn-small"
+                      onClick={() => setSelectedIds(new Set())}
+                    >
+                      Clear
+                    </button>
+                  </>
+                )}
               </div>
-            )}
+            </div>
 
           <div className="table-container">
             <table>
@@ -645,7 +783,7 @@ export default function PassportRanking() {
                   <th className="checkbox-col"></th>
                   <th className="country-col">Country</th>
                   <th className="score-col">Visitors</th>
-                  <th className="access-col">Key Access</th>
+                  <th className="access-col">Unique Access</th>
                   <th className="expand-col"></th>
                 </tr>
               </thead>
@@ -684,8 +822,8 @@ export default function PassportRanking() {
                     const isExpanded = expandedIds.has(passport.id)
                     const showRankCell = currentSort !== 'score' || rankInfo?.isFirstInGroup
 
-                    // Sort top contributors by value descending
-                    const sortedContributors = [...passport.topContributors].sort((a, b) => b.value - a.value)
+                    // Sort unique contributors by value descending (uniqueness %)
+                    const sortedContributors = [...(passport.uniqueContributors || [])].sort((a, b) => b.value - a.value)
 
                     // Calculate rowSpan: need to account for expanded detail rows
                     const calculateRowSpan = () => {
@@ -703,7 +841,7 @@ export default function PassportRanking() {
                     return (
                       <React.Fragment key={passport.id}>
                         <tr
-                          className={`clickable ${isExpanded ? 'expanded' : ''}`}
+                          className={`clickable ${isExpanded ? 'expanded' : ''} ${passport.isCombo ? 'combo-row' : ''}`}
                           onClick={() => toggleExpand(passport.id)}
                         >
                           {showRankCell && (
@@ -723,7 +861,7 @@ export default function PassportRanking() {
                             />
                           </td>
                         <td className="country-cell">
-                          <span className="flag">{passport.flag}</span>
+                          <span className={`flag ${passport.isCombo ? 'combo-flags' : ''}`}>{passport.isCombo ? passport.flags : passport.flag}</span>
                           <span className="country-name">{passport.country}</span>
                         </td>
                         <td className="score-cell">
@@ -736,11 +874,20 @@ export default function PassportRanking() {
                           </div>
                         </td>
                         <td className="key-access">
-                          {passport.keyAccess.map((k, i) => (
+                          {(passport.uniqueAccess || []).map((k, i) => (
                             <span key={i} className="key-access-tag">{k}</span>
                           ))}
                         </td>
                         <td className="expand-cell">
+                          {passport.isCombo && (
+                            <button
+                              className="remove-combo-btn"
+                              onClick={(e) => { e.stopPropagation(); removeCombo(passport.id); }}
+                              title="Remove combo"
+                            >
+                              ×
+                            </button>
+                          )}
                           <span className={`expand-icon ${isExpanded ? 'rotated' : ''}`}>▼</span>
                         </td>
                       </tr>
@@ -751,7 +898,7 @@ export default function PassportRanking() {
                               <div className="detail-grid">
                                 <div className="detail-section">
                                   <h4>Top Contributors</h4>
-                                  {sortedContributors.map((c, i) => (
+                                  {(passport.topContributors || []).map((c, i) => (
                                     <div key={i} className="detail-item">
                                       <span className="country">{c.country}</span>
                                       <span className="value positive">+{c.value}M</span>
@@ -1282,6 +1429,10 @@ export default function PassportRanking() {
 
         .expand-cell {
           text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.25rem;
         }
 
         .expand-icon {
@@ -1534,7 +1685,7 @@ export default function PassportRanking() {
           }
         }
 
-        /* Checkbox cell styling */
+        /* Checkbox cell styling - larger click area */
         .checkbox-cell {
           text-align: center;
           padding: 0.5rem;
@@ -1545,125 +1696,90 @@ export default function PassportRanking() {
           height: 18px;
           cursor: pointer;
           accent-color: var(--accent-color);
+          padding: 15px;
+          margin: -15px;
+          box-sizing: content-box;
         }
 
-        /* Comparison bar */
-        .comparison-bar {
+        /* Table wrapper */
+        .table-wrapper {
+          position: relative;
+        }
+
+        /* Unified compare bar - same height whether hint or actions */
+        .compare-bar {
+          display: flex;
+          align-items: flex-start;
           position: sticky;
           top: 0;
-          background: var(--card-bg);
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          padding: 0.75rem 1rem;
-          margin-bottom: 1rem;
+          background: var(--bg-color);
           z-index: 100;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          padding: 0.5rem 1rem 0.75rem;
+          height: 55px;
+          box-sizing: border-box;
         }
 
-        .compare-hint {
+        .bar-arrow-cell {
+          width: 6%;
+          flex-shrink: 0;
+          display: flex;
+          justify-content: center;
+          padding-top: 0;
+        }
+
+        .curved-arrow {
+          width: 24px;
+          height: 24px;
           color: var(--secondary-color);
-          font-size: 0.9rem;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
         }
 
-        .hint-arrow {
-          font-size: 1.2rem;
-          animation: pulse 2s infinite;
+        .bar-content {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding-left: 0;
+          padding-top: 2px;
+        }
+
+        .hint-text {
+          color: var(--secondary-color);
+          font-size: 0.95rem;
+        }
+
+        .compare-btn-small {
+          background: var(--accent-color);
+          color: white;
+          border: none;
+          padding: 0.3rem 0.75rem;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .compare-btn-small:hover {
+          background: #3347b0;
+        }
+
+        .clear-btn-small {
+          background: transparent;
+          color: var(--secondary-color);
+          border: 1px solid var(--border-color);
+          padding: 0.25rem 0.6rem;
+          border-radius: 4px;
+          font-size: 0.75rem;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .clear-btn-small:hover {
+          border-color: var(--secondary-color);
+          color: var(--primary-color);
         }
 
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
-        }
-
-        .compare-actions {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .selected-count {
-          color: var(--primary-color);
-          font-weight: 500;
-        }
-
-        .compare-btn {
-          background: var(--accent-color);
-          color: white;
-          border: none;
-          padding: 0.5rem 1.25rem;
-          border-radius: 6px;
-          cursor: pointer;
-          font-weight: 500;
-          transition: background 0.2s;
-        }
-
-        .compare-btn:hover {
-          background: #3347b0;
-        }
-
-        .clear-btn {
-          background: transparent;
-          color: var(--secondary-color);
-          border: 1px solid var(--border-color);
-          padding: 0.5rem 1rem;
-          border-radius: 6px;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .clear-btn:hover {
-          border-color: var(--secondary-color);
-          color: var(--primary-color);
-        }
-
-        /* Table wrapper for sticky hint row */
-        .table-wrapper {
-          position: relative;
-        }
-
-        .compare-hint-row {
-          display: flex;
-          align-items: center;
-          position: sticky;
-          top: 0;
-          background: var(--card-bg);
-          z-index: 100;
-          padding: 0.5rem 0;
-          margin-bottom: 0.5rem;
-        }
-
-        .hint-spacer {
-          width: 6%;
-        }
-
-        .hint-arrow-cell {
-          width: 4%;
-          text-align: center;
-          font-size: 1.2rem;
-          color: var(--secondary-color);
-          animation: pulse 2s infinite;
-        }
-
-        .hint-text {
-          color: var(--secondary-color);
-          font-size: 0.85rem;
-        }
-
-        .compare-actions-row {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          position: sticky;
-          top: 0;
-          background: var(--card-bg);
-          z-index: 100;
-          padding: 0.5rem 0;
-          margin-bottom: 0.5rem;
         }
 
         /* Comparison modal */
@@ -1857,6 +1973,52 @@ export default function PassportRanking() {
         .show-more-link:hover {
           background: var(--bg-color);
           text-decoration: underline;
+        }
+
+        /* Combo row styling */
+        .combo-row {
+          background: linear-gradient(90deg, rgba(99, 102, 241, 0.08), transparent);
+        }
+
+        .combo-row:hover {
+          background: linear-gradient(90deg, rgba(99, 102, 241, 0.12), rgba(99, 102, 241, 0.02));
+        }
+
+        .combo-flags {
+          letter-spacing: 5px;
+        }
+
+        .remove-combo-btn {
+          background: none;
+          border: none;
+          color: var(--secondary-color);
+          cursor: pointer;
+          font-size: 1.25rem;
+          padding: 0.25rem;
+          line-height: 1;
+          border-radius: 4px;
+          transition: all 0.2s;
+        }
+
+        .remove-combo-btn:hover {
+          color: #ef4444;
+          background: rgba(239, 68, 68, 0.1);
+        }
+
+        .combo-btn-small {
+          background: transparent;
+          color: var(--accent-color);
+          border: 1px solid var(--accent-color);
+          padding: 0.25rem 0.6rem;
+          border-radius: 4px;
+          font-size: 0.75rem;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .combo-btn-small:hover {
+          background: var(--accent-color);
+          color: white;
         }
       `}</style>
     </Layout>

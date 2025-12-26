@@ -173,9 +173,9 @@ function generateCSV(data) {
       p.country,
       p.score,
       regionMap[p.id] || 'Unknown',
-      p.keyAccess.join('; '),
-      p.uniqueContributors.map(c => `${c.country}: ${c.value}%`).join('; '),
-      p.misses.map(m => `${m.country}: ${m.value}M`).join('; '),
+      (p.keyAccess || []).join('; '),
+      (p.uniqueContributors || []).map(c => `${c.country}: ${c.value}%`).join('; '),
+      (p.misses || []).map(m => `${m.country}: ${m.value}M`).join('; '),
       p.note ? p.note.text : ''
     ]
   })
@@ -212,6 +212,7 @@ export default function PassportRanking() {
   const [showComparison, setShowComparison] = React.useState(false)
   const [showAllDifferences, setShowAllDifferences] = React.useState(false)
   const [combos, setCombos] = React.useState([])
+  const [comparisonSort, setComparisonSort] = React.useState({ column: 'tourism', direction: 'desc' })
 
   // Country name mapping from visa data to tourism data
   const countryNameMap = {
@@ -388,18 +389,20 @@ export default function PassportRanking() {
     const allDestinations = new Set()
     accessSets.forEach(set => set.forEach(d => allDestinations.add(d)))
 
-    // Filter to only destinations where access differs
+    // Filter to only destinations where access differs AND has tourism value
     const differences = []
     allDestinations.forEach(destination => {
       const accessPattern = passports.map((_, i) => accessSets[i].has(destination))
       const hasAccess = accessPattern.some(a => a)
       const lacksAccess = accessPattern.some(a => !a)
+      const tourism = tourismData[destination] || 0
 
-      // Only include if there's a difference (some have, some don't)
-      if (hasAccess && lacksAccess) {
+      // Only include if there's a difference AND destination has tourism value
+      // (destinations with 0 tourism don't affect scores, so skip them)
+      if (hasAccess && lacksAccess && tourism > 0) {
         differences.push({
           destination,
-          tourism: tourismData[destination] || 0,
+          tourism,
           access: accessPattern // [true, false, true] for each passport
         })
       }
@@ -445,8 +448,11 @@ export default function PassportRanking() {
             </div>
             <p className="small-text">
               Data based on UNWTO 2024 tourism statistics.
+              <a href="/passport-insights" className="learn-more-btn">
+                Key findings
+              </a>
               <button className="learn-more-btn" onClick={() => setShowMethodology(true)}>
-                Learn more about data sources
+                Data sources
               </button>
             </p>
           </div>
@@ -469,16 +475,14 @@ export default function PassportRanking() {
                         <div className="example-flag">🇸🇬</div>
                         <div className="example-country">Singapore</div>
                         <div className="example-stat">#1 on Henley Index</div>
-                        <div className="example-detail">195 visa-free destinations</div>
                       </div>
                       <div className="example-col">
                         <div className="example-flag">🇰🇷</div>
                         <div className="example-country">South Korea</div>
                         <div className="example-stat">#1 on Total Experience Index</div>
-                        <div className="example-detail">167 visa-free destinations</div>
                       </div>
                     </div>
-                    <p className="example-explanation">South Korea has <strong>fewer</strong> visa-free destinations than Singapore, but leads our ranking because it has visa-free access to <strong>China</strong> (65.7M visitors). Singapore requires a visa for China, losing access to the world's 4th largest tourism market.</p>
+                    <p className="example-explanation">Singapore leads the Henley Passport Index, but South Korea leads our ranking because it has visa-free access to <strong>India</strong>—one of the world's largest tourism markets. Singapore requires a visa for India, losing access to tens of millions of potential visitors.</p>
                     <p className="example-explanation">The key insight: <em>quality of access matters more than quantity</em>.</p>
                   </div>
                 </div>
@@ -518,9 +522,9 @@ export default function PassportRanking() {
 
                 <div className="methodology-section">
                   <h3>Manual Corrections (December 2025)</h3>
-                  <p>We maintain two correction files to keep data current:</p>
+                  <p>We maintain corrections based on verified embassy and government sources. Full documentation at <a href="https://github.com/visualpharm/passport-index-dataset" target="_blank" rel="noopener noreferrer">our GitHub fork</a>.</p>
 
-                  <h4>Visa Policy Updates (66 corrections)</h4>
+                  <h4>Visa Policy Updates</h4>
                   <table className="adjustments-table">
                     <thead>
                       <tr>
@@ -532,28 +536,28 @@ export default function PassportRanking() {
                     <tbody>
                       <tr>
                         <td>China visa-free expansion</td>
-                        <td>Argentina, Brazil, Chile, Peru, Uruguay, Russia</td>
-                        <td><a href="https://www.visaforchina.cn/" target="_blank" rel="noopener noreferrer">visaforchina.cn</a></td>
+                        <td>Argentina, Brazil, Chile, Peru, Uruguay, Russia + 6 others</td>
+                        <td><a href="https://en.nia.gov.cn/n147418/n147463/c183390/content.html" target="_blank" rel="noopener noreferrer">National Immigration Administration of China</a></td>
+                      </tr>
+                      <tr>
+                        <td>Japan visa exemptions</td>
+                        <td>Montenegro, Paraguay, Peru, UAE</td>
+                        <td><a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" target="_blank" rel="noopener noreferrer">Ministry of Foreign Affairs of Japan</a></td>
+                      </tr>
+                      <tr>
+                        <td>Indonesia visa-free</td>
+                        <td>Brazil, Peru, Turkey</td>
+                        <td><a href="https://www.imigrasi.go.id/berita/pemerintah-indonesia-terapkan-bebas-visa-kunjungan-bagi-warga-negara-brasil-dan-turki" target="_blank" rel="noopener noreferrer">Directorate General of Immigration, Indonesia</a></td>
+                      </tr>
+                      <tr>
+                        <td>Belarus visa exemption</td>
+                        <td>Vietnam</td>
+                        <td><a href="https://www.vietnam.mfa.gov.by/en/embassy/news/f5f4061212b78e80.html" target="_blank" rel="noopener noreferrer">Embassy of Belarus in Vietnam</a></td>
                       </tr>
                       <tr>
                         <td>Namibia ends visa-free access</td>
-                        <td>47 countries (US, UK, Germany, etc.)</td>
-                        <td><a href="https://www.schengenvisainfo.com/news/namibia-ends-visa-free-access-for-33-nationalities-including-us-uk-germany/" target="_blank" rel="noopener noreferrer">Schengen Visa Info</a></td>
-                      </tr>
-                      <tr>
-                        <td>Brazil introduces visas</td>
-                        <td>USA, Canada, Australia</td>
-                        <td>2025 policy change</td>
-                      </tr>
-                      <tr>
-                        <td>Vietnam visa exemption</td>
-                        <td>Belgium, Netherlands, Poland (45 days)</td>
-                        <td>2025 policy change</td>
-                      </tr>
-                      <tr>
-                        <td>Bolivia visa-free expansion</td>
-                        <td>USA, Israel, South Korea, South Africa</td>
-                        <td>2025 policy change</td>
+                        <td>33 countries (US, UK, Germany, etc.)</td>
+                        <td><a href="https://embassyofnamibia.se/index.php/consular-matters/new-visa-requirements-1-april-2025" target="_blank" rel="noopener noreferrer">Embassy of Namibia in Sweden</a></td>
                       </tr>
                     </tbody>
                   </table>
@@ -626,16 +630,61 @@ export default function PassportRanking() {
 
                 {(() => {
                   const differences = getUnifiedDifferences(selectedPassports)
+
+                  // Sort differences based on current sort settings
+                  const sortedDiffs = [...differences].sort((a, b) => {
+                    const dir = comparisonSort.direction === 'asc' ? 1 : -1
+                    if (comparisonSort.column === 'destination') {
+                      return dir * a.destination.localeCompare(b.destination)
+                    }
+                    if (comparisonSort.column === 'tourism') {
+                      return dir * (a.tourism - b.tourism)
+                    }
+                    if (comparisonSort.column === 'rank') {
+                      // Rank is derived from tourism, so sort by tourism descending = rank ascending
+                      return dir * (a.tourism - b.tourism)
+                    }
+                    return 0
+                  })
+
+                  // Calculate ranks (based on tourism value, descending)
+                  const rankedDiffs = sortedDiffs.map((diff, idx) => {
+                    // Find rank in original tourism-sorted order
+                    const tourismSorted = [...differences].sort((a, b) => b.tourism - a.tourism)
+                    const rank = tourismSorted.findIndex(d => d.destination === diff.destination) + 1
+                    return { ...diff, rank }
+                  })
+
                   const displayLimit = 30
-                  const displayedDiffs = showAllDifferences ? differences : differences.slice(0, displayLimit)
+                  const displayedDiffs = showAllDifferences ? rankedDiffs : rankedDiffs.slice(0, displayLimit)
                   const hiddenCount = differences.length - displayLimit
+
+                  const handleSort = (column) => {
+                    setComparisonSort(prev => ({
+                      column,
+                      direction: prev.column === column && prev.direction === 'desc' ? 'asc' : 'desc'
+                    }))
+                  }
+
+                  const SortIcon = ({ column }) => {
+                    if (comparisonSort.column !== column) return <span className="sort-icon">↕</span>
+                    return <span className="sort-icon active">{comparisonSort.direction === 'desc' ? '↓' : '↑'}</span>
+                  }
 
                   return (
                     <div className="comparison-content">
                       <table className="comparison-table unified-table">
                         <thead>
                           <tr>
-                            <th className="dest-header">Destination</th>
+                            <th className="rank-header sortable" onClick={() => handleSort('rank')}>
+                              Rank <SortIcon column="rank" />
+                            </th>
+                            <th className="dest-header sortable" onClick={() => handleSort('destination')}>
+                              Destination <SortIcon column="destination" />
+                            </th>
+                            <th className="tourism-header sortable" onClick={() => handleSort('tourism')}>
+                              Visitors <SortIcon column="tourism" />
+                            </th>
                             {selectedPassports.map(p => (
                               <th key={p.id} className="passport-header">
                                 <span className={`comparison-flag ${p.isCombo ? 'combo-flags' : ''}`}>
@@ -647,24 +696,26 @@ export default function PassportRanking() {
                           </tr>
                         </thead>
                         <tbody>
-                          {displayedDiffs.map((diff, i) => (
+                          {displayedDiffs.map((diff, i) => {
+                            const accessCount = diff.access.filter(a => a).length
+                            return (
                             <tr key={i}>
+                              <td className="rank-cell">{diff.rank}</td>
                               <td className="dest-cell">
                                 <span className="dest-name">{diff.destination}</span>
-                                {diff.tourism > 0 && (
-                                  <span className="dest-tourism">({diff.tourism}M)</span>
-                                )}
+                                <span className="access-count">({accessCount}/{diff.access.length})</span>
                               </td>
+                              <td className="tourism-cell">{diff.tourism > 0 ? `${diff.tourism}M` : '-'}</td>
                               {diff.access.map((hasAccess, j) => (
                                 <td key={j} className={`access-cell ${hasAccess ? 'has-access' : 'no-access'}`}>
                                   {hasAccess ? '✅' : '❌'}
                                 </td>
                               ))}
                             </tr>
-                          ))}
+                          )})}
                           {differences.length === 0 && (
                             <tr>
-                              <td colSpan={selectedPassports.length + 1} className="no-differences">
+                              <td colSpan={selectedPassports.length + 3} className="no-differences">
                                 These passports have identical visa-free access!
                               </td>
                             </tr>
@@ -1945,17 +1996,20 @@ export default function PassportRanking() {
 
         /* Comparison modal */
         .comparison-modal {
-          max-width: 900px;
+          max-width: 95vw;
+          width: auto;
+          min-width: 600px;
         }
 
         .comparison-content {
           margin-top: 1.5rem;
+          overflow-x: auto;
         }
 
         .comparison-table {
           width: 100%;
           border-collapse: collapse;
-          table-layout: fixed;
+          min-width: max-content;
         }
 
         .comparison-header {
@@ -2082,10 +2136,53 @@ export default function PassportRanking() {
           border-bottom: 1px solid var(--border-color);
         }
 
+        .sortable {
+          cursor: pointer;
+          user-select: none;
+          transition: background 0.2s;
+        }
+
+        .sortable:hover {
+          background: var(--border-color);
+        }
+
+        .sort-icon {
+          margin-left: 0.25rem;
+          opacity: 0.4;
+          font-size: 0.75rem;
+        }
+
+        .sort-icon.active {
+          opacity: 1;
+          color: var(--accent-color);
+        }
+
+        .rank-header {
+          width: 60px;
+          min-width: 60px;
+          background: var(--bg-color);
+        }
+
+        .tourism-header {
+          width: 90px;
+          min-width: 90px;
+          background: var(--bg-color);
+        }
+
         .dest-header {
           text-align: left !important;
-          min-width: 180px;
+          min-width: 150px;
           background: var(--bg-color);
+        }
+
+        .rank-cell {
+          font-weight: 600;
+          color: var(--secondary-color);
+        }
+
+        .tourism-cell {
+          font-weight: 500;
+          color: var(--primary-color);
         }
 
         .passport-header {
@@ -2103,6 +2200,13 @@ export default function PassportRanking() {
 
         .dest-cell {
           text-align: left !important;
+        }
+
+        .access-count {
+          margin-left: 0.5rem;
+          font-size: 0.75rem;
+          color: var(--secondary-color);
+          opacity: 0.7;
         }
 
         .access-cell {

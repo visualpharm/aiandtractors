@@ -537,6 +537,518 @@
       "newValue": "visa required",
       "reason": "Namibia ended visa-free access for EU countries effective 2025-04-01",
       "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Namibia"
+    },
+    {
+      "passport": "France",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process requiring documentation and approval",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Germany",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Italy",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Spain",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Netherlands",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "United Kingdom",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "United States",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Canada",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Australia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Japan",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "South Korea",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Singapore",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "China",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Russia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Austria",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Finland",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Sweden",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Norway",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Switzerland",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Poland",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "New Zealand",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Malaysia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Turkey",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Thailand",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Indonesia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Philippines",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "South Africa",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Argentina",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Brazil",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Angola",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Azerbaijan",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Bahamas",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Barbados",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Botswana",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Brunei",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Costa Rica",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Ghana",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Iceland",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Iran",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Jordan",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Lithuania",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Luxembourg",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Malta",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Monaco",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Mozambique",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Paraguay",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Rwanda",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Saint Kitts and Nevis",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Saint Lucia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Sri Lanka",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Tajikistan",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Tanzania",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Tonga",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Trinidad and Tobago",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Tunisia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Zambia",
+      "destination": "Pakistan",
+      "oldValue": "eta",
+      "newValue": "e-visa",
+      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
+      "source": "https://visa.nadra.gov.pk/"
+    },
+    {
+      "passport": "Latvia",
+      "destination": "South Africa",
+      "oldValue": "visa required",
+      "newValue": "90",
+      "reason": "Latvia is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Lithuania",
+      "destination": "South Africa",
+      "oldValue": "e-visa",
+      "newValue": "90",
+      "reason": "Lithuania is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Bulgaria",
+      "destination": "South Africa",
+      "oldValue": "e-visa",
+      "newValue": "90",
+      "reason": "Bulgaria is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Croatia",
+      "destination": "South Africa",
+      "oldValue": "e-visa",
+      "newValue": "90",
+      "reason": "Croatia is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Estonia",
+      "destination": "South Africa",
+      "oldValue": "visa required",
+      "newValue": "90",
+      "reason": "Estonia is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Romania",
+      "destination": "South Africa",
+      "oldValue": "e-visa",
+      "newValue": "90",
+      "reason": "Romania is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Slovakia",
+      "destination": "South Africa",
+      "oldValue": "e-visa",
+      "newValue": "90",
+      "reason": "Slovakia is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Slovenia",
+      "destination": "South Africa",
+      "oldValue": "visa required",
+      "newValue": "90",
+      "reason": "Slovenia is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
+      "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
     }
   ]
 }

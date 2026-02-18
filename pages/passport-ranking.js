@@ -27,8 +27,13 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 // Import calculated passport data from data pipeline
 import calculatedData from '../data/calculated-passport-scores.json'
 import tourismRaw from '../data/unwto-tourism-2023.json'
+import tourismAdjustments from '../data/tourism-adjustments.json'
 
-const tourismData = tourismRaw.data
+// Apply tourism adjustments to raw data
+const tourismData = { ...tourismRaw.data }
+Object.entries(tourismAdjustments.adjustments).forEach(([country, adj]) => {
+  tourismData[country] = adj.value
+})
 
 // Algorithm: Score = Sum of annual visitors (in millions) to all visa-free/VOA/ETA destinations
 // Data Sources:
@@ -696,15 +701,10 @@ export default function PassportRanking() {
                           </tr>
                         </thead>
                         <tbody>
-                          {displayedDiffs.map((diff, i) => {
-                            const accessCount = diff.access.filter(a => a).length
-                            return (
+                          {displayedDiffs.map((diff, i) => (
                             <tr key={i}>
                               <td className="rank-cell">{diff.rank}</td>
-                              <td className="dest-cell">
-                                <span className="dest-name">{diff.destination}</span>
-                                <span className="access-count">({accessCount}/{diff.access.length})</span>
-                              </td>
+                              <td className="dest-cell">{diff.destination}</td>
                               <td className="tourism-cell">{diff.tourism > 0 ? `${diff.tourism}M` : '-'}</td>
                               {diff.access.map((hasAccess, j) => (
                                 <td key={j} className={`access-cell ${hasAccess ? 'has-access' : 'no-access'}`}>
@@ -712,7 +712,7 @@ export default function PassportRanking() {
                                 </td>
                               ))}
                             </tr>
-                          )})}
+                          ))}
                           {differences.length === 0 && (
                             <tr>
                               <td colSpan={selectedPassports.length + 3} className="no-differences">

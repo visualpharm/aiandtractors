@@ -149,7 +149,7 @@ export default function Contact() {
                 <Icon name="email" /><strong>{t.email}</strong> <a href="mailto:ilbucodicarilo@gmail.com">ilbucodicarilo@gmail.com</a>
               </div>
               <div className="contact-item">
-                <Icon name="whatsapp" /><strong>{t.phone}</strong> <a href="https://wa.me/541133943379">+54 11 3394 3379</a>
+                <Icon name="whatsapp" /><strong>{t.phone}</strong> <a href="https://wa.me/541121275492">+54 11 2127 5492</a>
               </div>
               <div className="contact-item">
                 <Icon name="map-pin" /><strong>{t.address}</strong> Cariló, Argentina

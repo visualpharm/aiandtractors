@@ -243,8 +243,8 @@ export const events2026 = [
     id: 4,
     name: "Febraban Tech 2026",
     location: "São Paulo, Brazil",
-    date: "2026-06-20",
-    endDate: "2026-06-22",
+    date: "2026-08-24",
+    endDate: "2026-08-26",
     attendees: 55000,
     rating: 4.0,
     description: "The largest financial technology event in Latin America (formerly known as CIAB FEBRABAN).",
@@ -253,7 +253,7 @@ export const events2026 = [
     country: "Brazil",
     popularity: 90,
     confirmed: false,
-    approximateDate: "June"
+    approximateDate: "August"
   },
   {
     id: 5,

@@ -526,8 +526,8 @@ export default function PassportRanking() {
                 </div>
 
                 <div className="methodology-section">
-                  <h3>Manual Corrections (December 2025)</h3>
-                  <p>We maintain corrections based on verified embassy and government sources. Full documentation at <a href="https://github.com/visualpharm/passport-index-dataset" target="_blank" rel="noopener noreferrer">our GitHub fork</a>.</p>
+                  <h3>Manual Corrections (updated May 2026)</h3>
+                  <p>We maintain corrections based on verified embassy and government sources. Full documentation at <a href="https://github.com/visualpharm/visa-free-dataset" target="_blank" rel="noopener noreferrer">our GitHub fork</a>.</p>
 
                   <h4>Visa Policy Updates</h4>
                   <table className="adjustments-table">
@@ -540,29 +540,124 @@ export default function PassportRanking() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>China visa-free expansion</td>
+                        <td>China visa-free expansion (Feb 2026)</td>
+                        <td>Canada, United Kingdom (added Feb 17, 2026)</td>
+                        <td><a href="https://www.fmprc.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html" rel="noopener noreferrer">Ministry of Foreign Affairs of China</a></td>
+                      </tr>
+                      <tr>
+                        <td>Türkiye grants visa-free to China</td>
+                        <td>China (Jan 2, 2026)</td>
+                        <td><a href="https://www.dailysabah.com/politics/diplomacy/turkiye-grants-visa-free-travel-to-chinese-nationals" rel="noopener noreferrer">Daily Sabah / Official Gazette</a></td>
+                      </tr>
+                      <tr>
+                        <td>Philippines 14-day visa-free for China</td>
+                        <td>China (Jan 16, 2026)</td>
+                        <td><a href="https://chongqingpcg.dfa.gov.ph/example-pages/news-press-releases/1167-philippines-to-allow-visa-free-entry-for-14-days-for-chinese-nationals" rel="noopener noreferrer">Philippines DFA</a></td>
+                      </tr>
+                      <tr>
+                        <td>Russia–Myanmar mutual visa-free</td>
+                        <td>Myanmar passport ↔ Russia (Jan 27, 2026)</td>
+                        <td><a href="https://tass.com/economy/2073127" rel="noopener noreferrer">TASS</a></td>
+                      </tr>
+                      <tr>
+                        <td>India e-Visa expansion</td>
+                        <td>Algeria, Armenia, Fiji, Kenya, North Macedonia, San Marino, Saudi Arabia, Senegal, Serbia, Seychelles, Uruguay (Jan–Feb 2026)</td>
+                        <td><a href="https://indianvisaonline.gov.in/evisa/tvoa.html" rel="noopener noreferrer">Indian e-Visa portal</a></td>
+                      </tr>
+                      <tr>
+                        <td>Uzbekistan visa-free for US</td>
+                        <td>United States (Jan 1, 2026)</td>
+                        <td><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Uzbekistan" rel="noopener noreferrer">Visa policy of Uzbekistan</a></td>
+                      </tr>
+                      <tr>
+                        <td>Kyrgyzstan reduces visa-free 60→30</td>
+                        <td>Australia, New Zealand, United States + 52 others (Dec 31, 2025)</td>
+                        <td><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Kyrgyzstan" rel="noopener noreferrer">Visa policy of Kyrgyzstan</a></td>
+                      </tr>
+                      <tr>
+                        <td>Afghanistan launches e-Visa</td>
+                        <td>Nearly all nationalities (Mar 2026)</td>
+                        <td><a href="https://eafghans.com/e-visa" rel="noopener noreferrer">eafghans.com e-Visa portal</a></td>
+                      </tr>
+                      <tr>
+                        <td>Pakistan suspends visa-on-arrival</td>
+                        <td>126 nationalities incl. Australia, NZ (Jan 1, 2026)</td>
+                        <td><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Pakistan" rel="noopener noreferrer">Visa policy of Pakistan</a></td>
+                      </tr>
+                      <tr>
+                        <td>Qatar suspends VOA for Lebanon</td>
+                        <td>Lebanon (Apr 2, 2026)</td>
+                        <td><a href="https://www.ey.com/en_gl/technical/tax-alerts/qatar-suspends-visa-on-arrival-facility-for-nationals-of-lebanon" rel="noopener noreferrer">EY Tax Alert</a></td>
+                      </tr>
+                      <tr>
+                        <td>Armenia–Gulf visa-free bloc</td>
+                        <td>Armenia ↔ Saudi Arabia, UAE, Qatar (Feb 22, 2026)</td>
+                        <td><a href="https://www.fragomen.com/insights/united-arab-emirates-visa-waiver-for-armenian-nationals-entering-united-arab-emirates.html" rel="noopener noreferrer">Fragomen</a></td>
+                      </tr>
+                      <tr>
+                        <td>Papua New Guinea ↔ UAE</td>
+                        <td>PNG ↔ UAE 30-day visa-free (Feb 4, 2026)</td>
+                        <td><a href="https://info.gov.pg/png-and-uae-elevate-bilateral-relations-with-landmark-visa-waiver-agreement/" rel="noopener noreferrer">Government of PNG</a></td>
+                      </tr>
+                      <tr>
+                        <td>Hong Kong → Azerbaijan pilot</td>
+                        <td>Hong Kong (Feb 2, 2026)</td>
+                        <td><a href="https://www.info.gov.hk/gia/general/202601/30/P2026013000238.htm" rel="noopener noreferrer">Government of Hong Kong</a></td>
+                      </tr>
+                      <tr>
+                        <td>Cape Verde ends VOA</td>
+                        <td>96 nationalities incl. Costa Rica, Egypt, Jamaica, Mexico, Turkey, Uzbekistan, Zimbabwe (Jan 1, 2026)</td>
+                        <td><a href="https://ease.gov.cv/" rel="noopener noreferrer">Cape Verde EASE portal</a></td>
+                      </tr>
+                      <tr>
+                        <td>Uganda visa-free for 40 countries</td>
+                        <td>Mozambique + 39 African nations (Mar 11, 2026)</td>
+                        <td><a href="https://www.immigration.go.ug/services/visa-exempt-countries" rel="noopener noreferrer">Uganda Immigration</a></td>
+                      </tr>
+                      <tr>
+                        <td>Mexico reinstates e-Visa for Brazil</td>
+                        <td>Brazil (Feb 5, 2026)</td>
+                        <td><a href="https://www.gob.mx/sre/prensa/electronic-visa-for-brazilian-nationals?idiom=en" rel="noopener noreferrer">Mexican SRE</a></td>
+                      </tr>
+                      <tr>
+                        <td>Nicaragua visa-policy overhaul</td>
+                        <td>Antigua and Barbuda, Bahamas, Barbados, Colombia, Cuba, Peru, Trinidad and Tobago (Feb 16, 2026)</td>
+                        <td><a href="https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/" rel="noopener noreferrer">VisasNews</a></td>
+                      </tr>
+                      <tr>
+                        <td>US Proclamation 10998 — visa suspensions</td>
+                        <td>Antigua and Barbuda, Cuba, Dominica, Haiti, Venezuela (Jan 1, 2026)</td>
+                        <td><a href="https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html" rel="noopener noreferrer">US Department of State</a></td>
+                      </tr>
+                      <tr>
+                        <td>UK removes Saint Lucia from ETA</td>
+                        <td>Saint Lucia (Mar 5, 2026)</td>
+                        <td><a href="https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-1619-5-march-2026/explanatory-memorandum-to-the-statement-of-changes-in-the-immigration-rules-hc-1691-5-march-2026-accessible" rel="noopener noreferrer">UK Home Office HC 1691</a></td>
+                      </tr>
+                      <tr>
+                        <td>China visa-free expansion (2025)</td>
                         <td>Argentina, Brazil, Chile, Peru, Uruguay, Russia + 6 others</td>
-                        <td><a href="https://en.nia.gov.cn/n147418/n147463/c183390/content.html" target="_blank" rel="noopener noreferrer">National Immigration Administration of China</a></td>
+                        <td><a href="https://en.nia.gov.cn/n147418/n147463/c183390/content.html" rel="noopener noreferrer">NIA China</a></td>
                       </tr>
                       <tr>
-                        <td>Japan visa exemptions</td>
+                        <td>Japan visa exemptions (2025)</td>
                         <td>Montenegro, Paraguay, Peru, UAE</td>
-                        <td><a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" target="_blank" rel="noopener noreferrer">Ministry of Foreign Affairs of Japan</a></td>
+                        <td><a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" rel="noopener noreferrer">MOFA Japan</a></td>
                       </tr>
                       <tr>
-                        <td>Indonesia visa-free</td>
+                        <td>Indonesia visa-free (2025)</td>
                         <td>Brazil, Peru, Turkey</td>
-                        <td><a href="https://www.imigrasi.go.id/berita/pemerintah-indonesia-terapkan-bebas-visa-kunjungan-bagi-warga-negara-brasil-dan-turki" target="_blank" rel="noopener noreferrer">Directorate General of Immigration, Indonesia</a></td>
+                        <td><a href="https://www.imigrasi.go.id/berita/pemerintah-indonesia-terapkan-bebas-visa-kunjungan-bagi-warga-negara-brasil-dan-turki" rel="noopener noreferrer">Imigrasi Indonesia</a></td>
                       </tr>
                       <tr>
-                        <td>Belarus visa exemption</td>
+                        <td>Belarus visa exemption (2025)</td>
                         <td>Vietnam</td>
-                        <td><a href="https://www.vietnam.mfa.gov.by/en/embassy/news/f5f4061212b78e80.html" target="_blank" rel="noopener noreferrer">Embassy of Belarus in Vietnam</a></td>
+                        <td><a href="https://www.vietnam.mfa.gov.by/en/embassy/news/f5f4061212b78e80.html" rel="noopener noreferrer">Embassy of Belarus in Vietnam</a></td>
                       </tr>
                       <tr>
-                        <td>Namibia ends visa-free access</td>
+                        <td>Namibia ends visa-free access (2025)</td>
                         <td>33 countries (US, UK, Germany, etc.)</td>
-                        <td><a href="https://embassyofnamibia.se/index.php/consular-matters/new-visa-requirements-1-april-2025" target="_blank" rel="noopener noreferrer">Embassy of Namibia in Sweden</a></td>
+                        <td><a href="https://embassyofnamibia.se/index.php/consular-matters/new-visa-requirements-1-april-2025" rel="noopener noreferrer">Embassy of Namibia in Sweden</a></td>
                       </tr>
                     </tbody>
                   </table>
@@ -620,7 +715,7 @@ export default function PassportRanking() {
                 </div>
 
                 <div className="methodology-section last-updated">
-                  <p><strong>Last Updated:</strong> December 2025</p>
+                  <p><strong>Last Updated:</strong> May 2026</p>
                   <p className="disclaimer">This is an independent ranking for informational purposes. Always verify visa requirements with official sources before traveling.</p>
                 </div>
               </div>

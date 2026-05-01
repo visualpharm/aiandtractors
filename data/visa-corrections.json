@@ -1,12 +1,31 @@
 {
   "_metadata": {
     "description": "Manual corrections to passport-index-tidy.csv for outdated visa policies",
-    "lastUpdated": "2025-12-18",
+    "lastUpdated": "2026-05-01",
     "sources": [
+      "ChatGPT 2025 visa policy updates compilation",
+      "https://chongqingpcg.dfa.gov.ph/example-pages/news-press-releases/1167-philippines-to-allow-visa-free-entry-for-14-days-for-chinese-nationals",
+      "https://eafghans.com/e-visa",
+      "https://ease.gov.cv/",
+      "https://en.wikipedia.org/wiki/Visa_policy_of_Kyrgyzstan",
+      "https://en.wikipedia.org/wiki/Visa_policy_of_Pakistan",
+      "https://en.wikipedia.org/wiki/Visa_policy_of_Uzbekistan",
       "https://en.wikipedia.org/wiki/Visa_policy_of_mainland_China",
+      "https://indianvisaonline.gov.in/evisa/tvoa.html",
+      "https://info.gov.pg/png-and-uae-elevate-bilateral-relations-with-landmark-visa-waiver-agreement/",
+      "https://tass.com/economy/2073127",
+      "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html",
       "https://us.china-embassy.gov.cn/eng/lsfw/zj/notice/",
+      "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/",
+      "https://www.dailysabah.com/politics/diplomacy/turkiye-grants-visa-free-travel-to-chinese-nationals",
+      "https://www.ey.com/en_gl/technical/tax-alerts/qatar-suspends-visa-on-arrival-facility-for-nationals-of-lebanon",
+      "https://www.fmprc.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
+      "https://www.gob.mx/sre/prensa/electronic-visa-for-brazilian-nationals?idiom=en",
+      "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-1619-5-march-2026/explanatory-memorandum-to-the-statement-of-changes-in-the-immigration-rules-hc-1691-5-march-2026-accessible",
+      "https://www.immigration.go.ug/services/visa-exempt-countries",
+      "https://www.info.gov.hk/gia/general/202601/30/P2026013000238.htm",
       "https://www.visaforchina.cn/",
-      "ChatGPT 2025 visa policy updates compilation"
+      "https://www.visahq.com/news/2026-02-22/ae/armenia-joins-uae-saudi-arabia-qatar-in-visa-free-travel-bloc/"
     ]
   },
   "corrections": [
@@ -607,8 +626,8 @@
       "destination": "Pakistan",
       "oldValue": "eta",
       "newValue": "e-visa",
-      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
-      "source": "https://visa.nadra.gov.pk/"
+      "reason": "Pakistan suspended VOA/VPA for 126 nationalities. Wikipedia-only.",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Pakistan"
     },
     {
       "passport": "Japan",
@@ -703,8 +722,8 @@
       "destination": "Pakistan",
       "oldValue": "eta",
       "newValue": "e-visa",
-      "reason": "Pakistan has no ETA system - all countries use the VPA (e-visa) application process",
-      "source": "https://visa.nadra.gov.pk/"
+      "reason": "Pakistan VOA/VPA suspension. Wikipedia-only.",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Pakistan"
     },
     {
       "passport": "Malaysia",
@@ -1049,6 +1068,334 @@
       "newValue": "90",
       "reason": "Slovenia is visa-exempt for South Africa (90 days) per official DHA exempt countries list",
       "source": "https://www.dha.gov.za/index.php/immigration-services/exempt-countries"
+    },
+    {
+      "passport": "Lebanon",
+      "destination": "Qatar",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Qatar suspended visa-on-arrival for Lebanese nationals (2 April 2026); pre-approved visa via Hayya platform now required.",
+      "source": "https://www.ey.com/en_gl/technical/tax-alerts/qatar-suspends-visa-on-arrival-facility-for-nationals-of-lebanon"
+    },
+    {
+      "passport": "Armenia",
+      "destination": "Qatar",
+      "oldValue": "visa on arrival",
+      "newValue": "visa free",
+      "reason": "Armenia joined UAE-Saudi-Qatar visa-free bloc on 22 February 2026. Wikipedia/news-only, official source not located.",
+      "source": "https://www.visahq.com/news/2026-02-22/ae/armenia-joins-uae-saudi-arabia-qatar-in-visa-free-travel-bloc/"
+    },
+    {
+      "passport": "Saudi Arabia",
+      "destination": "Armenia",
+      "oldValue": "e-visa",
+      "newValue": "visa free",
+      "reason": "Reciprocal under Gulf-Armenia visa-free bloc.",
+      "source": "https://www.visahq.com/news/2026-02-22/ae/armenia-joins-uae-saudi-arabia-qatar-in-visa-free-travel-bloc/"
+    },
+    {
+      "passport": "United States",
+      "destination": "Uzbekistan",
+      "oldValue": "e-visa",
+      "newValue": "30",
+      "reason": "Wikipedia-only, official source not located. US shifted to visa-free 30-day stays per presidential decree.",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Uzbekistan"
+    },
+    {
+      "passport": "Algeria",
+      "destination": "India",
+      "oldValue": "visa required",
+      "newValue": "e-visa",
+      "reason": "India e-Tourist Visa expansion.",
+      "source": "https://indianvisaonline.gov.in/evisa/tvoa.html"
+    },
+    {
+      "passport": "Australia",
+      "destination": "Kyrgyzstan",
+      "oldValue": "60",
+      "newValue": "30",
+      "reason": "Kyrgyzstan reduced visa-free stay for 55 countries from 60 to 30 days. Wikipedia-only.",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Kyrgyzstan"
+    },
+    {
+      "passport": "New Zealand",
+      "destination": "Kyrgyzstan",
+      "oldValue": "60",
+      "newValue": "30",
+      "reason": "Kyrgyzstan reduced visa-free stay for 55 countries. Wikipedia-only.",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Kyrgyzstan"
+    },
+    {
+      "passport": "United States",
+      "destination": "Kyrgyzstan",
+      "oldValue": "60",
+      "newValue": "30",
+      "reason": "Kyrgyzstan 55-country reduction. Wikipedia-only.",
+      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Kyrgyzstan"
+    },
+    {
+      "passport": "United States",
+      "destination": "Afghanistan",
+      "oldValue": "visa required",
+      "newValue": "e-visa",
+      "reason": "Afghanistan launched e-Visa system March 2026. Wikipedia-only.",
+      "source": "https://eafghans.com/e-visa"
+    },
+    {
+      "passport": "Australia",
+      "destination": "Afghanistan",
+      "oldValue": "visa required",
+      "newValue": "e-visa",
+      "reason": "Afghanistan e-Visa launch. Wikipedia-only.",
+      "source": "https://eafghans.com/e-visa"
+    },
+    {
+      "passport": "Egypt",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Decree No. 244/GMAI/2025 (Boletim Oficial No. 223, II Series, 24 Nov 2025) ended visa-on-arrival for 96 nationalities.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Mexico",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Among 96 countries affected by Cape Verde Decree No. 244/GMAI/2025.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Turkey",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Among 96 countries affected by Cape Verde Decree No. 244/GMAI/2025.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Uzbekistan",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Among 96 countries affected by Cape Verde Decree No. 244/GMAI/2025.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Zimbabwe",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Among 96 countries affected by Cape Verde Decree No. 244/GMAI/2025.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Costa Rica",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Among 96 countries affected by Cape Verde Decree No. 244/GMAI/2025.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Jamaica",
+      "destination": "Cape Verde",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Among 96 countries affected by Cape Verde Decree No. 244/GMAI/2025.",
+      "source": "https://ease.gov.cv/"
+    },
+    {
+      "passport": "Haiti",
+      "destination": "United States",
+      "oldValue": "visa required",
+      "newValue": "no admission",
+      "reason": "US Presidential Proclamation 10998 fully suspends entry and visa issuance for Haitian nationals.",
+      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
+    },
+    {
+      "passport": "Cuba",
+      "destination": "United States",
+      "oldValue": "visa required",
+      "newValue": "no admission",
+      "reason": "US Proclamation 10998 \u2014 partial suspension covering B-1/B-2 tourist visas for Cuban nationals.",
+      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
+    },
+    {
+      "passport": "Venezuela",
+      "destination": "United States",
+      "oldValue": "visa required",
+      "newValue": "no admission",
+      "reason": "US Proclamation 10998 \u2014 partial suspension of B-1/B-2 tourist visas for Venezuelan nationals.",
+      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
+    },
+    {
+      "passport": "Antigua and Barbuda",
+      "destination": "United States",
+      "oldValue": "visa required",
+      "newValue": "no admission",
+      "reason": "US Proclamation 10998 \u2014 partial suspension of B-1/B-2 tourist visas, citing CBI concerns.",
+      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
+    },
+    {
+      "passport": "Dominica",
+      "destination": "United States",
+      "oldValue": "visa required",
+      "newValue": "no admission",
+      "reason": "US Proclamation 10998 \u2014 partial suspension of B-1/B-2 tourist visas, citing CBI concerns.",
+      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
+    },
+    {
+      "passport": "Brazil",
+      "destination": "Mexico",
+      "oldValue": "visa required",
+      "newValue": "e-visa",
+      "reason": "Mexico reinstated electronic Visitor Visa for Brazilian nationals arriving by air for tourism/business.",
+      "source": "https://www.gob.mx/sre/prensa/electronic-visa-for-brazilian-nationals?idiom=en"
+    },
+    {
+      "passport": "Colombia",
+      "destination": "Nicaragua",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 Colombia moved to consulted visa. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Peru",
+      "destination": "Nicaragua",
+      "oldValue": "visa on arrival",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 Peru moved to consulted visa. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Saint Lucia",
+      "destination": "United Kingdom",
+      "oldValue": "eta",
+      "newValue": "visa required",
+      "reason": "UK Home Office removed Saint Lucia from ETA scheme via Statement of Changes HC 1691; Saint Lucian nationals now require Standard Visitor Visa.",
+      "source": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-1619-5-march-2026/explanatory-memorandum-to-the-statement-of-changes-in-the-immigration-rules-hc-1691-5-march-2026-accessible"
+    },
+    {
+      "passport": "Canada",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China extended unilateral visa waiver to Canadian ordinary passport holders for stays up to 30 days, effective 17 Feb 2026 to 31 Dec 2026.",
+      "source": "https://www.fmprc.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html"
+    },
+    {
+      "passport": "United Kingdom",
+      "destination": "China",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "China extended unilateral visa waiver to UK ordinary passport holders for stays up to 30 days, effective 17 Feb 2026 to 31 Dec 2026.",
+      "source": "https://www.fmprc.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html"
+    },
+    {
+      "passport": "China",
+      "destination": "Philippines",
+      "oldValue": "visa required",
+      "newValue": "14",
+      "reason": "Philippines DFA: 14-day visa-free entry for Chinese nationals via NAIA Manila and Mactan-Cebu airports only, valid 16 Jan 2026 - 15 Jan 2027.",
+      "source": "https://chongqingpcg.dfa.gov.ph/example-pages/news-press-releases/1167-philippines-to-allow-visa-free-entry-for-14-days-for-chinese-nationals"
+    },
+    {
+      "passport": "Armenia",
+      "destination": "Saudi Arabia",
+      "oldValue": "visa required",
+      "newValue": "visa free",
+      "reason": "Armenia joined UAE-Saudi-Qatar visa-free bloc on 22 February 2026; up to 90 days in 180-day period. Wikipedia/news-only, official source not located.",
+      "source": "https://www.visahq.com/news/2026-02-22/ae/armenia-joins-uae-saudi-arabia-qatar-in-visa-free-travel-bloc/"
+    },
+    {
+      "passport": "Papua New Guinea",
+      "destination": "United Arab Emirates",
+      "oldValue": "e-visa",
+      "newValue": "30",
+      "reason": "PNG-UAE MoU on Mutual Exemption of Entry Visa signed 4 Feb 2026; ordinary passport holders eligible up to 30 days.",
+      "source": "https://info.gov.pg/png-and-uae-elevate-bilateral-relations-with-landmark-visa-waiver-agreement/"
+    },
+    {
+      "passport": "United Arab Emirates",
+      "destination": "Papua New Guinea",
+      "oldValue": "e-visa",
+      "newValue": "30",
+      "reason": "Reciprocal under same MoU.",
+      "source": "https://info.gov.pg/png-and-uae-elevate-bilateral-relations-with-landmark-visa-waiver-agreement/"
+    },
+    {
+      "passport": "China",
+      "destination": "Turkey",
+      "oldValue": "e-visa",
+      "newValue": "visa free",
+      "reason": "Turkish presidential decree (Official Gazette 1 Jan 2026); ordinary Chinese passport holders may enter for up to 90 days within any 180-day period.",
+      "source": "https://www.dailysabah.com/politics/diplomacy/turkiye-grants-visa-free-travel-to-chinese-nationals"
+    },
+    {
+      "passport": "Myanmar",
+      "destination": "Russia",
+      "oldValue": "e-visa",
+      "newValue": "visa free",
+      "reason": "Russia-Myanmar mutual visa-abolition agreement (signed 28 Oct 2025) entered into force 27 January 2026; up to 30 days per visit.",
+      "source": "https://tass.com/economy/2073127"
+    },
+    {
+      "passport": "Mozambique",
+      "destination": "Uganda",
+      "oldValue": "e-visa",
+      "newValue": "visa free",
+      "reason": "Uganda visa-free entry for 40 nationalities (up to 90 days), announced 11 March 2026.",
+      "source": "https://www.immigration.go.ug/services/visa-exempt-countries"
+    },
+    {
+      "passport": "Cuba",
+      "destination": "Nicaragua",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 Cuba moved to consulted visa requiring prior authorization. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Antigua and Barbuda",
+      "destination": "Nicaragua",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Bahamas",
+      "destination": "Nicaragua",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Barbados",
+      "destination": "Nicaragua",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Trinidad and Tobago",
+      "destination": "Nicaragua",
+      "oldValue": "90",
+      "newValue": "visa required",
+      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+    },
+    {
+      "passport": "Hong Kong",
+      "destination": "Azerbaijan",
+      "oldValue": "visa required",
+      "newValue": "30",
+      "reason": "One-year pilot 2 Feb 2026 - 2 Feb 2027 allowing up to three visa-free visits at 30 days each.",
+      "source": "https://www.info.gov.hk/gia/general/202601/30/P2026013000238.htm"
     }
   ]
 }

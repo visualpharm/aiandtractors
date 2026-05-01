@@ -1,11 +1,11 @@
 {
   "_metadata": {
-    "generatedAt": "2025-12-26T18:06:14.677Z",
+    "generatedAt": "2026-05-01T15:39:33.860Z",
     "algorithm": "Sum of annual visitors (millions) to all visa-free/VOA/ETA destinations",
     "tourismSource": "UNWTO Tourism Statistics 2023/2024",
     "visaSource": "github.com/ilyankou/passport-index-dataset",
-    "visaCorrectionsApplied": 130,
-    "visaCorrectionsLastUpdated": "2025-12-18",
+    "visaCorrectionsApplied": 171,
+    "visaCorrectionsLastUpdated": "2026-05-01",
     "tourismAdjustmentsApplied": 6,
     "tourismAdjustmentsLastUpdated": "2025-01-15"
   },
@@ -24,8 +24,8 @@
       ],
       "uniqueAccess": [
         "India",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "United States",
         "Australia"
       ],
@@ -258,8 +258,8 @@
       ],
       "uniqueAccess": [
         "India",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "United States",
         "Australia"
       ],
@@ -491,8 +491,8 @@
         "Myanmar",
         "Cuba",
         "Guinea",
-        "Azerbaijan",
-        "Vietnam"
+        "Vietnam",
+        "Azerbaijan"
       ],
       "topContributors": [
         {
@@ -3176,6 +3176,236 @@
         "Laos",
         "Latvia",
         "Lebanon",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Malta",
+        "Marshall Islands",
+        "Mauritania",
+        "Mauritius",
+        "Mexico",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Morocco",
+        "Mozambique",
+        "Nepal",
+        "Netherlands",
+        "New Zealand",
+        "Nicaragua",
+        "North Macedonia",
+        "Norway",
+        "Oman",
+        "Palau",
+        "Palestine",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Qatar",
+        "Romania",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "San Marino",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "Somalia",
+        "South Africa",
+        "South Korea",
+        "Spain",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Sweden",
+        "Switzerland",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Tuvalu",
+        "Turkey",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Vatican",
+        "Venezuela",
+        "Vietnam",
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
+      "id": "united_kingdom",
+      "country": "United Kingdom",
+      "flag": "🇬🇧",
+      "score": 1339,
+      "keyAccess": [
+        "Schengen",
+        "USA",
+        "China",
+        "Japan",
+        "UK"
+      ],
+      "uniqueAccess": [
+        "Vietnam",
+        "United States",
+        "Australia",
+        "Canada",
+        "Kuwait"
+      ],
+      "topContributors": [
+        {
+          "country": "Schengen Zone",
+          "value": 531
+        },
+        {
+          "country": "United States",
+          "value": 79.4
+        },
+        {
+          "country": "China",
+          "value": 65.7
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Mexico",
+          "value": 45
+        }
+      ],
+      "misses": [
+        {
+          "country": "India",
+          "value": -20.4
+        },
+        {
+          "country": "Russia",
+          "value": -9.7
+        },
+        {
+          "country": "Cuba",
+          "value": -4.3
+        },
+        {
+          "country": "Azerbaijan",
+          "value": -2.9
+        },
+        {
+          "country": "Syria",
+          "value": -1.5
+        }
+      ],
+      "visaFreeCount": 162,
+      "visaRequiredCount": 37,
+      "visaFreeDestinations": [
+        "Albania",
+        "Andorra",
+        "Angola",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Australia",
+        "Austria",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Brazil",
+        "Brunei",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cambodia",
+        "Canada",
+        "Cape Verde",
+        "Chile",
+        "China",
+        "Colombia",
+        "Comoros",
+        "Costa Rica",
+        "Ivory Coast",
+        "Croatia",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Estonia",
+        "Swaziland",
+        "Ethiopia",
+        "Fiji",
+        "Finland",
+        "France",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Greece",
+        "Grenada",
+        "Guatemala",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "Indonesia",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Kosovo",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Laos",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
         "Liechtenstein",
         "Lithuania",
         "Luxembourg",
@@ -7370,6 +7600,234 @@
       ]
     },
     {
+      "id": "canada",
+      "country": "Canada",
+      "flag": "🇨🇦",
+      "score": 1325,
+      "keyAccess": [
+        "Schengen",
+        "USA",
+        "China",
+        "Japan",
+        "UK"
+      ],
+      "uniqueAccess": [
+        "United States",
+        "Australia",
+        "Canada",
+        "Kuwait",
+        "Guyana"
+      ],
+      "topContributors": [
+        {
+          "country": "Schengen Zone",
+          "value": 531
+        },
+        {
+          "country": "United States",
+          "value": 79.4
+        },
+        {
+          "country": "China",
+          "value": 65.7
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Mexico",
+          "value": 45
+        }
+      ],
+      "misses": [
+        {
+          "country": "India",
+          "value": -20.4
+        },
+        {
+          "country": "Russia",
+          "value": -9.7
+        },
+        {
+          "country": "Vietnam",
+          "value": -7.6
+        },
+        {
+          "country": "Brazil",
+          "value": -6.8
+        },
+        {
+          "country": "Cuba",
+          "value": -4.3
+        }
+      ],
+      "visaFreeCount": 160,
+      "visaRequiredCount": 39,
+      "visaFreeDestinations": [
+        "Albania",
+        "Andorra",
+        "Angola",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Australia",
+        "Austria",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Brunei",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cambodia",
+        "Canada",
+        "Cape Verde",
+        "Chile",
+        "China",
+        "Colombia",
+        "Comoros",
+        "Costa Rica",
+        "Ivory Coast",
+        "Croatia",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Estonia",
+        "Swaziland",
+        "Ethiopia",
+        "Fiji",
+        "Finland",
+        "France",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Greece",
+        "Grenada",
+        "Guatemala",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "Indonesia",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Kosovo",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Laos",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Malta",
+        "Marshall Islands",
+        "Mauritania",
+        "Mauritius",
+        "Mexico",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Morocco",
+        "Mozambique",
+        "Nepal",
+        "Netherlands",
+        "New Zealand",
+        "Nicaragua",
+        "North Macedonia",
+        "Norway",
+        "Oman",
+        "Palau",
+        "Palestine",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Qatar",
+        "Romania",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "San Marino",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "Somalia",
+        "South Africa",
+        "South Korea",
+        "Spain",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Sweden",
+        "Switzerland",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Tuvalu",
+        "Turkey",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Vatican",
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
       "id": "australia",
       "country": "Australia",
       "flag": "🇦🇺",
@@ -8093,8 +8551,8 @@
           "value": -1.5
         }
       ],
-      "visaFreeCount": 169,
-      "visaRequiredCount": 30,
+      "visaFreeCount": 170,
+      "visaRequiredCount": 29,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -8214,6 +8672,7 @@
         "Palau",
         "Palestine",
         "Panama",
+        "Papua New Guinea",
         "Paraguay",
         "Peru",
         "Philippines",
@@ -8263,234 +8722,6 @@
         "Vanuatu",
         "Vatican",
         "Yemen",
-        "Zambia",
-        "Zimbabwe"
-      ]
-    },
-    {
-      "id": "united_kingdom",
-      "country": "United Kingdom",
-      "flag": "🇬🇧",
-      "score": 1274,
-      "keyAccess": [
-        "Schengen",
-        "USA",
-        "Japan",
-        "UK"
-      ],
-      "uniqueAccess": [
-        "Vietnam",
-        "United States",
-        "Australia",
-        "Canada",
-        "Kuwait"
-      ],
-      "topContributors": [
-        {
-          "country": "Schengen Zone",
-          "value": 531
-        },
-        {
-          "country": "United States",
-          "value": 79.4
-        },
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "Mexico",
-          "value": 45
-        },
-        {
-          "country": "Thailand",
-          "value": 39.9
-        }
-      ],
-      "misses": [
-        {
-          "country": "China",
-          "value": -65.7
-        },
-        {
-          "country": "India",
-          "value": -20.4
-        },
-        {
-          "country": "Russia",
-          "value": -9.7
-        },
-        {
-          "country": "Cuba",
-          "value": -4.3
-        },
-        {
-          "country": "Azerbaijan",
-          "value": -2.9
-        }
-      ],
-      "visaFreeCount": 161,
-      "visaRequiredCount": 38,
-      "visaFreeDestinations": [
-        "Albania",
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Australia",
-        "Austria",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Canada",
-        "Cape Verde",
-        "Chile",
-        "Colombia",
-        "Comoros",
-        "Costa Rica",
-        "Ivory Coast",
-        "Croatia",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Estonia",
-        "Swaziland",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "Gambia",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "Indonesia",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Malta",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montenegro",
-        "Morocco",
-        "Mozambique",
-        "Nepal",
-        "Netherlands",
-        "New Zealand",
-        "Nicaragua",
-        "North Macedonia",
-        "Norway",
-        "Oman",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Romania",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "South Korea",
-        "Spain",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Sweden",
-        "Switzerland",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Tuvalu",
-        "Turkey",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican",
-        "Venezuela",
-        "Vietnam",
         "Zambia",
         "Zimbabwe"
       ]
@@ -8950,10 +9181,232 @@
       ]
     },
     {
-      "id": "canada",
-      "country": "Canada",
-      "flag": "🇨🇦",
-      "score": 1259,
+      "id": "hong_kong",
+      "country": "Hong Kong",
+      "flag": "🏳️",
+      "score": 1258,
+      "keyAccess": [
+        "Schengen",
+        "China",
+        "Japan",
+        "Russia",
+        "UK"
+      ],
+      "uniqueAccess": [
+        "Yemen",
+        "Niger",
+        "Suriname",
+        "Azerbaijan",
+        "Australia"
+      ],
+      "topContributors": [
+        {
+          "country": "Schengen Zone",
+          "value": 531
+        },
+        {
+          "country": "China",
+          "value": 65.7
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Mexico",
+          "value": 45
+        },
+        {
+          "country": "Thailand",
+          "value": 39.9
+        }
+      ],
+      "misses": [
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "India",
+          "value": -20.4
+        },
+        {
+          "country": "Vietnam",
+          "value": -7.6
+        },
+        {
+          "country": "Cuba",
+          "value": -4.3
+        },
+        {
+          "country": "El Salvador",
+          "value": -3.2
+        }
+      ],
+      "visaFreeCount": 154,
+      "visaRequiredCount": 45,
+      "visaFreeDestinations": [
+        "Albania",
+        "Andorra",
+        "Angola",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Brazil",
+        "Brunei",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cambodia",
+        "Canada",
+        "Cape Verde",
+        "Chile",
+        "China",
+        "Colombia",
+        "Comoros",
+        "Ivory Coast",
+        "Croatia",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "Estonia",
+        "Ethiopia",
+        "Fiji",
+        "Finland",
+        "France",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Greece",
+        "Grenada",
+        "Guatemala",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "Indonesia",
+        "Iran",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Kosovo",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Laos",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Malta",
+        "Mauritania",
+        "Mauritius",
+        "Mexico",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Morocco",
+        "Mozambique",
+        "Namibia",
+        "Nepal",
+        "Netherlands",
+        "New Zealand",
+        "Nicaragua",
+        "Niger",
+        "North Macedonia",
+        "Norway",
+        "Oman",
+        "Palau",
+        "Palestine",
+        "Panama",
+        "Papua New Guinea",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Qatar",
+        "Romania",
+        "Russia",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "San Marino",
+        "Saudi Arabia",
+        "Serbia",
+        "Seychelles",
+        "Singapore",
+        "Slovakia",
+        "Slovenia",
+        "South Africa",
+        "South Korea",
+        "Spain",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Suriname",
+        "Sweden",
+        "Switzerland",
+        "Taiwan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Tuvalu",
+        "Turkey",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Vatican",
+        "Venezuela",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
+      "id": "united_states",
+      "country": "United States",
+      "flag": "🇺🇸",
+      "score": 1257,
       "keyAccess": [
         "Schengen",
         "USA",
@@ -9011,8 +9464,8 @@
           "value": -6.8
         }
       ],
-      "visaFreeCount": 159,
-      "visaRequiredCount": 40,
+      "visaFreeCount": 158,
+      "visaRequiredCount": 41,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -9026,7 +9479,6 @@
         "Bahrain",
         "Bangladesh",
         "Barbados",
-        "Belarus",
         "Belgium",
         "Belize",
         "Bolivia",
@@ -9171,227 +9623,6 @@
         "Uzbekistan",
         "Vanuatu",
         "Vatican",
-        "Zambia",
-        "Zimbabwe"
-      ]
-    },
-    {
-      "id": "hong_kong",
-      "country": "Hong Kong",
-      "flag": "🏳️",
-      "score": 1255,
-      "keyAccess": [
-        "Schengen",
-        "China",
-        "Japan",
-        "Russia",
-        "UK"
-      ],
-      "uniqueAccess": [
-        "Yemen",
-        "Niger",
-        "Suriname",
-        "Australia",
-        "Canada"
-      ],
-      "topContributors": [
-        {
-          "country": "Schengen Zone",
-          "value": 531
-        },
-        {
-          "country": "China",
-          "value": 65.7
-        },
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "Mexico",
-          "value": 45
-        },
-        {
-          "country": "Thailand",
-          "value": 39.9
-        }
-      ],
-      "misses": [
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "India",
-          "value": -20.4
-        },
-        {
-          "country": "Vietnam",
-          "value": -7.6
-        },
-        {
-          "country": "Cuba",
-          "value": -4.3
-        },
-        {
-          "country": "El Salvador",
-          "value": -3.2
-        }
-      ],
-      "visaFreeCount": 153,
-      "visaRequiredCount": 46,
-      "visaFreeDestinations": [
-        "Albania",
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Australia",
-        "Austria",
-        "Bahamas",
-        "Bahrain",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Canada",
-        "Cape Verde",
-        "Chile",
-        "China",
-        "Colombia",
-        "Comoros",
-        "Ivory Coast",
-        "Croatia",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "Estonia",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "Indonesia",
-        "Iran",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Malta",
-        "Mauritania",
-        "Mauritius",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montenegro",
-        "Morocco",
-        "Mozambique",
-        "Namibia",
-        "Nepal",
-        "Netherlands",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "North Macedonia",
-        "Norway",
-        "Oman",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "San Marino",
-        "Saudi Arabia",
-        "Serbia",
-        "Seychelles",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "South Africa",
-        "South Korea",
-        "Spain",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Suriname",
-        "Sweden",
-        "Switzerland",
-        "Taiwan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Tuvalu",
-        "Turkey",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican",
-        "Venezuela",
-        "Yemen",
         "Zambia",
         "Zimbabwe"
       ]
@@ -9844,230 +10075,6 @@
         "Vanuatu",
         "Vatican",
         "Venezuela",
-        "Zambia",
-        "Zimbabwe"
-      ]
-    },
-    {
-      "id": "united_states",
-      "country": "United States",
-      "flag": "🇺🇸",
-      "score": 1249,
-      "keyAccess": [
-        "Schengen",
-        "USA",
-        "Japan",
-        "UK"
-      ],
-      "uniqueAccess": [
-        "United States",
-        "Australia",
-        "Canada",
-        "Kuwait",
-        "Guyana"
-      ],
-      "topContributors": [
-        {
-          "country": "Schengen Zone",
-          "value": 531
-        },
-        {
-          "country": "United States",
-          "value": 79.4
-        },
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "Mexico",
-          "value": 45
-        },
-        {
-          "country": "Thailand",
-          "value": 39.9
-        }
-      ],
-      "misses": [
-        {
-          "country": "China",
-          "value": -65.7
-        },
-        {
-          "country": "India",
-          "value": -20.4
-        },
-        {
-          "country": "Russia",
-          "value": -9.7
-        },
-        {
-          "country": "Uzbekistan",
-          "value": -8
-        },
-        {
-          "country": "Vietnam",
-          "value": -7.6
-        }
-      ],
-      "visaFreeCount": 157,
-      "visaRequiredCount": 42,
-      "visaFreeDestinations": [
-        "Albania",
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Australia",
-        "Austria",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belgium",
-        "Belize",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Canada",
-        "Cape Verde",
-        "Chile",
-        "Colombia",
-        "Comoros",
-        "Costa Rica",
-        "Ivory Coast",
-        "Croatia",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Estonia",
-        "Swaziland",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "Gambia",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "Indonesia",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Malta",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montenegro",
-        "Morocco",
-        "Mozambique",
-        "Nepal",
-        "Netherlands",
-        "New Zealand",
-        "Nicaragua",
-        "North Macedonia",
-        "Norway",
-        "Oman",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Romania",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "South Korea",
-        "Spain",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Sweden",
-        "Switzerland",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Tuvalu",
-        "Turkey",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States",
-        "Uruguay",
-        "Vanuatu",
-        "Vatican",
         "Zambia",
         "Zimbabwe"
       ]
@@ -10970,8 +10977,8 @@
       "uniqueAccess": [
         "Mali",
         "New Zealand",
-        "Russia",
         "Brunei",
+        "Russia",
         "Namibia"
       ],
       "topContributors": [
@@ -11591,7 +11598,7 @@
       "id": "barbados",
       "country": "Barbados",
       "flag": "🇧🇧",
-      "score": 1150,
+      "score": 1149,
       "keyAccess": [
         "Schengen",
         "China",
@@ -11649,8 +11656,8 @@
           "value": -12.9
         }
       ],
-      "visaFreeCount": 144,
-      "visaRequiredCount": 55,
+      "visaFreeCount": 143,
+      "visaRequiredCount": 56,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -11745,7 +11752,6 @@
         "Mozambique",
         "Nepal",
         "Netherlands",
-        "Nicaragua",
         "North Macedonia",
         "Norway",
         "Palau",
@@ -12009,7 +12015,7 @@
       "id": "bahamas",
       "country": "Bahamas",
       "flag": "🇧🇸",
-      "score": 1131,
+      "score": 1130,
       "keyAccess": [
         "Schengen",
         "China",
@@ -12067,8 +12073,8 @@
           "value": -12.9
         }
       ],
-      "visaFreeCount": 141,
-      "visaRequiredCount": 58,
+      "visaFreeCount": 140,
+      "visaRequiredCount": 59,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -12159,7 +12165,6 @@
         "Mozambique",
         "Nepal",
         "Netherlands",
-        "Nicaragua",
         "North Macedonia",
         "Norway",
         "Palau",
@@ -12217,7 +12222,7 @@
       "id": "peru",
       "country": "Peru",
       "flag": "🇵🇪",
-      "score": 1105,
+      "score": 1104,
       "keyAccess": [
         "Schengen",
         "China",
@@ -12227,8 +12232,8 @@
       ],
       "uniqueAccess": [
         "Guyana",
-        "Russia",
         "Brunei",
+        "Russia",
         "Namibia",
         "Mongolia"
       ],
@@ -12276,8 +12281,8 @@
           "value": -19.9
         }
       ],
-      "visaFreeCount": 135,
-      "visaRequiredCount": 64,
+      "visaFreeCount": 134,
+      "visaRequiredCount": 65,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -12368,7 +12373,6 @@
         "Namibia",
         "Nepal",
         "Netherlands",
-        "Nicaragua",
         "North Macedonia",
         "Norway",
         "Palau",
@@ -13200,7 +13204,7 @@
       "id": "costa_rica",
       "country": "Costa Rica",
       "flag": "🇨🇷",
-      "score": 1074,
+      "score": 1073,
       "keyAccess": [
         "Schengen",
         "Japan",
@@ -13209,8 +13213,8 @@
       ],
       "uniqueAccess": [
         "Guyana",
-        "Russia",
         "Brunei",
+        "Russia",
         "Mexico",
         "Paraguay"
       ],
@@ -13258,8 +13262,8 @@
           "value": -19.9
         }
       ],
-      "visaFreeCount": 130,
-      "visaRequiredCount": 69,
+      "visaFreeCount": 129,
+      "visaRequiredCount": 70,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -13278,7 +13282,6 @@
         "Bulgaria",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Chile",
         "Colombia",
         "Comoros",
@@ -13594,7 +13597,7 @@
       "id": "mexico",
       "country": "Mexico",
       "flag": "🇲🇽",
-      "score": 1054,
+      "score": 1053,
       "keyAccess": [
         "Schengen",
         "Japan",
@@ -13651,8 +13654,8 @@
           "value": -20.4
         }
       ],
-      "visaFreeCount": 138,
-      "visaRequiredCount": 61,
+      "visaFreeCount": 137,
+      "visaRequiredCount": 62,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -13674,7 +13677,6 @@
         "Bulgaria",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Chile",
         "Colombia",
         "Comoros",
@@ -13998,8 +14000,8 @@
       "uniqueAccess": [
         "Azerbaijan",
         "Kuwait",
-        "Russia",
         "Brunei",
+        "Russia",
         "Mexico"
       ],
       "topContributors": [
@@ -14399,8 +14401,8 @@
       "uniqueAccess": [
         "Azerbaijan",
         "Guyana",
-        "Saudi Arabia",
         "Taiwan",
+        "Saudi Arabia",
         "China"
       ],
       "topContributors": [
@@ -14753,7 +14755,7 @@
       "id": "antigua_and_barbuda",
       "country": "Antigua and Barbuda",
       "flag": "🇦🇬",
-      "score": 996,
+      "score": 994,
       "keyAccess": [
         "Schengen",
         "China",
@@ -14811,8 +14813,8 @@
           "value": -29.7
         }
       ],
-      "visaFreeCount": 135,
-      "visaRequiredCount": 64,
+      "visaFreeCount": 134,
+      "visaRequiredCount": 65,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -14900,7 +14902,6 @@
         "Mozambique",
         "Nepal",
         "Netherlands",
-        "Nicaragua",
         "North Macedonia",
         "Norway",
         "Palau",
@@ -15150,7 +15151,7 @@
       "id": "trinidad_and_tobago",
       "country": "Trinidad and Tobago",
       "flag": "🇹🇹",
-      "score": 991,
+      "score": 990,
       "keyAccess": [
         "Schengen",
         "UK"
@@ -15206,8 +15207,8 @@
           "value": -21.6
         }
       ],
-      "visaFreeCount": 131,
-      "visaRequiredCount": 68,
+      "visaFreeCount": 130,
+      "visaRequiredCount": 69,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -15292,7 +15293,6 @@
         "Mozambique",
         "Nepal",
         "Netherlands",
-        "Nicaragua",
         "Norway",
         "Palau",
         "Palestine",
@@ -15716,7 +15716,7 @@
       "id": "colombia",
       "country": "Colombia",
       "flag": "🇨🇴",
-      "score": 970,
+      "score": 969,
       "keyAccess": [
         "Schengen",
         "Russia"
@@ -15772,8 +15772,8 @@
           "value": -29.7
         }
       ],
-      "visaFreeCount": 120,
-      "visaRequiredCount": 79,
+      "visaFreeCount": 119,
+      "visaRequiredCount": 80,
       "visaFreeDestinations": [
         "Albania",
         "Andorra",
@@ -15853,7 +15853,6 @@
         "Mozambique",
         "Nepal",
         "Netherlands",
-        "Nicaragua",
         "North Macedonia",
         "Norway",
         "Oman",
@@ -17387,199 +17386,6 @@
       ]
     },
     {
-      "id": "saint_lucia",
-      "country": "Saint Lucia",
-      "flag": "🏳️",
-      "score": 899,
-      "keyAccess": [
-        "Schengen",
-        "UK"
-      ],
-      "uniqueAccess": [
-        "Cuba",
-        "Suriname",
-        "Guyana",
-        "Lesotho",
-        "Tonga"
-      ],
-      "topContributors": [
-        {
-          "country": "Schengen Zone",
-          "value": 531
-        },
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "United Kingdom",
-          "value": 38.2
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        },
-        {
-          "country": "Hong Kong",
-          "value": 21.9
-        }
-      ],
-      "misses": [
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "China",
-          "value": -65.7
-        },
-        {
-          "country": "Mexico",
-          "value": -45
-        },
-        {
-          "country": "Thailand",
-          "value": -39.9
-        },
-        {
-          "country": "Japan",
-          "value": -36.9
-        }
-      ],
-      "visaFreeCount": 128,
-      "visaRequiredCount": 71,
-      "visaFreeDestinations": [
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Austria",
-        "Bahamas",
-        "Bangladesh",
-        "Barbados",
-        "Belgium",
-        "Belize",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Bulgaria",
-        "Burundi",
-        "Cambodia",
-        "Cape Verde",
-        "Chile",
-        "Colombia",
-        "Comoros",
-        "Costa Rica",
-        "Ivory Coast",
-        "Croatia",
-        "Cuba",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Estonia",
-        "Swaziland",
-        "Fiji",
-        "Finland",
-        "France",
-        "Gambia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "Iran",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Jordan",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Laos",
-        "Latvia",
-        "Lesotho",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Malta",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Montenegro",
-        "Mozambique",
-        "Nepal",
-        "Netherlands",
-        "Nicaragua",
-        "Norway",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Romania",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "San Marino",
-        "Senegal",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "South Korea",
-        "Spain",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Suriname",
-        "Sweden",
-        "Switzerland",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Timor-Leste",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Tuvalu",
-        "Turkey",
-        "United Kingdom",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican",
-        "Venezuela",
-        "Zambia",
-        "Zimbabwe"
-      ]
-    },
-    {
       "id": "micronesia",
       "country": "Micronesia",
       "flag": "🇫🇲",
@@ -18665,6 +18471,197 @@
       ]
     },
     {
+      "id": "saint_lucia",
+      "country": "Saint Lucia",
+      "flag": "🏳️",
+      "score": 861,
+      "keyAccess": [
+        "Schengen"
+      ],
+      "uniqueAccess": [
+        "Cuba",
+        "Suriname",
+        "Guyana",
+        "Lesotho",
+        "Tonga"
+      ],
+      "topContributors": [
+        {
+          "country": "Schengen Zone",
+          "value": 531
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        },
+        {
+          "country": "Hong Kong",
+          "value": 21.9
+        },
+        {
+          "country": "South Korea",
+          "value": 16.4
+        }
+      ],
+      "misses": [
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "China",
+          "value": -65.7
+        },
+        {
+          "country": "Mexico",
+          "value": -45
+        },
+        {
+          "country": "Thailand",
+          "value": -39.9
+        },
+        {
+          "country": "United Kingdom",
+          "value": -38.2
+        }
+      ],
+      "visaFreeCount": 127,
+      "visaRequiredCount": 72,
+      "visaFreeDestinations": [
+        "Andorra",
+        "Angola",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Austria",
+        "Bahamas",
+        "Bangladesh",
+        "Barbados",
+        "Belgium",
+        "Belize",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Brazil",
+        "Bulgaria",
+        "Burundi",
+        "Cambodia",
+        "Cape Verde",
+        "Chile",
+        "Colombia",
+        "Comoros",
+        "Costa Rica",
+        "Ivory Coast",
+        "Croatia",
+        "Cuba",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Estonia",
+        "Swaziland",
+        "Fiji",
+        "Finland",
+        "France",
+        "Gambia",
+        "Germany",
+        "Ghana",
+        "Greece",
+        "Grenada",
+        "Guatemala",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "Iran",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Jordan",
+        "Kenya",
+        "Kiribati",
+        "Kosovo",
+        "Laos",
+        "Latvia",
+        "Lesotho",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Malta",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Montenegro",
+        "Mozambique",
+        "Nepal",
+        "Netherlands",
+        "Nicaragua",
+        "Norway",
+        "Palau",
+        "Palestine",
+        "Panama",
+        "Papua New Guinea",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Romania",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "San Marino",
+        "Senegal",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "South Korea",
+        "Spain",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Suriname",
+        "Sweden",
+        "Switzerland",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Timor-Leste",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Tuvalu",
+        "Turkey",
+        "Uzbekistan",
+        "Vanuatu",
+        "Vatican",
+        "Venezuela",
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
       "id": "samoa",
       "country": "Samoa",
       "flag": "🇼🇸",
@@ -18859,8 +18856,8 @@
         "Lesotho",
         "Tonga",
         "Ireland",
-        "United Arab Emirates",
-        "United Kingdom"
+        "United Kingdom",
+        "United Arab Emirates"
       ],
       "topContributors": [
         {
@@ -19864,8 +19861,8 @@
       "uniqueAccess": [
         "Myanmar",
         "Cuba",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "Guyana"
       ],
       "topContributors": [
@@ -20039,7 +20036,7 @@
       "id": "turkey",
       "country": "Turkey",
       "flag": "🇹🇷",
-      "score": 522,
+      "score": 521,
       "keyAccess": [
         "Japan"
       ],
@@ -20094,8 +20091,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 115,
-      "visaRequiredCount": 84,
+      "visaFreeCount": 114,
+      "visaRequiredCount": 85,
       "visaFreeDestinations": [
         "Albania",
         "Angola",
@@ -20116,7 +20113,6 @@
         "Burkina Faso",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Chile",
         "Colombia",
         "Comoros",
@@ -20537,7 +20533,7 @@
       "id": "saudi_arabia",
       "country": "Saudi Arabia",
       "flag": "🇸🇦",
-      "score": 501,
+      "score": 503,
       "keyAccess": [
         "China",
         "UK"
@@ -20593,11 +20589,12 @@
           "value": -45
         }
       ],
-      "visaFreeCount": 89,
-      "visaRequiredCount": 110,
+      "visaFreeCount": 90,
+      "visaRequiredCount": 109,
       "visaFreeDestinations": [
         "Albania",
         "Angola",
+        "Armenia",
         "Azerbaijan",
         "Bahrain",
         "Bangladesh",
@@ -20853,7 +20850,7 @@
         "India",
         "Pakistan",
         "Guyana",
-        "Russia"
+        "Brunei"
       ],
       "topContributors": [
         {
@@ -21004,8 +21001,8 @@
       "uniqueAccess": [
         "Myanmar",
         "Vietnam",
-        "Russia",
         "Brunei",
+        "Russia",
         "Namibia"
       ],
       "topContributors": [
@@ -21150,8 +21147,8 @@
       ],
       "uniqueAccess": [
         "Syria",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "Russia",
         "Mongolia"
       ],
@@ -21439,6 +21436,155 @@
       ]
     },
     {
+      "id": "china",
+      "country": "China",
+      "flag": "🇨🇳",
+      "score": 417,
+      "keyAccess": [
+        "China"
+      ],
+      "uniqueAccess": [
+        "Myanmar",
+        "Cuba",
+        "Suriname",
+        "Azerbaijan",
+        "Benin"
+      ],
+      "topContributors": [
+        {
+          "country": "China",
+          "value": 65.7
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Thailand",
+          "value": 39.9
+        },
+        {
+          "country": "Saudi Arabia",
+          "value": 29.7
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        }
+      ],
+      "misses": [
+        {
+          "country": "Spain",
+          "value": -93.8
+        },
+        {
+          "country": "France",
+          "value": -90.9
+        },
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "Italy",
+          "value": -57.7
+        },
+        {
+          "country": "Mexico",
+          "value": -45
+        }
+      ],
+      "visaFreeCount": 85,
+      "visaRequiredCount": 114,
+      "visaFreeDestinations": [
+        "Albania",
+        "Angola",
+        "Antigua and Barbuda",
+        "Armenia",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Benin",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Brunei",
+        "Burundi",
+        "Cambodia",
+        "Cape Verde",
+        "China",
+        "Comoros",
+        "Ivory Coast",
+        "Cuba",
+        "Djibouti",
+        "Dominica",
+        "Egypt",
+        "Ethiopia",
+        "Fiji",
+        "Georgia",
+        "Ghana",
+        "Grenada",
+        "Guinea-Bissau",
+        "Haiti",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Jamaica",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Laos",
+        "Lebanon",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Nepal",
+        "Oman",
+        "Palau",
+        "Palestine",
+        "Papua New Guinea",
+        "Philippines",
+        "Qatar",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Solomon Islands",
+        "Somalia",
+        "Sri Lanka",
+        "Suriname",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tonga",
+        "Tunisia",
+        "Tuvalu",
+        "Turkey",
+        "United Arab Emirates",
+        "Uzbekistan",
+        "Vanuatu",
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
       "id": "belarus",
       "country": "Belarus",
       "flag": "🇧🇾",
@@ -21450,8 +21596,8 @@
       "uniqueAccess": [
         "Cuba",
         "Syria",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "Russia"
       ],
       "topContributors": [
@@ -21587,6 +21733,142 @@
       ]
     },
     {
+      "id": "armenia",
+      "country": "Armenia",
+      "flag": "🇦🇲",
+      "score": 406,
+      "keyAccess": [
+        "China",
+        "Russia"
+      ],
+      "uniqueAccess": [
+        "Russia",
+        "Saudi Arabia",
+        "China",
+        "Kazakhstan",
+        "Ukraine"
+      ],
+      "topContributors": [
+        {
+          "country": "China",
+          "value": 65.7
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Thailand",
+          "value": 39.9
+        },
+        {
+          "country": "Saudi Arabia",
+          "value": 29.7
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        }
+      ],
+      "misses": [
+        {
+          "country": "Spain",
+          "value": -93.8
+        },
+        {
+          "country": "France",
+          "value": -90.9
+        },
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "Italy",
+          "value": -57.7
+        },
+        {
+          "country": "Mexico",
+          "value": -45
+        }
+      ],
+      "visaFreeCount": 71,
+      "visaRequiredCount": 128,
+      "visaFreeDestinations": [
+        "Albania",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Bahamas",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Bolivia",
+        "Brazil",
+        "Burundi",
+        "Cambodia",
+        "Cape Verde",
+        "China",
+        "Comoros",
+        "Ivory Coast",
+        "Djibouti",
+        "Dominica",
+        "Ecuador",
+        "Egypt",
+        "Gambia",
+        "Georgia",
+        "Ghana",
+        "Guinea-Bissau",
+        "Haiti",
+        "Hong Kong",
+        "Indonesia",
+        "Iran",
+        "Jamaica",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kyrgyzstan",
+        "Laos",
+        "Lebanon",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Moldova",
+        "Mozambique",
+        "Nepal",
+        "Palau",
+        "Palestine",
+        "Panama",
+        "Qatar",
+        "Russia",
+        "Rwanda",
+        "Samoa",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tuvalu",
+        "Turkey",
+        "Ukraine",
+        "United Arab Emirates",
+        "Uruguay",
+        "Uzbekistan",
+        "Zimbabwe"
+      ]
+    },
+    {
       "id": "mongolia",
       "country": "Mongolia",
       "flag": "🇲🇳",
@@ -21716,141 +21998,6 @@
         "Uzbekistan",
         "Vietnam",
         "Zambia"
-      ]
-    },
-    {
-      "id": "armenia",
-      "country": "Armenia",
-      "flag": "🇦🇲",
-      "score": 377,
-      "keyAccess": [
-        "China",
-        "Russia"
-      ],
-      "uniqueAccess": [
-        "Russia",
-        "China",
-        "Kazakhstan",
-        "Ukraine",
-        "Kyrgyzstan"
-      ],
-      "topContributors": [
-        {
-          "country": "China",
-          "value": 65.7
-        },
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "Thailand",
-          "value": 39.9
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        },
-        {
-          "country": "Hong Kong",
-          "value": 21.9
-        }
-      ],
-      "misses": [
-        {
-          "country": "Spain",
-          "value": -93.8
-        },
-        {
-          "country": "France",
-          "value": -90.9
-        },
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "Italy",
-          "value": -57.7
-        },
-        {
-          "country": "Mexico",
-          "value": -45
-        }
-      ],
-      "visaFreeCount": 70,
-      "visaRequiredCount": 129,
-      "visaFreeDestinations": [
-        "Albania",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Bahamas",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Bolivia",
-        "Brazil",
-        "Burundi",
-        "Cambodia",
-        "Cape Verde",
-        "China",
-        "Comoros",
-        "Ivory Coast",
-        "Djibouti",
-        "Dominica",
-        "Ecuador",
-        "Egypt",
-        "Gambia",
-        "Georgia",
-        "Ghana",
-        "Guinea-Bissau",
-        "Haiti",
-        "Hong Kong",
-        "Indonesia",
-        "Iran",
-        "Jamaica",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kyrgyzstan",
-        "Laos",
-        "Lebanon",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Moldova",
-        "Mozambique",
-        "Nepal",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Qatar",
-        "Russia",
-        "Rwanda",
-        "Samoa",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tuvalu",
-        "Turkey",
-        "Ukraine",
-        "United Arab Emirates",
-        "Uruguay",
-        "Uzbekistan",
-        "Zimbabwe"
       ]
     },
     {
@@ -22012,7 +22159,7 @@
       "id": "jamaica",
       "country": "Jamaica",
       "flag": "🇯🇲",
-      "score": 367,
+      "score": 366,
       "keyAccess": [
         "Russia"
       ],
@@ -22067,8 +22214,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 87,
-      "visaRequiredCount": 112,
+      "visaFreeCount": 86,
+      "visaRequiredCount": 113,
       "visaFreeDestinations": [
         "Angola",
         "Antigua and Barbuda",
@@ -22082,7 +22229,6 @@
         "Brazil",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Chile",
         "Colombia",
         "Comoros",
@@ -22160,153 +22306,6 @@
       ]
     },
     {
-      "id": "china",
-      "country": "China",
-      "flag": "🇨🇳",
-      "score": 358,
-      "keyAccess": [
-        "China"
-      ],
-      "uniqueAccess": [
-        "Myanmar",
-        "Cuba",
-        "Suriname",
-        "Azerbaijan",
-        "Benin"
-      ],
-      "topContributors": [
-        {
-          "country": "China",
-          "value": 65.7
-        },
-        {
-          "country": "Thailand",
-          "value": 39.9
-        },
-        {
-          "country": "Saudi Arabia",
-          "value": 29.7
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        },
-        {
-          "country": "United Arab Emirates",
-          "value": 21.6
-        }
-      ],
-      "misses": [
-        {
-          "country": "Spain",
-          "value": -93.8
-        },
-        {
-          "country": "France",
-          "value": -90.9
-        },
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "Italy",
-          "value": -57.7
-        },
-        {
-          "country": "Turkey",
-          "value": -51.2
-        }
-      ],
-      "visaFreeCount": 83,
-      "visaRequiredCount": 116,
-      "visaFreeDestinations": [
-        "Albania",
-        "Angola",
-        "Antigua and Barbuda",
-        "Armenia",
-        "Azerbaijan",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Benin",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Brunei",
-        "Burundi",
-        "Cambodia",
-        "Cape Verde",
-        "China",
-        "Comoros",
-        "Ivory Coast",
-        "Cuba",
-        "Djibouti",
-        "Dominica",
-        "Egypt",
-        "Ethiopia",
-        "Fiji",
-        "Georgia",
-        "Ghana",
-        "Grenada",
-        "Guinea-Bissau",
-        "Haiti",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Jamaica",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Laos",
-        "Lebanon",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Morocco",
-        "Mozambique",
-        "Myanmar",
-        "Nepal",
-        "Oman",
-        "Palau",
-        "Palestine",
-        "Papua New Guinea",
-        "Qatar",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Solomon Islands",
-        "Somalia",
-        "Sri Lanka",
-        "Suriname",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tonga",
-        "Tunisia",
-        "Tuvalu",
-        "United Arab Emirates",
-        "Uzbekistan",
-        "Vanuatu",
-        "Zambia",
-        "Zimbabwe"
-      ]
-    },
-    {
       "id": "indonesia",
       "country": "Indonesia",
       "flag": "🇮🇩",
@@ -22317,8 +22316,8 @@
       "uniqueAccess": [
         "Myanmar",
         "Mali",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "Guyana"
       ],
       "topContributors": [
@@ -23588,10 +23587,149 @@
       ]
     },
     {
+      "id": "papua_new_guinea",
+      "country": "Papua New Guinea",
+      "flag": "🇵🇬",
+      "score": 286,
+      "keyAccess": [
+        "UK"
+      ],
+      "uniqueAccess": [
+        "Canada",
+        "Lesotho",
+        "Tonga",
+        "United Kingdom",
+        "United Arab Emirates"
+      ],
+      "topContributors": [
+        {
+          "country": "Thailand",
+          "value": 39.9
+        },
+        {
+          "country": "United Kingdom",
+          "value": 38.2
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        },
+        {
+          "country": "Hong Kong",
+          "value": 21.9
+        },
+        {
+          "country": "United Arab Emirates",
+          "value": 21.6
+        }
+      ],
+      "misses": [
+        {
+          "country": "Spain",
+          "value": -93.8
+        },
+        {
+          "country": "France",
+          "value": -90.9
+        },
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "China",
+          "value": -65.7
+        },
+        {
+          "country": "Italy",
+          "value": -57.7
+        }
+      ],
+      "visaFreeCount": 75,
+      "visaRequiredCount": 124,
+      "visaFreeDestinations": [
+        "Angola",
+        "Antigua and Barbuda",
+        "Bahamas",
+        "Bangladesh",
+        "Belize",
+        "Bolivia",
+        "Botswana",
+        "Burundi",
+        "Cambodia",
+        "Canada",
+        "Cape Verde",
+        "Colombia",
+        "Comoros",
+        "Ivory Coast",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "Swaziland",
+        "Fiji",
+        "Gambia",
+        "Ghana",
+        "Grenada",
+        "Guinea-Bissau",
+        "Haiti",
+        "Hong Kong",
+        "Indonesia",
+        "Iran",
+        "Israel",
+        "Jamaica",
+        "Kenya",
+        "Kiribati",
+        "Kosovo",
+        "Laos",
+        "Lesotho",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Marshall Islands",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Mozambique",
+        "Nauru",
+        "Nepal",
+        "Nicaragua",
+        "Palau",
+        "Palestine",
+        "Panama",
+        "Papua New Guinea",
+        "Peru",
+        "Philippines",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "Senegal",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Solomon Islands",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tonga",
+        "Tuvalu",
+        "United Arab Emirates",
+        "United Kingdom",
+        "Vanuatu",
+        "Zimbabwe"
+      ]
+    },
+    {
       "id": "uzbekistan",
       "country": "Uzbekistan",
       "flag": "🇺🇿",
-      "score": 286,
+      "score": 285,
       "keyAccess": [
         "Russia"
       ],
@@ -23646,8 +23784,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 63,
-      "visaRequiredCount": 136,
+      "visaFreeCount": 62,
+      "visaRequiredCount": 137,
       "visaFreeDestinations": [
         "Antigua and Barbuda",
         "Armenia",
@@ -23657,7 +23795,6 @@
         "Bolivia",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Comoros",
         "Ivory Coast",
         "Djibouti",
@@ -23997,144 +24134,6 @@
       ]
     },
     {
-      "id": "papua_new_guinea",
-      "country": "Papua New Guinea",
-      "flag": "🇵🇬",
-      "score": 265,
-      "keyAccess": [
-        "UK"
-      ],
-      "uniqueAccess": [
-        "Canada",
-        "Lesotho",
-        "Tonga",
-        "United Kingdom",
-        "Swaziland"
-      ],
-      "topContributors": [
-        {
-          "country": "Thailand",
-          "value": 39.9
-        },
-        {
-          "country": "United Kingdom",
-          "value": 38.2
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        },
-        {
-          "country": "Hong Kong",
-          "value": 21.9
-        },
-        {
-          "country": "Canada",
-          "value": 19.9
-        }
-      ],
-      "misses": [
-        {
-          "country": "Spain",
-          "value": -93.8
-        },
-        {
-          "country": "France",
-          "value": -90.9
-        },
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "China",
-          "value": -65.7
-        },
-        {
-          "country": "Italy",
-          "value": -57.7
-        }
-      ],
-      "visaFreeCount": 74,
-      "visaRequiredCount": 125,
-      "visaFreeDestinations": [
-        "Angola",
-        "Antigua and Barbuda",
-        "Bahamas",
-        "Bangladesh",
-        "Belize",
-        "Bolivia",
-        "Botswana",
-        "Burundi",
-        "Cambodia",
-        "Canada",
-        "Cape Verde",
-        "Colombia",
-        "Comoros",
-        "Ivory Coast",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "Swaziland",
-        "Fiji",
-        "Gambia",
-        "Ghana",
-        "Grenada",
-        "Guinea-Bissau",
-        "Haiti",
-        "Hong Kong",
-        "Indonesia",
-        "Iran",
-        "Israel",
-        "Jamaica",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Laos",
-        "Lesotho",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Mozambique",
-        "Nauru",
-        "Nepal",
-        "Nicaragua",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Peru",
-        "Philippines",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "Senegal",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Solomon Islands",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tonga",
-        "Tuvalu",
-        "United Kingdom",
-        "Vanuatu",
-        "Zimbabwe"
-      ]
-    },
-    {
       "id": "kyrgyzstan",
       "country": "Kyrgyzstan",
       "flag": "🇰🇬",
@@ -24144,8 +24143,8 @@
       ],
       "uniqueAccess": [
         "Syria",
-        "Azerbaijan",
         "Vietnam",
+        "Azerbaijan",
         "Russia",
         "Mongolia"
       ],
@@ -25191,8 +25190,8 @@
         "Myanmar",
         "Vietnam",
         "Kuwait",
-        "Russia",
-        "Brunei"
+        "Brunei",
+        "Russia"
       ],
       "topContributors": [
         {
@@ -25766,6 +25765,115 @@
       ]
     },
     {
+      "id": "myanmar",
+      "country": "Myanmar",
+      "flag": "🇲🇲",
+      "score": 166,
+      "keyAccess": [
+        "Russia"
+      ],
+      "uniqueAccess": [
+        "Myanmar",
+        "Vietnam",
+        "Brunei",
+        "Russia",
+        "Taiwan"
+      ],
+      "topContributors": [
+        {
+          "country": "Thailand",
+          "value": 39.9
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        },
+        {
+          "country": "Indonesia",
+          "value": 13.6
+        },
+        {
+          "country": "Singapore",
+          "value": 13
+        },
+        {
+          "country": "Russia",
+          "value": 9.7
+        }
+      ],
+      "misses": [
+        {
+          "country": "Spain",
+          "value": -93.8
+        },
+        {
+          "country": "France",
+          "value": -90.9
+        },
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "China",
+          "value": -65.7
+        },
+        {
+          "country": "Italy",
+          "value": -57.7
+        }
+      ],
+      "visaFreeCount": 45,
+      "visaRequiredCount": 154,
+      "visaFreeDestinations": [
+        "Bolivia",
+        "Brunei",
+        "Burundi",
+        "Cambodia",
+        "Cape Verde",
+        "Comoros",
+        "Ivory Coast",
+        "Djibouti",
+        "Dominica",
+        "Ghana",
+        "Guinea-Bissau",
+        "Haiti",
+        "Indonesia",
+        "Iran",
+        "Jordan",
+        "Kenya",
+        "Laos",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Marshall Islands",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Mozambique",
+        "Myanmar",
+        "Nepal",
+        "Nicaragua",
+        "Philippines",
+        "Russia",
+        "Rwanda",
+        "Samoa",
+        "Seychelles",
+        "Singapore",
+        "Sri Lanka",
+        "Saint Vincent and the Grenadines",
+        "Taiwan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tuvalu",
+        "Vietnam",
+        "Zambia"
+      ]
+    },
+    {
       "id": "cape_verde",
       "country": "Cape Verde",
       "flag": "🇨🇻",
@@ -25899,7 +26007,7 @@
       "id": "cuba",
       "country": "Cuba",
       "flag": "🇨🇺",
-      "score": 161,
+      "score": 160,
       "keyAccess": [
         "Russia"
       ],
@@ -25954,8 +26062,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 63,
-      "visaRequiredCount": 136,
+      "visaFreeCount": 62,
+      "visaRequiredCount": 137,
       "visaFreeDestinations": [
         "Antigua and Barbuda",
         "Bangladesh",
@@ -25997,7 +26105,6 @@
         "Mozambique",
         "Namibia",
         "Nepal",
-        "Nicaragua",
         "Palau",
         "Palestine",
         "Qatar",
@@ -26020,112 +26127,6 @@
         "Vanuatu",
         "Zambia",
         "Zimbabwe"
-      ]
-    },
-    {
-      "id": "myanmar",
-      "country": "Myanmar",
-      "flag": "🇲🇲",
-      "score": 156,
-      "keyAccess": [],
-      "uniqueAccess": [
-        "Myanmar",
-        "Vietnam",
-        "Brunei",
-        "Taiwan",
-        "Indonesia"
-      ],
-      "topContributors": [
-        {
-          "country": "Thailand",
-          "value": 39.9
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        },
-        {
-          "country": "Indonesia",
-          "value": 13.6
-        },
-        {
-          "country": "Singapore",
-          "value": 13
-        },
-        {
-          "country": "Philippines",
-          "value": 8.3
-        }
-      ],
-      "misses": [
-        {
-          "country": "Spain",
-          "value": -93.8
-        },
-        {
-          "country": "France",
-          "value": -90.9
-        },
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "China",
-          "value": -65.7
-        },
-        {
-          "country": "Italy",
-          "value": -57.7
-        }
-      ],
-      "visaFreeCount": 44,
-      "visaRequiredCount": 155,
-      "visaFreeDestinations": [
-        "Bolivia",
-        "Brunei",
-        "Burundi",
-        "Cambodia",
-        "Cape Verde",
-        "Comoros",
-        "Ivory Coast",
-        "Djibouti",
-        "Dominica",
-        "Ghana",
-        "Guinea-Bissau",
-        "Haiti",
-        "Indonesia",
-        "Iran",
-        "Jordan",
-        "Kenya",
-        "Laos",
-        "Macao",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Mozambique",
-        "Myanmar",
-        "Nepal",
-        "Nicaragua",
-        "Philippines",
-        "Rwanda",
-        "Samoa",
-        "Seychelles",
-        "Singapore",
-        "Sri Lanka",
-        "Saint Vincent and the Grenadines",
-        "Taiwan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tuvalu",
-        "Vietnam",
-        "Zambia"
       ]
     },
     {
@@ -27368,114 +27369,6 @@
       ]
     },
     {
-      "id": "lebanon",
-      "country": "Lebanon",
-      "flag": "🇱🇧",
-      "score": 129,
-      "keyAccess": [],
-      "uniqueAccess": [
-        "Syria",
-        "Oman",
-        "Armenia",
-        "Qatar",
-        "Georgia"
-      ],
-      "topContributors": [
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        },
-        {
-          "country": "Cambodia",
-          "value": 6.6
-        },
-        {
-          "country": "Jordan",
-          "value": 5.2
-        },
-        {
-          "country": "Georgia",
-          "value": 5.1
-        }
-      ],
-      "misses": [
-        {
-          "country": "Spain",
-          "value": -93.8
-        },
-        {
-          "country": "France",
-          "value": -90.9
-        },
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "China",
-          "value": -65.7
-        },
-        {
-          "country": "Italy",
-          "value": -57.7
-        }
-      ],
-      "visaFreeCount": 46,
-      "visaRequiredCount": 153,
-      "visaFreeDestinations": [
-        "Armenia",
-        "Barbados",
-        "Bolivia",
-        "Burundi",
-        "Cambodia",
-        "Cape Verde",
-        "Comoros",
-        "Ivory Coast",
-        "Djibouti",
-        "Dominica",
-        "Ecuador",
-        "Ethiopia",
-        "Georgia",
-        "Ghana",
-        "Guinea-Bissau",
-        "Haiti",
-        "Iran",
-        "Iraq",
-        "Jordan",
-        "Kenya",
-        "Laos",
-        "Lebanon",
-        "Macao",
-        "Madagascar",
-        "Malaysia",
-        "Maldives",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Mozambique",
-        "Nepal",
-        "Oman",
-        "Palau",
-        "Palestine",
-        "Qatar",
-        "Rwanda",
-        "Samoa",
-        "Seychelles",
-        "Sierra Leone",
-        "Sri Lanka",
-        "Syria",
-        "Tajikistan",
-        "Timor-Leste",
-        "Tuvalu",
-        "Turkey"
-      ]
-    },
-    {
       "id": "madagascar",
       "country": "Madagascar",
       "flag": "🇲🇬",
@@ -27597,10 +27490,117 @@
       ]
     },
     {
+      "id": "lebanon",
+      "country": "Lebanon",
+      "flag": "🇱🇧",
+      "score": 127,
+      "keyAccess": [],
+      "uniqueAccess": [
+        "Syria",
+        "Oman",
+        "Armenia",
+        "Georgia",
+        "Lebanon"
+      ],
+      "topContributors": [
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        },
+        {
+          "country": "Cambodia",
+          "value": 6.6
+        },
+        {
+          "country": "Jordan",
+          "value": 5.2
+        },
+        {
+          "country": "Georgia",
+          "value": 5.1
+        }
+      ],
+      "misses": [
+        {
+          "country": "Spain",
+          "value": -93.8
+        },
+        {
+          "country": "France",
+          "value": -90.9
+        },
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "China",
+          "value": -65.7
+        },
+        {
+          "country": "Italy",
+          "value": -57.7
+        }
+      ],
+      "visaFreeCount": 45,
+      "visaRequiredCount": 154,
+      "visaFreeDestinations": [
+        "Armenia",
+        "Barbados",
+        "Bolivia",
+        "Burundi",
+        "Cambodia",
+        "Cape Verde",
+        "Comoros",
+        "Ivory Coast",
+        "Djibouti",
+        "Dominica",
+        "Ecuador",
+        "Ethiopia",
+        "Georgia",
+        "Ghana",
+        "Guinea-Bissau",
+        "Haiti",
+        "Iran",
+        "Iraq",
+        "Jordan",
+        "Kenya",
+        "Laos",
+        "Lebanon",
+        "Macao",
+        "Madagascar",
+        "Malaysia",
+        "Maldives",
+        "Marshall Islands",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Mozambique",
+        "Nepal",
+        "Oman",
+        "Palau",
+        "Palestine",
+        "Rwanda",
+        "Samoa",
+        "Seychelles",
+        "Sierra Leone",
+        "Sri Lanka",
+        "Syria",
+        "Tajikistan",
+        "Timor-Leste",
+        "Tuvalu",
+        "Turkey"
+      ]
+    },
+    {
       "id": "zimbabwe",
       "country": "Zimbabwe",
       "flag": "🇿🇼",
-      "score": 128,
+      "score": 127,
       "keyAccess": [],
       "uniqueAccess": [
         "DR Congo",
@@ -27653,8 +27653,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 62,
-      "visaRequiredCount": 137,
+      "visaFreeCount": 61,
+      "visaRequiredCount": 138,
       "visaFreeDestinations": [
         "Angola",
         "Bahamas",
@@ -27666,7 +27666,6 @@
         "Botswana",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Comoros",
         "DR Congo",
         "Ivory Coast",
@@ -27852,7 +27851,7 @@
       "id": "egypt",
       "country": "Egypt",
       "flag": "🇪🇬",
-      "score": 120,
+      "score": 119,
       "keyAccess": [],
       "uniqueAccess": [
         "Yemen",
@@ -27905,8 +27904,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 53,
-      "visaRequiredCount": 146,
+      "visaFreeCount": 52,
+      "visaRequiredCount": 147,
       "visaFreeDestinations": [
         "Barbados",
         "Benin",
@@ -27914,7 +27913,6 @@
         "Burkina Faso",
         "Burundi",
         "Cambodia",
-        "Cape Verde",
         "Comoros",
         "Ivory Coast",
         "Djibouti",
@@ -28683,14 +28681,14 @@
       "id": "mozambique",
       "country": "Mozambique",
       "flag": "🇲🇿",
-      "score": 106,
+      "score": 107,
       "keyAccess": [],
       "uniqueAccess": [
+        "Uganda",
         "Nigeria",
         "Benin",
         "Namibia",
-        "Swaziland",
-        "South Africa"
+        "Swaziland"
       ],
       "topContributors": [
         {
@@ -28736,8 +28734,8 @@
           "value": -57.7
         }
       ],
-      "visaFreeCount": 56,
-      "visaRequiredCount": 143,
+      "visaFreeCount": 57,
+      "visaRequiredCount": 142,
       "visaFreeDestinations": [
         "Bangladesh",
         "Barbados",
@@ -28792,6 +28790,7 @@
         "Tanzania",
         "Timor-Leste",
         "Tuvalu",
+        "Uganda",
         "Vanuatu",
         "Zambia",
         "Zimbabwe"
@@ -32720,10 +32719,10 @@
       "keyAccess": [],
       "uniqueAccess": [
         "Bangladesh",
+        "Cape Verde",
         "Mozambique",
         "Sri Lanka",
-        "Haiti",
-        "Rwanda"
+        "Haiti"
       ],
       "topContributors": [
         {

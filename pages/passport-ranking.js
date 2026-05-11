@@ -567,12 +567,12 @@ export default function PassportRanking() {
                       <tr>
                         <td>Uzbekistan visa-free for US</td>
                         <td>United States (Jan 1, 2026)</td>
-                        <td><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Uzbekistan" rel="noopener noreferrer">Visa policy of Uzbekistan</a></td>
+                        <td><a href="https://gov.uz/en/uzbektourism/news/view/99187" rel="noopener noreferrer">Government of Uzbekistan (Decree No. 203 of Nov 3, 2025)</a></td>
                       </tr>
                       <tr>
                         <td>Kyrgyzstan reduces visa-free 60→30</td>
                         <td>Australia, New Zealand, United States + 52 others (Dec 31, 2025)</td>
-                        <td><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Kyrgyzstan" rel="noopener noreferrer">Visa policy of Kyrgyzstan</a></td>
+                        <td><a href="https://www.gov.kg/ru/npa/s/4495" rel="noopener noreferrer">Cabinet of Ministers of Kyrgyzstan (Resolution No. 855 of Dec 31, 2025)</a></td>
                       </tr>
                       <tr>
                         <td>Afghanistan launches e-Visa</td>
@@ -582,7 +582,7 @@ export default function PassportRanking() {
                       <tr>
                         <td>Pakistan suspends visa-on-arrival</td>
                         <td>126 nationalities incl. Australia, NZ (Jan 1, 2026)</td>
-                        <td><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Pakistan" rel="noopener noreferrer">Visa policy of Pakistan</a></td>
+                        <td><a href="https://visa.nadra.gov.pk/" rel="noopener noreferrer">Pakistan Online Visa System (NADRA)</a></td>
                       </tr>
                       <tr>
                         <td>Qatar suspends VOA for Lebanon</td>
@@ -622,12 +622,12 @@ export default function PassportRanking() {
                       <tr>
                         <td>Nicaragua visa-policy overhaul</td>
                         <td>Antigua and Barbuda, Bahamas, Barbados, Colombia, Cuba, Peru, Trinidad and Tobago (Feb 16, 2026)</td>
-                        <td><a href="https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/" rel="noopener noreferrer">VisasNews</a></td>
+                        <td><a href="https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/" rel="noopener noreferrer">Ministerio del Interior de Nicaragua (Disposición No. 002-2026)</a></td>
                       </tr>
                       <tr>
                         <td>US Proclamation 10998 — visa suspensions</td>
-                        <td>Antigua and Barbuda, Cuba, Dominica, Haiti, Venezuela (Jan 1, 2026)</td>
-                        <td><a href="https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html" rel="noopener noreferrer">US Department of State</a></td>
+                        <td>Haiti — full suspension (all categories). Cuba, Venezuela, Antigua and Barbuda, Dominica — partial suspension (B-1/B-2 visitor, F/M/J student/exchange, immigrant only; diplomatic/transit/employment categories remain available, so dataset value stays "visa required"). Effective Jan 1, 2026.</td>
+                        <td><a href="https://www.presidency.ucsb.edu/documents/proclamation-10998-restricting-and-limiting-the-entry-foreign-nationals-protect-the" rel="noopener noreferrer">Proclamation 10998 full text</a> · <a href="https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html" rel="noopener noreferrer">US State Department</a></td>
                       </tr>
                       <tr>
                         <td>UK removes Saint Lucia from ETA</td>

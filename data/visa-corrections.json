@@ -16,7 +16,7 @@
       "https://tass.com/economy/2073127",
       "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html",
       "https://us.china-embassy.gov.cn/eng/lsfw/zj/notice/",
-      "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/",
+      "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/",
       "https://www.dailysabah.com/politics/diplomacy/turkiye-grants-visa-free-travel-to-chinese-nationals",
       "https://www.ey.com/en_gl/technical/tax-alerts/qatar-suspends-visa-on-arrival-facility-for-nationals-of-lebanon",
       "https://www.fmprc.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
@@ -626,8 +626,8 @@
       "destination": "Pakistan",
       "oldValue": "eta",
       "newValue": "e-visa",
-      "reason": "Pakistan suspended VOA/VPA for 126 nationalities. Wikipedia-only.",
-      "source": "https://en.wikipedia.org/wiki/Visa_policy_of_Pakistan"
+      "reason": "Pakistan silently removed the free Visa-Prior-to-Arrival option from the NADRA Online Visa System portal for 126 nationalities; paid e-Visa now required. No press release issued by MOI/MOFA/DGI&P.",
+      "source": "https://visa.nadra.gov.pk/"
     },
     {
       "passport": "Japan",
@@ -1210,40 +1210,8 @@
       "destination": "United States",
       "oldValue": "visa required",
       "newValue": "no admission",
-      "reason": "US Presidential Proclamation 10998 fully suspends entry and visa issuance for Haitian nationals.",
-      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
-    },
-    {
-      "passport": "Cuba",
-      "destination": "United States",
-      "oldValue": "visa required",
-      "newValue": "no admission",
-      "reason": "US Proclamation 10998 \u2014 partial suspension covering B-1/B-2 tourist visas for Cuban nationals.",
-      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
-    },
-    {
-      "passport": "Venezuela",
-      "destination": "United States",
-      "oldValue": "visa required",
-      "newValue": "no admission",
-      "reason": "US Proclamation 10998 \u2014 partial suspension of B-1/B-2 tourist visas for Venezuelan nationals.",
-      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
-    },
-    {
-      "passport": "Antigua and Barbuda",
-      "destination": "United States",
-      "oldValue": "visa required",
-      "newValue": "no admission",
-      "reason": "US Proclamation 10998 \u2014 partial suspension of B-1/B-2 tourist visas, citing CBI concerns.",
-      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
-    },
-    {
-      "passport": "Dominica",
-      "destination": "United States",
-      "oldValue": "visa required",
-      "newValue": "no admission",
-      "reason": "US Proclamation 10998 \u2014 partial suspension of B-1/B-2 tourist visas, citing CBI concerns.",
-      "source": "https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html"
+      "reason": "US Presidential Proclamation 10998 fully suspends immigrant and nonimmigrant visa categories for Haitian nationals. Cuba, Venezuela, Antigua and Barbuda, and Dominica receive only partial suspensions (B-1/B-2 visitor, F/M/J student/exchange, and immigrant visas) with diplomatic, transit, and employment categories remaining available, so they stay at `visa required`.",
+      "source": "https://www.presidency.ucsb.edu/documents/proclamation-10998-restricting-and-limiting-the-entry-foreign-nationals-protect-the"
     },
     {
       "passport": "Brazil",
@@ -1258,16 +1226,16 @@
       "destination": "Nicaragua",
       "oldValue": "visa on arrival",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 Colombia moved to consulted visa. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 Colombia moved to consulted visa. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Peru",
       "destination": "Nicaragua",
       "oldValue": "visa on arrival",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 Peru moved to consulted visa. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 Peru moved to consulted visa. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Saint Lucia",
@@ -1354,40 +1322,40 @@
       "destination": "Nicaragua",
       "oldValue": "90",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 Cuba moved to consulted visa requiring prior authorization. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 Cuba moved to consulted visa requiring prior authorization. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Antigua and Barbuda",
       "destination": "Nicaragua",
       "oldValue": "90",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Bahamas",
       "destination": "Nicaragua",
       "oldValue": "90",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Barbados",
       "destination": "Nicaragua",
       "oldValue": "90",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Trinidad and Tobago",
       "destination": "Nicaragua",
       "oldValue": "90",
       "newValue": "visa required",
-      "reason": "Nicaragua Provision 002-2026 \u2014 moved to consulted visa. Secondary source.",
-      "source": "https://visasnews.com/en/nicaragua-overhauls-its-visa-policy/"
+      "reason": "Nicaragua Disposición No. 002-2026 \u2014 moved to consulted visa. Secondary source.",
+      "source": "https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/"
     },
     {
       "passport": "Hong Kong",

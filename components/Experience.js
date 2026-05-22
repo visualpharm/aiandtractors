@@ -9,7 +9,7 @@ const translations = {
     icons8Desc: "Graphics for AI age",
     genPhotosDesc: "Face AI and synthetic data",
     bullet1: "Supply large-scale resources and custom datasets to enterprise clients",
-    bullet2: "Leading team of 150+ professionals serving 4M+ users globally"
+    bullet2: "Built a global team of up to 150 contractors serving 4M+ users"
   },
   es: {
     title: "Experiencia", 
@@ -19,7 +19,7 @@ const translations = {
     icons8Desc: "Gráficos para la era de la IA",
     genPhotosDesc: "IA facial y datos sintéticos",
     bullet1: "Suministro de recursos a gran escala y conjuntos de datos personalizados a clientes empresariales",
-    bullet2: "Liderazgo de un equipo de más de 150 profesionales que sirven a más de 4M usuarios globalmente"
+    bullet2: "Equipo global de hasta 150 contratistas, sirviendo a más de 4M usuarios"
   },
   pt: {
     title: "Experiência",
@@ -29,7 +29,7 @@ const translations = {
     icons8Desc: "Gráficos para a era da IA", 
     genPhotosDesc: "IA facial e dados sintéticos",
     bullet1: "Fornecimento de recursos em larga escala e conjuntos de dados personalizados para clientes empresariais",
-    bullet2: "Liderando equipe de mais de 150 profissionais servindo mais de 4M usuários globalmente"
+    bullet2: "Equipe global de até 150 contratados, atendendo mais de 4M usuários"
   }
 }
 

@@ -45,7 +45,7 @@ export default function ExpertoIA() {
           </div>
           <div className="card">
             <h4>Construindo Equipes de IA</h4>
-            <p>Escalando de fundador solo até liderar 150+ profissionais de IA em múltiplos produtos</p>
+            <p>Escalando de fundador solo até liderar 150 contratados full-time de IA em múltiplos produtos</p>
           </div>
           <div className="card">
             <h4>IA para Negócios Reais</h4>

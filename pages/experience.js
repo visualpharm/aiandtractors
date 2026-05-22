@@ -218,7 +218,7 @@ export default function Experience() {
             </div>
             <div>
               <p className="m-0 text-lg leading-relaxed text-gray-600">
-                I'm a tech founder leading a team of 150 and serving 4M users.
+                I'm a tech founder leading a team of 150 full-time contractors and serving 4M users.
               </p>
             </div>
             <div className="text-left">

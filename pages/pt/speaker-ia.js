@@ -40,7 +40,7 @@ export default function SpeakerIA() {
               
               <div className="expertise-card">
                 <h3>🚀 Escalamento de Equipes IA</h3>
-                <p>De fundador solo a liderar 150+ profissionais. Estratégias práticas para construir e gerenciar organizações focadas em IA.</p>
+                <p>De fundador solo a liderar 150 contratados full-time. Estratégias práticas para construir e gerenciar organizações focadas em IA.</p>
               </div>
             </div>
 
@@ -78,7 +78,7 @@ export default function SpeakerIA() {
                   <h4>🌍 Alcance Global</h4>
                   <ul>
                     <li>Servindo 4M+ usuários globalmente</li>
-                    <li>Liderando equipe de 150+ profissionais</li>
+                    <li>Liderando equipe de 150 contratados full-time</li>
                     <li>Fluente em espanhol, inglês, português, italiano</li>
                   </ul>
                 </div>

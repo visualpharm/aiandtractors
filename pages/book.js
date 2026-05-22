@@ -68,7 +68,7 @@ const translations = {
   es: {
     title: "Libro - Ivan Braun",
     description: "El libro de Ivan Braun sobre construir empresas de IA sin capital de riesgo.",
-    subtitle: "Una guía práctica para construir y escalar empresas tecnológicas sin financiamiento tradicional. Basado en experiencia real dirigiendo equipos de más de 150 personas y sirviendo a millones de usuarios, este libro ofrece lecciones prácticas en gestión, marketing y finanzas que realmente funcionan cuando estás bootstrapping.",
+    subtitle: "Una guía práctica para construir y escalar empresas tecnológicas sin financiamiento tradicional. Basado en experiencia real dirigiendo equipos de más de 150 contratistas full-time y sirviendo a millones de usuarios, este libro ofrece lecciones prácticas en gestión, marketing y finanzas que realmente funcionan cuando estás bootstrapping.",
     part1: "Parte 1: Gestión",
     part2: "Parte 2: Marketing",
     part3: "Parte 3: Finanzas", 
@@ -128,7 +128,7 @@ const translations = {
   pt: {
     title: "Livro - Ivan Braun",
     description: "O livro de Ivan Braun sobre construir empresas de IA sem capital de risco.",
-    subtitle: "Um guia prático para construir e escalar empresas de tecnologia sem financiamento tradicional. Baseado em experiência real liderando equipes de mais de 150 pessoas e servindo milhões de usuários, este livro oferece lições práticas em gestão, marketing e finanças que realmente funcionam quando você está fazendo bootstrap.",
+    subtitle: "Um guia prático para construir e escalar empresas de tecnologia sem financiamento tradicional. Baseado em experiência real liderando equipes de mais de 150 contratados full-time e servindo milhões de usuários, este livro oferece lições práticas em gestão, marketing e finanças que realmente funcionam quando você está fazendo bootstrap.",
     part1: "Parte 1: Gestão",
     part2: "Parte 2: Marketing",
     part3: "Parte 3: Finanças",

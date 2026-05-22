@@ -10,7 +10,7 @@ import Government from '../../components/Government'
 const translations = {
   pt: {
     title: "Ivan Braun – Empreendedor, Investidor, Speaker IA",
-    description: "Fundou e fez bootstrapped de Icons8 e Generated Photos, servindo mais de 4M usuários com ferramentas criativas e recursos alimentados por IA. Construiu equipe remota de 150 pessoas. Palestrante internacional sobre transformação IA e crescimento bootstrapped.",
+    description: "Fundou e fez bootstrapped de Icons8 e Generated Photos, servindo mais de 4M usuários com ferramentas criativas e recursos alimentados por IA. Construiu equipe remota de 150 contratados full-time. Palestrante internacional sobre transformação IA e crescimento bootstrapped.",
     subtitle: "Pioneiro IA • Tecnologia Criativa • 4M Usuários",
     introText: "Procuro conversas inspiradoras, palestrar em conferências e servir como consultor de startups."
   }
@@ -36,7 +36,7 @@ export default function HomePT() {
         description={t.description}
         descriptionWithLinks={
           <>
-            Fundou e fez bootstrapped de <a href="https://icons8.com" className="text-blue-600 no-underline hover:text-gray-900">Icons8</a> e <a href="https://generated.photos" className="text-blue-600 no-underline hover:text-gray-900">Generated Photos</a>, servindo mais de 4M usuários com ferramentas criativas e recursos alimentados por IA. Construiu equipe remota de 150 pessoas. Palestrante internacional sobre transformação IA e crescimento bootstrapped.
+            Fundou e fez bootstrapped de <a href="https://icons8.com" className="text-blue-600 no-underline hover:text-gray-900">Icons8</a> e <a href="https://generated.photos" className="text-blue-600 no-underline hover:text-gray-900">Generated Photos</a>, servindo mais de 4M usuários com ferramentas criativas e recursos alimentados por IA. Construiu equipe remota de 150 contratados full-time. Palestrante internacional sobre transformação IA e crescimento bootstrapped.
           </>
         }
         introText={t.introText}

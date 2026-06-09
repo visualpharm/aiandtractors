@@ -6,8 +6,8 @@ export default function PassportInsights() {
   return (
     <Layout>
       <Head>
-        <title>Passport Ranking Insights | The Total Experience Index</title>
-        <meta name="description" content="Key findings from the Total Experience Index - a passport ranking based on tourism potential rather than destination count." />
+        <title>Passport Ranking Insights | The Open Door Index</title>
+        <meta name="description" content="Key findings from the Open Door Index - a passport ranking based on tourism potential rather than destination count." />
         <meta name="keywords" content="passport ranking insights, passport power analysis, visa-free travel insights, tourism potential" />
         <link rel="canonical" href="https://aiandtractors.com/passport-insights" />
       </Head>
@@ -18,7 +18,7 @@ export default function PassportInsights() {
             ← Back to Ranking
           </Link>
           <h1>Key Findings</h1>
-          <p className="subtitle">What the Total Experience Index reveals about passport power</p>
+          <p className="subtitle">What the Open Door Index reveals about passport power</p>
         </div>
 
         <div className="container">
@@ -27,7 +27,7 @@ export default function PassportInsights() {
               <span className="insight-icon">🇰🇷</span>
               <h2>South Korea Leads, Not Singapore</h2>
             </div>
-            <p>Despite Singapore having the most visa-free destinations in traditional rankings like the Henley Passport Index, South Korea takes the top spot in the Total Experience Index.</p>
+            <p>Despite Singapore having the most visa-free destinations in traditional rankings like the Henley Passport Index, South Korea takes the top spot in the Open Door Index.</p>
             <p>The difference? Access to major tourism markets that Singapore misses. While both passports open doors to most of the world, South Korea has visa-free access to countries that receive tens of millions of visitors annually—markets where Singapore passport holders need visas.</p>
             <p>This single finding encapsulates the core insight of our methodology: the destinations you can access matter more than how many you can access.</p>
           </div>
@@ -47,7 +47,7 @@ export default function PassportInsights() {
               <span className="insight-icon">🇪🇺</span>
               <h2>Schengen Is the Foundation</h2>
             </div>
-            <p>Access to the Schengen zone—26 European countries with open borders—provides a massive baseline score. The combined tourism volume of France, Spain, Italy, Germany, and their neighbors represents a significant chunk of global travel.</p>
+            <p>Access to the Schengen zone—29 European countries with open borders—provides a massive baseline score. The combined tourism volume of France, Spain, Italy, Germany, and their neighbors represents a significant chunk of global travel.</p>
             <p>Passports without European access start at a fundamental disadvantage, regardless of how many other countries they can visit. This explains why some passports with many visa-free destinations still rank relatively low: their access is concentrated in regions with lower tourism volumes.</p>
             <p>The lesson: a few high-value destinations outweigh many low-value ones.</p>
           </div>

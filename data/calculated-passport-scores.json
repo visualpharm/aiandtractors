@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "generatedAt": "2026-05-11T02:37:35.368Z",
+    "generatedAt": "2026-06-09T21:49:49.165Z",
     "algorithm": "Sum of annual visitors (millions) to all visa-free/VOA/ETA destinations",
     "tourismSource": "UNWTO Tourism Statistics 2023/2024",
     "visaSource": "github.com/ilyankou/passport-index-dataset",
@@ -21283,6 +21283,156 @@
       ]
     },
     {
+      "id": "china",
+      "country": "China",
+      "flag": "🇨🇳",
+      "score": 424,
+      "keyAccess": [
+        "China"
+      ],
+      "uniqueAccess": [
+        "Myanmar",
+        "Cuba",
+        "Suriname",
+        "Azerbaijan",
+        "Benin"
+      ],
+      "topContributors": [
+        {
+          "country": "China",
+          "value": 65.7
+        },
+        {
+          "country": "Turkey",
+          "value": 51.2
+        },
+        {
+          "country": "Thailand",
+          "value": 39.9
+        },
+        {
+          "country": "Saudi Arabia",
+          "value": 29.7
+        },
+        {
+          "country": "Malaysia",
+          "value": 26.1
+        }
+      ],
+      "misses": [
+        {
+          "country": "Spain",
+          "value": -93.8
+        },
+        {
+          "country": "France",
+          "value": -90.9
+        },
+        {
+          "country": "United States",
+          "value": -79.4
+        },
+        {
+          "country": "Italy",
+          "value": -57.7
+        },
+        {
+          "country": "Mexico",
+          "value": -45
+        }
+      ],
+      "visaFreeCount": 86,
+      "visaRequiredCount": 113,
+      "visaFreeDestinations": [
+        "Albania",
+        "Angola",
+        "Antigua and Barbuda",
+        "Armenia",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Benin",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Brazil",
+        "Brunei",
+        "Burundi",
+        "Cambodia",
+        "Cape Verde",
+        "China",
+        "Comoros",
+        "Ivory Coast",
+        "Cuba",
+        "Djibouti",
+        "Dominica",
+        "Egypt",
+        "Ethiopia",
+        "Fiji",
+        "Georgia",
+        "Ghana",
+        "Grenada",
+        "Guinea-Bissau",
+        "Haiti",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Jamaica",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Laos",
+        "Lebanon",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mauritania",
+        "Mauritius",
+        "Micronesia",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Nepal",
+        "Oman",
+        "Palau",
+        "Palestine",
+        "Papua New Guinea",
+        "Philippines",
+        "Qatar",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Samoa",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Solomon Islands",
+        "Somalia",
+        "Sri Lanka",
+        "Suriname",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Tonga",
+        "Tunisia",
+        "Tuvalu",
+        "Turkey",
+        "United Arab Emirates",
+        "Uzbekistan",
+        "Vanuatu",
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
       "id": "ecuador",
       "country": "Ecuador",
       "flag": "🇪🇨",
@@ -21431,155 +21581,6 @@
         "Ukraine",
         "Uruguay",
         "Venezuela",
-        "Zambia",
-        "Zimbabwe"
-      ]
-    },
-    {
-      "id": "china",
-      "country": "China",
-      "flag": "🇨🇳",
-      "score": 417,
-      "keyAccess": [
-        "China"
-      ],
-      "uniqueAccess": [
-        "Myanmar",
-        "Cuba",
-        "Suriname",
-        "Azerbaijan",
-        "Benin"
-      ],
-      "topContributors": [
-        {
-          "country": "China",
-          "value": 65.7
-        },
-        {
-          "country": "Turkey",
-          "value": 51.2
-        },
-        {
-          "country": "Thailand",
-          "value": 39.9
-        },
-        {
-          "country": "Saudi Arabia",
-          "value": 29.7
-        },
-        {
-          "country": "Malaysia",
-          "value": 26.1
-        }
-      ],
-      "misses": [
-        {
-          "country": "Spain",
-          "value": -93.8
-        },
-        {
-          "country": "France",
-          "value": -90.9
-        },
-        {
-          "country": "United States",
-          "value": -79.4
-        },
-        {
-          "country": "Italy",
-          "value": -57.7
-        },
-        {
-          "country": "Mexico",
-          "value": -45
-        }
-      ],
-      "visaFreeCount": 85,
-      "visaRequiredCount": 114,
-      "visaFreeDestinations": [
-        "Albania",
-        "Angola",
-        "Antigua and Barbuda",
-        "Armenia",
-        "Azerbaijan",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Benin",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Brunei",
-        "Burundi",
-        "Cambodia",
-        "Cape Verde",
-        "China",
-        "Comoros",
-        "Ivory Coast",
-        "Cuba",
-        "Djibouti",
-        "Dominica",
-        "Egypt",
-        "Ethiopia",
-        "Fiji",
-        "Georgia",
-        "Ghana",
-        "Grenada",
-        "Guinea-Bissau",
-        "Haiti",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Jamaica",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Laos",
-        "Lebanon",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mauritania",
-        "Mauritius",
-        "Micronesia",
-        "Morocco",
-        "Mozambique",
-        "Myanmar",
-        "Nepal",
-        "Oman",
-        "Palau",
-        "Palestine",
-        "Papua New Guinea",
-        "Philippines",
-        "Qatar",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Samoa",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Solomon Islands",
-        "Somalia",
-        "Sri Lanka",
-        "Suriname",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Tonga",
-        "Tunisia",
-        "Tuvalu",
-        "Turkey",
-        "United Arab Emirates",
-        "Uzbekistan",
-        "Vanuatu",
         "Zambia",
         "Zimbabwe"
       ]

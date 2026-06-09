@@ -88,40 +88,47 @@ const regionMap = {
   bulgaria: 'Europe', slovenia: 'Europe', denmark: 'Europe', lithuania: 'Europe', cyprus: 'Europe',
   latvia: 'Europe', finland: 'Europe', estonia: 'Europe', malta: 'Europe', iceland: 'Europe',
   luxembourg: 'Europe', liechtenstein: 'Europe', monaco: 'Europe', san_marino: 'Europe', andorra: 'Europe',
-  serbia: 'Europe', montenegro: 'Europe', north_macedonia: 'Europe', albania: 'Europe', bosnia: 'Europe',
+  serbia: 'Europe', montenegro: 'Europe', north_macedonia: 'Europe', albania: 'Europe', bosnia_and_herzegovina: 'Europe',
   ukraine: 'Europe', moldova: 'Europe', georgia: 'Europe', armenia: 'Europe', azerbaijan: 'Europe',
-  belarus: 'Europe', russia: 'Europe', kosovo: 'Europe', turkey: 'Europe',
+  belarus: 'Europe', russia: 'Europe', kosovo: 'Europe', turkey: 'Europe', vatican: 'Europe',
 
   // Asia
   united_arab_emirates: 'Asia', brunei: 'Asia', singapore: 'Asia', japan: 'Asia', south_korea: 'Asia',
-  hong_kong: 'Asia', taiwan: 'Asia', malaysia: 'Asia', israel: 'Asia', qatar: 'Asia',
+  hong_kong: 'Asia', macao: 'Asia', taiwan: 'Asia', malaysia: 'Asia', israel: 'Asia', qatar: 'Asia',
   kuwait: 'Asia', bahrain: 'Asia', thailand: 'Asia', oman: 'Asia', saudi_arabia: 'Asia',
   indonesia: 'Asia', china: 'Asia', jordan: 'Asia', kazakhstan: 'Asia', philippines: 'Asia',
   lebanon: 'Asia', mongolia: 'Asia', uzbekistan: 'Asia', india: 'Asia', vietnam: 'Asia',
   kyrgyzstan: 'Asia', cambodia: 'Asia', maldives: 'Asia', iran: 'Asia', sri_lanka: 'Asia',
   tajikistan: 'Asia', myanmar: 'Asia', turkmenistan: 'Asia', bangladesh: 'Asia', iraq: 'Asia',
   pakistan: 'Asia', nepal: 'Asia', bhutan: 'Asia', syria: 'Asia', yemen: 'Asia',
-  afghanistan: 'Asia', north_korea: 'Asia', laos: 'Asia', timor: 'Asia',
+  afghanistan: 'Asia', north_korea: 'Asia', laos: 'Asia', timorleste: 'Asia', palestine: 'Asia',
 
   // Americas
   united_states: 'Americas', canada: 'Americas', mexico: 'Americas', chile: 'Americas', argentina: 'Americas',
-  barbados: 'Americas', bahamas: 'Americas', brazil: 'Americas', st_kitts: 'Americas', antigua: 'Americas',
-  costa_rica: 'Americas', panama: 'Americas', grenada: 'Americas', uruguay: 'Americas', st_lucia: 'Americas',
-  dominica: 'Americas', trinidad: 'Americas', st_vincent: 'Americas', peru: 'Americas', colombia: 'Americas',
+  barbados: 'Americas', bahamas: 'Americas', brazil: 'Americas', saint_kitts_and_nevis: 'Americas', antigua_and_barbuda: 'Americas',
+  costa_rica: 'Americas', panama: 'Americas', grenada: 'Americas', uruguay: 'Americas', saint_lucia: 'Americas',
+  dominica: 'Americas', trinidad_and_tobago: 'Americas', saint_vincent_and_the_grenadines: 'Americas', peru: 'Americas', colombia: 'Americas',
   ecuador: 'Americas', paraguay: 'Americas', jamaica: 'Americas', venezuela: 'Americas', bolivia: 'Americas',
+  guatemala: 'Americas', el_salvador: 'Americas', honduras: 'Americas', nicaragua: 'Americas', belize: 'Americas',
+  cuba: 'Americas', haiti: 'Americas', dominican_republic: 'Americas', guyana: 'Americas', suriname: 'Americas',
 
   // Oceania
   australia: 'Oceania', new_zealand: 'Oceania', fiji: 'Oceania', samoa: 'Oceania', tonga: 'Oceania',
-  vanuatu: 'Oceania', palau: 'Oceania', micronesia: 'Oceania', marshall: 'Oceania', nauru: 'Oceania',
-  kiribati: 'Oceania', tuvalu: 'Oceania', solomon: 'Oceania', papua: 'Oceania',
+  vanuatu: 'Oceania', palau: 'Oceania', micronesia: 'Oceania', marshall_islands: 'Oceania', nauru: 'Oceania',
+  kiribati: 'Oceania', tuvalu: 'Oceania', solomon_islands: 'Oceania', papua_new_guinea: 'Oceania',
 
   // Africa
   south_africa: 'Africa', mauritius: 'Africa', seychelles: 'Africa', morocco: 'Africa', botswana: 'Africa',
   egypt: 'Africa', namibia: 'Africa', tunisia: 'Africa', kenya: 'Africa', tanzania: 'Africa',
   ghana: 'Africa', rwanda: 'Africa', algeria: 'Africa', nigeria: 'Africa', ivory_coast: 'Africa',
   uganda: 'Africa', zambia: 'Africa', ethiopia: 'Africa', zimbabwe: 'Africa', cameroon: 'Africa',
-  mozambique: 'Africa', angola: 'Africa', drc: 'Africa', libya: 'Africa', sudan: 'Africa',
+  mozambique: 'Africa', angola: 'Africa', dr_congo: 'Africa', libya: 'Africa', sudan: 'Africa',
   eritrea: 'Africa', south_sudan: 'Africa', somalia: 'Africa', senegal: 'Africa',
+  lesotho: 'Africa', cape_verde: 'Africa', swaziland: 'Africa', sao_tome_and_principe: 'Africa', gabon: 'Africa',
+  guinea: 'Africa', malawi: 'Africa', benin: 'Africa', madagascar: 'Africa', mauritania: 'Africa',
+  comoros: 'Africa', chad: 'Africa', gambia: 'Africa', burkina_faso: 'Africa', togo: 'Africa',
+  niger: 'Africa', equatorial_guinea: 'Africa', mali: 'Africa', djibouti: 'Africa', sierra_leone: 'Africa',
+  congo: 'Africa', guineabissau: 'Africa', central_african_republic: 'Africa', burundi: 'Africa', liberia: 'Africa',
 }
 
 // ISO 3166-1 numeric codes for world-atlas TopoJSON
@@ -135,30 +142,38 @@ const isoNumericMap = {
   '428': 'latvia', '246': 'finland', '233': 'estonia', '470': 'malta', '352': 'iceland',
   '442': 'luxembourg', '438': 'liechtenstein', '492': 'monaco', '674': 'san_marino', '020': 'andorra',
   '840': 'united_states', '036': 'australia', '554': 'new_zealand', '124': 'canada',
-  '344': 'hong_kong', '158': 'taiwan', '458': 'malaysia',
+  '344': 'hong_kong', '446': 'macao', '158': 'taiwan', '458': 'malaysia',
   '484': 'mexico', '376': 'israel', '152': 'chile', '032': 'argentina',
-  '052': 'barbados', '044': 'bahamas', '076': 'brazil', '659': 'st_kitts', '028': 'antigua',
+  '052': 'barbados', '044': 'bahamas', '076': 'brazil', '659': 'saint_kitts_and_nevis', '028': 'antigua_and_barbuda',
   '188': 'costa_rica', '591': 'panama', '308': 'grenada', '858': 'uruguay', '688': 'serbia',
-  '662': 'st_lucia', '212': 'dominica', '780': 'trinidad', '670': 'st_vincent', '604': 'peru',
-  '499': 'montenegro', '807': 'north_macedonia', '170': 'colombia', '008': 'albania', '070': 'bosnia',
+  '662': 'saint_lucia', '212': 'dominica', '780': 'trinidad_and_tobago', '670': 'saint_vincent_and_the_grenadines', '604': 'peru',
+  '499': 'montenegro', '807': 'north_macedonia', '170': 'colombia', '008': 'albania', '070': 'bosnia_and_herzegovina',
   '218': 'ecuador', '600': 'paraguay', '388': 'jamaica', '862': 'venezuela', '804': 'ukraine',
   '068': 'bolivia', '498': 'moldova', '268': 'georgia', '051': 'armenia', '031': 'azerbaijan',
   '634': 'qatar', '792': 'turkey', '414': 'kuwait', '048': 'bahrain', '764': 'thailand',
   '512': 'oman', '682': 'saudi_arabia', '643': 'russia', '710': 'south_africa', '112': 'belarus',
   '360': 'indonesia', '156': 'china', '400': 'jordan', '398': 'kazakhstan', '480': 'mauritius',
-  '690': 'seychelles', '383': 'kosovo', '583': 'micronesia', '584': 'marshall', '548': 'vanuatu',
+  '690': 'seychelles', '383': 'kosovo', '583': 'micronesia', '584': 'marshall_islands', '548': 'vanuatu',
   '585': 'palau', '608': 'philippines', '422': 'lebanon', '496': 'mongolia', '242': 'fiji',
   '860': 'uzbekistan', '504': 'morocco', '072': 'botswana', '818': 'egypt', '882': 'samoa',
   '356': 'india', '516': 'namibia', '776': 'tonga', '704': 'vietnam', '417': 'kyrgyzstan',
-  '788': 'tunisia', '116': 'cambodia', '462': 'maldives', '404': 'kenya', '626': 'timor',
-  '834': 'tanzania', '418': 'laos', '762': 'tajikistan', '090': 'solomon', '288': 'ghana',
-  '364': 'iran', '520': 'nauru', '144': 'sri_lanka', '598': 'papua', '686': 'senegal',
+  '788': 'tunisia', '116': 'cambodia', '462': 'maldives', '404': 'kenya', '626': 'timorleste',
+  '834': 'tanzania', '418': 'laos', '762': 'tajikistan', '090': 'solomon_islands', '288': 'ghana',
+  '364': 'iran', '520': 'nauru', '144': 'sri_lanka', '598': 'papua_new_guinea', '686': 'senegal',
   '296': 'kiribati', '104': 'myanmar', '795': 'turkmenistan', '646': 'rwanda', '012': 'algeria',
   '566': 'nigeria', '798': 'tuvalu', '384': 'ivory_coast', '800': 'uganda', '894': 'zambia',
   '231': 'ethiopia', '716': 'zimbabwe', '120': 'cameroon', '050': 'bangladesh', '508': 'mozambique',
   '368': 'iraq', '586': 'pakistan', '524': 'nepal', '024': 'angola', '064': 'bhutan',
-  '180': 'drc', '434': 'libya', '729': 'sudan', '760': 'syria', '232': 'eritrea',
+  '180': 'dr_congo', '434': 'libya', '729': 'sudan', '760': 'syria', '232': 'eritrea',
   '887': 'yemen', '728': 'south_sudan', '706': 'somalia', '004': 'afghanistan', '408': 'north_korea',
+  '336': 'vatican', '320': 'guatemala', '222': 'el_salvador', '340': 'honduras', '558': 'nicaragua',
+  '084': 'belize', '740': 'suriname', '214': 'dominican_republic', '328': 'guyana', '332': 'haiti',
+  '192': 'cuba', '426': 'lesotho', '132': 'cape_verde', '748': 'swaziland', '678': 'sao_tome_and_principe',
+  '266': 'gabon', '324': 'guinea', '454': 'malawi', '204': 'benin', '450': 'madagascar',
+  '478': 'mauritania', '174': 'comoros', '148': 'chad', '270': 'gambia', '854': 'burkina_faso',
+  '768': 'togo', '562': 'niger', '226': 'equatorial_guinea', '466': 'mali', '275': 'palestine',
+  '262': 'djibouti', '694': 'sierra_leone', '178': 'congo', '624': 'guineabissau',
+  '140': 'central_african_republic', '108': 'burundi', '430': 'liberia',
 }
 
 // Create a lookup from passport ID to passport data
@@ -198,7 +213,7 @@ function downloadCSV(data) {
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.download = 'passport-ranking-total-experience-index.csv'
+  link.download = 'passport-ranking-open-door-index.csv'
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
@@ -251,7 +266,7 @@ export default function PassportRanking() {
 
     // Calculate key access for combo (major destinations)
     const comboKeyAccess = []
-    const schengenCountries = ['Austria', 'Belgium', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Italy', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland']
+    const schengenCountries = ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Italy', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland']
     const hasSchengen = schengenCountries.some(c => allDestinations.has(c))
     if (hasSchengen) comboKeyAccess.push('Schengen')
     if (allDestinations.has('United States')) comboKeyAccess.push('USA')
@@ -419,6 +434,23 @@ export default function PassportRanking() {
     return differences
   }
 
+  // Keep the compare-bar arrow tip aligned with the checkbox column center
+  // (table auto-layout shifts column positions with viewport width)
+  React.useEffect(() => {
+    const align = () => {
+      const arrowCell = document.querySelector('.bar-arrow-cell')
+      const checkbox = document.querySelector('.checkbox-cell input')
+      if (!arrowCell || !checkbox) return
+      const barRect = arrowCell.parentElement.getBoundingClientRect()
+      const cbRect = checkbox.getBoundingClientRect()
+      // The arrow's down-pointing tip sits at 30% of the 24px-wide SVG
+      arrowCell.style.left = `${cbRect.left + cbRect.width / 2 - barRect.left - 24 * 0.3}px`
+    }
+    align()
+    window.addEventListener('resize', align)
+    return () => window.removeEventListener('resize', align)
+  })
+
   // Calculate region counts
   const regionCounts = {
     all: passportData.length,
@@ -432,16 +464,16 @@ export default function PassportRanking() {
   return (
     <Layout>
       <Head>
-        <title>Passport Ranking: The Total Experience Index | Ivan Braun</title>
-        <meta name="description" content="A revolutionary passport ranking based on total tourism potential - measuring the sum of annual visitors to all accessible destinations, not just country count." />
-        <meta name="keywords" content="passport ranking, passport index, total experience index, visa-free travel, passport power, tourism potential" />
+        <title>Passport Ranking: The Open Door Index | Ivan Braun</title>
+        <meta name="description" content="A passport ranking that measures which doors are worth walking through - weighting every destination by annual visitors instead of counting countries." />
+        <meta name="keywords" content="passport ranking, passport index, open door index, visa-free travel, passport power, tourism potential" />
         <link rel="canonical" href="https://aiandtractors.com/passport-ranking" />
       </Head>
 
       <div className="passport-page">
         <div className="header-section">
-          <h1>The Total Experience Index</h1>
-          <p className="subtitle">A passport ranking based on total tourism potential - measuring the sum of annual visitors to all accessible destinations, not just country count.</p>
+          <h1>The Open Door Index</h1>
+          <p className="subtitle">A passport ranking that measures which doors are <s>open</s> worth walking through &mdash; every destination weighted by how many travelers actually go there, not counted as one more stamp.</p>
         </div>
 
         <div className="container">
@@ -484,7 +516,7 @@ export default function PassportRanking() {
                       <div className="example-col">
                         <div className="example-flag">🇰🇷</div>
                         <div className="example-country">South Korea</div>
-                        <div className="example-stat">#1 on Total Experience Index</div>
+                        <div className="example-stat">#1 on the Open Door Index</div>
                       </div>
                     </div>
                     <p className="example-explanation">Singapore leads the Henley Passport Index, but South Korea leads our ranking because it has visa-free access to <strong>India</strong>—one of the world's largest tourism markets. Singapore requires a visa for India, losing access to tens of millions of potential visitors.</p>
@@ -526,7 +558,7 @@ export default function PassportRanking() {
                 </div>
 
                 <div className="methodology-section">
-                  <h3>Manual Corrections (updated May 2026)</h3>
+                  <h3>Manual Corrections (updated June 2026)</h3>
                   <p>We maintain corrections based on verified embassy and government sources. Full documentation at <a href="https://github.com/visualpharm/visa-free-dataset" target="_blank" rel="noopener noreferrer">our GitHub fork</a>.</p>
 
                   <h4>Visa Policy Updates</h4>
@@ -539,6 +571,16 @@ export default function PassportRanking() {
                       </tr>
                     </thead>
                     <tbody>
+                      <tr>
+                        <td>Brazil visa-free for China (May 2026)</td>
+                        <td>China (May 11 &ndash; Dec 31, 2026, 30-day stays)</td>
+                        <td><a href="https://english.www.gov.cn/news/202605/08/content_WS69fd90b4c6d00ca5f9a0ad29.html" rel="noopener noreferrer">Decree in Di&aacute;rio Oficial da Uni&atilde;o</a></td>
+                      </tr>
+                      <tr>
+                        <td>Maldives &harr; Seychelles visa waiver (May 2026)</td>
+                        <td>Seychelles (May 15, 2026)</td>
+                        <td><a href="https://visasnews.com/en/bilateral-agreements/" rel="noopener noreferrer">VisasNews</a></td>
+                      </tr>
                       <tr>
                         <td>China visa-free expansion (Feb 2026)</td>
                         <td>Canada, United Kingdom (added Feb 17, 2026)</td>
@@ -715,7 +757,7 @@ export default function PassportRanking() {
                 </div>
 
                 <div className="methodology-section last-updated">
-                  <p><strong>Last Updated:</strong> May 2026</p>
+                  <p><strong>Last Updated:</strong> June 2026</p>
                   <p className="disclaimer">This is an independent ranking for informational purposes. Always verify visa requirements with official sources before traveling.</p>
                 </div>
               </div>
@@ -1963,6 +2005,15 @@ export default function PassportRanking() {
             width: 30px;
           }
 
+          /* Mobile: rank col 40px + half of 30px checkbox col = 55px */
+          .compare-bar {
+            padding-left: 80px;
+          }
+
+          .bar-arrow-cell {
+            left: 48px;
+          }
+
           .comparison-bar {
             flex-direction: column;
             gap: 0.5rem;
@@ -2021,17 +2072,18 @@ export default function PassportRanking() {
           top: 0;
           background: var(--bg-color);
           z-index: 100;
-          padding: 0.5rem 1rem 0.75rem 70px;
+          padding: 0.5rem 1rem 0.75rem calc(8% + 24px);
           height: 55px;
           box-sizing: border-box;
         }
 
+        /* Arrow tip (30% into the SVG) lands on the checkbox column center:
+           rank col 6% + half of checkbox col 4% = 8% of table width */
         .bar-arrow-cell {
-          width: 6%;
-          flex-shrink: 0;
-          display: flex;
-          justify-content: center;
-          padding-top: 15px;
+          position: absolute;
+          left: calc(8% + 5px);
+          top: 15px;
+          width: 24px;
         }
 
         .curved-arrow {

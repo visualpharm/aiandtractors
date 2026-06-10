@@ -186,6 +186,8 @@
   border-radius: 12px;
   filter: drop-shadow(0 12px 32px rgba(20, 24, 50, 0.15));
 }
+/* Landscape renders get more width so they don't shrink into stamps. */
+.kf-art-img--wide { max-width: 400px; }
 
 /* Big-emoji placeholder used while the GPT Image renders aren't ready yet.
    Matches the saturation/scale of the planet & suitcase PNGs. */

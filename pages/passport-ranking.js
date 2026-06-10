@@ -21,6 +21,12 @@ const fmtVisitors = (m) => {
 const REGION_LABEL = { EU: 'Europe', AS: 'Asia', AM: 'Americas', AF: 'Africa', OC: 'Oceania' }
 const REGION_DOT = { EU: '#5e6ad2', AS: '#f2994a', AM: '#5fa760', AF: '#eb5757', OC: '#1d6fb6' }
 
+// Whole addressable market: every tourist arrival on Earth, and the largest
+// single destination (France). Drawer graphs are drawn against these absolute
+// scales, not against the passport's own maximum, so two drawers compare.
+const WORLD_TOTAL = Object.values(DESTS).reduce((s, d) => s + d.v, 0)
+const MAX_DEST_V = Object.values(DESTS).reduce((m, d) => Math.max(m, d.v), 0)
+
 // Sequential indigo scale — matches the world map choropleth so the
 // table's "relative" bar and the map fill read as the same metric.
 function scoreColor(value, max) {
@@ -44,7 +50,17 @@ function Sparkbar({ value, max }) {
 // -------------------------------------------------------------------------
 // Hero
 // -------------------------------------------------------------------------
-function Hero() {
+// Country mention inside hero cards — clicking opens the detail drawer.
+function CLink({ name, onSelect, children }) {
+  const exists = useMemo(() => PASSPORTS.some((p) => p.name === name), [name])
+  if (!exists) return <span>{children || name}</span>
+  return (
+    <button className="hero-country-link" onClick={() => onSelect(name)}>
+      {children || name}
+    </button>)
+}
+
+function Hero({ onSelect }) {
   return (
     <header className="hero">
       <div className="hero-eyebrow">
@@ -74,7 +90,7 @@ function Hero() {
           <dt>Strongest passport</dt>
           <dd className="hero-stat-country">
             <span className="hero-stat-flag">🇰🇷</span>
-            <span>South Korea</span>
+            <CLink name="South Korea" onSelect={onSelect} />
           </dd>
           <div className="hero-stat-sub">
             Unlocks 1.4 billion tourists' worth of world. Honestly, the top ten is a tie between rich East Asia and the Nordics – same metric, same lifestyle, same passport: small countries that quietly out-travel everyone.
@@ -84,65 +100,65 @@ function Hero() {
           <dt>Most welcoming</dt>
           <dd className="hero-stat-country">
             <span className="hero-stat-flag">🇲🇻</span>
-            <span>Maldives</span>
+            <CLink name="Maldives" onSelect={onSelect} />
           </dd>
           <div className="hero-stat-sub">
             Lets in nearly every nationality on Earth without a pre-issued visa. The richest tourist destination that holds the door open for everyone, not just the wealthy West.
           </div>
           <div className="hero-stat-runners">
-            Runners-up: <span>🇷🇼 Rwanda</span> · <span>🇰🇪 Kenya</span>
+            Runners-up: <span>🇷🇼 <CLink name="Rwanda" onSelect={onSelect} /></span> · <span>🇰🇪 <CLink name="Kenya" onSelect={onSelect} /></span>
           </div>
         </div>
         <div>
           <dt>Weakest passport</dt>
           <dd className="hero-stat-country">
             <span className="hero-stat-flag">🇦🇫</span>
-            <span>Afghanistan</span>
+            <CLink name="Afghanistan" onSelect={onSelect} />
           </dd>
           <div className="hero-stat-sub">
             Reaches just 26 countries without paperwork – and those 26 host only 48M tourists a year, 30× less than the top passport. The world is mostly closed.
           </div>
           <div className="hero-stat-runners">
-            Runners-up: <span>🇸🇾 Syria</span> · <span>🇮🇶 Iraq</span>
+            Runners-up: <span>🇸🇾 <CLink name="Syria" onSelect={onSelect} /></span> · <span>🇮🇶 <CLink name="Iraq" onSelect={onSelect} /></span>
           </div>
         </div>
         <div>
           <dt>Most overlooked</dt>
           <dd className="hero-stat-country">
             <span className="hero-stat-flag">🇧🇮</span>
-            <span>Burundi</span>
+            <CLink name="Burundi" onSelect={onSelect} />
           </dd>
           <div className="hero-stat-sub">
             Open to almost every passport on Earth – and almost nobody comes. About 50K visitors a year, against 100M for France. Easy to enter, rarely visited.
           </div>
           <div className="hero-stat-runners">
-            Runners-up: <span>🇰🇲 Comoros</span> · <span>🇫🇲 Micronesia</span>
+            Runners-up: <span>🇰🇲 <CLink name="Comoros" onSelect={onSelect} /></span> · <span>🇫🇲 <CLink name="Micronesia" onSelect={onSelect} /></span>
           </div>
         </div>
         <div>
           <dt>One-way passport</dt>
           <dd className="hero-stat-country">
             <span className="hero-stat-flag">🇺🇸</span>
-            <span>United States</span>
+            <CLink name="United States" onSelect={onSelect} />
           </dd>
           <div className="hero-stat-sub">
             Americans walk into 160 countries without a visa. The U.S. itself lets in just 46 nationalities the same way – the widest one-way street in passport diplomacy.
           </div>
           <div className="hero-stat-runners">
-            Runners-up: <span>🇦🇺 Australia</span> · <span>🇨🇦 Canada</span>
+            Runners-up: <span>🇦🇺 <CLink name="Australia" onSelect={onSelect} /></span> · <span>🇨🇦 <CLink name="Canada" onSelect={onSelect} /></span>
           </div>
         </div>
         <div>
           <dt>Biggest 2026 shift</dt>
           <dd className="hero-stat-country">
             <span className="hero-stat-flag">🇨🇳</span>
-            <span>China <span className="hero-stat-trend up">↑</span></span>
+            <span><CLink name="China" onSelect={onSelect} /> <span className="hero-stat-trend up">↑</span></span>
           </dd>
           <div className="hero-stat-sub">
             Quietly opened visa-free travel to seven new countries this year – UK, Canada, and five Gulf states. Roughly 455M tourist-arrivals' worth of new mobility, the largest single expansion of 2026.
           </div>
           <div className="hero-stat-runners">
-            Also opening: <span>🇮🇳 India <span className="hero-stat-trend up">↑</span></span> · Also closing: <span>🇳🇦 Namibia <span className="hero-stat-trend down">↓</span></span>
+            Also opening: <span>🇮🇳 <CLink name="India" onSelect={onSelect} /> <span className="hero-stat-trend up">↑</span></span> · Also closing: <span>🇳🇦 <CLink name="Namibia" onSelect={onSelect} /> <span className="hero-stat-trend down">↓</span></span>
           </div>
         </div>
       </dl>
@@ -221,6 +237,16 @@ const MAP_ALIASES = {
 function PowerMap({ rows }) {
   const [world, setWorld] = useState(null)
   const [hovered, setHovered] = useState(null)
+  const [cursor, setCursor] = useState({ x: 0, y: 0 })
+  const canvasRef = useRef(null)
+
+  // Tooltip follows the cursor (offset 16px); flips to the left of the
+  // pointer in the right half so it never clips outside the canvas.
+  const trackCursor = (e) => {
+    const rect = canvasRef.current?.getBoundingClientRect()
+    if (!rect) return
+    setCursor({ x: e.clientX - rect.left, y: e.clientY - rect.top, w: rect.width })
+  }
 
   useEffect(() => {
     // Local copy of world-atlas/countries-110m.json (~108KB); no runtime CDN
@@ -265,7 +291,7 @@ function PowerMap({ rows }) {
 
   return (
     <section id="map" className="map-section">
-      <div className="map-canvas map-canvas--real">
+      <div className="map-canvas map-canvas--real" ref={canvasRef} onMouseMove={trackCursor}>
         <div className="map-eyebrow">PASSPORT REACH · TOURISM FLOW UNLOCKED</div>
         <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="map-svg">
           {!world && (
@@ -311,7 +337,11 @@ function PowerMap({ rows }) {
         </svg>
 
         {hovered && (
-          <div className="map-tooltip">
+          <div
+            className="map-tooltip"
+            style={cursor.w && cursor.x > cursor.w * 0.55
+              ? { left: cursor.x - 16, top: cursor.y + 16, transform: 'translateX(-100%)' }
+              : { left: cursor.x + 16, top: cursor.y + 16 }}>
             <div className="map-tooltip-name">
               {hovered.passport ? hovered.passport.flag + ' ' : ''}
               {hovered.passport ? hovered.passport.name : hovered.name}
@@ -414,16 +444,15 @@ function ComparePrompt({ count, onOpen, onClear }) {
     <div className={'compare-prompt' + (count >= 2 ? ' is-ready' : '')}>
       {count < 2 ?
       <div className="compare-prompt-cue">
-          <span className="compare-prompt-text" style={{ padding: "0px 0px 0px 127px" }}>
+          <span className="compare-prompt-text" style={{ padding: "0px 0px 0px 100px" }}>
             Pick two or more – compare passports, or score your dual citizenship.
           </span>
-          {/* Hand-scribbled arrow. Math (anchored to prompt bar's left edge
-              via .compare-arrow's `left: -14px`):
-                - col-rank is 56px wide + 12px padding × 2 = 80px total
-                - col-check is 36px wide + 4px padding × 2 = 44px total → center at 102px
-                - prompt bar is ~40px tall; header row ~40px; first data row middle ~22px
-                  → checkbox center is ~102px below the prompt bar's TOP
-              Arrow tip at viewBox (102, 92) + svg top:10px → screen (102, 102) ✓ */}
+          {/* Hand-scribbled arrow. The SVG's left edge is anchored to the
+              table's left edge (.compare-arrow has left:-14px, cancelling the
+              prompt bar's padding). Playwright-measured checkbox center sits
+              at (71, 92) in this SVG's coordinate space, constant across
+              1280/1700px viewports (the rank+check columns are fixed-width),
+              so the path tip and chevron point at (71, ~92). */}
           <svg className="compare-arrow" width="130" height="110" viewBox="0 0 130 110" fill="none" aria-hidden="true">
             <defs>
               <filter id="penWobble" x="-10%" y="-10%" width="120%" height="120%">
@@ -433,13 +462,13 @@ function ComparePrompt({ count, onOpen, onClear }) {
             </defs>
             <g style={{ filter: 'url(#penWobble)' }}>
               <path
-              d="M10,12 Q22,4 36,10 Q60,18 80,40 Q96,62 102,90"
+              d="M10,12 Q20,4 33,10 Q54,19 63,42 Q70,64 71,88"
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinecap="round"
               fill="none" />
               <path
-              d="M93,82 L102,94 L111,84"
+              d="M62,80 L71,92 L80,82"
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinecap="round"
@@ -474,9 +503,10 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
     if (!country) return []
     const c = { EU: 0, AS: 0, AM: 0, AF: 0, OC: 0 }
     country.access.forEach((d) => { c[DESTS[d].region] += DESTS[d].v })
-    const total = Object.values(c).reduce((s, v) => s + v, 0) || 1
+    // pct is of the WORLD's visitor volume, not of this passport's total —
+    // the unfilled remainder of the bar is the market the passport misses.
     return Object.entries(c)
-      .map(([k, v]) => ({ k, label: REGION_LABEL[k], v, pct: v / total * 100 }))
+      .map(([k, v]) => ({ k, label: REGION_LABEL[k], v, pct: v / WORLD_TOTAL * 100 }))
       .sort((a, b) => b.v - a.v)
   }, [country && country.name])
 
@@ -492,7 +522,6 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
   if (!country) return null
   const peerStart = Math.max(0, PASSPORTS.findIndex((p) => p.name === country.name) - 2)
   const peers = PASSPORTS.slice(peerStart, peerStart + 5)
-  const maxV = topDests[0]?.v || 1
 
   return (
     <>
@@ -523,17 +552,17 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
           <div className="score-card-value">{fmtVisitors(country.totalM)}</div>
           <div className="score-card-sub">tourists a year, summed across every destination this passport opens · {country.perCapita}× per capita</div>
           <div className="score-card-bar">
-            <div className="score-card-bar-fill" style={{ width: country.totalM / Math.max(...PASSPORTS.map((p) => p.totalM)) * 100 + '%' }} />
+            <div className="score-card-bar-fill" style={{ width: country.totalM / WORLD_TOTAL * 100 + '%' }} />
           </div>
           <div className="score-card-marks">
-            <span>0</span><span>500M</span><span>1B</span><span>1.45B</span>
+            <span>0</span><span>500M</span><span>1B</span><span>{fmtVisitors(WORLD_TOTAL)} = the whole world</span>
           </div>
         </div>
 
         <section className="drawer-section">
           <div className="drawer-section-head">
             <span className="t-section-label">Breakdown by region</span>
-            <span className="t-mini">share of visitor volume</span>
+            <span className="t-mini">of the world's visitor volume</span>
           </div>
           <div className="region-bar">
             {regionDistr.filter((r) => r.v > 0).map((r) =>
@@ -566,7 +595,7 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
                   <span className="dest-name">{d.name}</span>
                 </div>
                 <div className="dest-bar-track">
-                  <div className="dest-bar-fill" style={{ width: d.v / maxV * 100 + '%', background: REGION_DOT[d.region] }} />
+                  <div className="dest-bar-fill" style={{ width: Math.max(1.5, d.v / MAX_DEST_V * 100) + '%', background: REGION_DOT[d.region] }} />
                 </div>
                 <div className="dest-bar-val">{fmtVisitors(d.v)}</div>
               </div>
@@ -893,7 +922,7 @@ export default function PassportRanking() {
       </nav>
 
       <main className="page-main">
-        <Hero />
+        <Hero onSelect={setSelectedName} />
 
         <PowerMap rows={PASSPORTS} />
 
@@ -917,7 +946,7 @@ export default function PassportRanking() {
                 <th className="col-name">Country</th>
                 <th className="col-score">Total reach</th>
                 <th className="col-spark">Relative</th>
-                <th className="col-unique">Notable access</th>
+                <th className="col-unique">Unique access</th>
               </tr>
             </thead>
             <tbody>

@@ -1,4 +1,9 @@
-python3 << 'PYEOF' > /Users/ivan/projects/passport-design-recovery/final/data.js
+#!/bin/bash
+# Generates lib/open-door-data.js for the Open Door Index pages.
+# MUST run with cwd = ~/projects/passport-index-dataset (reads the CSVs
+# by relative path). Usage:
+#   cd ~/projects/passport-index-dataset && bash ~/projects/aiandtractors/scripts/generate-open-door-data.sh
+python3 << 'PYEOF' > /Users/ivan/projects/aiandtractors/lib/open-door-data.js
 import csv, json
 
 TOURISM = {
@@ -60,12 +65,12 @@ def js_str(s): return json.dumps(s, ensure_ascii=False)
 
 print("// Open Door Index data — generated from passport-index-tidy.csv (199x199).")
 print("// Tourism volume per destination from UNWTO. Open access = visa-free / VOA / ETA / numeric stay.")
-print("// 'top' = NOTABLE access — destinations whose tourism volume is high AND that few peers")
-print("// can reach. Computed as visitor_volume × scarcity_factor, where scarcity = 1 - (passports")
-print("// with access / total passports). This makes the column show what's distinctive about each")
-print("// passport — e.g. South Korea showing China/Russia/Cuba instead of the universal France/Spain.")
+print("// 'top' = UNIQUE access — destinations few of the passport's REGIONAL peers can")
+print("// reach (e.g. Chile showing the United States because the rest of Latin America")
+print("// needs a visa there). Score = (1 - regional_peer_share)^2 × log10(visitors),")
+print("// so rarity dominates but recognizable destinations beat obscure ones.")
 print()
-print("window.PASSPORT_DATA = (() => {")
+print("const PASSPORT_DATA = (() => {")
 print("  const REGIONS = { EU: 'Europe', AS: 'Asia', AM: 'Americas', AF: 'Africa', OC: 'Oceania' };")
 print()
 print("  const D = {")
@@ -88,26 +93,46 @@ for p in sorted(access.keys()):
     print(f"    {{ name: {js_str(p)}, flag: {js_str(flag(iso))}, region: {js_str(reg)}, code: {js_str(iso)}, pop: {pop}, access: new Set({acc_js}) }},")
 print("  ];")
 print()
-print("""  PASSPORTS.forEach(p => {
+print("""  // Per-destination access counts within each passport region, for the
+  // "unique access" column: how many EU/AS/... passports can enter dest d.
+  const REGION_COUNT = { EU: 0, AS: 0, AM: 0, AF: 0, OC: 0 };
+  PASSPORTS.forEach(p => { REGION_COUNT[p.region]++; });
+  const REG_ACCESS = {};
+  PASSPORTS.forEach(p => p.access.forEach(d => {
+    if (!REG_ACCESS[d]) REG_ACCESS[d] = { EU: 0, AS: 0, AM: 0, AF: 0, OC: 0 };
+    REG_ACCESS[d][p.region]++;
+  }));
+
+  PASSPORTS.forEach(p => {
     let total = 0;
     p.access.forEach(d => { if (D[d]) total += D[d].v; });
     p.totalM = Math.round(total * 10) / 10;
     p.vfCount = p.access.size;
     p.perCapita = Math.round((p.totalM / p.pop) * 10) / 10;
 
-    // NOTABLE ACCESS — destinations that are valuable AND uncommon.
-    // Score = visitor_volume × scarcity (= 1 - access_count / total_passports).
-    // Skip the passport's home country (everyone has it).
-    // Skip destinations with zero or trivial tourism (< 0.5M) so we don't
-    // surface obscure islands.
+    // UNIQUE ACCESS — destinations this passport can enter that few regional
+    // peers can. Rarity is squared so genuine exceptions dominate; log-volume
+    // keeps recognizable countries above obscure ones at equal rarity.
     const scored = [...p.access]
-      .filter(d => d !== p.name && D[d] && D[d].v >= 0.5)
+      .filter(d => d !== p.name && D[d])
       .map(d => {
-        const scarcity = 1 - (D[d].ac / TOTAL_PASSPORTS);
-        return { name: d, v: D[d].v, score: D[d].v * scarcity };
+        const share = REG_ACCESS[d][p.region] / REGION_COUNT[p.region];
+        const rarity = 1 - share;
+        return { name: d, v: D[d].v, share, score: rarity * rarity * Math.log10(1 + D[d].v * 1000) };
       })
-      .sort((a, b) => b.score - a.score);
-    p.top = scored.slice(0, 5).map(x => x.name);
+      .sort((a, b) => b.score - a.score || b.v - a.v);
+    const pick = scored.filter(x => x.share <= 0.5).slice(0, 4);
+    // Fallback (weak passports whose access is all-common): fill with the
+    // old global-scarcity scoring so the column never sits empty.
+    if (pick.length < 4) {
+      const have = new Set(pick.map(x => x.name));
+      const glob = [...p.access]
+        .filter(d => d !== p.name && D[d] && D[d].v >= 0.5 && !have.has(d))
+        .map(d => ({ name: d, score: D[d].v * (1 - D[d].ac / TOTAL_PASSPORTS) }))
+        .sort((a, b) => b.score - a.score);
+      pick.push(...glob.slice(0, 4 - pick.length));
+    }
+    p.top = pick.map(x => x.name);
   });
 
   PASSPORTS.sort((a,b) => b.totalM - a.totalM);
@@ -129,15 +154,7 @@ print("""  PASSPORTS.forEach(p => {
   });
 
   return { PASSPORTS, DESTS: D, REGIONS };
-})();""")
+})();
+
+export default PASSPORT_DATA;""")
 PYEOF
-node -e "
-global.window = {};
-require('/Users/ivan/projects/passport-design-recovery/final/data.js');
-const ps = global.window.PASSPORT_DATA.PASSPORTS;
-console.log('=== NOTABLE ACCESS — what each top passport can reach that peers cannot ===');
-['South Korea','Japan','Singapore','Sweden','Italy','Germany','United Kingdom','France','Norway','United States','United Arab Emirates','Australia','Israel','Russia','China','India','Pakistan','Afghanistan'].forEach(n => {
-  const p = ps.find(x => x.name === n);
-  console.log(\`  \${p.flag} \${n.padEnd(20)} → \${p.top.join(', ')}\`);
-});
-"

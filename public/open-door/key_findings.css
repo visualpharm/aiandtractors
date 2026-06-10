@@ -181,7 +181,9 @@
   max-width: 280px;
   height: auto;
   display: block;
-  /* Soft drop-shadow so the 3D renders read as objects, not stickers */
+  /* The 2026-06-10 renders bake their own studio background, so they read
+     as framed prints: round the corners and let the shadow be a card shadow. */
+  border-radius: 12px;
   filter: drop-shadow(0 12px 32px rgba(20, 24, 50, 0.15));
 }
 

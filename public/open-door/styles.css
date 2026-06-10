@@ -160,6 +160,17 @@ button { font-family: inherit; cursor: pointer; }
 .hero-link { font-size: 13px; color: var(--accent); font-weight: 500; }
 .hero-link:hover { text-decoration: underline; }
 
+/* Country names inside hero cards open the detail drawer. */
+.hero-country-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+}
+.hero-country-link:hover { text-decoration: underline; }
+
 /* ---- Methodology section ------------------------------------------ */
 .methodology-section { padding: 40px 0; border-bottom: 1px solid var(--border); }
 .meth-title { font-size: 28px; font-weight: 600; letter-spacing: -0.025em; margin: 12px 0 14px; color: var(--text); }
@@ -184,10 +195,10 @@ button { font-family: inherit; cursor: pointer; }
 .map-canvas--real .map-svg path { transition: fill .12s; }
 .map-canvas--real .map-svg path:hover { stroke: var(--text); stroke-width: 1.4; }
 .map-tooltip {
+  /* left/top are set inline from the tracked cursor position; the tooltip
+     follows the pointer and flips sides in the right half of the canvas. */
   position: absolute;
   pointer-events: none;
-  bottom: 24px;
-  left: 24px;
   background: rgba(255,255,255,0.96);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
@@ -366,7 +377,15 @@ button { font-family: inherit; cursor: pointer; }
 
 .dests-num { display: inline-block; min-width: 30px; padding: 2px 8px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--text); font-weight: 500; }
 
-.unique-row { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+/* Single line, no wrapping — on narrower viewports the row truncates with a
+   fade instead of splitting pills across lines. */
+.unique-row {
+  display: flex; gap: 4px; align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
+}
 .unique-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px 2px 6px; background: var(--chip-bg); border: 1px solid var(--border); border-radius: 999px; font-size: 11.5px; color: var(--chip-text); white-space: nowrap; }
 .unique-pill-flag { font-size: 11px; }
 
@@ -428,7 +447,9 @@ button { font-family: inherit; cursor: pointer; }
 .region-bar { display: flex; width: 100%; height: 10px; border-radius: 999px; overflow: hidden; background: var(--bg-2); margin-bottom: 14px; }
 .region-bar-seg { height: 100%; transition: width .3s; }
 .region-bar-seg + .region-bar-seg { box-shadow: -1px 0 0 var(--panel); }
-.region-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+/* Legend reads top-to-bottom per column in the same order as the stacked
+   bar's segments (largest region first), not left-to-right per row. */
+.region-legend { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 8px 14px; }
 .region-legend-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); }
 .region-legend-label { flex: 1; }
 .region-legend-n { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 500; }
@@ -532,6 +553,19 @@ button { font-family: inherit; cursor: pointer; }
 .footer-spacer { flex: 1; }
 
 /* ---- Responsive --------------------------------------------------- */
+/* iPad landscape and small laptops — tighten before anything collapses. */
+@media (max-width: 1280px) {
+  .hero-title { font-size: 48px; }
+  .col-unique { min-width: 180px; }
+  .col-spark { width: 110px; }
+}
+/* iPad portrait-ish — drop the relative bar, two hero columns. */
+@media (max-width: 1100px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .col-spark { display: none; }
+  .col-score { width: 110px; }
+  .search-input { width: 160px; }
+}
 @media (max-width: 900px) {
   .topnav-inner { padding: 14px 18px; gap: 18px; }
   .topnav-links { display: none; }

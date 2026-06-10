@@ -189,6 +189,12 @@
 /* Landscape renders get more width so they don't shrink into stamps. */
 .kf-art-img--wide { max-width: 400px; }
 
+/* Methodology — text-only essay, no art panels: collapse the two-column
+   finding grid and keep the prose at a readable measure. */
+.meth-noart .kf-finding,
+.meth-noart .kf-finding--reverse { grid-template-columns: 1fr; gap: 0; padding: 48px 0; }
+.meth-noart .kf-body { max-width: 760px; }
+
 /* Big-emoji placeholder used while the GPT Image renders aren't ready yet.
    Matches the saturation/scale of the planet & suitcase PNGs. */
 .kf-art-pixel {

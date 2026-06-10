@@ -946,7 +946,7 @@ export default function PassportRanking() {
                 <th className="col-name">Country</th>
                 <th className="col-score">Total reach</th>
                 <th className="col-spark">Relative</th>
-                <th className="col-unique">Unique access</th>
+                <th className="col-unique">Interesting access</th>
               </tr>
             </thead>
             <tbody>

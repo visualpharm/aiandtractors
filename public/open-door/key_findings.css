@@ -1,0 +1,381 @@
+/* ============================================================
+   Key Findings — uses noe.css + styles.css tokens.
+   Voice: editorial long-form, paired with tactile 3D/pixel art
+   on the side. Same hero treatment as the ranking page so the
+   two pages read as one publication.
+   ============================================================ */
+
+.kf-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 40px 96px;
+}
+
+/* ---- HERO (inverted pyramid: data-first headline) -------- */
+.kf-hero {
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  max-width: 980px;
+}
+
+.kf-hero-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-2);
+  margin-bottom: 28px;
+}
+
+.kf-hero-title {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  margin: 0 0 28px;
+}
+
+/* Burnt-orange pixel-font flourish, matched to homepage */
+.kf-hero-title em.kf-hero-pixel {
+  font-family: 'DotGothic16', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
+  color: #c4612a;
+}
+
+.kf-hero-sub {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 32px;
+  max-width: 760px;
+}
+
+.kf-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+}
+.kf-hero-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity .12s;
+}
+.kf-hero-link:hover { opacity: 0.75; }
+.kf-hero-dot { color: var(--muted-2); }
+
+/* ---- FINDINGS LIST --------------------------------------- */
+.kf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kf-finding {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.kf-finding--reverse {
+  grid-template-columns: 1fr 360px;
+}
+.kf-finding--reverse .kf-art { order: 2; }
+.kf-finding--reverse .kf-body { order: 1; }
+
+.kf-finding:last-child { border-bottom: none; }
+
+/* ---- BODY (text column) ---------------------------------- */
+.kf-body { min-width: 0; max-width: 620px; }
+
+.kf-num {
+  font-family: 'DotGothic16', monospace;
+  font-size: 36px;
+  font-weight: 400;
+  color: #c4612a;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 18px;
+  /* Pull number visually toward the headline */
+  margin-top: -4px;
+}
+
+.kf-headline {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+
+/* In-headline strikethrough — same hand-struck treatment as the homepage's
+   "can" word, applied wherever a finding wants to rewrite a cliché. */
+.kf-headline .kf-strike {
+  position: relative;
+  text-decoration: none;
+  color: var(--muted);
+  margin-right: 6px;
+}
+.kf-headline .kf-strike::after {
+  content: '';
+  position: absolute;
+  left: -2px; right: -2px;
+  top: 56%;
+  height: 5px;
+  background: var(--accent);
+  transform: rotate(-4deg);
+  border-radius: 2px;
+  opacity: 0.92;
+}
+
+/* Pixel-font flourish inside headline (the replacement word for the strike). */
+.kf-headline em.kf-em {
+  font-family: 'DotGothic16', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
+  color: #c4612a;
+}
+
+.kf-body p {
+  font-size: 17.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.kf-body p strong {
+  font-weight: 600;
+  color: var(--text);
+  background: linear-gradient(transparent 65%, rgba(94, 106, 210, 0.12) 65%);
+  padding: 0 2px;
+  margin: 0 -2px;
+}
+
+/* ---- ART (illustration column) --------------------------- */
+.kf-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  background: var(--bg-2);
+  border-radius: var(--radius-lg, 10px);
+  padding: 32px 24px;
+  overflow: hidden;
+}
+
+.kf-art-img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  display: block;
+  /* Soft drop-shadow so the 3D renders read as objects, not stickers */
+  filter: drop-shadow(0 12px 32px rgba(20, 24, 50, 0.15));
+}
+
+/* Big-emoji placeholder used while the GPT Image renders aren't ready yet.
+   Matches the saturation/scale of the planet & suitcase PNGs. */
+.kf-art-pixel {
+  font-size: 180px;
+  line-height: 1;
+  filter: drop-shadow(0 10px 28px rgba(20, 24, 50, 0.18));
+  margin-bottom: 18px;
+}
+
+.kf-art-caption {
+  font-family: 'DotGothic16', monospace;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #c4612a;
+  text-align: center;
+  max-width: 240px;
+  line-height: 1.3;
+}
+
+.kf-art-flagstack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 18px;
+  font-size: 64px;
+  line-height: 1;
+  margin-bottom: 22px;
+  max-width: 280px;
+}
+.kf-art-flagstack span {
+  filter: drop-shadow(0 6px 14px rgba(20, 24, 50, 0.18));
+}
+
+/* Bottom-of-table: muted grayscale flag stack — visually the inverse of
+   the strong-passport stack. */
+.kf-art-flagstack--bottom span {
+  filter: grayscale(0.7) contrast(0.9) drop-shadow(0 4px 10px rgba(20, 24, 50, 0.12));
+  opacity: 0.85;
+}
+
+/* Trend art: big up arrow with the China flag tucked under it. */
+.kf-art-trend { gap: 8px; }
+.kf-art-trend-arrow {
+  font-size: 140px;
+  line-height: 1;
+  color: #2f8f4a;
+  font-weight: 700;
+  font-family: 'DotGothic16', monospace;
+  text-shadow: 0 8px 24px rgba(47, 143, 74, 0.3);
+}
+.kf-art-trend-flag {
+  font-size: 56px;
+  line-height: 1;
+  margin-top: -10px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 6px 14px rgba(20, 24, 50, 0.18));
+}
+
+/* ---- CLOSING --------------------------------------------- */
+.kf-closing {
+  margin-top: 24px;
+  padding: 96px 0 16px;
+  max-width: 820px;
+  position: relative;
+}
+
+.kf-closing-mark {
+  font-family: 'DotGothic16', monospace;
+  font-size: 56px;
+  color: #c4612a;
+  line-height: 1;
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+}
+
+.kf-closing-line {
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 22px;
+}
+
+.kf-closing-line .kf-strike {
+  position: relative;
+  text-decoration: none;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.kf-closing-line .kf-strike::after {
+  content: '';
+  position: absolute;
+  left: -2px; right: -2px;
+  top: 56%;
+  height: 5px;
+  background: var(--accent);
+  transform: rotate(-4deg);
+  border-radius: 2px;
+  opacity: 0.92;
+}
+.kf-closing-line em.kf-em {
+  font-family: 'DotGothic16', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
+  color: #c4612a;
+}
+
+.kf-closing-tail {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 640px;
+}
+
+.kf-closing-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.kf-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-sm, 5px);
+  transition: background .12s;
+}
+.kf-cta-primary:hover { background: var(--accent-hover); }
+
+.kf-cta-secondary {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 12px 4px;
+  transition: color .12s;
+}
+.kf-cta-secondary:hover { color: var(--text); }
+
+/* ---- FOOTER ---------------------------------------------- */
+.kf-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 80px;
+}
+.kf-footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 40px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.kf-footer-mono {
+  font-family: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+/* ---- RESPONSIVE ------------------------------------------ */
+@media (max-width: 900px) {
+  .kf-page { padding: 40px 22px 64px; }
+  .kf-hero-title { font-size: 38px; }
+  .kf-hero-sub { font-size: 16.5px; }
+  .kf-finding,
+  .kf-finding--reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 44px 0;
+  }
+  .kf-finding--reverse .kf-art,
+  .kf-finding--reverse .kf-body {
+    order: initial;
+  }
+  .kf-art { min-height: 240px; padding: 24px; }
+  .kf-art-img { max-width: 220px; }
+  .kf-art-pixel { font-size: 132px; }
+  .kf-art-flagstack { font-size: 48px; }
+  .kf-art-trend-arrow { font-size: 110px; }
+  .kf-headline { font-size: 28px; }
+  .kf-num { font-size: 30px; }
+  .kf-body p { font-size: 16.5px; }
+  .kf-closing { padding: 64px 0 8px; }
+  .kf-closing-line { font-size: 28px; }
+  .kf-closing-tail { font-size: 17px; }
+}

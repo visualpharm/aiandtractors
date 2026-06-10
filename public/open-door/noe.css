@@ -1,0 +1,139 @@
+/* Noe Design System — colors & type
+   Linear-faithful palette + spacing, lifted directly from noe/static/style.css.
+   Use these vars in any new Noe surface so it stays consistent with the app.
+   ------------------------------------------------------------------------ */
+
+@import url("https://rsms.me/inter/inter.css");
+
+:root {
+  /* ---- Neutrals (backgrounds + structure) ---- */
+  --bg:           #fafbfc;  /* app background — slightly cooler than white */
+  --bg-2:         #f4f5f8;  /* sidebar, snoozed tray, subtle fills */
+  --panel:        #ffffff;  /* cards, sheets, pop-overs */
+  --border:       #e6e6e9;  /* default 1px hairline */
+  --border-strong:#d4d6da;  /* hover, dividers */
+  --row-hover:    #f6f7fa;
+
+  /* ---- Foreground / type ---- */
+  --text:    #1c1d1f;       /* primary copy */
+  --text-2:  #3a3c40;       /* secondary copy, body */
+  --muted:   #62666e;       /* meta + helper */
+  --muted-2: #8a8f97;       /* count badges, timestamps */
+
+  /* ---- Brand (Linear-derived indigo) ---- */
+  --accent:       #5e6ad2;
+  --accent-hover: #4d57ba;
+  --accent-soft:  #eef0fc;  /* selected nav, active-state pills */
+  --accent-soft-2:#e8ebfa;  /* focus halo */
+
+  /* ---- Semantic ---- */
+  --prio-urgent: #eb5757;
+  --prio-high:   #f2994a;
+  --prio-normal: #c2c7cf;
+  --prio-low:    #dcdee3;
+  --overdue:     #eb5757;
+  --done:        #5fa760;
+
+  /* ---- Chips (neutral + per-channel) ---- */
+  --chip-bg:        #eff0f3;
+  --chip-text:      #4a4f57;
+  --chip-bg-strong: #e3e5ea;
+
+  --chip-project-bg: #ecefff; --chip-project-fg: #3b46a8; --chip-project-bd: #d4daf6;
+  --chip-counter-bg: #eaf5ee; --chip-counter-fg: #2a6f3f; --chip-counter-bd: #c8e0d1;
+  --chip-person-bg:  #e8eefe; --chip-person-fg:  #3a4ec5; --chip-person-bd:  #c8d3f8;
+  --chip-tag-bg:     #fcf3df; --chip-tag-fg:     #8a6712; --chip-tag-bd:     #f0e1b8;
+
+  --chip-email-bg:    #f0f3f7; --chip-email-fg:    #4a576b; --chip-email-bd:    #d4dbe6;
+  --chip-whatsapp-bg: #e3f5ec; --chip-whatsapp-fg: #1f6f3e; --chip-whatsapp-bd: #b8dec8;
+  --chip-telegram-bg: #e3eefa; --chip-telegram-fg: #1d6fb6; --chip-telegram-bd: #bcd6ee;
+  --chip-teams-bg:    #ecefff; --chip-teams-fg:    #3b46a8; --chip-teams-bd:    #d4daf6;
+  --chip-meli-bg:     #fff8e3; --chip-meli-fg:     #8a6712; --chip-meli-bd:     #f5e2a8;
+  --chip-hostex-bg:   #fef0e7; --chip-hostex-fg:   #b04e1f; --chip-hostex-bd:   #f5d0b8;
+  --chip-facebook-bg: #e9eefb; --chip-facebook-fg: #2b5cd9; --chip-facebook-bd: #c2cef0;
+  --chip-blocker-bg:  #fff4e8; --chip-blocker-fg:  #a35319; --chip-blocker-bd:  #f4d4ac;
+
+  /* ---- Status dots (channels page) ---- */
+  --dot-green:  #3aaa6a;
+  --dot-yellow: #e0a022;
+  --dot-red:    #d54339;
+
+  /* ---- Geometry ---- */
+  --radius-sm: 5px;
+  --radius:    7px;
+  --radius-lg: 10px;
+
+  --shadow-card:  0 1px 0 rgba(20, 24, 50, 0.04);
+  --shadow-sheet: 0 18px 48px rgba(20, 24, 50, 0.18);
+  --shadow-drop:  0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --sidebar-w: 232px;
+
+  /* ---- Type primitives ---- */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  --fs-page-title: 22px;   /* h1.title-text on task detail */
+  --fs-page-h2:   17px;
+  --fs-h3:        14px;
+  --fs-body:      13px;    /* default body */
+  --fs-md:        14px;    /* markdown blocks */
+  --fs-meta:      12px;
+  --fs-mini:      11px;
+  --fs-chip:      10.5px;
+
+  --tracking-tight: -0.025em;  /* h1 */
+  --tracking-body:  -0.005em;  /* default */
+  --tracking-label: 0.06em;    /* uppercase section labels */
+}
+
+/* ---- Base ----------------------------------------------------------- */
+html, body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-body);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code, pre { font-family: var(--font-mono); font-size: 12px; }
+
+/* ---- Semantic type ------------------------------------------------- */
+.t-h1, h1.t {
+  font-size: var(--fs-page-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  line-height: 1.25;
+  margin: 0;
+}
+.t-h2, h2.t {
+  font-size: var(--fs-page-h2);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+  margin: 18px 0 8px;
+}
+.t-h3, h3.t {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  color: var(--text);
+}
+.t-body  { font-size: var(--fs-body); color: var(--text-2); line-height: 1.55; }
+.t-md    { font-size: var(--fs-md); line-height: 1.6; color: var(--text-2); }
+.t-meta  { font-size: var(--fs-meta); color: var(--muted); }
+.t-mini  { font-size: var(--fs-mini); color: var(--muted-2); }
+.t-mono  { font-family: var(--font-mono); font-size: 12px; color: var(--text-2); }
+
+/* The signature uppercase section label that appears above every block in Noe */
+.t-section-label {
+  font-size: var(--fs-mini);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--muted-2);
+}

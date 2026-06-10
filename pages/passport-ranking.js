@@ -1,2438 +1,961 @@
+/* The Open Door Index — passport ranking page.
+   Ported 1:1 from the Claude Design handoff (design_handoff_passport_ranking,
+   May 2026): hero with pixel strike, six highlight cards, d3 choropleth map,
+   sticky filter bar, ranking table with tie groups, country drawer, and
+   differential comparison modal. Data comes from lib/open-door-data.js,
+   generated from the passport-index dataset (scripts/generate-open-door-data.sh). */
+
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import React from 'react'
-import dynamic from 'next/dynamic'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
+import { geoNaturalEarth1, geoPath } from 'd3-geo'
+import { feature as topoFeature } from 'topojson-client'
+import PASSPORT_DATA from '../lib/open-door-data'
 
-// Dynamic import for react-simple-maps to avoid SSR issues
-const ComposableMap = dynamic(
-  () => import('react-simple-maps').then(mod => mod.ComposableMap),
-  { ssr: false }
-)
-const Geographies = dynamic(
-  () => import('react-simple-maps').then(mod => mod.Geographies),
-  { ssr: false }
-)
-const Geography = dynamic(
-  () => import('react-simple-maps').then(mod => mod.Geography),
-  { ssr: false }
-)
-const ZoomableGroup = dynamic(
-  () => import('react-simple-maps').then(mod => mod.ZoomableGroup),
-  { ssr: false }
-)
+const { PASSPORTS, DESTS } = PASSPORT_DATA
 
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+const fmtVisitors = (m) => {
+  if (m >= 1000) return (m / 1000).toFixed(3) + 'B'
+  if (m >= 1) return Math.round(m * 10) / 10 + 'M'
+  return (m * 1000).toFixed(0) + 'K'
+}
+const REGION_LABEL = { EU: 'Europe', AS: 'Asia', AM: 'Americas', AF: 'Africa', OC: 'Oceania' }
+const REGION_DOT = { EU: '#5e6ad2', AS: '#f2994a', AM: '#5fa760', AF: '#eb5757', OC: '#1d6fb6' }
 
+// Sequential indigo scale — matches the world map choropleth so the
+// table's "relative" bar and the map fill read as the same metric.
+function scoreColor(value, max) {
+  const t = Math.max(0, Math.min(1, value / max))
+  const lerp = (a, b) => Math.round(a + (b - a) * t)
+  const r = lerp(0xf1, 0x5e)
+  const g = lerp(0xf2, 0x6a)
+  const b = lerp(0xf8, 0xd2)
+  return `rgb(${r},${g},${b})`
+}
 
-// Import calculated passport data from data pipeline
-import calculatedData from '../data/calculated-passport-scores.json'
-import tourismRaw from '../data/unwto-tourism-2023.json'
-import tourismAdjustments from '../data/tourism-adjustments.json'
+function Sparkbar({ value, max }) {
+  const pct = Math.max(2, Math.min(100, value / max * 100))
+  const color = scoreColor(value, max)
+  return (
+    <div className="sparkbar">
+      <div className="sparkbar-fill" style={{ width: pct + '%', background: color }} />
+    </div>)
+}
 
-// Apply tourism adjustments to raw data
-const tourismData = { ...tourismRaw.data }
-Object.entries(tourismAdjustments.adjustments).forEach(([country, adj]) => {
-  tourismData[country] = adj.value
-})
+// -------------------------------------------------------------------------
+// Hero
+// -------------------------------------------------------------------------
+function Hero() {
+  return (
+    <header className="hero">
+      <div className="hero-eyebrow">
+        <span className="t-section-label">The Open Door Index · 2026</span>
+      </div>
+      <h1 className="hero-title">
+        A passport ranking that measures<br />
+        <span className="hero-strike-wrap">
+          <span className="hero-strike">where you <s>can</s></span>
+        </span>
+        {' '}
+        <em className="hero-pixel">want to go.</em>
+      </h1>
+      <p className="hero-sub">
+        Traditional rankings count visa-free countries. This one weights each
+        destination by its annual tourism volume – so a passport that opens
+        France (100M visitors a year) outscores one that opens a quieter
+        country with the same number of stamps.
+      </p>
+      <div className="hero-meth-line">
+        <a href="/passport-insights/methodology" className="hero-link">Methodology →</a>
+        <span className="hero-meth-sep">·</span>
+        <a href="/passport-insights" className="hero-link">Key findings →</a>
+      </div>
+      <dl className="hero-stats">
+        <div>
+          <dt>Strongest passport</dt>
+          <dd className="hero-stat-country">
+            <span className="hero-stat-flag">🇰🇷</span>
+            <span>South Korea</span>
+          </dd>
+          <div className="hero-stat-sub">
+            Unlocks 1.4 billion tourists' worth of world. Honestly, the top ten is a tie between rich East Asia and the Nordics – same metric, same lifestyle, same passport: small countries that quietly out-travel everyone.
+          </div>
+        </div>
+        <div>
+          <dt>Most welcoming</dt>
+          <dd className="hero-stat-country">
+            <span className="hero-stat-flag">🇲🇻</span>
+            <span>Maldives</span>
+          </dd>
+          <div className="hero-stat-sub">
+            Lets in nearly every nationality on Earth without a pre-issued visa. The richest tourist destination that holds the door open for everyone, not just the wealthy West.
+          </div>
+          <div className="hero-stat-runners">
+            Runners-up: <span>🇷🇼 Rwanda</span> · <span>🇰🇪 Kenya</span>
+          </div>
+        </div>
+        <div>
+          <dt>Weakest passport</dt>
+          <dd className="hero-stat-country">
+            <span className="hero-stat-flag">🇦🇫</span>
+            <span>Afghanistan</span>
+          </dd>
+          <div className="hero-stat-sub">
+            Reaches just 26 countries without paperwork – and those 26 host only 48M tourists a year, 30× less than the top passport. The world is mostly closed.
+          </div>
+          <div className="hero-stat-runners">
+            Runners-up: <span>🇸🇾 Syria</span> · <span>🇮🇶 Iraq</span>
+          </div>
+        </div>
+        <div>
+          <dt>Most overlooked</dt>
+          <dd className="hero-stat-country">
+            <span className="hero-stat-flag">🇧🇮</span>
+            <span>Burundi</span>
+          </dd>
+          <div className="hero-stat-sub">
+            Open to almost every passport on Earth – and almost nobody comes. About 50K visitors a year, against 100M for France. Easy to enter, rarely visited.
+          </div>
+          <div className="hero-stat-runners">
+            Runners-up: <span>🇰🇲 Comoros</span> · <span>🇫🇲 Micronesia</span>
+          </div>
+        </div>
+        <div>
+          <dt>One-way passport</dt>
+          <dd className="hero-stat-country">
+            <span className="hero-stat-flag">🇺🇸</span>
+            <span>United States</span>
+          </dd>
+          <div className="hero-stat-sub">
+            Americans walk into 160 countries without a visa. The U.S. itself lets in just 46 nationalities the same way – the widest one-way street in passport diplomacy.
+          </div>
+          <div className="hero-stat-runners">
+            Runners-up: <span>🇦🇺 Australia</span> · <span>🇨🇦 Canada</span>
+          </div>
+        </div>
+        <div>
+          <dt>Biggest 2026 shift</dt>
+          <dd className="hero-stat-country">
+            <span className="hero-stat-flag">🇨🇳</span>
+            <span>China <span className="hero-stat-trend up">↑</span></span>
+          </dd>
+          <div className="hero-stat-sub">
+            Quietly opened visa-free travel to seven new countries this year – UK, Canada, and five Gulf states. Roughly 455M tourist-arrivals' worth of new mobility, the largest single expansion of 2026.
+          </div>
+          <div className="hero-stat-runners">
+            Also opening: <span>🇮🇳 India <span className="hero-stat-trend up">↑</span></span> · Also closing: <span>🇳🇦 Namibia <span className="hero-stat-trend down">↓</span></span>
+          </div>
+        </div>
+      </dl>
+    </header>)
+}
 
-// Algorithm: Score = Sum of annual visitors (in millions) to all visa-free/VOA/ETA destinations
-// Data Sources:
-// - Tourism data: UNWTO Tourism Statistics 2023/2024
-// - Visa data: github.com/ilyankou/passport-index-dataset
+// -------------------------------------------------------------------------
+// Power map — d3-geo choropleth from world-atlas TopoJSON
+// -------------------------------------------------------------------------
+// world-atlas (Natural Earth) uses some long-form labels; map them to the
+// names in passport-index.
+const MAP_ALIASES = {
+  'United States of America': 'United States',
+  'Russian Federation': 'Russia',
+  'Russia': 'Russia',
+  'Republic of Korea': 'South Korea',
+  "Dem. People's Republic of Korea": 'North Korea',
+  "Dem. Rep. Korea": 'North Korea',
+  'Korea': 'South Korea',
+  "Côte d'Ivoire": 'Ivory Coast',
+  "Cote d'Ivoire": 'Ivory Coast',
+  'Czechia': 'Czech Republic',
+  'Czech Rep.': 'Czech Republic',
+  'Bosnia and Herz.': 'Bosnia and Herzegovina',
+  'Eswatini': 'Swaziland',
+  'eSwatini': 'Swaziland',
+  'Macedonia': 'North Macedonia',
+  'North Macedonia': 'North Macedonia',
+  'Dominican Rep.': 'Dominican Republic',
+  'Central African Rep.': 'Central African Republic',
+  'Eq. Guinea': 'Equatorial Guinea',
+  'S. Sudan': 'South Sudan',
+  'Solomon Is.': 'Solomon Islands',
+  'Cape Verde': 'Cape Verde',
+  'Cabo Verde': 'Cape Verde',
+  'Burma': 'Myanmar',
+  'Lao PDR': 'Laos',
+  "Lao People's Dem. Rep.": 'Laos',
+  'Tanzania, United Rep. of': 'Tanzania',
+  'United Rep. of Tanzania': 'Tanzania',
+  'Viet Nam': 'Vietnam',
+  'Brunei Darussalam': 'Brunei',
+  'Iran (Islamic Republic of)': 'Iran',
+  'Syrian Arab Republic': 'Syria',
+  'Palestine': 'Palestine',
+  'State of Palestine': 'Palestine',
+  'West Bank': 'Palestine',
+  'United Republic of Tanzania': 'Tanzania',
+  'Republic of the Congo': 'Congo',
+  'Democratic Republic of the Congo': 'DR Congo',
+  'Dem. Rep. Congo': 'DR Congo',
+  'Falkland Islands': null,
+  'Greenland': null,
+  'Antarctica': null,
+  'Western Sahara': null,
+  'Fr. S. Antarctic Lands': null,
+  'N. Cyprus': null,
+  'Kosovo': 'Kosovo',
+  'Republic of Serbia': 'Serbia',
+  'Trinidad and Tobago': 'Trinidad and Tobago',
+  'United Kingdom': 'United Kingdom',
+  'Vatican City': 'Vatican',
+  'Holy See': 'Vatican',
+  'Sao Tome and Principe': 'Sao Tome and Principe',
+  'São Tomé and Principe': 'Sao Tome and Principe',
+  'St. Lucia': 'Saint Lucia',
+  'Saint Lucia': 'Saint Lucia',
+  'St. Vin. and Gren.': 'Saint Vincent and the Grenadines',
+  'Saint Vincent and the Grenadines': 'Saint Vincent and the Grenadines',
+  'St. Kitts and Nevis': 'Saint Kitts and Nevis',
+  'Saint Kitts and Nevis': 'Saint Kitts and Nevis',
+  'Antigua and Barb.': 'Antigua and Barbuda',
+  'Antigua and Barbuda': 'Antigua and Barbuda',
+}
 
-// Extract passport data from the calculated results
-const passportData = calculatedData.results
+function PowerMap({ rows }) {
+  const [world, setWorld] = useState(null)
+  const [hovered, setHovered] = useState(null)
 
-const maxScore = Math.max(...passportData.map(p => p.score))
+  useEffect(() => {
+    // Local copy of world-atlas/countries-110m.json (~108KB); no runtime CDN
+    // dependency.
+    fetch('/open-door/countries-110m.json')
+      .then(r => r.json())
+      .then(setWorld)
+      .catch(err => console.error('Map load failed:', err))
+  }, [])
 
-function getGradientColor(score) {
-  // Smooth gradient from red (worst) -> orange -> yellow -> yellow-green -> green (best)
-  const ratio = Math.min(score / maxScore, 1)
+  // name → passport row lookup
+  const byName = useMemo(() => {
+    const m = {}
+    rows.forEach(p => { m[p.name] = p })
+    return m
+  }, [rows])
 
-  // Use HSL color space for smooth transitions
-  // Hue: 0 (red) -> 30 (orange) -> 60 (yellow) -> 90 (yellow-green) -> 120 (green)
-  const hue = ratio * 120 // 0 = red, 120 = green
+  const max = useMemo(() =>
+    rows.reduce((m, p) => Math.max(m, p.totalM), 0) || 1
+  , [rows])
 
-  // Adjust saturation and lightness based on hue for prettier colors
-  // Orange/yellow (hue 20-60) looks better with higher saturation and slightly different lightness
-  let saturation = 75
-  let lightness = 48
-
-  if (hue >= 20 && hue <= 60) {
-    // Orange to yellow range - boost saturation for vibrancy
-    saturation = 85
-    lightness = 50
-  } else if (hue > 60 && hue <= 90) {
-    // Yellow-green - slightly less saturation
-    saturation = 70
-    lightness = 42
+  // Choropleth color: white-to-indigo for the reach scale ("more is more").
+  const fillFor = (passport) => {
+    if (!passport) return '#ececef'
+    const t = Math.min(1, passport.totalM / max)
+    const lerp = (a, b, t2) => Math.round(a + (b - a) * t2)
+    const r = lerp(0xf1, 0x5e, t)
+    const g = lerp(0xf2, 0x6a, t)
+    const b = lerp(0xf8, 0xd2, t)
+    return `rgb(${r},${g},${b})`
   }
 
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+  const W = 960, H = 480
+
+  const { features, pathGen } = useMemo(() => {
+    if (!world) return { features: [], pathGen: null }
+    const fc = topoFeature(world, world.objects.countries)
+    const proj = geoNaturalEarth1().fitSize([W, H], fc)
+    const path = geoPath(proj)
+    return { features: fc.features, pathGen: path }
+  }, [world])
+
+  return (
+    <section id="map" className="map-section">
+      <div className="map-canvas map-canvas--real">
+        <div className="map-eyebrow">PASSPORT REACH · TOURISM FLOW UNLOCKED</div>
+        <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="map-svg">
+          {!world && (
+            <text x={W/2} y={H/2} textAnchor="middle" fontSize="14" fill="var(--muted)">
+              Loading world…
+            </text>
+          )}
+          {world && pathGen && features.map((feat, i) => {
+            const rawName = feat.properties && (feat.properties.name || feat.properties.NAME)
+            // Antarctica adds visual weight without signal — drop it.
+            if (rawName === 'Antarctica') return null
+            const matched = MAP_ALIASES.hasOwnProperty(rawName) ? MAP_ALIASES[rawName] : rawName
+            const passport = matched ? byName[matched] : null
+            const fill = fillFor(passport)
+            const isHover = hovered && hovered.id === feat.id
+            return (
+              <path
+                key={feat.id || i}
+                d={pathGen(feat)}
+                fill={fill}
+                stroke="#fff"
+                strokeWidth={isHover ? 1.4 : 0.5}
+                style={{ cursor: passport ? 'pointer' : 'default', transition: 'stroke-width .12s' }}
+                onMouseEnter={() => setHovered({ id: feat.id, name: rawName, passport })}
+                onMouseLeave={() => setHovered(null)} />
+            )
+          })}
+
+          {/* Embedded legend — sequential indigo scale */}
+          <g className="map-legend-overlay" transform={`translate(${W - 200}, 24)`}>
+            <rect x="-12" y="-16" width="200" height="56" rx="8" fill="rgba(255,255,255,0.92)" stroke="rgba(0,0,0,0.06)" />
+            <text x="0" y="0" fontSize="10" fontWeight="600" fill="#6c6e77" letterSpacing="0.06em">TOURISM REACH UNLOCKED</text>
+            <defs>
+              <linearGradient id="mapGradReal" x1="0" x2="1">
+                <stop offset="0" stopColor="#f1f2f8" />
+                <stop offset="1" stopColor="#5e6ad2" />
+              </linearGradient>
+            </defs>
+            <rect x="0" y="10" width="176" height="8" rx="2" fill="url(#mapGradReal)" stroke="rgba(0,0,0,0.04)" />
+            <text x="0" y="32" fontSize="10" fill="#6c6e77">0</text>
+            <text x="176" y="32" fontSize="10" fill="#6c6e77" textAnchor="end">1.44B visitors/yr</text>
+          </g>
+        </svg>
+
+        {hovered && (
+          <div className="map-tooltip">
+            <div className="map-tooltip-name">
+              {hovered.passport ? hovered.passport.flag + ' ' : ''}
+              {hovered.passport ? hovered.passport.name : hovered.name}
+            </div>
+            {hovered.passport ? (
+              <div className="map-tooltip-stat">
+                <strong>{(hovered.passport.totalM / 1000).toFixed(2)}B</strong> visitors of reach
+                <span className="map-tooltip-sub">  ·  rank #{hovered.passport.rank} of {rows.length}</span>
+              </div>
+            ) : (
+              <div className="map-tooltip-stat map-tooltip-empty">no passport data</div>
+            )}
+          </div>
+        )}
+      </div>
+    </section>)
 }
 
-function formatNumber(num) {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(3) + 'B'
-  }
-  return num + 'M'
-}
-
-// Region mapping for passports
-const regionMap = {
-  // Europe
-  france: 'Europe', spain: 'Europe', italy: 'Europe', united_kingdom: 'Europe', germany: 'Europe',
-  greece: 'Europe', austria: 'Europe', portugal: 'Europe', poland: 'Europe', croatia: 'Europe',
-  netherlands: 'Europe', hungary: 'Europe', ireland: 'Europe', czech_republic: 'Europe', sweden: 'Europe',
-  switzerland: 'Europe', romania: 'Europe', belgium: 'Europe', norway: 'Europe', slovakia: 'Europe',
-  bulgaria: 'Europe', slovenia: 'Europe', denmark: 'Europe', lithuania: 'Europe', cyprus: 'Europe',
-  latvia: 'Europe', finland: 'Europe', estonia: 'Europe', malta: 'Europe', iceland: 'Europe',
-  luxembourg: 'Europe', liechtenstein: 'Europe', monaco: 'Europe', san_marino: 'Europe', andorra: 'Europe',
-  serbia: 'Europe', montenegro: 'Europe', north_macedonia: 'Europe', albania: 'Europe', bosnia_and_herzegovina: 'Europe',
-  ukraine: 'Europe', moldova: 'Europe', georgia: 'Europe', armenia: 'Europe', azerbaijan: 'Europe',
-  belarus: 'Europe', russia: 'Europe', kosovo: 'Europe', turkey: 'Europe', vatican: 'Europe',
-
-  // Asia
-  united_arab_emirates: 'Asia', brunei: 'Asia', singapore: 'Asia', japan: 'Asia', south_korea: 'Asia',
-  hong_kong: 'Asia', macao: 'Asia', taiwan: 'Asia', malaysia: 'Asia', israel: 'Asia', qatar: 'Asia',
-  kuwait: 'Asia', bahrain: 'Asia', thailand: 'Asia', oman: 'Asia', saudi_arabia: 'Asia',
-  indonesia: 'Asia', china: 'Asia', jordan: 'Asia', kazakhstan: 'Asia', philippines: 'Asia',
-  lebanon: 'Asia', mongolia: 'Asia', uzbekistan: 'Asia', india: 'Asia', vietnam: 'Asia',
-  kyrgyzstan: 'Asia', cambodia: 'Asia', maldives: 'Asia', iran: 'Asia', sri_lanka: 'Asia',
-  tajikistan: 'Asia', myanmar: 'Asia', turkmenistan: 'Asia', bangladesh: 'Asia', iraq: 'Asia',
-  pakistan: 'Asia', nepal: 'Asia', bhutan: 'Asia', syria: 'Asia', yemen: 'Asia',
-  afghanistan: 'Asia', north_korea: 'Asia', laos: 'Asia', timorleste: 'Asia', palestine: 'Asia',
-
-  // Americas
-  united_states: 'Americas', canada: 'Americas', mexico: 'Americas', chile: 'Americas', argentina: 'Americas',
-  barbados: 'Americas', bahamas: 'Americas', brazil: 'Americas', saint_kitts_and_nevis: 'Americas', antigua_and_barbuda: 'Americas',
-  costa_rica: 'Americas', panama: 'Americas', grenada: 'Americas', uruguay: 'Americas', saint_lucia: 'Americas',
-  dominica: 'Americas', trinidad_and_tobago: 'Americas', saint_vincent_and_the_grenadines: 'Americas', peru: 'Americas', colombia: 'Americas',
-  ecuador: 'Americas', paraguay: 'Americas', jamaica: 'Americas', venezuela: 'Americas', bolivia: 'Americas',
-  guatemala: 'Americas', el_salvador: 'Americas', honduras: 'Americas', nicaragua: 'Americas', belize: 'Americas',
-  cuba: 'Americas', haiti: 'Americas', dominican_republic: 'Americas', guyana: 'Americas', suriname: 'Americas',
-
-  // Oceania
-  australia: 'Oceania', new_zealand: 'Oceania', fiji: 'Oceania', samoa: 'Oceania', tonga: 'Oceania',
-  vanuatu: 'Oceania', palau: 'Oceania', micronesia: 'Oceania', marshall_islands: 'Oceania', nauru: 'Oceania',
-  kiribati: 'Oceania', tuvalu: 'Oceania', solomon_islands: 'Oceania', papua_new_guinea: 'Oceania',
-
-  // Africa
-  south_africa: 'Africa', mauritius: 'Africa', seychelles: 'Africa', morocco: 'Africa', botswana: 'Africa',
-  egypt: 'Africa', namibia: 'Africa', tunisia: 'Africa', kenya: 'Africa', tanzania: 'Africa',
-  ghana: 'Africa', rwanda: 'Africa', algeria: 'Africa', nigeria: 'Africa', ivory_coast: 'Africa',
-  uganda: 'Africa', zambia: 'Africa', ethiopia: 'Africa', zimbabwe: 'Africa', cameroon: 'Africa',
-  mozambique: 'Africa', angola: 'Africa', dr_congo: 'Africa', libya: 'Africa', sudan: 'Africa',
-  eritrea: 'Africa', south_sudan: 'Africa', somalia: 'Africa', senegal: 'Africa',
-  lesotho: 'Africa', cape_verde: 'Africa', swaziland: 'Africa', sao_tome_and_principe: 'Africa', gabon: 'Africa',
-  guinea: 'Africa', malawi: 'Africa', benin: 'Africa', madagascar: 'Africa', mauritania: 'Africa',
-  comoros: 'Africa', chad: 'Africa', gambia: 'Africa', burkina_faso: 'Africa', togo: 'Africa',
-  niger: 'Africa', equatorial_guinea: 'Africa', mali: 'Africa', djibouti: 'Africa', sierra_leone: 'Africa',
-  congo: 'Africa', guineabissau: 'Africa', central_african_republic: 'Africa', burundi: 'Africa', liberia: 'Africa',
-}
-
-// ISO 3166-1 numeric codes for world-atlas TopoJSON
-const isoNumericMap = {
-  '784': 'united_arab_emirates', '096': 'brunei', '702': 'singapore', '392': 'japan', '410': 'south_korea',
-  '250': 'france', '724': 'spain', '380': 'italy', '826': 'united_kingdom', '276': 'germany',
-  '300': 'greece', '040': 'austria', '620': 'portugal', '616': 'poland', '191': 'croatia',
-  '528': 'netherlands', '348': 'hungary', '372': 'ireland', '203': 'czech_republic', '752': 'sweden',
-  '756': 'switzerland', '642': 'romania', '056': 'belgium', '578': 'norway', '703': 'slovakia',
-  '100': 'bulgaria', '705': 'slovenia', '208': 'denmark', '440': 'lithuania', '196': 'cyprus',
-  '428': 'latvia', '246': 'finland', '233': 'estonia', '470': 'malta', '352': 'iceland',
-  '442': 'luxembourg', '438': 'liechtenstein', '492': 'monaco', '674': 'san_marino', '020': 'andorra',
-  '840': 'united_states', '036': 'australia', '554': 'new_zealand', '124': 'canada',
-  '344': 'hong_kong', '446': 'macao', '158': 'taiwan', '458': 'malaysia',
-  '484': 'mexico', '376': 'israel', '152': 'chile', '032': 'argentina',
-  '052': 'barbados', '044': 'bahamas', '076': 'brazil', '659': 'saint_kitts_and_nevis', '028': 'antigua_and_barbuda',
-  '188': 'costa_rica', '591': 'panama', '308': 'grenada', '858': 'uruguay', '688': 'serbia',
-  '662': 'saint_lucia', '212': 'dominica', '780': 'trinidad_and_tobago', '670': 'saint_vincent_and_the_grenadines', '604': 'peru',
-  '499': 'montenegro', '807': 'north_macedonia', '170': 'colombia', '008': 'albania', '070': 'bosnia_and_herzegovina',
-  '218': 'ecuador', '600': 'paraguay', '388': 'jamaica', '862': 'venezuela', '804': 'ukraine',
-  '068': 'bolivia', '498': 'moldova', '268': 'georgia', '051': 'armenia', '031': 'azerbaijan',
-  '634': 'qatar', '792': 'turkey', '414': 'kuwait', '048': 'bahrain', '764': 'thailand',
-  '512': 'oman', '682': 'saudi_arabia', '643': 'russia', '710': 'south_africa', '112': 'belarus',
-  '360': 'indonesia', '156': 'china', '400': 'jordan', '398': 'kazakhstan', '480': 'mauritius',
-  '690': 'seychelles', '383': 'kosovo', '583': 'micronesia', '584': 'marshall_islands', '548': 'vanuatu',
-  '585': 'palau', '608': 'philippines', '422': 'lebanon', '496': 'mongolia', '242': 'fiji',
-  '860': 'uzbekistan', '504': 'morocco', '072': 'botswana', '818': 'egypt', '882': 'samoa',
-  '356': 'india', '516': 'namibia', '776': 'tonga', '704': 'vietnam', '417': 'kyrgyzstan',
-  '788': 'tunisia', '116': 'cambodia', '462': 'maldives', '404': 'kenya', '626': 'timorleste',
-  '834': 'tanzania', '418': 'laos', '762': 'tajikistan', '090': 'solomon_islands', '288': 'ghana',
-  '364': 'iran', '520': 'nauru', '144': 'sri_lanka', '598': 'papua_new_guinea', '686': 'senegal',
-  '296': 'kiribati', '104': 'myanmar', '795': 'turkmenistan', '646': 'rwanda', '012': 'algeria',
-  '566': 'nigeria', '798': 'tuvalu', '384': 'ivory_coast', '800': 'uganda', '894': 'zambia',
-  '231': 'ethiopia', '716': 'zimbabwe', '120': 'cameroon', '050': 'bangladesh', '508': 'mozambique',
-  '368': 'iraq', '586': 'pakistan', '524': 'nepal', '024': 'angola', '064': 'bhutan',
-  '180': 'dr_congo', '434': 'libya', '729': 'sudan', '760': 'syria', '232': 'eritrea',
-  '887': 'yemen', '728': 'south_sudan', '706': 'somalia', '004': 'afghanistan', '408': 'north_korea',
-  '336': 'vatican', '320': 'guatemala', '222': 'el_salvador', '340': 'honduras', '558': 'nicaragua',
-  '084': 'belize', '740': 'suriname', '214': 'dominican_republic', '328': 'guyana', '332': 'haiti',
-  '192': 'cuba', '426': 'lesotho', '132': 'cape_verde', '748': 'swaziland', '678': 'sao_tome_and_principe',
-  '266': 'gabon', '324': 'guinea', '454': 'malawi', '204': 'benin', '450': 'madagascar',
-  '478': 'mauritania', '174': 'comoros', '148': 'chad', '270': 'gambia', '854': 'burkina_faso',
-  '768': 'togo', '562': 'niger', '226': 'equatorial_guinea', '466': 'mali', '275': 'palestine',
-  '262': 'djibouti', '694': 'sierra_leone', '178': 'congo', '624': 'guineabissau',
-  '140': 'central_african_republic', '108': 'burundi', '430': 'liberia',
-}
-
-// Create a lookup from passport ID to passport data
-const passportById = {}
-passportData.forEach(p => {
-  passportById[p.id] = p
-})
-
-// Generate CSV data
-function generateCSV(data) {
-  const headers = ['Rank', 'Country', 'Score (Millions)', 'Region', 'Key Access', 'Top Contributors', 'Major Misses', 'Note']
-  const sortedData = [...data].sort((a, b) => b.score - a.score)
-
-  const rows = sortedData.map((p, index) => {
-    return [
-      index + 1,
-      p.country,
-      p.score,
-      regionMap[p.id] || 'Unknown',
-      (p.keyAccess || []).join('; '),
-      (p.uniqueContributors || []).map(c => `${c.country}: ${c.value}%`).join('; '),
-      (p.misses || []).map(m => `${m.country}: ${m.value}M`).join('; '),
-      p.note ? p.note.text : ''
-    ]
-  })
-
-  const csvContent = [headers, ...rows]
+// -------------------------------------------------------------------------
+// Filter row
+// -------------------------------------------------------------------------
+function downloadCSV() {
+  const headers = ['Rank', 'Country', 'Region', 'Total reach (M visitors/yr)', 'Open destinations']
+  const rows = PASSPORTS.map(p => [p.rank, p.name, REGION_LABEL[p.region] || p.region, p.totalM, p.vfCount])
+  const csv = [headers, ...rows]
     .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
     .join('\n')
-
-  return csvContent
-}
-
-function downloadCSV(data) {
-  const csv = generateCSV(data)
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.download = 'passport-ranking-open-door-index.csv'
+  link.download = 'open-door-index.csv'
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
   URL.revokeObjectURL(url)
 }
 
-export default function PassportRanking() {
-  const [currentSort, setCurrentSort] = React.useState('score')
-  const [currentFilter, setCurrentFilter] = React.useState('')
-  const [currentRegion, setCurrentRegion] = React.useState('all')
-  const [expandedIds, setExpandedIds] = React.useState(new Set())
-  const [tooltipContent, setTooltipContent] = React.useState('')
-  const [tooltipPosition, setTooltipPosition] = React.useState({ x: 0, y: 0 })
-  const [showMethodology, setShowMethodology] = React.useState(false)
-  const [selectedIds, setSelectedIds] = React.useState(new Set())
-  const [showComparison, setShowComparison] = React.useState(false)
-  const [showAllDifferences, setShowAllDifferences] = React.useState(false)
-  const [combos, setCombos] = React.useState([])
-  const [comparisonSort, setComparisonSort] = React.useState({ column: 'tourism', direction: 'desc' })
-
-  // Country name mapping from visa data to tourism data
-  const countryNameMap = {
-    'Czech Republic': 'Czechia',
-    'Timor-Leste': 'Timor-Leste',
-    'Democratic Republic of the Congo': 'DR Congo',
-    'Republic of the Congo': 'Congo',
-    'Swaziland': 'Eswatini',
-    'Macedonia': 'North Macedonia',
-    'Burma': 'Myanmar',
-    'Ivory Coast': 'Ivory Coast',
-  }
-
-  // Create a passport combo from selected passports
-  const createCombo = () => {
-    const selectedPassportsList = passportData.filter(p => selectedIds.has(p.id))
-    if (selectedPassportsList.length < 2) return
-
-    // Calculate union of all visa-free destinations
-    const allDestinations = new Set()
-    selectedPassportsList.forEach(p => {
-      (p.visaFreeDestinations || []).forEach(d => allDestinations.add(d))
-    })
-
-    // Calculate score (sum of tourism for all unique destinations)
-    const score = [...allDestinations].reduce((sum, dest) => {
-      // Try direct lookup first, then mapped name
-      const mappedName = countryNameMap[dest] || dest
-      return sum + (tourismData[dest] || tourismData[mappedName] || 0)
-    }, 0)
-
-    // Calculate key access for combo (major destinations)
-    const comboKeyAccess = []
-    const schengenCountries = ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Italy', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland']
-    const hasSchengen = schengenCountries.some(c => allDestinations.has(c))
-    if (hasSchengen) comboKeyAccess.push('Schengen')
-    if (allDestinations.has('United States')) comboKeyAccess.push('USA')
-    if (allDestinations.has('China')) comboKeyAccess.push('China')
-    if (allDestinations.has('Japan')) comboKeyAccess.push('Japan')
-    if (allDestinations.has('Russia')) comboKeyAccess.push('Russia')
-    if (allDestinations.has('United Kingdom')) comboKeyAccess.push('UK')
-    if (allDestinations.has('India')) comboKeyAccess.push('India')
-
-    // Calculate top contributors for combo (for expanded dropdown)
-    const comboTopContributors = []
-    if (hasSchengen) {
-      const schengenTotal = schengenCountries.reduce((sum, c) => {
-        const mapped = countryNameMap[c] || c
-        return sum + (allDestinations.has(c) ? (tourismData[c] || tourismData[mapped] || 0) : 0)
-      }, 0)
-      comboTopContributors.push({ country: 'Schengen Zone', value: Math.round(schengenTotal) })
-    }
-    const nonSchengenDests = [...allDestinations].filter(d => !schengenCountries.includes(d))
-    const destWithValues = nonSchengenDests.map(d => {
-      const mapped = countryNameMap[d] || d
-      return { country: d, value: tourismData[d] || tourismData[mapped] || 0 }
-    }).sort((a, b) => b.value - a.value)
-    comboTopContributors.push(...destWithValues.slice(0, 4))
-
-    // Calculate unique access for combo (for Key Access column)
-    const destinationAccessCount = {}
-    passportData.forEach(p => {
-      (p.visaFreeDestinations || []).forEach(d => {
-        destinationAccessCount[d] = (destinationAccessCount[d] || 0) + 1
-      })
-    })
-
-    const comboUniqueAccess = [...allDestinations]
-      .map(d => ({
-        country: d,
-        accessCount: destinationAccessCount[d] || 0,
-        value: tourismData[d] || tourismData[countryNameMap[d]] || 0
-      }))
-      .sort((a, b) => {
-        if (a.accessCount !== b.accessCount) return a.accessCount - b.accessCount
-        return b.value - a.value
-      })
-      .slice(0, 5)
-      .map(d => d.country)
-
-    // Calculate top visa-required (misses) for combo - countries NO passport in combo can access
-    const allPassportDests = new Set()
-    passportData.forEach(p => {
-      (p.visaFreeDestinations || []).forEach(d => allPassportDests.add(d))
-    })
-    const comboMisses = [...allPassportDests]
-      .filter(d => !allDestinations.has(d))
-      .map(d => {
-        const mapped = countryNameMap[d] || d
-        return { country: d, value: -(tourismData[d] || tourismData[mapped] || 0) }
-      })
-      .filter(m => m.value < 0)
-      .sort((a, b) => a.value - b.value)
-      .slice(0, 5)
-
-    const newCombo = {
-      id: `combo_${Date.now()}`,
-      passportIds: [...selectedIds],
-      passports: selectedPassportsList,
-      flags: selectedPassportsList.map(p => p.flag).join(''),
-      country: 'Combo',
-      score: Math.round(score),
-      visaFreeDestinations: [...allDestinations],
-      visaFreeCount: allDestinations.size,
-      keyAccess: comboKeyAccess.slice(0, 5),
-      uniqueAccess: comboUniqueAccess,
-      topContributors: comboTopContributors.slice(0, 5),
-      misses: comboMisses,
-      isCombo: true
-    }
-
-    setCombos(prev => [...prev, newCombo])
-    setSelectedIds(new Set())
-  }
-
-  // Remove a combo
-  const removeCombo = (comboId) => {
-    setCombos(prev => prev.filter(c => c.id !== comboId))
-  }
-
-  // Merge combos with passport data and sort
-  const dataWithCombos = [...passportData, ...combos]
-  const sortedData = dataWithCombos.sort((a, b) => {
-    if (currentSort === 'score') {
-      return b.score - a.score
-    }
-    return a.country.localeCompare(b.country)
-  })
-
-  const filteredData = sortedData.filter(p => {
-    // Combos always show (don't filter by region/search)
-    if (p.isCombo) return true
-    const matchesSearch = p.country.toLowerCase().includes(currentFilter.toLowerCase())
-    const matchesRegion = currentRegion === 'all' || regionMap[p.id] === currentRegion
-    return matchesSearch && matchesRegion
-  })
-
-  const toggleExpand = (id) => {
-    setExpandedIds(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
-      } else {
-        newSet.add(id)
-      }
-      return newSet
-    })
-  }
-
-  const toggleSelection = (id) => {
-    setSelectedIds(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
-      } else {
-        newSet.add(id)
-      }
-      return newSet
-    })
-  }
-
-  // Get selected passports for comparison (includes both regular passports and combos)
-  const selectedPassports = [...passportData, ...combos].filter(p => selectedIds.has(p.id))
-
-  // Get unified differences across all selected passports
-  // Returns destinations where at least one passport has access and at least one doesn't
-  const getUnifiedDifferences = (passports) => {
-    if (passports.length < 2) return []
-
-    // Build access sets for each passport
-    const accessSets = passports.map(p => new Set(p.visaFreeDestinations || []))
-
-    // Get all unique destinations across all passports
-    const allDestinations = new Set()
-    accessSets.forEach(set => set.forEach(d => allDestinations.add(d)))
-
-    // Filter to only destinations where access differs AND has tourism value
-    const differences = []
-    allDestinations.forEach(destination => {
-      const accessPattern = passports.map((_, i) => accessSets[i].has(destination))
-      const hasAccess = accessPattern.some(a => a)
-      const lacksAccess = accessPattern.some(a => !a)
-      const tourism = tourismData[destination] || 0
-
-      // Only include if there's a difference AND destination has tourism value
-      // (destinations with 0 tourism don't affect scores, so skip them)
-      if (hasAccess && lacksAccess && tourism > 0) {
-        differences.push({
-          destination,
-          tourism,
-          access: accessPattern // [true, false, true] for each passport
-        })
-      }
-    })
-
-    // Sort by tourism value (highest first)
-    differences.sort((a, b) => b.tourism - a.tourism)
-
-    return differences
-  }
-
-  // Keep the compare-bar arrow tip aligned with the checkbox column center
-  // (table auto-layout shifts column positions with viewport width)
-  React.useEffect(() => {
-    const align = () => {
-      const arrowCell = document.querySelector('.bar-arrow-cell')
-      const checkbox = document.querySelector('.checkbox-cell input')
-      if (!arrowCell || !checkbox) return
-      const barRect = arrowCell.parentElement.getBoundingClientRect()
-      const cbRect = checkbox.getBoundingClientRect()
-      // The arrow's down-pointing tip sits at 30% of the 24px-wide SVG
-      arrowCell.style.left = `${cbRect.left + cbRect.width / 2 - barRect.left - 24 * 0.3}px`
-    }
-    align()
-    window.addEventListener('resize', align)
-    return () => window.removeEventListener('resize', align)
-  })
-
-  // Calculate region counts
-  const regionCounts = {
-    all: passportData.length,
-    Europe: passportData.filter(p => regionMap[p.id] === 'Europe').length,
-    Asia: passportData.filter(p => regionMap[p.id] === 'Asia').length,
-    Americas: passportData.filter(p => regionMap[p.id] === 'Americas').length,
-    Africa: passportData.filter(p => regionMap[p.id] === 'Africa').length,
-    Oceania: passportData.filter(p => regionMap[p.id] === 'Oceania').length
-  }
+function FilterRow({ region, setRegion, search, setSearch, sort, setSort }) {
+  const regions = [
+  ['ALL', 'All'],
+  ['EU', 'Europe'],
+  ['AS', 'Asia'],
+  ['AM', 'Americas'],
+  ['AF', 'Africa'],
+  ['OC', 'Oceania']]
 
   return (
-    <Layout>
-      <Head>
-        <title>Passport Ranking: The Open Door Index | Ivan Braun</title>
-        <meta name="description" content="A passport ranking that measures which doors are worth walking through - weighting every destination by annual visitors instead of counting countries." />
-        <meta name="keywords" content="passport ranking, passport index, open door index, visa-free travel, passport power, tourism potential" />
-        <link rel="canonical" href="https://aiandtractors.com/passport-ranking" />
-      </Head>
+    <div className="filter-row">
+      <div className="region-pills">
+        {regions.map(([k, label]) =>
+        <button
+          key={k}
+          className={'region-pill' + (region === k ? ' is-active' : '')}
+          onClick={() => setRegion(k)}>
 
-      <div className="passport-page">
-        <div className="header-section">
-          <h1>The Open Door Index</h1>
-          <p className="subtitle">A passport ranking that measures which doors are <s>open</s> worth walking through &mdash; every destination weighted by how many travelers actually go there, not counted as one more stamp.</p>
-        </div>
+            {region === k && <span className="region-dot" style={{ background: REGION_DOT[k] || '#1c1d1f' }} />}
+            {label}
+          </button>
+        )}
+      </div>
 
-        <div className="container">
-          <div className="methodology-box">
-            <h2>The Methodology</h2>
-            <p>Unlike traditional passport rankings that count the number of visa-free countries, this index calculates a score based on <strong>total accessible tourism volume</strong>. The logic: accessing France (100M visitors) matters more than accessing a small island nation.</p>
-            <div className="formula">
-              Score = Sum(Annual Visitors of all Visa-Free/eTA/VOA destinations)
-            </div>
-            <p className="small-text">
-              Data based on UNWTO 2024 tourism statistics.
-              <a href="/passport-insights" className="learn-more-btn">
-                Key findings
-              </a>
-              <button className="learn-more-btn" onClick={() => setShowMethodology(true)}>
-                Data sources
-              </button>
-            </p>
-          </div>
+      <div className="filter-spacer" />
 
-          {showMethodology && (
-            <div className="modal-overlay" onClick={() => setShowMethodology(false)}>
-              <div className="modal-content methodology-modal" onClick={e => e.stopPropagation()}>
-                <button className="modal-close" onClick={() => setShowMethodology(false)}>×</button>
-                <h2>Data Sources & Methodology</h2>
+      <div className="search-wrap">
+        <svg className="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          className="search-input"
+          placeholder="Search countries…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)} />
 
-                <div className="methodology-section highlight-section">
-                  <h3>Why This Ranking Is Different</h3>
-                  <p>Traditional passport rankings like the <strong>Henley Passport Index</strong> count visa-free destinations equally. A passport with access to 190 countries ranks higher than one with 185, regardless of which countries those are.</p>
-                  <p>This creates a fundamental problem: <strong>not all destinations are equal</strong>. Access to France (100M annual visitors) matters more than access to Palau (100K visitors).</p>
+        {search && <button className="search-clear" onClick={() => setSearch('')} aria-label="Clear">×</button>}
+      </div>
 
-                  <div className="comparison-example">
-                    <h4>Example: South Korea vs Singapore</h4>
-                    <div className="example-grid">
-                      <div className="example-col">
-                        <div className="example-flag">🇸🇬</div>
-                        <div className="example-country">Singapore</div>
-                        <div className="example-stat">#1 on Henley Index</div>
-                      </div>
-                      <div className="example-col">
-                        <div className="example-flag">🇰🇷</div>
-                        <div className="example-country">South Korea</div>
-                        <div className="example-stat">#1 on the Open Door Index</div>
-                      </div>
-                    </div>
-                    <p className="example-explanation">Singapore leads the Henley Passport Index, but South Korea leads our ranking because it has visa-free access to <strong>India</strong>—one of the world's largest tourism markets. Singapore requires a visa for India, losing access to tens of millions of potential visitors.</p>
-                    <p className="example-explanation">The key insight: <em>quality of access matters more than quantity</em>.</p>
-                  </div>
-                </div>
-
-                <div className="methodology-section">
-                  <h3>The Formula</h3>
-                  <div className="formula">
-                    Passport Score = Σ (Annual Visitors) for all visa-free destinations
-                  </div>
-                  <p>For each passport, we sum the annual international tourist arrivals (in millions) of every country that can be accessed without a traditional visa. This weights destinations by their actual tourism activity.</p>
-                  <p><strong>Access types that count:</strong> Visa-free entry, Visa on arrival (VOA), Electronic Travel Authorization (eTA)</p>
-                  <p><strong>Access types that don't count:</strong> Traditional visa required, e-Visa (requires pre-approval)</p>
-                </div>
-
-                <div className="methodology-section">
-                  <h3>Limitations</h3>
-                  <ul>
-                    <li><strong>Tourism ≠ Travel value:</strong> Business travel, family visits, and personal preferences aren't captured by tourism volume</li>
-                    <li><strong>Data lag:</strong> Tourism data may be 1-2 years behind. We use COVID-aware logic to prefer 2019 data over 2020-2022 pandemic years</li>
-                    <li><strong>Policy changes:</strong> Visa policies change frequently; our corrections try to keep up but may miss recent changes</li>
-                    <li><strong>Transit visas:</strong> Special arrangements like China's 144-hour transit visa aren't counted</li>
-                    <li><strong>Small nations:</strong> Some countries have estimated or zero visitor data</li>
-                  </ul>
-                </div>
-
-                <div className="methodology-section">
-                  <h3>Data Sources</h3>
-
-                  <h4>1. Visa Requirements</h4>
-                  <p><strong>Primary:</strong> <a href="https://github.com/ilyankou/passport-index-dataset" target="_blank" rel="noopener noreferrer">Passport Index Dataset</a> by Ilya Ilyankou</p>
-                  <p>Open-source dataset tracking visa requirements between 199 passports and 227 destinations.</p>
-
-                  <h4>2. Tourism Statistics</h4>
-                  <p><strong>Primary:</strong> <a href="https://www.unwto.org/tourism-statistics/key-tourism-statistics" target="_blank" rel="noopener noreferrer">UN Tourism (UNWTO) Inbound Arrivals Dataset</a></p>
-                  <p>Official UN tourism statistics with COVID-aware year selection: we prefer 2019 baseline over 2020-2022 pandemic years when those are the most recent available.</p>
-                </div>
-
-                <div className="methodology-section">
-                  <h3>Manual Corrections (updated June 2026)</h3>
-                  <p>We maintain corrections based on verified embassy and government sources. Full documentation at <a href="https://github.com/visualpharm/visa-free-dataset" target="_blank" rel="noopener noreferrer">our GitHub fork</a>.</p>
-
-                  <h4>Visa Policy Updates</h4>
-                  <table className="adjustments-table">
-                    <thead>
-                      <tr>
-                        <th>Policy Change</th>
-                        <th>Countries Affected</th>
-                        <th>Source</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Brazil visa-free for China (May 2026)</td>
-                        <td>China (May 11 &ndash; Dec 31, 2026, 30-day stays)</td>
-                        <td><a href="https://english.www.gov.cn/news/202605/08/content_WS69fd90b4c6d00ca5f9a0ad29.html" rel="noopener noreferrer">Decree in Di&aacute;rio Oficial da Uni&atilde;o</a></td>
-                      </tr>
-                      <tr>
-                        <td>Maldives &harr; Seychelles visa waiver (May 2026)</td>
-                        <td>Seychelles (May 15, 2026)</td>
-                        <td><a href="https://visasnews.com/en/bilateral-agreements/" rel="noopener noreferrer">VisasNews</a></td>
-                      </tr>
-                      <tr>
-                        <td>China visa-free expansion (Feb 2026)</td>
-                        <td>Canada, United Kingdom (added Feb 17, 2026)</td>
-                        <td><a href="https://www.fmprc.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html" rel="noopener noreferrer">Ministry of Foreign Affairs of China</a></td>
-                      </tr>
-                      <tr>
-                        <td>Türkiye grants visa-free to China</td>
-                        <td>China (Jan 2, 2026)</td>
-                        <td><a href="https://www.dailysabah.com/politics/diplomacy/turkiye-grants-visa-free-travel-to-chinese-nationals" rel="noopener noreferrer">Daily Sabah / Official Gazette</a></td>
-                      </tr>
-                      <tr>
-                        <td>Philippines 14-day visa-free for China</td>
-                        <td>China (Jan 16, 2026)</td>
-                        <td><a href="https://chongqingpcg.dfa.gov.ph/example-pages/news-press-releases/1167-philippines-to-allow-visa-free-entry-for-14-days-for-chinese-nationals" rel="noopener noreferrer">Philippines DFA</a></td>
-                      </tr>
-                      <tr>
-                        <td>Russia–Myanmar mutual visa-free</td>
-                        <td>Myanmar passport ↔ Russia (Jan 27, 2026)</td>
-                        <td><a href="https://tass.com/economy/2073127" rel="noopener noreferrer">TASS</a></td>
-                      </tr>
-                      <tr>
-                        <td>India e-Visa expansion</td>
-                        <td>Algeria, Armenia, Fiji, Kenya, North Macedonia, San Marino, Saudi Arabia, Senegal, Serbia, Seychelles, Uruguay (Jan–Feb 2026)</td>
-                        <td><a href="https://indianvisaonline.gov.in/evisa/tvoa.html" rel="noopener noreferrer">Indian e-Visa portal</a></td>
-                      </tr>
-                      <tr>
-                        <td>Uzbekistan visa-free for US</td>
-                        <td>United States (Jan 1, 2026)</td>
-                        <td><a href="https://gov.uz/en/uzbektourism/news/view/99187" rel="noopener noreferrer">Government of Uzbekistan (Decree No. 203 of Nov 3, 2025)</a></td>
-                      </tr>
-                      <tr>
-                        <td>Kyrgyzstan reduces visa-free 60→30</td>
-                        <td>Australia, New Zealand, United States + 52 others (Dec 31, 2025)</td>
-                        <td><a href="https://www.gov.kg/ru/npa/s/4495" rel="noopener noreferrer">Cabinet of Ministers of Kyrgyzstan (Resolution No. 855 of Dec 31, 2025)</a></td>
-                      </tr>
-                      <tr>
-                        <td>Afghanistan launches e-Visa</td>
-                        <td>Nearly all nationalities (Mar 2026)</td>
-                        <td><a href="https://eafghans.com/e-visa" rel="noopener noreferrer">eafghans.com e-Visa portal</a></td>
-                      </tr>
-                      <tr>
-                        <td>Pakistan suspends visa-on-arrival</td>
-                        <td>126 nationalities incl. Australia, NZ (Jan 1, 2026)</td>
-                        <td><a href="https://visa.nadra.gov.pk/" rel="noopener noreferrer">Pakistan Online Visa System (NADRA)</a></td>
-                      </tr>
-                      <tr>
-                        <td>Qatar suspends VOA for Lebanon</td>
-                        <td>Lebanon (Apr 2, 2026)</td>
-                        <td><a href="https://www.ey.com/en_gl/technical/tax-alerts/qatar-suspends-visa-on-arrival-facility-for-nationals-of-lebanon" rel="noopener noreferrer">EY Tax Alert</a></td>
-                      </tr>
-                      <tr>
-                        <td>Armenia–Gulf visa-free bloc</td>
-                        <td>Armenia ↔ Saudi Arabia, UAE, Qatar (Feb 22, 2026)</td>
-                        <td><a href="https://www.fragomen.com/insights/united-arab-emirates-visa-waiver-for-armenian-nationals-entering-united-arab-emirates.html" rel="noopener noreferrer">Fragomen</a></td>
-                      </tr>
-                      <tr>
-                        <td>Papua New Guinea ↔ UAE</td>
-                        <td>PNG ↔ UAE 30-day visa-free (Feb 4, 2026)</td>
-                        <td><a href="https://info.gov.pg/png-and-uae-elevate-bilateral-relations-with-landmark-visa-waiver-agreement/" rel="noopener noreferrer">Government of PNG</a></td>
-                      </tr>
-                      <tr>
-                        <td>Hong Kong → Azerbaijan pilot</td>
-                        <td>Hong Kong (Feb 2, 2026)</td>
-                        <td><a href="https://www.info.gov.hk/gia/general/202601/30/P2026013000238.htm" rel="noopener noreferrer">Government of Hong Kong</a></td>
-                      </tr>
-                      <tr>
-                        <td>Cape Verde ends VOA</td>
-                        <td>96 nationalities incl. Costa Rica, Egypt, Jamaica, Mexico, Turkey, Uzbekistan, Zimbabwe (Jan 1, 2026)</td>
-                        <td><a href="https://ease.gov.cv/" rel="noopener noreferrer">Cape Verde EASE portal</a></td>
-                      </tr>
-                      <tr>
-                        <td>Uganda visa-free for 40 countries</td>
-                        <td>Mozambique + 39 African nations (Mar 11, 2026)</td>
-                        <td><a href="https://www.immigration.go.ug/services/visa-exempt-countries" rel="noopener noreferrer">Uganda Immigration</a></td>
-                      </tr>
-                      <tr>
-                        <td>Mexico reinstates e-Visa for Brazil</td>
-                        <td>Brazil (Feb 5, 2026)</td>
-                        <td><a href="https://www.gob.mx/sre/prensa/electronic-visa-for-brazilian-nationals?idiom=en" rel="noopener noreferrer">Mexican SRE</a></td>
-                      </tr>
-                      <tr>
-                        <td>Nicaragua visa-policy overhaul</td>
-                        <td>Antigua and Barbuda, Bahamas, Barbados, Colombia, Cuba, Peru, Trinidad and Tobago (Feb 16, 2026)</td>
-                        <td><a href="https://www.mint.gob.ni/migracion/disposicion-n-002-2026-cambio-de-categorias-migratorias-de-visa-para-ingresar-a-nicaragua/" rel="noopener noreferrer">Ministerio del Interior de Nicaragua (Disposición No. 002-2026)</a></td>
-                      </tr>
-                      <tr>
-                        <td>US Proclamation 10998 — visa suspensions</td>
-                        <td>Haiti — full suspension (all categories). Cuba, Venezuela, Antigua and Barbuda, Dominica — partial suspension (B-1/B-2 visitor, F/M/J student/exchange, immigrant only; diplomatic/transit/employment categories remain available, so dataset value stays "visa required"). Effective Jan 1, 2026.</td>
-                        <td><a href="https://www.presidency.ucsb.edu/documents/proclamation-10998-restricting-and-limiting-the-entry-foreign-nationals-protect-the" rel="noopener noreferrer">Proclamation 10998 full text</a> · <a href="https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html" rel="noopener noreferrer">US State Department</a></td>
-                      </tr>
-                      <tr>
-                        <td>UK removes Saint Lucia from ETA</td>
-                        <td>Saint Lucia (Mar 5, 2026)</td>
-                        <td><a href="https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-1619-5-march-2026/explanatory-memorandum-to-the-statement-of-changes-in-the-immigration-rules-hc-1691-5-march-2026-accessible" rel="noopener noreferrer">UK Home Office HC 1691</a></td>
-                      </tr>
-                      <tr>
-                        <td>China visa-free expansion (2025)</td>
-                        <td>Argentina, Brazil, Chile, Peru, Uruguay, Russia + 6 others</td>
-                        <td><a href="https://en.nia.gov.cn/n147418/n147463/c183390/content.html" rel="noopener noreferrer">NIA China</a></td>
-                      </tr>
-                      <tr>
-                        <td>Japan visa exemptions (2025)</td>
-                        <td>Montenegro, Paraguay, Peru, UAE</td>
-                        <td><a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" rel="noopener noreferrer">MOFA Japan</a></td>
-                      </tr>
-                      <tr>
-                        <td>Indonesia visa-free (2025)</td>
-                        <td>Brazil, Peru, Turkey</td>
-                        <td><a href="https://www.imigrasi.go.id/berita/pemerintah-indonesia-terapkan-bebas-visa-kunjungan-bagi-warga-negara-brasil-dan-turki" rel="noopener noreferrer">Imigrasi Indonesia</a></td>
-                      </tr>
-                      <tr>
-                        <td>Belarus visa exemption (2025)</td>
-                        <td>Vietnam</td>
-                        <td><a href="https://www.vietnam.mfa.gov.by/en/embassy/news/f5f4061212b78e80.html" rel="noopener noreferrer">Embassy of Belarus in Vietnam</a></td>
-                      </tr>
-                      <tr>
-                        <td>Namibia ends visa-free access (2025)</td>
-                        <td>33 countries (US, UK, Germany, etc.)</td>
-                        <td><a href="https://embassyofnamibia.se/index.php/consular-matters/new-visa-requirements-1-april-2025" rel="noopener noreferrer">Embassy of Namibia in Sweden</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <h4>Tourism Data Updates (6 countries)</h4>
-                  <p>Countries with severely outdated UN data:</p>
-                  <table className="adjustments-table">
-                    <thead>
-                      <tr>
-                        <th>Country</th>
-                        <th>Old Data</th>
-                        <th>Updated</th>
-                        <th>Source</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Russia</td>
-                        <td>19.9M (2005)</td>
-                        <td>9.7M (2024)</td>
-                        <td><a href="https://tass.com/economy/1942339" target="_blank" rel="noopener noreferrer">TASS</a></td>
-                      </tr>
-                      <tr>
-                        <td>Australia</td>
-                        <td>5.1M (2006)</td>
-                        <td>7.6M (2024)</td>
-                        <td><a href="https://www.statista.com/statistics/620187/australia-number-of-international-visitors/" target="_blank" rel="noopener noreferrer">Statista</a></td>
-                      </tr>
-                      <tr>
-                        <td>Syria</td>
-                        <td>5.1M (2011)</td>
-                        <td>1.5M (2023)</td>
-                        <td><a href="https://tradingeconomics.com/syria/international-tourism-number-of-arrivals-wb-data.html" target="_blank" rel="noopener noreferrer">Trading Economics</a></td>
-                      </tr>
-                      <tr>
-                        <td>Zimbabwe</td>
-                        <td>2.1M (2001)</td>
-                        <td>1.6M (2023)</td>
-                        <td><a href="https://tradingeconomics.com/zimbabwe/tourist-arrivals" target="_blank" rel="noopener noreferrer">Trading Economics</a></td>
-                      </tr>
-                      <tr>
-                        <td>Pakistan</td>
-                        <td>1.0M (2012)</td>
-                        <td>1.0M (2023)</td>
-                        <td><a href="https://www.statista.com/statistics/1336006/number-international-tourists-pakistan/" target="_blank" rel="noopener noreferrer">Statista</a></td>
-                      </tr>
-                      <tr>
-                        <td>Cameroon</td>
-                        <td>0.8M (2012)</td>
-                        <td>1.1M (2023)</td>
-                        <td><a href="https://data.worldbank.org/indicator/ST.INT.ARVL?locations=CM" target="_blank" rel="noopener noreferrer">World Bank</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="methodology-section last-updated">
-                  <p><strong>Last Updated:</strong> June 2026</p>
-                  <p className="disclaimer">This is an independent ranking for informational purposes. Always verify visa requirements with official sources before traveling.</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {showComparison && selectedPassports.length >= 2 && (
-            <div className="modal-overlay" onClick={() => { setShowComparison(false); setShowAllDifferences(false); }}>
-              <div className="modal-content comparison-modal" onClick={e => e.stopPropagation()}>
-                <button className="modal-close" onClick={() => { setShowComparison(false); setShowAllDifferences(false); }}>×</button>
-                <h2>Passport Comparison</h2>
-
-                {(() => {
-                  const differences = getUnifiedDifferences(selectedPassports)
-
-                  // Sort differences based on current sort settings
-                  const sortedDiffs = [...differences].sort((a, b) => {
-                    const dir = comparisonSort.direction === 'asc' ? 1 : -1
-                    if (comparisonSort.column === 'destination') {
-                      return dir * a.destination.localeCompare(b.destination)
-                    }
-                    if (comparisonSort.column === 'tourism') {
-                      return dir * (a.tourism - b.tourism)
-                    }
-                    if (comparisonSort.column === 'rank') {
-                      // Rank is derived from tourism, so sort by tourism descending = rank ascending
-                      return dir * (a.tourism - b.tourism)
-                    }
-                    return 0
-                  })
-
-                  // Calculate ranks (based on tourism value, descending)
-                  const rankedDiffs = sortedDiffs.map((diff, idx) => {
-                    // Find rank in original tourism-sorted order
-                    const tourismSorted = [...differences].sort((a, b) => b.tourism - a.tourism)
-                    const rank = tourismSorted.findIndex(d => d.destination === diff.destination) + 1
-                    return { ...diff, rank }
-                  })
-
-                  const displayLimit = 30
-                  const displayedDiffs = showAllDifferences ? rankedDiffs : rankedDiffs.slice(0, displayLimit)
-                  const hiddenCount = differences.length - displayLimit
-
-                  const handleSort = (column) => {
-                    setComparisonSort(prev => ({
-                      column,
-                      direction: prev.column === column && prev.direction === 'desc' ? 'asc' : 'desc'
-                    }))
-                  }
-
-                  const SortIcon = ({ column }) => {
-                    if (comparisonSort.column !== column) return <span className="sort-icon">↕</span>
-                    return <span className="sort-icon active">{comparisonSort.direction === 'desc' ? '↓' : '↑'}</span>
-                  }
-
-                  return (
-                    <div className="comparison-content">
-                      <table className="comparison-table unified-table">
-                        <thead>
-                          <tr>
-                            <th className="rank-header sortable" onClick={() => handleSort('rank')}>
-                              Rank <SortIcon column="rank" />
-                            </th>
-                            <th className="dest-header sortable" onClick={() => handleSort('destination')}>
-                              Destination <SortIcon column="destination" />
-                            </th>
-                            <th className="tourism-header sortable" onClick={() => handleSort('tourism')}>
-                              Visitors <SortIcon column="tourism" />
-                            </th>
-                            {selectedPassports.map(p => (
-                              <th key={p.id} className="passport-header">
-                                <span className={`comparison-flag ${p.isCombo ? 'combo-flags' : ''}`}>
-                                  {p.isCombo ? p.flags : p.flag}
-                                </span>
-                                <span className="passport-name">{p.country}</span>
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {displayedDiffs.map((diff, i) => (
-                            <tr key={i}>
-                              <td className="rank-cell">{diff.rank}</td>
-                              <td className="dest-cell">{diff.destination}</td>
-                              <td className="tourism-cell">{diff.tourism > 0 ? `${diff.tourism}M` : '-'}</td>
-                              {diff.access.map((hasAccess, j) => (
-                                <td key={j} className={`access-cell ${hasAccess ? 'has-access' : 'no-access'}`}>
-                                  {hasAccess ? '✅' : '❌'}
-                                </td>
-                              ))}
-                            </tr>
-                          ))}
-                          {differences.length === 0 && (
-                            <tr>
-                              <td colSpan={selectedPassports.length + 3} className="no-differences">
-                                These passports have identical visa-free access!
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                      {!showAllDifferences && hiddenCount > 0 && (
-                        <button
-                          className="show-more-link"
-                          onClick={() => setShowAllDifferences(true)}
-                        >
-                          {hiddenCount} more...
-                        </button>
-                      )}
-                      {showAllDifferences && hiddenCount > 0 && (
-                        <button
-                          className="show-more-link"
-                          onClick={() => setShowAllDifferences(false)}
-                        >
-                          Show less
-                        </button>
-                      )}
-                      <div className="comparison-summary">
-                        <p>{differences.length} destinations with different access across {selectedPassports.length} passports</p>
-                      </div>
-                    </div>
-                  )
-                })()}
-              </div>
-            </div>
-          )}
-
-          <div className="map-container">
-            <h2>Global Passport Power Map</h2>
-            {tooltipContent && (
-              <div
-                className="map-tooltip"
-                style={{ left: tooltipPosition.x, top: tooltipPosition.y }}
-              >
-                {tooltipContent}
-              </div>
-            )}
-            <ComposableMap
-              projection="geoMercator"
-              projectionConfig={{
-                scale: 130,
-                center: [0, 30]
-              }}
-              style={{ width: '100%', height: 'auto' }}
-            >
-              <ZoomableGroup>
-                <Geographies geography={geoUrl}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => {
-                      // world-atlas uses ISO numeric codes as geo.id
-                      const numericId = geo.id
-                      const passportId = isoNumericMap[numericId]
-                      const passport = passportId ? passportById[passportId] : null
-                      const fillColor = passport ? getGradientColor(passport.score) : '#e5e7eb'
-
-                      return (
-                        <Geography
-                          key={geo.rsmKey}
-                          geography={geo}
-                          fill={fillColor}
-                          stroke="#fff"
-                          strokeWidth={0.5}
-                          style={{
-                            default: { outline: 'none' },
-                            hover: { outline: 'none', stroke: '#fff', strokeWidth: 2 },
-                            pressed: { outline: 'none' }
-                          }}
-                          onMouseEnter={(e) => {
-                            const name = geo.properties.name || geo.properties.NAME || 'Unknown'
-                            if (passport) {
-                              setTooltipContent(`${passport.flag} ${passport.country}: ${formatNumber(passport.score)}`)
-                            } else {
-                              setTooltipContent(name)
-                            }
-                            setTooltipPosition({ x: e.clientX + 10, y: e.clientY - 30 })
-                          }}
-                          onMouseMove={(e) => {
-                            setTooltipPosition({ x: e.clientX + 10, y: e.clientY - 30 })
-                          }}
-                          onMouseLeave={() => {
-                            setTooltipContent('')
-                          }}
-                        />
-                      )
-                    })
-                  }
-                </Geographies>
-              </ZoomableGroup>
-            </ComposableMap>
-            <div className="map-legend">
-              <span className="legend-label">Low</span>
-              <div className="legend-gradient"></div>
-              <span className="legend-label">High</span>
-              <span className="legend-item" style={{marginLeft: '1rem'}}><span className="legend-color" style={{background: '#e5e7eb'}}></span> No data</span>
-            </div>
-          </div>
-
-          <div className="controls">
-            <div className="search-box">
-              <input
-                type="text"
-                placeholder="Search by country name..."
-                value={currentFilter}
-                onChange={(e) => setCurrentFilter(e.target.value)}
-              />
-            </div>
-            <div className="filter-controls">
-              <select
-                className="filter-select"
-                value={currentRegion}
-                onChange={(e) => setCurrentRegion(e.target.value)}
-              >
-                <option value="all">All Regions ({regionCounts.all})</option>
-                <option value="Europe">Europe ({regionCounts.Europe})</option>
-                <option value="Asia">Asia ({regionCounts.Asia})</option>
-                <option value="Americas">Americas ({regionCounts.Americas})</option>
-                <option value="Africa">Africa ({regionCounts.Africa})</option>
-                <option value="Oceania">Oceania ({regionCounts.Oceania})</option>
-              </select>
-              <select
-                className="filter-select"
-                value={currentSort}
-                onChange={(e) => setCurrentSort(e.target.value)}
-              >
-                <option value="score">Sort by Score</option>
-                <option value="name">Sort by Name</option>
-              </select>
-              <button
-                className="export-btn"
-                onClick={() => downloadCSV(passportData)}
-              >
-                Export CSV
-              </button>
-            </div>
-          </div>
-
-          <div className="table-wrapper">
-            <div className="compare-bar">
-              <div className="bar-arrow-cell">
-                <svg className="curved-arrow" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                  <path fill="currentColor" d="M 21 5 C 17.144531 5 14 8.144531 14 12 L 14 42.585938 L 3.707031 32.292969 C 3.519531 32.097656 3.261719 31.992188 2.992188 31.988281 C 2.582031 31.992188 2.21875 32.238281 2.0625 32.613281 C 1.910156 32.992188 2 33.421875 2.292969 33.707031 L 14.203125 45.621094 C 14.261719 45.691406 14.324219 45.753906 14.394531 45.8125 L 15 46.414063 L 15.609375 45.808594 C 15.675781 45.753906 15.738281 45.691406 15.792969 45.625 C 15.792969 45.621094 15.796875 45.621094 15.796875 45.617188 L 27.707031 33.707031 C 27.96875 33.457031 28.074219 33.082031 27.980469 32.734375 C 27.890625 32.382813 27.617188 32.109375 27.265625 32.019531 C 26.917969 31.925781 26.542969 32.03125 26.292969 32.292969 L 16 42.585938 L 16 12 C 16 9.226563 18.226563 7 21 7 L 47 7 C 47.359375 7.003906 47.695313 6.816406 47.878906 6.503906 C 48.058594 6.191406 48.058594 5.808594 47.878906 5.496094 C 47.695313 5.183594 47.359375 4.996094 47 5 Z"/>
-                </svg>
-              </div>
-              <div className="bar-content">
-                {selectedIds.size < 2 ? (
-                  <span className="hint-text">Choose 2+ to compare</span>
-                ) : (
-                  <>
-                    <button
-                      className="compare-btn-small"
-                      onClick={() => setShowComparison(true)}
-                    >
-                      Compare {selectedIds.size}
-                    </button>
-                    <button
-                      className="combo-btn-small"
-                      onClick={createCombo}
-                    >
-                      Passport combo
-                    </button>
-                    <button
-                      className="clear-btn-small"
-                      onClick={() => setSelectedIds(new Set())}
-                    >
-                      Clear
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th className="rank-col">Rank</th>
-                  <th className="checkbox-col"></th>
-                  <th className="country-col">Country</th>
-                  <th className="score-col">Visitors</th>
-                  <th className="access-col">Unique Access</th>
-                  <th className="expand-col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {(() => {
-                  // Pre-calculate rank groups for merged cells
-                  const rankGroups = []
-                  if (currentSort === 'score') {
-                    let currentRank = 1
-                    let i = 0
-                    while (i < filteredData.length) {
-                      const currentScore = filteredData[i].score
-                      let groupSize = 1
-                      // Count how many countries have the same score
-                      while (i + groupSize < filteredData.length && filteredData[i + groupSize].score === currentScore) {
-                        groupSize++
-                      }
-                      // Assign same rank to all in group
-                      for (let j = 0; j < groupSize; j++) {
-                        rankGroups.push({
-                          rank: currentRank,
-                          isFirstInGroup: j === 0,
-                          groupSize: groupSize
-                        })
-                      }
-                      currentRank += groupSize
-                      i += groupSize
-                    }
-                  }
-
-                  return filteredData.map((passport, index) => {
-                    const rankInfo = currentSort === 'score' ? rankGroups[index] : null
-                    const rank = rankInfo ? rankInfo.rank : '-'
-                    const rankClass = rank <= 3 ? `rank-${rank}` : ''
-                    const progressWidth = (passport.score / maxScore) * 100
-                    const isExpanded = expandedIds.has(passport.id)
-                    const showRankCell = currentSort !== 'score' || rankInfo?.isFirstInGroup
-
-                    // Sort unique contributors by value descending (uniqueness %)
-                    const sortedContributors = [...(passport.uniqueContributors || [])].sort((a, b) => b.value - a.value)
-
-                    // Calculate rowSpan: need to account for expanded detail rows
-                    const calculateRowSpan = () => {
-                      if (!rankInfo || !rankInfo.isFirstInGroup) return 1
-                      let span = rankInfo.groupSize
-                      // Add extra rows for any expanded items in this group
-                      for (let j = 0; j < rankInfo.groupSize; j++) {
-                        if (expandedIds.has(filteredData[index + j]?.id)) {
-                          span++
-                        }
-                      }
-                      return span
-                    }
-
-                    return (
-                      <React.Fragment key={passport.id}>
-                        <tr
-                          className={`clickable ${isExpanded ? 'expanded' : ''} ${passport.isCombo ? 'combo-row' : ''}`}
-                          onClick={() => toggleExpand(passport.id)}
-                        >
-                          {showRankCell && (
-                            <td
-                              className={`rank ${rankClass}`}
-                              rowSpan={calculateRowSpan()}
-                            >
-                              {rank}
-                            </td>
-                          )}
-                          <td className="checkbox-cell" onClick={(e) => { e.stopPropagation(); toggleSelection(passport.id); }}>
-                            <label className="checkbox-label">
-                              <input
-                                type="checkbox"
-                                checked={selectedIds.has(passport.id)}
-                                onChange={() => toggleSelection(passport.id)}
-                                onClick={(e) => e.stopPropagation()}
-                              />
-                            </label>
-                          </td>
-                        <td className="country-cell">
-                          <span className={`flag ${passport.isCombo ? 'combo-flags' : ''}`}>{passport.isCombo ? passport.flags : passport.flag}</span>
-                          <span className="country-name">{passport.country}</span>
-                        </td>
-                        <td className="score-cell">
-                          <div className="score-value">{formatNumber(passport.score)}</div>
-                          <div className="progress-bar">
-                            <div
-                              className="progress-fill"
-                              style={{ width: `${progressWidth}%`, background: getGradientColor(passport.score) }}
-                            ></div>
-                          </div>
-                        </td>
-                        <td className="key-access">
-                          {(passport.uniqueAccess || []).map((k, i) => (
-                            <span key={i} className="key-access-tag">{k}</span>
-                          ))}
-                        </td>
-                        <td className="expand-cell">
-                          {passport.isCombo && (
-                            <button
-                              className="remove-combo-btn"
-                              onClick={(e) => { e.stopPropagation(); removeCombo(passport.id); }}
-                              title="Remove combo"
-                            >
-                              ×
-                            </button>
-                          )}
-                          <span className={`expand-icon ${isExpanded ? 'rotated' : ''}`}>▼</span>
-                        </td>
-                      </tr>
-                      {isExpanded && (
-                        <tr className="detail-row">
-                          <td colSpan="6">
-                            <div className="detail-content">
-                              <div className="detail-grid">
-                                <div className="detail-section">
-                                  <h4>Top Contributors</h4>
-                                  {(passport.topContributors || []).map((c, i) => (
-                                    <div key={i} className="detail-item">
-                                      <span className="country">{c.country}</span>
-                                      <span className="value positive">+{c.value}M</span>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="detail-section">
-                                  <h4>Top Visa-Required</h4>
-                                  {passport.misses.length > 0 ? passport.misses.map((c, i) => (
-                                    <div key={i} className="detail-item">
-                                      <span className="country">{c.country}</span>
-                                      <span className="value negative">{c.value}M</span>
-                                    </div>
-                                  )) : <p className="no-misses">No major restrictions</p>}
-                                </div>
-                                {passport.note && (
-                                  <div className="detail-section commentary-section">
-                                    <h4>{passport.note.title}</h4>
-                                    <p className="commentary-text">{passport.note.text}</p>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      )}
-                    </React.Fragment>
-                    )
-                  })
-                })()}
-              </tbody>
-            </table>
-          </div>
-          </div>
-
-          <div className="footer-info">
-            <p>Data sources: <a href="https://www.unwto.org/tourism-statistics/tourism-statistics-database">UNWTO Tourism Statistics 2023/2024</a>, <a href="https://github.com/ilyankou/passport-index-dataset" className="github-link"><svg viewBox="0 0 16 16" width="16" height="16" className="github-icon"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> Passport Index Dataset</a></p>
-          </div>
+      <div className="sort-group">
+        <span className="t-mini">Sort</span>
+        <div className="sort-wrap">
+          <button className={'sort-btn' + (sort === 'score' ? ' is-active' : '')} onClick={() => setSort('score')}>Score</button>
+          <button className={'sort-btn' + (sort === 'name' ? ' is-active' : '')} onClick={() => setSort('name')}>Name</button>
         </div>
       </div>
 
-      <style jsx>{`
-        .passport-page {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 2rem 3rem;
-        }
-
-        .header-section {
-          text-align: center;
-          padding: 3rem 0 2rem;
-        }
-
-        .header-section h1 {
-          font-size: 2.5rem;
-          font-weight: 700;
-          margin-bottom: 1rem;
-          color: var(--primary-color);
-        }
-
-        .subtitle {
-          font-size: 1.1rem;
-          color: var(--secondary-color);
-          max-width: 700px;
-          margin: 0 auto 1rem;
-        }
-
-        .passport-count {
-          font-size: 0.9rem;
-          color: var(--accent-color);
-          font-weight: 600;
-        }
-
-        .methodology-box {
-          background: var(--card-bg);
-          border: 1px solid var(--border-color);
-          border-radius: 12px;
-          padding: 1.5rem;
-          margin-bottom: 2rem;
-        }
-
-        .map-container {
-          background: var(--card-bg);
-          border: 1px solid var(--border-color);
-          border-radius: 12px;
-          padding: 1.5rem;
-          margin-bottom: 2rem;
-          position: relative;
-        }
-
-        .map-container h2 {
-          font-size: 1.2rem;
-          color: var(--primary-color);
-          margin-bottom: 1rem;
-        }
-
-        .map-tooltip {
-          position: fixed;
-          background: rgba(0, 0, 0, 0.85);
-          color: white;
-          padding: 8px 12px;
-          border-radius: 6px;
-          font-size: 0.85rem;
-          pointer-events: none;
-          z-index: 1000;
-          white-space: nowrap;
-        }
-
-        .map-legend {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          justify-content: center;
-          align-items: center;
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px solid var(--border-color);
-        }
-
-        .legend-gradient {
-          width: 200px;
-          height: 16px;
-          border-radius: 3px;
-          background: linear-gradient(to right,
-            hsl(0, 75%, 48%),
-            hsl(25, 85%, 50%),
-            hsl(45, 85%, 50%),
-            hsl(75, 70%, 42%),
-            hsl(120, 75%, 48%)
-          );
-        }
-
-        .legend-label {
-          font-size: 0.8rem;
-          color: var(--secondary-color);
-        }
-
-        .legend-item {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.8rem;
-          color: var(--secondary-color);
-        }
-
-        .legend-color {
-          width: 16px;
-          height: 16px;
-          border-radius: 3px;
-        }
-
-        .export-btn {
-          padding: 0.75rem 1.25rem;
-          border: 1px solid var(--accent-color);
-          border-radius: 8px;
-          background: var(--accent-color);
-          color: white;
-          font-size: 0.9rem;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .export-btn:hover {
-          background: #3347b0;
-        }
-
-        .methodology-box h2 {
-          font-size: 1.2rem;
-          color: var(--primary-color);
-          margin-bottom: 1rem;
-        }
-
-        .methodology-box p {
-          color: var(--secondary-color);
-          margin-bottom: 1rem;
-          line-height: 1.6;
-        }
-
-        .formula {
-          background: var(--bg-color);
-          border-left: 4px solid var(--accent-color);
-          padding: 1rem 1.25rem;
-          border-radius: 0 8px 8px 0;
-          font-family: 'Courier New', monospace;
-          color: var(--primary-color);
-          font-size: 0.9rem;
-          overflow-x: auto;
-        }
-
-        .small-text {
-          font-size: 0.85rem;
-          margin-top: 1rem;
-          margin-bottom: 0;
-        }
-
-        .learn-more-btn {
-          background: none;
-          border: none;
-          color: var(--accent-color);
-          text-decoration: underline;
-          cursor: pointer;
-          font-size: 0.85rem;
-          margin-left: 0.5rem;
-          padding: 0;
-        }
-
-        .learn-more-btn:hover {
-          color: #3347b0;
-        }
-
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.7);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-          padding: 1rem;
-        }
-
-        .modal-content {
-          background: var(--card-bg);
-          border-radius: 12px;
-          max-width: 800px;
-          max-height: 90vh;
-          overflow-y: auto;
-          padding: 2rem;
-          position: relative;
-          border: 1px solid var(--border-color);
-        }
-
-        .modal-close {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background: none;
-          border: none;
-          font-size: 2rem;
-          cursor: pointer;
-          color: var(--secondary-color);
-          line-height: 1;
-          padding: 0;
-          width: 40px;
-          height: 40px;
-        }
-
-        .modal-close:hover {
-          color: var(--primary-color);
-        }
-
-        .modal-content h2 {
-          font-size: 1.5rem;
-          color: var(--primary-color);
-          margin-bottom: 1.5rem;
-          padding-right: 2rem;
-        }
-
-        .methodology-section {
-          margin-bottom: 1.5rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .methodology-section:last-child {
-          border-bottom: none;
-          margin-bottom: 0;
-          padding-bottom: 0;
-        }
-
-        .methodology-section h3 {
-          font-size: 1.1rem;
-          color: var(--primary-color);
-          margin-bottom: 0.75rem;
-        }
-
-        .methodology-section h4 {
-          font-size: 0.95rem;
-          color: var(--primary-color);
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .methodology-section p {
-          color: var(--secondary-color);
-          font-size: 0.9rem;
-          line-height: 1.6;
-          margin-bottom: 0.75rem;
-        }
-
-        .methodology-section ul {
-          margin: 0.5rem 0;
-          padding-left: 1.5rem;
-          color: var(--secondary-color);
-          font-size: 0.9rem;
-        }
-
-        .methodology-section li {
-          margin-bottom: 0.4rem;
-          line-height: 1.5;
-        }
-
-        .methodology-section a {
-          color: var(--accent-color);
-          text-decoration: underline;
-        }
-
-        .methodology-section a:hover {
-          color: #3347b0;
-        }
-
-        .adjustments-table {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: 0.85rem;
-          margin-top: 0.75rem;
-        }
-
-        .adjustments-table th,
-        .adjustments-table td {
-          padding: 0.6rem 0.75rem;
-          text-align: left;
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .adjustments-table th {
-          background: var(--bg-color);
-          color: var(--primary-color);
-          font-weight: 600;
-        }
-
-        .adjustments-table td {
-          color: var(--secondary-color);
-        }
-
-        .last-updated {
-          text-align: center;
-        }
-
-        .last-updated p {
-          color: var(--secondary-color);
-          font-size: 0.85rem;
-        }
-
-        .last-updated .disclaimer {
-          font-style: italic;
-          margin-top: 0.5rem;
-        }
-
-        /* Methodology modal enhancements */
-        .methodology-modal {
-          max-width: 900px;
-        }
-
-        .highlight-section {
-          background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
-          border: 1px solid rgba(99, 102, 241, 0.2);
-          border-radius: 8px;
-          padding: 1.5rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .comparison-example {
-          background: var(--card-bg);
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          padding: 1.25rem;
-          margin-top: 1rem;
-        }
-
-        .comparison-example h4 {
-          color: var(--primary-color);
-          font-size: 1rem;
-          margin-bottom: 1rem;
-          text-align: center;
-        }
-
-        .example-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .example-col {
-          text-align: center;
-          padding: 1rem;
-          background: var(--bg-color);
-          border-radius: 8px;
-        }
-
-        .example-flag {
-          font-size: 2.5rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .example-country {
-          font-weight: 600;
-          color: var(--primary-color);
-          font-size: 1.1rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .example-stat {
-          color: var(--accent-color);
-          font-weight: 600;
-          font-size: 0.85rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .example-detail {
-          color: var(--secondary-color);
-          font-size: 0.8rem;
-        }
-
-        .example-explanation {
-          color: var(--secondary-color);
-          font-size: 0.9rem;
-          line-height: 1.6;
-          margin-bottom: 0.5rem;
-        }
-
-        .example-explanation:last-child {
-          margin-bottom: 0;
-        }
-
-        .example-explanation em {
-          color: var(--primary-color);
-          font-style: italic;
-        }
-
-        .controls {
-          display: flex;
-          gap: 1rem;
-          margin-bottom: 1rem;
-          flex-wrap: wrap;
-        }
-
-        .search-box {
-          flex: 1;
-          min-width: 200px;
-        }
-
-        .search-box input {
-          width: 100%;
-          padding: 0.75rem 1rem;
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          background: var(--card-bg);
-          color: var(--primary-color);
-          font-size: 1rem;
-        }
-
-        .search-box input:focus {
-          outline: none;
-          border-color: var(--accent-color);
-        }
-
-        .filter-controls {
-          display: flex;
-          gap: 0.5rem;
-        }
-
-        .filter-select {
-          padding: 0.75rem 1rem;
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          background: var(--card-bg);
-          color: var(--primary-color);
-          font-size: 0.9rem;
-          cursor: pointer;
-          transition: all 0.2s;
-          min-width: 140px;
-        }
-
-        .filter-select:hover {
-          border-color: var(--accent-color);
-        }
-
-        .filter-select:focus {
-          outline: none;
-          border-color: var(--accent-color);
-        }
-
-        .table-container {
-          background: var(--card-bg);
-          border-radius: 12px;
-          overflow: hidden;
-          border: 1px solid var(--border-color);
-          width: 100%;
-        }
-
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-
-        th {
-          padding: 1rem;
-          text-align: left;
-          font-weight: 600;
-          color: var(--secondary-color);
-          text-transform: uppercase;
-          font-size: 0.75rem;
-          letter-spacing: 0.5px;
-          background: var(--bg-color);
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .checkbox-col { width: 4%; }
-        .rank-col { width: 6%; }
-        .country-col { width: 18%; }
-        .score-col { width: 14%; }
-        .access-col { width: 53%; }
-        .expand-col { width: 5%; }
-
-        tbody tr.clickable {
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        tbody tr.clickable:last-of-type {
-          border-bottom: none;
-        }
-
-        td {
-          padding: 0.75rem 1rem;
-          vertical-align: middle;
-        }
-
-        tr.clickable {
-          cursor: pointer;
-        }
-
-        tr.clickable:hover {
-          background: var(--bg-color);
-        }
-
-        tr.expanded {
-          background: var(--bg-color);
-        }
-
-        tr.expanded td {
-        }
-
-        .rank {
-          font-weight: 700;
-          font-size: 1rem;
-          color: var(--secondary-color);
-          vertical-align: middle;
-          text-align: center;
-          border-right: 1px solid var(--border-color);
-        }
-
-        .rank-1 { color: #fbbf24; }
-        .rank-2 { color: #9ca3af; }
-        .rank-3 { color: #d97706; }
-
-        .country-cell {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        .flag {
-          font-size: 1.5rem;
-          line-height: 1;
-        }
-
-        .country-name {
-          font-weight: 500;
-          color: var(--primary-color);
-          font-size: 0.95rem;
-        }
-
-        .score-cell {
-          min-width: 120px;
-        }
-
-        .score-value {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--primary-color);
-          margin-bottom: 4px;
-        }
-
-        .progress-bar {
-          height: 4px;
-          background: var(--border-color);
-          border-radius: 2px;
-          overflow: hidden;
-        }
-
-        .progress-fill {
-          height: 100%;
-          border-radius: 2px;
-          transition: width 0.5s ease;
-        }
-
-        .key-access {
-          font-size: 0.8rem;
-        }
-
-        .key-access-tag {
-          display: inline-block;
-          background: var(--bg-color);
-          padding: 0.25rem 0.5rem;
-          border-radius: 4px;
-          margin: 2px;
-          font-size: 0.75rem;
-          color: var(--secondary-color);
-        }
-
-        .expand-cell {
-          text-align: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.25rem;
-        }
-
-        .expand-icon {
-          color: var(--secondary-color);
-          font-size: 0.7rem;
-          transition: transform 0.3s;
-          display: inline-block;
-        }
-
-        .expand-icon.rotated {
-          transform: rotate(180deg);
-        }
-
-        .detail-row td {
-          padding: 0;
-          background: var(--bg-color);
-        }
-
-        .detail-row {
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .detail-content {
-          padding: 1.5rem;
-          overflow: hidden;
-        }
-
-        .detail-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1.5fr;
-          gap: 1rem;
-          max-width: 100%;
-        }
-
-        .detail-section {
-          background: var(--card-bg);
-          padding: 1rem;
-          border-radius: 8px;
-          border: 1px solid var(--border-color);
-        }
-
-        .detail-section h4 {
-          color: var(--accent-color);
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-bottom: 0.75rem;
-        }
-
-
-        .commentary-section {
-          background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(34, 197, 94, 0.1));
-          border: 1px solid rgba(34, 197, 94, 0.3);
-          border-left: 4px solid #22c55e;
-        }
-
-        .commentary-section h4 {
-          color: #16a34a;
-          font-size: 0.95rem;
-          font-weight: 600;
-          text-transform: none;
-          letter-spacing: 0;
-        }
-
-        .commentary-text {
-          color: var(--primary-color);
-          font-size: 0.9rem;
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        .detail-item {
-          display: flex;
-          justify-content: space-between;
-          padding: 0.5rem 0;
-          border-bottom: 1px solid var(--border-color);
-          font-size: 0.9rem;
-        }
-
-        .detail-item:last-child {
-          border-bottom: none;
-        }
-
-        .detail-item .country {
-          color: var(--primary-color);
-        }
-
-        .detail-item .value {
-          font-weight: 600;
-        }
-
-        .detail-item .value.positive {
-          color: #22c55e;
-        }
-
-        .detail-item .value.negative {
-          color: #ef4444;
-        }
-
-        .no-misses {
-          color: var(--secondary-color);
-          font-size: 0.9rem;
-          margin: 0;
-        }
-
-        .footer-info {
-          text-align: center;
-          padding: 2rem;
-          color: var(--secondary-color);
-          font-size: 0.85rem;
-        }
-
-        .footer-info a {
-          color: #2563eb;
-          text-decoration: underline;
-        }
-
-        .footer-info a:hover {
-          color: #1d4ed8;
-        }
-
-        .footer-info .github-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-        }
-
-        .footer-info .github-icon {
-          vertical-align: middle;
-        }
-
-        @media (max-width: 768px) {
-          .passport-page {
-            padding: 0 1rem 2rem;
-          }
-
-          .header-section h1 {
-            font-size: 1.8rem;
-          }
-
-          th, td {
-            padding: 0.5rem 0.25rem;
-          }
-
-          .rank-col {
-            width: 40px;
-          }
-
-          .score-col {
-            width: 80px;
-          }
-
-          .expand-col {
-            width: 30px;
-          }
-
-          .access-col {
-            display: none;
-          }
-
-          .key-access {
-            display: none;
-          }
-
-          .country-col {
-            width: auto;
-          }
-
-          .country-cell {
-            gap: 0.5rem;
-          }
-
-          .flag {
-            font-size: 1.2rem;
-          }
-
-          .country-name {
-            font-size: 0.85rem;
-          }
-
-          .score-value {
-            font-size: 0.85rem;
-          }
-
-          .rank {
-            font-size: 0.9rem;
-          }
-
-          .detail-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .controls {
-            flex-direction: column;
-          }
-
-          .filter-controls {
-            width: 100%;
-            flex-direction: column;
-          }
-
-          .filter-select {
-            width: 100%;
-          }
-
-          .export-btn {
-            width: 100%;
-          }
-
-          .map-legend {
-            gap: 0.5rem;
-          }
-
-          .legend-gradient {
-            width: 120px;
-          }
-
-          .legend-item {
-            font-size: 0.7rem;
-          }
-
-          .legend-label {
-            font-size: 0.7rem;
-          }
-
-          .checkbox-col {
-            width: 30px;
-          }
-
-          /* Mobile: rank col 40px + half of 30px checkbox col = 55px */
-          .compare-bar {
-            padding-left: 80px;
-          }
-
-          .bar-arrow-cell {
-            left: 48px;
-          }
-
-          .comparison-bar {
-            flex-direction: column;
-            gap: 0.5rem;
-            text-align: center;
-          }
-
-          .comparison-table {
-            font-size: 0.8rem;
-          }
-
-          .comparison-header {
-            padding: 0.5rem;
-          }
-
-          .comparison-flag {
-            font-size: 1.2rem;
-          }
-
-          .pairwise-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        /* Checkbox cell styling - larger click area */
-        .checkbox-cell {
-          text-align: center;
-          padding: 0;
-          cursor: pointer;
-        }
-
-        .checkbox-label {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 15px;
-          cursor: pointer;
-        }
-
-        .checkbox-cell input[type="checkbox"] {
-          width: 18px;
-          height: 18px;
-          cursor: pointer;
-          accent-color: var(--accent-color);
-        }
-
-        /* Table wrapper */
-        .table-wrapper {
-          position: relative;
-        }
-
-        /* Unified compare bar - same height whether hint or actions */
-        .compare-bar {
-          display: flex;
-          align-items: flex-start;
-          position: sticky;
-          top: 0;
-          background: var(--bg-color);
-          z-index: 100;
-          padding: 0.5rem 1rem 0.75rem calc(8% + 24px);
-          height: 55px;
-          box-sizing: border-box;
-        }
-
-        /* Arrow tip (30% into the SVG) lands on the checkbox column center:
-           rank col 6% + half of checkbox col 4% = 8% of table width */
-        .bar-arrow-cell {
-          position: absolute;
-          left: calc(8% + 5px);
-          top: 15px;
-          width: 24px;
-        }
-
-        .curved-arrow {
-          width: 24px;
-          height: 24px;
-          color: var(--secondary-color);
-        }
-
-        .bar-content {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          padding-left: 0;
-          padding-top: 2px;
-        }
-
-        .hint-text {
-          color: var(--secondary-color);
-          font-size: 0.95rem;
-        }
-
-        .compare-btn-small {
-          background: var(--accent-color);
-          color: white;
-          border: none;
-          padding: 0.3rem 0.75rem;
-          border-radius: 4px;
-          font-size: 0.8rem;
-          cursor: pointer;
-          transition: background 0.2s;
-        }
-
-        .compare-btn-small:hover {
-          background: #3347b0;
-        }
-
-        .clear-btn-small {
-          background: transparent;
-          color: var(--secondary-color);
-          border: 1px solid var(--border-color);
-          padding: 0.25rem 0.6rem;
-          border-radius: 4px;
-          font-size: 0.75rem;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .clear-btn-small:hover {
-          border-color: var(--secondary-color);
-          color: var(--primary-color);
-        }
-
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-
-        /* Comparison modal */
-        .comparison-modal {
-          max-width: 95vw;
-          width: auto;
-          min-width: 600px;
-        }
-
-        .comparison-content {
-          margin-top: 1.5rem;
-          overflow-x: auto;
-        }
-
-        .comparison-table {
-          width: 100%;
-          border-collapse: collapse;
-          min-width: max-content;
-        }
-
-        .comparison-header {
-          background: var(--bg-color);
-          padding: 1rem;
-          text-align: center;
-          font-weight: 600;
-          color: var(--primary-color);
-          border-bottom: 2px solid var(--border-color);
-        }
-
-        .comparison-flag {
-          font-size: 1.5rem;
-          display: block;
-          margin-bottom: 0.25rem;
-        }
-
-        .comparison-cell {
-          padding: 0.5rem 1rem;
-          border-bottom: 1px solid var(--border-color);
-          vertical-align: top;
-        }
-
-        .comparison-cell:first-child {
-          border-right: 1px solid var(--border-color);
-        }
-
-        .dest-name {
-          color: var(--primary-color);
-        }
-
-        .dest-tourism {
-          color: var(--secondary-color);
-          font-size: 0.85rem;
-          margin-left: 0.5rem;
-        }
-
-        .no-differences {
-          text-align: center;
-          padding: 2rem;
-          color: var(--secondary-color);
-          font-style: italic;
-        }
-
-        .comparison-summary {
-          margin-top: 1.5rem;
-          padding: 1rem;
-          background: var(--bg-color);
-          border-radius: 8px;
-        }
-
-        .comparison-summary p {
-          margin: 0.5rem 0;
-          color: var(--secondary-color);
-        }
-
-        /* Multi-country comparison */
-        .multi-select-note {
-          color: var(--secondary-color);
-          margin-bottom: 1.5rem;
-        }
-
-        .pairwise-comparison {
-          margin-bottom: 2rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .pairwise-comparison:last-child {
-          border-bottom: none;
-        }
-
-        .pairwise-comparison h3 {
-          color: var(--primary-color);
-          font-size: 1.1rem;
-          margin-bottom: 1rem;
-        }
-
-        .pairwise-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-        }
-
-        .pairwise-col h4 {
-          color: var(--accent-color);
-          font-size: 0.9rem;
-          margin-bottom: 0.75rem;
-        }
-
-        .pairwise-col ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .pairwise-col li {
-          padding: 0.35rem 0;
-          color: var(--primary-color);
-          font-size: 0.9rem;
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .pairwise-col li:last-child {
-          border-bottom: none;
-        }
-
-        .pairwise-col li.more {
-          color: var(--secondary-color);
-          font-style: italic;
-        }
-
-        /* Unified comparison table */
-        .unified-table {
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          overflow: hidden;
-        }
-
-        .unified-table th,
-        .unified-table td {
-          padding: 0.75rem;
-          text-align: center;
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        .sortable {
-          cursor: pointer;
-          user-select: none;
-          transition: background 0.2s;
-        }
-
-        .sortable:hover {
-          background: var(--border-color);
-        }
-
-        .sort-icon {
-          margin-left: 0.25rem;
-          opacity: 0.4;
-          font-size: 0.75rem;
-        }
-
-        .sort-icon.active {
-          opacity: 1;
-          color: var(--accent-color);
-        }
-
-        .rank-header {
-          width: 60px;
-          min-width: 60px;
-          background: var(--bg-color);
-        }
-
-        .tourism-header {
-          width: 90px;
-          min-width: 90px;
-          background: var(--bg-color);
-        }
-
-        .dest-header {
-          text-align: left !important;
-          min-width: 150px;
-          background: var(--bg-color);
-        }
-
-        .rank-cell {
-          font-weight: 600;
-          color: var(--secondary-color);
-        }
-
-        .tourism-cell {
-          font-weight: 500;
-          color: var(--primary-color);
-        }
-
-        .passport-header {
-          background: var(--bg-color);
-          min-width: 80px;
-        }
-
-        .passport-header .passport-name {
-          font-size: 0.75rem;
-          display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .dest-cell {
-          text-align: left !important;
-        }
-
-        .access-count {
-          margin-left: 0.5rem;
-          font-size: 0.75rem;
-          color: var(--secondary-color);
-          opacity: 0.7;
-        }
-
-        .access-cell {
-          font-size: 1rem;
-        }
-
-        .access-cell.has-access {
-          background: rgba(34, 197, 94, 0.1);
-        }
-
-        .access-cell.no-access {
-          background: rgba(239, 68, 68, 0.1);
-        }
-
-        .show-more-link {
-          display: block;
-          width: 100%;
-          padding: 0.75rem;
-          margin-top: 0.5rem;
-          background: none;
-          border: none;
-          color: var(--accent-color);
-          font-size: 0.9rem;
-          cursor: pointer;
-          text-align: center;
-          transition: background 0.2s;
-        }
-
-        .show-more-link:hover {
-          background: var(--bg-color);
-          text-decoration: underline;
-        }
-
-        /* Combo row styling */
-        .combo-row {
-          background: linear-gradient(90deg, rgba(99, 102, 241, 0.08), transparent);
-        }
-
-        .combo-row:hover {
-          background: linear-gradient(90deg, rgba(99, 102, 241, 0.12), rgba(99, 102, 241, 0.02));
-        }
-
-        .combo-flags {
-          letter-spacing: 5px;
-        }
-
-        .remove-combo-btn {
-          background: none;
-          border: none;
-          color: var(--secondary-color);
-          cursor: pointer;
-          font-size: 1.25rem;
-          padding: 0.25rem;
-          line-height: 1;
-          border-radius: 4px;
-          transition: all 0.2s;
-        }
-
-        .remove-combo-btn:hover {
-          color: #ef4444;
-          background: rgba(239, 68, 68, 0.1);
-        }
-
-        .combo-btn-small {
-          background: transparent;
-          color: var(--accent-color);
-          border: 1px solid var(--accent-color);
-          padding: 0.25rem 0.6rem;
-          border-radius: 4px;
-          font-size: 0.75rem;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .combo-btn-small:hover {
-          background: var(--accent-color);
-          color: white;
-        }
-      `}</style>
-    </Layout>
-  )
+      <button className="ghost-btn" title="Export" onClick={downloadCSV}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 4v12" /><path d="m6 12 6 6 6-6" /><path d="M4 20h16" />
+        </svg>
+        CSV
+      </button>
+    </div>)
+}
+
+// -------------------------------------------------------------------------
+// Compare prompt bar — sticky banner above table.
+// -------------------------------------------------------------------------
+function ComparePrompt({ count, onOpen, onClear }) {
+  return (
+    <div className={'compare-prompt' + (count >= 2 ? ' is-ready' : '')}>
+      {count < 2 ?
+      <div className="compare-prompt-cue">
+          <span className="compare-prompt-text" style={{ padding: "0px 0px 0px 127px" }}>
+            Pick two or more – compare passports, or score your dual citizenship.
+          </span>
+          {/* Hand-scribbled arrow. Math (anchored to prompt bar's left edge
+              via .compare-arrow's `left: -14px`):
+                - col-rank is 56px wide + 12px padding × 2 = 80px total
+                - col-check is 36px wide + 4px padding × 2 = 44px total → center at 102px
+                - prompt bar is ~40px tall; header row ~40px; first data row middle ~22px
+                  → checkbox center is ~102px below the prompt bar's TOP
+              Arrow tip at viewBox (102, 92) + svg top:10px → screen (102, 102) ✓ */}
+          <svg className="compare-arrow" width="130" height="110" viewBox="0 0 130 110" fill="none" aria-hidden="true">
+            <defs>
+              <filter id="penWobble" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" />
+                <feDisplacementMap in="SourceGraphic" scale="1.4" />
+              </filter>
+            </defs>
+            <g style={{ filter: 'url(#penWobble)' }}>
+              <path
+              d="M10,12 Q22,4 36,10 Q60,18 80,40 Q96,62 102,90"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              fill="none" />
+              <path
+              d="M93,82 L102,94 L111,84"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none" />
+            </g>
+          </svg>
+        </div> :
+
+      <div className="compare-prompt-actions">
+          <span className="compare-prompt-text">
+            <strong>{count}</strong> passports selected
+          </span>
+          <div style={{ flex: 1 }} />
+          <button className="ghost-btn" onClick={onClear}>Clear</button>
+          <button className="compare-cta" onClick={onOpen}>
+            Compare {count} →
+          </button>
+        </div>
+      }
+    </div>)
+}
+
+// -------------------------------------------------------------------------
+// Country detail drawer (right side)
+// -------------------------------------------------------------------------
+function CountryDetail({ country, onClose, onCompare, isComparing, compareCount, onOpenCompare }) {
+  // Region distribution from country.access — by VISITOR VOLUME (sum of v),
+  // not country count. The whole point of the ranking is that volume is
+  // the metric — country counts are exactly the thing we don't want to show.
+  const regionDistr = useMemo(() => {
+    if (!country) return []
+    const c = { EU: 0, AS: 0, AM: 0, AF: 0, OC: 0 }
+    country.access.forEach((d) => { c[DESTS[d].region] += DESTS[d].v })
+    const total = Object.values(c).reduce((s, v) => s + v, 0) || 1
+    return Object.entries(c)
+      .map(([k, v]) => ({ k, label: REGION_LABEL[k], v, pct: v / total * 100 }))
+      .sort((a, b) => b.v - a.v)
+  }, [country && country.name])
+
+  // Top 8 destinations by visitor volume from access
+  const topDests = useMemo(() => {
+    if (!country) return []
+    return [...country.access].
+    sort((a, b) => DESTS[b].v - DESTS[a].v).
+    slice(0, 8).
+    map((n) => ({ name: n, v: DESTS[n].v, flag: DESTS[n].flag, region: DESTS[n].region }))
+  }, [country && country.name])
+
+  if (!country) return null
+  const peerStart = Math.max(0, PASSPORTS.findIndex((p) => p.name === country.name) - 2)
+  const peers = PASSPORTS.slice(peerStart, peerStart + 5)
+  const maxV = topDests[0]?.v || 1
+
+  return (
+    <>
+      <div className="drawer-backdrop" onClick={onClose} />
+      <aside className="country-drawer" role="dialog">
+        <div className="drawer-head">
+          <div className="drawer-rank-strip">
+            <span className="t-mini">Rank</span>
+            <span className="drawer-rank">#{country.rank}</span>
+            <span className="t-mini">of {PASSPORTS.length}</span>
+          </div>
+          <button className="drawer-close" onClick={onClose} aria-label="Close">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              <path d="M3 3 L11 11 M11 3 L3 11" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="drawer-hero">
+          <div className="drawer-flag">{country.flag}</div>
+          <div className="drawer-name-block">
+            <h2 className="drawer-name">{country.name}</h2>
+          </div>
+        </div>
+
+        <div className="drawer-score-card">
+          <div className="score-card-label t-section-label">Open Door score</div>
+          <div className="score-card-value">{fmtVisitors(country.totalM)}</div>
+          <div className="score-card-sub">tourists a year, summed across every destination this passport opens · {country.perCapita}× per capita</div>
+          <div className="score-card-bar">
+            <div className="score-card-bar-fill" style={{ width: country.totalM / Math.max(...PASSPORTS.map((p) => p.totalM)) * 100 + '%' }} />
+          </div>
+          <div className="score-card-marks">
+            <span>0</span><span>500M</span><span>1B</span><span>1.45B</span>
+          </div>
+        </div>
+
+        <section className="drawer-section">
+          <div className="drawer-section-head">
+            <span className="t-section-label">Breakdown by region</span>
+            <span className="t-mini">share of visitor volume</span>
+          </div>
+          <div className="region-bar">
+            {regionDistr.filter((r) => r.v > 0).map((r) =>
+            <div key={r.k} className="region-bar-seg"
+            style={{ width: r.pct + '%', background: REGION_DOT[r.k] }}
+            title={`${r.label}: ${fmtVisitors(r.v)}`} />
+            )}
+          </div>
+          <div className="region-legend">
+            {regionDistr.filter((r) => r.v > 0).map((r) =>
+            <div key={r.k} className="region-legend-row">
+                <span className="region-dot" style={{ background: REGION_DOT[r.k] }} />
+                <span className="region-legend-label">{r.label}</span>
+                <span className="region-legend-n">{fmtVisitors(r.v)}</span>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="drawer-section">
+          <div className="drawer-section-head">
+            <span className="t-section-label">Highest-volume destinations</span>
+            <span className="t-mini">visa-free, eTA, or VOA</span>
+          </div>
+          <div className="dest-bars">
+            {topDests.map((d) =>
+            <div key={d.name} className="dest-bar-row">
+                <div className="dest-bar-label">
+                  <span className="dest-flag">{d.flag}</span>
+                  <span className="dest-name">{d.name}</span>
+                </div>
+                <div className="dest-bar-track">
+                  <div className="dest-bar-fill" style={{ width: d.v / maxV * 100 + '%', background: REGION_DOT[d.region] }} />
+                </div>
+                <div className="dest-bar-val">{fmtVisitors(d.v)}</div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="drawer-section">
+          <div className="drawer-section-head">
+            <span className="t-section-label">Peers in the ranking</span>
+          </div>
+          <ol className="peer-list">
+            {peers.map((p) =>
+            <li key={p.name} className={'peer-row' + (p.name === country.name ? ' is-self' : '')}>
+                <span className="peer-rank">#{p.rank}</span>
+                <span className="peer-flag">{p.flag}</span>
+                <span className="peer-name">{p.name}</span>
+                <span className="peer-score">{fmtVisitors(p.totalM)}</span>
+              </li>
+            )}
+          </ol>
+        </section>
+
+        <div className="drawer-actions">
+          <button className={'btn btn-primary' + (isComparing ? ' is-on' : '')} onClick={() => onCompare(country.name)}>
+            {isComparing ? '✓ In comparison' : '+ Add to comparison'}
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => onOpenCompare()}
+            disabled={!isComparing && compareCount < 2}
+            title={compareCount < 2 ? 'Add 2+ passports to compare' : 'Open comparison'}>
+            Compare{compareCount >= 2 ? ` (${compareCount})` : ''}
+          </button>
+        </div>
+      </aside>
+    </>)
+}
+
+// -------------------------------------------------------------------------
+// Comparison modal — differential destinations table
+// -------------------------------------------------------------------------
+function CompareModal({ names, onClose, onRemove }) {
+  const [sortBy, setSortBy] = useState('visitors')
+  const [sortDir, setSortDir] = useState('desc')
+
+  const cols = useMemo(() => names.map((n) => PASSPORTS.find((p) => p.name === n)).filter(Boolean), [names])
+
+  // Differential set: destinations where at least one passport has access AND at least one doesn't
+  const diffRows = useMemo(() => {
+    const all = new Set()
+    cols.forEach((c) => c.access.forEach((d) => all.add(d)))
+    const rows = [...all].map((d) => {
+      const access = cols.map((c) => c.access.has(d))
+      const hasAccess = access.filter(Boolean).length
+      return {
+        dest: d,
+        v: DESTS[d].v,
+        flag: DESTS[d].flag,
+        region: DESTS[d].region,
+        access,
+        differs: hasAccess > 0 && hasAccess < cols.length
+      }
+    }).filter((r) => r.differs)
+
+    rows.sort((a, b) => {
+      let cmp = 0
+      if (sortBy === 'visitors') cmp = b.v - a.v
+      else if (sortBy === 'name') cmp = a.dest.localeCompare(b.dest)
+      return sortDir === 'asc' ? -cmp : cmp
+    })
+    const ranked = [...rows].sort((a, b) => b.v - a.v)
+    rows.forEach((r) => { r.rank = ranked.indexOf(r) + 1 })
+    return rows
+  }, [cols, sortBy, sortDir])
+
+  function toggleSort(key) {
+    if (sortBy === key) setSortDir(sortDir === 'asc' ? 'desc' : 'asc')
+    else { setSortBy(key); setSortDir(key === 'name' ? 'asc' : 'desc') }
+  }
+  const arrow = (key) => sortBy === key ? sortDir === 'asc' ? ' ↑' : ' ↓' : ''
+
+  return (
+    <div className="cmp-overlay" onClick={onClose}>
+      <div className="cmp-modal" onClick={(e) => e.stopPropagation()}>
+        <header className="cmp-header">
+          <div>
+            <h2 className="cmp-title">Passport Comparison</h2>
+            <p className="cmp-sub">
+              {diffRows.length} destinations with different access across {cols.length} passports
+            </p>
+          </div>
+          <button className="drawer-close" onClick={onClose} aria-label="Close">×</button>
+        </header>
+
+        <div className="cmp-body">
+          <table className="cmp-table">
+            <thead>
+              <tr>
+                <th onClick={() => toggleSort('rank')} className="cmp-th cmp-th-sortable">RANK{arrow('rank')}</th>
+                <th onClick={() => toggleSort('name')} className="cmp-th cmp-th-sortable">DESTINATION{arrow('name')}</th>
+                <th onClick={() => toggleSort('visitors')} className="cmp-th cmp-th-sortable cmp-th-num">VISITORS{arrow('visitors')}</th>
+                {cols.map((c) =>
+                <th key={c.name} className="cmp-th cmp-th-pass">
+                    <div className="cmp-pass-head">
+                      <span className="cmp-pass-flag">{c.flag}</span>
+                      <span className="cmp-pass-name">{c.name}</span>
+                      <button className="cmp-pass-remove" onClick={() => onRemove(c.name)} title="Remove">×</button>
+                    </div>
+                  </th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {diffRows.map((r) =>
+              <tr key={r.dest}>
+                  <td className="cmp-rank">{r.rank}</td>
+                  <td className="cmp-dest">
+                    <span className="cmp-dest-flag">{r.flag}</span>
+                    <span>{r.dest}</span>
+                  </td>
+                  <td className="cmp-num">{fmtVisitors(r.v)}</td>
+                  {r.access.map((has, i) =>
+                <td key={i} className={'cmp-cell ' + (has ? 'cmp-cell-yes' : 'cmp-cell-no')}>
+                      {has ? <span className="cmp-mark cmp-mark-yes">✓</span> : <span className="cmp-mark cmp-mark-no">✗</span>}
+                    </td>
+                )}
+                </tr>
+              )}
+              {diffRows.length === 0 &&
+              <tr>
+                  <td colSpan={3 + cols.length} className="cmp-empty">
+                    All selected passports have identical access. Try adding a more contrasting country.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <footer className="cmp-footer">
+          <span className="t-meta">
+            Each row is a destination where access differs.
+            <span className="cmp-mark cmp-mark-yes">✓</span> = entry permitted ·
+            <span className="cmp-mark cmp-mark-no">✗</span> = visa required.
+          </span>
+        </footer>
+      </div>
+    </div>)
+}
+
+// -------------------------------------------------------------------------
+// Ranking row
+// -------------------------------------------------------------------------
+function RankingRow({ p, isSelected, isInCompare, onSelect, onToggleCompare, maxScore }) {
+  const cls = ['rank-row']
+  if (isSelected) cls.push('is-selected')
+  if (isInCompare) cls.push('is-compare')
+  // Tie-group rendering: only the FIRST row of a tie group shows the rank
+  // number; it sticks for the duration of the group via position: sticky.
+  const tied = p.tieCount > 1
+  if (tied) cls.push('is-tied')
+  if (tied && p.tiePos === 0) cls.push('is-tie-first')
+  if (tied && p.tieIsLast) cls.push('is-tie-last')
+  const showRank = !tied || p.tiePos === 0
+
+  return (
+    <tr className={cls.join(' ')} onClick={() => onSelect(p.name)} data-row-name={p.name}>
+      <td className="col-rank">
+        {showRank ? (
+          <span className="rank-num">{p.rank}</span>
+        ) : null}
+      </td>
+      <td className="col-check" onClick={(e) => e.stopPropagation()}>
+        <label className="check-wrap" title="Add to comparison">
+          <input
+            type="checkbox"
+            checked={isInCompare}
+            onChange={() => onToggleCompare(p.name)} />
+
+          <span className="check-box">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6 L5 9 L10 3" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </label>
+      </td>
+      <td className="col-flag"><span className="flag-cell">{p.flag}</span></td>
+      <td className="col-name">
+        <span className="name-text">{p.name}</span>
+      </td>
+      <td className="col-score">{fmtVisitors(p.totalM)}</td>
+      <td className="col-spark"><Sparkbar value={p.totalM} max={maxScore} /></td>
+      <td className="col-unique">
+        <div className="unique-row">
+          {p.top.map((n) =>
+          <span key={n} className="unique-pill">
+              <span className="unique-pill-flag">{DESTS[n]?.flag || '🏳️'}</span>
+              {n}
+            </span>
+          )}
+        </div>
+      </td>
+    </tr>)
+}
+
+// -------------------------------------------------------------------------
+// Footer
+// -------------------------------------------------------------------------
+function PageFooter() {
+  return (
+    <footer className="page-footer">
+      <div className="footer-base">
+        <span>© 2026 Ivan Braun</span>
+        <span className="footer-spacer" />
+        <span className="t-mono">build · 2026.06.10</span>
+      </div>
+    </footer>)
+}
+
+// -------------------------------------------------------------------------
+// Page root
+// -------------------------------------------------------------------------
+export default function PassportRanking() {
+  const [region, setRegion] = useState('ALL')
+  const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('score')
+  const [selectedName, setSelectedName] = useState(null)
+  const [compareSet, setCompareSet] = useState(new Set())
+  const [compareOpen, setCompareOpen] = useState(false)
+  const tableRef = useRef(null)
+
+  const filtered = useMemo(() => {
+    let rows = PASSPORTS
+    if (region !== 'ALL') rows = rows.filter((p) => p.region === region)
+    if (search.trim()) {
+      const q = search.toLowerCase()
+      rows = rows.filter((p) => p.name.toLowerCase().includes(q))
+    }
+    if (sort === 'name') rows = [...rows].sort((a, b) => a.name.localeCompare(b.name))
+    else rows = [...rows].sort((a, b) => b.totalM - a.totalM)
+    return rows
+  }, [region, search, sort])
+
+  const selected = selectedName ? PASSPORTS.find((p) => p.name === selectedName) : null
+  const maxScore = PASSPORTS[0].totalM
+
+  function toggleCompare(name) {
+    setCompareSet((prev) => {
+      const next = new Set(prev)
+      if (next.has(name)) next.delete(name)
+      else if (next.size < 4) next.add(name)
+      return next
+    })
+  }
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        if (compareOpen) setCompareOpen(false)
+        else if (selectedName) setSelectedName(null)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selectedName, compareOpen])
+
+  // Measure actual sticky heights and publish as CSS variables so pinned rows
+  // sit flush below the real stack (which can wrap on narrower viewports).
+  useEffect(() => {
+    function measure() {
+      const nav = document.querySelector('.topnav')
+      const filter = document.querySelector('.filter-row')
+      const prompt = document.querySelector('.compare-prompt')
+      const root = document.documentElement
+      const navH = nav ? nav.getBoundingClientRect().height : 60
+      const filterH = filter ? filter.getBoundingClientRect().height : 49
+      const promptH = prompt ? prompt.getBoundingClientRect().height : 0
+      root.style.setProperty('--nav-h', navH + 'px')
+      root.style.setProperty('--filter-h', filterH + 'px')
+      root.style.setProperty('--prompt-h', promptH + 'px')
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    const ro = new ResizeObserver(measure)
+    ;[document.querySelector('.topnav'), document.querySelector('.filter-row'), document.querySelector('.compare-prompt')].
+    filter(Boolean).forEach((el) => ro.observe(el))
+    return () => {
+      window.removeEventListener('resize', measure)
+      ro.disconnect()
+    }
+  }, [compareSet.size])
+
+  return (
+    <div className="page">
+      <Head>
+        <title>The Open Door Index · A passport ranking that measures where you want to go | Ivan Braun</title>
+        <meta name="description" content="A passport ranking that measures which doors are worth walking through - every destination weighted by annual tourist arrivals instead of counting countries." />
+        <meta name="keywords" content="passport ranking, passport index, open door index, visa-free travel, passport power, tourism potential" />
+        <link rel="canonical" href="https://aiandtractors.com/passport-ranking" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/open-door/noe.css" />
+        <link rel="stylesheet" href="/open-door/styles.css" />
+      </Head>
+
+      <nav className="topnav">
+        <div className="topnav-inner">
+          <a className="topnav-brand pixel-brand" href="/">Ivan Braun</a>
+          <div className="topnav-links">
+            <a href="/experience">Experience</a>
+            <a href="/book">Book</a>
+            <a href="/tech-events-2026">Tech Events</a>
+            <a href="/passport-ranking" className="is-active">Passport Ranking</a>
+            <a href="/contact">Contact</a>
+          </div>
+          <div className="topnav-langs">
+            <span className="lang-flag" title="English">🇺🇸</span>
+            <span className="lang-flag" title="Español">🇦🇷</span>
+            <span className="lang-flag" title="Português">🇧🇷</span>
+          </div>
+        </div>
+      </nav>
+
+      <main className="page-main">
+        <Hero />
+
+        <PowerMap rows={PASSPORTS} />
+
+        <FilterRow
+          region={region} setRegion={setRegion}
+          search={search} setSearch={setSearch}
+          sort={sort} setSort={setSort} />
+
+        <ComparePrompt
+          count={compareSet.size}
+          onOpen={() => setCompareOpen(true)}
+          onClear={() => setCompareSet(new Set())} />
+
+        <div className="ranking-table-wrap" ref={tableRef}>
+          <table className="ranking-table">
+            <thead>
+              <tr>
+                <th className="col-rank">Rank</th>
+                <th className="col-check" title="Compare"></th>
+                <th className="col-flag"></th>
+                <th className="col-name">Country</th>
+                <th className="col-score">Total reach</th>
+                <th className="col-spark">Relative</th>
+                <th className="col-unique">Notable access</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((p) =>
+              <RankingRow
+                key={'row-' + p.name}
+                p={p}
+                isSelected={selectedName === p.name}
+                isInCompare={compareSet.has(p.name)}
+                onSelect={setSelectedName}
+                onToggleCompare={toggleCompare}
+                maxScore={maxScore} />
+              )}
+              {filtered.length === 0 &&
+              <tr><td colSpan="7" className="empty-row">No countries match those filters.</td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <PageFooter />
+      </main>
+
+      {selected &&
+      <CountryDetail
+        country={selected}
+        onClose={() => setSelectedName(null)}
+        onCompare={toggleCompare}
+        isComparing={compareSet.has(selected.name)}
+        compareCount={compareSet.size}
+        onOpenCompare={() => setCompareOpen(true)} />
+      }
+
+      {compareOpen && compareSet.size >= 2 &&
+      <CompareModal
+        names={[...compareSet]}
+        onClose={() => setCompareOpen(false)}
+        onRemove={(n) => toggleCompare(n)} />
+      }
+    </div>)
 }

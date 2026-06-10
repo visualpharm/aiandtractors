@@ -81,9 +81,9 @@ function Hero({ onSelect }) {
         country with the same number of stamps.
       </p>
       <div className="hero-meth-line">
-        <a href="/passport-insights/methodology" className="hero-link">Methodology →</a>
-        <span className="hero-meth-sep">·</span>
         <a href="/passport-insights" className="hero-link">Key findings →</a>
+        <span className="hero-meth-sep">·</span>
+        <a href="/passport-insights/methodology" className="hero-link">Methodology →</a>
       </div>
       <dl className="hero-stats">
         <div>

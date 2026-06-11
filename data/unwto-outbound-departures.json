@@ -1,0 +1,722 @@
+{
+ "_metadata": {
+  "source": "UN Tourism (UNWTO) Outbound Departures Dataset",
+  "downloadUrl": "https://www.unwto.org/tourism-statistics/tourism-data-outbound-tourism",
+  "dataFile": "UN_Tourism_outbound_departures_12_2025.xlsx",
+  "unit": "millions of outbound overnight trips (visitor trips where tourist series missing)",
+  "yearSelectionLogic": "Most recent year available, except prefer 2019 over 2020-2022 (COVID years)",
+  "extractedAt": "2026-06-11T22:37:41.765Z"
+ },
+ "data": {
+  "Algeria": {
+   "year": 2019,
+   "value": 5.73,
+   "series": "tourists"
+  },
+  "Andorra": {
+   "year": 2024,
+   "value": 0.08,
+   "series": "tourists"
+  },
+  "Azerbaijan": {
+   "year": 2019,
+   "value": 4.58,
+   "series": "tourists"
+  },
+  "Argentina": {
+   "year": 2024,
+   "value": 8.31,
+   "series": "tourists"
+  },
+  "Australia": {
+   "year": 2023,
+   "value": 8.72,
+   "series": "visitors"
+  },
+  "Austria": {
+   "year": 2024,
+   "value": 16.42,
+   "series": "tourists"
+  },
+  "Bahrain": {
+   "year": 2024,
+   "value": 0.87,
+   "series": "tourists"
+  },
+  "Armenia": {
+   "year": 2024,
+   "value": 1.68,
+   "series": "tourists"
+  },
+  "Belgium": {
+   "year": 2024,
+   "value": 17.91,
+   "series": "tourists"
+  },
+  "Bhutan": {
+   "year": 2019,
+   "value": 0.04,
+   "series": "tourists"
+  },
+  "Bolivia (Plurinational State of)": {
+   "year": 2019,
+   "value": 1.16,
+   "series": "tourists"
+  },
+  "British Virgin Islands": {
+   "year": 1995,
+   "value": 0.08,
+   "series": "tourists"
+  },
+  "Bulgaria": {
+   "year": 2019,
+   "value": 5.82,
+   "series": "tourists"
+  },
+  "Belarus": {
+   "year": 2019,
+   "value": 0.96,
+   "series": "tourists"
+  },
+  "Canada": {
+   "year": 2024,
+   "value": 33.09,
+   "series": "tourists"
+  },
+  "Chad": {
+   "year": 2002,
+   "value": 0.02,
+   "series": "tourists"
+  },
+  "Chile": {
+   "year": 2024,
+   "value": 3.68,
+   "series": "tourists"
+  },
+  "Taiwan Province of China": {
+   "year": 2024,
+   "value": 16.85,
+   "series": "tourists"
+  },
+  "Colombia": {
+   "year": 2019,
+   "value": 4.48,
+   "series": "tourists"
+  },
+  "Congo": {
+   "year": 2013,
+   "value": 0.18,
+   "series": "visitors"
+  },
+  "Costa Rica": {
+   "year": 2024,
+   "value": 1.38,
+   "series": "tourists"
+  },
+  "Croatia": {
+   "year": 2024,
+   "value": 2.12,
+   "series": "tourists"
+  },
+  "Cyprus": {
+   "year": 2024,
+   "value": 1.75,
+   "series": "tourists"
+  },
+  "Czechia": {
+   "year": 2024,
+   "value": 7.52,
+   "series": "tourists"
+  },
+  "Denmark": {
+   "year": 2019,
+   "value": 9.09,
+   "series": "tourists"
+  },
+  "Dominican Republic": {
+   "year": 2024,
+   "value": 0.93,
+   "series": "tourists"
+  },
+  "El Salvador": {
+   "year": 2024,
+   "value": 1.88,
+   "series": "tourists"
+  },
+  "Ethiopia": {
+   "year": 2024,
+   "value": 0.9,
+   "series": "tourists"
+  },
+  "Fiji": {
+   "year": 2024,
+   "value": 0.84,
+   "series": "tourists"
+  },
+  "Finland": {
+   "year": 2024,
+   "value": 7.2,
+   "series": "tourists"
+  },
+  "France": {
+   "year": 2024,
+   "value": 36.52,
+   "series": "tourists"
+  },
+  "French Guiana": {
+   "year": 2024,
+   "value": 0.15,
+   "series": "tourists"
+  },
+  "Georgia": {
+   "year": 2024,
+   "value": 1.46,
+   "series": "tourists"
+  },
+  "Germany": {
+   "year": 2024,
+   "value": 114.4,
+   "series": "tourists"
+  },
+  "Ghana": {
+   "year": 2019,
+   "value": 0.22,
+   "series": "tourists"
+  },
+  "Guadeloupe": {
+   "year": 2013,
+   "value": 0.11,
+   "series": "visitors"
+  },
+  "Guatemala": {
+   "year": 2019,
+   "value": 1.3,
+   "series": "tourists"
+  },
+  "Honduras": {
+   "year": 2018,
+   "value": 0.5,
+   "series": "tourists"
+  },
+  "China, Hong Kong Special Administrative Region": {
+   "year": 2024,
+   "value": 104.7,
+   "series": "visitors"
+  },
+  "Hungary": {
+   "year": 2024,
+   "value": 8.91,
+   "series": "tourists"
+  },
+  "India": {
+   "year": 2024,
+   "value": 30.45,
+   "series": "tourists"
+  },
+  "Indonesia": {
+   "year": 2024,
+   "value": 8.48,
+   "series": "tourists"
+  },
+  "Iran (Islamic Republic of)": {
+   "year": 2021,
+   "value": 2.4,
+   "series": "tourists"
+  },
+  "Ireland": {
+   "year": 2019,
+   "value": 9.35,
+   "series": "visitors"
+  },
+  "Israel": {
+   "year": 2024,
+   "value": 7.08,
+   "series": "tourists"
+  },
+  "Italy": {
+   "year": 2024,
+   "value": 34.59,
+   "series": "tourists"
+  },
+  "Japan": {
+   "year": 2024,
+   "value": 13.01,
+   "series": "visitors"
+  },
+  "Kazakhstan": {
+   "year": 2014,
+   "value": 10.23,
+   "series": "tourists"
+  },
+  "Jordan": {
+   "year": 2019,
+   "value": 1.54,
+   "series": "tourists"
+  },
+  "Kenya": {
+   "year": 2024,
+   "value": 1.42,
+   "series": "visitors"
+  },
+  "Republic of Korea": {
+   "year": 2024,
+   "value": 28.69,
+   "series": "visitors"
+  },
+  "Kyrgyzstan": {
+   "year": 2007,
+   "value": 0.56,
+   "series": "tourists"
+  },
+  "Lao People's Democratic Republic": {
+   "year": 2019,
+   "value": 2.69,
+   "series": "visitors"
+  },
+  "Latvia": {
+   "year": 2024,
+   "value": 1.8,
+   "series": "tourists"
+  },
+  "Lithuania": {
+   "year": 2024,
+   "value": 2.28,
+   "series": "tourists"
+  },
+  "Malawi": {
+   "year": 2019,
+   "value": 0.12,
+   "series": "tourists"
+  },
+  "Malaysia": {
+   "year": 2004,
+   "value": 30.76,
+   "series": "visitors"
+  },
+  "Malta": {
+   "year": 2024,
+   "value": 0.84,
+   "series": "tourists"
+  },
+  "Mauritius": {
+   "year": 2019,
+   "value": 0.32,
+   "series": "tourists"
+  },
+  "Mexico": {
+   "year": 2024,
+   "value": 18.82,
+   "series": "tourists"
+  },
+  "Republic of Moldova": {
+   "year": 2024,
+   "value": 0.39,
+   "series": "tourists"
+  },
+  "Oman": {
+   "year": 2024,
+   "value": 5.6,
+   "series": "tourists"
+  },
+  "New Caledonia": {
+   "year": 2024,
+   "value": 0.1,
+   "series": "tourists"
+  },
+  "New Zealand": {
+   "year": 2019,
+   "value": 3.23,
+   "series": "tourists"
+  },
+  "Norway": {
+   "year": 2024,
+   "value": 8.41,
+   "series": "tourists"
+  },
+  "Paraguay": {
+   "year": 2019,
+   "value": 1.45,
+   "series": "tourists"
+  },
+  "Poland": {
+   "year": 2024,
+   "value": 14.69,
+   "series": "tourists"
+  },
+  "Portugal": {
+   "year": 2024,
+   "value": 3.43,
+   "series": "tourists"
+  },
+  "Puerto Rico": {
+   "year": 2024,
+   "value": 0.98,
+   "series": "tourists"
+  },
+  "Russian Federation": {
+   "year": 2019,
+   "value": 45.33,
+   "series": "visitors"
+  },
+  "Saudi Arabia": {
+   "year": 2024,
+   "value": 23.96,
+   "series": "tourists"
+  },
+  "Singapore": {
+   "year": 2019,
+   "value": 10.71,
+   "series": "tourists"
+  },
+  "Slovakia": {
+   "year": 2024,
+   "value": 4.86,
+   "series": "tourists"
+  },
+  "Slovenia": {
+   "year": 2024,
+   "value": 4.71,
+   "series": "tourists"
+  },
+  "Spain": {
+   "year": 2024,
+   "value": 21.29,
+   "series": "tourists"
+  },
+  "Sweden": {
+   "year": 2024,
+   "value": 18.35,
+   "series": "tourists"
+  },
+  "Switzerland": {
+   "year": 2019,
+   "value": 13.44,
+   "series": "tourists"
+  },
+  "Trinidad and Tobago": {
+   "year": 2024,
+   "value": 0.46,
+   "series": "tourists"
+  },
+  "United Arab Emirates": {
+   "year": 2019,
+   "value": 18.4,
+   "series": "tourists"
+  },
+  "Ukraine": {
+   "year": 2024,
+   "value": 15.12,
+   "series": "tourists"
+  },
+  "North Macedonia": {
+   "year": 2021,
+   "value": 0.26,
+   "series": "tourists"
+  },
+  "Egypt": {
+   "year": 2006,
+   "value": 4.53,
+   "series": "tourists"
+  },
+  "United Kingdom of Great Britain and Northern Ireland": {
+   "year": 2024,
+   "value": 90.61,
+   "series": "tourists"
+  },
+  "United Republic of Tanzania": {
+   "year": 2021,
+   "value": 0.12,
+   "series": "tourists"
+  },
+  "United States of America": {
+   "year": 2019,
+   "value": 99.74,
+   "series": "tourists"
+  },
+  "Uruguay": {
+   "year": 2019,
+   "value": 2.2,
+   "series": "tourists"
+  },
+  "Uzbekistan": {
+   "year": 2019,
+   "value": 8.44,
+   "series": "visitors"
+  },
+  "Albania": {
+   "year": 2024,
+   "value": 1.37,
+   "series": "tourists"
+  },
+  "Angola": {
+   "year": 1996,
+   "value": 0,
+   "series": "tourists"
+  },
+  "Bangladesh": {
+   "year": 2019,
+   "value": 1.56,
+   "series": "tourists"
+  },
+  "Bermuda": {
+   "year": 2008,
+   "value": 0.19,
+   "series": "tourists"
+  },
+  "Brazil": {
+   "year": 2018,
+   "value": 10.63,
+   "series": "tourists"
+  },
+  "Burundi": {
+   "year": 2001,
+   "value": 0.04,
+   "series": "tourists"
+  },
+  "Cambodia": {
+   "year": 2019,
+   "value": 2.04,
+   "series": "tourists"
+  },
+  "Central African Republic": {
+   "year": 2010,
+   "value": 0.04,
+   "series": "tourists"
+  },
+  "Sri Lanka": {
+   "year": 2019,
+   "value": 1.44,
+   "series": "tourists"
+  },
+  "China": {
+   "year": 2019,
+   "value": 154.63,
+   "series": "tourists"
+  },
+  "Democratic Republic of the Congo": {
+   "year": 2016,
+   "value": 0.42,
+   "series": "tourists"
+  },
+  "Cook Islands": {
+   "year": 2019,
+   "value": 0.01,
+   "series": "tourists"
+  },
+  "Cuba": {
+   "year": 2019,
+   "value": 0.65,
+   "series": "tourists"
+  },
+  "Ecuador": {
+   "year": 2019,
+   "value": 1.52,
+   "series": "tourists"
+  },
+  "Estonia": {
+   "year": 2019,
+   "value": 1.7,
+   "series": "tourists"
+  },
+  "French Polynesia": {
+   "year": 2019,
+   "value": 0.06,
+   "series": "tourists"
+  },
+  "Gabon": {
+   "year": 2003,
+   "value": 0.24,
+   "series": "tourists"
+  },
+  "Gambia": {
+   "year": 2006,
+   "value": 0.31,
+   "series": "tourists"
+  },
+  "Greece": {
+   "year": 2019,
+   "value": 7.85,
+   "series": "tourists"
+  },
+  "Iceland": {
+   "year": 2019,
+   "value": 0.61,
+   "series": "tourists"
+  },
+  "Kuwait": {
+   "year": 2007,
+   "value": 2.65,
+   "series": "tourists"
+  },
+  "Libya": {
+   "year": 1997,
+   "value": 0.65,
+   "series": "tourists"
+  },
+  "Luxembourg": {
+   "year": 2019,
+   "value": 2.55,
+   "series": "tourists"
+  },
+  "Madagascar": {
+   "year": 1995,
+   "value": 0.04,
+   "series": "tourists"
+  },
+  "Maldives": {
+   "year": 2008,
+   "value": 0.12,
+   "series": "tourists"
+  },
+  "Morocco": {
+   "year": 2019,
+   "value": 2.01,
+   "series": "tourists"
+  },
+  "Nepal": {
+   "year": 2017,
+   "value": 1.2,
+   "series": "tourists"
+  },
+  "Netherlands (Kingdom of the)": {
+   "year": 2019,
+   "value": 22.05,
+   "series": "tourists"
+  },
+  "Vanuatu": {
+   "year": 2019,
+   "value": 0.04,
+   "series": "tourists"
+  },
+  "Nicaragua": {
+   "year": 2019,
+   "value": 0.95,
+   "series": "tourists"
+  },
+  "Niger": {
+   "year": 1998,
+   "value": 0.01,
+   "series": "tourists"
+  },
+  "Niue": {
+   "year": 2021,
+   "value": 0,
+   "series": "tourists"
+  },
+  "Palau": {
+   "year": 1998,
+   "value": 0.01,
+   "series": "tourists"
+  },
+  "Panama": {
+   "year": 2019,
+   "value": 1.23,
+   "series": "tourists"
+  },
+  "Papua New Guinea": {
+   "year": 2002,
+   "value": 0.09,
+   "series": "tourists"
+  },
+  "Peru": {
+   "year": 2019,
+   "value": 3.28,
+   "series": "tourists"
+  },
+  "Philippines": {
+   "year": 2016,
+   "value": 5.7,
+   "series": "tourists"
+  },
+  "Romania": {
+   "year": 2024,
+   "value": 2.23,
+   "series": "tourists"
+  },
+  "Sao Tome and Principe": {
+   "year": 2008,
+   "value": 0.01,
+   "series": "tourists"
+  },
+  "Seychelles": {
+   "year": 2019,
+   "value": 0.08,
+   "series": "tourists"
+  },
+  "Sierra Leone": {
+   "year": 2019,
+   "value": 0.12,
+   "series": "tourists"
+  },
+  "Zimbabwe": {
+   "year": 2019,
+   "value": 3.28,
+   "series": "tourists"
+  },
+  "Sudan": {
+   "year": 1995,
+   "value": 0.2,
+   "series": "tourists"
+  },
+  "Eswatini": {
+   "year": 2019,
+   "value": 1.72,
+   "series": "tourists"
+  },
+  "Syrian Arab Republic": {
+   "year": 2010,
+   "value": 6.26,
+   "series": "tourists"
+  },
+  "Tajikistan": {
+   "year": 2018,
+   "value": 0.03,
+   "series": "tourists"
+  },
+  "Thailand": {
+   "year": 2019,
+   "value": 10.45,
+   "series": "tourists"
+  },
+  "Togo": {
+   "year": 2019,
+   "value": 0.27,
+   "series": "tourists"
+  },
+  "Tunisia": {
+   "year": 2019,
+   "value": 2.78,
+   "series": "tourists"
+  },
+  "Türkiye": {
+   "year": 2019,
+   "value": 9.65,
+   "series": "tourists"
+  },
+  "Turkmenistan": {
+   "year": 2007,
+   "value": 0.04,
+   "series": "tourists"
+  },
+  "Tuvalu": {
+   "year": 2019,
+   "value": 0,
+   "series": "tourists"
+  },
+  "Uganda": {
+   "year": 2019,
+   "value": 0.49,
+   "series": "tourists"
+  },
+  "Venezuela (Bolivarian Republic of)": {
+   "year": 2017,
+   "value": 1.08,
+   "series": "tourists"
+  },
+  "Samoa": {
+   "year": 2019,
+   "value": 0.07,
+   "series": "tourists"
+  }
+ }
+}

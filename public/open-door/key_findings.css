@@ -163,28 +163,26 @@
 }
 
 /* ---- ART (illustration column) --------------------------- */
+/* No panel chrome — the renders sit directly on the page background. */
 .kf-art {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 320px;
-  background: var(--bg-2);
-  border-radius: var(--radius-lg, 10px);
-  padding: 32px 24px;
-  overflow: hidden;
+  min-height: 0;
+  background: none;
+  padding: 0;
 }
 
 .kf-art-img {
   width: 100%;
-  max-width: 280px;
+  max-width: 320px;
   height: auto;
   display: block;
-  /* The 2026-06-10 renders bake their own studio background, so they read
-     as framed prints: round the corners and let the shadow be a card shadow. */
-  border-radius: 12px;
-  filter: drop-shadow(0 12px 32px rgba(20, 24, 50, 0.15));
+  /* The renders bake a pure-white background; multiply blends it into the
+     page so the illustration sits directly on the page with no box edge. */
+  mix-blend-mode: multiply;
 }
 /* Landscape renders get more width so they don't shrink into stamps. */
 .kf-art-img--wide { max-width: 400px; }
@@ -377,8 +375,8 @@
   .kf-finding--reverse .kf-body {
     order: initial;
   }
-  .kf-art { min-height: 240px; padding: 24px; }
-  .kf-art-img { max-width: 220px; }
+  .kf-art { min-height: 0; padding: 0; }
+  .kf-art-img { max-width: 260px; }
   .kf-art-pixel { font-size: 132px; }
   .kf-art-flagstack { font-size: 48px; }
   .kf-art-trend-arrow { font-size: 110px; }

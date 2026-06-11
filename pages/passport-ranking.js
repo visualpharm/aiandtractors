@@ -451,8 +451,9 @@ function ComparePrompt({ count, onOpen, onClear }) {
               table's left edge (.compare-arrow has left:-14px, cancelling the
               prompt bar's padding). Playwright-measured checkbox center sits
               at (71, 92) in this SVG's coordinate space, constant across
-              1280/1700px viewports (the rank+check columns are fixed-width),
-              so the path tip and chevron point at (71, ~92). */}
+              1280/1700px viewports (the rank+check columns are fixed-width).
+              The checkbox is 18px tall (top edge y≈83); the arrow stops at
+              y≈76, ~7px above it — pointing at the box without touching. */}
           <svg className="compare-arrow" width="130" height="110" viewBox="0 0 130 110" fill="none" aria-hidden="true">
             <defs>
               <filter id="penWobble" x="-10%" y="-10%" width="120%" height="120%">
@@ -462,13 +463,13 @@ function ComparePrompt({ count, onOpen, onClear }) {
             </defs>
             <g style={{ filter: 'url(#penWobble)' }}>
               <path
-              d="M10,12 Q20,4 33,10 Q54,19 63,42 Q70,64 71,88"
+              d="M10,12 Q20,4 33,10 Q54,19 62,38 Q70,56 71,72"
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinecap="round"
               fill="none" />
               <path
-              d="M62,80 L71,92 L80,82"
+              d="M62,64 L71,76 L80,66"
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinecap="round"

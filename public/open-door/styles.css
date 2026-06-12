@@ -549,6 +549,10 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---- Footer ------------------------------------------------------ */
 .page-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); }
+.footer-note { font-size: 12px; color: var(--muted-2); line-height: 1.6; max-width: 720px; }
+.footer-note + .footer-note { margin-top: 4px; }
+.footer-note a { color: var(--muted-2); text-decoration: underline; text-underline-offset: 2px; }
+.footer-note a:hover { color: var(--ink); }
 .footer-base { display: flex; align-items: center; font-size: 12px; color: var(--muted-2); padding: 18px 0 32px; }
 .footer-spacer { flex: 1; }
 

@@ -811,6 +811,15 @@ function RankingRow({ p, isSelected, isInCompare, onSelect, onToggleCompare, max
 function PageFooter() {
   return (
     <footer className="page-footer">
+      <div className="footer-note">
+        Sources: <a href="https://github.com/visualpharm/visa-free-dataset" target="_blank" rel="noopener">visa-free-dataset</a> on
+        GitHub (visa rules), UN Tourism and World Bank (tourist arrivals),{' '}
+        <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> (map geometry).
+      </div>
+      <div className="footer-note">
+        Country borders and disputed territories are simplified for visualization.
+        Colors represent tourism-flow data, not political status.
+      </div>
       <div className="footer-base">
         <span>© 2026 Ivan Braun</span>
         <span className="footer-spacer" />

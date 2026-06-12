@@ -256,7 +256,7 @@ const WORLD_DEP = DATA.meta.worldDep       // 1325.5 M departures pool
         leftLabel: 'walks through others’ doors', midLabel: 'even', rightLabel: 'holds the door open',
         title: 'HOSPITALITY GIVEN vs RECEIVED',
       }),
-    footer: 'Visa data: Passport Index dataset, June 2026 · Travel flows: UN Tourism + World Bank, latest non-COVID year',
+    footer: 'Visa data: github.com/visualpharm/visa-free-dataset, June 2026 · Travel flows: UN Tourism + World Bank, latest non-COVID year · Borders simplified; colors show tourism data, not political status',
   })
 }
 
@@ -308,7 +308,7 @@ const WORLD_DEP = DATA.meta.worldDep       // 1325.5 M departures pool
         leftLabel: 'guest nation (travels out)', midLabel: 'balanced', rightLabel: 'host nation (welcomes in)',
         title: 'INBOUND ARRIVALS vs OUTBOUND TRIPS',
       }),
-    footer: 'UN Tourism arrivals & departures (World Bank fallback), latest non-COVID year per country',
+    footer: 'UN Tourism arrivals & departures (World Bank fallback), latest non-COVID year per country · Borders simplified; colors show tourism data, not political status',
   })
 }
 
@@ -362,7 +362,7 @@ const WORLD_DEP = DATA.meta.worldDep       // 1325.5 M departures pool
         leftLabel: '0', rightLabel: `${fmtM(max)} visitors/yr of reach`,
         title: 'TOURISM FLOW UNLOCKED',
       }),
-    footer: 'Visa data: Passport Index dataset, June 2026 · Destination volumes: UN Tourism',
+    footer: 'Visa data: github.com/visualpharm/visa-free-dataset, June 2026 · Destination volumes: UN Tourism · Borders simplified; colors show tourism data, not political status',
   })
 }
 

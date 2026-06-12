@@ -387,3 +387,32 @@
   .kf-closing-line { font-size: 28px; }
   .kf-closing-tail { font-size: 17px; }
 }
+
+/* ---- Data-corrections table (methodology §03) -------------- */
+.kf-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.kf-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-2);
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.kf-table td {
+  padding: 9px 16px 9px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+}
+.kf-table a {
+  color: var(--muted-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.kf-table a:hover { color: var(--ink); }

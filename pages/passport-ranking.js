@@ -823,7 +823,7 @@ function PageFooter() {
       <div className="footer-base">
         <span>© 2026 Ivan Braun</span>
         <span className="footer-spacer" />
-        <span className="t-mono">build · 2026.06.10</span>
+        <span className="t-mono">build · 2026.06.11</span>
       </div>
     </footer>)
 }

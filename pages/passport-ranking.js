@@ -48,6 +48,48 @@ function Sparkbar({ value, max }) {
 }
 
 // -------------------------------------------------------------------------
+// Combined passports — a virtual passport built from 2+ real ones.
+// Access = union of the members' access sets; score = the same tourism sum
+// as everywhere else. Ranks against real countries without shifting them.
+// -------------------------------------------------------------------------
+// How many passports can enter each destination — used to pick a combo's
+// "interesting access": rarest doors first, then visitor volume.
+let _destAccessCount = null
+function destAccessCount() {
+  if (!_destAccessCount) {
+    _destAccessCount = {}
+    PASSPORTS.forEach((p) => p.access.forEach((d) => {
+      _destAccessCount[d] = (_destAccessCount[d] || 0) + 1
+    }))
+  }
+  return _destAccessCount
+}
+
+function makeCombo(members) {
+  const access = new Set()
+  members.forEach((m) => m.access.forEach((d) => access.add(d)))
+  const totalM = [...access].reduce((s, d) => s + DESTS[d].v, 0)
+  const counts = destAccessCount()
+  const top = [...access]
+    .sort((a, b) => (counts[a] || 0) - (counts[b] || 0) || DESTS[b].v - DESTS[a].v)
+    .slice(0, 4)
+  return {
+    name: members.map((m) => m.name).join(' + '),
+    flag: members.map((m) => m.flag).join(''),
+    isCombo: true,
+    region: 'COMBO',
+    totalM,
+    access,
+    top,
+    rank: PASSPORTS.filter((p) => p.totalM > totalM).length + 1,
+    tieCount: 1,
+    tiePos: 0,
+    tieIsLast: false,
+    perCapita: null,
+  }
+}
+
+// -------------------------------------------------------------------------
 // Hero
 // -------------------------------------------------------------------------
 // Country mention inside hero cards — clicking opens the detail drawer.
@@ -439,7 +481,7 @@ function FilterRow({ region, setRegion, search, setSearch, sort, setSort }) {
 // -------------------------------------------------------------------------
 // Compare prompt bar — sticky banner above table.
 // -------------------------------------------------------------------------
-function ComparePrompt({ count, onOpen, onClear }) {
+function ComparePrompt({ count, onOpen, onClear, onCombine }) {
   return (
     <div className={'compare-prompt' + (count >= 2 ? ' is-ready' : '')}>
       {count < 2 ?
@@ -487,6 +529,9 @@ function ComparePrompt({ count, onOpen, onClear }) {
           </span>
           <div style={{ flex: 1 }} />
           <button className="ghost-btn" onClick={onClear}>Clear</button>
+          <button className="combine-cta" onClick={onCombine} title="Merge the selected passports into one virtual passport and rank it">
+            ⊕ Combine into one passport
+          </button>
           <button className="compare-cta" onClick={onOpen}>
             Compare {count} →
           </button>
@@ -523,8 +568,17 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
   }, [country && country.name])
 
   if (!country) return null
-  const peerStart = Math.max(0, PASSPORTS.findIndex((p) => p.name === country.name) - 2)
-  const peers = PASSPORTS.slice(peerStart, peerStart + 5)
+  const realIdx = PASSPORTS.findIndex((p) => p.name === country.name)
+  let peers
+  if (realIdx >= 0) {
+    const peerStart = Math.max(0, realIdx - 2)
+    peers = PASSPORTS.slice(peerStart, peerStart + 5)
+  } else {
+    // Virtual (combined) passport — splice it between its real neighbors.
+    let at = PASSPORTS.findIndex((p) => p.totalM < country.totalM)
+    if (at === -1) at = PASSPORTS.length
+    peers = [...PASSPORTS.slice(Math.max(0, at - 2), at), country, ...PASSPORTS.slice(at, at + 2)]
+  }
 
   return (
     <>
@@ -547,13 +601,14 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
           <div className="drawer-flag">{country.flag}</div>
           <div className="drawer-name-block">
             <h2 className="drawer-name">{country.name}</h2>
+            {country.isCombo && <div className="drawer-combo-note t-mini">combined passport</div>}
           </div>
         </div>
 
         <div className="drawer-score-card">
           <div className="score-card-label t-section-label">Open Door score</div>
           <div className="score-card-value">{fmtVisitors(country.totalM)}</div>
-          <div className="score-card-sub">tourists a year, summed across every destination this passport opens · {country.perCapita}× per capita</div>
+          <div className="score-card-sub">tourists a year, summed across every destination this passport opens{country.perCapita ? ` · ${country.perCapita}× per capita` : ''}</div>
           <div className="score-card-bar">
             <div className="score-card-bar-fill" style={{ width: country.totalM / WORLD_TOTAL * 100 + '%' }} />
           </div>
@@ -641,11 +696,11 @@ function CountryDetail({ country, onClose, onCompare, isComparing, compareCount,
 // -------------------------------------------------------------------------
 // Comparison modal — differential destinations table
 // -------------------------------------------------------------------------
-function CompareModal({ names, onClose, onRemove }) {
+function CompareModal({ names, rows, onClose, onRemove }) {
   const [sortBy, setSortBy] = useState('visitors')
   const [sortDir, setSortDir] = useState('desc')
 
-  const cols = useMemo(() => names.map((n) => PASSPORTS.find((p) => p.name === n)).filter(Boolean), [names])
+  const cols = useMemo(() => names.map((n) => rows.find((p) => p.name === n)).filter(Boolean), [names, rows])
 
   // Differential set: destinations where at least one passport has access AND at least one doesn't
   const diffRows = useMemo(() => {
@@ -753,10 +808,11 @@ function CompareModal({ names, onClose, onRemove }) {
 // -------------------------------------------------------------------------
 // Ranking row
 // -------------------------------------------------------------------------
-function RankingRow({ p, isSelected, isInCompare, onSelect, onToggleCompare, maxScore }) {
+function RankingRow({ p, isSelected, isInCompare, onSelect, onToggleCompare, onRemoveCombo, maxScore }) {
   const cls = ['rank-row']
   if (isSelected) cls.push('is-selected')
   if (isInCompare) cls.push('is-compare')
+  if (p.isCombo) cls.push('is-combo')
   // Tie-group rendering: only the FIRST row of a tie group shows the rank
   // number; it sticks for the duration of the group via position: sticky.
   const tied = p.tieCount > 1
@@ -789,6 +845,15 @@ function RankingRow({ p, isSelected, isInCompare, onSelect, onToggleCompare, max
       <td className="col-flag"><span className="flag-cell">{p.flag}</span></td>
       <td className="col-name">
         <span className="name-text">{p.name}</span>
+        {p.isCombo &&
+        <>
+            <span className="combo-badge">combined</span>
+            <button
+            className="combo-remove"
+            onClick={(e) => { e.stopPropagation(); onRemoveCombo(p.name) }}
+            title="Remove this combined passport">×</button>
+          </>
+        }
       </td>
       <td className="col-score">{fmtVisitors(p.totalM)}</td>
       <td className="col-spark"><Sparkbar value={p.totalM} max={maxScore} /></td>
@@ -838,7 +903,10 @@ export default function PassportRanking() {
   const [selectedName, setSelectedName] = useState(null)
   const [compareSet, setCompareSet] = useState(new Set())
   const [compareOpen, setCompareOpen] = useState(false)
+  const [combos, setCombos] = useState([])
   const tableRef = useRef(null)
+
+  const allRows = useMemo(() => [...PASSPORTS, ...combos], [combos])
 
   const filtered = useMemo(() => {
     let rows = PASSPORTS
@@ -847,12 +915,14 @@ export default function PassportRanking() {
       const q = search.toLowerCase()
       rows = rows.filter((p) => p.name.toLowerCase().includes(q))
     }
+    // Combined passports are pinned into the ranking regardless of filters.
+    rows = [...rows, ...combos]
     if (sort === 'name') rows = [...rows].sort((a, b) => a.name.localeCompare(b.name))
     else rows = [...rows].sort((a, b) => b.totalM - a.totalM)
     return rows
-  }, [region, search, sort])
+  }, [region, search, sort, combos])
 
-  const selected = selectedName ? PASSPORTS.find((p) => p.name === selectedName) : null
+  const selected = selectedName ? allRows.find((p) => p.name === selectedName) : null
   const maxScore = PASSPORTS[0].totalM
 
   function toggleCompare(name) {
@@ -862,6 +932,30 @@ export default function PassportRanking() {
       else if (next.size < 4) next.add(name)
       return next
     })
+  }
+
+  function combineSelected() {
+    const members = [...compareSet].map((n) => allRows.find((p) => p.name === n)).filter(Boolean)
+    if (members.length < 2) return
+    const combo = makeCombo(members)
+    setCompareSet(new Set())
+    if (allRows.some((p) => p.name === combo.name)) return
+    setCombos((prev) => [...prev, combo])
+    setTimeout(() => {
+      document.querySelector(`[data-row-name="${CSS.escape(combo.name)}"]`)?.
+      scrollIntoView({ block: 'center', behavior: 'smooth' })
+    }, 80)
+  }
+
+  function removeCombo(name) {
+    setCombos((prev) => prev.filter((c) => c.name !== name))
+    setCompareSet((prev) => {
+      if (!prev.has(name)) return prev
+      const next = new Set(prev)
+      next.delete(name)
+      return next
+    })
+    if (selectedName === name) setSelectedName(null)
   }
 
   useEffect(() => {
@@ -946,7 +1040,8 @@ export default function PassportRanking() {
         <ComparePrompt
           count={compareSet.size}
           onOpen={() => setCompareOpen(true)}
-          onClear={() => setCompareSet(new Set())} />
+          onClear={() => setCompareSet(new Set())}
+          onCombine={combineSelected} />
 
         <div className="ranking-table-wrap" ref={tableRef}>
           <table className="ranking-table">
@@ -970,6 +1065,7 @@ export default function PassportRanking() {
                 isInCompare={compareSet.has(p.name)}
                 onSelect={setSelectedName}
                 onToggleCompare={toggleCompare}
+                onRemoveCombo={removeCombo}
                 maxScore={maxScore} />
               )}
               {filtered.length === 0 &&
@@ -995,6 +1091,7 @@ export default function PassportRanking() {
       {compareOpen && compareSet.size >= 2 &&
       <CompareModal
         names={[...compareSet]}
+        rows={allRows}
         onClose={() => setCompareOpen(false)}
         onRemove={(n) => toggleCompare(n)} />
       }

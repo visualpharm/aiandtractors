@@ -154,14 +154,14 @@ function Hero({ onSelect }) {
         <div>
           <dt>Weakest passport</dt>
           <dd className="hero-stat-country">
-            <span className="hero-stat-flag">🇦🇫</span>
-            <CLink name="Afghanistan" onSelect={onSelect} />
+            <span className="hero-stat-flag">🇵🇰</span>
+            <CLink name="Pakistan" onSelect={onSelect} />
           </dd>
           <div className="hero-stat-sub">
-            Reaches just 26 countries without paperwork – and those 26 host only 48M tourists a year, 30× less than the top passport. The world is mostly closed.
+            Reaches destinations worth just 28M tourists a year – 51× less than the top passport. Afghanistan gets called the world's worst, but it slips into visa-free Macau; Pakistan can't, which is why the weighted map puts Pakistan last.
           </div>
           <div className="hero-stat-runners">
-            Runners-up: <span>🇸🇾 <CLink name="Syria" onSelect={onSelect} /></span> · <span>🇮🇶 <CLink name="Iraq" onSelect={onSelect} /></span>
+            Runners-up: <span>🇳🇬 <CLink name="Nigeria" onSelect={onSelect} /></span> · <span>🇧🇩 <CLink name="Bangladesh" onSelect={onSelect} /></span>
           </div>
         </div>
         <div>

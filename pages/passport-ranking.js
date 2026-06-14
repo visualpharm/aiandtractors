@@ -106,7 +106,7 @@ function Hero({ onSelect }) {
   return (
     <header className="hero">
       <div className="hero-eyebrow">
-        <span className="t-section-label">The Open Door Index · 2026</span>
+        <span className="t-section-label"><a href="/passport-ranking" style={{ color: 'inherit', textDecoration: 'none' }}>The Open Door Index</a> · 2026</span>
       </div>
       <h1 className="hero-title">
         A passport ranking that measures<br />

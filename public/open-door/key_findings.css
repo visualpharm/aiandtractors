@@ -416,3 +416,7 @@
   text-underline-offset: 2px;
 }
 .kf-table a:hover { color: var(--ink); }
+
+/* Index name in the eyebrow links back to the ranking home */
+.kf-hero-eyebrow a { color: inherit; text-decoration: none; }
+.kf-hero-eyebrow a:hover { text-decoration: underline; }

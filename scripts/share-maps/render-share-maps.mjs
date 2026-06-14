@@ -234,10 +234,10 @@ const WORLD_DEP = DATA.meta.worldDep       // 1325.5 M departures pool
       'Thailand',
       `Welcomes ${fmtM(C['Thailand'].welcome)}-worth of the world’s`,
       `travelers, gets ${fmtM(C['Thailand'].reach)}-worth back.`] },
-    { name: 'Russia', lx: 870, ly: 75, lines: [
-      'Russia',
-      `Enjoys ${fmtM(C['Russia'].reach)}-worth of reach,`,
-      `returns ${fmtM(C['Russia'].welcome)}-worth.`] },
+    { name: 'Kazakhstan', lx: 915, ly: 96, align: 'end', lines: [
+      'Kazakhstan',
+      `Opens up to ${fmtM(C['Kazakhstan'].welcome)}-worth of the world —`,
+      `its own passport reaches ${fmtM(C['Kazakhstan'].reach)}-worth.`] },
     { name: 'Afghanistan', lx: 1085, ly: 565, align: 'end', lines: [
       'Afghanistan',
       'Admits almost no one freely —',

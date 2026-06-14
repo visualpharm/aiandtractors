@@ -72,8 +72,10 @@ export default function PassportMaps() {
 
       <main className="sm-page">
         <section className="sm-hero">
-          <div className="sm-eyebrow">THE OPEN DOOR INDEX · SHAREABLE MAPS</div>
-          <h1 className="sm-title">Three maps. Free to repost.</h1>
+          <div className="sm-eyebrow">
+            <a className="sm-eyebrow-link" href="/passport-ranking">THE OPEN DOOR INDEX</a>
+          </div>
+          <h1 className="sm-title">Shareable maps</h1>
           <p className="sm-sub">
             High-resolution graphics built straight from the dataset — 3200×2000,
             ready for r/MapPorn, r/dataisbeautiful, a deck, or a post. Take any of
@@ -141,6 +143,8 @@ export default function PassportMaps() {
           color: #5e6ad2;
           margin-bottom: 14px;
         }
+        .sm-eyebrow-link { color: inherit; text-decoration: none; }
+        .sm-eyebrow-link:hover { text-decoration: underline; }
         .sm-title {
           font-size: 42px;
           font-weight: 800;

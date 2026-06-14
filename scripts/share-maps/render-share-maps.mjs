@@ -329,10 +329,10 @@ const WORLD_DEP = DATA.meta.worldDep       // 1325.5 M departures pool
       `#${C['United States'].rank} United States`,
       `${fmtM(C['United States'].reach)} of reach, but a one-way door:`,
       'it gets welcomed far more than it welcomes.'] },
-    { name: 'Afghanistan', lx: 1000, ly: 505, align: 'end', lines: [
-      `Last: Afghanistan`,
-      `${fmtM(C['Afghanistan'].reach)}-worth of world — 30× less`,
-      'than the top. The map is mostly closed.'] },
+    { name: 'Pakistan', lx: 1000, ly: 505, align: 'end', lines: [
+      `Last: Pakistan`,
+      `${fmtM(C['Pakistan'].reach)}-worth of world — ${Math.round(max / C['Pakistan'].reach)}× less than the top.`,
+      'Even Afghanistan ranks higher: one of its few doors is Macao.'] },
     { name: 'India', lx: 945, ly: 625, lines: [
       `#${C['India'].rank} India`,
       `1.4B people share ${fmtM(C['India'].reach)}-worth of open doors.`] },

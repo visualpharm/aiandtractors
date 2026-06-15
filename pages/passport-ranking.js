@@ -68,7 +68,14 @@ function destAccessCount() {
 function makeCombo(members) {
   const access = new Set()
   members.forEach((m) => m.access.forEach((d) => access.add(d)))
-  const totalM = [...access].reduce((s, d) => s + DESTS[d].v, 0)
+  // Round to the same 1-decimal precision the generator stores for every
+  // passport's totalM (lib/open-door-data.js). Without this the combo's raw
+  // float sum is compared against already-rounded stored values, so a combo
+  // whose access equals a member's — e.g. Luxembourg + UK, where UK adds no
+  // new destinations — sums to 1429.771 and ranks BELOW that member's stored
+  // 1429.8, dropping from rank 4 to 14. Combining can only ever match or
+  // improve a member's reach, never reduce it.
+  const totalM = Math.round([...access].reduce((s, d) => s + DESTS[d].v, 0) * 10) / 10
   const counts = destAccessCount()
   const top = [...access]
     .sort((a, b) => (counts[a] || 0) - (counts[b] || 0) || DESTS[b].v - DESTS[a].v)

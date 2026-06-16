@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit post console — passport / maps</title>
+<style>
+  :root{
+    --bg:#0f1014; --panel:#16181f; --panel2:#1c1f28; --line:#2a2e3a;
+    --ink:#e8e9ee; --dim:#9aa0ad; --accent:#7aa2ff; --green:#5fc88f; --amber:#e0b24c; --gray:#6b7180;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;display:flex;flex-direction:column}
+  header{padding:14px 22px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  header h1{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  header .note{font-size:12.5px;color:var(--dim)}
+  .layout{flex:1;display:flex;min-height:0}
+  /* sidebar */
+  nav{width:320px;flex:none;border-right:1px solid var(--line);overflow:auto;background:var(--panel)}
+  .navitem{display:flex;gap:11px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);padding:14px 16px;cursor:pointer;align-items:flex-start}
+  .navitem:hover{background:var(--panel2)}
+  .navitem.active{background:var(--panel2);box-shadow:inset 3px 0 0 var(--accent)}
+  .dot{width:9px;height:9px;border-radius:50%;margin-top:6px;flex:none;background:var(--gray)}
+  .dot.ready{background:var(--accent)} .dot.posted{background:var(--green)} .dot.draft{background:var(--gray)}
+  .navmain{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .navname{font-weight:650;font-size:14.5px}
+  .navsub{font-size:12px;color:var(--dim)}
+  /* detail */
+  main{flex:1;overflow:auto;padding:26px 30px 60px}
+  .wrap{max-width:760px;margin:0 auto}
+  .chips{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+  .chip{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+  .chip.sub{color:#cdd6ff;border-color:#34406b;background:#1a2138}
+  .chip.st-ready{color:var(--accent);border-color:#34406b}
+  .chip.st-posted{color:var(--green);border-color:#2c5340}
+  .chip.st-draft{color:var(--dim)}
+  h2.sec{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:26px 0 10px;font-weight:700}
+  /* titles */
+  .titlerow{display:flex;gap:12px;align-items:flex-start;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:8px}
+  .titlerow .tmain{flex:1;min-width:0}
+  .tlabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+  .ttext{font-size:15px;margin-top:3px}
+  /* body */
+  .bodybox{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:16px 18px}
+  .bodybox p{margin:0 0 10px} .bodybox p:last-child{margin-bottom:0}
+  .bodybox ul{margin:0 0 10px 20px} .bodybox li{margin:2px 0}
+  .bodybox h4{font-size:14px;margin:8px 0 6px}
+  .bodybox a{color:var(--accent)}
+  .btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  /* buttons */
+  .copy{background:#26304b;color:#dbe4ff;border:1px solid #34406b;border-radius:8px;padding:7px 13px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+  .copy:hover{background:#2e3a5c}
+  .copy.ok{background:#1f5138;border-color:#2c7a52;color:#bff0d2}
+  /* image + history */
+  .imgwrap{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0b0c10}
+  .imgwrap img{display:block;width:100%;height:auto}
+  .imgmeta{display:flex;justify-content:space-between;align-items:center;margin-top:7px;font-size:12.5px;color:var(--dim)}
+  .imgmeta a{color:var(--accent);text-decoration:none}
+  details.vhist{margin-top:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}
+  details.vhist summary{cursor:pointer;padding:11px 15px;font-size:13.5px;font-weight:600;color:var(--dim);list-style:none}
+  details.vhist summary::-webkit-details-marker{display:none}
+  details.vhist summary::before{content:"▸ ";color:var(--accent)}
+  details.vhist[open] summary::before{content:"▾ "}
+  .strip{display:flex;gap:10px;overflow-x:auto;padding:4px 15px 15px}
+  .vthumb{flex:none;width:170px;cursor:pointer;border:2px solid transparent;border-radius:8px;overflow:hidden;background:#0b0c10}
+  .vthumb img{display:block;width:100%;height:auto}
+  .vthumb figcaption{font-size:11.5px;color:var(--dim);padding:4px 6px;text-align:center}
+  .vthumb.active{border-color:var(--accent)}
+  .vthumb.active figcaption{color:var(--accent)}
+  .empty{color:var(--dim);padding:40px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>Reddit post console</h1>
+  <span class="note">Pick a post on the left. Titles and bodies copy as Markdown. Version history is collapsed under each image. Statuses are a guess, edit <code>POSTS</code> in this file.</span>
+</header>
+<div class="layout">
+  <nav id="nav"></nav>
+  <main><div class="wrap" id="detail"><div class="empty">Select a post.</div></div></main>
+</div>
+
+<script>
+const POSTS = [
+  {
+    id:'map-doors', name:'Passport “doors” world map', subreddit:'r/MapPorn', status:'ready',
+    titles:[{label:'Title', text:"The most important destination each passport still can't enter visa-free [OC]"}],
+    body:`Most passport rankings count countries: open 1 country = 1 point, so Tuvalu = France.
+
+I reweighted every visa-free door by how many people actually travel there (UNWTO arrivals), then shaded each country by the single most important destination its passport still can't enter visa-free.
+
+- The strongest passports (Japan, Korea, Singapore, EU) miss only India or Cuba.
+- The US misses China.
+- Argentina and Brazil are one door short: the US.
+- The weakest get a couple of neighbors.
+
+"Most important" means tourist volume, not land area, so India and Cuba outrank Russia or Canada.
+
+Interactive ranking: https://aiandtractors.com/passport-ranking/
+Data + PRs welcome: github.com/visualpharm/visa-free-dataset`,
+    image:'/passport-ranking/content/share-maps/map4-passport-doors.png',
+    versions:[
+      {label:'v4 — current', src:'/passport-ranking/content/share-maps/map4-passport-doors.png'},
+      {label:'v3', src:'/passport-ranking/content/versions/map-v3-passport-doors.png'},
+      {label:'v2', src:'/passport-ranking/content/versions/map-v2-passport-doors.png'},
+      {label:'v1', src:'/passport-ranking/content/versions/map-v1-passport-doors.png'},
+    ],
+  },
+  {
+    id:'tierlist', name:'Passport tier list', subreddit:'r/tierlists', status:'ready',
+    titles:[
+      {label:'Neutral (recommended)', text:"I ranked passports by how much of the world's actual tourism they unlock, not by country count"},
+      {label:'Spicy', text:"South Korea has the strongest passport and the US isn't even top 40 — once you rank by where people actually travel"},
+      {label:'Nerdy', text:"Passport strength reweighted by destination inbound-tourism volume (UNWTO 2023/24 × visa-free / VOA / ETA access)"},
+    ],
+    body:`Most passport rankings count every country as 1 point, so Tuvalu = France.
+
+I made a version where each visa-free door is weighted by how many people actually go there.
+
+So opening France, Spain, the US, China, Turkey etc matters much more than opening tiny islands with Robinson Crusoe as a visitor.
+
+Top result: South Korea, at about 1.45B tourist-arrivals worth of accessible world (thanks to India).
+Bottom: Afghanistan/Pakistan range, under 50M / 30M.
+Most open destination: Maldives - 30 day visa for all but Israel.
+Most overlooked: Burundi - opened the door to the whole world, but nobody came in.
+
+And two more things:
+
+You can compare countries: where can the French go that Belgians can't?
+
+With multiple citizenships, you can build your own passport gang. Will Argentina+Italy beat South Korea?
+
+🕹️ Play here: https://aiandtractors.com/passport-ranking/
+
+The dataset is here, pull requests are welcome.
+
+Rules: visa-free + visa-on-arrival + ETA count; eVisas excluded for now (that part's debatable).
+
+Which passport looks too high or too low to you?`,
+    image:'/passport-ranking/content/passport-tierlist.png',
+    versions:[
+      {label:'current', src:'/passport-ranking/content/passport-tierlist.png'},
+      {label:'v4 brackets up', src:'/passport-ranking/content/versions/v4-brackets-up.png'},
+      {label:'v3 brackets', src:'/passport-ranking/content/versions/v3-brackets.png'},
+      {label:'v2 grouped labels', src:'/passport-ranking/content/versions/v2-grouped-labels.png'},
+      {label:'v1 no-score broad', src:'/passport-ranking/content/versions/v1-noscore-broad.png'},
+    ],
+  },
+  {
+    id:'open-door', name:'Open Door Index (passport strength)', subreddit:'r/MapPorn', status:'posted',
+    titles:[{label:'Title', text:"Passport strength, by where humans actually go [OC]"}],
+    body:`Each passport scored by the total yearly tourist flow of the destinations it enters without a pre-arranged visa (visa-free, on arrival, or ETA), out of the 1.47B international arrivals the world records a year.
+
+So opening France, Spain or the US counts far more than opening a handful of tiny islands.
+
+Interactive ranking: https://aiandtractors.com/passport-ranking/`,
+    image:'/passport-ranking/content/share-maps/map3-open-door-index.png',
+    versions:[{label:'current', src:'/passport-ranking/content/share-maps/map3-open-door-index.png'}],
+  },
+  {
+    id:'hospitality', name:'Hospitality balance', subreddit:'r/MapPorn', status:'posted',
+    titles:[{label:'Title', text:"Who holds the door open, and who just walks through [OC]"}],
+    body:`Both sides measured in travel flow, not country counts: the share of the world's trips a country admits without a pre-arranged visa, against the share of the world's tourist destinations its own passport gets into.
+
+Green gives more hospitality than it receives. Red receives more than it gives.
+
+Interactive ranking: https://aiandtractors.com/passport-ranking/`,
+    image:'/passport-ranking/content/share-maps/map1-hospitality-balance.png',
+    versions:[{label:'current', src:'/passport-ranking/content/share-maps/map1-hospitality-balance.png'}],
+  },
+  {
+    id:'hosts-guests', name:'Host nations and guest nations', subreddit:'r/MapPorn', status:'draft',
+    titles:[{label:'Title', text:"Host nations and guest nations [OC]"}],
+    body:`Indigo countries are hosts: they receive more international tourists than their residents take trips abroad. Orange countries are guests: they travel out more than the world comes to them. Gray: no outbound data.
+
+Interactive ranking: https://aiandtractors.com/passport-ranking/`,
+    image:'/passport-ranking/content/share-maps/map2-hosts-and-guests.png',
+    versions:[{label:'current', src:'/passport-ranking/content/share-maps/map2-hosts-and-guests.png'}],
+  },
+];
+
+// ---- markdown (tiny) ----
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function inline(s){return esc(s)
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2">$1</a>')
+  .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')}
+function mdToHtml(md){
+  const lines=md.split('\n'); const out=[]; let inList=false;
+  const closeList=()=>{ if(inList){out.push('</ul>');inList=false;} };
+  for(const raw of lines){
+    const line=raw.trim();
+    if(!line){ closeList(); continue; }
+    let m;
+    if(m=line.match(/^#{1,6}\s+(.*)/)){ closeList(); out.push('<h4>'+inline(m[1])+'</h4>'); }
+    else if(m=line.match(/^[-•]\s+(.*)/)){ if(!inList){out.push('<ul>');inList=true;} out.push('<li>'+inline(m[1])+'</li>'); }
+    else { closeList(); out.push('<p>'+inline(line)+'</p>'); }
+  }
+  closeList(); return out.join('\n');
+}
+
+// ---- clipboard ----
+function copyText(text, btn){
+  const ok=()=>{ const o=btn.dataset.label; btn.textContent='Copied!'; btn.classList.add('ok'); setTimeout(()=>{btn.textContent=o;btn.classList.remove('ok');},1200); };
+  const fb=()=>{ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');ok();}catch(e){alert('Copy failed');} document.body.removeChild(ta); };
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(ok).catch(fb); } else { fb(); }
+}
+
+// ---- render ----
+const nav=document.getElementById('nav'), detail=document.getElementById('detail');
+
+nav.innerHTML = POSTS.map(p=>`
+  <button class="navitem" data-id="${p.id}">
+    <span class="dot ${p.status}"></span>
+    <span class="navmain"><span class="navname">${esc(p.name)}</span>
+    <span class="navsub">${esc(p.subreddit)} · ${p.status}</span></span>
+  </button>`).join('');
+
+function mkCopyBtn(label, text){
+  const b=document.createElement('button'); b.className='copy'; b.textContent=label; b.dataset.label=label;
+  b.addEventListener('click',()=>copyText(text,b)); return b;
+}
+
+function render(p){
+  [...nav.children].forEach(n=>n.classList.toggle('active', n.dataset.id===p.id));
+  const reco = p.titles[0].text;
+  const titlePlusBody = reco + '\n\n' + p.body;
+
+  detail.innerHTML = `
+    <div class="chips">
+      <span class="chip sub">${esc(p.subreddit)}</span>
+      <span class="chip st-${p.status}">${p.status}</span>
+    </div>
+    <h2 class="sec">Title${p.titles.length>1?' options':''}</h2>
+    <div id="titles"></div>
+    <h2 class="sec">Body (Markdown)</h2>
+    <div class="bodybox">${mdToHtml(p.body)}</div>
+    <div class="btns" id="bodybtns"></div>
+    <h2 class="sec">Image</h2>
+    <div class="imgwrap"><img id="mainimg" src="${p.image}" alt="${esc(p.name)}"></div>
+    <div class="imgmeta"><span id="imgcap">${esc(p.versions[0].label)}</span><a id="fulllink" href="${p.image}">Open full size</a></div>
+    <details class="vhist">
+      <summary>Version history (${p.versions.length})</summary>
+      <div class="strip">${p.versions.map((v,i)=>`
+        <figure class="vthumb${i===0?' active':''}" data-src="${v.src}" data-label="${esc(v.label)}">
+          <img src="${v.src}" loading="lazy"><figcaption>${esc(v.label)}</figcaption></figure>`).join('')}
+      </div>
+    </details>`;
+
+  // titles
+  const tc=detail.querySelector('#titles');
+  p.titles.forEach(t=>{
+    const row=document.createElement('div'); row.className='titlerow';
+    row.innerHTML=`<div class="tmain"><div class="tlabel">${esc(t.label)}</div><div class="ttext">${esc(t.text)}</div></div>`;
+    row.appendChild(mkCopyBtn('Copy', t.text));
+    tc.appendChild(row);
+  });
+  // body buttons
+  const bb=detail.querySelector('#bodybtns');
+  bb.appendChild(mkCopyBtn('Copy body', p.body));
+  bb.appendChild(mkCopyBtn('Copy title + body', titlePlusBody));
+  // version browse
+  const main=detail.querySelector('#mainimg'), cap=detail.querySelector('#imgcap'), full=detail.querySelector('#fulllink');
+  detail.querySelectorAll('.vthumb').forEach(t=>{
+    t.addEventListener('click',()=>{
+      detail.querySelectorAll('.vthumb').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      main.src=t.dataset.src; full.href=t.dataset.src; cap.textContent=t.dataset.label;
+    });
+  });
+}
+
+nav.addEventListener('click',e=>{ const b=e.target.closest('.navitem'); if(b){ render(POSTS.find(p=>p.id===b.dataset.id)); } });
+render(POSTS[0]);
+</script>
+</body>
+</html>

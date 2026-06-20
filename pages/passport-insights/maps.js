@@ -7,6 +7,13 @@ import Head from 'next/head'
 
 const MAPS = [
   {
+    file: 'map5-tier-world.png',
+    eyebrow: 'PASSPORT TIERS',
+    title: 'Which countries they can enter visa-free',
+    blurb:
+      'Every country colored by its passport tier — the biggest destination still blocked defines the tier. From "Almost world pass" (red) to "Border officer side quest" (blue). Gray countries are not ranked in this tier list.',
+  },
+  {
     file: 'map3-open-door-index.png',
     eyebrow: 'PASSPORT STRENGTH',
     title: 'Passport strength, by where humans actually go',
@@ -29,7 +36,7 @@ const MAPS = [
   },
 ]
 
-const OG = 'https://aiandtractors.com/open-door/maps/map3-open-door-index.png'
+const OG = 'https://aiandtractors.com/open-door/maps/map5-tier-world.png'
 
 export default function PassportMaps() {
   return (

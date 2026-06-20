@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:2240px; background:#0b0b0d; overflow:hidden;
+          font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; }
+  .wrap { padding:30px 38px 24px; }
+  .head { margin:0 4px 16px; }
+  .head h1 { color:#fff; font-size:42px; font-weight:800; letter-spacing:-0.6px; }
+  .head .sub { color:#9da3b2; font-size:20px; font-weight:500; margin-top:8px; }
+  .head .sub b { color:#ff9e80; }
+  .rows { display:flex; flex-direction:column; }
+  .row { display:flex; align-items:stretch; min-height:166px;
+          border-bottom:2px solid #0b0b0d; }
+  .label { width:300px; flex:none; display:flex; align-items:center;
+            justify-content:center; text-align:center; color:#1b1b22;
+            font-size:29px; font-weight:600; letter-spacing:-0.2px; padding:8px 16px; }
+  .flags { flex:1; display:flex; align-items:flex-start; flex-wrap:nowrap;
+            gap:46px; padding:18px 24px 6px; background:#0b0b0d; }
+  .flags.center { align-items:center; padding:10px 24px; }
+  .group { flex:none; display:flex; flex-direction:column; align-items:stretch; }
+  .group.gright { flex-direction:row; align-items:center; gap:14px; }
+  .flagrow { display:flex; gap:16px; }
+  .unit { flex:none; }
+  .flagimg { display:block; width:132px; height:88px; border:1px solid #d8d8d8;
+              object-fit:cover; }
+  /* bracket facing UP: bottom + side borders, ticks point up toward the flags */
+  .bracket { position:relative; height:18px; margin-top:14px;
+              border:3px solid #888e9c; border-top:none; }
+  .glabel { position:absolute; top:100%; left:50%; transform:translate(-50%,-50%);
+             background:#0b0b0d; padding:0 16px; white-space:nowrap;
+             font-size:30px; font-weight:700; letter-spacing:-0.3px; color:#e7ebf3; }
+  .glabel.gr { position:static; transform:none; background:none; padding:0;
+                margin-left:6px; }
+  .note { flex:none; align-self:flex-start; margin-top:20px; color:#cfd3dd;
+           font-size:21px; font-weight:500; line-height:1.3; white-space:nowrap; }
+  .note b { color:#fff; }
+  .foot { margin:18px 4px 0; font-size:22px; color:#7d8294; font-weight:500; }
+  .foot span { color:#ffd86b; }
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <h1>Passport tier list</h1>
+      <div class="sub"><b>&#10007;</b> = the biggest destination this passport still can&rsquo;t walk into visa-free</div>
+    </div>
+    <div class="rows">
+<div class="row"><div class="label" style="background:#f98a8a">Almost world pass</div><div class="flags"><div class="group"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/jp.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/kr.png" alt=""></div></div><div class="bracket"><div class="glabel"><span style="color:#ff9e80">&#10007;</span> Cuba</div></div></div><div class="group"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/sg.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/gb.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/ca.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/au.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/eu.png" alt=""></div></div><div class="bracket"><div class="glabel"><span style="color:#ff9e80">&#10007;</span> India</div></div></div><div class="note"><b>EU</b> = all of Europe<br>except Romania &amp; Bulgaria</div></div></div>
+<div class="row"><div class="label" style="background:#ffd86b">Strong, missing big doors</div><div class="flags"><div class="group"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/us.png" alt=""></div></div><div class="bracket"><div class="glabel"><span style="color:#ff9e80">&#10007;</span> China</div></div></div><div class="group"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/ae.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/hk.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/my.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/ro.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/bg.png" alt=""></div><div class="unit"><svg class="flagimg" viewBox="0 0 90 60" preserveAspectRatio="none"><rect width="90" height="60" fill="#fff"/><rect width="90" height="20" y="0"  fill="#74acdf"/><rect width="90" height="20" y="40" fill="#74acdf"/><polygon points="28.00,24.00 29.47,27.98 33.71,28.15 30.38,30.77 31.53,34.85 28.00,32.50 24.47,34.85 25.62,30.77 22.29,28.15 26.53,27.98" fill="#f6b40e" stroke="#caa20a" stroke-width="0.5"/><polygon points="45.00,24.00 46.47,27.98 50.71,28.15 47.38,30.77 48.53,34.85 45.00,32.50 41.47,34.85 42.62,30.77 39.29,28.15 43.53,27.98" fill="#f6b40e" stroke="#caa20a" stroke-width="0.5"/><polygon points="62.00,24.00 63.47,27.98 67.71,28.15 64.38,30.77 65.53,34.85 62.00,32.50 58.47,34.85 59.62,30.77 56.29,28.15 60.53,27.98" fill="#f6b40e" stroke="#caa20a" stroke-width="0.5"/></svg></div><div class="unit"><img class="flagimg" src="flags/br.png" alt=""></div></div><div class="bracket"><div class="glabel"><span style="color:#ff9e80">&#10007;</span> USA</div></div></div></div></div>
+<div class="row"><div class="label" style="background:#cfe06a">Regional comfort</div><div class="flags"><div class="group"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/mx.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/co.png" alt=""></div></div><div class="bracket"><div class="glabel"><span style="color:#ff9e80">&#10007;</span> USA &nbsp;<span style="color:#ff9e80">&#10007;</span> China</div></div></div></div></div>
+<div class="row"><div class="label" style="background:#8fdd8a">Lots of paperwork</div><div class="flags center"><div class="group gright"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/cn.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/in.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/tr.png" alt=""></div></div><div class="glabel gr"><span style="color:#ff9e80">&#10007;</span> anywhere rich</div></div></div></div>
+<div class="row"><div class="label" style="background:#6cc6e0">Border officer side quest</div><div class="flags center"><div class="group gright"><div class="flagrow"><div class="unit"><img class="flagimg" src="flags/pk.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/ng.png" alt=""></div><div class="unit"><img class="flagimg" src="flags/af.png" alt=""></div></div><div class="glabel gr"><span style="color:#7fe0a0">&#10003;</span> a couple neighbors + some seashells</div></div></div></div>
+    </div>
+    <div class="foot">rank yours &rarr; <span>aiandtractors.com/passport-ranking</span></div>
+  </div>
+</body></html>

@@ -92,7 +92,7 @@ export default function Meli() {
       <style jsx>{`
         .wrap { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
         .hero { text-align: center; padding: 2rem 0 1rem; }
-        .truck { width: 160px; height: 160px; }
+        .truck { width: 160px; height: 160px; display: block; margin: 0 auto; }
         h1 { font-size: 2.6rem; margin: .6rem 0 .2rem; letter-spacing: -.02em; }
         .tagline { font-size: 1.2rem; line-height: 1.5; color: #444; max-width: 620px; margin: .4rem auto 1.4rem; }
         .cta { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }

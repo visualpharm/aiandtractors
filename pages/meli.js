@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Layout from '../components/Layout'
 
 const GITHUB = 'https://github.com/visualpharm/meli-local-delivery'
-// Set once the Chrome Web Store listing is live:
-const STORE_URL = null
+const STORE_URL = 'https://chromewebstore.google.com/detail/meli-local-delivery/oekkjhokghdflljkgfiglcecbajblhpi'
 
 export default function Meli() {
   const title = 'MeLi Local Delivery — oculta la compra internacional en Mercado Libre'

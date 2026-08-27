@@ -245,16 +245,16 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         </p>
         <h2 className="text-2xl font-bold mt-10 mb-4">Data and method</h2>
         <ul className="list-disc pl-6 mb-6 space-y-1 text-gray-700">
-          <li><strong>Data</strong>: 40 readings exported from the Fit Profile app, Jun 1 to Aug 27, 2026.</li>
-          <li><strong>Regression</strong>: fat % = 0.4342 × weight − 17.498. r = 0.998, residual SD 0.04 points, worst deviation 0.09.</li>
-          <li><strong>Height experiment</strong>, Aug 27: profile set to 1.80 m, weight 87.70 kg. Displayed fat 23.2% and water 55.4%. BMI-formula predictions: 23.16 and 55.45.</li>
           <li>
-            <strong>Raw data</strong>:{' '}
+            <strong>Data</strong>: 40 readings exported from the Fit Profile app,
+            Jun 1 to Aug 27, 2026. Download:{' '}
             <a href="/scale/cs10h-readings.csv" className="text-blue-600 hover:text-blue-500">
               all 40 readings, csv
             </a>
-            , as exported from the app, minus the device MAC.
+            , minus the device MAC.
           </li>
+          <li><strong>Regression</strong>: fat % = 0.4342 × weight − 17.498. r = 0.998, residual SD 0.04 points, worst deviation 0.09.</li>
+          <li><strong>Height experiment</strong>, Aug 27: profile set to 1.80 m, weight 87.70 kg. Displayed fat 23.2% and water 55.4%. BMI-formula predictions: 23.16 and 55.45.</li>
         </ul>
       </article>
     </Layout>

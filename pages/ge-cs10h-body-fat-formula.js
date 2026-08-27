@@ -43,9 +43,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
             className="w-full max-w-md mx-auto rounded"
           />
           <figcaption className="text-sm text-gray-600 mt-2 text-center">
-            <span className="text-green-700 font-semibold">Green</span>: the one
-            measured value. <span className="text-red-700 font-semibold">Red</span>:
-            everything the scale computes from it.
+            The CS10H handle display. One load cell feeds every other number on it.
           </figcaption>
         </figure>
 

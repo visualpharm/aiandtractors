@@ -214,6 +214,13 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           scales&quot; at fit-profile.com. The GE monogram on the glass is the most
           expensive component of the product.
         </p>
+        <p className="mb-6">
+          There is precedent. The SEC fined GE $50 million in 2009 over its
+          accounting and $200 million in 2020 over its disclosures. The licensed
+          scale keeps the family tradition: confident numbers with no measurement
+          behind them. The biggest cooked books GE has shipped since, and this
+          time they weigh you back.
+        </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">What works</h2>
         <ul className="list-disc pl-6 mb-6 space-y-1">

@@ -20,7 +20,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         <title>GE Scales Are a Scam and Math Theater | Ivan Braun</title>
         <meta
           name="description"
-          content="I exported 3 months of data from a GE CS10H smart scale. Body fat % is 0.434 × weight − 17.5, exact to 0.1 points across 37 readings. It even prints the same numbers with socks on."
+          content="I exported 3 months of data from a GE CS10H smart scale. Body fat % is 1.5 × BMI − 17.5, exact to 0.1 points across 37 readings. It prints the same numbers with socks on and plays a fake measuring animation."
         />
         <link rel="canonical" href="https://aiandtractors.com/ge-cs10h-body-fat-formula/" />
       </Head>
@@ -108,6 +108,44 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           case in one sentence. The electrodes play no part in the calculation.
         </p>
 
+        <h2 className="text-2xl font-bold mt-10 mb-4">The height test</h2>
+        <p className="mb-4">
+          Second experiment, also 2 minutes. I changed my height in the app from
+          1.86 m to 1.80 m and stepped on again. Same body, same evening. The scale
+          printed <strong>87.70 kg, BMI 27.1, body fat 23.2%, water 55.4%</strong>.
+        </p>
+        <p className="mb-4">
+          Losing 6 cm of height on paper added 2.6 points of body fat. That unlocks
+          the full formula. Rewrite my weight regression in BMI terms and it predicts
+          fat 23.2% and water 55.5% for exactly this weigh-in. The scale runs on:
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-1">
+          <li><strong>fat % = 1.5 × BMI − 17.5</strong></li>
+          <li><strong>water % = 84 − 1.06 × BMI</strong></li>
+        </ul>
+        <p className="mb-4">
+          A $30 pocket calculator with a BMI chart taped to it, sold as a
+          6-electrode body composition analyzer.
+        </p>
+
+        <figure className="mb-10">
+          <img
+            src="/scale/height-test.jpg"
+            alt="CS10H handle display showing 87.70 kg, BMI 27.1, body fat 23.2%, water 55.4% after the profile height was changed to 1.80 m"
+            className="w-full rounded"
+          />
+          <figcaption className="text-sm text-gray-600 mt-2">
+            The height test. Profile set to 1.80 m: 87.70 kg, BMI 27.1, fat 23.2%,
+            water 55.4%. The BMI formula predicted 23.2 and 55.5.
+          </figcaption>
+        </figure>
+
+        <p className="mb-6">
+          One more touch. The scale plays a &quot;measuring&quot; animation for
+          several seconds before showing these numbers. The arithmetic takes
+          microseconds. The wait sells the theater.
+        </p>
+
         <h2 className="text-2xl font-bold mt-10 mb-4">The hardware could do it</h2>
         <p className="mb-4">
           The CS10H has <strong>6 electrodes, including a pull-out handle</strong>,
@@ -143,6 +181,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           <li>Plot body fat % against weight. A straight line with no scatter is a formula.</li>
           <li>Find 2 days with the same weight, weeks apart. Identical fat % is a formula.</li>
           <li>Weigh yourself with socks on. Same fat % as barefoot means the electrodes are decoration.</li>
+          <li>Change your height in the app and step on again. A different fat % on the same body means the number comes from your profile settings.</li>
         </ol>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">Verdict</h2>
@@ -154,7 +193,9 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         <p className="text-gray-700">
           Data and method: 40 readings exported from the Fit Profile app,
           Jun 1 to Aug 27, 2026. Regression: fat % = 0.4342 × weight − 17.498,
-          r = 0.998, residual SD 0.04 points. Raw export available on request.
+          r = 0.998, residual SD 0.04 points. Height experiment, Aug 27: profile
+          1.80 m, 87.70 kg, displayed fat 23.2% and water 55.4% against BMI-formula
+          predictions of 23.16 and 55.45. Raw export available on request.
         </p>
       </article>
     </Layout>

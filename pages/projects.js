@@ -5,9 +5,9 @@ import Layout from '../components/Layout';
 const research = [
   {
     href: '/ge-cs10h-body-fat-formula',
-    title: 'The weight is real. The body fat is math theater.',
+    title: 'GE scales are a scam and math theater',
     blurb:
-      'My GE smart scale prints body fat from a formula, not a measurement. 3 months of exported data, 1 regression, r = 0.998.',
+      'My GE smart scale prints body fat straight from a weight formula. 3 months of exported data, 1 regression, r = 0.998.',
   },
   {
     href: '/passport-ranking',

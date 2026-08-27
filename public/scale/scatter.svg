@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 610" font-family="ui-sans-serif,system-ui,-apple-system,sans-serif">
 <rect width="760" height="610" fill="white"/>
-<text x="24" y="40" font-size="24" font-weight="700" fill="#111827">This scale does not measure body fat. It calculates it.</text>
-<text x="24" y="66" font-size="15" fill="#4b5563">37 readings over 3 months sit exactly on a straight line. A measurement scatters. A formula does not.</text>
+<text x="24" y="40" font-size="24" font-weight="700" fill="#111827">GE scales are a scam and math theater</text>
+<text x="24" y="66" font-size="15" fill="#4b5563">37 readings over 3 months sit exactly on a straight line, with zero scatter.</text>
 <rect x="24" y="84" width="300" height="34" rx="6" fill="#f3f4f6"/>
 <text x="38" y="107" font-size="16" font-weight="600" fill="#111827">fat % = 0.434 × weight − 17.5</text>
 <line x1="148.5" y1="138" x2="148.5" y2="554" stroke="#e5e7eb" stroke-width="1"/>

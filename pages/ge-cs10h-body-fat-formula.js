@@ -38,13 +38,14 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
 
         <figure className="mb-10">
           <img
-            src="/scale/ge-cs10h.jpg"
-            alt="GE CS10H smart scale with handlebar electrodes"
+            src="/scale/display-annotated.jpg"
+            alt="GE CS10H handle display: weight 87.70 kg circled in green as the only measured value, body fat, muscle, water, BMI, bone and visceral fat circled in red as computed values"
             className="w-full max-w-md mx-auto rounded"
           />
           <figcaption className="text-sm text-gray-600 mt-2 text-center">
-            The GE CS10H. 6 electrodes, including a handle. Sold for segmental body
-            composition analysis.
+            <span className="text-green-700 font-semibold">Green</span>: the one
+            measured value. <span className="text-red-700 font-semibold">Red</span>:
+            everything the scale computes from it.
           </figcaption>
         </figure>
 
@@ -130,9 +131,9 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
 
         <figure className="mb-10">
           <img
-            src="/scale/height-test.jpg"
-            alt="CS10H handle display showing 87.70 kg, BMI 27.1, body fat 23.2%, water 55.4% after the profile height was changed to 1.80 m"
-            className="w-full rounded"
+            src="/scale/display-zoom.jpg"
+            alt="Close-up of the CS10H handle display: 87.70 kg, body fat 23.2%, muscle 73.0%, water 55.4%, BMI 27.1, bone 3.9%, visceral fat 9"
+            className="w-full max-w-md mx-auto rounded"
           />
           <figcaption className="text-sm text-gray-600 mt-2">
             The height test. Profile set to 1.80 m: 87.70 kg, BMI 27.1, fat 23.2%,
@@ -157,6 +158,53 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           visceral fat, and metabolic age. Every one of them tracks weight perfectly.
           Body water in my export is a mirror of the fat curve. The hardware ships,
           the signal is ignored, the formula prints.
+        </p>
+
+        <figure className="mb-10">
+          <img
+            src="/scale/ge-cs10h.jpg"
+            alt="GE CS10H smart scale with handlebar electrodes"
+            className="w-full max-w-md mx-auto rounded"
+          />
+          <figcaption className="text-sm text-gray-600 mt-2 text-center">
+            The GE CS10H. 6 electrodes, including a handle. Sold for segmental body
+            composition analysis.
+          </figcaption>
+        </figure>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4">The app doubles down</h2>
+        <p className="mb-4">
+          The Fit Profile app expands the one measured number into an
+          &quot;In-depth Report&quot;. These screens correspond to my 85.65 kg
+          weigh-in. Body fat 19.7%. The formula says 19.69.
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-1">
+          <li><strong>Segmental fat analysis</strong> per limb: right arm 1.08 kg of fat, left arm 1.04 kg. Fake precision down to 40 grams, from a device that ignores its own electrodes.</li>
+          <li><strong>Muscle balance</strong>: left leg 103.7% of normal, right leg 104.3%.</li>
+          <li><strong>Metabolic age 46, waist-to-hip ratio 0.96, protein 18.2%, BMR 1855 kcal</strong>: an entire clinical report from one load cell and a profile form.</li>
+        </ul>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <img
+            src="/scale/app-composition.jpg"
+            alt="Fit Profile body composition screen: weight 85.65 kg circled in green, body water, protein, fat mass and bone mass boxed in red as computed values"
+            className="w-full rounded"
+          />
+          <img
+            src="/scale/app-segmental.jpg"
+            alt="Fit Profile segmental fat analysis screen with all per-limb values boxed in red: every number is computed"
+            className="w-full rounded"
+          />
+          <img
+            src="/scale/app-report.jpg"
+            alt="Fit Profile other measurements screen: muscle mass, BMR, subcutaneous fat, waist-to-hip ratio, metabolic age"
+            className="w-full rounded"
+          />
+        </div>
+        <p className="text-sm text-gray-600 mb-10">
+          <span className="text-green-700 font-semibold">Green</span>: measured.{' '}
+          <span className="text-red-700 font-semibold">Red</span>: computed. The
+          third screen has no green anywhere.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">Who actually makes it</h2>
@@ -190,17 +238,19 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           number on the screen. And if your smart scale never surprises you, it runs
           a spreadsheet.
         </p>
-        <p className="text-gray-700">
-          Data and method: 40 readings exported from the Fit Profile app,
-          Jun 1 to Aug 27, 2026. Regression: fat % = 0.4342 × weight − 17.498,
-          r = 0.998, residual SD 0.04 points. Height experiment, Aug 27: profile
-          1.80 m, 87.70 kg, displayed fat 23.2% and water 55.4% against BMI-formula
-          predictions of 23.16 and 55.45. Raw data:{' '}
-          <a href="/scale/cs10h-readings.csv" className="text-blue-600 hover:text-blue-500">
-            all 40 readings, csv
-          </a>
-          , as exported from the app, minus the device MAC.
-        </p>
+        <h2 className="text-2xl font-bold mt-10 mb-4">Data and method</h2>
+        <ul className="list-disc pl-6 mb-6 space-y-1 text-gray-700">
+          <li><strong>Data</strong>: 40 readings exported from the Fit Profile app, Jun 1 to Aug 27, 2026.</li>
+          <li><strong>Regression</strong>: fat % = 0.4342 × weight − 17.498. r = 0.998, residual SD 0.04 points, worst deviation 0.09.</li>
+          <li><strong>Height experiment</strong>, Aug 27: profile set to 1.80 m, weight 87.70 kg. Displayed fat 23.2% and water 55.4%. BMI-formula predictions: 23.16 and 55.45.</li>
+          <li>
+            <strong>Raw data</strong>:{' '}
+            <a href="/scale/cs10h-readings.csv" className="text-blue-600 hover:text-blue-500">
+              all 40 readings, csv
+            </a>
+            , as exported from the app, minus the device MAC.
+          </li>
+        </ul>
       </article>
     </Layout>
   );

@@ -147,9 +147,10 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
 
         <h2 className="text-2xl font-bold mt-10 mb-4">The hardware could do it</h2>
         <p className="mb-4">
-          The CS10H has <strong>6 electrodes, including a pull-out handle</strong>,
-          and resellers advertise it for 8-electrode segmental analysis. Hand plus
-          foot electrodes are exactly the hardware real segmental bioimpedance uses.
+          The CS10H has <strong>6 electrodes, including a pull-out handle</strong>.
+          The listing promises 8: an &quot;8-Electrode Body Pod Fat Monitor with
+          Full Body Composition Analysis&quot;. Hand plus foot electrodes are
+          exactly the hardware real segmental bioimpedance uses.
         </p>
         <p className="mb-6">
           The app duly reports per-limb muscle and fat, protein, bone mass, body water,
@@ -223,9 +224,30 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         <h2 className="text-2xl font-bold mt-10 mb-4">What works</h2>
         <ul className="list-disc pl-6 mb-6 space-y-1">
           <li>The <strong>load cell is fine</strong>. Weight readings are consistent and tracked my real 5.8 kg loss over 5 weeks.</li>
+          <li>The electrodes physically exist, and the <strong>contact detection works</strong>. Skip the handle, or hold it with 1 arm, and the scale refuses to show body composition. It enforces the ritual, then discards the signal.</li>
           <li>Bluetooth sync works.</li>
           <li>The app exports clean xlsx. That export is how it got caught.</li>
         </ul>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4">The joke is on me</h2>
+        <p className="mb-4">
+          Amazon sells $10 and $20 body composition scales by the pallet. I skipped
+          them all and paid <strong>$119.99</strong> for the brand name. The brand
+          name skips the measurement. Amazon also flags it <strong>FSA and HSA
+          eligible</strong>, so Americans can buy this formula with pre-tax health
+          money.
+        </p>
+
+        <figure className="mb-10">
+          <img
+            src="/scale/amazon-order.png"
+            alt="Amazon order: GE Smart Scale for Body Weight, 8-Electrode Body Pod Fat Monitor with Full Body Composition Analysis, sold by GE Authorized Store, $119.99, FSA or HSA eligible"
+            className="w-full rounded border border-gray-200"
+          />
+          <figcaption className="text-sm text-gray-600 mt-2">
+            The order. 8 electrodes promised, 6 present, 0 used.
+          </figcaption>
+        </figure>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">Test your own scale</h2>
         <p className="mb-4">Takes 10 minutes, no lab needed:</p>

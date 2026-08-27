@@ -40,16 +40,6 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           fits within 0.1 points.
         </p>
 
-        <p className="mb-8 text-gray-700">
-          Discuss:{' '}
-          {DISCUSS.map((l, i) => (
-            <span key={l.href}>
-              {i > 0 && <span className="text-gray-400"> · </span>}
-              <a href={l.href} className="text-blue-600 hover:text-blue-500">{l.label}</a>
-            </span>
-          ))}
-        </p>
-
         <figure className="mb-10">
           <img
             src="/scale/display-annotated.jpg"
@@ -292,6 +282,16 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           <li><strong>Regression</strong>: fat % = 0.4342 × weight − 17.498. r = 0.998, residual SD 0.04 points, worst deviation 0.09.</li>
           <li><strong>Height experiment</strong>, Aug 27: profile set to 1.80 m, weight 87.70 kg. Displayed fat 23.2% and water 55.4%. BMI-formula predictions: 23.16 and 55.45.</li>
         </ul>
+
+        <p className="mt-10 text-gray-700">
+          Discuss:{' '}
+          {DISCUSS.map((l, i) => (
+            <span key={l.href}>
+              {i > 0 && <span className="text-gray-400"> · </span>}
+              <a href={l.href} className="text-blue-600 hover:text-blue-500">{l.label}</a>
+            </span>
+          ))}
+        </p>
       </article>
     </Layout>
   );

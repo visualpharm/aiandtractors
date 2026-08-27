@@ -13,6 +13,10 @@ export async function getStaticProps() {
   };
 }
 
+const DISCUSS = [
+  { label: 'Hacker News', href: 'https://news.ycombinator.com/item?id=49472008' },
+];
+
 export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
   return (
     <Layout>
@@ -34,6 +38,16 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           The body fat percentage comes from a formula:{' '}
           <strong>fat % = 0.434 × weight − 17.5</strong>. Every one of 37 readings
           fits within 0.1 points.
+        </p>
+
+        <p className="mb-8 text-gray-700">
+          Discuss:{' '}
+          {DISCUSS.map((l, i) => (
+            <span key={l.href}>
+              {i > 0 && <span className="text-gray-400"> · </span>}
+              <a href={l.href} className="text-blue-600 hover:text-blue-500">{l.label}</a>
+            </span>
+          ))}
         </p>
 
         <figure className="mb-10">

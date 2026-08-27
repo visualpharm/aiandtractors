@@ -195,7 +195,11 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           Jun 1 to Aug 27, 2026. Regression: fat % = 0.4342 × weight − 17.498,
           r = 0.998, residual SD 0.04 points. Height experiment, Aug 27: profile
           1.80 m, 87.70 kg, displayed fat 23.2% and water 55.4% against BMI-formula
-          predictions of 23.16 and 55.45. Raw export available on request.
+          predictions of 23.16 and 55.45. Raw data:{' '}
+          <a href="/scale/cs10h-readings.csv" className="text-blue-600 hover:text-blue-500">
+            all 40 readings, csv
+          </a>
+          , as exported from the app, minus the device MAC.
         </p>
       </article>
     </Layout>

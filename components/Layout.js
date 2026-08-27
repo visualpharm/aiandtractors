@@ -13,6 +13,7 @@ const translations = {
     events: "Tech Events",
     vanishedPeople: "Vanished People",
     passportRanking: "Passport Ranking",
+    projects: "Projects",
     visit: "Visit me",
     contact: "Contact"
   },
@@ -165,6 +166,7 @@ export default function Layout({ children }) {
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'}>{t.events}</Link></li>
               <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'}>{t.vanishedPeople}</Link></li>
               {locale === 'en' && <li><Link href="/passport-ranking">{t.passportRanking}</Link></li>}
+              {locale === 'en' && <li><Link href="/projects">{t.projects}</Link></li>}
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>
           </div>

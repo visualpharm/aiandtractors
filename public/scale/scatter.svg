@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 610" font-family="ui-sans-serif,system-ui,-apple-system,sans-serif">
+<rect width="760" height="610" fill="white"/>
+<text x="24" y="40" font-size="24" font-weight="700" fill="#111827">This scale does not measure body fat. It calculates it.</text>
+<text x="24" y="66" font-size="15" fill="#4b5563">37 readings over 3 months sit exactly on a straight line. A measurement scatters. A formula does not.</text>
+<rect x="24" y="84" width="300" height="34" rx="6" fill="#f3f4f6"/>
+<text x="38" y="107" font-size="16" font-weight="600" fill="#111827">fat % = 0.434 × weight − 17.5</text>
+<line x1="148.5" y1="138" x2="148.5" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="148.5" y="576" text-anchor="middle" font-size="13" fill="#4b5563">85</text>
+<line x1="233.0" y1="138" x2="233.0" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="233.0" y="576" text-anchor="middle" font-size="13" fill="#4b5563">86</text>
+<line x1="317.5" y1="138" x2="317.5" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="317.5" y="576" text-anchor="middle" font-size="13" fill="#4b5563">87</text>
+<line x1="402.0" y1="138" x2="402.0" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="402.0" y="576" text-anchor="middle" font-size="13" fill="#4b5563">88</text>
+<line x1="486.5" y1="138" x2="486.5" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="486.5" y="576" text-anchor="middle" font-size="13" fill="#4b5563">89</text>
+<line x1="571.0" y1="138" x2="571.0" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="571.0" y="576" text-anchor="middle" font-size="13" fill="#4b5563">90</text>
+<line x1="655.5" y1="138" x2="655.5" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="655.5" y="576" text-anchor="middle" font-size="13" fill="#4b5563">91</text>
+<line x1="740.0" y1="138" x2="740.0" y2="554" stroke="#e5e7eb" stroke-width="1"/>
+<text x="740.0" y="576" text-anchor="middle" font-size="13" fill="#4b5563">92</text>
+<line x1="64" y1="554.0" x2="740" y2="554.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="558.0" text-anchor="end" font-size="13" fill="#4b5563">19%</text>
+<line x1="64" y1="494.57142857142856" x2="740" y2="494.57142857142856" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="498.57142857142856" text-anchor="end" font-size="13" fill="#4b5563">19.5%</text>
+<line x1="64" y1="435.14285714285717" x2="740" y2="435.14285714285717" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="439.14285714285717" text-anchor="end" font-size="13" fill="#4b5563">20%</text>
+<line x1="64" y1="375.71428571428567" x2="740" y2="375.71428571428567" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="379.71428571428567" text-anchor="end" font-size="13" fill="#4b5563">20.5%</text>
+<line x1="64" y1="316.2857142857143" x2="740" y2="316.2857142857143" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="320.2857142857143" text-anchor="end" font-size="13" fill="#4b5563">21%</text>
+<line x1="64" y1="256.85714285714283" x2="740" y2="256.85714285714283" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="260.85714285714283" text-anchor="end" font-size="13" fill="#4b5563">21.5%</text>
+<line x1="64" y1="197.42857142857142" x2="740" y2="197.42857142857142" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="201.42857142857142" text-anchor="end" font-size="13" fill="#4b5563">22%</text>
+<line x1="64" y1="138.0" x2="740" y2="138.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="142.0" text-anchor="end" font-size="13" fill="#4b5563">22.5%</text>
+<line x1="89.34999999999977" y1="541.5128685714287" x2="714.6500000000002" y2="159.61536000000046" stroke="#111827" stroke-width="2"/>
+<circle cx="440.0" cy="328.2" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 01: 88.45 kg, 20.9% fat</title></circle>
+<circle cx="309.1" cy="399.5" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 02: 86.9 kg, 20.3% fat</title></circle>
+<circle cx="309.1" cy="399.5" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 02: 86.9 kg, 20.3% fat</title></circle>
+<circle cx="418.9" cy="340.1" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 04: 88.2 kg, 20.8% fat</title></circle>
+<circle cx="380.9" cy="363.8" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 05: 87.75 kg, 20.6% fat</title></circle>
+<circle cx="511.8" cy="292.5" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 07: 89.3 kg, 21.2% fat</title></circle>
+<circle cx="511.8" cy="280.6" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 07: 89.3 kg, 21.3% fat</title></circle>
+<circle cx="364.0" cy="375.7" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 11: 87.55 kg, 20.5% fat</title></circle>
+<circle cx="448.5" cy="316.3" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 12: 88.55 kg, 21.0% fat</title></circle>
+<circle cx="490.7" cy="292.5" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 16: 89.05 kg, 21.2% fat</title></circle>
+<circle cx="410.4" cy="340.1" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 17: 88.1 kg, 20.8% fat</title></circle>
+<circle cx="385.1" cy="363.8" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 20: 87.8 kg, 20.6% fat</title></circle>
+<circle cx="448.5" cy="316.3" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 22: 88.55 kg, 21.0% fat</title></circle>
+<circle cx="448.5" cy="316.3" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 22: 88.55 kg, 21.0% fat</title></circle>
+<circle cx="473.8" cy="304.4" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 26: 88.85 kg, 21.1% fat</title></circle>
+<circle cx="579.4" cy="245.0" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jun 26: 90.1 kg, 21.6% fat</title></circle>
+<circle cx="697.8" cy="173.7" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jul 20: 91.5 kg, 22.2% fat</title></circle>
+<circle cx="702.0" cy="173.7" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Jul 23: 91.55 kg, 22.2% fat</title></circle>
+<circle cx="613.2" cy="221.2" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 03: 90.5 kg, 21.8% fat</title></circle>
+<circle cx="575.2" cy="245.0" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 03: 90.05 kg, 21.6% fat</title></circle>
+<circle cx="571.0" cy="245.0" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 04: 90.0 kg, 21.6% fat</title></circle>
+<circle cx="490.7" cy="292.5" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 05: 89.05 kg, 21.2% fat</title></circle>
+<circle cx="406.2" cy="351.9" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 06: 88.05 kg, 20.7% fat</title></circle>
+<circle cx="440.0" cy="328.2" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 07: 88.45 kg, 20.9% fat</title></circle>
+<circle cx="490.7" cy="292.5" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 08: 89.05 kg, 21.2% fat</title></circle>
+<circle cx="516.1" cy="280.6" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 08: 89.35 kg, 21.3% fat</title></circle>
+<circle cx="393.6" cy="363.8" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 09: 87.9 kg, 20.6% fat</title></circle>
+<circle cx="452.7" cy="316.3" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 10: 88.6 kg, 21.0% fat</title></circle>
+<circle cx="368.2" cy="375.7" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 11: 87.6 kg, 20.5% fat</title></circle>
+<circle cx="368.2" cy="375.7" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 12: 87.6 kg, 20.5% fat</title></circle>
+<circle cx="431.6" cy="340.1" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 12: 88.35 kg, 20.8% fat</title></circle>
+<circle cx="431.6" cy="340.1" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 12: 88.35 kg, 20.8% fat</title></circle>
+<circle cx="296.4" cy="423.3" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 13: 86.75 kg, 20.1% fat</title></circle>
+<circle cx="380.9" cy="363.8" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 25: 87.75 kg, 20.6% fat</title></circle>
+<circle cx="118.9" cy="530.2" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 26: 84.65 kg, 19.2% fat</title></circle>
+<circle cx="203.4" cy="470.8" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 27: 85.65 kg, 19.7% fat</title></circle>
+<circle cx="203.4" cy="470.8" r="5" fill="#0f766e" fill-opacity="0.75" stroke="white" stroke-width="1.5"><title>Aug 27: 85.65 kg, 19.7% fat</title></circle>
+<text x="130.92500000000047" y="535.2285714285715" font-size="13" font-weight="600" fill="#111827">19.2% at 84.65 kg</text>
+<text x="689.9749999999998" y="191.65714285714296" text-anchor="end" font-size="13" font-weight="600" fill="#111827">22.2% at 91.55 kg</text>
+<text x="537.1999999999996" y="447.0285714285716" font-size="14" fill="#4b5563">No scatter. No hydration effect.</text>
+<text x="537.1999999999996" y="466.0285714285716" font-size="14" fill="#4b5563">Worst deviation: 0.09 points.</text>
+<text x="402.0" y="598" text-anchor="middle" font-size="13" fill="#4b5563">Weight, kg</text>
+<text x="18" y="346.0" text-anchor="middle" font-size="13" fill="#4b5563" transform="rotate(-90 18 346.0)">Body fat, %</text>
+</svg>

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 600" font-family="ui-sans-serif,system-ui,-apple-system,sans-serif">
+<rect width="760" height="600" fill="white"/>
+<text x="24" y="40" font-size="24" font-weight="700" fill="#111827">The fat curve is the weight curve</text>
+<text x="24" y="64" font-size="15" fill="#4b5563">Same 3 months. The scale repackages one measurement as two.</text><g transform="translate(0,60)">
+<line x1="64" y1="240.0" x2="740" y2="240.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="244.0" text-anchor="end" font-size="12" fill="#4b5563">84</text>
+<line x1="64" y1="190.0" x2="740" y2="190.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="194.0" text-anchor="end" font-size="12" fill="#4b5563">86</text>
+<line x1="64" y1="140.0" x2="740" y2="140.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="144.0" text-anchor="end" font-size="12" fill="#4b5563">88</text>
+<line x1="64" y1="90.0" x2="740" y2="90.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="94.0" text-anchor="end" font-size="12" fill="#4b5563">90</text>
+<line x1="64" y1="40.0" x2="740" y2="40.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="44.0" text-anchor="end" font-size="12" fill="#4b5563">92</text>
+<path d="M68.8,128.7 L74.7,167.5 L74.7,167.5 L90.1,135.0 L97.6,146.2 L114.0,107.5 L114.0,107.5 L143.7,151.3 L152.2,126.3 L179.4,113.8 L189.8,137.5 L212.0,145.0 L228.0,126.3 L228.0,126.3 L258.7,118.8 L260.8,87.5 L442.2,52.5 L465.9,51.3 L549.6,77.5 L554.2,88.8 L559.8,90.0 L568.1,113.8 L575.2,138.8 L581.4,128.7 L589.1,113.8 L593.5,106.3 L596.7,142.5 L603.8,125.0 L611.2,150.0 L618.8,150.0 L621.8,131.3 L621.8,131.3 L626.8,171.2 L721.9,146.2 L727.1,223.7 L735.5,198.7 L735.5,198.7" fill="none" stroke="#374151" stroke-width="2"/>
+<circle cx="68.8" cy="128.7" r="4" fill="#374151"><title>Jun 01: 88.45 kg</title></circle>
+<circle cx="74.7" cy="167.5" r="4" fill="#374151"><title>Jun 02: 86.9 kg</title></circle>
+<circle cx="74.7" cy="167.5" r="4" fill="#374151"><title>Jun 02: 86.9 kg</title></circle>
+<circle cx="90.1" cy="135.0" r="4" fill="#374151"><title>Jun 04: 88.2 kg</title></circle>
+<circle cx="97.6" cy="146.2" r="4" fill="#374151"><title>Jun 05: 87.75 kg</title></circle>
+<circle cx="114.0" cy="107.5" r="4" fill="#374151"><title>Jun 07: 89.3 kg</title></circle>
+<circle cx="114.0" cy="107.5" r="4" fill="#374151"><title>Jun 07: 89.3 kg</title></circle>
+<circle cx="143.7" cy="151.3" r="4" fill="#374151"><title>Jun 11: 87.55 kg</title></circle>
+<circle cx="152.2" cy="126.3" r="4" fill="#374151"><title>Jun 12: 88.55 kg</title></circle>
+<circle cx="179.4" cy="113.8" r="4" fill="#374151"><title>Jun 16: 89.05 kg</title></circle>
+<circle cx="189.8" cy="137.5" r="4" fill="#374151"><title>Jun 17: 88.1 kg</title></circle>
+<circle cx="212.0" cy="145.0" r="4" fill="#374151"><title>Jun 20: 87.8 kg</title></circle>
+<circle cx="228.0" cy="126.3" r="4" fill="#374151"><title>Jun 22: 88.55 kg</title></circle>
+<circle cx="228.0" cy="126.3" r="4" fill="#374151"><title>Jun 22: 88.55 kg</title></circle>
+<circle cx="258.7" cy="118.8" r="4" fill="#374151"><title>Jun 26: 88.85 kg</title></circle>
+<circle cx="260.8" cy="87.5" r="4" fill="#374151"><title>Jun 26: 90.1 kg</title></circle>
+<circle cx="442.2" cy="52.5" r="4" fill="#374151"><title>Jul 20: 91.5 kg</title></circle>
+<circle cx="465.9" cy="51.3" r="4" fill="#374151"><title>Jul 23: 91.55 kg</title></circle>
+<circle cx="549.6" cy="77.5" r="4" fill="#374151"><title>Aug 03: 90.5 kg</title></circle>
+<circle cx="554.2" cy="88.8" r="4" fill="#374151"><title>Aug 03: 90.05 kg</title></circle>
+<circle cx="559.8" cy="90.0" r="4" fill="#374151"><title>Aug 04: 90.0 kg</title></circle>
+<circle cx="568.1" cy="113.8" r="4" fill="#374151"><title>Aug 05: 89.05 kg</title></circle>
+<circle cx="575.2" cy="138.8" r="4" fill="#374151"><title>Aug 06: 88.05 kg</title></circle>
+<circle cx="581.4" cy="128.7" r="4" fill="#374151"><title>Aug 07: 88.45 kg</title></circle>
+<circle cx="589.1" cy="113.8" r="4" fill="#374151"><title>Aug 08: 89.05 kg</title></circle>
+<circle cx="593.5" cy="106.3" r="4" fill="#374151"><title>Aug 08: 89.35 kg</title></circle>
+<circle cx="596.7" cy="142.5" r="4" fill="#374151"><title>Aug 09: 87.9 kg</title></circle>
+<circle cx="603.8" cy="125.0" r="4" fill="#374151"><title>Aug 10: 88.6 kg</title></circle>
+<circle cx="611.2" cy="150.0" r="4" fill="#374151"><title>Aug 11: 87.6 kg</title></circle>
+<circle cx="618.8" cy="150.0" r="4" fill="#374151"><title>Aug 12: 87.6 kg</title></circle>
+<circle cx="621.8" cy="131.3" r="4" fill="#374151"><title>Aug 12: 88.35 kg</title></circle>
+<circle cx="621.8" cy="131.3" r="4" fill="#374151"><title>Aug 12: 88.35 kg</title></circle>
+<circle cx="626.8" cy="171.2" r="4" fill="#374151"><title>Aug 13: 86.75 kg</title></circle>
+<circle cx="721.9" cy="146.2" r="4" fill="#374151"><title>Aug 25: 87.75 kg</title></circle>
+<circle cx="727.1" cy="223.7" r="4" fill="#374151"><title>Aug 26: 84.65 kg</title></circle>
+<circle cx="735.5" cy="198.7" r="4" fill="#374151"><title>Aug 27: 85.65 kg</title></circle>
+<circle cx="735.5" cy="198.7" r="4" fill="#374151"><title>Aug 27: 85.65 kg</title></circle>
+<text x="64" y="30" font-size="14" font-weight="600" fill="#111827">Weight, kg (the real measurement)</text>
+<line x1="64" y1="510.0" x2="740" y2="510.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="514.0" text-anchor="end" font-size="12" fill="#4b5563">19%</text>
+<line x1="64" y1="452.8571428571429" x2="740" y2="452.8571428571429" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="456.8571428571429" text-anchor="end" font-size="12" fill="#4b5563">20%</text>
+<line x1="64" y1="395.7142857142857" x2="740" y2="395.7142857142857" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="399.7142857142857" text-anchor="end" font-size="12" fill="#4b5563">21%</text>
+<line x1="64" y1="338.57142857142856" x2="740" y2="338.57142857142856" stroke="#e5e7eb" stroke-width="1"/>
+<text x="56" y="342.57142857142856" text-anchor="end" font-size="12" fill="#4b5563">22%</text>
+<path d="M68.8,401.4 L74.7,435.7 L74.7,435.7 L90.1,407.1 L97.6,418.6 L114.0,384.3 L114.0,378.6 L143.7,424.3 L152.2,395.7 L179.4,384.3 L189.8,407.1 L212.0,418.6 L228.0,395.7 L228.0,395.7 L258.7,390.0 L260.8,361.4 L442.2,327.1 L465.9,327.1 L549.6,350.0 L554.2,361.4 L559.8,361.4 L568.1,384.3 L575.2,412.9 L581.4,401.4 L589.1,384.3 L593.5,378.6 L596.7,418.6 L603.8,395.7 L611.2,424.3 L618.8,424.3 L621.8,407.1 L621.8,407.1 L626.8,447.1 L721.9,418.6 L727.1,498.6 L735.5,470.0 L735.5,470.0" fill="none" stroke="#0f766e" stroke-width="2"/>
+<circle cx="68.8" cy="401.4" r="4" fill="#0f766e"><title>Jun 01: 20.9%</title></circle>
+<circle cx="74.7" cy="435.7" r="4" fill="#0f766e"><title>Jun 02: 20.3%</title></circle>
+<circle cx="74.7" cy="435.7" r="4" fill="#0f766e"><title>Jun 02: 20.3%</title></circle>
+<circle cx="90.1" cy="407.1" r="4" fill="#0f766e"><title>Jun 04: 20.8%</title></circle>
+<circle cx="97.6" cy="418.6" r="4" fill="#0f766e"><title>Jun 05: 20.6%</title></circle>
+<circle cx="114.0" cy="384.3" r="4" fill="#0f766e"><title>Jun 07: 21.2%</title></circle>
+<circle cx="114.0" cy="378.6" r="4" fill="#0f766e"><title>Jun 07: 21.3%</title></circle>
+<circle cx="143.7" cy="424.3" r="4" fill="#0f766e"><title>Jun 11: 20.5%</title></circle>
+<circle cx="152.2" cy="395.7" r="4" fill="#0f766e"><title>Jun 12: 21.0%</title></circle>
+<circle cx="179.4" cy="384.3" r="4" fill="#0f766e"><title>Jun 16: 21.2%</title></circle>
+<circle cx="189.8" cy="407.1" r="4" fill="#0f766e"><title>Jun 17: 20.8%</title></circle>
+<circle cx="212.0" cy="418.6" r="4" fill="#0f766e"><title>Jun 20: 20.6%</title></circle>
+<circle cx="228.0" cy="395.7" r="4" fill="#0f766e"><title>Jun 22: 21.0%</title></circle>
+<circle cx="228.0" cy="395.7" r="4" fill="#0f766e"><title>Jun 22: 21.0%</title></circle>
+<circle cx="258.7" cy="390.0" r="4" fill="#0f766e"><title>Jun 26: 21.1%</title></circle>
+<circle cx="260.8" cy="361.4" r="4" fill="#0f766e"><title>Jun 26: 21.6%</title></circle>
+<circle cx="442.2" cy="327.1" r="4" fill="#0f766e"><title>Jul 20: 22.2%</title></circle>
+<circle cx="465.9" cy="327.1" r="4" fill="#0f766e"><title>Jul 23: 22.2%</title></circle>
+<circle cx="549.6" cy="350.0" r="4" fill="#0f766e"><title>Aug 03: 21.8%</title></circle>
+<circle cx="554.2" cy="361.4" r="4" fill="#0f766e"><title>Aug 03: 21.6%</title></circle>
+<circle cx="559.8" cy="361.4" r="4" fill="#0f766e"><title>Aug 04: 21.6%</title></circle>
+<circle cx="568.1" cy="384.3" r="4" fill="#0f766e"><title>Aug 05: 21.2%</title></circle>
+<circle cx="575.2" cy="412.9" r="4" fill="#0f766e"><title>Aug 06: 20.7%</title></circle>
+<circle cx="581.4" cy="401.4" r="4" fill="#0f766e"><title>Aug 07: 20.9%</title></circle>
+<circle cx="589.1" cy="384.3" r="4" fill="#0f766e"><title>Aug 08: 21.2%</title></circle>
+<circle cx="593.5" cy="378.6" r="4" fill="#0f766e"><title>Aug 08: 21.3%</title></circle>
+<circle cx="596.7" cy="418.6" r="4" fill="#0f766e"><title>Aug 09: 20.6%</title></circle>
+<circle cx="603.8" cy="395.7" r="4" fill="#0f766e"><title>Aug 10: 21.0%</title></circle>
+<circle cx="611.2" cy="424.3" r="4" fill="#0f766e"><title>Aug 11: 20.5%</title></circle>
+<circle cx="618.8" cy="424.3" r="4" fill="#0f766e"><title>Aug 12: 20.5%</title></circle>
+<circle cx="621.8" cy="407.1" r="4" fill="#0f766e"><title>Aug 12: 20.8%</title></circle>
+<circle cx="621.8" cy="407.1" r="4" fill="#0f766e"><title>Aug 12: 20.8%</title></circle>
+<circle cx="626.8" cy="447.1" r="4" fill="#0f766e"><title>Aug 13: 20.1%</title></circle>
+<circle cx="721.9" cy="418.6" r="4" fill="#0f766e"><title>Aug 25: 20.6%</title></circle>
+<circle cx="727.1" cy="498.6" r="4" fill="#0f766e"><title>Aug 26: 19.2%</title></circle>
+<circle cx="735.5" cy="470.0" r="4" fill="#0f766e"><title>Aug 27: 19.7%</title></circle>
+<circle cx="735.5" cy="470.0" r="4" fill="#0f766e"><title>Aug 27: 19.7%</title></circle>
+<text x="64" y="300" font-size="14" font-weight="600" fill="#111827">Body fat, % (same curve, rescaled)</text>
+<text x="64.0" y="526" font-size="13" fill="#4b5563">Jun 2026</text>
+<text x="294.45454545454544" y="526" font-size="13" fill="#4b5563">Jul 2026</text>
+<text x="532.5909090909091" y="526" font-size="13" fill="#4b5563">Aug 2026</text>
+</g></svg>

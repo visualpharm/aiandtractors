@@ -108,7 +108,8 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         </p>
         <p className="mb-6">
           This scale prints <strong>the same numbers with socks on</strong>. The whole
-          case in one sentence. The electrodes play no part in the calculation.
+          case in one sentence. Not even my feet sweat enough to turn socks into copper
+          electrodes. The electrodes play no part in the calculation.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">The height test</h2>

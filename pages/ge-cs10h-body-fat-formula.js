@@ -14,7 +14,7 @@ export async function getStaticProps() {
 }
 
 const DISCUSS = [
-  { label: 'Hacker News', href: 'https://news.ycombinator.com/item?id=49472008' },
+  { label: 'Reddit', href: 'https://www.reddit.com/r/dataisugly/comments/1w18i27/my_120_smart_scale_reports_measured_body_fat_as/' },
 ];
 
 export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {

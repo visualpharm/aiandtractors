@@ -159,20 +159,19 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           almost perfect straight line against BMI: <strong>R² = 0.9992</strong>.
         </p>
         <p className="mb-4">
-          I digitized the 4 points from their chart and combined them with my 37
-          readings. One formula fits all 41 observations:
+          I digitized the 4 points from their chart. They follow the same 1.5 × BMI
+          formula as mine, but their line sits 0.95 percentage point lower:
         </p>
         <ul className="list-disc pl-6 mb-6 space-y-1">
-          <li><strong>fat % = 1.4329 × BMI − 15.733</strong></li>
-          <li><strong>R² = 0.99994</strong></li>
-          <li>Mean error: <strong>0.04 percentage points</strong></li>
-          <li>Worst error: <strong>0.13 points</strong></li>
+          <li>My 37 readings: <strong>fat % = 1.50 × BMI − 17.50</strong></li>
+          <li>Their 4 readings: <strong>fat % = 1.50 × BMI − 18.45</strong></li>
+          <li>Their mean error: <strong>0.025 percentage point</strong></li>
+          <li>Their worst error: <strong>0.05 point</strong></li>
         </ul>
         <p className="mb-6">
-          The reviewer&apos;s 4 points also fit my original 1.5 × BMI rule with an almost
-          exact 1-point offset. That suggests the app may add a profile-dependent
-          constant for sex, age, or another setting. It does not rescue the measurement.
-          It shows that the hidden formula may have more than 2 terms.
+          The shared slope suggests the app uses the same BMI calculation and adds a
+          profile-dependent constant for sex, age, mode, or another setting. The second
+          owner did not reproduce my exact intercept. They reproduced the arithmetic.
         </p>
 
         <figure className="mb-10">
@@ -195,7 +194,9 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
             >
               replication chart
             </a>
-            . The animated body is illustrative; every plotted point is data.
+            . The 3 barefoot figures show my recorded weight range. The anonymous figure
+            encodes only the other owner&apos;s reported height and approximate BMI. Every
+            plotted point is data.
           </figcaption>
         </figure>
 

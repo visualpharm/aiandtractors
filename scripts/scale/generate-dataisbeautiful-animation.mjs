@@ -86,41 +86,50 @@ const formulas = {
 };
 
 const dataUri = (buffer, mime = 'image/png') => `data:${mime};base64,${buffer.toString('base64')}`;
-const spriteSheet = path.join(import.meta.dirname, 'ivan-build-sprites.png');
+const spriteSheet = path.join(import.meta.dirname, 'body-silhouettes.png');
 const sheetMeta = await sharp(spriteSheet).metadata();
-const spriteWidth = Math.floor(sheetMeta.width / 3);
-const ivanSprites = [];
-for (let index = 0; index < 3; index += 1) {
-  ivanSprites.push(dataUri(await sharp(spriteSheet)
-    .extract({ left: index * spriteWidth, top: 0, width: spriteWidth, height: sheetMeta.height })
+const spriteCrops = [
+  { left: 0, width: 320 },
+  { left: 320, width: 300 },
+  { left: 620, width: 310 },
+  { left: 930, width: sheetMeta.width - 930 },
+];
+const silhouettes = [];
+for (const crop of spriteCrops) {
+  silhouettes.push(dataUri(await sharp(spriteSheet)
+    .extract({ left: crop.left, top: 0, width: crop.width, height: sheetMeta.height })
     .png()
     .toBuffer()));
 }
-const peerSprite = dataUri(await sharp(path.join(import.meta.dirname, 'peer-reviewer-silhouette.png')).png().toBuffer());
 const logoSprite = dataUri(await sharp(path.join(scaleDir, 'ge-logo.svg')).resize(96, 96).png().toBuffer());
 
 const chart = { left: 90, top: 240, width: 900, height: 535 };
-const domain = { xMin: 22.5, xMax: 42, yMin: 15, yMax: 46 };
-const sx = (value) => chart.left + (value - domain.xMin) / (domain.xMax - domain.xMin) * chart.width;
+const domain = { yMin: 15, yMax: 46 };
+const xScale = { leftMin: 23.5, leftMax: 27.2, leftStart: 90, leftEnd: 730, rightMin: 39.5, rightMax: 41.2, rightStart: 820, rightEnd: 990 };
+const sx = (value) => {
+  if (value <= xScale.leftMax) {
+    return xScale.leftStart + (value - xScale.leftMin) / (xScale.leftMax - xScale.leftMin) * (xScale.leftEnd - xScale.leftStart);
+  }
+  return xScale.rightStart + (value - xScale.rightMin) / (xScale.rightMax - xScale.rightMin) * (xScale.rightEnd - xScale.rightStart);
+};
 const sy = (value) => chart.top + chart.height - (value - domain.yMin) / (domain.yMax - domain.yMin) * chart.height;
-const linePath = (formula) => `M ${sx(domain.xMin)} ${sy(formula.slope * domain.xMin + formula.intercept)} L ${sx(domain.xMax)} ${sy(formula.slope * domain.xMax + formula.intercept)}`;
+const linePath = (formula) => `M ${sx(xScale.leftMin)} ${sy(formula.slope * xScale.leftMin + formula.intercept)} L ${sx(xScale.leftMax)} ${sy(formula.slope * xScale.leftMax + formula.intercept)} M ${sx(xScale.rightMin)} ${sy(formula.slope * xScale.rightMin + formula.intercept)} L ${sx(xScale.rightMax)} ${sy(formula.slope * xScale.rightMax + formula.intercept)}`;
 
 const ordered = [...ivan].sort((a, b) => a.weight - b.weight);
-const representative = [ordered.at(-1), ordered[Math.floor(ordered.length / 2)], ordered[0], peer[2]];
+const representative = [ordered[0], ordered[Math.floor(ordered.length / 2)], ordered.at(-1), peer[2]];
 const figures = [
-  { x: 52, y: 850, width: 235, height: 390, sprite: ivanSprites[2], label: `${representative[0].weight.toFixed(1)} kg` },
-  { x: 287, y: 850, width: 235, height: 390, sprite: ivanSprites[1], label: `${representative[1].weight.toFixed(1)} kg` },
-  { x: 522, y: 850, width: 235, height: 390, sprite: ivanSprites[0], label: `${representative[2].weight.toFixed(1)} kg` },
-  { x: 752, y: 815, width: 275, height: 425, sprite: peerSprite, label: '6′8″ · ≈166 kg' },
+  { x: sx(representative[0].bmi) - 78, y: 850, width: 156, height: 390, sprite: silhouettes[0], label: `${representative[0].weight.toFixed(1)} kg` },
+  { x: sx(representative[1].bmi) - 85, y: 850, width: 170, height: 390, sprite: silhouettes[1], label: `${representative[1].weight.toFixed(1)} kg` },
+  { x: sx(representative[2].bmi) - 92, y: 850, width: 184, height: 390, sprite: silhouettes[2], label: `${representative[2].weight.toFixed(1)} kg` },
+  { x: sx(representative[3].bmi) - 128, y: 815, width: 256, height: 425, sprite: silhouettes[3], label: '6′8″ · ≈166 kg' },
 ];
 
 function figureMarkup(figure, index, activeIndex) {
   const active = index === activeIndex;
   const opacity = active ? 1 : 0.10;
-  const filter = active ? '' : 'filter="url(#desaturate)"';
   const color = index === 3 ? colors.orange : colors.teal;
   return `
-    <g opacity="${opacity}" ${filter}>
+    <g opacity="${opacity}">
       <image href="${figure.sprite}" x="${figure.x}" y="${figure.y}" width="${figure.width}" height="${figure.height}" preserveAspectRatio="xMidYMid meet"/>
     </g>
     ${active ? `<text x="${figure.x + figure.width / 2}" y="1267" text-anchor="middle" class="person-label" fill="${color}">${figure.label}</text>` : ''}`;
@@ -131,8 +140,6 @@ function frameSvg(frame) {
   const peerPhase = t >= 0.64;
   let current;
   let activeIndex;
-  let stripeMin;
-  let stripeMax;
 
   if (peerPhase) {
     const position = ease((t - 0.64) / 0.36) * (peer.length - 1);
@@ -143,29 +150,15 @@ function frameSvg(frame) {
       fat: lerp(peer[index].fat, peer[index + 1].fat, mix),
     };
     activeIndex = 3;
-    stripeMin = 39.55;
-    stripeMax = 41.05;
   } else {
-    const position = ease(t / 0.64) * (ivan.length - 1);
-    const index = Math.min(ivan.length - 2, Math.floor(position));
-    const mix = position - index;
-    current = {
-      bmi: lerp(ivan[index].bmi, ivan[index + 1].bmi, mix),
-      fat: lerp(ivan[index].fat, ivan[index + 1].fat, mix),
-    };
     if (t < 0.22) {
       activeIndex = 0;
-      stripeMin = 26.0;
-      stripeMax = 27.0;
     } else if (t < 0.43) {
       activeIndex = 1;
-      stripeMin = 25.2;
-      stripeMax = 26.0;
     } else {
       activeIndex = 2;
-      stripeMin = 24.3;
-      stripeMax = 25.2;
     }
+    current = representative[activeIndex];
   }
 
   const activeColor = peerPhase ? colors.orange : colors.teal;
@@ -177,9 +170,9 @@ function frameSvg(frame) {
   const formulaY = peerPhase
     ? sy(formulas.peer.slope * 39.2 + formulas.peer.intercept) + 25
     : sy(formulas.ivan.slope * 39.2 + formulas.ivan.intercept) - 15;
-  const stripeX = sx(stripeMin);
-  const stripeWidth = sx(stripeMax) - stripeX;
-  const xTicks = [25, 30, 35, 40];
+  const stripeX = figures[activeIndex].x - 10;
+  const stripeWidth = figures[activeIndex].width + 20;
+  const xTicks = [24, 25, 26, 27, 40, 41];
   const yTicks = [20, 30, 40];
   const grid = [
     ...xTicks.map((value) => `<line x1="${sx(value)}" y1="${chart.top}" x2="${sx(value)}" y2="${chart.top + chart.height}" stroke="${colors.grid}"/><text x="${sx(value)}" y="${chart.top + chart.height + 34}" text-anchor="middle" class="tick">${value}</text>`),
@@ -190,7 +183,6 @@ function frameSvg(frame) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-    <defs><filter id="desaturate"><feColorMatrix type="saturate" values="0"/></filter></defs>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: ${colors.ink}; }
       .headline { font-size: 50px; font-weight: 770; letter-spacing: -1.5px; }
@@ -205,9 +197,10 @@ function frameSvg(frame) {
     <text x="184" y="132" class="headline">Two People, Same Math Theater.</text>
     <text x="${chart.left}" y="218" class="axis-label">Measured “body fat” (%)</text>
     ${grid}
-    <rect x="${stripeX}" y="${chart.top}" width="${stripeWidth}" height="${chart.height}" fill="${activeColor}" opacity="0.12"/>
+    <rect x="${stripeX}" y="${chart.top}" width="${stripeWidth}" height="1005" fill="${activeColor}" opacity="0.11"/>
     <line x1="${chart.left}" y1="${chart.top + chart.height}" x2="${chart.left + chart.width}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
     <line x1="${chart.left}" y1="${chart.top}" x2="${chart.left}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
+    <path d="M 768 ${chart.top + chart.height - 7} l 10 14 M 786 ${chart.top + chart.height - 7} l 10 14" stroke="${colors.ink}" stroke-width="3"/>
     <path d="${linePath(inactiveFormula)}" fill="none" stroke="${colors.quiet}" stroke-width="4" stroke-linecap="round"/>
     <path d="${linePath(activeFormula)}" fill="none" stroke="${activeColor}" stroke-width="6" stroke-linecap="round"/>
     ${ivanDots}

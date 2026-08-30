@@ -103,13 +103,21 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         <h2 className="text-2xl font-bold mt-10 mb-4">The socks test</h2>
         <p className="mb-4">
           Bioimpedance needs skin contact. Electrodes push a small current through your
-          body and measure resistance. Socks are an insulator: a real device errors out
-          or returns garbage.
+          body and measure resistance. The CS10H&apos;s own instructions require bare feet,
+          with both hands and feet touching the electrodes.
         </p>
         <p className="mb-6">
           This scale prints <strong>the same numbers with socks on</strong>. The whole
           case in one sentence. Not even my feet sweat enough to turn socks into copper
-          electrodes. The electrodes play no part in the calculation.
+          electrodes.
+        </p>
+        <p className="mb-6">
+          A Reddit commenter identified an important caveat: the handle might still
+          complete a hand-to-hand impedance circuit, or the app might reuse a stored
+          value. I found no documentation for the stored-value theory. Either way,
+          insulated feet cannot produce a fresh 8-electrode measurement of both legs.
+          The socks test is suspicious, but the formula and height test are the stronger
+          evidence.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">The height test</h2>
@@ -144,6 +152,53 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           </figcaption>
         </figure>
 
+        <h2 className="text-2xl font-bold mt-10 mb-4">A second owner replicated it</h2>
+        <p className="mb-4">
+          A Reddit user who owns the same GE CS10H ran an independent replication.
+          They are 6′8″ tall and plotted 4 readings. Their body-fat output was also an
+          almost perfect straight line against BMI: <strong>R² = 0.9992</strong>.
+        </p>
+        <p className="mb-4">
+          I digitized the 4 points from their chart and combined them with my 37
+          readings. One formula fits all 41 observations:
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-1">
+          <li><strong>fat % = 1.4329 × BMI − 15.733</strong></li>
+          <li><strong>R² = 0.99994</strong></li>
+          <li>Mean error: <strong>0.04 percentage points</strong></li>
+          <li>Worst error: <strong>0.13 points</strong></li>
+        </ul>
+        <p className="mb-6">
+          The reviewer&apos;s 4 points also fit my original 1.5 × BMI rule with an almost
+          exact 1-point offset. That suggests the app may add a profile-dependent
+          constant for sex, age, or another setting. It does not rescue the measurement.
+          It shows that the hidden formula may have more than 2 terms.
+        </p>
+
+        <figure className="mb-10">
+          <video
+            className="w-full rounded"
+            controls
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/scale/cs10h-formula-animation-poster.png"
+          >
+            <source src="/scale/cs10h-formula-animation.mp4" type="video/mp4" />
+          </video>
+          <figcaption className="text-sm text-gray-600 mt-2">
+            My 37 Fit Profile readings plus 4 values digitized from the reviewer&apos;s{' '}
+            <a
+              href="https://www.reddit.com/r/dataisugly/comments/1w18i27/comment/p6jikqv/"
+              className="text-blue-600 hover:text-blue-500"
+            >
+              replication chart
+            </a>
+            . The animated body is illustrative; every plotted point is data.
+          </figcaption>
+        </figure>
+
         <p className="mb-6">
           One more touch. The scale plays a &quot;measuring&quot; animation for
           several seconds before showing these numbers. The arithmetic takes
@@ -161,7 +216,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           The app duly reports per-limb muscle and fat, protein, bone mass, body water,
           visceral fat, and metabolic age. Every one of them tracks weight perfectly.
           Body water in my export is a mirror of the fat curve. The hardware ships,
-          the signal is ignored, the formula prints.
+          the impedance signal does not meaningfully change the output; the formula prints.
         </p>
 
         <figure className="mb-10">
@@ -183,7 +238,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           weigh-in. Body fat 19.7%. The formula says 19.69.
         </p>
         <ul className="list-disc pl-6 mb-6 space-y-1">
-          <li><strong>Segmental fat analysis</strong> per limb: right arm 1.08 kg of fat, left arm 1.04 kg. Fake precision down to 40 grams, from a device that ignores its own electrodes.</li>
+          <li><strong>Segmental fat analysis</strong> per limb: right arm 1.08 kg of fat, left arm 1.04 kg. Fake precision down to 40 grams, while the headline result follows a BMI formula.</li>
           <li><strong>Muscle balance</strong>: left leg 103.7% of normal, right leg 104.3%.</li>
           <li><strong>Metabolic age 46, waist-to-hip ratio 0.96, protein 18.2%, BMR 1855 kcal</strong>: an entire clinical report from one load cell and a profile form.</li>
         </ul>
@@ -229,7 +284,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
         <h2 className="text-2xl font-bold mt-10 mb-4">What works</h2>
         <ul className="list-disc pl-6 mb-6 space-y-1">
           <li>The <strong>load cell is fine</strong>. Weight readings are consistent and tracked my real 5.8 kg loss over 5 weeks.</li>
-          <li>The electrodes physically exist, and the <strong>contact detection works</strong>. Skip the handle, or hold it with 1 arm, and the scale refuses to show body composition. It enforces the ritual, then discards the signal.</li>
+          <li>The electrodes physically exist, and the <strong>contact detection works</strong>. Skip the handle, or hold it with 1 arm, and the scale refuses to show body composition. It enforces the ritual, then produces the same formulaic result.</li>
           <li>Bluetooth sync works.</li>
           <li>The app exports clean xlsx. That export is how it got caught.</li>
         </ul>
@@ -250,7 +305,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
             className="w-full rounded border border-gray-200"
           />
           <figcaption className="text-sm text-gray-600 mt-2">
-            The order. 8 electrodes promised, 6 present, 0 used.
+            The order: 8 electrodes promised, 6 present, 1 BMI formula in the output.
           </figcaption>
         </figure>
 
@@ -260,7 +315,7 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           <li>Export your history from the companion app. Most export csv or xlsx.</li>
           <li>Plot body fat % against weight. A straight line with no scatter is a formula.</li>
           <li>Find 2 days with the same weight, weeks apart. Identical fat % is a formula.</li>
-          <li>Weigh yourself with socks on. Same fat % as barefoot means the electrodes are decoration.</li>
+          <li>Create a fresh profile and take its first reading in socks. Full segmental results cannot come from a stored earlier measurement.</li>
           <li>Change your height in the app and step on again. A different fat % on the same body means the number comes from your profile settings.</li>
         </ol>
 
@@ -282,6 +337,14 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
           </li>
           <li><strong>Regression</strong>: fat % = 0.4342 × weight − 17.498. r = 0.998, residual SD 0.04 points, worst deviation 0.09.</li>
           <li><strong>Height experiment</strong>, Aug 27: profile set to 1.80 m, weight 87.70 kg. Displayed fat 23.2% and water 55.4%. BMI-formula predictions: 23.16 and 55.45.</li>
+          <li>
+            <strong>Independent replication</strong>: 4 points digitized from the
+            reviewer&apos;s chart. Download:{' '}
+            <a href="/scale/cs10h-peer-review.csv" className="text-blue-600 hover:text-blue-500">
+              peer-review data, csv
+            </a>
+            .
+          </li>
         </ul>
 
         <p className="mt-10 text-gray-700">

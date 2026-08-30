@@ -182,9 +182,9 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
             muted
             playsInline
             preload="metadata"
-            poster="/scale/cs10h-formula-animation-v2-poster.png"
+            poster="/scale/cs10h-formula-animation-v2-poster.png?v=d96e83e"
           >
-            <source src="/scale/cs10h-formula-animation-v2.mp4" type="video/mp4" />
+            <source src="/scale/cs10h-formula-animation-v2.mp4?v=d96e83e" type="video/mp4" />
           </video>
           <figcaption className="text-sm text-gray-600 mt-2">
             My 37 Fit Profile readings plus 4 values digitized from the reviewer&apos;s{' '}

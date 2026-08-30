@@ -198,13 +198,12 @@ function frameSvg(frame) {
       .tick { font-size: 18px; font-weight: 520; fill: ${colors.muted}; }
       .formula { font-size: 20px; font-weight: 720; }
       .person-label { font-size: 19px; font-weight: 720; }
-      .footer { font-size: 15px; font-weight: 500; fill: ${colors.muted}; }
+      .footer { font-size: 20px; font-weight: 650; fill: ${colors.muted}; }
     </style>
     <rect width="${width}" height="${height}" fill="${colors.white}"/>
     <image href="${logoSprite}" x="64" y="62" width="92" height="92"/>
-    <text x="184" y="106" class="headline">41 readings from 2 owners followed</text>
-    <text x="184" y="160" class="headline">2 nearly parallel BMI formulas.</text>
-    <text x="${chart.left}" y="218" class="axis-label">Reported body fat (%)</text>
+    <text x="184" y="132" class="headline">Two People, Same Math Theater.</text>
+    <text x="${chart.left}" y="218" class="axis-label">Measured “body fat” (%)</text>
     ${grid}
     <rect x="${stripeX}" y="${chart.top}" width="${stripeWidth}" height="${chart.height}" fill="${activeColor}" opacity="0.12"/>
     <line x1="${chart.left}" y1="${chart.top + chart.height}" x2="${chart.left + chart.width}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
@@ -215,10 +214,9 @@ function frameSvg(frame) {
     ${peerDots}
     <circle cx="${sx(current.bmi)}" cy="${sy(current.fat)}" r="17" fill="${colors.white}" stroke="${activeColor}" stroke-width="7"/>
     <text x="982" y="${formulaY}" text-anchor="end" class="formula" fill="${activeColor}">${formulaText}</text>
-    <text x="${chart.left + chart.width / 2}" y="${chart.top + chart.height + 64}" text-anchor="middle" class="axis-label">BMI</text>
+    <text x="${chart.left + chart.width / 2}" y="${chart.top + chart.height + 64}" text-anchor="middle" class="axis-label">Measured BMI</text>
     ${figures.map((figure, index) => figureMarkup(figure, index, activeIndex)).join('')}
-    <line x1="64" y1="1290" x2="1016" y2="1290" stroke="${colors.grid}"/>
-    <text x="64" y="1324" class="footer">Fit Profile export and 4 values digitized from the other owner’s chart. Figures are illustrative.</text>
+    <text x="540" y="1320" text-anchor="middle" class="footer">aiandtractors.com/ge-cs10h-body-fat-formula</text>
   </svg>`;
 }
 
@@ -229,7 +227,7 @@ for (let frame = 0; frame < frameCount; frame += 1) {
   if (frame % fps === 0) process.stdout.write(`Rendered ${Math.round(frame / fps)}s / ${seconds}s\n`);
 }
 
-await sharp(Buffer.from(frameSvg(Math.floor(frameCount * 0.82)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-poster.png'));
+await sharp(Buffer.from(frameSvg(Math.floor(frameCount * 0.82)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v2-poster.png'));
 
 function ffmpeg(args) {
   const result = spawnSync('ffmpeg', args, { cwd: root, encoding: 'utf8' });
@@ -238,13 +236,13 @@ function ffmpeg(args) {
     process.exit(result.status || 1);
   }
 }
-ffmpeg(['-y', '-framerate', String(fps), '-i', path.join(framesDir, 'frame-%04d.png'), '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(scaleDir, 'cs10h-formula-animation.mp4')]);
-ffmpeg(['-y', '-i', path.join(scaleDir, 'cs10h-formula-animation.mp4'), '-filter_complex', '[0:v]fps=12,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(scaleDir, 'cs10h-formula-animation.gif')]);
+ffmpeg(['-y', '-framerate', String(fps), '-i', path.join(framesDir, 'frame-%04d.png'), '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(scaleDir, 'cs10h-formula-animation-v2.mp4')]);
+ffmpeg(['-y', '-i', path.join(scaleDir, 'cs10h-formula-animation-v2.mp4'), '-filter_complex', '[0:v]fps=12,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(scaleDir, 'cs10h-formula-animation-v2.gif')]);
 fs.rmSync(framesDir, { recursive: true, force: true });
 
 console.log(JSON.stringify({
   ivanReadings: ivan.length,
   peerReadings: peer.length,
   formulas,
-  outputs: ['public/scale/cs10h-formula-animation.mp4', 'public/scale/cs10h-formula-animation.gif', 'public/scale/cs10h-formula-animation-poster.png'],
+  outputs: ['public/scale/cs10h-formula-animation-v2.mp4', 'public/scale/cs10h-formula-animation-v2.gif', 'public/scale/cs10h-formula-animation-v2-poster.png'],
 }, null, 2));

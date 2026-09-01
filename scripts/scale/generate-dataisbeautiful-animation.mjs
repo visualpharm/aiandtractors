@@ -5,7 +5,7 @@ import sharp from 'sharp';
 
 const root = path.resolve(import.meta.dirname, '..', '..');
 const scaleDir = path.join(root, 'public', 'scale');
-const framesDir = path.join(scaleDir, '.animation-frames-v3');
+const framesDir = path.join(scaleDir, '.animation-frames-v4');
 const width = 1080;
 const height = 1350;
 const fps = 24;
@@ -144,7 +144,7 @@ const logoSprite = dataUri(await sharp(path.join(scaleDir, 'ge-logo.svg')).resiz
 const clownSprite = dataUri(await sharp(path.join(import.meta.dirname, 'clown-emoji.png')).trim().resize(92, 92, { fit: 'fill' }).png().toBuffer());
 const peerSprite = dataUri(await sharp(path.join(import.meta.dirname, 'peer-reviewer-silhouette.png')).trim().png().toBuffer());
 
-const chart = { left: 90, top: 238, width: 900, height: 512 };
+const chart = { left: 90, top: 294, width: 900, height: 446 };
 const domain = { xMin: 22, xMax: 42, yMin: 14, yMax: 48 };
 const sx = (value) => chart.left + (value - domain.xMin) / (domain.xMax - domain.xMin) * chart.width;
 const sy = (value) => chart.top + chart.height - (value - domain.yMin) / (domain.yMax - domain.yMin) * chart.height;
@@ -181,10 +181,30 @@ function peerPointAt(time) {
   return mixPoint(peer[index], peer[index + 1], mix);
 }
 
-function personLayer(state, opacity) {
-  const figure = { x: 125, y: 834, width: 230, height: 430 };
-  const visibleIndex = state.mix < 0.5 ? state.from : state.to;
-  return `<image href="${ivanSprites[visibleIndex]}" x="${figure.x}" y="${figure.y}" width="${figure.width}" height="${figure.height}" opacity="${opacity}" preserveAspectRatio="xMidYMax meet"/>`;
+const ivanFigures = [
+  { x: 88, center: 178, width: 180, height: 370 },
+  { x: 270, center: 365, width: 190, height: 370 },
+  { x: 462, center: 562, width: 200, height: 370 },
+];
+
+function personLayer(state, groupOpacity) {
+  const activePosition = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
+  return ivanFigures.map((figure, index) => {
+    const distance = Math.abs(figure.center - activePosition);
+    const focus = Math.max(0, 1 - distance / 175);
+    const opacity = groupOpacity * (0.40 + focus * 0.60);
+    return `<image href="${ivanSprites[index]}" x="${figure.x}" y="842" width="${figure.width}" height="${figure.height}" opacity="${opacity}" preserveAspectRatio="xMidYMax meet"/>`;
+  }).join('');
+}
+
+function personLabelLayer(state, groupOpacity) {
+  const activePosition = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
+  return ivanFigures.map((figure, index) => {
+    const distance = Math.abs(figure.center - activePosition);
+    const focus = Math.max(0, 1 - distance / 175);
+    const opacity = groupOpacity * (0.58 + focus * 0.42);
+    return `<text x="${figure.center}" y="1242" text-anchor="middle" class="person-label" fill="${colors.teal}" opacity="${opacity}">${representatives[index].weight.toFixed(1)} kg</text>`;
+  }).join('');
 }
 
 function stripeMarkup(point, centerX, halfTop, halfBottom, color, opacity) {
@@ -205,12 +225,11 @@ function frameSvg(frame) {
   const peerLabelReveal = ease((time - 7.1) / 0.7);
   const state = ivanState(time);
   const currentPeer = peerPointAt(time);
-  const ivanFigureOpacity = 1 - reviewerReveal * 0.82;
+  const activeIvanCenter = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
+  const ivanFigureOpacity = 1 - reviewerReveal * 0.58;
   const reviewerOpacity = reviewerReveal;
   const activeIvanOpacity = 1 - reviewerReveal;
   const activePeerOpacity = reviewerReveal;
-  const visibleIvanIndex = state.mix < 0.5 ? state.from : state.to;
-  const currentWeight = representatives[visibleIvanIndex].weight.toFixed(1);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
@@ -219,7 +238,7 @@ function frameSvg(frame) {
     </defs>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: ${colors.ink}; }
-      .headline { font-size: 46px; font-weight: 780; letter-spacing: -1.4px; }
+      .headline { font-size: 42px; font-weight: 780; letter-spacing: -1.2px; }
       .axis-label { font-size: 21px; font-weight: 650; fill: ${colors.muted}; }
       .tick { font-size: 18px; font-weight: 520; fill: ${colors.muted}; }
       .formula { font-size: 18px; font-weight: 720; }
@@ -227,12 +246,13 @@ function frameSvg(frame) {
       .footer { font-size: 20px; font-weight: 650; fill: ${colors.muted}; }
     </style>
     <rect width="${width}" height="${height}" fill="${colors.white}"/>
-    <image href="${logoSprite}" x="54" y="62" width="82" height="82"/>
-    <image href="${clownSprite}" x="148" y="62" width="82" height="82"/>
-    <text x="254" y="124" class="headline">Two People, Same Math Theater.</text>
-    <text x="${chart.left}" y="214" class="axis-label">“Measured” body fat (%)</text>
+    <image href="${logoSprite}" x="54" y="70" width="82" height="82"/>
+    <image href="${clownSprite}" x="148" y="70" width="82" height="82"/>
+    <text x="254" y="102" class="headline">My $120 smart scale reports “measured”</text>
+    <text x="254" y="151" class="headline">body fat as 1.5 × BMI − 17.5</text>
+    <text x="${chart.left}" y="270" class="axis-label">“Measured” body fat (%)</text>
     ${grid}
-    ${stripeMarkup(state.point, 240, 38, 76, colors.teal, 0.105 * activeIvanOpacity)}
+    ${stripeMarkup(state.point, activeIvanCenter, 34, 76, colors.teal, 0.105 * activeIvanOpacity)}
     ${stripeMarkup(currentPeer, 855, 42, 126, colors.orange, 0.11 * activePeerOpacity)}
     <line x1="${chart.left}" y1="${chart.top + chart.height}" x2="${chart.left + chart.width}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
     <line x1="${chart.left}" y1="${chart.top}" x2="${chart.left}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
@@ -244,21 +264,22 @@ function frameSvg(frame) {
       <circle cx="${sx(state.point.bmi)}" cy="${sy(state.point.fat)}" r="15" fill="${colors.white}" stroke="${colors.teal}" stroke-width="7" opacity="${activeIvanOpacity}"/>
       <circle cx="${sx(currentPeer.bmi)}" cy="${sy(currentPeer.fat)}" r="16" fill="${colors.white}" stroke="${colors.orange}" stroke-width="7" opacity="${activePeerOpacity}"/>
     </g>
-    <g transform="translate(${chart.left + 22} ${chart.top + 44})">
-      <line x1="0" y1="0" x2="38" y2="0" stroke="${colors.teal}" stroke-width="6" stroke-linecap="round"/>
-      <text x="52" y="6" class="formula" fill="${colors.teal}">Ivan · 1.5×BMI−17.50</text>
-      <g opacity="${peerLabelReveal}">
-        <line x1="0" y1="36" x2="38" y2="36" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round"/>
-        <text x="52" y="42" class="formula" fill="${colors.orange}">Reviewer · 1.5×BMI−${Math.abs(formulas.peer.intercept).toFixed(2)}</text>
-      </g>
-    </g>
+    <text x="${chart.left + 22}" y="${chart.top + 44}" class="formula" fill="${colors.orange}" opacity="${peerLabelReveal}">Same slope · 0.95 lower</text>
     <text x="${chart.left + chart.width / 2}" y="${chart.top + chart.height + 64}" text-anchor="middle" class="axis-label">Measured BMI</text>
     ${personLayer(state, ivanFigureOpacity)}
     <image href="${peerSprite}" x="700" y="802" width="310" height="470" opacity="${reviewerOpacity}" preserveAspectRatio="xMidYMax meet"/>
-    <text x="240" y="1293" text-anchor="middle" class="person-label" fill="${colors.teal}" opacity="${ivanFigureOpacity}">${currentWeight} kg</text>
+    ${personLabelLayer(state, ivanFigureOpacity)}
     <text x="855" y="1293" text-anchor="middle" class="person-label" fill="${colors.orange}" opacity="${reviewerOpacity}">6′8″ · ≈166 kg</text>
     <text x="540" y="1330" text-anchor="middle" class="footer">aiandtractors.com/ge-cs10h-body-fat-formula</text>
   </svg>`;
+}
+
+if (process.argv.includes('--preview-only')) {
+  await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-opening.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 5.2)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-ivan-heavy.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 9.8)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-reviewer.png'));
+  console.log('Rendered v4 preview frames');
+  process.exit(0);
 }
 
 fs.rmSync(framesDir, { recursive: true, force: true });
@@ -268,8 +289,8 @@ for (let frame = 0; frame < frameCount; frame += 1) {
   if (frame % fps === 0) process.stdout.write(`Rendered ${Math.round(frame / fps)}s / ${seconds}s\n`);
 }
 
-await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v3-opening.png'));
-await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v3-poster.png'));
+await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-opening.png'));
+await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-poster.png'));
 
 function ffmpeg(args) {
   const result = spawnSync('ffmpeg', args, { cwd: root, encoding: 'utf8' });
@@ -279,8 +300,8 @@ function ffmpeg(args) {
   }
 }
 
-ffmpeg(['-y', '-framerate', String(fps), '-i', path.join(framesDir, 'frame-%04d.png'), '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(scaleDir, 'cs10h-formula-animation-v3.mp4')]);
-ffmpeg(['-y', '-i', path.join(scaleDir, 'cs10h-formula-animation-v3.mp4'), '-filter_complex', '[0:v]fps=12,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(scaleDir, 'cs10h-formula-animation-v3.gif')]);
+ffmpeg(['-y', '-framerate', String(fps), '-i', path.join(framesDir, 'frame-%04d.png'), '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(scaleDir, 'cs10h-formula-animation-v4.mp4')]);
+ffmpeg(['-y', '-i', path.join(scaleDir, 'cs10h-formula-animation-v4.mp4'), '-filter_complex', '[0:v]fps=12,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(scaleDir, 'cs10h-formula-animation-v4.gif')]);
 fs.rmSync(framesDir, { recursive: true, force: true });
 
 console.log(JSON.stringify({
@@ -289,9 +310,9 @@ console.log(JSON.stringify({
   formulas,
   representatives,
   outputs: [
-    'public/scale/cs10h-formula-animation-v3.mp4',
-    'public/scale/cs10h-formula-animation-v3.gif',
-    'public/scale/cs10h-formula-animation-v3-opening.png',
-    'public/scale/cs10h-formula-animation-v3-poster.png',
+    'public/scale/cs10h-formula-animation-v4.mp4',
+    'public/scale/cs10h-formula-animation-v4.gif',
+    'public/scale/cs10h-formula-animation-v4-opening.png',
+    'public/scale/cs10h-formula-animation-v4-poster.png',
   ],
 }, null, 2));

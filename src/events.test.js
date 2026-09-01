@@ -5,29 +5,21 @@ import {
 } from '../data/events';
 
 describe('Events Data (English-only)', () => {
-  test('should have events for supported years only', () => {
+  test('should expose every supported event year', () => {
     const availableYears = getAvailableYears()
-    
-    expect(availableYears).toContain('2025')
-    expect(availableYears).toContain('2026')
-    expect(availableYears).not.toContain('2027')
-    expect(availableYears).not.toContain('2028')
+
+    expect(availableYears).toEqual(['2025', '2026', '2027', '2028'])
   });
 
   test('should return events for valid years', () => {
-    const events2025 = getEventsByYear('2025')
-    const events2026 = getEventsByYear('2026')
-    
-    expect(events2025.length).toBeGreaterThan(0)
-    expect(events2026.length).toBeGreaterThan(0)
+    getAvailableYears().forEach(year => {
+      expect(getEventsByYear(year).length).toBeGreaterThan(0)
+    })
   });
 
   test('should return empty array for invalid years', () => {
-    const events2027 = getEventsByYear('2027')
-    const events2028 = getEventsByYear('2028')
-    
-    expect(events2027).toEqual([])
-    expect(events2028).toEqual([])
+    expect(getEventsByYear('2024')).toEqual([])
+    expect(getEventsByYear('2099')).toEqual([])
   });
 
   test('should have valid English-only event structure', () => {

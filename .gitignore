@@ -14,6 +14,10 @@
 /out
 /unused
 
+# independently versioned projects nested in this workspace
+/book/
+/dash/
+
 # misc
 .DS_Store
 .AppleDouble

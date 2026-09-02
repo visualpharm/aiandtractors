@@ -157,7 +157,7 @@ const grid = [
   ...yTicks.map((value) => `<line x1="${chart.left}" y1="${sy(value)}" x2="${chart.left + chart.width}" y2="${sy(value)}" stroke="${colors.grid}"/><text x="${chart.left - 16}" y="${sy(value) + 7}" text-anchor="end" class="tick">${value}%</text>`),
 ].join('');
 
-const ivanDots = ivan.map((point) => `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="3.5" fill="${colors.teal}" opacity="0.24"/>`).join('');
+const ivanDots = ivan.map((point) => `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="3" fill="${colors.teal}" opacity="0.58"/>`).join('');
 const peerDots = peer.map((point, index) => `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="5" fill="${colors.orange}" opacity="${0.44 + index * 0.06}"/>`).join('');
 
 function ivanState(time) {
@@ -187,24 +187,16 @@ const ivanFigures = [
   { x: 462, center: 562, width: 200, height: 370 },
 ];
 
-function personLayer(state, groupOpacity) {
-  const activePosition = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
-  return ivanFigures.map((figure, index) => {
-    const distance = Math.abs(figure.center - activePosition);
-    const focus = Math.max(0, 1 - distance / 175);
-    const opacity = groupOpacity * (0.40 + focus * 0.60);
-    return `<image href="${ivanSprites[index]}" x="${figure.x}" y="842" width="${figure.width}" height="${figure.height}" opacity="${opacity}" preserveAspectRatio="xMidYMax meet"/>`;
-  }).join('');
+function personLayer() {
+  return ivanFigures.map((figure, index) => (
+    `<image href="${ivanSprites[index]}" x="${figure.x}" y="842" width="${figure.width}" height="${figure.height}" opacity="1" preserveAspectRatio="xMidYMax meet"/>`
+  )).join('');
 }
 
-function personLabelLayer(state, groupOpacity) {
-  const activePosition = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
-  return ivanFigures.map((figure, index) => {
-    const distance = Math.abs(figure.center - activePosition);
-    const focus = Math.max(0, 1 - distance / 175);
-    const opacity = groupOpacity * (0.58 + focus * 0.42);
-    return `<text x="${figure.center}" y="1242" text-anchor="middle" class="person-label" fill="${colors.teal}" opacity="${opacity}">${representatives[index].weight.toFixed(1)} kg</text>`;
-  }).join('');
+function personLabelLayer() {
+  return ivanFigures.map((figure, index) => (
+    `<text x="${figure.center}" y="1242" text-anchor="middle" class="person-label" fill="${colors.ink}">${representatives[index].weight.toFixed(1)} kg</text>`
+  )).join('');
 }
 
 function stripeMarkup(point, centerX, halfTop, halfBottom, color, opacity) {
@@ -226,7 +218,6 @@ function frameSvg(frame) {
   const state = ivanState(time);
   const currentPeer = peerPointAt(time);
   const activeIvanCenter = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
-  const ivanFigureOpacity = 1 - reviewerReveal * 0.58;
   const reviewerOpacity = reviewerReveal;
   const activeIvanOpacity = 1 - reviewerReveal;
   const activePeerOpacity = reviewerReveal;
@@ -266,11 +257,11 @@ function frameSvg(frame) {
     </g>
     <text x="${chart.left + 22}" y="${chart.top + 44}" class="formula" fill="${colors.orange}" opacity="${peerLabelReveal}">Same slope · 0.95 lower</text>
     <text x="${chart.left + chart.width / 2}" y="${chart.top + chart.height + 64}" text-anchor="middle" class="axis-label">Measured BMI</text>
-    ${personLayer(state, ivanFigureOpacity)}
+    ${personLayer()}
     <image href="${peerSprite}" x="700" y="802" width="310" height="470" opacity="${reviewerOpacity}" preserveAspectRatio="xMidYMax meet"/>
-    ${personLabelLayer(state, ivanFigureOpacity)}
+    ${personLabelLayer()}
     <text x="855" y="1293" text-anchor="middle" class="person-label" fill="${colors.orange}" opacity="${reviewerOpacity}">6′8″ · ≈166 kg</text>
-    <text x="540" y="1330" text-anchor="middle" class="footer">aiandtractors.com/ge-cs10h-body-fat-formula</text>
+    <text x="540" y="1330" text-anchor="middle" class="footer">Methodology and full data set · aiandtractors.com/ge-cs10h-body-fat-formula</text>
   </svg>`;
 }
 

@@ -45,18 +45,6 @@ function ease(value) {
   return t * t * (3 - 2 * t);
 }
 
-function lerp(a, b, t) {
-  return a + (b - a) * t;
-}
-
-function mixPoint(a, b, t) {
-  return {
-    bmi: lerp(a.bmi, b.bmi, t),
-    fat: lerp(a.fat, b.fat, t),
-    weight: lerp(a.weight ?? 0, b.weight ?? 0, t),
-  };
-}
-
 const csvLines = fs.readFileSync(path.join(scaleDir, 'cs10h-readings.csv'), 'utf8').trim().split(/\r?\n/);
 const headers = parseCsvLine(csvLines[0]);
 const column = Object.fromEntries(headers.map((name, index) => [name, index]));
@@ -149,6 +137,7 @@ const domain = { xMin: 22, xMax: 42, yMin: 14, yMax: 48 };
 const sx = (value) => chart.left + (value - domain.xMin) / (domain.xMax - domain.xMin) * chart.width;
 const sy = (value) => chart.top + chart.height - (value - domain.yMin) / (domain.yMax - domain.yMin) * chart.height;
 const linePath = (formula) => `M ${sx(domain.xMin)} ${sy(formula.slope * domain.xMin + formula.intercept)} L ${sx(domain.xMax)} ${sy(formula.slope * domain.xMax + formula.intercept)}`;
+const lineSegmentPath = (formula, minBmi, maxBmi) => `M ${sx(minBmi)} ${sy(formula.slope * minBmi + formula.intercept)} L ${sx(maxBmi)} ${sy(formula.slope * maxBmi + formula.intercept)}`;
 
 const xTicks = [22, 26, 30, 34, 38, 42];
 const yTicks = [20, 30, 40];
@@ -157,28 +146,37 @@ const grid = [
   ...yTicks.map((value) => `<line x1="${chart.left}" y1="${sy(value)}" x2="${chart.left + chart.width}" y2="${sy(value)}" stroke="${colors.grid}"/><text x="${chart.left - 16}" y="${sy(value) + 7}" text-anchor="end" class="tick">${value}%</text>`),
 ].join('');
 
-const ivanDots = ivan.map((point) => `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="3" fill="${colors.teal}" opacity="0.58"/>`).join('');
 const peerDots = peer.map((point, index) => `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="5" fill="${colors.orange}" opacity="${0.44 + index * 0.06}"/>`).join('');
 
-function ivanState(time) {
-  if (time < 1.8) return { from: 0, to: 0, mix: 0, point: representatives[0] };
-  if (time < 2.5) {
-    const mix = ease((time - 1.8) / 0.7);
-    return { from: 0, to: 1, mix, point: mixPoint(representatives[0], representatives[1], mix) };
-  }
-  if (time < 3.9) return { from: 1, to: 1, mix: 0, point: representatives[1] };
-  if (time < 4.6) {
-    const mix = ease((time - 3.9) / 0.7);
-    return { from: 1, to: 2, mix, point: mixPoint(representatives[1], representatives[2], mix) };
-  }
-  return { from: 2, to: 2, mix: 0, point: representatives[2] };
+const orderedPlottedIvan = orderedIvan.map((point) => {
+  const coincident = orderedIvan.filter((candidate) => candidate.weight === point.weight && candidate.fat === point.fat);
+  const position = coincident.findIndex((candidate) => candidate === point);
+  const displayBmi = point.bmi + (position - (coincident.length - 1) / 2) * 0.09;
+  return { ...point, displayBmi };
+});
+
+const ivanPointGroups = [
+  orderedPlottedIvan.slice(0, 12),
+  orderedPlottedIvan.slice(12, 24),
+  orderedPlottedIvan.slice(24),
+];
+
+const ivanSegments = ivanPointGroups.map((points) => ({
+  min: Math.min(...points.map((point) => point.displayBmi)) - 0.08,
+  max: Math.max(...points.map((point) => point.displayBmi)) + 0.08,
+}));
+
+function activeIvanGroup(time) {
+  if (time < 1.8) return 0;
+  if (time < 3.9) return 1;
+  return 2;
 }
 
-function peerPointAt(time) {
-  const position = clamp((time - 7.4) / 3.7) * (peer.length - 1);
-  const index = Math.min(peer.length - 2, Math.floor(position));
-  const mix = position - index;
-  return mixPoint(peer[index], peer[index + 1], mix);
+function ivanDotsMarkup(activeGroup, activeOpacity) {
+  return ivanPointGroups.flatMap((points, groupIndex) => points.map((point) => {
+    const active = groupIndex === activeGroup && activeOpacity > 0.5;
+    return `<circle cx="${sx(point.displayBmi)}" cy="${sy(formulas.ivan.slope * point.displayBmi + formulas.ivan.intercept)}" r="${active ? 4.2 : 2.7}" fill="${active ? colors.teal : colors.white}" stroke="${colors.teal}" stroke-width="${active ? 1.5 : 1.35}" opacity="${active ? 1 : 0.82}"/>`;
+  })).join('');
 }
 
 const ivanFigures = [
@@ -193,21 +191,10 @@ function personLayer() {
   )).join('');
 }
 
-function personLabelLayer() {
+function personLabelLayer(activeGroup, activeOpacity) {
   return ivanFigures.map((figure, index) => (
-    `<text x="${figure.center}" y="1242" text-anchor="middle" class="person-label" fill="${colors.ink}">${representatives[index].weight.toFixed(1)} kg</text>`
+    `<text x="${figure.center}" y="1242" text-anchor="middle" class="person-label" fill="${index === activeGroup && activeOpacity > 0.5 ? colors.teal : colors.ink}">${representatives[index].weight.toFixed(1)} kg</text>`
   )).join('');
-}
-
-function stripeMarkup(point, centerX, halfTop, halfBottom, color, opacity) {
-  const pointX = sx(point.bmi);
-  const points = [
-    `${pointX - halfTop},${chart.top}`,
-    `${pointX + halfTop},${chart.top}`,
-    `${centerX + halfBottom},1270`,
-    `${centerX - halfBottom},1270`,
-  ].join(' ');
-  return `<polygon points="${points}" fill="${color}" opacity="${opacity}"/>`;
 }
 
 function frameSvg(frame) {
@@ -215,12 +202,12 @@ function frameSvg(frame) {
   const reviewerReveal = ease((time - 6.35) / 0.95);
   const lineReveal = ease((time - 6.65) / 1.15);
   const peerLabelReveal = ease((time - 7.1) / 0.7);
-  const state = ivanState(time);
-  const currentPeer = peerPointAt(time);
-  const activeIvanCenter = lerp(ivanFigures[state.from].center, ivanFigures[state.to].center, state.mix);
+  const activeGroup = activeIvanGroup(time);
+  const activeSegment = ivanSegments[activeGroup];
   const reviewerOpacity = reviewerReveal;
   const activeIvanOpacity = 1 - reviewerReveal;
-  const activePeerOpacity = reviewerReveal;
+  const peerMinBmi = Math.min(...peer.map((point) => point.bmi)) - 0.18;
+  const peerMaxBmi = Math.max(...peer.map((point) => point.bmi)) + 0.18;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
@@ -243,23 +230,21 @@ function frameSvg(frame) {
     <text x="254" y="151" class="headline">body fat as 1.5 × BMI − 17.5</text>
     <text x="${chart.left}" y="270" class="axis-label">“Measured” body fat (%)</text>
     ${grid}
-    ${stripeMarkup(state.point, activeIvanCenter, 34, 76, colors.teal, 0.105 * activeIvanOpacity)}
-    ${stripeMarkup(currentPeer, 855, 42, 126, colors.orange, 0.11 * activePeerOpacity)}
     <line x1="${chart.left}" y1="${chart.top + chart.height}" x2="${chart.left + chart.width}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
     <line x1="${chart.left}" y1="${chart.top}" x2="${chart.left}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
     <g clip-path="url(#chart-clip)">
       <path d="${linePath(formulas.ivan)}" fill="none" stroke="${colors.teal}" stroke-width="6" stroke-linecap="round"/>
-      ${ivanDots}
+      <path d="${lineSegmentPath(formulas.ivan, activeSegment.min, activeSegment.max)}" fill="none" stroke="${colors.teal}" stroke-width="18" stroke-linecap="round" opacity="${0.24 * activeIvanOpacity}"/>
+      ${ivanDotsMarkup(activeGroup, activeIvanOpacity)}
       <path d="${linePath(formulas.peer)}" pathLength="1" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="${1 - lineReveal}" opacity="${reviewerReveal}"/>
+      <path d="${lineSegmentPath(formulas.peer, peerMinBmi, peerMaxBmi)}" fill="none" stroke="${colors.orange}" stroke-width="18" stroke-linecap="round" opacity="${0.22 * reviewerReveal}"/>
       <g opacity="${reviewerReveal}">${peerDots}</g>
-      <circle cx="${sx(state.point.bmi)}" cy="${sy(state.point.fat)}" r="15" fill="${colors.white}" stroke="${colors.teal}" stroke-width="7" opacity="${activeIvanOpacity}"/>
-      <circle cx="${sx(currentPeer.bmi)}" cy="${sy(currentPeer.fat)}" r="16" fill="${colors.white}" stroke="${colors.orange}" stroke-width="7" opacity="${activePeerOpacity}"/>
     </g>
     <text x="${chart.left + 22}" y="${chart.top + 44}" class="formula" fill="${colors.orange}" opacity="${peerLabelReveal}">Same slope · 0.95 lower</text>
     <text x="${chart.left + chart.width / 2}" y="${chart.top + chart.height + 64}" text-anchor="middle" class="axis-label">Measured BMI</text>
     ${personLayer()}
     <image href="${peerSprite}" x="700" y="802" width="310" height="470" opacity="${reviewerOpacity}" preserveAspectRatio="xMidYMax meet"/>
-    ${personLabelLayer()}
+    ${personLabelLayer(activeGroup, activeIvanOpacity)}
     <text x="855" y="1293" text-anchor="middle" class="person-label" fill="${colors.orange}" opacity="${reviewerOpacity}">6′8″ · ≈166 kg</text>
     <text x="540" y="1330" text-anchor="middle" class="footer">Methodology and full data set · aiandtractors.com/ge-cs10h-body-fat-formula</text>
   </svg>`;

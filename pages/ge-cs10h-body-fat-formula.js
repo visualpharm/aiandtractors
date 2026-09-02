@@ -182,9 +182,9 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
             muted
             playsInline
             preload="metadata"
-            poster="/scale/cs10h-formula-animation-v4-poster.png?v=6d9cc21"
+            poster="/scale/cs10h-formula-animation-v4-poster.png?v=fdda6c2"
           >
-            <source src="/scale/cs10h-formula-animation-v4.mp4?v=6d9cc21" type="video/mp4" />
+            <source src="/scale/cs10h-formula-animation-v4.mp4?v=fdda6c2" type="video/mp4" />
           </video>
           <figcaption className="text-sm text-gray-600 mt-2">
             My 37 Fit Profile readings plus 4 values digitized from the reviewer&apos;s{' '}
@@ -194,9 +194,9 @@ export default function GeCs10hBodyFatFormula({ scatterSvg, timelineSvg }) {
             >
               replication chart
             </a>
-            . The 3 barefoot figures show my recorded weight range while the highlight moves
-            across the data. The anonymous figure represents only the other owner&apos;s reported
-            height and approximate BMI. Every plotted point is data.
+            . The 3 barefoot figures show my recorded weight range while 3 populated segments
+            are highlighted in turn. The anonymous figure represents only the other owner&apos;s
+            reported height and approximate BMI. Every plotted point is data.
           </figcaption>
         </figure>
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import isAuthorized from '../../lib/placesProxyAuth';
 
 // Google Places API key from environment variable (server-only, not NEXT_PUBLIC_)
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
@@ -23,6 +24,11 @@ function sanitizePlaceName(name) {
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Reject callers without the shared proxy secret (protects paid Google quota)
+  if (!isAuthorized(req)) {
+    return res.status(403).json({ error: 'Forbidden' });
   }
 
   // Fail closed if API key is not configured

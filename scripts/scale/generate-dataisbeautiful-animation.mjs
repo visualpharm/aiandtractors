@@ -5,11 +5,11 @@ import sharp from 'sharp';
 
 const root = path.resolve(import.meta.dirname, '..', '..');
 const scaleDir = path.join(root, 'public', 'scale');
-const framesDir = path.join(scaleDir, '.animation-frames-v4');
+const framesDir = path.join(scaleDir, '.animation-frames-v5');
 const width = 1080;
 const height = 1350;
 const fps = 24;
-const seconds = 12;
+const seconds = 18;
 const frameCount = fps * seconds;
 
 const colors = {
@@ -43,6 +43,10 @@ function clamp(value, min = 0, max = 1) {
 function ease(value) {
   const t = clamp(value);
   return t * t * (3 - 2 * t);
+}
+
+function fadeWindow(time, start, holdEnd, end) {
+  return Math.min(ease((time - start) / 0.35), 1 - ease((time - holdEnd) / (end - holdEnd)));
 }
 
 const csvLines = fs.readFileSync(path.join(scaleDir, 'cs10h-readings.csv'), 'utf8').trim().split(/\r?\n/);
@@ -148,11 +152,18 @@ const grid = [
 
 const peerDots = peer.map((point, index) => `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="5" fill="${colors.orange}" opacity="${0.44 + index * 0.06}"/>`).join('');
 
+const pointKey = (point) => `${point.bmi.toFixed(9)}|${point.fat.toFixed(1)}`;
+const multiplicity = orderedIvan.reduce((counts, point) => {
+  const key = pointKey(point);
+  counts.set(key, (counts.get(key) || 0) + 1);
+  return counts;
+}, new Map());
+const seenMultiplicity = new Map();
 const orderedPlottedIvan = orderedIvan.map((point) => {
-  const coincident = orderedIvan.filter((candidate) => candidate.weight === point.weight && candidate.fat === point.fat);
-  const position = coincident.findIndex((candidate) => candidate === point);
-  const displayBmi = point.bmi + (position - (coincident.length - 1) / 2) * 0.09;
-  return { ...point, displayBmi };
+  const key = pointKey(point);
+  const duplicateIndex = seenMultiplicity.get(key) || 0;
+  seenMultiplicity.set(key, duplicateIndex + 1);
+  return { ...point, duplicateIndex, duplicateCount: multiplicity.get(key) };
 });
 
 const ivanPointGroups = [
@@ -162,8 +173,8 @@ const ivanPointGroups = [
 ];
 
 const ivanSegments = ivanPointGroups.map((points) => ({
-  min: Math.min(...points.map((point) => point.displayBmi)) - 0.08,
-  max: Math.max(...points.map((point) => point.displayBmi)) + 0.08,
+  min: Math.min(...points.map((point) => point.bmi)) - 0.08,
+  max: Math.max(...points.map((point) => point.bmi)) + 0.08,
 }));
 
 function activeIvanGroup(time) {
@@ -173,9 +184,10 @@ function activeIvanGroup(time) {
 }
 
 function ivanDotsMarkup(activeGroup, activeOpacity) {
-  return ivanPointGroups.flatMap((points, groupIndex) => points.map((point) => {
+  return ivanPointGroups.flatMap((points, groupIndex) => [...points].sort((a, b) => b.duplicateIndex - a.duplicateIndex).map((point) => {
     const active = groupIndex === activeGroup && activeOpacity > 0.5;
-    return `<circle cx="${sx(point.displayBmi)}" cy="${sy(formulas.ivan.slope * point.displayBmi + formulas.ivan.intercept)}" r="${active ? 4.2 : 2.7}" fill="${active ? colors.teal : colors.white}" stroke="${colors.teal}" stroke-width="${active ? 1.5 : 1.35}" opacity="${active ? 1 : 0.82}"/>`;
+    const radius = (active ? 3.8 : 2.7) + point.duplicateIndex * 1.75;
+    return `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="${radius}" fill="${active && point.duplicateIndex === 0 ? colors.teal : colors.white}" stroke="${colors.teal}" stroke-width="${active ? 1.7 : 1.4}" opacity="${active ? 1 : 0.86}"/>`;
   })).join('');
 }
 
@@ -191,21 +203,23 @@ function personLayer() {
   )).join('');
 }
 
-function personLabelLayer(activeGroup, activeOpacity) {
-  return ivanFigures.map((figure, index) => (
-    `<text x="${figure.center}" y="1242" text-anchor="middle" class="person-label" fill="${index === activeGroup && activeOpacity > 0.5 ? colors.teal : colors.ink}">${representatives[index].weight.toFixed(1)} kg</text>`
-  )).join('');
+function personHighlightLayer(activeGroup, activeOpacity) {
+  const figure = ivanFigures[activeGroup];
+  return `<line x1="${figure.center}" y1="870" x2="${figure.center}" y2="1195" stroke="${colors.teal}" stroke-width="${figure.width * 0.72}" stroke-linecap="round" opacity="${0.16 * activeOpacity}"/>`;
 }
 
 function frameSvg(frame) {
   const time = frame / fps;
-  const reviewerReveal = ease((time - 6.35) / 0.95);
-  const lineReveal = ease((time - 6.65) / 1.15);
-  const peerLabelReveal = ease((time - 7.1) / 0.7);
+  const socksReveal = fadeWindow(time, 6.0, 7.75, 8.15);
+  const gadgetsReveal = fadeWindow(time, 8.2, 9.95, 10.35);
+  const critiqueReveal = fadeWindow(time, 10.4, 12.05, 12.45);
+  const evidenceMode = ease((time - 5.8) / 0.2) * (1 - ease((time - 12.25) / 0.2));
+  const reviewerReveal = ease((time - 12.55) / 0.95);
+  const peerLabelReveal = ease((time - 13.25) / 0.7);
   const activeGroup = activeIvanGroup(time);
   const activeSegment = ivanSegments[activeGroup];
   const reviewerOpacity = reviewerReveal;
-  const activeIvanOpacity = 1 - reviewerReveal;
+  const activeIvanOpacity = 1 - ease((time - 5.75) / 0.25);
   const peerMinBmi = Math.min(...peer.map((point) => point.bmi)) - 0.18;
   const peerMaxBmi = Math.max(...peer.map((point) => point.bmi)) + 0.18;
 
@@ -217,17 +231,26 @@ function frameSvg(frame) {
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: ${colors.ink}; }
       .headline { font-size: 42px; font-weight: 780; letter-spacing: -1.2px; }
-      .axis-label { font-size: 21px; font-weight: 650; fill: ${colors.muted}; }
-      .tick { font-size: 18px; font-weight: 520; fill: ${colors.muted}; }
-      .formula { font-size: 18px; font-weight: 720; }
-      .person-label { font-size: 19px; font-weight: 760; }
-      .footer { font-size: 20px; font-weight: 650; fill: ${colors.muted}; }
+      .axis-label { font-size: 24px; font-weight: 650; fill: ${colors.muted}; }
+      .tick { font-size: 22px; font-weight: 520; fill: ${colors.muted}; }
+      .formula { font-size: 30px; font-weight: 740; }
+      .evidence { font-size: 38px; font-weight: 780; letter-spacing: -0.7px; }
+      .person-label { font-size: 22px; font-weight: 760; }
+      .footer { font-size: 24px; font-weight: 650; fill: ${colors.muted}; }
     </style>
     <rect width="${width}" height="${height}" fill="${colors.white}"/>
     <image href="${logoSprite}" x="54" y="70" width="82" height="82"/>
     <image href="${clownSprite}" x="148" y="70" width="82" height="82"/>
-    <text x="254" y="102" class="headline">My $120 smart scale reports “measured”</text>
-    <text x="254" y="151" class="headline">body fat as 1.5 × BMI − 17.5</text>
+    <g opacity="${1 - evidenceMode}">
+      <text x="254" y="102" class="headline">My $120 smart scale reports “measured”</text>
+      <text x="254" y="151" class="headline">body fat as 1.5 × BMI − 17.5</text>
+    </g>
+    <text x="254" y="126" class="evidence" fill="${colors.teal}" opacity="${socksReveal}">Socks on. Every metric returned.</text>
+    <g opacity="${gadgetsReveal}">
+      <text x="254" y="105" class="evidence" fill="${colors.teal}">Clothes, headphones, phone.</text>
+      <text x="254" y="151" class="evidence" fill="${colors.teal}">Still “measured.”</text>
+    </g>
+    <text x="254" y="126" class="evidence" fill="${colors.ink}" opacity="${critiqueReveal}">Bad contact should fail, not guess.</text>
     <text x="${chart.left}" y="270" class="axis-label">“Measured” body fat (%)</text>
     ${grid}
     <line x1="${chart.left}" y1="${chart.top + chart.height}" x2="${chart.left + chart.width}" y2="${chart.top + chart.height}" stroke="${colors.ink}" stroke-width="2"/>
@@ -236,25 +259,33 @@ function frameSvg(frame) {
       <path d="${linePath(formulas.ivan)}" fill="none" stroke="${colors.teal}" stroke-width="6" stroke-linecap="round"/>
       <path d="${lineSegmentPath(formulas.ivan, activeSegment.min, activeSegment.max)}" fill="none" stroke="${colors.teal}" stroke-width="18" stroke-linecap="round" opacity="${0.24 * activeIvanOpacity}"/>
       ${ivanDotsMarkup(activeGroup, activeIvanOpacity)}
-      <path d="${linePath(formulas.peer)}" pathLength="1" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="${1 - lineReveal}" opacity="${reviewerReveal}"/>
+      <path d="${lineSegmentPath(formulas.peer, peerMinBmi, peerMaxBmi)}" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round" stroke-dasharray="15 10" opacity="${reviewerReveal}"/>
       <path d="${lineSegmentPath(formulas.peer, peerMinBmi, peerMaxBmi)}" fill="none" stroke="${colors.orange}" stroke-width="18" stroke-linecap="round" opacity="${0.22 * reviewerReveal}"/>
       <g opacity="${reviewerReveal}">${peerDots}</g>
     </g>
-    <text x="${chart.left + 22}" y="${chart.top + 44}" class="formula" fill="${colors.orange}" opacity="${peerLabelReveal}">Same slope · 0.95 lower</text>
+    <text x="${chart.left + 410}" y="${chart.top + 52}" class="formula" fill="${colors.orange}" opacity="${peerLabelReveal}">1.5 slope reference · 0.95 lower</text>
     <text x="${chart.left + chart.width / 2}" y="${chart.top + chart.height + 64}" text-anchor="middle" class="axis-label">Measured BMI</text>
+    ${personHighlightLayer(activeGroup, activeIvanOpacity)}
     ${personLayer()}
     <image href="${peerSprite}" x="700" y="802" width="310" height="470" opacity="${reviewerOpacity}" preserveAspectRatio="xMidYMax meet"/>
-    ${personLabelLayer(activeGroup, activeIvanOpacity)}
     <text x="855" y="1293" text-anchor="middle" class="person-label" fill="${colors.orange}" opacity="${reviewerOpacity}">6′8″ · ≈166 kg</text>
     <text x="540" y="1330" text-anchor="middle" class="footer">Methodology and full data set · aiandtractors.com/ge-cs10h-body-fat-formula</text>
   </svg>`;
 }
 
+async function writePreviewFrames() {
+  await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-opening.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 5.2)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-ivan-heavy.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 7.0)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-socks.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 9.1)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-gadgets.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 11.2)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-critique.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 14.2)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-reviewer.png'));
+  await sharp(Buffer.from(frameSvg(Math.floor(fps * 17.5)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-final.png'));
+}
+
 if (process.argv.includes('--preview-only')) {
-  await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-opening.png'));
-  await sharp(Buffer.from(frameSvg(Math.floor(fps * 5.2)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-ivan-heavy.png'));
-  await sharp(Buffer.from(frameSvg(Math.floor(fps * 9.8)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-reviewer.png'));
-  console.log('Rendered v4 preview frames');
+  await writePreviewFrames();
+  console.log('Rendered v5 preview frames');
   process.exit(0);
 }
 
@@ -265,8 +296,8 @@ for (let frame = 0; frame < frameCount; frame += 1) {
   if (frame % fps === 0) process.stdout.write(`Rendered ${Math.round(frame / fps)}s / ${seconds}s\n`);
 }
 
-await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-opening.png'));
-await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v4-poster.png'));
+await writePreviewFrames();
+await sharp(Buffer.from(frameSvg(0))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-poster.png'));
 
 function ffmpeg(args) {
   const result = spawnSync('ffmpeg', args, { cwd: root, encoding: 'utf8' });
@@ -276,8 +307,8 @@ function ffmpeg(args) {
   }
 }
 
-ffmpeg(['-y', '-framerate', String(fps), '-i', path.join(framesDir, 'frame-%04d.png'), '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(scaleDir, 'cs10h-formula-animation-v4.mp4')]);
-ffmpeg(['-y', '-i', path.join(scaleDir, 'cs10h-formula-animation-v4.mp4'), '-filter_complex', '[0:v]fps=12,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(scaleDir, 'cs10h-formula-animation-v4.gif')]);
+ffmpeg(['-y', '-framerate', String(fps), '-i', path.join(framesDir, 'frame-%04d.png'), '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(scaleDir, 'cs10h-formula-animation-v5.mp4')]);
+ffmpeg(['-y', '-i', path.join(scaleDir, 'cs10h-formula-animation-v5.mp4'), '-filter_complex', '[0:v]fps=12,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(scaleDir, 'cs10h-formula-animation-v5.gif')]);
 fs.rmSync(framesDir, { recursive: true, force: true });
 
 console.log(JSON.stringify({
@@ -286,9 +317,9 @@ console.log(JSON.stringify({
   formulas,
   representatives,
   outputs: [
-    'public/scale/cs10h-formula-animation-v4.mp4',
-    'public/scale/cs10h-formula-animation-v4.gif',
-    'public/scale/cs10h-formula-animation-v4-opening.png',
-    'public/scale/cs10h-formula-animation-v4-poster.png',
+    'public/scale/cs10h-formula-animation-v5.mp4',
+    'public/scale/cs10h-formula-animation-v5.gif',
+    'public/scale/cs10h-formula-animation-v5-opening.png',
+    'public/scale/cs10h-formula-animation-v5-poster.png',
   ],
 }, null, 2));

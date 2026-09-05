@@ -1,5 +1,7 @@
 # GE CS10H Reddit video requirements
 
+> SUPERSEDED on 2026-09-04 by `ge-scale-user-corrections.md`. This older file mixed agent preferences with user requirements, including the short dashed line, concentric rings, and anecdote slides. It must not guide further visual changes.
+
 ## Outcome
 
 Create a portrait animation for r/dataisbeautiful that makes one claim at a time: the GE CS10H output follows the same 1.5 x BMI rule through Ivan's recorded range, survives implausible measurement conditions, and appears again for a second owner with a small intercept shift.

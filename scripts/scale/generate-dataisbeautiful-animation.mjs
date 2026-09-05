@@ -283,6 +283,45 @@ async function writePreviewFrames() {
   await sharp(Buffer.from(frameSvg(Math.floor(fps * 17.5)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-final.png'));
 }
 
+// Still requested by Ivan: preserve the complete parallel-line comparison.
+// This path creates no video and does not change the existing v5 exports.
+if (process.argv.includes('--requested-still')) {
+  const dots = (points, color) => points.map(point =>
+    `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="3" fill="white" stroke="${color}" stroke-width="1.6"/>`
+  ).join('');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: ${colors.ink}; }
+      .headline { font-size:42px; font-weight:780; letter-spacing:-1.2px; }
+      .axis-label { font-size:24px; font-weight:650; }
+      .tick { font-size:22px; fill:#68727d; }
+      .footer { font-size:24px; font-weight:650; }
+    </style>
+    <rect width="1080" height="1350" fill="white"/>
+    <image href="${logoSprite}" x="54" y="70" width="82" height="82"/>
+    <image href="${clownSprite}" x="148" y="70" width="82" height="82"/>
+    <text x="254" y="102" class="headline">My $120 smart scale reports “measured”</text>
+    <text x="254" y="151" class="headline">body fat as 1.5 × BMI − 17.5</text>
+    <rect x="735" y="294" width="245" height="978" fill="#f0f2f3"/>
+    <text x="90" y="270" class="axis-label">“Measured” body fat (%)</text>
+    ${grid}
+    <line x1="90" y1="740" x2="990" y2="740" stroke="${colors.ink}" stroke-width="2"/>
+    <line x1="90" y1="294" x2="90" y2="740" stroke="${colors.ink}" stroke-width="2"/>
+    <path d="${linePath(formulas.ivan)}" fill="none" stroke="${colors.teal}" stroke-width="5" stroke-linecap="round"/>
+    <path d="${linePath(formulas.peer)}" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round"/>
+    ${dots(ivan, colors.teal)}
+    ${dots(peer, colors.orange)}
+    <text x="540" y="804" text-anchor="middle" class="axis-label">Measured BMI</text>
+    ${personLayer()}
+    <image href="${peerSprite}" x="700" y="802" width="310" height="470" preserveAspectRatio="xMidYMax meet"/>
+    <text x="540" y="1330" text-anchor="middle" class="footer">Methodology and full data set · aiandtractors.com/ge-cs10h-body-fat-formula</text>
+  </svg>`;
+  const output = path.join(scaleDir, 'cs10h-requested-parallel-still.png');
+  await sharp(Buffer.from(svg)).png().toFile(output);
+  console.log(JSON.stringify({ output, ivanPoints: ivan.length, peerPoints: peer.length, slopes: [formulas.ivan.slope, formulas.peer.slope], videoGenerated: false }));
+  process.exit(0);
+}
+
 if (process.argv.includes('--preview-only')) {
   await writePreviewFrames();
   console.log('Rendered v5 preview frames');

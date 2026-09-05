@@ -6,11 +6,7 @@
 
 ## Body
 
-The animation follows my 37 GE CS10H readings over 3 months, then switches to 4 digitized readings from a 6′8″ owner of the same model. His 4 points sit within 0.05 percentage point of a constrained 1.5-slope reference shifted 0.95 point lower.
-
-The animation highlights three groups of my readings, then introduces the other owner's data and the second full parallel reference line.
-
-Full data and method: https://aiandtractors.com/scale
+40 readings over 3 months. The body-fat curve is the weight curve rescaled, including with socks on. Full data and method: https://aiandtractors.com/scale
 
 ## Source and tools comment
 
@@ -20,7 +16,7 @@ My readings fit body fat % = 1.50 × BMI − 17.50 to the scale's 0.1-point disp
 
 My 3 barefoot figures are stylized body-composition stages, not bodies scaled to exact kilograms. The anonymous figure represents the other owner. Every plotted dot keeps its CSV coordinate; repeated readings overlap.
 
-Tools: JavaScript, SVG, Sharp, and FFmpeg.
+Tools: JavaScript, SVG, Sharp, and FFmpeg. The body illustrations are AI-generated; the plotted data are from the readings above.
 
 Peer chart: https://www.reddit.com/r/dataisugly/comments/1w18i27/comment/p6jikqv/
 

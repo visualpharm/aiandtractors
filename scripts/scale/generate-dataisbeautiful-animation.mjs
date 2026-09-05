@@ -285,13 +285,16 @@ async function writePreviewFrames() {
 
 // Shared source for the approved still and its four discrete animation states.
 function requestedFrameSvg(activeGroup = 3, showPeer = true) {
+  const peerGray = '#333b42';
   const activePoints = new Set(activeGroup < 3 ? ivanPointGroups[activeGroup].map(pointKey) : []);
   const dots = (points, color, isPeer = false) => points.map(point => {
     const active = isPeer ? activeGroup === 3 : activePoints.has(pointKey(point));
     return `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="${active ? 6.5 : 5}" fill="${active ? color : 'white'}" stroke="${colors.ink}" stroke-width="2"/>`;
   }
   ).join('');
-  let stripe = '<rect x="735" y="294" width="245" height="978" fill="#f0f2f3"/>';
+  const peerLeft = sx(Math.min(...peer.map(point => point.bmi))) - 8;
+  const peerRight = sx(Math.max(...peer.map(point => point.bmi))) + 8;
+  let stripe = `<path d="M ${peerLeft} 294 H ${peerRight} V 740 L 980 842 V 1272 H 735 V 842 L ${peerLeft} 740 Z" fill="#f0f2f3"/>`;
   if (activeGroup < 3) {
     const segment = ivanSegments[activeGroup];
     const left = sx(segment.min) - 8;
@@ -304,7 +307,7 @@ function requestedFrameSvg(activeGroup = 3, showPeer = true) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
     <defs>
       <filter id="charcoal" color-interpolation-filters="sRGB">
-        <feColorMatrix type="matrix" values="0 0 0 0 0.20 0 0 0 0 0.23 0 0 0 0 0.26 0 0 0 1 0"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0.20 0 0 0 0 0.231372549 0 0 0 0 0.258823529 0 0 0 1 0"/>
       </filter>
     </defs>
     <style>
@@ -325,9 +328,9 @@ function requestedFrameSvg(activeGroup = 3, showPeer = true) {
     <line x1="90" y1="740" x2="990" y2="740" stroke="${colors.ink}" stroke-width="2"/>
     <line x1="90" y1="294" x2="90" y2="740" stroke="${colors.ink}" stroke-width="2"/>
     <path d="${linePath(formulas.ivan)}" fill="none" stroke="${colors.teal}" stroke-width="5" stroke-linecap="round"/>
-    ${showPeer ? `<path d="${linePath(formulas.peer)}" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round"/>` : ''}
+    ${showPeer ? `<path d="${linePath(formulas.peer)}" fill="none" stroke="${peerGray}" stroke-width="5" stroke-linecap="round"/>` : ''}
     ${dots(ivan, colors.teal)}
-    ${showPeer ? dots(peer, colors.orange, true) : ''}
+    ${showPeer ? dots(peer, peerGray, true) : ''}
     <text x="540" y="804" text-anchor="middle" class="axis-label">Measured BMI</text>
     ${personLayer()}
     ${showPeer ? `<image href="${peerSprite}" x="700" y="802" width="310" height="470" preserveAspectRatio="xMidYMax meet" filter="url(#charcoal)"/>` : ''}
@@ -343,7 +346,7 @@ if (process.argv.includes('--requested-still')) {
 }
 
 if (process.argv.includes('--approved-animation') || process.argv.includes('--approved-preview')) {
-  const prefix = path.join(scaleDir, 'cs10h-parallel-animation-v6');
+  const prefix = path.join(scaleDir, 'cs10h-parallel-animation-v7');
   for (let state = 0; state < 4; state += 1) {
     await sharp(Buffer.from(requestedFrameSvg(state, state === 3))).png().toFile(`${prefix}-state-${state}.png`);
   }

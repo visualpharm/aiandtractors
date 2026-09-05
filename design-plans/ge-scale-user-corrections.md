@@ -33,4 +33,6 @@ Complete lines are mathematical references; observed points retain their raw coo
 
 ## Review rule
 
+Final publication correction: match the reviewer's full line and active dots to the silhouette's charcoal (#333b42), and constrain the top of his neutral highlight stripe to his observed BMI range, connecting it to the same figure band. Preserve everything else. The authorized upload is cs10h-parallel-animation-v7.mp4. Reuse the original r/dataisugly body and title, adding only the required [OC] title tag and source/tools comment.
+
 Check geometry, supplied assets, order, opacity, coordinates, and wording against the requests above. Do not silently redesign an approved choice to satisfy reviewer preferences.

@@ -4,7 +4,7 @@ import article from '../data/coding-subscriptions.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-subscription-costs/';
 const TITLE = 'What coding agents cost on a subscription';
-const DESCRIPTION = 'Artificial Analysis redrawn with community-estimated subscription costs per task. Full calculations, uncertainty ranges, and 18 sources.';
+const DESCRIPTION = `Artificial Analysis redrawn with community-estimated subscription costs per task, including Antigravity/Gemini and research on z.ai and Muse Code. Calculations and ${article.references.length} sources.`;
 
 export default function CodingAgentSubscriptionCosts() {
   return (
@@ -19,7 +19,7 @@ export default function CodingAgentSubscriptionCosts() {
         <meta property="og:url" content={PAGE_URL} />
         <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png" />
         <meta property="og:image:width" content="2800" />
-        <meta property="og:image:height" content="2380" />
+        <meta property="og:image:height" content="2800" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <article className="subscription-article">
@@ -34,18 +34,24 @@ export default function CodingAgentSubscriptionCosts() {
           <a href="/coding-subscriptions/chart.png" aria-label="Full-resolution coding agent subscription chart">
             <picture>
               <source media="(max-width: 700px)" srcSet="/coding-subscriptions/chart-phone.png" />
-              <img src="/coding-subscriptions/chart.png" width="2800" height="2380" alt="Coding agent benchmark scores and estimated subscription costs per task. Fable 5.1 leads at about 70.4 points and $0.245 per task; Astra xhigh is about $0.093, max $0.135; Kimi K3 is about $0.584. Grok Build uses the actual $30 SuperGrok plan, estimated at $0.146 per task. Scenario ranges are shown." />
+              <img src="/coding-subscriptions/chart.png" width="2800" height="2800" alt="Coding agent benchmark scores and estimated subscription costs per task. Antigravity Gemini 3.7 Flash high is $0.037 and 3.8 Flash high is $0.053 on the $100 plan, using a provisional token-mix scenario. Fable 5.1 leads at about 70.4 points and $0.245; Kimi K3 is $0.584. GLM 5.3 has a 473M monthly-token scenario but no matched benchmark; Muse Code has plans but no measured token allowance. Scenario ranges are shown." />
             </picture>
           </a>
         </figure>
         <div className="reading">
+          <h2>Gemini, z.ai and Muse Code</h2>
+          <ul>
+            <li><strong>Gemini is now plotted through Antigravity:</strong> $0.037 per task for 3.7 Flash high and $0.053 for 3.8 Flash high on the $100 Ultra tier. These are provisional estimates using an assumed token mix and the native Antigravity SDK benchmark.</li>
+            <li><strong>z.ai has a usable GLM 5.3 quota report:</strong> about 473M raw tokens per month on $18 Lite when extrapolated from one subscriber. A matching Coding Agent Index result is missing, so GLM has no plotted price or score.</li>
+            <li><strong>Muse Code has $5, $15 and $50 plans:</strong> I found paid-user tests, but no token count tied to quota consumption. Its cost per task remains unknown.</li>
+          </ul>
           <h2>What changes when you use subscription prices</h2>
           <ul>
             <li><strong>Kimi is the most expensive in the central estimate:</strong> about $0.58 per task among the options I could price. The uncertainty ranges overlap.</li>
             <li><strong>Fable 5.1 has the highest benchmark score:</strong> about 70.4 points at an estimated $0.24 per task. The price uses an older Fable 5 allowance proxy, with a wide $0.19–$0.92 scenario range.</li>
             <li><strong>Astra max costs about 44% more than xhigh:</strong> roughly $0.135 versus $0.093 per task, for approximately 67.0 versus 66.9 benchmark points. That is barely a score difference, not proof of equal quality on every task.</li>
           </ul>
-          <p>These estimates assume heavy use of each plan. Codex and Claude use $200 plans; Kimi uses $199; Grok Build uses the measured $30 SuperGrok plan. If you use half the modeled monthly allowance, the effective cost per task doubles.</p>
+          <p>These estimates assume heavy use of each plan. Codex and Claude use $200 plans; Kimi uses $199; Grok Build uses $30 SuperGrok; Gemini uses $100 Antigravity Ultra. If you use half the modeled monthly allowance, the effective cost per task doubles.</p>
           <nav className="article-links" aria-label="Chart data">
             <a href="/coding-subscriptions/chart.png">Full chart</a>
             <a href="/coding-subscriptions/estimates.json">Calculation data</a>

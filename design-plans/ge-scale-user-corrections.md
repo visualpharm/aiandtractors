@@ -4,7 +4,9 @@ Reconciled against Ivan's actual messages on 2026-09-04. User corrections are au
 
 ## Current deliverable
 
-One still for Ivan to review before another video. Render with `node scripts/scale/generate-dataisbeautiful-animation.mjs --requested-still`.
+Ivan approved the restored still and requested video on 2026-09-04: "make the reference dots more visible", "let's not do this guy orange", and "a video where it highlights different sections of the graph and different body shapes". Render with `node scripts/scale/generate-dataisbeautiful-animation.mjs --approved-animation`.
+
+Keep the approved composition. Increase point size and outline contrast. Recolor the existing peer silhouette charcoal through a rendering filter, preserving its outline. Use four stationary three-second highlights: lean, middle, heavy, reviewer. The reviewer and second full parallel line enter in the fourth state. Preserve all three Ivan images at full opacity throughout.
 
 ## Asked versus implemented
 
@@ -19,11 +21,11 @@ One still for Ivan to review before another video. Render with `node scripts/sca
 - "GE and an emoji of the clown of the same size": approved assets at matching dimensions.
 - "Quoted the word measured": y-axis `“Measured” body fat (%)`; x-axis `Measured BMI`.
 - "Radically decrease the amount of text": title, axes, requested methodology URL. Remove exact body weights, reviewer measurements, slope-offset annotations, and added slogans.
-- "URL, label it methodology and full data set": `Methodology and full data set · aiandtractors.com/ge-cs10h-body-fat-formula`.
+- "URL, label it methodology and full data set": `Methodology and full data set · aiandtractors.com/scale`. Ivan requested a short redirect on 2026-09-04; `/scale` redirects to the full article and leaves `/scale/` media assets accessible.
 
 ## Later animation
 
-Begin with Ivan's three fixed images and the single teal line. Change the shared highlight between populated segments and corresponding figures. Introduce the reviewer and second full parallel line afterwards. Researching Reddit comments did not authorize replacing the title with anecdote slides. Show the requested still before generating another video.
+Begin with Ivan's three fixed images and the single teal line. Change the shared highlight between populated segments and corresponding figures. Introduce the reviewer and second full parallel line afterwards. Researching Reddit comments did not authorize replacing the title with anecdote slides. The requested still was shown and video creation is now explicitly authorized.
 
 ## Analytical implementation
 

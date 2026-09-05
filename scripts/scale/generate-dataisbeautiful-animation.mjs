@@ -283,13 +283,30 @@ async function writePreviewFrames() {
   await sharp(Buffer.from(frameSvg(Math.floor(fps * 17.5)))).png().toFile(path.join(scaleDir, 'cs10h-formula-animation-v5-final.png'));
 }
 
-// Still requested by Ivan: preserve the complete parallel-line comparison.
-// This path creates no video and does not change the existing v5 exports.
-if (process.argv.includes('--requested-still')) {
-  const dots = (points, color) => points.map(point =>
-    `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="3" fill="white" stroke="${color}" stroke-width="1.6"/>`
+// Shared source for the approved still and its four discrete animation states.
+function requestedFrameSvg(activeGroup = 3, showPeer = true) {
+  const activePoints = new Set(activeGroup < 3 ? ivanPointGroups[activeGroup].map(pointKey) : []);
+  const dots = (points, color, isPeer = false) => points.map(point => {
+    const active = isPeer ? activeGroup === 3 : activePoints.has(pointKey(point));
+    return `<circle cx="${sx(point.bmi)}" cy="${sy(point.fat)}" r="${active ? 6.5 : 5}" fill="${active ? color : 'white'}" stroke="${colors.ink}" stroke-width="2"/>`;
+  }
   ).join('');
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+  let stripe = '<rect x="735" y="294" width="245" height="978" fill="#f0f2f3"/>';
+  if (activeGroup < 3) {
+    const segment = ivanSegments[activeGroup];
+    const left = sx(segment.min) - 8;
+    const right = sx(segment.max) + 8;
+    const body = ivanFigures[activeGroup];
+    // The same flat band covers the observed x-range and continues behind its figure.
+    // Only its position changes between states; it never glides or fades.
+    stripe = `<path d="M ${left} 294 H ${right} V 740 L ${body.x + body.width} 842 V 1215 H ${body.x} V 842 L ${left} 740 Z" fill="#f0f2f3"/>`;
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+    <defs>
+      <filter id="charcoal" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0.20 0 0 0 0 0.23 0 0 0 0 0.26 0 0 0 1 0"/>
+      </filter>
+    </defs>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: ${colors.ink}; }
       .headline { font-size:42px; font-weight:780; letter-spacing:-1.2px; }
@@ -302,23 +319,41 @@ if (process.argv.includes('--requested-still')) {
     <image href="${clownSprite}" x="148" y="70" width="82" height="82"/>
     <text x="254" y="102" class="headline">My $120 smart scale reports “measured”</text>
     <text x="254" y="151" class="headline">body fat as 1.5 × BMI − 17.5</text>
-    <rect x="735" y="294" width="245" height="978" fill="#f0f2f3"/>
+    ${stripe}
     <text x="90" y="270" class="axis-label">“Measured” body fat (%)</text>
     ${grid}
     <line x1="90" y1="740" x2="990" y2="740" stroke="${colors.ink}" stroke-width="2"/>
     <line x1="90" y1="294" x2="90" y2="740" stroke="${colors.ink}" stroke-width="2"/>
     <path d="${linePath(formulas.ivan)}" fill="none" stroke="${colors.teal}" stroke-width="5" stroke-linecap="round"/>
-    <path d="${linePath(formulas.peer)}" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round"/>
+    ${showPeer ? `<path d="${linePath(formulas.peer)}" fill="none" stroke="${colors.orange}" stroke-width="5" stroke-linecap="round"/>` : ''}
     ${dots(ivan, colors.teal)}
-    ${dots(peer, colors.orange)}
+    ${showPeer ? dots(peer, colors.orange, true) : ''}
     <text x="540" y="804" text-anchor="middle" class="axis-label">Measured BMI</text>
     ${personLayer()}
-    <image href="${peerSprite}" x="700" y="802" width="310" height="470" preserveAspectRatio="xMidYMax meet"/>
-    <text x="540" y="1330" text-anchor="middle" class="footer">Methodology and full data set · aiandtractors.com/ge-cs10h-body-fat-formula</text>
+    ${showPeer ? `<image href="${peerSprite}" x="700" y="802" width="310" height="470" preserveAspectRatio="xMidYMax meet" filter="url(#charcoal)"/>` : ''}
+    <text x="540" y="1330" text-anchor="middle" class="footer">Methodology and full data set · aiandtractors.com/scale</text>
   </svg>`;
+}
+
+if (process.argv.includes('--requested-still')) {
   const output = path.join(scaleDir, 'cs10h-requested-parallel-still.png');
-  await sharp(Buffer.from(svg)).png().toFile(output);
+  await sharp(Buffer.from(requestedFrameSvg())).png().toFile(output);
   console.log(JSON.stringify({ output, ivanPoints: ivan.length, peerPoints: peer.length, slopes: [formulas.ivan.slope, formulas.peer.slope], videoGenerated: false }));
+  process.exit(0);
+}
+
+if (process.argv.includes('--approved-animation') || process.argv.includes('--approved-preview')) {
+  const prefix = path.join(scaleDir, 'cs10h-parallel-animation-v6');
+  for (let state = 0; state < 4; state += 1) {
+    await sharp(Buffer.from(requestedFrameSvg(state, state === 3))).png().toFile(`${prefix}-state-${state}.png`);
+  }
+  await sharp(Buffer.from(requestedFrameSvg())).png().toFile(`${prefix}-poster.png`);
+  if (process.argv.includes('--approved-animation')) {
+    // Four three-second holds: lean, middle, heavy, then reviewer with both full lines.
+    ffmpeg(['-y', '-framerate', '1/3', '-start_number', '0', '-i', `${prefix}-state-%d.png`, '-vf', 'fps=24', '-t', '12', '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', `${prefix}.mp4`]);
+    ffmpeg(['-y', '-i', `${prefix}.mp4`, '-filter_complex', '[0:v]fps=8,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen[p];[b][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', `${prefix}.gif`]);
+  }
+  console.log(JSON.stringify({ prefix, states: 4, secondsPerState: 3, ivanPoints: ivan.length, peerPoints: peer.length, slopes: [formulas.ivan.slope, formulas.peer.slope] }));
   process.exit(0);
 }
 

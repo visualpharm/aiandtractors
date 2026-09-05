@@ -15,6 +15,11 @@ const nextConfig = {
   // Redirects for invalid years and old multilingual routes
   async redirects() {
     return [
+      {
+        source: '/scale',
+        destination: '/ge-cs10h-body-fat-formula/',
+        permanent: true,
+      },
       // Redirect invalid years to latest valid year
       {
         source: '/tech-events-2029',

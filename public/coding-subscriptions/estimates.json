@@ -1,0 +1,194 @@
+{
+  "as_of": "2026-09-04",
+  "plans": {
+    "Codex": {
+      "fee": 200,
+      "base": 7000,
+      "low": 5000,
+      "high": 10000,
+      "color": "#181818"
+    },
+    "Claude / Opus": {
+      "fee": 200,
+      "base": 7000,
+      "low": 4000,
+      "high": 8000,
+      "color": "#C35D3B"
+    },
+    "Claude / Fable": {
+      "fee": 200,
+      "base": 7500,
+      "low": 2000,
+      "high": 9500,
+      "color": "#C35D3B"
+    },
+    "Kimi": {
+      "fee": 199,
+      "base": 1050,
+      "low": 750,
+      "high": 1500,
+      "color": "#1673C9"
+    },
+    "Grok": {
+      "fee": 30,
+      "base": 500,
+      "low": 300,
+      "high": 750,
+      "color": "#65764D"
+    }
+  },
+  "models": [
+    {
+      "label": "GPT-5.6 Luna \u00b7 max",
+      "short": "Luna max",
+      "score": 57.2,
+      "api": 0.29,
+      "group": "Codex",
+      "price": 0.008285714285714285,
+      "lo": 0.0058,
+      "hi": 0.0116,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-6 Astra \u00b7 low",
+      "short": "Astra low",
+      "score": 62.6,
+      "api": 1.41,
+      "group": "Codex",
+      "price": 0.040285714285714286,
+      "lo": 0.0282,
+      "hi": 0.0564,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-5.6 Terra \u00b7 max",
+      "short": "Terra max",
+      "score": 60.4,
+      "api": 1.93,
+      "group": "Codex",
+      "price": 0.055142857142857146,
+      "lo": 0.0386,
+      "hi": 0.0772,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-6 Astra \u00b7 medium",
+      "short": "Astra medium",
+      "score": 65.2,
+      "api": 2.19,
+      "group": "Codex",
+      "price": 0.06257142857142857,
+      "lo": 0.0438,
+      "hi": 0.0876,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-6 Astra \u00b7 high",
+      "short": "Astra high",
+      "score": 65.5,
+      "api": 2.89,
+      "group": "Codex",
+      "price": 0.08257142857142857,
+      "lo": 0.0578,
+      "hi": 0.1156,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-6 Astra \u00b7 xhigh",
+      "short": "Astra xhigh",
+      "score": 66.9,
+      "api": 3.27,
+      "group": "Codex",
+      "price": 0.09342857142857143,
+      "lo": 0.0654,
+      "hi": 0.1308,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-6 Astra \u00b7 max",
+      "short": "Astra max",
+      "score": 67.0,
+      "api": 4.72,
+      "group": "Codex",
+      "price": 0.13485714285714287,
+      "lo": 0.0944,
+      "hi": 0.1888,
+      "color": "#181818"
+    },
+    {
+      "label": "GPT-5.6 Sol \u00b7 max",
+      "short": "Sol max",
+      "score": 65.1,
+      "api": 5.0,
+      "group": "Codex",
+      "price": 0.14285714285714285,
+      "lo": 0.1,
+      "hi": 0.2,
+      "color": "#181818"
+    },
+    {
+      "label": "Grok 4.5 \u00b7 high ($30 plan)",
+      "short": "Grok 4.5 high \u00b7 $30 plan",
+      "score": 64.1,
+      "api": 2.44,
+      "group": "Grok",
+      "price": 0.1464,
+      "lo": 0.0976,
+      "hi": 0.24400000000000002,
+      "color": "#65764D"
+    },
+    {
+      "label": "Opus 5 \u00b7 xhigh",
+      "short": "Opus 5 xhigh",
+      "score": 68.1,
+      "api": 8.17,
+      "group": "Claude / Opus",
+      "price": 0.23342857142857143,
+      "lo": 0.20425,
+      "hi": 0.4085,
+      "color": "#C35D3B"
+    },
+    {
+      "label": "Fable 5.1 \u00b7 max + fallback",
+      "short": "Fable 5.1 max",
+      "score": 70.4,
+      "api": 9.18,
+      "group": "Claude / Fable",
+      "price": 0.2448,
+      "lo": 0.19326315789473683,
+      "hi": 0.918,
+      "color": "#C35D3B"
+    },
+    {
+      "label": "Fable 5 \u00b7 max + fallback",
+      "short": "Fable 5 max",
+      "score": 67.2,
+      "api": 11.68,
+      "group": "Claude / Fable",
+      "price": 0.31146666666666667,
+      "lo": 0.24589473684210525,
+      "hi": 1.168,
+      "color": "#C35D3B"
+    },
+    {
+      "label": "Kimi K3",
+      "short": "Kimi K3",
+      "score": 62.6,
+      "api": 3.08,
+      "group": "Kimi",
+      "price": 0.5837333333333333,
+      "lo": 0.40861333333333333,
+      "hi": 0.8172266666666667,
+      "color": "#1673C9"
+    }
+  ],
+  "method": "cost_per_task = screenshot_API_cost_per_task * subscription_fee / estimated_monthly_API_equivalent_usage",
+  "range_type": "Analyst sensitivity envelope; not a confidence interval.",
+  "assumptions": [
+    "Heavy use of allowance; no overage.",
+    "Astra inherits 5.6 quota economics as an unmeasured proxy.",
+    "Fable 5.1 inherits July Fable 5 quota economics as an unmeasured proxy.",
+    "Each model is an alternative use of the same plan, not an additive allowance.",
+    "Screenshot y coordinates are approximate."
+  ]
+}

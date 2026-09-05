@@ -49,6 +49,11 @@ const products = [
       'Solar quotes house by house, plus white-label sites for each installer. Prints A4 booklets the crew leaves at the door.',
   },
   {
+    href: 'https://inglesconjenny.vercel.app',
+    title: 'Inglés con Jenny',
+    blurb: 'English lessons shaped around each student’s interests and goals.',
+  },
+  {
     href: '/meli',
     title: 'MeLi Local Delivery',
     blurb:
@@ -81,7 +86,7 @@ export default function Projects() {
         <title>Projects | Ivan Braun</title>
         <meta
           name="description"
-          content="Ivan Braun's released projects and research: Finda Capital, Lira, Human Rounds, Bruno, the Open Door Index passport ranking, and data investigations."
+          content="Ivan Braun's released projects and research: Bruno, Lira, Human Rounds, Inglés con Jenny, Finda Capital, and data investigations."
         />
         <link rel="canonical" href="https://aiandtractors.com/projects/" />
       </Head>

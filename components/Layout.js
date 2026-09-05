@@ -23,6 +23,7 @@ const translations = {
     book: "Libro",
     events: "Eventos Tech",
     vanishedPeople: "Diseño sin Personas",
+    projects: "Proyectos",
     visit: "Visitarme", 
     contact: "Contacto"
   },
@@ -32,6 +33,7 @@ const translations = {
     book: "Livro",
     events: "Eventos Tech",
     vanishedPeople: "Design sem Pessoas",
+    projects: "Projetos",
     visit: "Me visitar",
     contact: "Contato"
   }
@@ -100,6 +102,10 @@ export default function Layout({ children }) {
   const getCurrentPageInLocale = (targetLocale) => {
     const currentPath = router.pathname
     const currentQuery = router.query
+
+    // The project directory has one English edition. Other language choices
+    // lead to the localized home instead of a nonexistent project route.
+    if (currentPath === '/projects' && targetLocale !== 'en') return `/${targetLocale}`
     
     // Handle events pages specifically
     if (currentPath.includes('eventos-tech') || currentPath.includes('tech-events')) {
@@ -166,7 +172,7 @@ export default function Layout({ children }) {
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'}>{t.events}</Link></li>
               <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'}>{t.vanishedPeople}</Link></li>
               {locale === 'en' && <li><Link href="/passport-ranking">{t.passportRanking}</Link></li>}
-              {locale === 'en' && <li><Link href="/projects">{t.projects}</Link></li>}
+              <li><Link href="/projects">{t.projects}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')}>{t.contact}</Link></li>
             </ul>
           </div>
@@ -301,6 +307,7 @@ export default function Layout({ children }) {
               <li><Link href={locale === 'en' ? '/tech-events-2025' : locale === 'es' ? '/eventos-tech-2025' : '/eventos-tech-2025-pt'} onClick={() => setMobileMenuOpen(false)}>{t.events}</Link></li>
               <li><Link href={locale === 'en' ? '/ai-replaced-people' : locale === 'es' ? '/es/la-gran-desaparicion' : '/pt/o-grande-desaparecimento'} onClick={() => setMobileMenuOpen(false)}>{t.vanishedPeople}</Link></li>
               {locale === 'en' && <li><Link href="/passport-ranking" onClick={() => setMobileMenuOpen(false)}>{t.passportRanking}</Link></li>}
+              <li><Link href="/projects" onClick={() => setMobileMenuOpen(false)}>{t.projects}</Link></li>
               <li><Link href={getLocalizedUrl('/contact')} onClick={() => setMobileMenuOpen(false)}>{t.contact}</Link></li>
             </ul>
           </div>
@@ -323,6 +330,13 @@ export default function Layout({ children }) {
               @braun.ivan
             </a>
           </div>
+          <nav className="project-links" aria-label={locale === 'es' ? 'Otros proyectos' : locale === 'pt' ? 'Outros projetos' : 'Other projects'}>
+            <a href="https://usabruno.com">Bruno</a>
+            <a href="https://lira-voice.app">Lira</a>
+            <a href="https://humanrounds.org">Human Rounds</a>
+            <a href="https://inglesconjenny.vercel.app">Inglés con Jenny</a>
+            <a href="https://finda-capital.com">Finda Capital</a>
+          </nav>
         </div>
       </footer>
       
@@ -469,7 +483,7 @@ export default function Layout({ children }) {
         .footer-links a {
             color: var(--secondary-color);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: color 0.3s ease;
         }
 
@@ -482,7 +496,7 @@ export default function Layout({ children }) {
             align-items: center;
             color: var(--secondary-color) !important;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: color 0.3s ease;
         }
 
@@ -493,6 +507,15 @@ export default function Layout({ children }) {
         .instagram-link svg {
             transition: color 0.3s ease;
         }
+        .project-links {
+            display:flex;
+            width:100%;
+            flex-wrap:wrap;
+            gap:16px 24px;
+            border-top:1px solid var(--border-color);
+            padding-top:24px;
+        }
+        .project-links a { color:var(--accent-color); font-size:1rem; text-decoration:none; }
 
         @media (max-width: 1024px) {
             .footer-content {

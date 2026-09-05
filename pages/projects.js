@@ -25,6 +25,12 @@ const research = [
 
 const products = [
   {
+    href: 'https://finda-capital.com',
+    title: 'Finda Capital',
+    blurb:
+      'Read-only portfolio dashboard for Argentine investors, bringing brokerage accounts and property together in USD.',
+  },
+  {
     href: 'https://lira-voice.app',
     title: 'Lira',
     blurb:
@@ -75,7 +81,7 @@ export default function Projects() {
         <title>Projects | Ivan Braun</title>
         <meta
           name="description"
-          content="Ivan Braun's released projects and research: Lira, Human Rounds, Bruno, the Open Door Index passport ranking, and data investigations."
+          content="Ivan Braun's released projects and research: Finda Capital, Lira, Human Rounds, Bruno, the Open Door Index passport ranking, and data investigations."
         />
         <link rel="canonical" href="https://aiandtractors.com/projects/" />
       </Head>

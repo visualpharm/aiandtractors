@@ -10,9 +10,9 @@ This preserves the benchmark's actual token-cost mix in the numerator, rather th
 
 The chart allocates the entire plan price to coding and assumes the estimated monthly usage is consumed. Using half of that amount doubles the effective cost. Each model is an alternative use of the same subscription; allowances must not be added together. A task is a benchmark attempt, including unsuccessful attempts, not a guaranteed successful fix.
 
-Four Astra settings (low, medium, high and xhigh) retain approximate scores and displayed API costs from the supplied screenshot; the other thirteen configurations use exact values fetched on 6 September. In the original screenshot, Kimi ($3.08) and Fable 5 ($11.68) are corroborated by the [Artificial Analysis dataset](https://artificialanalysis.ai/agents/coding-agents). The screenshot's duplicated Astra “high” label is resolved as high ($2.89) and xhigh ($3.27), following its lower chart. Opus $8.17 is xhigh in the lower chart and current dataset. These corrections preserve the plotted configurations. This is an independent redraw, not an Artificial Analysis subscription benchmark.
+Four Astra settings (low, medium, high and xhigh) retain approximate scores and displayed API costs from the supplied screenshot; the other seventeen configurations use exact values fetched on 6 September. In the original screenshot, Kimi ($3.08) and Fable 5 ($11.68) are corroborated by the [Artificial Analysis dataset](https://artificialanalysis.ai/agents/coding-agents). The screenshot's duplicated Astra “high” label is resolved as high ($2.89) and xhigh ($3.27), following its lower chart. Opus $8.17 is xhigh in the lower chart and current dataset. These corrections preserve the plotted configurations. This is an independent redraw, not an Artificial Analysis subscription benchmark.
 
-The update adds Gemini 3.7 and 3.8 Flash using the dataset's exact **Antigravity SDK** rows: 56.57 and 59.09 points, respectively. These differ from the screenshot's OpenCode results because the harness matters. Thirteen configurations now use exact benchmark values fetched on 6 September 2026. The four remaining configurations retain the original screenshot snapshot, identified in the downloadable data. GLM/z.ai and Muse Code now have explicit coverage below; missing measurements remain unknown rather than being assigned invented chart coordinates.
+The update adds Gemini 3.7 and 3.8 Flash using the dataset's exact **Antigravity SDK** rows: 56.57 and 59.09 points, respectively. These differ from the screenshot's OpenCode results because the harness matters. Seventeen configurations now use exact benchmark values fetched on 6 September 2026. The four remaining configurations retain the original screenshot snapshot, identified in the downloadable data. GLM/z.ai and Muse Code now have explicit coverage below; missing measurements remain unknown rather than being assigned invented chart coordinates.
 
 ## Model assumptions
 
@@ -93,7 +93,7 @@ To calculate Muse's position, a useful report needs the native plan tier, exact 
 These remain outside the priced comparison:
 
 - **Qwen3.8 Max:** [A token-volume report](https://www.reddit.com/r/Qwen_AI/comments/1v2xx0x/hit_100m_tokens_after_6_hours_nonstop_coding/) concerns an $18 plan under a 50× promotion. Extrapolating it to normal $200 usage would mislead.
-- **Cursor Ultra**, absent from the screenshot: [Community discussion](https://forum.cursor.com/t/how-much-usage-is-available-on-the-200-subscription/163309) reports roughly $400–$500 of third-party model usage at $200/month, with a separate Auto/Composer pool. Changing the harness can change benchmark performance, so its economics are not assigned to Claude Code or Codex points.
+- **Three Cursor CLI configurations:** GPT-5.5 medium, Opus 4.7 medium and Composer 2.5 have published agent scores and API task costs, but no adopted same-model subscription calibration. They remain visible on the original API panel.
 
 ## Worked examples
 
@@ -109,3 +109,22 @@ Subscription-cost scenarios exclude tax, overage purchases, hardware, review tim
 
 
 The original [Artificial Analysis methodology](https://artificialanalysis.ai/methodology/coding-agents-benchmarking) explains its benchmark attempts and API cost accounting. Its score and task-cost measurements are the starting point; the subscription conversion is my estimate.
+
+
+## Side-by-side comparison and our Cursor Pro plan
+
+The original panel retains Artificial Analysis’s published API cost per attempt. The adjusted panel changes the cost coordinate and keeps the same score. Both panels use identical horizontal logarithmic scales ($0.005–$20) and vertical score scales (34–74). There are 21 original configurations, with 18 subscription estimates. Four Astra settings retain the original screenshot values; 17 configurations match current AA agent records. The chart labels a subset; every configuration is available by selecting a point or opening the values table.
+
+Our authenticated Cursor billing page confirms a **paid $20 Pro invoice on 10 August 2026**, covering 10 August–10 September 2026. On 6 September the Cursor Models pool was 100% used, Other Models 88.8% used, and on-demand spending disabled. The 827-row export totals 827.12M Included tokens and 37.89M Free tokens; all rows passed an additive input/cache/output check. The two pools belong to the same subscription and are not additive dollar allowances. This observation describes the current paid cycle, without assuming renewal.
+
+**Composer 2.5 Fast is a conditional same-model quota estimate.** Five recorded Included calls used 506,495 fresh input tokens, 3,932,352 cache-read tokens and 44,742 output tokens. At [current Cursor prices](https://cursor.com/docs/models-and-pricing) of $3, $0.50 and $15 per million respectively, their API-equivalent value is $4.156791. The billing dashboard attributes 0.9% of the Cursor Models pool to that model. Assuming linear dollar-equivalent quota use, this implies $4.156791 / 0.009 = $461.8657 of same-model API-equivalent capacity. It is not a published contractual dollar allowance.
+
+The matched **Cursor CLI – Composer 2.5 Fast** agent score is **38.30075**. Its original AA cost remains **$0.557344** on the left panel. For the right panel we estimate **$1.522275** from its pooled mean token counters at current Cursor rates: (2,153,033.9826 input − 2,095,607.8373 cached) × $3/M + cached × $0.50/M + 20,146.1462 output × $15/M. This assumes the input counter includes cache, and that the pooled means cover comparable attempts. AA aggregates metrics with missing telemetry separately, so this is approximate repricing, not a reconstruction of an exact benchmark bill.
+
+The resulting full-fee scenario is **$20 × $1.522275 / $461.8657 = $0.065918 per task**. Interpreting the displayed 0.9% as a rounded 0.85–0.95% gives **$0.062256–$0.069581**. That range covers rounding only, not uncertainty from five calls, cache mixture, telemetry coverage, nonlinear credits or future quotas. Each full-fee model scenario allocates the same entire $20 subscription to one alternative; the pools must not be charged or summed twice.
+
+Other Cursor agent rows remain unpriced: no separate matched Composer 2.5 quota sample, and no adopted current-rate calibration for the historical GPT-5.5 medium and Opus 4.7 medium configurations. Most recorded Cursor tokens went to Grok variants; the checked agent dataset contains no matched Cursor CLI Grok result. We do not borrow a Grok Build, Codex or Claude Code score for Cursor.
+
+## GLM 5.3 recheck
+
+A fresh no-cache check on 6 September 2026 found 68 coding-agent records. The GLM records are Claude Code with GLM 5.1 and 5.2. GLM 5.3 occurs in the page’s generic model-catalog metadata and has a [separate model profile](https://artificialanalysis.ai/models/glm-5-3), but no matched agent result or Coding Agent Index score. Our 233.75M recorded GLM 5.3 tokens are real usage evidence, not an agent benchmark.

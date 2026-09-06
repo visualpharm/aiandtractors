@@ -35,7 +35,7 @@ L 923.068238 236.4588
 L 923.068238 225.9252
 L 473.76 225.9252
 z
-" clip-path="url(#p05d15eb0b5)" style="fill: #326b97"/>
+" clip-path="url(#p89ca6be457)" style="fill: #326b97"/>
    </g>
   </g>
   <g id="axes_2">
@@ -45,7 +45,7 @@ L 597.28361 359.5788
 L 597.28361 349.0452
 L 473.76 349.0452
 z
-" clip-path="url(#pf9afefdb0a)" style="fill: #326b97"/>
+" clip-path="url(#p83b97ce123)" style="fill: #326b97"/>
    </g>
   </g>
   <g id="axes_3">
@@ -55,7 +55,7 @@ L 507.654904 482.6988
 L 507.654904 472.1652
 L 473.76 472.1652
 z
-" clip-path="url(#paf830842d0)" style="fill: #326b97"/>
+" clip-path="url(#p8a4a114d81)" style="fill: #326b97"/>
    </g>
   </g>
   <g id="axes_4">
@@ -65,7 +65,7 @@ L 478.273188 605.8188
 L 478.273188 595.2852
 L 473.76 595.2852
 z
-" clip-path="url(#p8abca194b0)" style="fill: #326b97"/>
+" clip-path="url(#p8d56e05c12)" style="fill: #326b97"/>
    </g>
   </g>
   <g id="text_1">
@@ -127,16 +127,16 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p05d15eb0b5">
+  <clipPath id="p89ca6be457">
    <rect x="473.76" y="223.668" width="463.68" height="15.048"/>
   </clipPath>
-  <clipPath id="pf9afefdb0a">
+  <clipPath id="p83b97ce123">
    <rect x="473.76" y="346.788" width="463.68" height="15.048"/>
   </clipPath>
-  <clipPath id="paf830842d0">
+  <clipPath id="p8a4a114d81">
    <rect x="473.76" y="469.908" width="463.68" height="15.048"/>
   </clipPath>
-  <clipPath id="p8abca194b0">
+  <clipPath id="p8d56e05c12">
    <rect x="473.76" y="593.028" width="463.68" height="15.048"/>
   </clipPath>
  </defs>

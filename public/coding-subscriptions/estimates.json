@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-06",
-  "version": 4,
+  "version": 5,
   "plans": {
     "Codex": {
       "fee": 200,
@@ -54,6 +54,14 @@
       "color": "#466779",
       "confidence": "Scenario only; historical agent benchmarks with current Pro quota economics",
       "method": "Historical GLM 5.1/5.2 benchmark task cost converted with current Pro weekly-credit bound; geometric midpoint. Assumes transfer of subscription economics, not a current deployable model configuration."
+    },
+    "Cursor": {
+      "fee": 20,
+      "base": 461.8656666666667,
+      "low": 437.55694736842105,
+      "high": 489.03423529411765,
+      "confidence": "Low: five usage rows; quota percentage rounded to one decimal; token-mix transfer",
+      "method": "Same-model measured token usage at current published Cursor rates divided by 0.9% of Cursor Models quota; 0.85%-0.95% rounding envelope. Full plan fee assigned to this alternative alone."
     }
   },
   "models": [
@@ -298,6 +306,66 @@
       "lo": 0.1447786482548308,
       "hi": 0.3841395572424718,
       "color": "#466779"
+    },
+    {
+      "label": "Cursor CLI · Composer 2.5 Fast",
+      "short": "Composer 2.5 Fast",
+      "score": 38.300753803677466,
+      "api": 0.5573437730061354,
+      "group": "Cursor",
+      "price": 0.06591849785482554,
+      "lo": 0.06225635908511302,
+      "hi": 0.06958063662453808,
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Cursor CLI - Composer 2.5 Fast",
+      "benchmark_as_of": "2026-09-06",
+      "api_repricing_source": "https://cursor.com/docs/models-and-pricing",
+      "scenario_only": true,
+      "method": "Transfer the same model quota economics from five real Composer2.5Fast usage events to the benchmark token mix. AA benchmark tokens repriced at current Cursor input/cache/output rates before subscription conversion. This is not a measured benchmark subscription cost. Pooled benchmark token counters may cover different attempts; current-rate repricing is approximate and assumes input includes cache.",
+      "adjustment_api": 1.522274547869212,
+      "range_type": "Range accounts only for rounding of displayed 0.9% quota use, not full uncertainty in workload or future quotas."
+    },
+    {
+      "label": "Cursor CLI - GPT-5.5 (medium)",
+      "score": 47.08693600598457,
+      "price": null,
+      "reason": "No matched per-model quota inference adopted. OtherModels pool cannot be combined with CursorModels pool; current selectable configuration and consistent valuation remain to be verified.",
+      "api": 1.9980312342194944,
+      "short": "Cursor GPT-5.5 medium",
+      "group": "Cursor",
+      "benchmark_label": "Cursor CLI - GPT-5.5 (medium)",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-06",
+      "lo": null,
+      "hi": null
+    },
+    {
+      "label": "Cursor CLI - Opus 4.7 (medium)",
+      "score": 46.6554082589455,
+      "price": null,
+      "reason": "No matched per-model quota inference adopted. OtherModels pool cannot be combined with CursorModels pool; current selectable configuration and consistent valuation remain to be verified.",
+      "api": 2.7249057110173838,
+      "short": "Cursor Opus 4.7 medium",
+      "group": "Cursor",
+      "benchmark_label": "Cursor CLI - Opus 4.7 (medium)",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-06",
+      "lo": null,
+      "hi": null
+    },
+    {
+      "label": "Cursor CLI - Composer 2.5",
+      "score": 38.300753803677466,
+      "price": null,
+      "reason": "No separate same-model quota observation for Composer 2.5. Composer 2.5 Fast credit economics are not transferred to this variant.",
+      "api": 0.08505141359918204,
+      "short": "Cursor Composer 2.5",
+      "group": "Cursor",
+      "benchmark_label": "Cursor CLI - Composer 2.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-06",
+      "lo": null,
+      "hi": null
     }
   ],
   "method": "cost_per_task = benchmark_API_cost_per_task * subscription_fee / estimated_monthly_API_equivalent_usage",
@@ -308,9 +376,11 @@
     "Fable 5.1 inherits July Fable 5 quota economics as an unmeasured proxy.",
     "Gemini uses the native Antigravity SDK benchmark, not OpenCode. The 3.7 benchmark token mix values a community raw-token estimate; 3.8 transfers that monetary allowance.",
     "Each model is an alternative use of the same plan, not an additive allowance.",
-    "Four Astra settings retain the original screenshot values; thirteen rows use exact AA agent data fetched on 6 September 2026.",
+    "Four Astra settings retain the original screenshot values; seventeen rows use exact AA agent data fetched on 6 September 2026.",
     "Codex token totals use per-call deltas; cumulative session counters are resume-inherited and inflate.",
-    "Historical GLM 5.1/5.2 agent results are plotted as open squares using current Pro quota scenarios, not as GLM 5.3 results. The author reports hitting GLM plan caps; a five-hour cap does not establish monthly saturation."
+    "Historical GLM 5.1/5.2 agent results are plotted as open squares using current Pro quota scenarios, not as GLM 5.3 results. The author reports hitting GLM plan caps; a five-hour cap does not establish monthly saturation.",
+    "Cursor Pro uses actual $20 invoice and observed same-model quota consumption. Composer2.5Fast benchmark tokens and personal tokens are valued at identical current Cursor rates for conversion; the original panel retains AA published API costs. Three other Cursor agent results have no adopted subscription estimate.",
+    "Cursor range is quota-percentage rounding only; other intervals are sensitivity scenarios. All estimates have additional unquantified uncertainty."
   ],
   "calibration": {
     "Antigravity": {
@@ -410,5 +480,66 @@
     "GLM cached tokens are a subset of input, counted once.",
     "Local usage includes mixed models and provider IDs.",
     "Current weekly credit ceiling replaces unsupported $1000-2500 GLM monthly extrapolation."
-  ]
+  ],
+  "cursor_subscription": {
+    "fee": 20,
+    "plan": "Pro",
+    "period": "10 August–10 September 2026",
+    "observed_at": "2026-09-06T11:10:01.747556+00:00",
+    "utilization": {
+      "cursor_models_used_percent": 100.0,
+      "cursor_models_reported_tokens": 757600000,
+      "other_models_used_percent": 88.8,
+      "other_models_reported_tokens": 107400000,
+      "on_demand_enabled": false,
+      "on_demand_billed_usd": 0
+    },
+    "export_rows": 827,
+    "included_tokens": 827123207,
+    "free_tokens": 37885478,
+    "same_model_observation": {
+      "model": "composer-2.5-fast",
+      "billing_dashboard_quota_percent": 0.9,
+      "percentage_display_decimal_places": 1,
+      "tokens": {
+        "calls": 5,
+        "Input (w/ Cache Write)": 0,
+        "Input (w/o Cache Write)": 506495,
+        "Cache Read": 3932352,
+        "Output Tokens": 44742,
+        "Total Tokens": 4483589
+      },
+      "api_value_at_current_cursor_rates_usd": 4.156791,
+      "current_rates_usd_per_million": {
+        "fresh_input": 3,
+        "cache_read": 0.5,
+        "output": 15
+      },
+      "implied_full_pool_usd_if_linear": 461.8656666666667,
+      "implied_full_pool_low_usd_from_percentage_rounding": 437.55694736842105,
+      "implied_full_pool_high_usd_from_percentage_rounding": 489.03423529411765,
+      "aa_task_cost_at_current_cursor_rates_usd": 1.522274547869212,
+      "candidate_cost_per_benchmark_task_current_rates": 0.06591849785482554,
+      "caution": "AA retained API task cost does not reproduce current Cursor published cache pricing; any plotted conversion must reprice numerator and usage denominator consistently. Quota percentage may use model-specific credits; aggregate pool dollar equivalence is not established."
+    },
+    "fee_allocation": "The two pools belong to the same $20 plan. A full-fee scenario for one model is an alternative allocation, not an additional subscription charge or additive allowance.",
+    "limitations": [
+      "Five Composer2.5Fast usage events are a small sample.",
+      "The benchmark and personal workload have different cache/output mixtures; proportional retail-value quota consumption is assumed.",
+      "Current Composer cache rates materially differ from retained AA API task-cost valuation.",
+      "Pro cancellation is scheduled for September10,2026; amounts describe current cycle only."
+    ],
+    "official_source": "https://cursor.com/docs/models-and-pricing"
+  },
+  "glm_recheck": {
+    "checked_at": "2026-09-06T11:02:33+00:00",
+    "agent_records": 68,
+    "glm_agent_versions": [
+      "5.1",
+      "5.2"
+    ],
+    "glm53_agent_score": null,
+    "glm53_catalog_present": true,
+    "reason": "GLM 5.3 references in the page are generic model catalog metadata, without an agent result or indexScore."
+  }
 }

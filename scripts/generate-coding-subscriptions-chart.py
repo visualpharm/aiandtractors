@@ -11,11 +11,11 @@ from matplotlib.ticker import FuncFormatter, NullLocator
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'public/coding-subscriptions'
 DATA = json.loads((OUT / 'estimates.json').read_text())
-ROWS = sorted(DATA['models'], key=lambda r: r['price'])
+ROWS = sorted(DATA['models'], key=lambda r: r['price'] if r['price'] is not None else float('inf'))
 GLM = next(r for r in DATA['own_usage'] if r['key']=='glm_family')
 INK, GRID = '#252525', '#e5e5e5'
 COLORS = {'Codex':'#363636', 'Claude / Opus':'#ac542f', 'Claude / Fable':'#ac542f',
-          'Kimi':'#24649b', 'Grok':'#68713c', 'Antigravity':'#936f19', 'GLM historical scenario':'#62676b'}
+          'Kimi':'#24649b', 'Grok':'#68713c', 'Antigravity':'#936f19', 'GLM historical scenario':'#526775', 'Cursor':'#785190'}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':16,'text.color':INK,
     'axes.labelcolor':INK,'xtick.color':INK,'ytick.color':INK,'text.parse_math':False,
     'axes.edgecolor':'#999999','svg.fonttype':'none','savefig.facecolor':'white'})
@@ -35,61 +35,43 @@ def tidy(ax):
     ax.xaxis.set_minor_locator(NullLocator())
     ax.tick_params(length=0, pad=9)
 
-def main_chart():
-    fig=plt.figure(figsize=(20,25),facecolor='white')
-    fig.text(.06,.96,'Coding agent performance and subscription cost',fontsize=29,weight='bold')
-    fig.text(.06,.933,'Estimated dollars per benchmark attempt · 6 September 2026',fontsize=18)
-    ax=fig.add_axes([.09,.49,.85,.37])
-    ax.set_xscale('log');ax.set_xlim(.0048,1.50);ax.set_ylim(34,73)
-    ax.set_yticks([35,40,45,50,55,60,65,70]);ax.grid(axis='y',color=GRID,zorder=0)
-    ax.set_xticks([.01,.03,.1,.3,1]);ax.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:.2f}'))
-    ax.set_ylabel('Artificial Analysis Coding Agent Index',fontsize=18,labelpad=15)
-    ax.set_xlabel('Estimated cost per task · logarithmic scale',fontsize=18,labelpad=12)
+def draw_panel(ax, adjusted=False, phone=False):
+    ax.set_xscale('log');ax.set_xlim(.005,20);ax.set_ylim(34,74)
+    ax.set_yticks([35,45,55,65,70]);ax.grid(axis='y',color=GRID,zorder=0)
+    ax.set_xticks([.01,.1,1,10]);ax.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:g}'))
+    ax.set_xlabel('Dollars per task · log scale',fontsize=17,labelpad=13)
+    ax.set_title(('Our adjustment\nSubscriptions' if phone else 'Our adjustment · subscriptions') if adjusted else 'Original · API pricing',loc='left',fontsize=22,weight='bold',pad=34)
+    ax.text(0,1.025,'Coding Agent Index ↑',transform=ax.transAxes,fontsize=17)
     tidy(ax)
-    names=[('Codex','Codex · $200'),('Claude / Fable','Claude · $200'),('Kimi','Kimi · $199'),
-           ('Grok','Grok · $30'),('Antigravity','Antigravity · $100'),('GLM historical scenario','GLM historical · $80 Pro scenario')]
-    ax.legend(handles=[Line2D([0],[0],marker='s' if k=='GLM historical scenario' else ('^' if k=='Antigravity' else 'o'),linestyle='',
-       markerfacecolor='white' if k in ['Antigravity','GLM historical scenario'] else COLORS[k],markeredgecolor=COLORS[k],
-       markersize=10,label=n) for k,n in names],loc='lower left',bbox_to_anchor=(-.04,1.045),
-       ncol=3,frameon=False,fontsize=16,columnspacing=2.5,handletextpad=.5)
-    offsets={'Luna max':(9,14),'Astra low':(-12,-14),'Terra max':(-30,5),
-       'Astra medium':(-28,-20),'Astra high':(-23,16),'Astra xhigh':(-30,24),
-       'Astra max':(13,18),'Sol max':(18,6),'Opus 5 xhigh':(14,12),
-       'Fable 5.1 max':(12,20),'Fable 5 max':(15,-17),'Kimi K3':(13,14),
-       'Grok 4.5 high · $30 plan':(18,-22),'Gemini 3.7 Flash':(-10,-22),'Gemini 3.8 Flash':(10,-20),
-       'GLM 5.1 historical':(15,16),'GLM 5.2 historical':(15,16)}
+    offsets={'Fable 5.1 max':(-14,18) if not adjusted else (10,18),'Luna max':(10,-18) if adjusted else (-10,14),
+        'GLM 5.2 historical':(-10,16) if not adjusted else (12,16),
+        'GLM 5.1 historical':(-10,-20), 'Composer 2.5 Fast':(10,18) if not adjusted else (-10,18),
+        'Cursor GPT-5.5 medium':(-10,16)}
     for r in ROWS:
-        c=COLORS[r['group']];x,y=r['price'],r['score']
-        ax.plot([r['lo'],r['hi']],[y,y],color=c,alpha=.5,lw=1.8,zorder=2)
-        ax.scatter([x],[y],s=135,marker='s' if r.get('historical') else ('^' if r['group']=='Antigravity' else 'o'),
-           facecolor='white' if r.get('historical') or r['group']=='Antigravity' else c,edgecolor=c,lw=1.5,zorder=4)
-        dx,dy=offsets[r['short']]
-        ax.annotate(r['short'].replace(' · $30 plan',''),(x,y),xytext=(dx,dy),textcoords='offset points',fontsize=16,
-           ha='right' if dx<0 else 'left',va='center',zorder=5,
-           arrowprops={'arrowstyle':'-','color':'#999999','lw':.7} if abs(dy)>=24 else None)
-    fig.text(.06,.418,'Estimated cost per task',fontsize=24,weight='bold')
-    fig.text(.06,.397,'Point = central scenario    Line = sensitivity range',fontsize=17)
-    bx=fig.add_axes([.255,.105,.33,.26])
-    bx.set_xscale('log');bx.set_xlim(.0048,1.3);bx.set_ylim(-.6,len(ROWS)-.4);bx.invert_yaxis()
-    bx.set_xticks([.01,.1,1]);bx.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:.2f}'))
-    bx.set_yticks(range(len(ROWS)));bx.set_yticklabels([r['short'].replace(' · $30 plan','') for r in ROWS],fontsize=17)
-    bx.grid(axis='x',color=GRID);tidy(bx);bx.spines['left'].set_visible(False)
-    for i,r in enumerate(ROWS):
-        c=COLORS[r['group']]
-        bx.plot([r['lo'],r['hi']],[i,i],color=c,lw=1.7)
-        bx.scatter([r['price']],[i],s=70,marker='s' if r.get('historical') else ('^' if r['group']=='Antigravity' else 'o'),
-            facecolor='white' if r.get('historical') or r['group']=='Antigravity' else c,edgecolor=c,zorder=3)
-        bx.text(1.035,i,money(r['price']),transform=bx.get_yaxis_transform(),va='center',fontsize=17)
-    fig.text(.725,.36,'Our usage audit',fontsize=23,weight='bold')
-    fig.text(.725,.327,'GLM family · 27 days',fontsize=19)
-    fig.text(.725,.292,f"${GLM['api_value_usd']:,.0f} / {GLM['raw_tokens']/1e6:.0f}M tokens",fontsize=23,weight='bold')
-    fig.text(.725,.26,f"GLM 5.3 subset: ${GLM['glm53_value_usd']:.0f}",fontsize=18)
-    fig.text(.725,.221,'GLM 5.3 score missing',fontsize=19,weight='bold')
-    fig.text(.725,.195,'Squares show 5.1 / 5.2',fontsize=18)
-    fig.text(.725,.159,'Fable 5.1 allowance',fontsize=19,weight='bold')
-    fig.text(.725,.133,'Still a prior-model proxy',fontsize=18)
-    fig.text(.06,.063,'GLM squares: historical Claude Code agent results with current Pro quota scenarios.',fontsize=18)
-    fig.text(.06,.038,'All costs are estimates. Half the assumed usage doubles cost. Muse Code remains unpriced.',fontsize=18)
+        if adjusted and r['price'] is None: continue
+        x,y=r['price'] if adjusted else r['api'],r['score'];c=COLORS[r['group']]
+        if adjusted: ax.plot([r['lo'],r['hi']],[y,y],color=c,alpha=.45,lw=1.5,zorder=2)
+        marker='s' if r.get('historical') else ('D' if r['group']=='Cursor' else 'o')
+        ax.scatter([x],[y],s=80,marker=marker,facecolor='white' if r.get('historical') or r['group']=='Antigravity' else c,edgecolor=c,lw=1.5,zorder=4)
+        if r['short'] in offsets:
+            dx,dy=offsets[r['short']]
+            label=r['short'].replace(' historical','').replace('Cursor GPT-5.5 medium','Cursor GPT-5.5')
+            if phone and r['short']=='Composer 2.5 Fast': label='Composer Fast';dx=8
+            if phone and r['short']=='Fable 5.1 max' and adjusted: dx=-6
+            ax.annotate(label,(x,y),xytext=(dx,dy),textcoords='offset points',fontsize=16 if phone else 17,ha='right' if dx<0 else 'left',va='center',zorder=5,
+                bbox={'facecolor':'white','edgecolor':'none','pad':.4})
+
+def main_chart():
+    fig=plt.figure(figsize=(20,12),facecolor='white')
+    fig.text(.06,.95,'Coding agents: API prices vs subscription costs',fontsize=29,weight='bold')
+    for adjusted,pos in [(False,[.06,.29,.42,.47]),(True,[.56,.29,.42,.47])]:
+        draw_panel(fig.add_axes(pos),adjusted)
+    names=[('Codex','Codex'),('Claude / Fable','Claude Code'),('Kimi','Kimi CLI'),('Grok','Grok Build'),('Antigravity','Antigravity'),('GLM historical scenario','GLM 5.1 / 5.2'),('Cursor','Cursor CLI')]
+    fig.legend(handles=[Line2D([0],[0],marker='s' if k=='GLM historical scenario' else ('D' if k=='Cursor' else 'o'),linestyle='',markerfacecolor='white' if k in ['Antigravity','GLM historical scenario'] else COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in names],loc='upper left',bbox_to_anchor=(.05,.895),ncol=7,frameon=False,fontsize=16,columnspacing=1.4,handletextpad=.3)
+    fig.text(.06,.185,'Cursor Pro $20: Composer 2.5 Fast ≈ $0.066/task, a conditional quota estimate.',fontsize=19)
+    fig.text(.06,.13,'GLM 5.3: 233.75M recorded tokens. No published Coding Agent Index result in the checked dataset.',fontsize=19)
+    fig.text(.06,.075,'6 September 2026 · Same scores and axes. Ranges are estimates; GLM squares are historical scenarios.',fontsize=18)
+    fig.text(.06,.033,'Three Cursor configurations have API results only. Full values and assumptions: aiandtractors.com/coding-agent-subscription-costs',fontsize=17)
     save(fig,'chart',140)
 
 def usage_chart():
@@ -124,36 +106,23 @@ def usage_chart():
     save(fig,'usage-phone',160)
 
 def phone_chart():
-    height=33
-    fig=plt.figure(figsize=(5,height),facecolor='white')
-    def text_at(y,s,size=18,weight='normal',x=.08,ha='left'):
-        fig.text(x,1-y/height,s,fontsize=size,weight=weight,va='top',ha=ha)
-    text_at(.35,'Estimated subscription\ncost per coding task',24,'bold')
-    text_at(1.5,'6 September 2026',17)
-    for i,r in enumerate(ROWS):
-        y=2.2+i*1.3
-        text_at(y,r['short'].replace(' · $30 plan',''),18,'bold')
-        text_at(y+.38,money(r['price']),21,'bold')
-        text_at(y+.78,f"Range {money(r['lo'])}–{money(r['hi'])}",17)
-    text_at(25,'Our GLM usage',22,'bold')
-    text_at(25.55,f"${GLM['api_value_usd']:.2f} / {GLM['raw_tokens']/1e6:.2f}M tokens",18,'bold')
-    text_at(26,'10 Aug–5 Sep · mixed GLM family',17)
-    text_at(26.45,f"GLM 5.3 subset: ${GLM['glm53_value_usd']:.2f}",18)
-    text_at(27.15,'GLM 5.1 / 5.2 are historical\nagent results with Pro scenarios.',17)
-    text_at(28.15,'GLM 5.3: no matched benchmark.\nFable 5.1: older allowance proxy.',17)
-    text_at(29.2,'Costs and ranges are scenarios.\nHalf the usage doubles cost.',18)
-    text_at(30.35,'Plan fees per month',20,'bold')
-    text_at(30.85,'Codex / Claude $200 · Kimi $199\nGrok $30 · Antigravity $100\nGLM historical scenario $80',17)
+    fig=plt.figure(figsize=(6,13),facecolor='white')
+    fig.text(.1,.97,'Coding agent costs',fontsize=24,weight='bold')
+    draw_panel(fig.add_axes([.12,.59,.81,.27]),False,True)
+    draw_panel(fig.add_axes([.12,.16,.81,.27]),True,True)
+    fig.text(.1,.064,'GLM squares: historical 5.1 / 5.2',fontsize=16)
+    fig.text(.1,.029,'Cursor diamonds: CLI benchmark',fontsize=16)
     save(fig,'chart-phone',160)
 
 if __name__=='__main__':
     for r in ROWS:
+        if r['price'] is None: continue
         p=DATA['plans'][r['group']]
-        assert abs(r['price']-r['api']*p['fee']/p['base'])<1e-12
+        assert abs(r['price']-r.get('adjustment_api',r['api'])*p['fee']/p['base'])<1e-12
         assert 0<r['lo']<=r['price']<=r['hi']
         assert not r.get('measured'), 'Usage observations are not measured allowances'
-    assert len(ROWS)==17
+    assert len(ROWS)==21 and sum(r['price'] is not None for r in ROWS)==18
     main_chart();usage_chart();phone_chart()
     for f in OUT.glob('*.svg'):
         f.write_text('\n'.join(s.rstrip() for s in f.read_text().splitlines())+'\n')
-    print('Rendered 17 agent benchmark scenarios, 4 recorded-usage totals, and phone export.')
+    print('Rendered original21 and adjusted18 configurations with identical axes; retained four recorded-usage totals.')

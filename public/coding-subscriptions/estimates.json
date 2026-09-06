@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-06",
-  "version": 6,
+  "version": 7,
   "plans": {
     "Codex": {
       "fee": 200,
@@ -546,11 +546,21 @@
     "label": "Frontier segment",
     "score_min": 55,
     "score_max": 72,
-    "cost_min": 0.005,
-    "cost_max": 16,
-    "excluded": "Composer and historical GLM; other configurations below 55 remain outside the view",
-    "visible_configurations": 15,
-    "labels": "Every dot",
-    "same_axes": true
+    "api_cost_min": 1,
+    "api_cost_max": 12,
+    "subscription_cost_min": 0.03,
+    "subscription_cost_max": 1,
+    "cost_scale": "linear",
+    "excluded": "Luna max, Composer and historical GLM; other configurations below 55 remain outside the view",
+    "visible_configurations": 14,
+    "labels": "Every dot: harness and model",
+    "same_score_axis": true,
+    "same_cost_axis": false,
+    "clusters": [
+      "Astra medium, high, xhigh and max",
+      "All Anthropic configurations",
+      "Both Gemini configurations"
+    ],
+    "range_note": "Upper estimate ranges above $1 continue at an arrow; the complete range remains in the selected values."
   }
 }

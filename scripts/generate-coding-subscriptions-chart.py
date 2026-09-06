@@ -2,21 +2,26 @@
 """Render reviewed subscription estimates and recorded usage, without mixing them."""
 import json
 import subprocess
+import re
+import numpy as np
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.path import Path as MplPath
+from matplotlib.patches import PathPatch, Circle
+from matplotlib.colors import to_rgba
 from matplotlib.ticker import FuncFormatter, NullLocator
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'public/coding-subscriptions'
 DATA = json.loads((OUT / 'estimates.json').read_text())
-ROWS = sorted([r for r in DATA['models'] if r['score'] >= 55 and not r.get('historical') and 'composer' not in r['short'].lower()], key=lambda r:r['price'])
+ROWS = sorted([r for r in DATA['models'] if r['score'] >= 55 and not r.get('historical') and 'composer' not in r['short'].lower() and r['short'] != 'Luna max'], key=lambda r:r['price'])
 GLM = next(r for r in DATA['own_usage'] if r['key']=='glm_family')
 INK, GRID = '#252525', '#e5e5e5'
-COLORS = {'Codex':'#363636', 'Claude / Opus':'#ac542f', 'Claude / Fable':'#ac542f',
-          'Kimi':'#24649b', 'Grok':'#68713c', 'Antigravity':'#936f19', 'GLM historical scenario':'#526775', 'Cursor':'#785190'}
+COLORS = {'Codex':'#171717', 'Claude / Opus':'#db7549', 'Claude / Fable':'#db7549',
+          'Kimi':'#2563eb', 'Grok':'#747b88', 'Antigravity':'#4285f4'}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':16,'text.color':INK,
     'axes.labelcolor':INK,'xtick.color':INK,'ytick.color':INK,'text.parse_math':False,
     'axes.edgecolor':'#999999','svg.fonttype':'none','savefig.facecolor':'white'})
@@ -41,33 +46,68 @@ def draw_panel(ax, adjusted=False, phone=False):
     script="import {chartLayout} from './lib/agent-chart-layout.js'; import fs from 'fs'; const d=JSON.parse(fs.readFileSync(0,'utf8')); console.log(JSON.stringify(chartLayout(d.models,d.width,d.adjusted)));"
     proc=subprocess.run(['node','--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','--input-type=module','-e',script],input=json.dumps({'models':DATA['models'],'width':width,'adjusted':adjusted}),text=True,capture_output=True,cwd=ROOT,check=True)
     layout=json.loads(proc.stdout)
-    ax.set_xscale('log');ax.set_xlim(.005,16);ax.set_ylim(55,72)
-    ax.set_yticks([55,60,65,70]);ax.grid(axis='y',color=GRID,zorder=0)
-    ax.set_xticks([.01,.1,1,10]);ax.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:g}'))
-    ax.set_xlabel('Dollars per task · log scale',fontsize=17,labelpad=13)
-    ax.set_title(('Our adjustment\nSubscriptions' if phone else 'Our adjustment · subscriptions') if adjusted else 'Original · API pricing',loc='left',fontsize=22,weight='bold',pad=34)
-    ax.text(0,1.025,'Coding Agent Index ↑',transform=ax.transAxes,fontsize=17)
-    tidy(ax)
-    font=15*ax.get_position().width*ax.figure.get_figwidth()*72/(layout['right']-layout['left'])
+    ax.set_xlim(0,width);ax.set_ylim(620,0);ax.axis('off')
+    left,right,top,bottom=[layout[k] for k in ['left','right','top','bottom']]
+    scale=ax.get_position().width*ax.figure.get_figwidth()*72/width
+    def label(x,y,text,size=15,**kw):
+        return ax.text(x,y,text,fontsize=size*scale,va='baseline',**kw)
+    title='Our adjustment · subscriptions' if adjusted else 'Original · API pricing'
+    if phone and adjusted:title='Our adjustment · subscriptions'
+    ax.set_title(title,loc='left',fontsize=(18 if phone else 21)*scale,weight='bold',pad=20)
+    gradient=np.zeros((160,160,4))
+    coords=np.linspace(0,1,160);t=(coords[None,:]+coords[:,None])/2
+    stops=[0,.35,.65,1];colors=np.array([to_rgba(c) for c in ['#4285f4','#34a853','#fbbc05','#ea4335']])
+    for channel in range(4):gradient[:,:,channel]=np.interp(t,stops,colors[:,channel])
+    for cluster in layout['clusters']:
+        parts=re.findall(r'[MQZ]|-?\d+(?:\.\d+)?(?:e[+-]?\d+)?',cluster['path'],re.I)
+        vertices=[];codes=[];i=0
+        while i<len(parts):
+            command=parts[i];i+=1
+            if command=='M':vertices.append((float(parts[i]),float(parts[i+1])));codes.append(MplPath.MOVETO);i+=2
+            elif command=='Q':
+                for _ in range(2):vertices.append((float(parts[i]),float(parts[i+1])));codes.append(MplPath.CURVE3);i+=2
+            else:vertices.append(vertices[0]);codes.append(MplPath.CLOSEPOLY)
+        key=cluster['key'];color='#171717' if key=='astra' else '#ee9b70'
+        patch=PathPatch(MplPath(vertices,codes),facecolor=color if key!='gemini' else 'none',edgecolor=color if key!='gemini' else '#4285f4',alpha=.13 if key=='astra' else .27,lw=1.2*scale,zorder=1)
+        ax.add_patch(patch)
+        patch.set_clip_path(plt.Rectangle((left,top),right-left,bottom-top,transform=ax.transData))
+        if key=='gemini':
+            vs=np.array(vertices);xmin=max(left,vs[:,0].min());xmax=min(right,vs[:,0].max());ymin=vs[:,1].min();ymax=vs[:,1].max()
+            im=ax.imshow(gradient,extent=[xmin,xmax,ymax,ymin],origin='lower',aspect='auto',alpha=.27,zorder=1)
+            im.set_clip_path(patch)
+    label(left,16,'Coding Agent Index ↑')
+    for tick in layout['scoreTicks']:
+        y=tick['y'];ax.plot([left,right],[y,y],color=GRID,lw=.7,zorder=0);label(left-10,y+5,str(tick['v']),ha='right')
+    for tick in layout['costTicks']:
+        v=tick['v'];label(tick['x'],bottom+28,f'${v:.2f}' if v<1 else f'${v:g}',ha='center')
+    ax.plot([left,right],[bottom,bottom],color='#a9a9a9',lw=.8)
+    label((left+right)/2,615,'Dollars per task',ha='center')
     for p in layout['points']:
-        r=p['row'];x,y=r['price'] if adjusted else r['api'],r['score'];c=COLORS[r['group']]
-        if adjusted: ax.plot([r['lo'],r['hi']],[y,y],color=c,alpha=.45,lw=1.5,zorder=2)
-        ax.scatter([x],[y],s=80,facecolor='white' if r['group']=='Antigravity' else c,edgecolor=c,lw=1.5,zorder=4)
-        label=p['label']
-        lx=(label['x']-layout['left'])/(layout['right']-layout['left'])
-        ly=1-(label['y']+14-layout['top'])/(layout['bottom']-layout['top'])
-        ax.annotate(p['text'],(x,y),xytext=(lx,ly),textcoords='axes fraction',fontsize=font,ha='left',va='baseline',zorder=5,
-            arrowprops={'arrowstyle':'-','color':'#929292','lw':.8,'shrinkA':2,'shrinkB':6},bbox={'facecolor':'white','edgecolor':'none','pad':.25})
+        c=COLORS[p['row']['group']];x,y=p['x'],p['y'];b=p['label']
+        if adjusted:
+            ax.plot([p['lo'],p['hi']],[y,y],color=c,alpha=.45,lw=1.5*scale,zorder=2)
+            if p['hiClipped']:ax.plot([right-5,right,right-5],[y-4,y,y+4],color=c,lw=scale,zorder=2)
+        endx=max(b['x'],min(b['x']+b['w'],x));endy=max(b['y'],min(b['y']+b['h'],y))
+        ax.plot([x,endx],[y,endy],color='#929292',lw=.8*scale,zorder=3)
+        ax.scatter([x],[y],s=(8*scale)**2,facecolor=c,edgecolor=c,lw=1.2*scale,zorder=4)
+        if p['row']['group']=='Antigravity':
+            clip=Circle((x,y),4.5,transform=ax.transData)
+            im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)
+        for i,line in enumerate(p['lines']):
+            text=label(b['x'],b['y']+14+i*18,line,zorder=5)
+            import matplotlib.patheffects as effects
+            text.set_path_effects([effects.withStroke(linewidth=4*scale,foreground='white')])
 
 def main_chart():
     fig=plt.figure(figsize=(20,15),facecolor='white')
-    fig.text(.06,.96,'Coding agents: the frontier',fontsize=29,weight='bold')
-    for adjusted,pos in [(False,[.06,.15,.42,.64]),(True,[.56,.15,.42,.64])]:
+    fig.text(.05,.958,'Coding agents: the frontier',fontsize=29,weight='bold')
+    for adjusted,pos in [(False,[.05,.155,.43,.66]),(True,[.54,.155,.43,.66])]:
         draw_panel(fig.add_axes(pos),adjusted)
-    names=[('Codex','Codex'),('Claude / Fable','Claude Code'),('Kimi','Kimi CLI'),('Grok','Grok Build'),('Antigravity','Antigravity')]
-    fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor='white' if k=='Antigravity' else COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in names],loc='upper left',bbox_to_anchor=(.05,.915),ncol=5,frameon=False,fontsize=17,columnspacing=2.3,handletextpad=.5)
-    fig.text(.06,.072,'55–72 points · Same scores and cost scales · Horizontal lines show estimate ranges',fontsize=20)
-    fig.text(.06,.029,'6 September 2026 · Full data and assumptions: aiandtractors.com/coding-agent-subscription-costs',fontsize=18)
+    names=[('Codex','OpenAI'),('Claude / Fable','Anthropic'),('Antigravity','Google Gemini'),('Grok','xAI / Grok'),('Kimi','Kimi')]
+    fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor=COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in names],loc='upper left',bbox_to_anchor=(.04,.915),ncol=5,frameon=False,fontsize=17,columnspacing=2.3,handletextpad=.5)
+    fig.text(.05,.086,'Linear cost scales · Same 14 agents and scores',fontsize=20)
+    fig.text(.05,.052,'Shaded areas group related models. Horizontal lines show estimate ranges; arrows continue beyond $1.',fontsize=17)
+    fig.text(.05,.021,'6 September 2026 · aiandtractors.com/coding-agent-subscription-costs',fontsize=17)
     save(fig,'chart',140)
 
 def usage_chart():
@@ -104,10 +144,10 @@ def usage_chart():
 def phone_chart():
     fig=plt.figure(figsize=(6,23),facecolor='white')
     fig.text(.1,.977,'Coding agents: the frontier',fontsize=22,weight='bold')
-    draw_panel(fig.add_axes([.12,.57,.81,.33]),False,True)
-    draw_panel(fig.add_axes([.12,.095,.81,.33]),True,True)
+    draw_panel(fig.add_axes([.05,.57,.90,.33]),False,True)
+    draw_panel(fig.add_axes([.05,.095,.90,.33]),True,True)
     fig.text(.1,.044,'55–72 points · All dots labeled',fontsize=16)
-    fig.text(.1,.018,'Same scores and cost scales',fontsize=16)
+    fig.text(.1,.018,'Linear cost scales',fontsize=16)
     save(fig,'chart-phone',160)
 
 if __name__=='__main__':
@@ -117,8 +157,8 @@ if __name__=='__main__':
         assert abs(r['price']-r.get('adjustment_api',r['api'])*p['fee']/p['base'])<1e-12
         assert 0<r['lo']<=r['price']<=r['hi']
         assert not r.get('measured'), 'Usage observations are not measured allowances'
-    assert len(ROWS)==15 and all(r['price'] is not None for r in ROWS)
+    assert len(ROWS)==14 and all(r['price'] is not None for r in ROWS)
     main_chart();phone_chart()
     for f in OUT.glob('*.svg'):
         f.write_text('\n'.join(s.rstrip() for s in f.read_text().splitlines())+'\n')
-    print('Rendered15 fully labeled frontier configurations per panel with identical55–72 score axes.')
+    print('Rendered 14 harness-labeled agents, linear axes and three family regions per panel.')

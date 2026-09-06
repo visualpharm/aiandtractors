@@ -21,7 +21,7 @@ ROWS = sorted([r for r in DATA['models'] if r['score'] >= 55 and not r.get('hist
 GLM = next(r for r in DATA['own_usage'] if r['key']=='glm_family')
 INK, GRID = '#252525', '#e5e5e5'
 COLORS = {'Codex':'#171717', 'Claude / Opus':'#db7549', 'Claude / Fable':'#db7549',
-          'Kimi':'#2563eb', 'Grok':'#747b88', 'Antigravity':'#4285f4'}
+          'Kimi':'#2563eb', 'Grok':'#25834d', 'Antigravity':'#4285f4'}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':16,'text.color':INK,
     'axes.labelcolor':INK,'xtick.color':INK,'ytick.color':INK,'text.parse_math':False,
     'axes.edgecolor':'#999999','svg.fonttype':'none','savefig.facecolor':'white'})
@@ -67,8 +67,8 @@ def draw_panel(ax, adjusted=False, phone=False):
             elif command=='Q':
                 for _ in range(2):vertices.append((float(parts[i]),float(parts[i+1])));codes.append(MplPath.CURVE3);i+=2
             else:vertices.append(vertices[0]);codes.append(MplPath.CLOSEPOLY)
-        key=cluster['key'];color='#171717' if key=='astra' else '#ee9b70'
-        patch=PathPatch(MplPath(vertices,codes),facecolor=color if key!='gemini' else 'none',edgecolor=color if key!='gemini' else '#4285f4',alpha=.13 if key=='astra' else .27,lw=1.2*scale,zorder=1)
+        key=cluster['key'];color='#171717' if key=='codex' else '#ee9b70'
+        patch=PathPatch(MplPath(vertices,codes),facecolor=color if key!='gemini' else 'none',edgecolor=color if key!='gemini' else '#4285f4',alpha=.13 if key=='codex' else .27,lw=1.2*scale,zorder=1)
         ax.add_patch(patch)
         patch.set_clip_path(plt.Rectangle((left,top),right-left,bottom-top,transform=ax.transData))
         if key=='gemini':
@@ -84,12 +84,15 @@ def draw_panel(ax, adjusted=False, phone=False):
     label((left+right)/2,615,'Dollars per task',ha='center')
     for p in layout['points']:
         c=COLORS[p['row']['group']];x,y=p['x'],p['y'];b=p['label']
-        if adjusted:
+        if adjusted and not p['offscale']:
             ax.plot([p['lo'],p['hi']],[y,y],color=c,alpha=.45,lw=1.5*scale,zorder=2)
             if p['hiClipped']:ax.plot([right-5,right,right-5],[y-4,y,y+4],color=c,lw=scale,zorder=2)
         endx=max(b['x'],min(b['x']+b['w'],x));endy=max(b['y'],min(b['y']+b['h'],y))
         ax.plot([x,endx],[y,endy],color='#929292',lw=.8*scale,zorder=3)
-        ax.scatter([x],[y],s=(8*scale)**2,facecolor=c,edgecolor=c,lw=1.2*scale,zorder=4)
+        if p['offscale']:
+            ax.plot([right-22,right],[y,y],color=c,lw=2*scale,zorder=4)
+            ax.plot([right-7,right,right-7],[y-6,y,y+6],color=c,lw=2*scale,zorder=4)
+        else:ax.scatter([x],[y],s=(8*scale)**2,facecolor=c,edgecolor=c,lw=1.2*scale,zorder=4)
         if p['row']['group']=='Antigravity':
             clip=Circle((x,y),4.5,transform=ax.transData)
             im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)
@@ -99,15 +102,12 @@ def draw_panel(ax, adjusted=False, phone=False):
             text.set_path_effects([effects.withStroke(linewidth=4*scale,foreground='white')])
 
 def main_chart():
-    fig=plt.figure(figsize=(20,15),facecolor='white')
+    fig=plt.figure(figsize=(20,13),facecolor='white')
     fig.text(.05,.958,'Coding agents: the frontier',fontsize=29,weight='bold')
-    for adjusted,pos in [(False,[.05,.155,.43,.66]),(True,[.54,.155,.43,.66])]:
+    for adjusted,pos in [(False,[.05,.045,.43,.75]),(True,[.54,.045,.43,.75])]:
         draw_panel(fig.add_axes(pos),adjusted)
     names=[('Codex','OpenAI'),('Claude / Fable','Anthropic'),('Antigravity','Google Gemini'),('Grok','xAI / Grok'),('Kimi','Kimi')]
     fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor=COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in names],loc='upper left',bbox_to_anchor=(.04,.915),ncol=5,frameon=False,fontsize=17,columnspacing=2.3,handletextpad=.5)
-    fig.text(.05,.086,'Linear cost scales · Same 14 agents and scores',fontsize=20)
-    fig.text(.05,.052,'Shaded areas group related models. Horizontal lines show estimate ranges; arrows continue beyond $1.',fontsize=17)
-    fig.text(.05,.021,'6 September 2026 · aiandtractors.com/coding-agent-subscription-costs',fontsize=17)
     save(fig,'chart',140)
 
 def usage_chart():
@@ -142,12 +142,10 @@ def usage_chart():
     save(fig,'usage-phone',160)
 
 def phone_chart():
-    fig=plt.figure(figsize=(6,23),facecolor='white')
+    fig=plt.figure(figsize=(6,21),facecolor='white')
     fig.text(.1,.977,'Coding agents: the frontier',fontsize=22,weight='bold')
-    draw_panel(fig.add_axes([.05,.57,.90,.33]),False,True)
-    draw_panel(fig.add_axes([.05,.095,.90,.33]),True,True)
-    fig.text(.1,.044,'55–72 points · All dots labeled',fontsize=16)
-    fig.text(.1,.018,'Linear cost scales',fontsize=16)
+    draw_panel(fig.add_axes([.05,.55,.90,.37]),False,True)
+    draw_panel(fig.add_axes([.05,.05,.90,.37]),True,True)
     save(fig,'chart-phone',160)
 
 if __name__=='__main__':
@@ -161,4 +159,4 @@ if __name__=='__main__':
     main_chart();phone_chart()
     for f in OUT.glob('*.svg'):
         f.write_text('\n'.join(s.rstrip() for s in f.read_text().splitlines())+'\n')
-    print('Rendered 14 harness-labeled agents, linear axes and three family regions per panel.')
+    print('Rendered 14 harness-labeled agents, Kimi arrow in the subscription panel, linear axes and three family regions per panel.')

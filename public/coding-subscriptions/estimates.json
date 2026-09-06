@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-06",
-  "version": 7,
+  "version": 8,
   "plans": {
     "Codex": {
       "fee": 200,
@@ -549,7 +549,7 @@
     "api_cost_min": 1,
     "api_cost_max": 12,
     "subscription_cost_min": 0.03,
-    "subscription_cost_max": 1,
+    "subscription_cost_max": 0.35,
     "cost_scale": "linear",
     "excluded": "Luna max, Composer and historical GLM; other configurations below 55 remain outside the view",
     "visible_configurations": 14,
@@ -557,10 +557,13 @@
     "same_score_axis": true,
     "same_cost_axis": false,
     "clusters": [
-      "Astra medium, high, xhigh and max",
+      "Astra medium, high, xhigh, max and Sol max",
       "All Anthropic configurations",
       "Both Gemini configurations"
     ],
-    "range_note": "Upper estimate ranges above $1 continue at an arrow; the complete range remains in the selected values."
+    "range_note": "An arrow labels Kimi at its actual $0.584 cost beyond the displayed subscription axis. Clipped sensitivity ranges also use arrows; full ranges remain in point tooltips and the methodology.",
+    "offscale_subscription_configurations": [
+      "Kimi K3"
+    ]
   }
 }

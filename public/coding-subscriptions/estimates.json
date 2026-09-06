@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-06",
-  "version": 5,
+  "version": 6,
   "plans": {
     "Codex": {
       "fee": 200,
@@ -541,5 +541,16 @@
     "glm53_agent_score": null,
     "glm53_catalog_present": true,
     "reason": "GLM 5.3 references in the page are generic model catalog metadata, without an agent result or indexScore."
+  },
+  "chart_view": {
+    "label": "Frontier segment",
+    "score_min": 55,
+    "score_max": 72,
+    "cost_min": 0.005,
+    "cost_max": 16,
+    "excluded": "Composer and historical GLM; other configurations below 55 remain outside the view",
+    "visible_configurations": 15,
+    "labels": "Every dot",
+    "same_axes": true
   }
 }

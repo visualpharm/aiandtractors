@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { chartLayout, frontierRows } from '../lib/agent-chart-layout';
+
 const COLORS = { Codex: '#333333', 'Claude / Opus': '#a6512d', 'Claude / Fable': '#a6512d', Kimi: '#276486', Grok: '#657135', Antigravity: '#977216', 'GLM historical scenario': '#526775', Cursor: '#785190' };
 const money = (n) => n == null ? 'Not established' : `$${n.toFixed(3)}`;
 const short = (r) => r.short.replace(' · $30 plan', '').replace(' historical', '');
@@ -12,43 +14,34 @@ function Plot({ models, adjusted, selected, onSelect }) {
     observer.observe(host.current);
     return () => observer.disconnect();
   }, []);
-  const left = 38, right = width - 20, top = 30, bottom = 365;
-  const x = (v) => left + (Math.log10(v) - Math.log10(.005)) / (Math.log10(20) - Math.log10(.005)) * (right - left);
-  const y = (v) => bottom - (v - 34) / 40 * (bottom - top);
-  const rows = models.filter(r => !adjusted || r.price != null);
-  const activeRow = rows.find(r => r.short === selected);
-  const named = ['Fable 5.1 max', 'Luna max', 'GLM 5.2 historical', 'GLM 5.1 historical', 'Composer 2.5 Fast'];
+  const layout = chartLayout(models,width,adjusted);
+  const {left,right,bottom,height,points,scoreTicks,costTicks} = layout;
   return <div className="agent-plot" ref={host}>
-    <svg viewBox={`0 0 ${width} 420`} role="group" aria-label={`${adjusted ? 'Subscription estimate' : 'Original API cost'} versus Coding Agent Index`}>
+    <svg viewBox={`0 0 ${width} ${height}`} role="group" aria-label={`${adjusted ? 'Subscription estimate' : 'Original API cost'} versus Coding Agent Index`}>
       <text x={left} y="16" className="axis-caption">Coding Agent Index ↑</text>
-      {[35, 45, 55, 65, 70].map(t => <g key={t}>
-        <line x1={left} x2={right} y1={y(t)} y2={y(t)} stroke="#e5e5e5" />
-        <text x={left - 10} y={y(t) + 5} textAnchor="end">{t}</text>
+      {scoreTicks.map(({v:t,y}) => <g key={t}>
+        <line x1={left} x2={right} y1={y} y2={y} stroke="#e5e5e5" />
+        <text x={left - 10} y={y + 5} textAnchor="end">{t}</text>
       </g>)}
-      {[.01, .1, 1, 10].map(t => <g key={t}>
-        <text x={x(t)} y={bottom + 28} textAnchor="middle">${t < 1 ? t.toFixed(2) : t}</text>
+      {costTicks.map(({v:t,x}) => <g key={t}>
+        <text x={x} y={bottom + 28} textAnchor="middle">${t < 1 ? t.toFixed(2) : t}</text>
       </g>)}
       <line x1={left} x2={right} y1={bottom} y2={bottom} stroke="#a9a9a9" />
-      <text x={(left + right) / 2} y="415" textAnchor="middle">Dollars per task · log scale</text>
-      {rows.map(r => {
-        const px = x(adjusted ? r.price : r.api), py = y(r.score), active = selected === r.short;
-        const c = COLORS[r.group];
-        const nearActive = activeRow && Math.abs(y(activeRow.score) - py) < 32 && Math.abs(x(adjusted ? activeRow.price : activeRow.api) - px) < 180;
-        const label = active || (named.includes(r.short) && !nearActive);
-        const labelText = short(r);
-        const labelWidth = labelText.length * 7.6;
-        const labelLeft = px > width * .59 || r.short === 'Luna max';
-        const labelX = Math.max(4, Math.min(width - labelWidth - 4, px + (labelLeft ? -labelWidth - 10 : 10)));
-        const labelY = py + (r.historical && r.short.includes('5.1') ? 24 : -12);
+      <text x={(left + right) / 2} y={height-5} textAnchor="middle">Dollars per task · log scale</text>
+      {points.map(p => {
+        const r=p.row,px=p.x,py=p.y,active=selected===r.short,c=COLORS[r.group],b=p.label;
+        const labelText=p.text,labelX=b.x,labelY=b.y+14;
+        const endX=Math.max(b.x,Math.min(b.x+b.w,px)),endY=Math.max(b.y,Math.min(b.y+b.h,py));
         const cursor = r.group === 'Cursor';
         return <g key={r.short} tabIndex="0" role="button" className="agent-point" aria-label={`${r.benchmark_label || r.label}. Score ${r.score.toFixed(2)}. ${adjusted ? 'Subscription estimate' : 'API cost'} ${money(adjusted ? r.price : r.api)} per task.`}
           onClick={() => onSelect(r.short)} onFocus={() => onSelect(r.short)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(r.short); } }}>
           <title>{`${r.benchmark_label || r.label}: ${r.score.toFixed(2)} points, ${money(adjusted ? r.price : r.api)} per task`}</title>
-          {adjusted && <line x1={x(r.lo)} x2={x(r.hi)} y1={py} y2={py} stroke={c} strokeWidth="1.5" opacity=".45" />}
+          {adjusted && <line x1={p.lo} x2={p.hi} y1={py} y2={py} stroke={c} strokeWidth="1.5" opacity=".45" />}
           <circle cx={px} cy={py} r="14" fill="transparent" />
           {active && <circle cx={px} cy={py} r="10" fill="none" stroke={c} strokeWidth="1.5" />}
           {r.historical ? <rect x={px - 4} y={py - 4} width="8" height="8" fill="white" stroke={c} strokeWidth="1.7" /> : cursor ? <path d={`M${px},${py-6} l6,6 -6,6 -6,-6 Z`} fill={c} /> : <circle cx={px} cy={py} r="4.5" fill={r.group === 'Antigravity' ? 'white' : c} stroke={c} strokeWidth="1.7" />}
-          {label && <text className="point-label" x={labelX} y={labelY}>{labelText}</text>}
+          <line className="label-leader" x1={px} y1={py} x2={endX} y2={endY} stroke="#929292" strokeWidth=".8" />
+          <text className="point-label" x={labelX} y={labelY}>{labelText}</text>
         </g>;
       })}
     </svg>
@@ -57,6 +50,7 @@ function Plot({ models, adjusted, selected, onSelect }) {
 
 export default function CodingAgentComparison({ models }) {
   const [selected, setSelected] = useState('Fable 5.1 max');
+  models = frontierRows(models);
   const row = models.find(r => r.short === selected) || models[0];
   return <section className="agent-comparison" aria-label="Original and subscription-adjusted coding agent comparison">
     <div className="agent-panels">
@@ -64,13 +58,13 @@ export default function CodingAgentComparison({ models }) {
       <section><h2>Our adjustment · subscriptions</h2><Plot models={models} adjusted selected={selected} onSelect={setSelected} /></section>
     </div>
     <div className="agent-legend" aria-label="Agent platforms">
-      {[['Codex','Codex'],['Claude / Fable','Claude Code'],['Kimi','Kimi CLI'],['Grok','Grok Build'],['Antigravity','Antigravity'],['GLM historical scenario','GLM 5.1 / 5.2'],['Cursor','Cursor CLI']].map(([key,label]) => <span key={key}><i style={{background:key === 'GLM historical scenario' || key === 'Antigravity' ? 'transparent' : COLORS[key],border:`1.5px solid ${COLORS[key]}`,borderRadius:key === 'Cursor' || key === 'GLM historical scenario' ? 0 : '50%',transform:key === 'Cursor' ? 'rotate(45deg)' : 'none'}} />{label}</span>)}
+      {[['Codex','Codex'],['Claude / Fable','Claude Code'],['Kimi','Kimi CLI'],['Grok','Grok Build'],['Antigravity','Antigravity']].map(([key,label]) => <span key={key}><i style={{background:key === 'GLM historical scenario' || key === 'Antigravity' ? 'transparent' : COLORS[key],border:`1.5px solid ${COLORS[key]}`,borderRadius:key === 'Cursor' || key === 'GLM historical scenario' ? 0 : '50%',transform:key === 'Cursor' ? 'rotate(45deg)' : 'none'}} />{label}</span>)}
     </div>
     <div className="agent-selection" aria-live="polite">
       <strong>{row.benchmark_label || row.label}</strong>
       <span>{row.score.toFixed(2)} points</span><span>API {money(row.api)}</span><span>Subscription {money(row.price)}{row.price != null ? ` (${money(row.lo)}–${money(row.hi)})` : ''}</span>
     </div>
-    <p className="agent-explainer">Same scores and scales on both sides. Tap a point for its values. Lines show estimate ranges; open squares mark historical GLM results. Three Cursor configurations have API results only.</p>
+    <p className="agent-explainer">Frontier view · 55–72 points. Same scores and scales on both sides. Tap a dot or its label for values; horizontal lines show estimate ranges.</p>
     <style>{`
       .agent-comparison { margin:32px 0; color:#252525; }
       .agent-panels { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; }

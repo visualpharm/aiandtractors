@@ -14,7 +14,7 @@ export default function CodingAgentSubscriptionCosts() {
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
       <meta property="og:type" content="article" /><meta property="og:title" content={TITLE} /><meta property="og:description" content={DESCRIPTION} /><meta property="og:url" content={PAGE_URL} />
-      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=5" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1680" /><meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=6" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="2100" /><meta name="twitter:card" content="summary_large_image" />
     </Head>
     <article className="subscription-article">
       <h1>{TITLE}</h1>
@@ -22,8 +22,8 @@ export default function CodingAgentSubscriptionCosts() {
       <CodingAgentComparison models={data.models} />
       <nav className="article-links" aria-label="Comparison files">
         <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis original</a>
-        <a href="/coding-subscriptions/chart.png?v=5">Comparison image</a>
-        <a href="/coding-subscriptions/usage.png?v=5">Usage graph</a>
+        <a href="/coding-subscriptions/chart.png?v=6">Comparison image</a>
+        <a href="/coding-subscriptions/usage.png?v=6">Usage graph</a>
         <a href="/coding-subscriptions/estimates.json">Calculation data</a>
       </nav>
       <div className="reading">
@@ -31,7 +31,7 @@ export default function CodingAgentSubscriptionCosts() {
           <h2>GLM 5.3: used, but not yet scored here</h2>
           <p><strong>Our logs contain 233.75 million GLM 5.3 tokens, worth $75.49 at API rates.</strong> That is part of 617.14 million tokens and $194.67 across the GLM family, recorded from 10 August to 5 September 2026.</p>
           <p>I rechecked all 68 <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis coding-agent results</a> on 6 September 2026. The GLM entries are 5.1 and 5.2. <a href="https://artificialanalysis.ai/models/glm-5-3">GLM 5.3 has a separate model benchmark</a>, but no published agent score in that dataset.</p>
-          <p>The squares above are historical GLM 5.1 and 5.2 results with current $80 Pro quota scenarios. The plan now routes those model aliases to 5.3. Hitting a GLM plan limit confirms quota use; it cannot fill in the missing benchmark score.</p>
+          <p>Hitting a GLM plan limit confirms quota use; it cannot fill in the missing benchmark score.</p>
         </section>
         <section>
           <h2>Our Cursor Pro subscription</h2>
@@ -40,7 +40,7 @@ export default function CodingAgentSubscriptionCosts() {
           <div className="pool"><div><span>Other Models</span><strong>88.8% used</strong></div><progress max="100" value="88.8" aria-label="Other Models: 88.8 percent used" /></div>
           <p><strong>Composer 2.5 Fast: about $0.066 per benchmark task, at 38.30 points.</strong> This is a conditional estimate from five recorded calls and their displayed quota use. Its $0.062–$0.070 range covers percentage rounding only; workload and quota uncertainty are wider.</p>
           <p>Artificial Analysis’s original API cost is $0.557. For the subscription calculation, we estimate $1.522 from pooled benchmark token counters at <a href="https://cursor.com/docs/models-and-pricing">current Cursor rates</a>; our usage is valued at those same rates. The full $20 fee is assigned to this one alternative.</p>
-          <p>The API panel also includes Cursor’s GPT-5.5 medium, Opus 4.7 medium and Composer 2.5 results. Their subscription costs remain unpriced. Most of our Cursor tokens went to Grok, which has no matched Cursor CLI result in this agent dataset.</p>
+          <p>The full dataset retains Cursor’s GPT-5.5 medium, Opus 4.7 medium and Composer 2.5 results outside this frontier view. Their subscription costs remain unpriced. Most of our Cursor tokens went to Grok, which has no matched Cursor CLI result in this agent dataset.</p>
         </section>
         <section className="usage-chart" aria-labelledby="usage-title">
           <h2 id="usage-title">Our recorded usage</h2>
@@ -52,7 +52,7 @@ export default function CodingAgentSubscriptionCosts() {
           </div>)}
         </section>
         <details>
-          <summary>All 21 agent configurations</summary>
+          <summary>Full dataset · 21 configurations</summary>
           <table><thead><tr><th>Agent configuration</th><th>Score</th><th>API / task</th><th>Subscription / task</th></tr></thead>
             <tbody>{[...data.models].sort((a,b)=>b.score-a.score).map(r => <tr key={r.short}>
               <td>{r.benchmark_label || r.label}{r.historical ? ' (historical)' : ''}</td><td data-label="Score">{r.score.toFixed(2)}</td><td data-label="API / task">{money(r.api)}</td><td data-label="Subscription / task">{money(r.price)}</td>

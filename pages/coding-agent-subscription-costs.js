@@ -4,7 +4,7 @@ import article from '../data/coding-subscriptions.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-subscription-costs/';
 const TITLE = 'What coding agents cost on a subscription';
-const DESCRIPTION = `Artificial Analysis redrawn with community-estimated subscription costs per task, including Antigravity/Gemini and research on z.ai and Muse Code. Calculations and ${article.references.length} sources.`;
+const DESCRIPTION = `Artificial Analysis redrawn with estimated subscription costs, plus audited Claude, Codex and GLM usage. Updated 6 September 2026 with ${article.references.length} sources.`;
 
 export default function CodingAgentSubscriptionCosts() {
   return (
@@ -19,7 +19,7 @@ export default function CodingAgentSubscriptionCosts() {
         <meta property="og:url" content={PAGE_URL} />
         <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png" />
         <meta property="og:image:width" content="2800" />
-        <meta property="og:image:height" content="2800" />
+        <meta property="og:image:height" content="3500" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <article className="subscription-article">
@@ -33,16 +33,27 @@ export default function CodingAgentSubscriptionCosts() {
         <figure className="chart">
           <a href="/coding-subscriptions/chart.png" aria-label="Full-resolution coding agent subscription chart">
             <picture>
-              <source media="(max-width: 700px)" srcSet="/coding-subscriptions/chart-phone.png" />
-              <img src="/coding-subscriptions/chart.png" width="2800" height="2800" alt="Coding agent benchmark scores and estimated subscription costs per task. Antigravity Gemini 3.7 Flash high is $0.037 and 3.8 Flash high is $0.053 on the $100 plan, using a provisional token-mix scenario. Fable 5.1 leads at about 70.4 points and $0.245; Kimi K3 is $0.584. GLM 5.3 has a 473M monthly-token scenario but no matched benchmark; Muse Code has plans but no measured token allowance. Scenario ranges are shown." />
+              <source media="(max-width: 1100px)" srcSet="/coding-subscriptions/chart-phone.png" />
+              <img src="/coding-subscriptions/chart.png" width="2800" height="3500" alt="Seventeen coding-agent configurations compared by Artificial Analysis Coding Agent Index and estimated subscription cost. Open squares show historical GLM 5.2 at 43.31 points and $0.236 per task, and GLM 5.1 at 36.91 points and $0.529, using current Pro quota scenarios. These are not GLM 5.3 results. Fable 5.1 is about 70.43 points and $0.245 with an older allowance proxy. All costs and ranges are scenarios." />
+            </picture>
+          </a>
+        </figure>
+        <figure className="chart usage-chart">
+          <a href="/coding-subscriptions/usage.png" aria-label="Full-resolution recorded AI usage graph">
+            <picture>
+              <source media="(max-width: 900px)" srcSet="/coding-subscriptions/usage-phone.png" />
+              <img src="/coding-subscriptions/usage.png" width="2240" height="1520" loading="lazy" alt="Recorded API-equivalent usage with periods: Claude mixed models in August, $19,380.10 priced subtotal; Codex Sol and Terra in August, $5,327.97 subtotal; Astra September 1–5, $1,462.00; GLM mixed models August 10–September 5, $194.67. These totals are consumption, not included subscription allowances." />
             </picture>
           </a>
         </figure>
         <div className="reading">
+          <h2>What our own logs establish</h2>
+          <p><strong>GLM delivered $194.67 of API-equivalent usage across 617.14M tokens.</strong> The 27-day total combines GLM 5.2, 5.3 and Turbo across two provider IDs. GLM 5.3 alone accounts for $75.49 and 233.75M tokens.</p>
+          <p><strong>Claude and Codex totals do not establish a per-model allowance.</strong> Claude combines plans, models and paid overages; Codex requires fork-history deduplication. The personal totals stay separate from the subscription scenarios above.</p>
           <h2>Gemini, z.ai and Muse Code</h2>
           <ul>
             <li><strong>Gemini is now plotted through Antigravity:</strong> $0.037 per task for 3.7 Flash high and $0.053 for 3.8 Flash high on the $100 Ultra tier. These are provisional estimates using an assumed token mix and the native Antigravity SDK benchmark.</li>
-            <li><strong>z.ai has a usable GLM 5.3 quota report:</strong> about 473M raw tokens per month on $18 Lite when extrapolated from one subscriber. A matching Coding Agent Index result is missing, so GLM has no plotted price or score.</li>
+            <li><strong>GLM is plotted with its historical agent results:</strong> 5.2 scores 43.31 and 5.1 scores 36.91 in Claude Code. The open squares use current $80 Pro quota scenarios, giving central estimates of $0.236 and $0.529 per task. The current plan routes both aliases to 5.3, whose agent score remains unavailable.</li>
             <li><strong>Muse Code has $5, $15 and $50 plans:</strong> I found paid-user tests, but no token count tied to quota consumption. Its cost per task remains unknown.</li>
           </ul>
           <h2>What changes when you use subscription prices</h2>
@@ -54,6 +65,7 @@ export default function CodingAgentSubscriptionCosts() {
           <p>These estimates assume heavy use of each plan. Codex and Claude use $200 plans; Kimi uses $199; Grok Build uses $30 SuperGrok; Gemini uses $100 Antigravity Ultra. If you use half the modeled monthly allowance, the effective cost per task doubles.</p>
           <nav className="article-links" aria-label="Chart data">
             <a href="/coding-subscriptions/chart.png">Full chart</a>
+            <a href="/coding-subscriptions/usage.png">Usage graph</a>
             <a href="/coding-subscriptions/estimates.json">Calculation data</a>
             <a href="#how-the-estimate-works">Methodology</a>
             <a href="#sources">Sources</a>

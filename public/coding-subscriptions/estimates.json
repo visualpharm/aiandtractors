@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-04",
-  "version": 2,
+  "as_of": "2026-09-06",
+  "version": 4,
   "plans": {
     "Codex": {
       "fee": 200,
@@ -45,22 +45,34 @@
       "color": "#277F59",
       "method": "5B raw tokens/week, valued at AA Gemini 3.7 Flash token mix; analyst assumption",
       "confidence": "Low"
+    },
+    "GLM historical scenario": {
+      "fee": 80,
+      "base": 647.7240632114002,
+      "low": 397.64705882352945,
+      "high": 1055.0724637681158,
+      "color": "#466779",
+      "confidence": "Scenario only; historical agent benchmarks with current Pro quota economics",
+      "method": "Historical GLM 5.1/5.2 benchmark task cost converted with current Pro weekly-credit bound; geometric midpoint. Assumes transfer of subscription economics, not a current deployable model configuration."
     }
   },
   "models": [
     {
-      "label": "GPT-5.6 Luna \u00b7 max",
+      "label": "GPT-5.6 Luna · max",
       "short": "Luna max",
-      "score": 57.2,
-      "api": 0.29,
+      "score": 57.166142236563445,
+      "api": 0.2882767483844579,
       "group": "Codex",
-      "price": 0.008285714285714285,
-      "lo": 0.0058,
-      "hi": 0.0116,
-      "color": "#181818"
+      "price": 0.008236478525270225,
+      "lo": 0.005765534967689157,
+      "hi": 0.011531069935378314,
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Codex - GPT-5.6 Luna (max)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "Gemini 3.7 Flash \u00b7 high",
+      "label": "Gemini 3.7 Flash · high",
       "short": "Gemini 3.7 Flash",
       "score": 56.57152973570364,
       "api": 1.396316917192255,
@@ -68,10 +80,13 @@
       "price": 0.036935881654254765,
       "lo": 0.02462392110283651,
       "hi": 0.07387176330850953,
-      "color": "#277F59"
+      "color": "#277F59",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Antigravity SDK - Gemini 3.7 Flash (high)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "GPT-6 Astra \u00b7 low",
+      "label": "GPT-6 Astra · low",
       "short": "Astra low",
       "score": 62.6,
       "api": 1.41,
@@ -79,32 +94,41 @@
       "price": 0.040285714285714286,
       "lo": 0.0282,
       "hi": 0.0564,
-      "color": "#181818"
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-04",
+      "benchmark_note": "Original supplied screenshot; preserved configuration."
     },
     {
-      "label": "Gemini 3.8 Flash \u00b7 high",
+      "label": "Gemini 3.8 Flash · high",
       "short": "Gemini 3.8 Flash",
       "score": 59.0851412183529,
-      "api": 2.0089751539110425,
+      "api": 2.0089751539110456,
       "group": "Antigravity",
-      "price": 0.053142139594216264,
-      "lo": 0.03542809306281084,
-      "hi": 0.10628427918843253,
-      "color": "#277F59"
+      "price": 0.05314213959421635,
+      "lo": 0.035428093062810896,
+      "hi": 0.1062842791884327,
+      "color": "#277F59",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Antigravity SDK - Gemini 3.8 Flash (high)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "GPT-5.6 Terra \u00b7 max",
+      "label": "GPT-5.6 Terra · max",
       "short": "Terra max",
-      "score": 60.4,
-      "api": 1.93,
+      "score": 60.420103617266875,
+      "api": 1.9300146631901811,
       "group": "Codex",
-      "price": 0.055142857142857146,
-      "lo": 0.0386,
-      "hi": 0.0772,
-      "color": "#181818"
+      "price": 0.05514327609114803,
+      "lo": 0.03860029326380362,
+      "hi": 0.07720058652760724,
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Codex - GPT-5.6 Terra (max)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "GPT-6 Astra \u00b7 medium",
+      "label": "GPT-6 Astra · medium",
       "short": "Astra medium",
       "score": 65.2,
       "api": 2.19,
@@ -112,10 +136,13 @@
       "price": 0.06257142857142857,
       "lo": 0.0438,
       "hi": 0.0876,
-      "color": "#181818"
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-04",
+      "benchmark_note": "Original supplied screenshot; preserved configuration."
     },
     {
-      "label": "GPT-6 Astra \u00b7 high",
+      "label": "GPT-6 Astra · high",
       "short": "Astra high",
       "score": 65.5,
       "api": 2.89,
@@ -123,10 +150,13 @@
       "price": 0.08257142857142857,
       "lo": 0.0578,
       "hi": 0.1156,
-      "color": "#181818"
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-04",
+      "benchmark_note": "Original supplied screenshot; preserved configuration."
     },
     {
-      "label": "GPT-6 Astra \u00b7 xhigh",
+      "label": "GPT-6 Astra · xhigh",
       "short": "Astra xhigh",
       "score": 66.9,
       "api": 3.27,
@@ -134,84 +164,140 @@
       "price": 0.09342857142857143,
       "lo": 0.0654,
       "hi": 0.1308,
-      "color": "#181818"
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-04",
+      "benchmark_note": "Original supplied screenshot; preserved configuration."
     },
     {
-      "label": "GPT-6 Astra \u00b7 max",
+      "label": "GPT-6 Astra · max",
       "short": "Astra max",
-      "score": 67.0,
-      "api": 4.72,
+      "score": 66.9713903153459,
+      "api": 4.7173294306044475,
       "group": "Codex",
-      "price": 0.13485714285714287,
-      "lo": 0.0944,
-      "hi": 0.1888,
-      "color": "#181818"
+      "price": 0.13478084087441278,
+      "lo": 0.09434658861208896,
+      "hi": 0.18869317722417792,
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Codex - GPT-6 Astra (max)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "GPT-5.6 Sol \u00b7 max",
+      "label": "GPT-5.6 Sol · max",
       "short": "Sol max",
-      "score": 65.1,
-      "api": 5.0,
+      "score": 65.05240024334411,
+      "api": 4.995463274846626,
       "group": "Codex",
-      "price": 0.14285714285714285,
-      "lo": 0.1,
-      "hi": 0.2,
-      "color": "#181818"
+      "price": 0.14272752213847503,
+      "lo": 0.09990926549693253,
+      "hi": 0.19981853099386507,
+      "color": "#181818",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Codex - GPT-5.6 Sol (max)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "Grok 4.5 \u00b7 high ($30 plan)",
-      "short": "Grok 4.5 high \u00b7 $30 plan",
-      "score": 64.1,
-      "api": 2.44,
+      "label": "Grok 4.5 · high ($30 plan)",
+      "short": "Grok 4.5 high · $30 plan",
+      "score": 64.08998279698193,
+      "api": 2.4389824437627774,
       "group": "Grok",
-      "price": 0.1464,
-      "lo": 0.0976,
-      "hi": 0.24400000000000002,
-      "color": "#65764D"
+      "price": 0.14633894662576666,
+      "lo": 0.0975592977505111,
+      "hi": 0.24389824437627775,
+      "color": "#65764D",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Grok Build - Grok 4.5 (high)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "Opus 5 \u00b7 xhigh",
+      "label": "Opus 5 · xhigh",
       "short": "Opus 5 xhigh",
-      "score": 68.1,
-      "api": 8.17,
+      "score": 68.14975428587518,
+      "api": 8.170783921523505,
       "group": "Claude / Opus",
-      "price": 0.23342857142857143,
-      "lo": 0.20425,
-      "hi": 0.4085,
-      "color": "#C35D3B"
+      "price": 0.23345096918638586,
+      "lo": 0.2042695980380876,
+      "hi": 0.4085391960761752,
+      "color": "#C35D3B",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_as_of": "2026-09-06",
+      "benchmark_label": "Claude Code - Opus 5 (xhigh)"
     },
     {
-      "label": "Fable 5.1 \u00b7 max + fallback",
+      "label": "Fable 5.1 · max + fallback",
       "short": "Fable 5.1 max",
-      "score": 70.4,
-      "api": 9.18,
+      "score": 70.43078467074591,
+      "api": 9.183238026073614,
       "group": "Claude / Fable",
-      "price": 0.2448,
-      "lo": 0.19326315789473683,
-      "hi": 0.918,
-      "color": "#C35D3B"
+      "price": 0.24488634736196302,
+      "lo": 0.19333132686470766,
+      "hi": 0.9183238026073614,
+      "color": "#C35D3B",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Claude Code - Fable 5.1 (max) (with fallback)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
-      "label": "Fable 5 \u00b7 max + fallback",
+      "label": "Fable 5 · max + fallback",
       "short": "Fable 5 max",
-      "score": 67.2,
-      "api": 11.68,
+      "score": 67.17276042685724,
+      "api": 11.687407620910026,
       "group": "Claude / Fable",
-      "price": 0.31146666666666667,
-      "lo": 0.24589473684210525,
-      "hi": 1.168,
-      "color": "#C35D3B"
+      "price": 0.31166420322426736,
+      "lo": 0.24605068675600053,
+      "hi": 1.1687407620910026,
+      "color": "#C35D3B",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Claude Code - Fable 5 (max) (with fallback)",
+      "benchmark_as_of": "2026-09-06"
     },
     {
       "label": "Kimi K3",
       "short": "Kimi K3",
-      "score": 62.6,
-      "api": 3.08,
+      "score": 62.63880112748013,
+      "api": 3.0816355416104315,
       "group": "Kimi",
-      "price": 0.5837333333333333,
-      "lo": 0.40861333333333333,
-      "hi": 0.8172266666666667,
-      "color": "#1673C9"
+      "price": 0.584043307409977,
+      "lo": 0.40883031518698393,
+      "hi": 0.8176606303739679,
+      "color": "#1673C9",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Kimi Code CLI - Kimi K3",
+      "benchmark_as_of": "2026-09-06"
+    },
+    {
+      "label": "GLM 5.1 · historical agent",
+      "short": "GLM 5.1 historical",
+      "score": 36.91032797641257,
+      "api": 4.282000252842536,
+      "group": "GLM historical scenario",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Claude Code - GLM-5.1",
+      "benchmark_as_of": "2026-09-06",
+      "historical": true,
+      "scenario_only": true,
+      "price": 0.5288672131910594,
+      "lo": 0.32467914005069787,
+      "hi": 0.8614675064890309,
+      "color": "#466779"
+    },
+    {
+      "label": "GLM 5.2 · historical agent",
+      "short": "GLM 5.2 historical",
+      "score": 43.3101571936022,
+      "api": 1.9093995639405217,
+      "group": "GLM historical scenario",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "benchmark_label": "Claude Code - GLM-5.2",
+      "benchmark_as_of": "2026-09-06",
+      "historical": true,
+      "scenario_only": true,
+      "price": 0.23582876380707735,
+      "lo": 0.1447786482548308,
+      "hi": 0.3841395572424718,
+      "color": "#466779"
     }
   ],
   "method": "cost_per_task = benchmark_API_cost_per_task * subscription_fee / estimated_monthly_API_equivalent_usage",
@@ -222,7 +308,9 @@
     "Fable 5.1 inherits July Fable 5 quota economics as an unmeasured proxy.",
     "Gemini uses the native Antigravity SDK benchmark, not OpenCode. The 3.7 benchmark token mix values a community raw-token estimate; 3.8 transfers that monetary allowance.",
     "Each model is an alternative use of the same plan, not an additive allowance.",
-    "Original screenshot y coordinates are approximate; Gemini uses exact AA data."
+    "Four Astra settings retain the original screenshot values; thirteen rows use exact AA agent data fetched on 6 September 2026.",
+    "Codex token totals use per-call deltas; cumulative session counters are resume-inherited and inflate.",
+    "Historical GLM 5.1/5.2 agent results are plotted as open squares using current Pro quota scenarios, not as GLM 5.3 results. The author reports hitting GLM plan caps; a five-hour cap does not establish monthly saturation."
   ],
   "calibration": {
     "Antigravity": {
@@ -247,8 +335,25 @@
       "monthly_raw_token_scenario": 472727272.72727275,
       "price": null,
       "score": null,
-      "reason": "No matched GLM 5.3 Coding Agent Index row; token mix unreported. GLM 5.2 is a different benchmark configuration.",
-      "source": "https://www.reddit.com/r/ZaiGLM/comments/1vpxdr9/comment/p410fu5/"
+      "reason": "No matched GLM 5.3 Coding Agent Index row as of 6 September. GLM 5.1/5.2 are historical model configurations; current Coding Plan routes those aliases to 5.3.",
+      "source": "https://www.reddit.com/r/ZaiGLM/comments/1vpxdr9/comment/p410fu5/",
+      "observed_local_usage": {
+        "api_value_usd": 194.66823236,
+        "raw_tokens": 617144217,
+        "glm53_value_usd": 75.49212504,
+        "glm53_raw_tokens": 233749965,
+        "provenance": "Fresh local token ledger query; 5.2, 5.3 and Turbo; provider IDs are not proven to share a subscription."
+      },
+      "official_pro_capacity_scenario": {
+        "monthly_credits": 260000.0,
+        "peak_api_value_low": 397.64705882352945,
+        "peak_api_value_high": 527.5362318840579,
+        "offpeak_api_value_low": 795.2941176470589,
+        "offpeak_api_value_high": 1055.0724637681158,
+        "qualification": "Mathematical all-token-mix bounds; full weekly utilization, no MCP use. Official schedule scenario, not measured subscriber allowance.",
+        "source": "https://docs.z.ai/devpack/overview",
+        "price_source": "https://docs.z.ai/guides/overview/pricing"
+      }
     },
     {
       "platform": "Muse Code",
@@ -262,5 +367,48 @@
       "reason": "No token totals tied to native subscription quota consumption found.",
       "source": "https://www.reddit.com/r/opencode/comments/1w6co97/meta_muse_code_plan_does_muse_spark_13/"
     }
+  ],
+  "own_usage": [
+    {
+      "key": "claude_august",
+      "label": "Claude · mixed models",
+      "period_label": "1–31 August 2026",
+      "scope_label": "Priced subtotal · 2 plans + overages",
+      "api_value_usd": 19380.1,
+      "provenance": "Recovered independent audit; missing fresh-input volumes and Opus 4.8 excluded."
+    },
+    {
+      "key": "codex_august",
+      "label": "Codex · Sol + Terra",
+      "period_label": "1–31 August 2026",
+      "scope_label": "Priced subtotal · minor models excluded",
+      "api_value_usd": 5327.9679936,
+      "provenance": "Fresh deduplicated per-call session scan; reconstructed API value."
+    },
+    {
+      "key": "astra_september",
+      "label": "Codex · Astra",
+      "period_label": "1–5 September 2026 · UTC",
+      "scope_label": "5 complete days · per-call usage",
+      "api_value_usd": 1461.995498,
+      "provenance": "Fresh deduplicated per-call session scan."
+    },
+    {
+      "key": "glm_family",
+      "label": "GLM · mixed models",
+      "period_label": "10 August–5 September 2026 · UTC",
+      "scope_label": "27 days · 2 provider IDs · 617.14M tokens",
+      "api_value_usd": 194.66823236,
+      "raw_tokens": 617144217,
+      "glm53_value_usd": 75.49212504,
+      "glm53_raw_tokens": 233749965,
+      "provenance": "Fresh local token ledger query; 5.2, 5.3 and Turbo; provider IDs are not proven to share a subscription."
+    }
+  ],
+  "audit_corrections": [
+    "Removed unsupported measured Fable and Astra allowance points.",
+    "GLM cached tokens are a subset of input, counted once.",
+    "Local usage includes mixed models and provider IDs.",
+    "Current weekly credit ceiling replaces unsupported $1000-2500 GLM monthly extrapolation."
   ]
 }

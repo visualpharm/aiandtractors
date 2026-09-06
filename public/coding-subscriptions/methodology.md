@@ -1,6 +1,6 @@
 # Subscription cost per coding task
 
-Estimates compiled on 4 September 2026 from community usage reports and independent experiments. These are modeled subscription economics, not lab-published token entitlements.
+Subscription assumptions compiled on 4 September 2026; benchmark data and local usage audited on 6 September 2026 from community usage reports and independent experiments. These are modeled subscription economics, not lab-published token entitlements.
 
 ## How the estimate works
 
@@ -10,9 +10,9 @@ This preserves the benchmark's actual token-cost mix in the numerator, rather th
 
 The chart allocates the entire plan price to coding and assumes the estimated monthly usage is consumed. Using half of that amount doubles the effective cost. Each model is an alternative use of the same subscription; allowances must not be added together. A task is a benchmark attempt, including unsuccessful attempts, not a guaranteed successful fix.
 
-Scores are approximate readings from the supplied screenshot. Its displayed API task prices are retained; Kimi ($3.08) and Fable 5 ($11.68) are corroborated by the [Artificial Analysis dataset](https://artificialanalysis.ai/agents/coding-agents). The screenshot's duplicated Astra “high” label is resolved as high ($2.89) and xhigh ($3.27), following its lower chart. Opus $8.17 is xhigh in the lower chart and current dataset. These corrections preserve the plotted configurations. This is an independent redraw, not an Artificial Analysis subscription benchmark.
+Four Astra settings (low, medium, high and xhigh) retain approximate scores and displayed API costs from the supplied screenshot; the other thirteen configurations use exact values fetched on 6 September. In the original screenshot, Kimi ($3.08) and Fable 5 ($11.68) are corroborated by the [Artificial Analysis dataset](https://artificialanalysis.ai/agents/coding-agents). The screenshot's duplicated Astra “high” label is resolved as high ($2.89) and xhigh ($3.27), following its lower chart. Opus $8.17 is xhigh in the lower chart and current dataset. These corrections preserve the plotted configurations. This is an independent redraw, not an Artificial Analysis subscription benchmark.
 
-The update adds Gemini 3.7 and 3.8 Flash using the dataset's exact **Antigravity SDK** rows: 56.57 and 59.09 points, respectively. These differ from the screenshot's OpenCode results because the harness matters. Original points retain the original snapshot. GLM/z.ai and Muse Code now have explicit coverage below; missing measurements remain unknown rather than being assigned invented chart coordinates.
+The update adds Gemini 3.7 and 3.8 Flash using the dataset's exact **Antigravity SDK** rows: 56.57 and 59.09 points, respectively. These differ from the screenshot's OpenCode results because the harness matters. Thirteen configurations now use exact benchmark values fetched on 6 September 2026. The four remaining configurations retain the original screenshot snapshot, identified in the downloadable data. GLM/z.ai and Muse Code now have explicit coverage below; missing measurements remain unknown rather than being assigned invented chart coordinates.
 
 ## Model assumptions
 
@@ -57,7 +57,28 @@ The 2.5–7.5B/week sensitivity band is an analyst choice around the partial-win
 
 A [GLM 5.3 Lite subscriber](https://www.reddit.com/r/ZaiGLM/comments/1vpxdr9/comment/p410fu5/) reports 48M tokens consuming 44% of weekly quota, with a 95% cache hit rate. Extrapolating gives **109M raw tokens/week, or 473M/month** on Lite. This is a single short self-report without raw logs. It does not establish the output share, peak-hour effects, or the capacity of Pro and Max. Multiplying the Lite measurement by advertised tier ratios would add an unverified assumption.
 
-The checked Coding Agent Index dataset has **GLM 5.2 at 43.31 points**, but no GLM 5.3 row. The widely cited GLM 5.3 Intelligence Index score belongs to a different benchmark and cannot supply this chart's vertical coordinate. Assigning 5.2's task cost or score to 5.3 would also change the model/provider configuration. GLM therefore appears with its measured-token scenario, without a fabricated price or score.
+The checked Coding Agent Index dataset has **GLM 5.2 at 43.31 points**, but no GLM 5.3 row. The widely cited GLM 5.3 Intelligence Index score belongs to a different benchmark and cannot supply this chart's vertical coordinate. Assigning 5.2's task cost or score to 5.3 would also change the model/provider configuration. GLM 5.3 remains unscored. The graph now also includes explicitly historical GLM 5.1 and 5.2 agent results, with current Pro quota scenarios as described below.
+
+## Our recorded usage, audited 6 September 2026
+
+**Recorded API-equivalent usage is not a subscription allowance.** The companion graph shows totals over each stated period, without extrapolating them into guaranteed monthly capacity. Different periods and account counts are not a like-for-like efficiency ranking.
+
+- **Claude, August: $19,380.10 priced subtotal.** The recovered independent audit reproduces the supplied mixed-model aggregates. Fresh-input volumes and Opus 4.8 were not fully priced. The source combines two plans and paid overages; it cannot establish a Fable 5.1 included allowance.
+- **Codex, August: $5,327.97 priced subtotal.** A fresh scan reproduces Sol at $4,954.28 and Terra at $373.69. Minor models are excluded where matching prices were unavailable.
+- **Astra, 1–5 September UTC: $1,462.00.** Five complete days contain 1.072B input tokens, including 1.046B cached, plus 3.013M output tokens. Per-call counters are deduplicated across replayed fork history. Inherited cumulative session counters are not summed.
+- **GLM family, 10 August–5 September UTC: $194.67 across 617.14M raw tokens.** This includes GLM 5.2, 5.3 and Turbo across two provider IDs. GLM 5.3 alone contributes $75.49 and 233.75M tokens, starting 16 August. The coding-plan provider contributes $190.74; the offpeak-idle provider $3.93. Shared subscription ownership is unproven. GLM cached tokens are a subset of input and are priced once.
+
+The interrupted draft described two additional points as measured Fable and Astra subscription allowances. The underlying audit did not support those denominators, so those points are removed. Fable 5.1 keeps the explicitly labeled community proxy; the personal logs remain a separate consumption graph.
+
+## Current GLM plan constraints
+
+**The graph uses the Coding Agent Index throughout, not the model Intelligence Index.** Open squares add historical Claude Code results: GLM 5.1 at 36.91 points and $4.282 API cost per attempt; GLM 5.2 at 43.31 points and $1.9094 API cost. Applying today's $80 Pro quota envelope gives **$0.529 per task for 5.1 ($0.325–$0.861)** and **$0.236 for 5.2 ($0.145–$0.384)**. The central denominator is the geometric midpoint of the $398–$1,055 full-usage envelope. This is a transfer assumption, not a measured cost for a currently selectable model.
+
+The author reports hitting GLM plan caps. The logs corroborate capped sessions, but a five-hour cap does not establish use of every weekly allowance. Personal usage remains visible separately; the open squares use the explicit full-usage scenario.
+
+The [official Coding Plan documentation](https://docs.z.ai/devpack/overview) routes requests for GLM 5.1 and 5.2 to 5.3. The benchmark still contains older 5.1 and 5.2 configurations, which cannot establish 5.3 performance.
+
+Pro allows 60,000 credits weekly and 12,000 per rolling five hours. Applying its token multipliers to [official API prices](https://docs.z.ai/guides/overview/pricing), full weekly utilization gives a theoretical monthly API-equivalent bound of **$398–$528 at peak rates, or $795–$1,055 entirely off peak**, depending on token mix and excluding MCP use. This is a contractual scenario, not a local usage measurement. The draft's $1,000–$2,500 extrapolation ignored the weekly ceiling and is removed.
 
 ## Muse Code
 
@@ -84,7 +105,7 @@ These remain outside the priced comparison:
 - Antigravity / Gemini 3.7 Flash high: $1.3963 × $100 / $3,780.38 = **$0.037/task**.
 - Antigravity / Gemini 3.8 Flash high: $2.0090 × $100 / $3,780.38 = **$0.053/task**.
 
-Prices exclude tax, overage purchases, hardware, review time and the other benefits of the subscriptions.
+Subscription-cost scenarios exclude tax, overage purchases, hardware, review time and other subscription benefits. The separate personal usage totals can include paid overages.
 
 
 The original [Artificial Analysis methodology](https://artificialanalysis.ai/methodology/coding-agents-benchmarking) explains its benchmark attempts and API cost accounting. Its score and task-cost measurements are the starting point; the subscription conversion is my estimate.

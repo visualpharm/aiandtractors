@@ -41,18 +41,17 @@ def tidy(ax):
     ax.xaxis.set_minor_locator(NullLocator())
     ax.tick_params(length=0, pad=9)
 
-def draw_panel(ax, adjusted=False, phone=False):
+def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel='Coding Agent Index ↑', xlabel='Dollars per task'):
     width=350 if phone else 600
-    script="import {chartLayout} from './lib/agent-chart-layout.js'; import fs from 'fs'; const d=JSON.parse(fs.readFileSync(0,'utf8')); console.log(JSON.stringify(chartLayout(d.models,d.width,d.adjusted)));"
-    proc=subprocess.run(['node','--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','--input-type=module','-e',script],input=json.dumps({'models':DATA['models'],'width':width,'adjusted':adjusted}),text=True,capture_output=True,cwd=ROOT,check=True)
+    script="import {chartLayout} from './lib/agent-chart-layout.js'; import fs from 'fs'; const d=JSON.parse(fs.readFileSync(0,'utf8')); console.log(JSON.stringify(chartLayout(d.models,d.width,d.adjusted,d.options)));"
+    proc=subprocess.run(['node','--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','--input-type=module','-e',script],input=json.dumps({'models':DATA['models'],'width':width,'adjusted':adjusted,'options':options or {}}),text=True,capture_output=True,cwd=ROOT,check=True)
     layout=json.loads(proc.stdout)
     ax.set_xlim(0,width);ax.set_ylim(620,0);ax.axis('off')
     left,right,top,bottom=[layout[k] for k in ['left','right','top','bottom']]
     scale=ax.get_position().width*ax.figure.get_figwidth()*72/width
     def label(x,y,text,size=15,**kw):
         return ax.text(x,y,text,fontsize=size*scale,va='baseline',**kw)
-    title='Our adjustment · subscriptions' if adjusted else 'Original · API pricing'
-    if phone and adjusted:title='Our adjustment · subscriptions'
+    title=title or ('Our adjustment · subscriptions' if adjusted else 'Original · API pricing')
     ax.set_title(title,loc='left',fontsize=(18 if phone else 21)*scale,weight='bold',pad=20)
     gradient=np.zeros((160,160,4))
     coords=np.linspace(0,1,160);t=(coords[None,:]+coords[:,None])/2
@@ -75,24 +74,26 @@ def draw_panel(ax, adjusted=False, phone=False):
             vs=np.array(vertices);xmin=max(left,vs[:,0].min());xmax=min(right,vs[:,0].max());ymin=vs[:,1].min();ymax=vs[:,1].max()
             im=ax.imshow(gradient,extent=[xmin,xmax,ymax,ymin],origin='lower',aspect='auto',alpha=.27,zorder=1)
             im.set_clip_path(patch)
-    label(left,16,'Coding Agent Index ↑')
+    label(left,16,ylabel)
     for tick in layout['scoreTicks']:
         y=tick['y'];ax.plot([left,right],[y,y],color=GRID,lw=.7,zorder=0);label(left-10,y+5,str(tick['v']),ha='right')
     for tick in layout['costTicks']:
         v=tick['v'];label(tick['x'],bottom+28,f'${v:.2f}' if v<1 else f'${v:g}',ha='center')
     ax.plot([left,right],[bottom,bottom],color='#a9a9a9',lw=.8)
-    label((left+right)/2,615,'Dollars per task',ha='center')
+    label((left+right)/2,615,xlabel,ha='center')
     for p in layout['points']:
         c=COLORS[p['row']['group']];x,y=p['x'],p['y'];b=p['label']
+        if p.get('scoreLow') is not None:
+            ax.plot([x,x],[p['scoreHigh'],p['scoreLow']],color=c,alpha=.55,lw=1.2*scale,zorder=2)
         if adjusted and not p['offscale']:
             ax.plot([p['lo'],p['hi']],[y,y],color=c,alpha=.45,lw=1.5*scale,zorder=2)
             if p['hiClipped']:ax.plot([right-5,right,right-5],[y-4,y,y+4],color=c,lw=scale,zorder=2)
-        endx=max(b['x'],min(b['x']+b['w'],x));endy=max(b['y'],min(b['y']+b['h'],y))
-        ax.plot([x,endx],[y,endy],color='#929292',lw=.8*scale,zorder=3)
+        endx=p.get('leaderEnd',{}).get('x',max(b['x'],min(b['x']+b['w'],x)));endy=p.get('leaderEnd',{}).get('y',max(b['y'],min(b['y']+b['h'],y)))
+        ax.plot([x,endx],[y,endy],color='#626262' if options else '#929292',lw=(1 if options else .8)*scale,zorder=3)
         if p['offscale']:
             ax.plot([right-22,right],[y,y],color=c,lw=2*scale,zorder=4)
             ax.plot([right-7,right,right-7],[y-6,y,y+6],color=c,lw=2*scale,zorder=4)
-        else:ax.scatter([x],[y],s=(8*scale)**2,facecolor=c,edgecolor=c,lw=1.2*scale,zorder=4)
+        else:ax.scatter([x],[y],s=((6 if options else 8)*scale)**2,facecolor=c,edgecolor=c,lw=1.2*scale,zorder=4)
         if p['row']['group']=='Antigravity':
             clip=Circle((x,y),4.5,transform=ax.transData)
             im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)

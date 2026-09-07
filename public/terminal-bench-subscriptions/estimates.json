@@ -1,0 +1,429 @@
+{
+  "as_of": "2026-09-06",
+  "benchmark": "Terminal-Bench 4.0",
+  "dataset_version": "4-0-0",
+  "sources": [
+    "https://www.tbench.ai/",
+    "https://www.tbench.ai/news/terminal-bench-4-0",
+    "https://www.tbench.ai/blog/terminal-bench-4-0/rollout-charts.html?chart=costpareto",
+    "https://www.harborframework.com/docs/agents/trajectory-format"
+  ],
+  "score_definition": "Published resolution rate, percent. 66 tasks, five trials each. Vertical bars: published 95% confidence intervals.",
+  "api_definition": "Published aggregate model cost divided by all 330 attempts, including failed attempts. Not cost per successful solution; no infrastructure charge is added.",
+  "subscription_definition": "API cost per attempt × monthly fee ÷ assumed monthly API-equivalent capacity. Full-use scenario, not an observed bill or guaranteed allowance. Workload and utilization may change the ratio.",
+  "range_definition": "Horizontal bars vary the assumed capacity, with arrows where that sensitivity range exceeds the plot. They are not confidence intervals. Filled regions identify model families only.",
+  "transfer_assumptions": [
+    "Reuses the article’s published plan scenarios; Terminal-Bench costs and scores are independently sourced.",
+    "Grok 4.6 uses the same $30 family-plan scenario as Grok 4.5; this is an assumption, not a measured model-specific allowance.",
+    "GLM 5.3 has an exact model and harness benchmark match; its subscription conversion remains a quota scenario.",
+    "Small score differences with overlapping confidence intervals do not establish a quality advantage."
+  ],
+  "plans": {
+    "Codex": {
+      "fee": 200,
+      "base": 7000,
+      "low": 5000,
+      "high": 10000,
+      "color": "#181818"
+    },
+    "Claude / Opus": {
+      "fee": 200,
+      "base": 7000,
+      "low": 4000,
+      "high": 8000,
+      "color": "#C35D3B"
+    },
+    "Claude / Fable": {
+      "fee": 200,
+      "base": 7500,
+      "low": 2000,
+      "high": 9500,
+      "color": "#C35D3B"
+    },
+    "Grok": {
+      "fee": 30,
+      "base": 500,
+      "low": 300,
+      "high": 750,
+      "color": "#65764D"
+    },
+    "GLM": {
+      "fee": 80,
+      "base": 647.7240632114002,
+      "low": 397.64705882352945,
+      "high": 1055.0724637681158,
+      "color": "#466779",
+      "confidence": "Quota scenario; not measured monthly capacity",
+      "method": "Current $80 Pro quota scenario applied to the matched GLM 5.3 / Claude Code result; no historical benchmark score is transferred."
+    }
+  },
+  "models": [
+    {
+      "source_id": "5c537be4-7fc3-449b-8bfc-ceb9061c2535",
+      "model": "GPT-6 Astra",
+      "harness": "Codex",
+      "effort": "max",
+      "short": "Astra max",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Astra max"
+      ],
+      "score": 58.18,
+      "scoreCI": 2.79,
+      "n_trials": 330,
+      "successes": 192,
+      "total_cost_usd": 3267.18,
+      "api": 9.900545454545455,
+      "price": 0.2828727272727273,
+      "lo": 0.1980109090909091,
+      "hi": 0.3960218181818182,
+      "measured": false
+    },
+    {
+      "source_id": "c741608e-c94e-417d-b7a8-e67111a0c887",
+      "model": "Fable 5.1",
+      "harness": "Claude Code",
+      "effort": "max",
+      "short": "Fable 5.1 max",
+      "group": "Claude / Fable",
+      "chartLabel": [
+        "Claude Code",
+        "Fable 5.1 max"
+      ],
+      "score": 57.88,
+      "scoreCI": 3.76,
+      "n_trials": 330,
+      "successes": 191,
+      "total_cost_usd": 6243.5,
+      "api": 18.919696969696968,
+      "price": 0.5045252525252525,
+      "lo": 0.3983094098883572,
+      "hi": 1.8919696969696969,
+      "measured": false
+    },
+    {
+      "source_id": "16db8ad5-84aa-4588-b660-1ce68c0d45e2",
+      "model": "GPT-6 Astra",
+      "harness": "Codex",
+      "effort": "xhigh",
+      "short": "Astra xhigh",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Astra xhigh"
+      ],
+      "score": 57.88,
+      "scoreCI": 2.72,
+      "n_trials": 330,
+      "successes": 191,
+      "total_cost_usd": 2350.51,
+      "api": 7.122757575757577,
+      "price": 0.20350735930735933,
+      "lo": 0.14245515151515153,
+      "hi": 0.28491030303030307,
+      "measured": false
+    },
+    {
+      "source_id": "3475050c-bf5e-4261-a3f6-0af5350af13f",
+      "model": "GPT-6 Astra",
+      "harness": "Codex",
+      "effort": "high",
+      "short": "Astra high",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Astra high"
+      ],
+      "score": 57.88,
+      "scoreCI": 2.97,
+      "n_trials": 330,
+      "successes": 191,
+      "total_cost_usd": 2269.42,
+      "api": 6.8770303030303035,
+      "price": 0.1964865800865801,
+      "lo": 0.13754060606060606,
+      "hi": 0.2750812121212121,
+      "measured": false
+    },
+    {
+      "source_id": "f3c3d5a6-6424-4acb-bfcc-615c3f79f6dd",
+      "model": "GPT-6 Astra",
+      "harness": "Codex",
+      "effort": "medium",
+      "short": "Astra medium",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Astra med"
+      ],
+      "score": 54.24,
+      "scoreCI": 2.66,
+      "n_trials": 330,
+      "successes": 179,
+      "total_cost_usd": 1914.8,
+      "api": 5.802424242424243,
+      "price": 0.16578354978354978,
+      "lo": 0.11604848484848485,
+      "hi": 0.2320969696969697,
+      "measured": false
+    },
+    {
+      "source_id": "d71ac3d0-da36-49cb-89d9-323136e77111",
+      "model": "Opus 5",
+      "harness": "Claude Code",
+      "effort": "max",
+      "short": "Opus 5 max",
+      "group": "Claude / Opus",
+      "chartLabel": [
+        "Claude Code",
+        "Opus 5 max"
+      ],
+      "score": 51.82,
+      "scoreCI": 3.39,
+      "n_trials": 330,
+      "successes": 171,
+      "total_cost_usd": 5969.11,
+      "api": 18.08821212121212,
+      "price": 0.5168060606060606,
+      "lo": 0.45220530303030304,
+      "hi": 0.9044106060606061,
+      "measured": false
+    },
+    {
+      "source_id": "b3ad58f3-b311-4d4d-875b-3158cf0309d6",
+      "model": "GPT-6 Astra",
+      "harness": "Codex",
+      "effort": "low",
+      "short": "Astra low",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Astra low"
+      ],
+      "score": 50.61,
+      "scoreCI": 2.75,
+      "n_trials": 330,
+      "successes": 167,
+      "total_cost_usd": 1557.3,
+      "api": 4.719090909090909,
+      "price": 0.13483116883116883,
+      "lo": 0.09438181818181818,
+      "hi": 0.18876363636363636,
+      "measured": false
+    },
+    {
+      "source_id": "36c077e0-4879-4444-b315-8532d66401d6",
+      "model": "Fable 5",
+      "harness": "Claude Code",
+      "effort": "max",
+      "short": "Fable 5 max",
+      "group": "Claude / Fable",
+      "chartLabel": [
+        "Claude Code",
+        "Fable 5 max"
+      ],
+      "score": 44.55,
+      "scoreCI": 3.85,
+      "n_trials": 330,
+      "successes": 147,
+      "total_cost_usd": 7265.01,
+      "api": 22.01518181818182,
+      "price": 0.5870715151515151,
+      "lo": 0.4634775119617225,
+      "hi": 2.201518181818182,
+      "measured": false
+    },
+    {
+      "source_id": "d72e8775-f4f1-4313-99e7-35b1cb499f24",
+      "model": "GLM-5.3",
+      "harness": "Claude Code",
+      "effort": "max",
+      "short": "GLM 5.3 max",
+      "group": "GLM",
+      "chartLabel": [
+        "Claude Code",
+        "GLM 5.3 max"
+      ],
+      "score": 41.82,
+      "scoreCI": 3.23,
+      "n_trials": 330,
+      "successes": 138,
+      "total_cost_usd": 2727.63,
+      "api": 8.265545454545455,
+      "price": 1.0208724268868543,
+      "lo": 0.626728171828172,
+      "hi": 1.662890801506186,
+      "measured": false
+    },
+    {
+      "source_id": "0e349bde-b264-494d-a853-fada9c696192",
+      "model": "GPT-5.6 Sol",
+      "harness": "Codex",
+      "effort": "max",
+      "short": "Sol max",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Sol max"
+      ],
+      "score": 37.27,
+      "scoreCI": 3.78,
+      "n_trials": 330,
+      "successes": 123,
+      "total_cost_usd": 2541.7,
+      "api": 7.702121212121211,
+      "price": 0.22006060606060604,
+      "lo": 0.15404242424242423,
+      "hi": 0.30808484848484846,
+      "measured": false
+    },
+    {
+      "source_id": "952b4217-421f-4d14-849b-9968fcb2063b",
+      "model": "Opus 4.8",
+      "harness": "Claude Code",
+      "effort": "max",
+      "short": "Opus 4.8 max",
+      "group": "Claude / Opus",
+      "chartLabel": [
+        "Claude Code",
+        "Opus 4.8 max"
+      ],
+      "score": 23.64,
+      "scoreCI": 3.56,
+      "n_trials": 330,
+      "successes": 78,
+      "total_cost_usd": 6481.26,
+      "api": 19.64018181818182,
+      "price": 0.5611480519480521,
+      "lo": 0.4910045454545455,
+      "hi": 0.982009090909091,
+      "measured": false
+    },
+    {
+      "source_id": "e53da412-5e92-408c-b369-c767924c7c1c",
+      "model": "GPT-5.6 Terra",
+      "harness": "Codex",
+      "effort": "max",
+      "short": "Terra max",
+      "group": "Codex",
+      "chartLabel": [
+        "Codex · Terra max"
+      ],
+      "score": 21.52,
+      "scoreCI": 3.25,
+      "n_trials": 330,
+      "successes": 71,
+      "total_cost_usd": 1733.52,
+      "api": 5.2530909090909095,
+      "price": 0.15008831168831172,
+      "lo": 0.1050618181818182,
+      "hi": 0.2101236363636364,
+      "measured": false
+    },
+    {
+      "source_id": "26354542-edc0-40cd-8f8d-9fe6fbe92ac3",
+      "model": "Grok 4.6",
+      "harness": "Grok Build",
+      "effort": "high",
+      "short": "Grok 4.6 high",
+      "group": "Grok",
+      "chartLabel": [
+        "Grok Build",
+        "Grok 4.6 high"
+      ],
+      "score": 20.3,
+      "scoreCI": 3.09,
+      "n_trials": 330,
+      "successes": 67,
+      "total_cost_usd": 3591.58,
+      "api": 10.883575757575757,
+      "price": 0.6530145454545454,
+      "lo": 0.4353430303030303,
+      "hi": 1.0883575757575756,
+      "measured": false
+    },
+    {
+      "source_id": "0eed5a0d-96b6-491b-aeb7-cd5e4700c2d7",
+      "model": "Grok 4.5",
+      "harness": "Grok Build",
+      "effort": "high",
+      "short": "Grok 4.5 high",
+      "group": "Grok",
+      "chartLabel": [
+        "Grok Build",
+        "Grok 4.5 high"
+      ],
+      "score": 12.42,
+      "scoreCI": 2.62,
+      "n_trials": 330,
+      "successes": 41,
+      "total_cost_usd": 2094.11,
+      "api": 6.345787878787879,
+      "price": 0.38074727272727277,
+      "lo": 0.2538315151515152,
+      "hi": 0.634578787878788,
+      "measured": false
+    }
+  ],
+  "omitted": [
+    {
+      "source_id": "06850434-507d-4dbd-b74a-09d52519ee35",
+      "model": "Gemini 3.8 Flash",
+      "harness": "mini-SWE-agent",
+      "effort": "high",
+      "reason": "No matched subscription harness. Antigravity subscription economics do not establish mini-SWE-agent performance on that subscription."
+    },
+    {
+      "source_id": "51c6d76e-5baa-48c1-97b3-88656c620eef",
+      "model": "GPT-5.6 Luna",
+      "harness": "Codex",
+      "effort": "max",
+      "reason": "Luna omitted at the user’s request."
+    },
+    {
+      "source_id": "8180b9e4-4990-43d0-b906-cd8b43adaaa2",
+      "model": "Sonnet 5",
+      "harness": "Claude Code",
+      "effort": "max",
+      "reason": "No established Sonnet-specific subscription allowance in our existing estimates."
+    },
+    {
+      "source_id": "14f4da14-b86a-4dca-92d7-11178d4fe064",
+      "model": "Gemini 3.7 Flash",
+      "harness": "mini-SWE-agent",
+      "effort": "high",
+      "reason": "No matched subscription harness. Antigravity subscription economics do not establish mini-SWE-agent performance on that subscription."
+    }
+  ],
+  "layout": {
+    "includeAll": true,
+    "astraLabelColumn": true,
+    "bounds": {
+      "scoreMin": 10,
+      "scoreMax": 65,
+      "apiMin": 4,
+      "apiMax": 24,
+      "subscriptionMin": 0.05,
+      "subscriptionMax": 1.1
+    },
+    "scoreTicks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60
+    ],
+    "apiTicks": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24
+    ],
+    "subscriptionTicks": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      1.1
+    ]
+  }
+}

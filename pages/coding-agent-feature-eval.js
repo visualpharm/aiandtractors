@@ -1,15 +1,23 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import ModelEvalChart from '../components/ModelEvalChart';
+import ModelEvalChart, { fmt } from '../components/ModelEvalChart';
 import data from '../public/model-eval/experiment-data.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-feature-eval/';
-const fmtScore = v => String(parseFloat(v.toFixed(2)));
 const TITLE = 'Six coding agents, one real feature';
 const DESCRIPTION = 'A real feature from a private repo given to six agent setups on the same base commit. One reviewer graded all branches on a 10-item rubric scored 0 to 1 per item, with file-level evidence, and re-ran the tests.';
+const PLAN_NAMES = { claude_max_100: 'Claude Max', glm_pro_annual: 'GLM Pro annual', codex_pro: 'Codex Pro' };
+
+function costRow(r, experiment) {
+  const p = experiment.prices_per_million[r.model];
+  const a = experiment.allowances[r.plan];
+  const allowance = r.model === 'claude-fable-5-1' && a.fable_monthly_api_equiv_usd ? a.fable_monthly_api_equiv_usd : a.monthly_api_equiv_usd;
+  return { ...r, prices: p, plan_label: `${PLAN_NAMES[r.plan]}, $${a.fee_usd}`, fee: a.fee_usd, allowance, multiplier: a.fee_usd / allowance };
+}
 
 export default function CodingAgentFeatureEval() {
   const { experiment, runs, rubric_items } = data;
+  const byScore = [...runs].sort((a, b) => b.score - a.score);
   return <Layout>
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
@@ -19,21 +27,22 @@ export default function CodingAgentFeatureEval() {
     <article className="subscription-article eval-article">
       <h1>{TITLE}</h1>
       <p className="intro">One real feature from a private repo, given to six agent setups on the same base commit in isolated worktrees: rebuild Bruno's public chat bot so a price question runs the site's real solar estimator in conversation form. One reviewer graded every branch on a 10-item rubric, each item scored 0 to 1, for a maximum of 10, with file-level evidence, and re-ran the tests. Self-reports were treated as claims, not evidence.</p>
-      <ModelEvalChart runs={runs} rubricItems={rubric_items} />
+      <ModelEvalChart runs={runs} />
       <div className="reading">
         <section>
           <h2>Results</h2>
-          <table><thead><tr><th>Run</th><th>Score</th><th>Wall time</th><th>API $</th><th>Subscription $</th><th>Weekly share</th></tr></thead>
-            <tbody>{[...runs].sort((a, b) => b.score - a.score).map(r => <tr key={r.id}>
-              <td>{r.label}</td><td data-label="Score">{fmtScore(r.score / 2)}</td><td data-label="Wall time">{r.wall_min} min</td>
-              <td data-label="API $">${r.api_usd.toFixed(2)}</td><td data-label="Subscription $">${r.sub_usd.toFixed(2)}</td><td data-label="Weekly share">{r.weekly_share_pct}%</td>
-            </tr>)}
-            </tbody>
-          </table>
+          <div className="table-scroll">
+            <table className="results-table"><thead><tr><th>Run</th><th className="num">Score</th><th className="num">Wall time</th><th className="num">API $</th><th className="num">Subscription $</th><th className="num">Weekly share</th></tr></thead>
+              <tbody>{byScore.map(r => <tr key={r.id}>
+                <td>{r.label}</td><td className="num">{fmt.score(r.score / 2)}</td><td className="num">{fmt.minutes(r.wall_min)}</td>
+                <td className="num">{fmt.money(r.api_usd)}</td><td className="num">{fmt.money(r.sub_usd)}</td><td className="num">{fmt.pct(r.weekly_share_pct)}</td>
+              </tr>)}
+              </tbody>
+            </table>
+          </div>
         </section>
         <section>
           <h2>The rubric</h2>
-          <p>Each item scored 0 to 1, half points allowed. Maximum 10.</p>
           <ol>{rubric_items.map((item, i) => <li key={i}>{item}</li>)}</ol>
         </section>
         <section className="conclusions">
@@ -47,22 +56,31 @@ export default function CodingAgentFeatureEval() {
             <li><strong>Codex Astra low was the fastest and cheapest by far (14 min, 17 cents, 0.4% of a week on the $200 plan) and had the cleanest code lane, but scored 7.75.</strong> Parsers too strict so ordinary Spanish answers fell through to the LLM, and it stopped at the geocoder wall the others routed around, so it never produced a live report link.</li>
           </ol>
         </section>
-        <details><summary>Method and assumptions</summary>
-          <h2>Prices per million tokens</h2>
-          <table><thead><tr><th>Model</th><th>Input</th><th>Output</th><th>Cache read</th><th>Cache write</th></tr></thead>
-            <tbody>{Object.entries(experiment.prices_per_million).map(([model, p]) => <tr key={model}>
-              <td>{model}</td><td data-label="Input">${p.input}</td><td data-label="Output">${p.output}</td><td data-label="Cache read">${p.cache_read}</td><td data-label="Cache write">${p.cache_write}</td>
+      </div>
+      <section className="cost-section">
+        <h2>How the cost is computed</h2>
+        <p>API-equivalent $ = each token count × its list price per million; subscription $ per task = API-equivalent $ × plan fee ÷ monthly API-equivalent allowance; share of one week = API-equivalent $ ÷ (allowance ÷ 4.33).</p>
+        <div className="table-scroll">
+          <table className="cost-table">
+            <thead><tr>
+              <th>Run</th><th className="num">Fresh input</th><th className="num">Cache write</th><th className="num">Cached input</th><th className="num">Output</th>
+              <th className="num">Input $/M</th><th className="num">Cache write $/M</th><th className="num">Cached $/M</th><th className="num">Output $/M</th>
+              <th className="num">API $</th><th>Plan and fee</th><th className="num">Monthly allowance</th><th className="num">Multiplier</th><th className="num">Subscription $</th><th className="num">Share of a week</th>
+            </tr></thead>
+            <tbody>{byScore.map(r => costRow(r, experiment)).map(r => <tr key={r.id}>
+              <td>{r.label}</td>
+              <td className="num">{fmt.tokens(r.tokens.input)}</td><td className="num">{fmt.tokens(r.tokens.cache_write)}</td><td className="num">{fmt.tokens(r.tokens.cache_read)}</td><td className="num">{fmt.tokens(r.tokens.output)}</td>
+              <td className="num">{fmt.price(r.prices.input)}</td><td className="num">{fmt.price(r.prices.cache_write)}</td><td className="num">{fmt.price(r.prices.cache_read)}</td><td className="num">{fmt.price(r.prices.output)}</td>
+              <td className="num">{fmt.money(r.api_usd)}</td><td>{r.plan_label}</td><td className="num">${fmt.int(r.allowance)}</td><td className="num">{fmt.ratio(r.multiplier)}</td><td className="num">{fmt.money(r.sub_usd)}</td><td className="num">{fmt.pct(r.weekly_share_pct)}</td>
             </tr>)}</tbody>
           </table>
-          <h2>Allowances</h2>
-          <table><thead><tr><th>Plan</th><th>Monthly fee</th><th>Monthly API-equivalent</th><th>Source</th></tr></thead>
-            <tbody>{Object.entries(experiment.allowances).map(([plan, a]) => <tr key={plan}>
-              <td>{plan}</td><td data-label="Monthly fee">${a.fee_usd}</td><td data-label="Monthly API-equivalent">${a.monthly_api_equiv_usd.toLocaleString('en-US')}</td><td data-label="Source">{a.source}</td>
-            </tr>)}</tbody>
-          </table>
-          <p>API-equivalent dollars come from each session's own token counters at list prices. Subscription dollars per task = API dollars × monthly plan fee / monthly API-equivalent allowance, the method of the <a href="/coding-agent-subscription-costs/">subscription article</a>.</p>
-          <p>Two caveats. The $100 Claude allowance is one quarter of the measured $200 plan, scaled down, not measured directly. The GLM per-task figure has a wide band: the weekly allowance itself varied from $250 to $510 API-equivalent across the three windows.</p>
-        </details>
+        </div>
+      </section>
+      <div className="reading method">
+        <section>
+          <h2>Method</h2>
+          <p>Token counts are each session's own counters, priced at the provider's list rates. The $100 Claude allowance is one quarter of the $7,000 (Opus) and $7,500 (Fable) measured on the $200 plan. The GLM allowance is measured on this account: $250 to $510 API-equivalent burned per weekly window before the 429, in three windows between 17 August and 6 September 2026, about $1,300 per month on the Pro annual plan. The Codex allowance is the <a href="/coding-agent-subscription-costs/">subscription article</a>'s central case.</p>
+        </section>
       </div>
     </article>
     <style jsx global>{`
@@ -71,30 +89,31 @@ export default function CodingAgentFeatureEval() {
       .eval-article h1 {font:600 36px/1.2 system-ui,sans-serif;max-width:900px;margin:0 0 20px;text-wrap:balance;}
       .eval-article .intro {max-width:780px;}
       .eval-article .reading {max-width:780px;margin:40px auto 0;}
+      .eval-article .reading.method {margin-top:0;}
       .eval-article h2 {font:600 24px/1.3 system-ui,sans-serif;margin:40px 0 16px;text-wrap:balance;}
-      .eval-article details h2 {font-size:20px;margin:28px 0 12px;}
       .eval-article p {margin:0 0 20px;}
       .eval-article strong {font-weight:600;}
       .eval-article a {color:#344abb;text-decoration:none;}
       .eval-article a:hover {color:#5064cf;text-decoration:none;}
-      .eval-article a:focus-visible,.eval-article summary:focus-visible {outline:2px solid currentColor;outline-offset:4px;}
-      .eval-article details {border-top:1px solid #d9d9d9;margin:28px 0;padding:20px 0 0;}
-      .eval-article summary {font-size:20px;font-weight:600;cursor:pointer;}
+      .eval-article a:focus-visible {outline:2px solid currentColor;outline-offset:4px;}
       .eval-article ul,.eval-article ol {padding-left:24px;margin:20px 0 28px;}
       .eval-article ul {list-style:disc;}.eval-article ol {list-style:decimal;}.eval-article li {margin:0 0 14px;}
-      .eval-article table {width:100%;border-collapse:collapse;margin:24px 0;font-size:17px;}
-      .eval-article th,.eval-article td {text-align:left;vertical-align:top;padding:12px 12px 12px 0;border-bottom:1px solid #ddd;}
+      .eval-article .cost-section {margin:40px 0 0;}
+      .eval-article .cost-section p {max-width:780px;}
+      .eval-article .table-scroll {overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0;}
+      .eval-article table {width:100%;border-collapse:collapse;font-size:17px;font-variant-numeric:tabular-nums;}
+      .eval-article th,.eval-article td {text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid #ddd;white-space:nowrap;}
+      .eval-article th:last-child,.eval-article td:last-child {padding-right:0;}
       .eval-article th {font-weight:600;}
-      .eval-article td:not(:first-child) {font-variant-numeric:tabular-nums;}
+      .eval-article th.num,.eval-article td.num {text-align:right;}
+      .eval-article .cost-table {font-size:16px;}
+      .eval-article .cost-table th {white-space:normal;vertical-align:bottom;min-width:64px;}
       @media(max-width:700px) {
         .eval-article {padding:28px 20px 48px;}
         .eval-article h1 {font-size:30px;}
-        .eval-article table,.eval-article tbody,.eval-article tr,.eval-article td {display:block;}
-        .eval-article thead {display:none;}
-        .eval-article tr {padding:16px 0;border-bottom:1px solid #ddd;}
-        .eval-article td {padding:3px 0;border:0;}
-        .eval-article td:first-child {font-weight:600;margin-bottom:6px;}
-        .eval-article td:not(:first-child)::before {content:attr(data-label) ': ';font-weight:400;}
+        .eval-article .table-scroll {margin-left:-20px;margin-right:-20px;padding:0 20px;}
+        .eval-article table {font-size:16px;}
+        .eval-article th,.eval-article td {padding:10px 14px 10px 0;}
       }
     `}</style>
   </Layout>;

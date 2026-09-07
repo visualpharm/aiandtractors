@@ -1,26 +1,37 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-const FAMILY_COLORS = { anthropic: '#db7549', zhipu: '#2563eb', openai: '#171717' };
-const SHORT_LABELS = { 'fable-low': 'Fable 5.1 low', 'opus-low': 'Opus 5 low', 'glm-claude-code': 'GLM 5.3 · Claude Code', 'glm-zcode': 'GLM 5.3 · ZCode', 'sonnet-medium': 'Sonnet 5 medium', 'codex-astra-low': 'Codex GPT-6 Astra low' };
+export const FAMILY_COLORS = { anthropic: '#db7549', zhipu: '#2563eb', openai: '#171717' };
+export const familyOf = r => r.model.startsWith('claude') ? 'anthropic' : r.model.startsWith('glm') ? 'zhipu' : 'openai';
+const SHORT_LABELS = { 'fable-low': 'Fable 5.1 low', 'opus-low': 'Opus 5 low', 'glm-claude-code': 'GLM 5.3 · Claude Code', 'glm-zcode': 'GLM 5.3 · ZCode', 'sonnet-medium': 'Sonnet 5 medium', 'codex-astra-low': 'Codex Astra low' };
 
-const COST_MODES = [
-  { key: 'sub', label: 'Subscription $ / task', axis: 'Subscription dollars per task', get: r => r.sub_usd, ticks: [0.5, 1, 1.5, 2], fmt: v => `$${v.toFixed(2)}` },
-  { key: 'api', label: 'API-equivalent $', axis: 'API-equivalent dollars per task', get: r => r.api_usd, ticks: [10, 20, 30, 40], fmt: v => `$${v}` },
-  { key: 'share', label: 'Share of one week\'s allowance', axis: 'Percent of one week\'s plan allowance', get: r => r.weekly_share_pct, ticks: [2, 4, 6, 8], fmt: v => `${v}%` },
-];
-const VIEWS = [
-  { key: 'cost', label: 'Score vs cost' },
-  { key: 'time', label: 'Score vs wall time' },
+export const fmt = {
+  money: v => v == null ? '–' : `$${v.toFixed(2)}`,
+  price: v => v == null ? '–' : `$${String(parseFloat(v.toFixed(2)))}`,
+  pct: v => `${v}%`,
+  minutes: v => `${v} min`,
+  score: v => String(parseFloat(v.toFixed(2))),
+  tokens: n => n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${Math.round(n / 1e3)}K` : String(n),
+  int: v => v.toLocaleString('en-US'),
+  ratio: v => v.toFixed(3),
+};
+
+const AXES = [
+  { key: 'sub', label: 'Subscription $ per task', axis: 'Subscription dollars per task', get: r => r.sub_usd, step: 0.5, tick: v => v === 0 ? '$0' : `$${v.toFixed(2)}` },
+  { key: 'api', label: 'API-equivalent $', axis: 'API-equivalent dollars per task', get: r => r.api_usd, step: 10, tick: v => `$${v}` },
+  { key: 'share', label: 'Share of a week', axis: 'Percent of one week\'s plan allowance', get: r => r.weekly_share_pct, step: 2, tick: v => `${v}%` },
+  { key: 'time', label: 'Wall time', axis: 'Minutes per task', get: r => r.wall_min, step: 10, tick: v => `${v} min` },
 ];
 
-function fmtTokens(n) { return n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : `${Math.round(n / 1e3)}K`; }
-function fmtScore(v) { return String(parseFloat(v.toFixed(2))); }
 const score10 = r => r.score / 2;
-const item10 = v => v / 2;
 
-export default function ModelEvalChart({ runs, rubricItems }) {
-  const [costMode, setCostMode] = useState('sub');
-  const [view, setView] = useState('cost');
+// Pareto frontier: runs where no other run has both lower x and >= score.
+export function paretoFrontier(runs, get) {
+  return runs.filter(r => !runs.some(o => o !== r && get(o) < get(r) && score10(o) >= score10(r)))
+    .sort((a, b) => get(a) - get(b));
+}
+
+export default function ModelEvalChart({ runs }) {
+  const [axisKey, setAxisKey] = useState('sub');
   const [hover, setHover] = useState(null);
   const host = useRef(null);
   const [width, setWidth] = useState(540);
@@ -32,132 +43,151 @@ export default function ModelEvalChart({ runs, rubricItems }) {
 
   const narrow = width < 480;
   const metric = useMemo(() => {
-    if (view === 'time') return { get: r => r.wall_min, axis: 'Wall-clock minutes per task', min: 10, max: 50, ticks: [15, 20, 25, 30, 35, 40, 45], fmt: v => `${v}` };
-    const m = COST_MODES.find(c => c.key === costMode);
-    return { ...m, min: 0, max: Math.max(...runs.map(m.get)) * 1.28 };
-  }, [view, costMode, runs]);
+    const m = AXES.find(a => a.key === axisKey);
+    const max = Math.max(...runs.map(m.get)) * 1.25;
+    const ticks = [];
+    for (let t = m.step; t <= max; t += m.step) ticks.push(parseFloat(t.toFixed(2)));
+    return { ...m, min: 0, max, ticks };
+  }, [axisKey, runs]);
+  const frontier = useMemo(() => paretoFrontier(runs, metric.get), [runs, metric]);
+  const onFrontier = new Set(frontier.map(r => r.id));
 
-  const scoreMin = 0, scoreMax = 10;
-  const height = narrow ? 640 : 560, left = narrow ? 34 : 44, right = width - 24, top = 26, bottom = height - (narrow ? 90 : 60);
+  const height = narrow ? 560 : 520, left = narrow ? 30 : 40, right = width - 16, top = 30, bottom = height - 60;
   const x = v => left + (v - metric.min) / (metric.max - metric.min) * (right - left);
-  const y = v => bottom - (v - scoreMin) / (scoreMax - scoreMin) * (bottom - top);
-  let ticks = view === 'cost' && metric.ticks
-    ? metric.ticks.filter(t => t >= metric.min && t <= metric.max).map(t => ({ v: t, x: x(t) }))
-    : metric.ticks.map(t => ({ v: t, x: x(t) }));
-  if (narrow && ticks.length > 1) {
-    const spacing = (right - left) / (ticks.length - 1);
-    if (spacing < 56) ticks = ticks.filter((_, i) => i % 2 === 0);
-  }
+  const Y_MIN = 6, Y_MAX = 10;
+  const y = v => bottom - (v - Y_MIN) / (Y_MAX - Y_MIN) * (bottom - top);
+  let ticks = metric.ticks.map(t => ({ v: t, x: x(t) }));
+  ticks.unshift({ v: 0, x: x(0) });
+  if (ticks.length > 1 && (right - left) / (ticks.length - 1) < 64) ticks = ticks.filter((_, i) => i === 0 || i % 2 === 1);
 
-  // Place labels greedily top-to-bottom, above the point when that rectangle is
-  // free and below otherwise, so same-side neighbors never collide; on narrow
-  // screens space them further apart and draw leader lines to the label.
-  const placed = runs.map(r => ({ r, px: x(metric.get(r)), py: y(score10(r)) }))
-    .sort((a, b) => a.py - b.py);
-  const step = narrow ? 26 : 20;
-  const gap = narrow ? 10 : 8;
-  const half = Math.min((right - left) / 2, 82);
-  const taken = [];
-  const hits = (x1, x2, y1, y2) => taken.some(b => x1 < b.x2 + 12 && b.x1 < x2 + 12 && y1 < b.y2 && b.y1 < y2);
+  // Stepped frontier line: from the leftmost frontier point, across then up at each next point.
+  const fpts = frontier.map(r => ({ px: x(metric.get(r)), py: y(score10(r)) }));
+  const frontierPath = fpts.length ? `M ${fpts[0].px} ${fpts[0].py} ` + fpts.slice(1).map(p => `H ${p.px} V ${p.py}`).join(' ') : '';
+  const lastF = fpts[fpts.length - 1], prevF = fpts[fpts.length - 2];
+  const flW = 15 * (narrow ? 7.2 : 7.8);
+  const frontierLabel = fpts.length > 1 ? (lastF.px + 8 + flW <= right
+    ? { x: lastF.px + 8, y: (lastF.py + prevF.py) / 2 + 5, anchor: 'start' }
+    : { x: lastF.px - 8, y: (lastF.py + prevF.py) / 2 + 5, anchor: 'end' }) : null;
+
+  // Labels sit beside their dot (right, else left); only when that collides
+  // does the label move above or below with a leader line.
+  const placed = runs.map(r => ({ r, px: x(metric.get(r)), py: y(score10(r)), text: SHORT_LABELS[r.id] }))
+    .sort((a, b) => a.py - b.py || a.px - b.px);
+  const charW = narrow ? 7.2 : 7.8, lh = 18, gap = 9;
+  const taken = placed.map(p => ({ x1: p.px - 7, x2: p.px + 7, y1: p.py - 7, y2: p.py + 7, own: p }));
+  if (frontierLabel) taken.push({ x1: frontierLabel.anchor === 'start' ? frontierLabel.x : frontierLabel.x - flW, x2: frontierLabel.anchor === 'start' ? frontierLabel.x + flW : frontierLabel.x, y1: frontierLabel.y - 14, y2: frontierLabel.y + 4 });
+  // The frontier line itself is an obstacle — for its own points too: a label at
+  // segment height reads as text on the line, so it must drop to a leader line.
+  fpts.forEach((p, i) => {
+    const n = fpts[i + 1];
+    if (!n) return;
+    taken.push({ x1: p.px, x2: n.px, y1: p.py - 13, y2: p.py + 5 });
+    taken.push({ x1: n.px - 7, x2: n.px + 7, y1: Math.min(p.py, n.py), y2: Math.max(p.py, n.py) });
+  });
+  let self = null;
+  const hits = (x1, x2, y1, y2) => taken.some(b => b.own !== self && x1 < b.x2 + 6 && b.x1 < x2 + 6 && y1 < b.y2 + 3 && b.y1 < y2 + 3);
   placed.forEach(p => {
-    const lx = Math.max(left + half, Math.min(p.px, right - half));
-    const lw = half * 2, lh = 16;
-    let dy;
-    const aboveY = p.py - gap - lh;
-    if (aboveY >= top && !hits(lx - half, lx + half, aboveY, aboveY + lh)) dy = -gap;
-    else {
-      let k = 1;
-      do { dy = gap + 6 + k * step; k++; } while (hits(lx - half, lx + half, p.py + dy, p.py + dy + lh));
+    self = p;
+    const w = p.text.length * charW;
+    const side = [];
+    side.push({ x1: p.px + 10, anchor: 'start', y1: p.py - lh / 2 });
+    side.push({ x1: p.px - 10 - w, anchor: 'end', y1: p.py - lh / 2 });
+    const fits = c => c.x1 >= left && c.x1 + w <= right && !hits(c.x1, c.x1 + w, c.y1, c.y1 + lh);
+    let c = side.find(fits);
+    if (c) {
+      taken.push({ x1: c.x1, x2: c.x1 + w, y1: c.y1, y2: c.y1 + lh });
+      p.label = { x: c.anchor === 'start' ? c.x1 : c.x1 + w, y: p.py + 5, anchor: c.anchor, leader: false };
+      return;
     }
-    taken.push({ x1: lx - half, x2: lx + half, y1: p.py + dy, y2: p.py + dy + lh });
-    p.label = { dy, lx, leader: dy !== -gap || Math.abs(lx - p.px) > 4 };
+    const cx = Math.max(left + w / 2 + 2, Math.min(p.px, right - w / 2 - 2));
+    let ly = p.py - gap - lh;
+    if (ly < top || hits(cx - w / 2, cx + w / 2, ly, ly + lh)) {
+      ly = p.py + gap + 4;
+      while (hits(cx - w / 2, cx + w / 2, ly, ly + lh)) ly += lh + 4;
+    }
+    taken.push({ x1: cx - w / 2, x2: cx + w / 2, y1: ly, y2: ly + lh });
+    const below = ly > p.py;
+    p.label = { x: cx, y: ly + 13, anchor: 'middle', leader: true, endY: below ? ly : ly + lh };
   });
 
-  const hoveredRun = hover != null ? runs.find(r => r.id === hover) : null;
+  const hovered = hover != null ? runs.find(r => r.id === hover) : null;
 
-  return <section className="model-eval-chart" aria-label="Agent runs plotted by cost and rubric score">
-    <div className="eval-controls" role="group" aria-label="Chart axes">
-      {view === 'cost' && <div className="eval-toggle" role="radiogroup" aria-label="Cost basis">
-        {COST_MODES.map(m => <button key={m.key} role="radio" aria-checked={costMode === m.key} className={costMode === m.key ? 'on' : ''} onClick={() => setCostMode(m.key)}>{m.label}</button>)}
-      </div>}
-      <div className="eval-toggle" role="radiogroup" aria-label="View">
-        {VIEWS.map(v => <button key={v.key} role="radio" aria-checked={view === v.key} className={view === v.key ? 'on' : ''} onClick={() => setView(v.key)}>{v.label}</button>)}
-      </div>
+  return <section className="model-eval-chart" aria-label="Agent runs plotted by score against cost or time">
+    <div className="eval-axis" role="radiogroup" aria-label="Horizontal axis">
+      {AXES.map(a => <button key={a.key} type="button" role="radio" aria-checked={axisKey === a.key} className={axisKey === a.key ? 'on' : ''} onClick={() => setAxisKey(a.key)}>{a.label}</button>)}
     </div>
     <div className="model-eval-plot" ref={host}>
-      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Rubric score from 0 to 10 against ${metric.axis.toLowerCase()}`}>
-        {[0, 2, 4, 6, 8, 10].map(t => <g key={t}>
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Score from 6 to 10 against ${metric.axis.toLowerCase()}`}>
+        {[6, 7, 8, 9, 10].map(t => <g key={t}>
           <line x1={left} x2={right} y1={y(t)} y2={y(t)} stroke="#e5e5e5" />
           <text x={left - 10} y={y(t) + 5} textAnchor="end">{t}</text>
         </g>)}
-        {ticks.map(t => <text key={t.v} x={t.x} y={bottom + 28} textAnchor="middle">{metric.fmt(t.v)}</text>)}
+        {ticks.map(t => <text key={t.v} x={t.x} y={bottom + 26} textAnchor="middle">{metric.tick(t.v)}</text>)}
         <line x1={left} x2={right} y1={bottom} y2={bottom} stroke="#a9a9a9" />
-        <text x={left} y="16" className="axis-caption">Score (0 to 10) ↑</text>
-        <text x={(left + right) / 2} y={height - 4} textAnchor="middle">{metric.axis}</text>
+        <text x={left} y="16">Score ↑</text>
+        <text x={(left + right) / 2} y={height - 6} textAnchor="middle">{metric.axis}</text>
+        {frontierPath && <path className="pareto" data-axis={axisKey} d={frontierPath} fill="none" stroke="#b5b5b5" strokeWidth="1.5" />}
+        {frontierLabel && <text className="pareto-label" x={frontierLabel.x} y={frontierLabel.y} textAnchor={frontierLabel.anchor}>Pareto frontier</text>}
         {placed.map(p => {
-          const family = p.r.model.startsWith('claude') ? 'anthropic' : p.r.model.startsWith('glm') ? 'zhipu' : 'openai';
-          const c = FAMILY_COLORS[family];
+          const c = FAMILY_COLORS[familyOf(p.r)];
           const active = hover === p.r.id;
+          const dim = !onFrontier.has(p.r.id);
           return <g key={p.r.id} className="eval-point" tabIndex="0" role="button"
-            aria-label={`${p.r.label}. Score ${fmtScore(score10(p.r))} of 10. ${metric.axis}: ${metric.fmt(metric.get(p.r))}.`}
+            aria-label={`${p.r.label}. Score ${fmt.score(score10(p.r))} of 10. ${metric.axis}: ${metric.tick(metric.get(p.r))}.`}
             onMouseEnter={() => setHover(p.r.id)} onMouseLeave={() => setHover(null)}
             onFocus={() => setHover(p.r.id)} onBlur={() => setHover(null)}
             onClick={() => setHover(active ? null : p.r.id)}>
-            <title>{`${p.r.label}: ${fmtScore(score10(p.r))}/10, ${metric.fmt(metric.get(p.r))}`}</title>
+            <title>{`${p.r.label}: ${fmt.score(score10(p.r))}/10, ${metric.tick(metric.get(p.r))}`}</title>
             <circle cx={p.px} cy={p.py} r="16" fill="transparent" />
-            {active && <circle cx={p.px} cy={p.py} r="9" fill="none" stroke={c} strokeWidth="1.5" />}
-            <circle cx={p.px} cy={p.py} r="5" fill={c} stroke="white" strokeWidth="1.5" />
-            {p.label.leader && <line x1={p.px} y1={p.py + (p.label.dy < 0 ? -7 : 7)} x2={p.label.lx} y2={p.py + p.label.dy + (p.label.dy < 0 ? 8 : -8)} stroke="#9a9a9a" strokeWidth="1" />}
-            <text className="point-label" x={p.label.lx} y={p.py + p.label.dy} textAnchor="middle">{SHORT_LABELS[p.r.id]}</text>
+            {active && <circle cx={p.px} cy={p.py} r="10" fill="none" stroke={c} strokeWidth="1.5" />}
+            <circle cx={p.px} cy={p.py} r="4.5" fill={c} stroke={c} strokeWidth="1.7" opacity={dim ? .55 : 1} />
+            {p.label.leader && <line x1={p.px} y1={p.py} x2={p.label.x} y2={p.label.endY} stroke="#929292" strokeWidth=".8" />}
+            <text className="point-label" x={p.label.x} y={p.label.y} textAnchor={p.label.anchor}>{p.text}</text>
           </g>;
         })}
       </svg>
-      {hoveredRun && <div className="eval-tooltip" role="status">
-        <strong>{hoveredRun.label}</strong>
-        <span className="score-line">{fmtScore(score10(hoveredRun))}/10 · {hoveredRun.wall_min} min · {metric.fmt(metric.get(hoveredRun))}</span>
-        <ol className="rubric-mini">{hoveredRun.rubric.map((v, i) => <li key={i}><span>{fmtScore(item10(v))}</span> {rubricItems[i]}</li>)}</ol>
+      {hovered && <div className="eval-tooltip" role="status">
+        <strong>{hovered.label}</strong>
         <dl>
-          <div><dt>Input</dt><dd>{fmtTokens(hoveredRun.tokens.input)}</dd></div>
-          <div><dt>Output</dt><dd>{fmtTokens(hoveredRun.tokens.output)}</dd></div>
-          <div><dt>Cache read</dt><dd>{fmtTokens(hoveredRun.tokens.cache_read)}</dd></div>
-          <div><dt>Cache write</dt><dd>{fmtTokens(hoveredRun.tokens.cache_write)}</dd></div>
-          <div><dt>API $</dt><dd>${hoveredRun.api_usd.toFixed(2)}</dd></div>
-          <div><dt>Subscription $</dt><dd>${hoveredRun.sub_usd.toFixed(2)}</dd></div>
-          <div><dt>Weekly share</dt><dd>{hoveredRun.weekly_share_pct}%</dd></div>
+          <div><dt>Score</dt><dd>{fmt.score(score10(hovered))} / 10</dd></div>
+          <div><dt>Wall time</dt><dd>{fmt.minutes(hovered.wall_min)}</dd></div>
+          <div><dt>API $</dt><dd>{fmt.money(hovered.api_usd)}</dd></div>
+          <div><dt>Subscription $</dt><dd>{fmt.money(hovered.sub_usd)}</dd></div>
+          <div><dt>Share of a week</dt><dd>{fmt.pct(hovered.weekly_share_pct)}</dd></div>
         </dl>
-        <ul className="eval-notes">{hoveredRun.notes.map((n, i) => <li key={i}>{n}</li>)}</ul>
       </div>}
     </div>
-    <div className="agent-legend" aria-label="Model families">
-      {[['anthropic', 'Claude / Fable (Anthropic)'], ['zhipu', 'GLM 5.3 (Z.ai)'], ['openai', 'Codex (OpenAI)']].map(([k, label]) => <span key={k}><i style={{ background: FAMILY_COLORS[k] }} />{label}</span>)}
+    <div className="agent-legend" aria-label="Providers">
+      {[['anthropic', 'Anthropic'], ['zhipu', 'Z.ai'], ['openai', 'OpenAI']].map(([k, label]) => <span key={k}><i style={{ background: FAMILY_COLORS[k] }} />{label}</span>)}
     </div>
     <style>{`
       .model-eval-chart { margin:32px 0; color:#252525; }
-      .eval-controls { display:flex; flex-direction:column; gap:10px; margin:0 0 18px; }
-      .eval-toggle { display:flex; flex-wrap:wrap; gap:8px; }
-      .eval-toggle button { font:15px/1.2 system-ui,sans-serif; padding:8px 14px; border:1px solid #c9c9c9; background:#fff; color:#252525; border-radius:999px; cursor:pointer; }
-      .eval-toggle button.on { background:#252525; border-color:#252525; color:#fff; }
-      .eval-toggle button:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
+      .eval-axis { display:inline-grid; grid-auto-flow:column; grid-auto-columns:max-content; border:1px solid #252525; margin:0 0 20px; max-width:100%; }
+      .eval-axis button { font:15px/1.2 system-ui,sans-serif; padding:9px 14px; border:0; border-left:1px solid #252525; background:#fff; color:#252525; cursor:pointer; white-space:nowrap; }
+      .eval-axis button:first-child { border-left:0; }
+      .eval-axis button.on { background:#252525; color:#fff; }
+      .eval-axis button:focus-visible { outline:2px solid currentColor; outline-offset:-4px; }
+      @media(max-width:600px) {
+        .eval-axis { display:grid; grid-template-columns:1fr 1fr; grid-auto-flow:row; width:100%; }
+        .eval-axis button { padding:10px 8px; white-space:normal; }
+        .eval-axis button:nth-child(3) { border-left:0; }
+        .eval-axis button:nth-child(n+3) { border-top:1px solid #252525; }
+      }
       .model-eval-plot { position:relative; width:100%; min-width:0; }
       .model-eval-plot svg { display:block; width:100%; height:auto; overflow:visible; font:15px system-ui,sans-serif; fill:#252525; }
-      .model-eval-plot .point-label { font-size:14px; paint-order:stroke; stroke:white; stroke-width:5px; stroke-linejoin:round; }
+      .model-eval-plot .point-label { font-size:15px; paint-order:stroke; stroke:white; stroke-width:5px; stroke-linejoin:round; }
+      .model-eval-plot .pareto-label { font-size:14px; fill:#6b6b6b; paint-order:stroke; stroke:white; stroke-width:4px; }
       .eval-point { cursor:pointer; outline:none; }
       .eval-point:focus-visible circle:first-of-type { stroke:#252525; stroke-width:2; }
       .agent-legend { display:flex; flex-wrap:wrap; gap:12px 22px; margin:24px 0; font-size:16px; }
       .agent-legend span { display:flex; align-items:center; gap:8px; }
       .agent-legend i { width:9px; height:9px; display:inline-block; border-radius:50%; }
-      .eval-tooltip { position:absolute; top:8px; right:8px; width:min(340px,90%); max-height:420px; overflow:auto; background:#fff; border:1px solid #d9d9d9; box-shadow:0 4px 16px rgba(0,0,0,.08); padding:14px 16px; font:15px/1.45 system-ui,sans-serif; }
-      .eval-tooltip strong { display:block; font-weight:600; margin-bottom:2px; }
-      .eval-tooltip .score-line { display:block; color:#4a4a4a; margin-bottom:10px; font-variant-numeric:tabular-nums; }
-      .rubric-mini { list-style:none; padding:0; margin:0 0 10px; font-size:14px; }
-      .rubric-mini li { display:flex; gap:8px; margin:0 0 5px; }
-      .rubric-mini li span { font-weight:600; min-width:26px; text-align:right; font-variant-numeric:tabular-nums; }
-      .eval-tooltip dl { display:grid; grid-template-columns:1fr 1fr; gap:2px 14px; margin:0 0 10px; font-size:14px; font-variant-numeric:tabular-nums; }
-      .eval-tooltip dl div { display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid #eee; padding:2px 0; }
+      .eval-tooltip { position:absolute; top:8px; right:8px; width:min(260px,80%); background:#fff; border:1px solid #d9d9d9; box-shadow:0 4px 16px rgba(0,0,0,.08); padding:12px 14px; font:15px/1.45 system-ui,sans-serif; pointer-events:none; }
+      .eval-tooltip strong { display:block; font-weight:600; margin-bottom:6px; }
+      .eval-tooltip dl { display:grid; grid-template-columns:max-content 1fr; gap:2px 14px; margin:0; font-variant-numeric:tabular-nums; }
+      .eval-tooltip dl div { display:contents; }
       .eval-tooltip dt { color:#4a4a4a; }
-      .eval-tooltip dd { margin:0; }
-      .eval-notes { list-style:disc; padding-left:18px; margin:0; font-size:14px; }
-      .eval-notes li { margin:0 0 5px; }
+      .eval-tooltip dd { margin:0; text-align:right; }
     `}</style>
   </section>;
 }

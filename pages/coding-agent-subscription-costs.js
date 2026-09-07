@@ -27,6 +27,16 @@ export default function CodingAgentSubscriptionCosts() {
         <a href="/coding-subscriptions/estimates.json">Calculation data</a>
       </nav>
       <div className="reading">
+        <section className="conclusions">
+          <h2>Conclusions</h2>
+          <p>API price versus our estimated subscription price:</p>
+          <ol>
+            <li>A $12 API task costs about 30 cents on a subscription.</li>
+            <li>Kimi is ridiculously expensive. About 14.5× Astra Low, with almost the same benchmark score.</li>
+            <li>Grok isn’t cheaper than Astra High. It’s expensive. A worse Astra.</li>
+            <li>Are Claude’s couple of extra index points worth 3× the price? (Opus 5 xhigh versus Astra High.)</li>
+          </ol>
+        </section>
         <section>
           <h2>GLM 5.3: used, but not yet scored here</h2>
           <p><strong>Our logs contain 233.75 million GLM 5.3 tokens, worth $75.49 at API rates.</strong> That is part of 617.14 million tokens and $194.67 across the GLM family, recorded from 10 August to 5 September 2026.</p>

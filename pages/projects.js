@@ -21,6 +21,12 @@ const research = [
     blurb:
       'How businesses erased humans from their visual identity. People disappeared from corporate imagery in 6 months, replaced by AI and robots.',
   },
+  {
+    href: '/coding-agent-feature-eval',
+    title: 'Six coding agents, one real feature',
+    blurb:
+      'The same real feature handed to six coding-agent setups on the same commit, graded on a 10-item rubric with time and measured costs.',
+  },
 ];
 
 const products = [

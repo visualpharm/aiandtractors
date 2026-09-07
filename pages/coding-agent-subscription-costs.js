@@ -40,7 +40,7 @@ export default function CodingAgentSubscriptionCosts() {
         </section>
         <section>
           <h2>GLM 5.3: used, but not yet scored here</h2>
-          <p><strong>Our logs contain 233.75 million GLM 5.3 tokens, worth $75.49 at API rates.</strong> That is part of 617.14 million tokens and $194.67 across the GLM family, recorded from 10 August to 5 September 2026.</p>
+          <p><strong>Our logs contain 233.75 million GLM 5.3 tokens, worth $75.49 at API rates.</strong> That is part of 617.14 million tokens and $194.67 across the GLM family, recorded from 10 August to 5 September 2026. A later <a href="/coding-agent-feature-eval/">feature eval</a> measured the weekly allowance directly: $250 to $510 API-equivalent burned per weekly window before the 429.</p>
           <p>I rechecked all 68 <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis coding-agent results</a> on 6 September 2026. The GLM entries are 5.1 and 5.2. <a href="https://artificialanalysis.ai/models/glm-5-3">GLM 5.3 has a separate model benchmark</a>, but no published agent score in that dataset.</p>
           <p>Hitting a GLM plan limit confirms quota use; it cannot fill in the missing benchmark score.</p>
           <p><a href="https://www.tbench.ai/">Terminal-Bench 4.0</a> does publish a matched Claude Code / GLM 5.3 max result: <strong>41.82% of tasks resolved.</strong> The <a href="/terminal-bench-subscriptions/chart.png">separate comparison</a> uses its own scores and API costs with our existing subscription assumptions. Its percentages are not Artificial Analysis index points.</p>

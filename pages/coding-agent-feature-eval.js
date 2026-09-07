@@ -4,11 +4,12 @@ import ModelEvalChart from '../components/ModelEvalChart';
 import data from '../public/model-eval/experiment-data.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-feature-eval/';
-const TITLE = 'Five coding agents, one real feature';
-const DESCRIPTION = 'A real feature from a private repo given to five agent setups on the same base commit. One reviewer graded all branches on a 10-item rubric with file-level evidence and re-ran the tests.';
+const fmtScore = v => String(parseFloat(v.toFixed(2)));
+const TITLE = 'Six coding agents, one real feature';
+const DESCRIPTION = 'A real feature from a private repo given to six agent setups on the same base commit. One reviewer graded all branches on a 10-item rubric scored 0 to 1 per item, with file-level evidence, and re-ran the tests.';
 
 export default function CodingAgentFeatureEval() {
-  const { experiment, runs, rubric_items, pending } = data;
+  const { experiment, runs, rubric_items } = data;
   return <Layout>
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
@@ -17,33 +18,33 @@ export default function CodingAgentFeatureEval() {
     </Head>
     <article className="subscription-article eval-article">
       <h1>{TITLE}</h1>
-      <p className="intro">One real feature from a private repo, given to five agent setups on the same base commit in isolated worktrees: rebuild Bruno's public chat bot so a price question runs the site's real solar estimator in conversation form. One reviewer graded every branch on a 10-item rubric with file-level evidence and re-ran the tests. Self-reports were treated as claims, not evidence.</p>
-      <ModelEvalChart runs={runs} rubricItems={rubric_items} pending={pending} />
+      <p className="intro">One real feature from a private repo, given to six agent setups on the same base commit in isolated worktrees: rebuild Bruno's public chat bot so a price question runs the site's real solar estimator in conversation form. One reviewer graded every branch on a 10-item rubric, each item scored 0 to 1, for a maximum of 10, with file-level evidence, and re-ran the tests. Self-reports were treated as claims, not evidence.</p>
+      <ModelEvalChart runs={runs} rubricItems={rubric_items} />
       <div className="reading">
         <section>
           <h2>Results</h2>
           <table><thead><tr><th>Run</th><th>Score</th><th>Wall time</th><th>API $</th><th>Subscription $</th><th>Weekly share</th></tr></thead>
             <tbody>{[...runs].sort((a, b) => b.score - a.score).map(r => <tr key={r.id}>
-              <td>{r.label}</td><td data-label="Score">{r.score}/20</td><td data-label="Wall time">{r.wall_min} min</td>
+              <td>{r.label}</td><td data-label="Score">{fmtScore(r.score / 2)}</td><td data-label="Wall time">{r.wall_min} min</td>
               <td data-label="API $">${r.api_usd.toFixed(2)}</td><td data-label="Subscription $">${r.sub_usd.toFixed(2)}</td><td data-label="Weekly share">{r.weekly_share_pct}%</td>
             </tr>)}
-              <tr><td>Codex GPT-6 Astra low</td><td data-label="Score">In progress</td><td data-label="Wall time">-</td><td data-label="API $">-</td><td data-label="Subscription $">-</td><td data-label="Weekly share">-</td></tr>
             </tbody>
           </table>
         </section>
         <section>
           <h2>The rubric</h2>
-          <p>Each item scored 0 to 2. Maximum 20.</p>
+          <p>Each item scored 0 to 1, half points allowed. Maximum 10.</p>
           <ol>{rubric_items.map((item, i) => <li key={i}>{item}</li>)}</ol>
         </section>
         <section className="conclusions">
           <h2>What it means</h2>
           <ol>
-            <li><strong>Sonnet 5 medium is off the ladder.</strong> 14/20, tied for slowest at 41 minutes, and two shipping bugs the others do not have: an ARS total labelled USD, and bill answers that never reach sizing.</li>
-            <li><strong>The quality ceiling costs about $2 per task on the $100 Claude plan.</strong> Fable 5.1 low scored 19.5 for $1.88. Opus 5 low scored 19 for $2.14.</li>
-            <li><strong>GLM 5.3 lands 1.5 to 2 points lower, at $0.38 to $0.54 per task.</strong> 17.5 and 18 out of 20. Its two runs beat Sonnet's by 3.5 and 4 points for a third of the subscription price.</li>
+            <li><strong>Sonnet 5 medium is off the ladder.</strong> 7 out of 10, tied for slowest at 41 minutes, and two shipping bugs the others do not have: an ARS total labelled USD, and bill answers that never reach sizing.</li>
+            <li><strong>The quality ceiling costs about $2 per task on the $100 Claude plan.</strong> Fable 5.1 low scored 9.75 for $1.88. Opus 5 low scored 9.5 for $2.14.</li>
+            <li><strong>GLM 5.3 lands 0.75 to 1 point lower, at $0.38 to $0.54 per task.</strong> 8.75 and 9 out of 10. Its two runs beat Sonnet's by 1.75 and 2 points for a third of the subscription price.</li>
             <li><strong>I measured GLM's weekly allowance, the number the <a href="/coding-agent-subscription-costs/">subscription article</a> was missing.</strong> Three separate 429 windows, $250 to $510 API-equivalent burned per window, about $300 per week on the Pro annual plan.</li>
-            <li><strong>That measurement doubles the article's Pro estimate.</strong> The article assumed $1,300 per month of API-equivalent use. The measured windows support about $2,600.</li>
+            <li><strong>That measurement doubles the article's Pro estimate.</strong> The subscription-costs article assumed a $648 per month API-equivalent midpoint for the GLM Pro plan; the measured windows support about $1,300 per month.</li>
+            <li><strong>Codex Astra low was the fastest and cheapest by far (14 min, 17 cents, 0.4% of a week on the $200 plan) and had the cleanest code lane, but scored 7.75.</strong> Parsers too strict so ordinary Spanish answers fell through to the LLM, and it stopped at the geocoder wall the others routed around, so it never produced a live report link.</li>
           </ol>
         </section>
         <details><summary>Method and assumptions</summary>

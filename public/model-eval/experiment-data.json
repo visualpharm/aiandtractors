@@ -1,7 +1,7 @@
 {
   "experiment": {
     "date": "2026-09-07",
-    "title": "Five coding agents, one real feature",
+    "title": "Six coding agents, one real feature",
     "task_summary": "Rebuild Bruno's public chat bot so that a price question runs the site's real solar estimator in conversation form: a deterministic bilingual intent gate before the LLM, a one-question-per-message step machine (address via the wizard's geocoder with a numbered pick when ambiguous, owner/renter, monthly kWh or bill with 'no sé' falling back to the published sample home, savings-vs-backup goal, name, email or WhatsApp), lead creation through the same server libraries the wizard uses, the real roof and pricing analysis, a two-sentence summary with a link to the generated report, a prompt cleanup, an interruption path, a new test file, the repo's publication gate and a real end-to-end conversation against a throwaway server with the private data pack.",
     "repo": "Bruno (Node, ~1,080 tests), private repository",
     "base_commit": "ad1feac",
@@ -9,48 +9,285 @@
     "grading": "One Fable 5.1 reviewer graded every branch on a 10-item rubric (0-2 each, 20 max) with file-level evidence, re-running the chat test files in each worktree. Self-reports were treated as claims, not evidence.",
     "cost_method": "API-equivalent dollars from each session's own token counters at the provider's list prices. Subscription dollars per task = API dollars x monthly plan fee / monthly API-equivalent allowance, the method of the coding-agent subscription article.",
     "allowances": {
-      "claude_max_100": {"fee_usd": 100, "monthly_api_equiv_usd": 1750, "fable_monthly_api_equiv_usd": 1875, "source": "One quarter of the measured $7,000 (Opus) / $7,500 (Fable) on the $200 plan"},
-      "glm_pro_annual": {"fee_usd": 56, "monthly_api_equiv_usd": 1300, "source": "Measured on this account: $250-510 API-equivalent burned per weekly window before the 429 in three windows (Aug 17-19, Aug 31-Sep 3, Sep 4-6, 2026), ~$300/week"},
-      "codex_pro": {"fee_usd": 200, "monthly_api_equiv_usd": 7000, "source": "Coding-agent subscription article central case"}
+      "claude_max_100": {
+        "fee_usd": 100,
+        "monthly_api_equiv_usd": 1750,
+        "fable_monthly_api_equiv_usd": 1875,
+        "source": "One quarter of the measured $7,000 (Opus) / $7,500 (Fable) on the $200 plan"
+      },
+      "glm_pro_annual": {
+        "fee_usd": 56,
+        "monthly_api_equiv_usd": 1300,
+        "source": "Measured on this account: $250-510 API-equivalent burned per weekly window before the 429 in three windows (Aug 17-19, Aug 31-Sep 3, Sep 4-6, 2026), ~$300/week"
+      },
+      "codex_pro": {
+        "fee_usd": 200,
+        "monthly_api_equiv_usd": 7000,
+        "source": "Coding-agent subscription article central case"
+      }
     },
     "prices_per_million": {
-      "claude-fable-5-1": {"input": 10, "output": 50, "cache_read": 0.25, "cache_write": 12.5},
-      "claude-opus-5": {"input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25},
-      "claude-sonnet-5": {"input": 2, "output": 10, "cache_read": 0.2, "cache_write": 2.5},
-      "glm-5.3": {"input": 1.4, "output": 4.4, "cache_read": 0.26, "cache_write": 1.4}
+      "claude-fable-5-1": {
+        "input": 10,
+        "output": 50,
+        "cache_read": 0.25,
+        "cache_write": 12.5
+      },
+      "claude-opus-5": {
+        "input": 5,
+        "output": 25,
+        "cache_read": 0.5,
+        "cache_write": 6.25
+      },
+      "claude-sonnet-5": {
+        "input": 2,
+        "output": 10,
+        "cache_read": 0.2,
+        "cache_write": 2.5
+      },
+      "glm-5.3": {
+        "input": 1.4,
+        "output": 4.4,
+        "cache_read": 0.26,
+        "cache_write": 1.4
+      },
+      "gpt-6-astra": {
+        "input": 10,
+        "output": 50,
+        "cache_read": 1,
+        "cache_write": null
+      }
     }
   },
   "runs": [
-    {"id": "fable-low", "label": "Fable 5.1 low", "harness": "Claude Code", "model": "claude-fable-5-1", "effort": "low", "plan": "claude_max_100",
-     "score": 19.5, "wall_min": 29, "turns": 199, "tool_calls": 129,
-     "tokens": {"input": 3318, "output": 243120, "cache_read": 33963491, "cache_write": 1162866},
-     "api_usd": 35.2, "sub_usd": 1.88, "weekly_share_pct": 8.1,
-     "rubric": [2, 2, 2, 2, 1.5, 2, 2, 2, 2, 2],
-     "notes": ["Handled inline addresses and interruptions at every step", "Printed en-US number formatting inside Spanish", "Pushed the branch to origin unasked"]},
-    {"id": "opus-low", "label": "Opus 5 low", "harness": "Claude Code", "model": "claude-opus-5", "effort": "low", "plan": "claude_max_100",
-     "score": 19, "wall_min": 29, "turns": 262, "tool_calls": 192,
-     "tokens": {"input": 626, "output": 282396, "cache_read": 44031500, "cache_write": 1331747},
-     "api_usd": 37.4, "sub_usd": 2.14, "weekly_share_pct": 9.3,
-     "rubric": [2, 2, 2, 2, 2, 2, 1.5, 2, 1.5, 2],
-     "notes": ["Route-faithful wiring, interim 'building your report' message", "Found and fixed two bugs in its own live run", "No interruption detection at the address step; wrong commit trailer"]},
-    {"id": "glm-claude-code", "label": "GLM 5.3 via Claude Code", "harness": "Claude Code", "model": "glm-5.3", "effort": "default", "plan": "glm_pro_annual",
-     "score": 18, "wall_min": 41, "turns": 349, "tool_calls": 204,
-     "tokens": {"input": 804445, "output": 317863, "cache_read": 38448384, "cache_write": 0},
-     "api_usd": 12.5, "sub_usd": 0.54, "weekly_share_pct": 4.2,
-     "rubric": [2, 2, 2, 2, 2, 2, 1.5, 1.5, 1.5, 1.5],
-     "notes": ["Complete prompt cleanup, correct money and sizing", "Never stubbed the LLM in tests, so interruption paths were proven only via the canned fallback", "Repeated Sonnet's out-of-lane server refactor"]},
-    {"id": "glm-zcode", "label": "GLM 5.3 via ZCode", "harness": "ZCode", "model": "glm-5.3", "effort": "default", "plan": "glm_pro_annual",
-     "score": 17.5, "wall_min": 36, "turns": 268, "tool_calls": null,
-     "tokens": {"input": 286422, "output": 106693, "cache_read": 30384768, "cache_write": 0},
-     "api_usd": 8.8, "sub_usd": 0.38, "weekly_share_pct": 2.9,
-     "rubric": [2, 1.5, 2, 2, 2, 1.5, 1.5, 2, 1.5, 1.5],
-     "notes": ["Fewest tokens of any run; correct USD, es-AR formatting, no second lead", "Two sessions worked one tree concurrently and squashed the history", "Self-report inflated test counts and stitched the transcript"]},
-    {"id": "sonnet-medium", "label": "Sonnet 5 medium", "harness": "Claude Code", "model": "claude-sonnet-5", "effort": "medium", "plan": "claude_max_100",
-     "score": 14, "wall_min": 41, "turns": 407, "tool_calls": 252,
-     "tokens": {"input": 897, "output": 341220, "cache_read": 91741799, "cache_write": 1532674},
-     "api_usd": 25.6, "sub_usd": 1.46, "weekly_share_pct": 6.3,
-     "rubric": [2, 1, 2, 2, 0.5, 0.5, 1.5, 2, 1.5, 1],
-     "notes": ["Printed an ARS total labelled USD; bill answers never reached sizing", "Prompt cleanup half done, installer still named", "Live end-to-end run never got past the address step"]}
+    {
+      "id": "fable-low",
+      "label": "Fable 5.1 low",
+      "harness": "Claude Code",
+      "model": "claude-fable-5-1",
+      "effort": "low",
+      "plan": "claude_max_100",
+      "score": 19.5,
+      "wall_min": 29,
+      "turns": 199,
+      "tool_calls": 129,
+      "tokens": {
+        "input": 3318,
+        "output": 243120,
+        "cache_read": 33963491,
+        "cache_write": 1162866
+      },
+      "api_usd": 35.2,
+      "sub_usd": 1.88,
+      "weekly_share_pct": 8.1,
+      "rubric": [
+        2,
+        2,
+        2,
+        2,
+        1.5,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "notes": [
+        "Handled inline addresses and interruptions at every step",
+        "Printed en-US number formatting inside Spanish",
+        "Pushed the branch to origin unasked"
+      ]
+    },
+    {
+      "id": "opus-low",
+      "label": "Opus 5 low",
+      "harness": "Claude Code",
+      "model": "claude-opus-5",
+      "effort": "low",
+      "plan": "claude_max_100",
+      "score": 19,
+      "wall_min": 29,
+      "turns": 262,
+      "tool_calls": 192,
+      "tokens": {
+        "input": 626,
+        "output": 282396,
+        "cache_read": 44031500,
+        "cache_write": 1331747
+      },
+      "api_usd": 37.4,
+      "sub_usd": 2.14,
+      "weekly_share_pct": 9.3,
+      "rubric": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1.5,
+        2,
+        1.5,
+        2
+      ],
+      "notes": [
+        "Route-faithful wiring, interim 'building your report' message",
+        "Found and fixed two bugs in its own live run",
+        "No interruption detection at the address step; wrong commit trailer"
+      ]
+    },
+    {
+      "id": "glm-claude-code",
+      "label": "GLM 5.3 via Claude Code",
+      "harness": "Claude Code",
+      "model": "glm-5.3",
+      "effort": "default",
+      "plan": "glm_pro_annual",
+      "score": 18,
+      "wall_min": 41,
+      "turns": 349,
+      "tool_calls": 204,
+      "tokens": {
+        "input": 804445,
+        "output": 317863,
+        "cache_read": 38448384,
+        "cache_write": 0
+      },
+      "api_usd": 12.5,
+      "sub_usd": 0.54,
+      "weekly_share_pct": 4.2,
+      "rubric": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "notes": [
+        "Complete prompt cleanup, correct money and sizing",
+        "Never stubbed the LLM in tests, so interruption paths were proven only via the canned fallback",
+        "Repeated Sonnet's out-of-lane server refactor"
+      ]
+    },
+    {
+      "id": "glm-zcode",
+      "label": "GLM 5.3 via ZCode",
+      "harness": "ZCode",
+      "model": "glm-5.3",
+      "effort": "default",
+      "plan": "glm_pro_annual",
+      "score": 17.5,
+      "wall_min": 36,
+      "turns": 268,
+      "tool_calls": null,
+      "tokens": {
+        "input": 286422,
+        "output": 106693,
+        "cache_read": 30384768,
+        "cache_write": 0
+      },
+      "api_usd": 8.8,
+      "sub_usd": 0.38,
+      "weekly_share_pct": 2.9,
+      "rubric": [
+        2,
+        1.5,
+        2,
+        2,
+        2,
+        1.5,
+        1.5,
+        2,
+        1.5,
+        1.5
+      ],
+      "notes": [
+        "Fewest tokens of any run; correct USD, es-AR formatting, no second lead",
+        "Two sessions worked one tree concurrently and squashed the history",
+        "Self-report inflated test counts and stitched the transcript"
+      ]
+    },
+    {
+      "id": "sonnet-medium",
+      "label": "Sonnet 5 medium",
+      "harness": "Claude Code",
+      "model": "claude-sonnet-5",
+      "effort": "medium",
+      "plan": "claude_max_100",
+      "score": 14,
+      "wall_min": 41,
+      "turns": 407,
+      "tool_calls": 252,
+      "tokens": {
+        "input": 897,
+        "output": 341220,
+        "cache_read": 91741799,
+        "cache_write": 1532674
+      },
+      "api_usd": 25.6,
+      "sub_usd": 1.46,
+      "weekly_share_pct": 6.3,
+      "rubric": [
+        2,
+        1,
+        2,
+        2,
+        0.5,
+        0.5,
+        1.5,
+        2,
+        1.5,
+        1
+      ],
+      "notes": [
+        "Printed an ARS total labelled USD; bill answers never reached sizing",
+        "Prompt cleanup half done, installer still named",
+        "Live end-to-end run never got past the address step"
+      ]
+    },
+    {
+      "id": "codex-astra-low",
+      "label": "Codex GPT-6 Astra low",
+      "harness": "Codex CLI",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "plan": "codex_pro",
+      "score": 15.5,
+      "wall_min": 14,
+      "turns": null,
+      "tool_calls": 107,
+      "tokens": {
+        "input": 105830,
+        "output": 18309,
+        "cache_read": 4079104,
+        "cache_write": 0
+      },
+      "api_usd": 6.05,
+      "sub_usd": 0.17,
+      "weekly_share_pct": 0.4,
+      "rubric": [
+        2,
+        1.5,
+        1.5,
+        2,
+        2,
+        1.5,
+        1.5,
+        1.5,
+        1,
+        1
+      ],
+      "notes": [
+        "Fastest run and cleanest lane: correct USD, es-AR formatting, an output guard, a per-thread lock",
+        "Parsers too strict, so ordinary Spanish answers fell through to the LLM as interruptions",
+        "Stopped at the geocoder wall the others routed around, so no live report link; reported a symlink it created as pre-existing"
+      ]
+    }
   ],
   "rubric_items": [
     "Intent gate catches all 7 openers in both languages",
@@ -64,5 +301,5 @@
     "Gate green, lane respected, trailer, not merged",
     "Real end-to-end transcript and an honest report"
   ],
-  "pending": [{"id": "codex-astra-low", "label": "Codex GPT-6 Astra low", "harness": "Codex", "plan": "codex_pro", "status": "running at publication time"}]
+  "pending": []
 }

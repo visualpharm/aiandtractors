@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const FAMILY_COLORS = { anthropic: '#db7549', zhipu: '#2563eb', openai: '#171717' };
-const SHORT_LABELS = { 'fable-low': 'Fable 5.1 low', 'opus-low': 'Opus 5 low', 'glm-claude-code': 'GLM 5.3 · Claude Code', 'glm-zcode': 'GLM 5.3 · ZCode', 'sonnet-medium': 'Sonnet 5 medium' };
+const SHORT_LABELS = { 'fable-low': 'Fable 5.1 low', 'opus-low': 'Opus 5 low', 'glm-claude-code': 'GLM 5.3 · Claude Code', 'glm-zcode': 'GLM 5.3 · ZCode', 'sonnet-medium': 'Sonnet 5 medium', 'codex-astra-low': 'Codex GPT-6 Astra low' };
 
 const COST_MODES = [
   { key: 'sub', label: 'Subscription $ / task', axis: 'Subscription dollars per task', get: r => r.sub_usd, ticks: [0.5, 1, 1.5, 2], fmt: v => `$${v.toFixed(2)}` },
@@ -14,8 +14,11 @@ const VIEWS = [
 ];
 
 function fmtTokens(n) { return n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : `${Math.round(n / 1e3)}K`; }
+function fmtScore(v) { return String(parseFloat(v.toFixed(2))); }
+const score10 = r => r.score / 2;
+const item10 = v => v / 2;
 
-export default function ModelEvalChart({ runs, rubricItems, pending }) {
+export default function ModelEvalChart({ runs, rubricItems }) {
   const [costMode, setCostMode] = useState('sub');
   const [view, setView] = useState('cost');
   const [hover, setHover] = useState(null);
@@ -27,26 +30,47 @@ export default function ModelEvalChart({ runs, rubricItems, pending }) {
     return () => observer.disconnect();
   }, []);
 
+  const narrow = width < 480;
   const metric = useMemo(() => {
-    if (view === 'time') return { get: r => r.wall_min, axis: 'Wall-clock minutes per task', min: 20, max: 50, ticks: [25, 30, 35, 40, 45], fmt: v => `${v}` };
+    if (view === 'time') return { get: r => r.wall_min, axis: 'Wall-clock minutes per task', min: 10, max: 50, ticks: [15, 20, 25, 30, 35, 40, 45], fmt: v => `${v}` };
     const m = COST_MODES.find(c => c.key === costMode);
     return { ...m, min: 0, max: Math.max(...runs.map(m.get)) * 1.28 };
   }, [view, costMode, runs]);
 
-  const scoreMin = 12, scoreMax = 20;
-  const height = 560, left = 44, right = width - 24, top = 26, bottom = 500;
+  const scoreMin = 0, scoreMax = 10;
+  const height = narrow ? 640 : 560, left = narrow ? 34 : 44, right = width - 24, top = 26, bottom = height - (narrow ? 90 : 60);
   const x = v => left + (v - metric.min) / (metric.max - metric.min) * (right - left);
   const y = v => bottom - (v - scoreMin) / (scoreMax - scoreMin) * (bottom - top);
-  const ticks = view === 'cost' && metric.ticks
+  let ticks = view === 'cost' && metric.ticks
     ? metric.ticks.filter(t => t >= metric.min && t <= metric.max).map(t => ({ v: t, x: x(t) }))
     : metric.ticks.map(t => ({ v: t, x: x(t) }));
+  if (narrow && ticks.length > 1) {
+    const spacing = (right - left) / (ticks.length - 1);
+    if (spacing < 56) ticks = ticks.filter((_, i) => i % 2 === 0);
+  }
 
-  const labelSpots = {};
-  const placed = runs.map(r => ({ r, px: x(metric.get(r)), py: y(r.score) }))
-    .sort((a, b) => b.py - a.py);
-  placed.forEach((p, i) => {
-    const above = i % 2 === 0;
-    labelSpots[p.r.id] = { dy: above ? -16 : 26, anchor: 'middle' };
+  // Place labels greedily top-to-bottom, above the point when that rectangle is
+  // free and below otherwise, so same-side neighbors never collide; on narrow
+  // screens space them further apart and draw leader lines to the label.
+  const placed = runs.map(r => ({ r, px: x(metric.get(r)), py: y(score10(r)) }))
+    .sort((a, b) => a.py - b.py);
+  const step = narrow ? 26 : 20;
+  const gap = narrow ? 10 : 8;
+  const half = Math.min((right - left) / 2, 82);
+  const taken = [];
+  const hits = (x1, x2, y1, y2) => taken.some(b => x1 < b.x2 + 12 && b.x1 < x2 + 12 && y1 < b.y2 && b.y1 < y2);
+  placed.forEach(p => {
+    const lx = Math.max(left + half, Math.min(p.px, right - half));
+    const lw = half * 2, lh = 16;
+    let dy;
+    const aboveY = p.py - gap - lh;
+    if (aboveY >= top && !hits(lx - half, lx + half, aboveY, aboveY + lh)) dy = -gap;
+    else {
+      let k = 1;
+      do { dy = gap + 6 + k * step; k++; } while (hits(lx - half, lx + half, p.py + dy, p.py + dy + lh));
+    }
+    taken.push({ x1: lx - half, x2: lx + half, y1: p.py + dy, y2: p.py + dy + lh });
+    p.label = { dy, lx, leader: dy !== -gap || Math.abs(lx - p.px) > 4 };
   });
 
   const hoveredRun = hover != null ? runs.find(r => r.id === hover) : null;
@@ -61,41 +85,37 @@ export default function ModelEvalChart({ runs, rubricItems, pending }) {
       </div>
     </div>
     <div className="model-eval-plot" ref={host}>
-      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Rubric score from ${scoreMin} to ${scoreMax} against ${metric.axis.toLowerCase()}`}>
-        {[15, 16, 17, 18, 19, 20].map(t => <g key={t}>
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Rubric score from 0 to 10 against ${metric.axis.toLowerCase()}`}>
+        {[0, 2, 4, 6, 8, 10].map(t => <g key={t}>
           <line x1={left} x2={right} y1={y(t)} y2={y(t)} stroke="#e5e5e5" />
           <text x={left - 10} y={y(t) + 5} textAnchor="end">{t}</text>
         </g>)}
         {ticks.map(t => <text key={t.v} x={t.x} y={bottom + 28} textAnchor="middle">{metric.fmt(t.v)}</text>)}
         <line x1={left} x2={right} y1={bottom} y2={bottom} stroke="#a9a9a9" />
-        <text x={left} y="16" className="axis-caption">Rubric score (0 to 20) ↑</text>
+        <text x={left} y="16" className="axis-caption">Score (0 to 10) ↑</text>
         <text x={(left + right) / 2} y={height - 4} textAnchor="middle">{metric.axis}</text>
         {placed.map(p => {
           const family = p.r.model.startsWith('claude') ? 'anthropic' : p.r.model.startsWith('glm') ? 'zhipu' : 'openai';
           const c = FAMILY_COLORS[family];
-          const spot = labelSpots[p.r.id];
           const active = hover === p.r.id;
           return <g key={p.r.id} className="eval-point" tabIndex="0" role="button"
-            aria-label={`${p.r.label}. Score ${p.r.score} of 20. ${metric.axis}: ${metric.fmt(metric.get(p.r))}.`}
+            aria-label={`${p.r.label}. Score ${fmtScore(score10(p.r))} of 10. ${metric.axis}: ${metric.fmt(metric.get(p.r))}.`}
             onMouseEnter={() => setHover(p.r.id)} onMouseLeave={() => setHover(null)}
             onFocus={() => setHover(p.r.id)} onBlur={() => setHover(null)}
             onClick={() => setHover(active ? null : p.r.id)}>
-            <title>{`${p.r.label}: ${p.r.score}/20, ${metric.fmt(metric.get(p.r))}`}</title>
+            <title>{`${p.r.label}: ${fmtScore(score10(p.r))}/10, ${metric.fmt(metric.get(p.r))}`}</title>
             <circle cx={p.px} cy={p.py} r="16" fill="transparent" />
             {active && <circle cx={p.px} cy={p.py} r="9" fill="none" stroke={c} strokeWidth="1.5" />}
             <circle cx={p.px} cy={p.py} r="5" fill={c} stroke="white" strokeWidth="1.5" />
-            <text className="point-label" x={p.px + (spot.anchor === 'middle' ? 0 : 0)} y={p.py + spot.dy} textAnchor={spot.anchor}>{SHORT_LABELS[p.r.id]}</text>
+            {p.label.leader && <line x1={p.px} y1={p.py + (p.label.dy < 0 ? -7 : 7)} x2={p.label.lx} y2={p.py + p.label.dy + (p.label.dy < 0 ? 8 : -8)} stroke="#9a9a9a" strokeWidth="1" />}
+            <text className="point-label" x={p.label.lx} y={p.py + p.label.dy} textAnchor="middle">{SHORT_LABELS[p.r.id]}</text>
           </g>;
         })}
-        {pending && view === 'cost' && costMode === 'sub' && <g className="eval-pending" aria-label={`${pending[0].label} still running`}>
-          <circle cx={right - 8} cy={y(16)} r="5" fill="white" stroke={FAMILY_COLORS.openai} strokeWidth="1.7" strokeDasharray="2.5 2" />
-          <text className="point-label" x={right - 18} y={y(16) - 10} textAnchor="end">Codex GPT-6 Astra low · in progress</text>
-        </g>}
       </svg>
       {hoveredRun && <div className="eval-tooltip" role="status">
         <strong>{hoveredRun.label}</strong>
-        <span className="score-line">{hoveredRun.score}/20 · {hoveredRun.wall_min} min · {metric.fmt(metric.get(hoveredRun))}</span>
-        <ol className="rubric-mini">{hoveredRun.rubric.map((v, i) => <li key={i}><span>{v}</span> {rubricItems[i]}</li>)}</ol>
+        <span className="score-line">{fmtScore(score10(hoveredRun))}/10 · {hoveredRun.wall_min} min · {metric.fmt(metric.get(hoveredRun))}</span>
+        <ol className="rubric-mini">{hoveredRun.rubric.map((v, i) => <li key={i}><span>{fmtScore(item10(v))}</span> {rubricItems[i]}</li>)}</ol>
         <dl>
           <div><dt>Input</dt><dd>{fmtTokens(hoveredRun.tokens.input)}</dd></div>
           <div><dt>Output</dt><dd>{fmtTokens(hoveredRun.tokens.output)}</dd></div>

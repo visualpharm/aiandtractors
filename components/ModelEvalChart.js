@@ -2,12 +2,12 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 export const FAMILY_COLORS = { anthropic: '#db7549', zhipu: '#2563eb', openai: '#171717' };
 export const familyOf = r => r.model.startsWith('claude') ? 'anthropic' : r.model.startsWith('glm') ? 'zhipu' : 'openai';
-const SHORT_LABELS = { 'fable-low': 'Fable 5.1 low', 'opus-low': 'Opus 5 low', 'glm-claude-code': 'GLM 5.3 · Claude Code', 'glm-zcode': 'GLM 5.3 · ZCode', 'sonnet-medium': 'Sonnet 5 medium', 'codex-astra-low': 'Codex Astra low' };
+const SHORT_LABELS = { 'fable-low': 'Fable 5.1 low · Claude Code', 'opus-low': 'Opus 5 low · Claude Code', 'glm-claude-code': 'GLM 5.3 · Claude Code', 'glm-zcode': 'GLM 5.3 · ZCode (2 sessions)', 'sonnet-medium': 'Sonnet 5 medium · Claude Code', 'codex-astra-low': 'GPT-6 Astra low · Codex CLI' };
 
 export const fmt = {
   money: v => v == null ? '–' : `$${v.toFixed(2)}`,
   price: v => v == null ? '–' : `$${String(parseFloat(v.toFixed(2)))}`,
-  pct: v => `${v}%`,
+  pct: v => `${parseFloat(Number(v).toFixed(1))}%`,
   minutes: v => `${v} min`,
   score: v => String(parseFloat(v.toFixed(2))),
   tokens: n => n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${Math.round(n / 1e3)}K` : String(n),
@@ -30,6 +30,37 @@ const score10 = r => r.score / 2;
 export function paretoFrontier(runs, get) {
   return runs.filter(r => !runs.some(o => o !== r && get(o) < get(r) && score10(o) >= score10(r)))
     .sort((a, b) => get(a) - get(b));
+}
+
+// Shape-preserving monotone cubic (Fritsch–Carlson) through the frontier
+// points: a smooth visual guide with no overshoot or extrapolation. It is
+// not evidence for achievable intermediate scores or costs.
+export function monotoneCubic(pts) {
+  if (pts.length < 2) return { path: '', sample: () => null };
+  const n = pts.length;
+  const dx = [], slope = [], m = [];
+  for (let i = 0; i < n - 1; i++) { dx.push(pts[i + 1].px - pts[i].px); slope.push((pts[i + 1].py - pts[i].py) / (dx[i] || 1)); }
+  m.push(slope[0]);
+  for (let i = 1; i < n - 1; i++) m.push(slope[i - 1] * slope[i] <= 0 ? 0 : (slope[i - 1] + slope[i]) / 2);
+  m.push(slope[n - 2]);
+  for (let i = 0; i < n - 1; i++) {
+    if (pts[i + 1].py === pts[i].py) { m[i] = 0; m[i + 1] = 0; continue; }
+    const a = m[i] / slope[i], b = m[i + 1] / slope[i], h = Math.hypot(a, b);
+    if (h > 3) { m[i] = 3 * a / h * slope[i]; m[i + 1] = 3 * b / h * slope[i]; }
+  }
+  let path = `M ${pts[0].px} ${pts[0].py}`;
+  for (let i = 0; i < n - 1; i++) {
+    path += ` C ${pts[i].px + dx[i] / 3} ${pts[i].py + m[i] * dx[i] / 3}, ${pts[i + 1].px - dx[i] / 3} ${pts[i + 1].py - m[i + 1] * dx[i] / 3}, ${pts[i + 1].px} ${pts[i + 1].py}`;
+  }
+  const sample = x => {
+    if (x < pts[0].px || x > pts[n - 1].px) return null;
+    let i = 0;
+    while (i < n - 2 && x > pts[i + 1].px) i++;
+    const t = (x - pts[i].px) / (dx[i] || 1);
+    const t2 = t * t, t3 = t2 * t;
+    return (2 * t3 - 3 * t2 + 1) * pts[i].py + (t3 - 2 * t2 + t) * m[i] * dx[i] + (-2 * t3 + 3 * t2) * pts[i + 1].py + (t3 - t2) * m[i + 1] * dx[i];
+  };
+  return { path, sample };
 }
 
 export default function ModelEvalChart({ runs }) {
@@ -62,9 +93,9 @@ export default function ModelEvalChart({ runs }) {
   ticks.unshift({ v: 0, x: x(0) });
   if (ticks.length > 1 && (right - left) / (ticks.length - 1) < 64) ticks = ticks.filter((_, i) => i % 2 === 0);
 
-  // Stepped frontier line: from the leftmost frontier point, across then up at each next point.
+  // Smooth Pareto curve through the frontier points (monotone, no overshoot).
   const fpts = frontier.map(r => ({ px: x(metric.get(r)), py: y(score10(r)) }));
-  const frontierPath = fpts.length ? `M ${fpts[0].px} ${fpts[0].py} ` + fpts.slice(1).map(p => `H ${p.px} V ${p.py}`).join(' ') : '';
+  const { path: frontierPath, sample: frontierY } = monotoneCubic(fpts);
   const lastF = fpts[fpts.length - 1], prevF = fpts[fpts.length - 2];
   const flW = 15 * (narrow ? 7.2 : 7.8);
   const frontierLabel = fpts.length > 1 ? (lastF.px + 8 + flW <= right
@@ -75,25 +106,25 @@ export default function ModelEvalChart({ runs }) {
   // does the label move above or below with a leader line.
   const placed = runs.map(r => ({ r, px: x(metric.get(r)), py: y(score10(r)), text: SHORT_LABELS[r.id] }))
     .sort((a, b) => a.py - b.py || a.px - b.px);
-  const charW = narrow ? 7.2 : 7.8, lh = 18, gap = 9;
+  const charW = narrow ? 7.7 : 8.1, lh = 19.5, gap = 9;
   const taken = placed.map(p => ({ x1: p.px - 7, x2: p.px + 7, y1: p.py - 7, y2: p.py + 7, own: p }));
   if (frontierLabel) taken.push({ x1: frontierLabel.anchor === 'start' ? frontierLabel.x : frontierLabel.x - flW, x2: frontierLabel.anchor === 'start' ? frontierLabel.x + flW : frontierLabel.x, y1: frontierLabel.y - 14, y2: frontierLabel.y + 4 });
-  // The frontier line itself is an obstacle — for its own points too: a label at
-  // segment height reads as text on the line, so it must drop to a leader line.
-  fpts.forEach((p, i) => {
-    const n = fpts[i + 1];
-    if (!n) return;
-    taken.push({ x1: p.px, x2: n.px, y1: p.py - 13, y2: p.py + 5 });
-    taken.push({ x1: n.px - 7, x2: n.px + 7, y1: Math.min(p.py, n.py), y2: Math.max(p.py, n.py) });
-  });
+  // The Pareto curve is an obstacle too — no label sits on the line it names.
+  if (frontierY) {
+    for (let k = 0; k <= 34; k++) {
+      const sx = fpts[0].px + (fpts[fpts.length - 1].px - fpts[0].px) * (k / 34);
+      const sy = frontierY(sx);
+      if (sy != null) taken.push({ x1: sx - 9, x2: sx + 9, y1: sy - 16, y2: sy + 7 });
+    }
+  }
   let self = null;
   const hits = (x1, x2, y1, y2) => taken.some(b => b.own !== self && x1 < b.x2 + 6 && b.x1 < x2 + 6 && y1 < b.y2 + 3 && b.y1 < y2 + 3);
   placed.forEach(p => {
     self = p;
     const w = p.text.length * charW;
     const side = [];
-    side.push({ x1: p.px + 10, anchor: 'start', y1: p.py - lh / 2 });
-    side.push({ x1: p.px - 10 - w, anchor: 'end', y1: p.py - lh / 2 });
+    side.push({ x1: p.px + 14, anchor: 'start', y1: p.py - lh / 2 });
+    side.push({ x1: p.px - 14 - w, anchor: 'end', y1: p.py - lh / 2 });
     const fits = c => c.x1 >= left && c.x1 + w <= right && !hits(c.x1, c.x1 + w, c.y1, c.y1 + lh);
     let c = side.find(fits);
     if (c) {
@@ -108,13 +139,13 @@ export default function ModelEvalChart({ runs }) {
       while (hits(cx - w / 2, cx + w / 2, ly, ly + lh)) ly += lh + 4;
     }
     taken.push({ x1: cx - w / 2, x2: cx + w / 2, y1: ly, y2: ly + lh });
-    const below = ly > p.py;
-    p.label = { x: cx, y: ly + 13, anchor: 'middle', leader: true, endY: below ? ly : ly + lh };
+    p.label = { x: cx, y: ly + 13, anchor: 'middle' };
   });
 
   const hovered = hover != null ? runs.find(r => r.id === hover) : null;
 
-  return <section className="model-eval-chart" aria-label="Agent runs plotted by score against cost or time">
+  return <section className="model-eval-chart" aria-label="Which agent is the best subagent?">
+    <h2>Which agent is the best subagent?</h2>
     <div className="eval-axis" role="radiogroup" aria-label="Horizontal axis">
       {AXES.map(a => <button key={a.key} type="button" role="radio" aria-checked={axisKey === a.key} className={axisKey === a.key ? 'on' : ''} onClick={() => setAxisKey(a.key)}>{a.label}</button>)}
     </div>
@@ -143,7 +174,6 @@ export default function ModelEvalChart({ runs }) {
             <circle cx={p.px} cy={p.py} r="16" fill="transparent" />
             {active && <circle cx={p.px} cy={p.py} r="10" fill="none" stroke={c} strokeWidth="1.5" />}
             <circle cx={p.px} cy={p.py} r="4.5" fill={c} stroke={c} strokeWidth="1.7" opacity={dim ? .55 : 1} />
-            {p.label.leader && <line x1={p.px} y1={p.py} x2={p.label.x} y2={p.label.endY} stroke="#929292" strokeWidth=".8" />}
             <text className="point-label" x={p.label.x} y={p.label.y} textAnchor={p.label.anchor}>{p.text}</text>
           </g>;
         })}
@@ -177,9 +207,10 @@ export default function ModelEvalChart({ runs }) {
         .eval-axis button:nth-child(n+3) { border-top:1px solid #252525; }
         .eval-axis button:nth-child(5) { grid-column:1 / -1; border-left:0; }
       }
+      .model-eval-chart h2 { font:600 24px/1.3 system-ui,sans-serif; margin:40px 0 16px; text-wrap:balance; }
       .model-eval-plot { position:relative; width:100%; min-width:0; }
       .model-eval-plot svg { display:block; width:100%; height:auto; overflow:visible; font:15px system-ui,sans-serif; fill:#252525; }
-      .model-eval-plot .point-label { font-size:15px; paint-order:stroke; stroke:white; stroke-width:5px; stroke-linejoin:round; }
+      .model-eval-plot .point-label { font-size:15px; }
       .model-eval-plot .pareto-label { font-size:14px; fill:#6b6b6b; paint-order:stroke; stroke:white; stroke-width:4px; }
       .eval-point { cursor:pointer; outline:none; }
       .eval-point:focus-visible circle:first-of-type { stroke:#252525; stroke-width:2; }

@@ -31,31 +31,43 @@
         "input": 10,
         "output": 50,
         "cache_read": 0.25,
-        "cache_write": 12.5
+        "cache_write": 12.5,
+        "cache_write_1h": 20
       },
       "claude-opus-5": {
         "input": 5,
         "output": 25,
         "cache_read": 0.5,
-        "cache_write": 6.25
+        "cache_write": 6.25,
+        "cache_write_1h": 10
       },
       "claude-sonnet-5": {
         "input": 2,
         "output": 10,
         "cache_read": 0.2,
-        "cache_write": 2.5
+        "cache_write": 2.5,
+        "cache_write_1h": 4
       },
       "glm-5.3": {
         "input": 1.4,
         "output": 4.4,
         "cache_read": 0.26,
-        "cache_write": 1.4
+        "cache_write": 1.4,
+        "cache_write_1h": null
       },
       "gpt-6-astra": {
         "input": 10,
         "output": 50,
         "cache_read": 1,
-        "cache_write": null
+        "cache_write": null,
+        "cache_write_1h": null
+      },
+      "claude-opus-4-7": {
+        "input": 5,
+        "output": 25,
+        "cache_read": 0.5,
+        "cache_write": 6.25,
+        "cache_write_1h": 10
       }
     }
   },
@@ -72,14 +84,14 @@
       "turns": 199,
       "tool_calls": 129,
       "tokens": {
-        "input": 3318,
-        "output": 243120,
-        "cache_read": 33963491,
-        "cache_write": 1162866
+        "input": 1941,
+        "output": 84492,
+        "cache_read": 16807464,
+        "cache_write": 457291
       },
-      "api_usd": 35.2,
-      "sub_usd": 1.88,
-      "weekly_share_pct": 8.1,
+      "api_usd": 15.850754499999999,
+      "sub_usd": 0.8504046142857142,
+      "weekly_share_pct": 3.682251979857143,
       "rubric": [
         2,
         2,
@@ -96,7 +108,33 @@
         "Handled inline addresses and interruptions at every step",
         "Printed en-US number formatting inside Spanish",
         "Pushed the branch to origin unasked"
-      ]
+      ],
+      "cost_components": {
+        "claude-opus-4-7": {
+          "unique_requests": 11,
+          "tokens": {
+            "input": 21,
+            "output": 18598,
+            "cache_read": 449199,
+            "cache_write": 100959
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 1.32064825,
+          "sub_usd": 0.0754656142857143
+        },
+        "claude-fable-5-1": {
+          "unique_requests": 90,
+          "tokens": {
+            "input": 1920,
+            "output": 65894,
+            "cache_read": 16358265,
+            "cache_write": 356332
+          },
+          "one_hour_cache_write_tokens": 356332,
+          "api_usd": 14.53010625,
+          "sub_usd": 0.7749389999999999
+        }
+      }
     },
     {
       "id": "opus-low",
@@ -110,14 +148,14 @@
       "turns": 262,
       "tool_calls": 192,
       "tokens": {
-        "input": 626,
-        "output": 282396,
-        "cache_read": 44031500,
-        "cache_write": 1331747
+        "input": 303,
+        "output": 97458,
+        "cache_read": 23538789,
+        "cache_write": 538706
       },
-      "api_usd": 37.4,
-      "sub_usd": 2.14,
-      "weekly_share_pct": 9.3,
+      "api_usd": 18.80562575,
+      "sub_usd": 1.0746071857142858,
+      "weekly_share_pct": 4.653049114142858,
       "rubric": [
         2,
         2,
@@ -134,7 +172,33 @@
         "Route-faithful wiring, interim 'building your report' message",
         "Found and fixed two bugs in its own live run",
         "No interruption detection at the address step; wrong commit trailer"
-      ]
+      ],
+      "cost_components": {
+        "claude-opus-4-7": {
+          "unique_requests": 21,
+          "tokens": {
+            "input": 41,
+            "output": 31137,
+            "cache_read": 986850,
+            "cache_write": 210345
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 2.58671125,
+          "sub_usd": 0.14781207142857145
+        },
+        "claude-opus-5": {
+          "unique_requests": 131,
+          "tokens": {
+            "input": 262,
+            "output": 66321,
+            "cache_read": 22551939,
+            "cache_write": 328361
+          },
+          "one_hour_cache_write_tokens": 328361,
+          "api_usd": 16.2189145,
+          "sub_usd": 0.9267951142857144
+        }
+      }
     },
     {
       "id": "glm-claude-code",
@@ -148,14 +212,14 @@
       "turns": 349,
       "tool_calls": 204,
       "tokens": {
-        "input": 804445,
-        "output": 317863,
-        "cache_read": 38448384,
+        "input": 279816,
+        "output": 118680,
+        "cache_read": 18177344,
         "cache_write": 0
       },
-      "api_usd": 12.5,
-      "sub_usd": 0.54,
-      "weekly_share_pct": 4.2,
+      "api_usd": 5.640043840000001,
+      "sub_usd": 0.24295573464615386,
+      "weekly_share_pct": 1.878568448246154,
       "rubric": [
         2,
         2,
@@ -172,11 +236,24 @@
         "Complete prompt cleanup, correct money and sizing",
         "Never stubbed the LLM in tests, so interruption paths were proven only via the canned fallback",
         "Repeated Sonnet's out-of-lane server refactor"
-      ]
+      ],
+      "cost_components": {
+        "glm-5.3": {
+          "tokens": {
+            "input": 279816,
+            "output": 118680,
+            "cache_read": 18177344,
+            "cache_write": 0
+          },
+          "api_usd": 5.640043840000001,
+          "sub_usd": 0.24295573464615386,
+          "source": "Final modelUsage aggregate"
+        }
+      }
     },
     {
       "id": "glm-zcode",
-      "label": "GLM 5.3 via ZCode",
+      "label": "GLM 5.3 via ZCode (2 sessions)",
       "harness": "ZCode",
       "model": "glm-5.3",
       "effort": "default (reasoning: max)",
@@ -191,9 +268,9 @@
         "cache_read": 30384768,
         "cache_write": 0
       },
-      "api_usd": 8.8,
-      "sub_usd": 0.38,
-      "weekly_share_pct": 2.9,
+      "api_usd": 8.770479680000001,
+      "sub_usd": 0.377805278523077,
+      "weekly_share_pct": 2.921244385723077,
       "rubric": [
         2,
         1.5,
@@ -210,7 +287,35 @@
         "Fewest tokens of any run; correct USD, es-AR formatting, no second lead",
         "Two sessions worked one tree concurrently and squashed the history",
         "Self-report inflated test counts and stitched the transcript"
-      ]
+      ],
+      "cost_components": {
+        "glm-5.3 · session 1": {
+          "unique_requests": 148,
+          "tokens": {
+            "input": 148577,
+            "output": 61172,
+            "cache_read": 16778176,
+            "cache_write": 0
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 4.83949036,
+          "sub_usd": 0.208470354,
+          "source": "ZCode model_usage database, sess_4ef71c9f (read-only)"
+        },
+        "glm-5.3 · session 2": {
+          "unique_requests": 120,
+          "tokens": {
+            "input": 137845,
+            "output": 45521,
+            "cache_read": 13606592,
+            "cache_write": 0
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 3.93098932,
+          "sub_usd": 0.169334925,
+          "source": "ZCode model_usage database, sess_d2baabb1 (read-only)"
+        }
+      }
     },
     {
       "id": "sonnet-medium",
@@ -224,14 +329,14 @@
       "turns": 407,
       "tool_calls": 252,
       "tokens": {
-        "input": 897,
-        "output": 341220,
-        "cache_read": 91741799,
-        "cache_write": 1532674
+        "input": 399,
+        "output": 142881,
+        "cache_read": 45166254,
+        "cache_write": 592712
       },
-      "api_usd": 25.6,
-      "sub_usd": 1.46,
-      "weekly_share_pct": 6.3,
+      "api_usd": 13.567119799999999,
+      "sub_usd": 0.7752639885714285,
+      "weekly_share_pct": 3.356893070514286,
       "rubric": [
         2,
         1,
@@ -248,7 +353,33 @@
         "Printed an ARS total labelled USD; bill answers never reached sizing",
         "Prompt cleanup half done, installer still named",
         "Live end-to-end run never got past the address step"
-      ]
+      ],
+      "cost_components": {
+        "claude-opus-4-7": {
+          "unique_requests": 15,
+          "tokens": {
+            "input": 35,
+            "output": 16316,
+            "cache_read": 719560,
+            "cache_write": 121200
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 1.525355,
+          "sub_usd": 0.08716314285714287
+        },
+        "claude-sonnet-5": {
+          "unique_requests": 182,
+          "tokens": {
+            "input": 364,
+            "output": 126565,
+            "cache_read": 44446694,
+            "cache_write": 471512
+          },
+          "one_hour_cache_write_tokens": 471512,
+          "api_usd": 12.0417648,
+          "sub_usd": 0.6881008457142856
+        }
+      }
     },
     {
       "id": "codex-astra-low",
@@ -267,9 +398,9 @@
         "cache_read": 4079104,
         "cache_write": 0
       },
-      "api_usd": 6.05,
-      "sub_usd": 0.17,
-      "weekly_share_pct": 0.4,
+      "api_usd": 6.052854,
+      "sub_usd": 0.17293868571428572,
+      "weekly_share_pct": 0.37441225457142857,
       "rubric": [
         2,
         1.5,
@@ -286,7 +417,22 @@
         "Fastest run and cleanest lane: correct USD, es-AR formatting, an output guard, a per-thread lock",
         "Parsers too strict, so ordinary Spanish answers fell through to the LLM as interruptions",
         "Stopped at the geocoder wall the others routed around, so no live report link; reported a symlink it created as pre-existing"
-      ]
+      ],
+      "cost_components": {
+        "gpt-6-astra": {
+          "unique_requests": null,
+          "tokens": {
+            "input": 105830,
+            "output": 18309,
+            "cache_read": 4079104,
+            "cache_write": 0
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 6.052854,
+          "sub_usd": 0.17293868571428572,
+          "source": "Codex turn.completed cumulative usage, counted once; fresh input = input − cached"
+        }
+      }
     }
   ],
   "rubric_items": [

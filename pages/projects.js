@@ -49,7 +49,7 @@ const products = [
       'Solar quotes house by house, plus white-label sites for each installer. Prints A4 booklets the crew leaves at the door.',
   },
   {
-    href: 'https://inglesconjenny.vercel.app',
+    href: 'https://inglesconjenny.com',
     title: 'Inglés con Jenny',
     blurb: 'English lessons shaped around each student’s interests and goals.',
   },

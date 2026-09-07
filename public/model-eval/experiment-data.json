@@ -2,7 +2,7 @@
   "experiment": {
     "date": "2026-09-07",
     "title": "Six coding agents, one real feature",
-    "task_summary": "Rebuild Bruno's public chat bot so that a price question runs the site's real solar estimator in conversation form: a deterministic bilingual intent gate before the LLM, a one-question-per-message step machine (address via the wizard's geocoder with a numbered pick when ambiguous, owner/renter, monthly kWh or bill with 'no sé' falling back to the published sample home, savings-vs-backup goal, name, email or WhatsApp), lead creation through the same server libraries the wizard uses, the real roof and pricing analysis, a two-sentence summary with a link to the generated report, a prompt cleanup, an interruption path, a new test file, the repo's publication gate and a real end-to-end conversation against a throwaway server with the private data pack.",
+    "task_summary": "Rebuild Bruno's public chat bot so that a price question runs the site's real solar estimator in conversation form: a deterministic bilingual intent gate before the LLM, a one-question-per-message step machine (address via the wizard's geocoder with a numbered pick when ambiguous, owner/renter, monthly kWh or bill with 'no s\u00e9' falling back to the published sample home, savings-vs-backup goal, name, email or WhatsApp), lead creation through the same server libraries the wizard uses, the real roof and pricing analysis, a two-sentence summary with a link to the generated report, a prompt cleanup, an interruption path, a new test file, the repo's publication gate and a real end-to-end conversation against a throwaway server with the private data pack.",
     "repo": "Bruno (Node, ~1,080 tests), private repository",
     "base_commit": "ad1feac",
     "prompt_chars": 6035,
@@ -253,7 +253,7 @@
     },
     {
       "id": "glm-zcode",
-      "label": "GLM 5.3 via ZCode (2 sessions)",
+      "label": "GLM 5.3 via ZCode",
       "harness": "ZCode",
       "model": "glm-5.3",
       "effort": "default (reasoning: max)",
@@ -263,14 +263,14 @@
       "turns": 268,
       "tool_calls": null,
       "tokens": {
-        "input": 286422,
-        "output": 106693,
-        "cache_read": 30384768,
-        "cache_write": 0
+        "input": 143211.0,
+        "output": 53346.5,
+        "cache_read": 15192384.0,
+        "cache_write": 0.0
       },
-      "api_usd": 8.770479680000001,
-      "sub_usd": 0.377805278523077,
-      "weekly_share_pct": 2.921244385723077,
+      "api_usd": 4.3852398400000006,
+      "sub_usd": 0.1889026395,
+      "weekly_share_pct": 1.4606221947053573,
       "rubric": [
         2,
         1.5,
@@ -284,12 +284,27 @@
         1.5
       ],
       "notes": [
-        "Fewest tokens of any run; correct USD, es-AR formatting, no second lead",
+        "Correct USD, es-AR formatting, no second lead",
         "Two sessions worked one tree concurrently and squashed the history",
         "Self-report inflated test counts and stitched the transcript"
       ],
       "cost_components": {
-        "glm-5.3 · session 1": {
+        "glm-5.3": {
+          "tokens": {
+            "input": 143211.0,
+            "output": 53346.5,
+            "cache_read": 15192384.0,
+            "cache_write": 0.0
+          },
+          "api_usd": 4.3852398400000006,
+          "sub_usd": 0.1889026395,
+          "source": "Arithmetic mean of the two provider-recorded session totals",
+          "unique_requests": 134.0
+        }
+      },
+      "session_observations": [
+        {
+          "label": "session 1",
           "unique_requests": 148,
           "tokens": {
             "input": 148577,
@@ -302,7 +317,8 @@
           "sub_usd": 0.208470354,
           "source": "ZCode model_usage database, sess_4ef71c9f (read-only)"
         },
-        "glm-5.3 · session 2": {
+        {
+          "label": "session 2",
           "unique_requests": 120,
           "tokens": {
             "input": 137845,
@@ -315,7 +331,9 @@
           "sub_usd": 0.169334925,
           "source": "ZCode model_usage database, sess_d2baabb1 (read-only)"
         }
-      }
+      ],
+      "cost_basis": "mean_per_session",
+      "comparison_scope": "Cost and tokens are the arithmetic mean per session. The 8.75/10 grade and recorded wall time describe their shared final branch, not two independently graded attempts."
     },
     {
       "id": "sonnet-medium",
@@ -430,7 +448,7 @@
           "one_hour_cache_write_tokens": 0,
           "api_usd": 6.052854,
           "sub_usd": 0.17293868571428572,
-          "source": "Codex turn.completed cumulative usage, counted once; fresh input = input − cached"
+          "source": "Codex turn.completed cumulative usage, counted once; fresh input = input \u2212 cached"
         }
       }
     }
@@ -439,7 +457,7 @@
     "Intent gate catches all 7 openers in both languages",
     "Step machine, parsers, skips known data",
     "Reuses the wizard's geocoder, numbered pick of at most 3",
-    "'no sé' falls back to the published sample size",
+    "'no s\u00e9' falls back to the published sample size",
     "Lead and report through the real libraries, correct money",
     "Prompt cleanup: no price dump, no early visit, 'nosotros'",
     "Interruption answered, then the pending question repeated",

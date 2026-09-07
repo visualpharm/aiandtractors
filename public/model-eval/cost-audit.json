@@ -1,0 +1,184 @@
+{
+  "method": "Unique message IDs; each actual model priced separately; correct one-hour cache rate; includes automatic security review calls; preserves published plan allowance assumptions. ZCode cost and tokens are the arithmetic mean of the two sessions whose shared branch was graded. The separate third run is excluded; the score and wall time remain those of the shared branch.",
+  "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "allowance_caveat": "Plan capacities are inherited estimates, not independently remeasured here.",
+  "runs": {
+    "fable-low": {
+      "duplicate_records_removed": 118,
+      "model_breakdown": {
+        "claude-opus-4-7": {
+          "unique_requests": 11,
+          "tokens": {
+            "input": 21,
+            "output": 18598,
+            "cache_read": 449199,
+            "cache_write": 100959
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 1.32064825,
+          "sub_usd": 0.0754656142857143
+        },
+        "claude-fable-5-1": {
+          "unique_requests": 90,
+          "tokens": {
+            "input": 1920,
+            "output": 65894,
+            "cache_read": 16358265,
+            "cache_write": 356332
+          },
+          "one_hour_cache_write_tokens": 356332,
+          "api_usd": 14.53010625,
+          "sub_usd": 0.7749389999999999
+        }
+      },
+      "old_sub_usd": 1.88,
+      "corrected_sub_usd": 0.8504046142857142
+    },
+    "opus-low": {
+      "duplicate_records_removed": 162,
+      "model_breakdown": {
+        "claude-opus-4-7": {
+          "unique_requests": 21,
+          "tokens": {
+            "input": 41,
+            "output": 31137,
+            "cache_read": 986850,
+            "cache_write": 210345
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 2.58671125,
+          "sub_usd": 0.14781207142857145
+        },
+        "claude-opus-5": {
+          "unique_requests": 131,
+          "tokens": {
+            "input": 262,
+            "output": 66321,
+            "cache_read": 22551939,
+            "cache_write": 328361
+          },
+          "one_hour_cache_write_tokens": 328361,
+          "api_usd": 16.2189145,
+          "sub_usd": 0.9267951142857144
+        }
+      },
+      "old_sub_usd": 2.14,
+      "corrected_sub_usd": 1.0746071857142858
+    },
+    "glm-claude-code": {
+      "duplicate_records_removed": 192,
+      "model_breakdown": {
+        "glm-5.3": {
+          "unique_requests": 157,
+          "tokens": {
+            "input": 278460,
+            "output": 108877,
+            "cache_read": 18015616,
+            "cache_write": 0
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 5.55296296,
+          "sub_usd": 0.23920455827692308
+        }
+      },
+      "old_sub_usd": 0.54,
+      "corrected_sub_usd": 0.24295573464615386,
+      "final_modelUsage_crosscheck": {
+        "tokens": {
+          "input": 279816,
+          "output": 118680,
+          "cache_read": 18177344,
+          "cache_write": 0
+        },
+        "api_usd": 5.640043840000001,
+        "sub_usd": 0.24295573464615386,
+        "reason": "Final modelUsage includes aggregate overhead beyond assistant-visible usage. Preferred for complete run cost."
+      }
+    },
+    "glm-zcode": {
+      "source": "ZCode model_usage unique request records",
+      "corrected_sub_usd": 0.1889026395,
+      "individual_sessions": [
+        {
+          "label": "session 1",
+          "unique_requests": 148,
+          "tokens": {
+            "input": 148577,
+            "output": 61172,
+            "cache_read": 16778176,
+            "cache_write": 0
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 4.83949036,
+          "sub_usd": 0.208470354,
+          "source": "ZCode model_usage database, sess_4ef71c9f (read-only)"
+        },
+        {
+          "label": "session 2",
+          "unique_requests": 120,
+          "tokens": {
+            "input": 137845,
+            "output": 45521,
+            "cache_read": 13606592,
+            "cache_write": 0
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 3.93098932,
+          "sub_usd": 0.169334925,
+          "source": "ZCode model_usage database, sess_d2baabb1 (read-only)"
+        }
+      ],
+      "comparability": "Cost and tokens are the arithmetic mean per session. The 8.75/10 grade and recorded wall time describe their shared final branch, not two independently graded attempts.",
+      "combined_tokens": {
+        "input": 286422,
+        "output": 106693,
+        "cache_read": 30384768,
+        "cache_write": 0
+      },
+      "combined_sub_usd": 0.377805278523077,
+      "verified_tokens": {
+        "input": 143211.0,
+        "output": 53346.5,
+        "cache_read": 15192384.0,
+        "cache_write": 0.0
+      },
+      "corrected_api_usd": 4.3852398400000006,
+      "cost_basis": "mean_per_session"
+    },
+    "sonnet-medium": {
+      "duplicate_records_removed": 248,
+      "model_breakdown": {
+        "claude-opus-4-7": {
+          "unique_requests": 15,
+          "tokens": {
+            "input": 35,
+            "output": 16316,
+            "cache_read": 719560,
+            "cache_write": 121200
+          },
+          "one_hour_cache_write_tokens": 0,
+          "api_usd": 1.525355,
+          "sub_usd": 0.08716314285714287
+        },
+        "claude-sonnet-5": {
+          "unique_requests": 182,
+          "tokens": {
+            "input": 364,
+            "output": 126565,
+            "cache_read": 44446694,
+            "cache_write": 471512
+          },
+          "one_hour_cache_write_tokens": 471512,
+          "api_usd": 12.0417648,
+          "sub_usd": 0.6881008457142856
+        }
+      },
+      "old_sub_usd": 1.46,
+      "corrected_sub_usd": 0.7752639885714285
+    },
+    "codex-astra-low": {
+      "source": "Codex turn.completed cumulative usage",
+      "corrected_sub_usd": 0.17293868571428572
+    }
+  }
+}

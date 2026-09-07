@@ -5,7 +5,7 @@ import data from '../public/model-eval/experiment-data.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-feature-eval/';
 const TITLE = 'Six coding agents, one real feature';
-const DESCRIPTION = 'A real feature from a private repo given to six agent setups on the same base commit. One reviewer graded all branches on a 10-item rubric scored 0 to 1 per item, with file-level evidence, and re-ran the tests.';
+const DESCRIPTION = 'A real feature from a private repo given to six agent setups on the same base commit. One reviewer graded all branches on a 10-item rubric, each item scored 0 to 2 and halved to a 10-point maximum, with file-level evidence, and re-ran the tests.';
 const PLAN_NAMES = { claude_max_100: 'Claude Max', glm_pro_annual: 'GLM Pro annual', codex_pro: 'Codex Pro' };
 
 function costRow(r, experiment) {
@@ -26,7 +26,7 @@ export default function CodingAgentFeatureEval() {
     </Head>
     <article className="subscription-article eval-article">
       <h1>{TITLE}</h1>
-      <p className="intro">One real feature from a private repo, given to six agent setups on the same base commit in isolated worktrees: rebuild Bruno's public chat bot so a price question runs the site's real solar estimator in conversation form. One reviewer graded every branch on a 10-item rubric, each item scored 0 to 1, for a maximum of 10, with file-level evidence, and re-ran the tests. Self-reports were treated as claims, not evidence.</p>
+      <p className="intro">One real feature from a private repo, given to six agent setups on the same base commit in isolated worktrees: rebuild <a href="https://usabruno.com/">Bruno&rsquo;s public chat bot</a> so a price question runs the site&rsquo;s real solar estimator in conversation form. One reviewer graded every branch on a 10-item rubric, each item scored 0 to 2 and halved to a 10-point maximum, with file-level evidence, and re-ran the tests. Self-reports were treated as claims, not evidence.</p>
       <ModelEvalChart runs={runs} />
       <div className="reading">
         <section>
@@ -79,7 +79,7 @@ export default function CodingAgentFeatureEval() {
       <div className="reading method">
         <section>
           <h2>Method</h2>
-          <p>Token counts are each session's own counters, priced at the provider's list rates. The $100 Claude allowance is one quarter of the $7,000 (Opus) and $7,500 (Fable) measured on the $200 plan. The GLM allowance is measured on this account: $250 to $510 API-equivalent burned per weekly window before the 429, in three windows between 17 August and 6 September 2026, about $1,300 per month on the Pro annual plan. The Codex allowance is the <a href="/coding-agent-subscription-costs/">subscription article</a>'s central case.</p>
+          <p>Token counts are each session's own counters, priced at the provider's list rates. The $100 Claude allowance is one quarter of the $7,000 (Opus) and $7,500 (Fable) measured on the $200 plan. The GLM allowance is measured on this account: $250 to $510 API-equivalent burned per weekly window before the 429, in three windows between 17 August and 6 September 2026, about $1,300 per month on the Pro annual plan. The Codex allowance is the <a href="/coding-agent-subscription-costs/">subscription article</a>'s central case. The full protocol — redacted task prompt, rubric, per-run data, the agents' own reports and the session-log extraction scripts — is <a href="https://github.com/visualpharm/coding-agent-feature-eval">published on GitHub</a>; the host repository is private, so the exact task cannot be re-run from it.</p>
         </section>
       </div>
     </article>

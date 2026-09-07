@@ -18,10 +18,12 @@ export const fmt = {
 const AXES = [
   { key: 'sub', label: 'Subscription $ per task', axis: 'Subscription dollars per task', get: r => r.sub_usd, step: 0.5, tick: v => v === 0 ? '$0' : `$${v.toFixed(2)}` },
   { key: 'api', label: 'API-equivalent $', axis: 'API-equivalent dollars per task', get: r => r.api_usd, step: 10, tick: v => `$${v}` },
+  { key: 'tokens', label: 'Tokens per task', axis: 'Total tokens per task (input + cache + output)', get: r => totalTokens(r), step: 10e6, tick: v => v === 0 ? '0' : `${v / 1e6}M` },
   { key: 'share', label: 'Share of a week', axis: 'Percent of one week\'s plan allowance', get: r => r.weekly_share_pct, step: 2, tick: v => `${v}%` },
   { key: 'time', label: 'Wall time', axis: 'Minutes per task', get: r => r.wall_min, step: 10, tick: v => `${v} min` },
 ];
 
+export const totalTokens = r => r.tokens.input + r.tokens.cache_write + r.tokens.cache_read + r.tokens.output;
 const score10 = r => r.score / 2;
 
 // Pareto frontier: runs where no other run has both lower x and >= score.
@@ -58,7 +60,7 @@ export default function ModelEvalChart({ runs }) {
   const y = v => bottom - (v - Y_MIN) / (Y_MAX - Y_MIN) * (bottom - top);
   let ticks = metric.ticks.map(t => ({ v: t, x: x(t) }));
   ticks.unshift({ v: 0, x: x(0) });
-  if (ticks.length > 1 && (right - left) / (ticks.length - 1) < 64) ticks = ticks.filter((_, i) => i === 0 || i % 2 === 1);
+  if (ticks.length > 1 && (right - left) / (ticks.length - 1) < 64) ticks = ticks.filter((_, i) => i % 2 === 0);
 
   // Stepped frontier line: from the leftmost frontier point, across then up at each next point.
   const fpts = frontier.map(r => ({ px: x(metric.get(r)), py: y(score10(r)) }));
@@ -151,6 +153,7 @@ export default function ModelEvalChart({ runs }) {
         <dl>
           <div><dt>Score</dt><dd>{fmt.score(score10(hovered))} / 10</dd></div>
           <div><dt>Wall time</dt><dd>{fmt.minutes(hovered.wall_min)}</dd></div>
+          <div><dt>Tokens</dt><dd>{fmt.tokens(totalTokens(hovered))}</dd></div>
           <div><dt>API $</dt><dd>{fmt.money(hovered.api_usd)}</dd></div>
           <div><dt>Subscription $</dt><dd>{fmt.money(hovered.sub_usd)}</dd></div>
           <div><dt>Share of a week</dt><dd>{fmt.pct(hovered.weekly_share_pct)}</dd></div>
@@ -172,6 +175,7 @@ export default function ModelEvalChart({ runs }) {
         .eval-axis button { padding:10px 8px; white-space:normal; }
         .eval-axis button:nth-child(3) { border-left:0; }
         .eval-axis button:nth-child(n+3) { border-top:1px solid #252525; }
+        .eval-axis button:nth-child(5) { grid-column:1 / -1; border-left:0; }
       }
       .model-eval-plot { position:relative; width:100%; min-width:0; }
       .model-eval-plot svg { display:block; width:100%; height:auto; overflow:visible; font:15px system-ui,sans-serif; fill:#252525; }

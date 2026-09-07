@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import ModelEvalChart, { fmt } from '../components/ModelEvalChart';
+import ModelEvalChart, { fmt, totalTokens } from '../components/ModelEvalChart';
 import data from '../public/model-eval/experiment-data.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-feature-eval/';
@@ -32,9 +32,10 @@ export default function CodingAgentFeatureEval() {
         <section>
           <h2>Results</h2>
           <div className="table-scroll">
-            <table className="results-table"><thead><tr><th>Run</th><th className="num">Score</th><th className="num">Wall time</th><th className="num">API $</th><th className="num">Subscription $</th><th className="num">Weekly share</th></tr></thead>
+            <table className="results-table"><thead><tr><th>Run</th><th className="num">Score</th><th className="num">Wall time</th><th className="num">Tokens</th><th className="num">API $</th><th className="num">Subscription $</th><th className="num">Weekly share</th></tr></thead>
               <tbody>{byScore.map(r => <tr key={r.id}>
                 <td>{r.label}</td><td className="num">{fmt.score(r.score / 2)}</td><td className="num">{fmt.minutes(r.wall_min)}</td>
+                <td className="num">{fmt.tokens(totalTokens(r))}</td>
                 <td className="num">{fmt.money(r.api_usd)}</td><td className="num">{fmt.money(r.sub_usd)}</td><td className="num">{fmt.pct(r.weekly_share_pct)}</td>
               </tr>)}
               </tbody>

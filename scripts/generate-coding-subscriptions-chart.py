@@ -41,7 +41,7 @@ def tidy(ax):
     ax.xaxis.set_minor_locator(NullLocator())
     ax.tick_params(length=0, pad=9)
 
-def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel='Coding Agent Index ↑', xlabel='USD per benchmark attempt'):
+def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel='Agent score ↑', xlabel='USD per benchmark attempt'):
     width=350 if phone else 600
     script="import {chartLayout} from './lib/coding-subscription-chart-layout.js'; import fs from 'fs'; const d=JSON.parse(fs.readFileSync(0,'utf8')); console.log(JSON.stringify(chartLayout(d.models,d.width,d.adjusted,d.options)));"
     proc=subprocess.run(['node','--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','--input-type=module','-e',script],input=json.dumps({'models':DATA['models'],'width':width,'adjusted':adjusted,'options':options or {}}),text=True,capture_output=True,cwd=ROOT,check=True)
@@ -51,7 +51,7 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
     scale=ax.get_position().width*ax.figure.get_figwidth()*72/width
     def label(x,y,text,size=15,**kw):
         return ax.text(x,y,text,fontsize=size*scale,va='baseline',**kw)
-    title=title or ('Estimated · subscriptions' if adjusted else 'Original · API pricing')
+    title=title or ('Subscription estimates' if adjusted else 'API pricing')
     ax.set_title(title,loc='left',fontsize=(18 if phone else 21)*scale,weight='bold',pad=20)
     gradient=np.zeros((160,160,4))
     coords=np.linspace(0,1,160);t=(coords[None,:]+coords[:,None])/2
@@ -85,17 +85,10 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
         v=tick['v'];label(tick['x'],bottom+28,f'${v:.2f}' if v<1 else f'${v:g}',ha='center')
     ax.plot([left,right],[bottom,bottom],color='#a9a9a9',lw=.8)
     label((left+right)/2,615,xlabel,ha='center')
-    if adjusted:
-        label(left+8,56,'7 current subscription costs unknown',size=13,color='#626262')
-        label(left+8,78,'Including top Sonnet 5.5 and Sol 6.1',size=13,color='#626262')
-        label(left+8,100,'Sep proxies; GLM off-peak → peak',size=13,color='#626262')
     for p in layout['points']:
         c=COLORS[p['row']['provider']];x,y=p['x'],p['y'];b=p['label']
         if p.get('scoreLow') is not None:
             ax.plot([x,x],[p['scoreHigh'],p['scoreLow']],color=c,alpha=.55,lw=1.2*scale,zorder=2)
-        if adjusted and not p['offscale']:
-            ax.plot([p['lo'],p['hi']],[y,y],color=c,alpha=.45,lw=1.5*scale,zorder=2)
-            if p['hiClipped']:ax.plot([right-5,right,right-5],[y-4,y,y+4],color=c,lw=scale,zorder=2)
         endx=p.get('leaderEnd',{}).get('x',max(b['x'],min(b['x']+b['w'],x)));endy=p.get('leaderEnd',{}).get('y',max(b['y'],min(b['y']+b['h'],y)))
         ax.plot([x,endx],[y,endy],color='#626262' if options else '#929292',lw=(1 if options else .8)*scale,zorder=3)
         if p['offscale']:
@@ -107,7 +100,7 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
             im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)
         point_text=[]
         for i,line in enumerate(p['lines']):
-            text=label(b['x'],b['y']+14+i*18,line,zorder=5)
+            text=label(b['x'],b['y']+16+i*layout['lineHeight'],line,zorder=5,color='#626262' if i else INK)
             import matplotlib.patheffects as effects
             text.set_path_effects([effects.withStroke(linewidth=4*scale,foreground='white')])
             point_text.append(text)
@@ -115,31 +108,29 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
 
 
 def legend(fig,phone=False):
-    fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor=COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in LABS if any(r['provider']==k for r in ROWS)],loc='upper left',bbox_to_anchor=(.08,.853) if phone else (.045,.83),ncol=3 if phone else 7,frameon=False,fontsize=11 if phone else 15,columnspacing=1.2,handletextpad=.5)
+    fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor=COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in LABS if any(r['provider']==k for r in ROWS)],loc='upper left',bbox_to_anchor=(.08,.877) if phone else (.045,.89),ncol=3 if phone else 7,frameon=False,fontsize=11 if phone else 15,columnspacing=1.2,handletextpad=.5)
 
 def main_chart():
     fig=plt.figure(figsize=(20,13),facecolor='white')
     fig.text(.05,.958,'Coding agents: API → subscriptions',fontsize=29,weight='bold')
-    fig.text(.05,.922,'1 October 2026 · Artificial Analysis Coding Agent Index v1.5 · linear axes',fontsize=16)
-    fig.text(.05,.890,'Shape: best scored configuration per provider with a subscription scenario; identical agents in both panels.',fontsize=15)
-    fig.text(.05,.858,'Independent linear USD scales; area is not a metric. Large dots = paired anchors; small dots = other current results.',fontsize=15)
+    fig.text(.05,.921,'1 October 2026 · Artificial Analysis Coding Agent Index v1.5',fontsize=16)
     legend(fig)
-    for adjusted,pos in [(False,[.05,.045,.43,.67]),(True,[.54,.045,.43,.67])]:
+    for adjusted,pos in [(False,[.05,.14,.43,.635]),(True,[.54,.14,.43,.635])]:
         draw_panel(fig.add_axes(pos),adjusted)
-    fig.text(.05,.011,'Source: Artificial Analysis v1.5 · Sources + assumptions: aiandtractors.com/coding-agent-subscription-costs/',fontsize=12)
+    fig.text(.05,.081,'Same best matched agent per provider · Independent linear USD scales; area is not a metric.',fontsize=14)
+    fig.text(.05,.051,'GLM off-peak; other estimates use September capacity proxies. Seven subscription costs are unknown; ranges are in the methodology.',fontsize=14)
+    fig.text(.05,.020,'Sources + full configurations: aiandtractors.com/coding-agent-subscription-costs/',fontsize=13)
     validate_text(fig)
     save(fig,'chart',140)
 
 def phone_chart():
     fig=plt.figure(figsize=(6,21),facecolor='white')
     fig.text(.1,.977,'Coding agents:\nAPI → subscriptions',fontsize=22,weight='bold',va='top',linespacing=1.2)
-    fig.text(.1,.925,'1 October 2026 · AA index v1.5\nLinear axes · USD per benchmark attempt',fontsize=13,linespacing=1.5)
-    fig.text(.1,.885,'Shape: best scored config per provider with\na subscription scenario; same agents and order.',fontsize=12,linespacing=1.4)
+    fig.text(.1,.905,'1 October 2026 · AA index v1.5',fontsize=13)
     legend(fig,True)
-    draw_panel(fig.add_axes([.05,.465,.90,.32]),False,True)
-    draw_panel(fig.add_axes([.05,.04,.90,.32]),True,True)
-    fig.text(.1,.405,'Independent USD scales; area is not a metric.\nLarge dots = paired anchors; small = other results.',fontsize=12,linespacing=1.4)
-    fig.text(.1,.006,'Source: Artificial Analysis v1.5\nSources + assumptions:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=11,linespacing=1.3)
+    draw_panel(fig.add_axes([.05,.48,.90,.31]),False,True)
+    draw_panel(fig.add_axes([.05,.105,.90,.31]),True,True)
+    fig.text(.1,.013,'Same best matched agent per provider.\nIndependent linear scales; area is not a metric.\nGLM off-peak · others: Sep capacity proxies.\n7 subscription costs unknown; ranges + sources:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=12,linespacing=1.35)
     validate_text(fig)
     save(fig,'chart-phone',160)
 
@@ -164,7 +155,7 @@ def validate_text(fig):
                 boxes.append((key,b))
         for i,(ka,a) in enumerate(boxes):
             for kb,b in boxes[i+1:]:
-                if ka!=kb:
+                if True:
                     assert min(a.x1,b.x1)-max(a.x0,b.x0)<1 or min(a.y1,b.y1)-max(a.y0,b.y0)<1,(ka,kb,'overlapping rendered labels')
 
 def cost_difference_report():

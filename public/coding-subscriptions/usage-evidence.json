@@ -1,0 +1,171 @@
+{
+  "as_of": "2026-10-01",
+  "use_for_chart_calibration": false,
+  "reports": [
+    {
+      "provider": "zai",
+      "author": "dontWORRYimASIAN",
+      "source": "https://www.reddit.com/r/ZaiGLM/comments/1w4eg4b/comment/p773rtu/",
+      "report_date": null,
+      "accessed_as_of": "2026-10-01",
+      "evidence_type": "First-hand self-report; no independently audited invoice or telemetry",
+      "plan": "GLM Coding Plan Lite",
+      "monthly_fee_usd_reported": 18,
+      "five_hour_credits_reported": 2000,
+      "weekly_credits_reported": 10000,
+      "sample_duration_days_approx": 3,
+      "tokens_reported_range": [
+        30000000,
+        45000000
+      ],
+      "calls_reported_range": [
+        500,
+        600
+      ],
+      "credits_used_reported_range": [
+        3400,
+        5700
+      ],
+      "weekly_utilization_percent_reported_range": [
+        35,
+        57
+      ],
+      "weekly_utilization_percent_computed_from_credits": [
+        34,
+        57
+      ],
+      "offpeak_usage_fraction_reported": 0.95,
+      "model_mix_reported": {
+        "GLM-5.3": 0.43,
+        "GLM-5.3-Flash": 0.57
+      },
+      "harness": "Hermes; coding within OMP within Hermes",
+      "api_equivalent_monthly_usd_reported_actual_august": [
+        35,
+        55
+      ],
+      "api_equivalent_monthly_usd_reported_full_utilization_projection": [
+        95,
+        165
+      ],
+      "cash_cost_for_sample": null,
+      "monthly_plan_utilization_measured": null,
+      "apply_to_chart_capacity": false,
+      "limitations": [
+        "Mixed models and different harness from the AA GLM-5.3 OpenCode configuration",
+        "Token/call/credit figures are broad ranges and sample versus month periods differ",
+        "Reported cache percentages use inconsistent or unspecified denominators",
+        "Author mentions a historical Flash API discount; not a current provider API quota",
+        "Reported weekly share is rounded; supplied credit range calculates to 34\u201357%, not exactly 35\u201357%",
+        "Full-use monthly API-equivalent range is the author\u2019s projection, not a measured allowance"
+      ]
+    },
+    {
+      "provider": "openai",
+      "author": "IndividualPlus2011",
+      "source": "https://www.reddit.com/r/codex/comments/1wtlkg6/gpt_61_brought_another_nerf_to_usage_table_update/",
+      "method_source": "https://www.reddit.com/r/codex/comments/1wp0v6x/allowance_for_gpt_6_luna_sol_and_astra_measured/",
+      "report_date": "2026-09-29",
+      "report_date_basis": "Explicit 6.1 edit date in method post; update page relative publication age differs",
+      "plan": "ChatGPT Plus",
+      "monthly_fee_usd_reported": 20,
+      "model": "GPT-6.1 Sol",
+      "harness": "Pi",
+      "api_equivalent_usd_per_fresh_five_hour_window": 7.5,
+      "five_hour_window_utilization_reported": 1,
+      "weekly_api_equivalent_usd_reported_projection": 45,
+      "monthly_api_equivalent_usd_reported_30_day_projection": 193,
+      "monthly_api_equivalent_usd_52_week_projection": 195.0,
+      "cash_cost_for_sample": null,
+      "apply_to_chart_capacity": false,
+      "limitations": [
+        "Only Plus was tested; Pro scaling in the post is not measured",
+        "Weekly and monthly totals are extrapolations from a five-hour-window observation",
+        "No long context; workload/cache mix and effort can differ from the benchmark",
+        "Current new-buyer Pro 200 allowances differ from grandfathered historical accounts"
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "source": "https://www.remakebench.com/capacity/plans/claude-max-20x",
+      "report_date": "2026-09-25",
+      "plan": "Owner-reported Claude Max 20x; app label Pro conflicts",
+      "monthly_fee_usd_reported": 200,
+      "model_mix_opus_55_fraction_reported": 0.963,
+      "sample_window_start": "2026-09-24T00:59:59Z",
+      "sample_window_reset": "2026-10-01T00:59:59Z",
+      "api_equivalent_usd_corrected_sample": 1249.83,
+      "weekly_utilization_percent_reported": 58,
+      "weekly_api_equivalent_usd_inferred": 2154.8793103448274,
+      "monthly_api_equivalent_usd_52_week_projection": 9337.810344827585,
+      "cash_cost_for_sample": null,
+      "apply_to_chart_capacity": false,
+      "limitations": [
+        "Owner fee/Max tier conflicts with app Pro label",
+        "One rounded weekly meter reading; model-mix dependence",
+        "Corrected receipts still may omit activity outside local transcripts",
+        "Extra usage had been charged; historical totals are not clean included-limit ceilings",
+        "Harness cohort differs from Artificial Analysis; no score transferred"
+      ]
+    },
+    {
+      "provider": "xai",
+      "source": "https://www.remakebench.com/capacity/plans/supergrok-heavy",
+      "report_date": "2026-09-25",
+      "plan": "SuperGrok Heavy",
+      "monthly_fee_usd_reported": 300,
+      "model": "Grok 4.7",
+      "effort_mix_xhigh_fraction_reported": 0.961,
+      "harness": "Grok CLI",
+      "meter_start_percent_used": 56,
+      "meter_end_percent_used": 75,
+      "meter_delta_percentage_points": 19,
+      "sample_start": "2026-09-23T18:22:15Z",
+      "sample_end": "2026-09-25T09:09:24Z",
+      "api_equivalent_usd_deduplicated_sample": 76.09728984,
+      "weekly_api_equivalent_usd_inferred": 400.5120517894737,
+      "monthly_api_equivalent_usd_52_week_projection": 1735.5522244210526,
+      "cash_cost_for_sample": null,
+      "apply_to_chart_capacity": false,
+      "limitations": [
+        "Weekly pool shared across Grok products; unlogged use may affect meter delta",
+        "Mostly XHigh rather than one pure configuration",
+        "API-equivalent valuation is not cash billed or provider-guaranteed dollars",
+        "Model/effort and workload differ from the AA Grok Build benchmark configuration"
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "author": "oxmannnn",
+      "source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/",
+      "quota_comment_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/comment/pcsnpqx/",
+      "report_date": null,
+      "plan": "Claude Max 20x, self-reported",
+      "monthly_fee_usd_reported": null,
+      "model": "Sonnet 5.5",
+      "api_equivalent_usd_30_second_video": 30.46,
+      "api_equivalent_usd_both_video_versions": 35.4,
+      "sample_duration_hours_reported": 2.4,
+      "tool_calls_reported": 779,
+      "weekly_utilization_percent_measured": null,
+      "quota_comment_not_independently_accessible": true,
+      "cash_cost_for_sample": null,
+      "apply_to_chart_capacity": false,
+      "limitations": [
+        "Transcript-based list-price valuation; no subscription invoice for sample",
+        "Related rounded ~2% weekly quota comment could not be independently read in this pass; no capacity derived",
+        "Percentage scope across the 15-second and 30-second versions is uncertain",
+        "Same-token counterfactual Opus valuation is not an observed Opus run"
+      ]
+    }
+  ],
+  "glm_schedule_sensitivities": {
+    "fee_usd": 80,
+    "monthly_credits": 260000,
+    "offpeak_main_per_attempt": 0.41444475858170243,
+    "offpeak_fraction_95_percent_per_attempt": 0.43516699651078755,
+    "uniform_168_hour_week_per_attempt": 0.46378342031761943,
+    "all_peak_per_attempt": 0.8288895171634049,
+    "method": "Weighted credit multiplier holding AA token mix and full weekly utilization fixed; percentages are assumptions, not observed benchmark timing"
+  }
+}

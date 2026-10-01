@@ -58,6 +58,23 @@ for field in ['api','price']:
 assert len(shape['overall_best_without_subscription'])==5
 assert all(by[i]['mean']['costUsd'] is not None for i in shape['overall_best_without_subscription'])
 checks.append('One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; five overall provider bests explicitly unpaired')
+rules=d['glm_credit_rules']
+assert rules['applies_to'].startswith('Coding Plan') and rules['offpeak_credit_multiplier']==.5
+assert rules['timezone']=='Asia/Singapore' and rules['regular_peak_hours_local']==['14:00','18:00']
+assert rules['regular_peak_hours_per_week']==5*4==20 and rules['regular_offpeak_hours_per_week']==168-20==148
+assert math.isclose(rules['regular_offpeak_time_fraction'],148/168)
+evidence=json.loads((OUT/'usage-evidence.json').read_text());assert not evidence['use_for_chart_calibration']
+assert len(evidence['reports'])==5 and all(not r['apply_to_chart_capacity'] for r in evidence['reports'])
+glm_report=evidence['reports'][0]
+assert [100*c/glm_report['weekly_credits_reported'] for c in glm_report['credits_used_reported_range']]==glm_report['weekly_utilization_percent_computed_from_credits']==[34,57]
+assert glm_report['monthly_plan_utilization_measured'] is None
+sol_report=evidence['reports'][1];assert sol_report['plan']=='ChatGPT Plus' and sol_report['monthly_api_equivalent_usd_52_week_projection']==195
+grok_report=evidence['reports'][3];assert grok_report['meter_end_percent_used']-grok_report['meter_start_percent_used']==grok_report['meter_delta_percentage_points']==19
+sens=evidence['glm_schedule_sensitivities'];glm_price=next(r['price'] for r in d['models'] if r['group']=='GLM')
+assert math.isclose(sens['offpeak_main_per_attempt'],glm_price)
+assert math.isclose(sens['offpeak_fraction_95_percent_per_attempt'],glm_price*1.05)
+assert math.isclose(sens['uniform_168_hour_week_per_attempt'],glm_price*(148+20*2)/168)
+checks.append('GLM off-peak discount applied once to subscription credits; 20/148 peak/off-peak hours and schedule sensitivities reproduce; five usage anecdotes are separate from model calibration; no Plus-to-Pro extrapolation')
 images={f:list(Image.open(OUT/f).size) for f in ['chart.png','chart-phone.png']}
 for f in images:assert Image.open(OUT/f).verify() is None
 page=(ROOT/'pages/coding-agent-subscription-costs.js').read_text()

@@ -114,7 +114,7 @@ def main():
         ('https://x.ai/pricing','SuperGrok plan fees'),
         ('https://www.kimi.com/code/docs/kimi-code/membership.html','Kimi membership and quota accounting'),
         ('https://platform.claude.com/docs/en/models/overview','Current Claude lineup')]
-    data=dict(as_of=args.as_of,version=11,benchmark_version='1.5',benchmark_source=AA,
+    data=dict(as_of=args.as_of,version=12,benchmark_version='1.5',benchmark_source=AA,
               source_html_sha256=digest,benchmark_records=len(rows),models=models,plans=old['plans'],
               own_usage=old['own_usage'],usage_as_of='2026-09-06',
               method=old['method'],range_type='Scenario ranges, not confidence intervals.',
@@ -131,6 +131,10 @@ def main():
               chart_view=dict(selection='AA available default configurations with score at least 50; all 31 configurations retained in data',available_default_configurations=sum(m['default'] and not m['unavailable'] for m in models),visible_configurations=n,subscription_configurations=sum(m['chart_visible'] and m['price'] is not None for m in models),cost_scale='linear',score_min=50,score_max=72,api_cost_min=1,api_cost_max=16,subscription_cost_min=.03,subscription_cost_max=1.05,provider_shape="Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels",rank_scope='Four same-configuration central full-use scenarios; missing prices excluded'),
               sources=[dict(url=u,title=t,checked_at=args.as_of) for u,t in sources])
     (OUT/'aa-agent-snapshot.json').write_text(json.dumps(dict(as_of=args.as_of,source=AA,benchmark_version='1.5',html_sha256=digest,rows=rows),indent=2)+'\n')
+    data['glm_credit_rules']=json.loads((OUT/'estimates.json').read_text())['glm_credit_rules']
+    data['plans']['Codex']['capacity_status']='Historical September scenario; current new-buyer Pro 200 capacity uncalibrated; eligible old allowance ends 2026-10-29.'
+    data['plans']['Codex']['current_source']='https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers'
+    data['chart_view']['annotation_mode']='Short labels and central costs; methodology and sensitivity in article/data'
     (OUT/'estimates.json').write_text(json.dumps(data,indent=2)+'\n')
     print(f'Validated {len(rows)} current configurations; {n} available default variants; {sum(m["price"] is not None for m in models)} explicit scenarios.')
 

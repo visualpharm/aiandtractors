@@ -25,7 +25,7 @@ function Plot({ models, adjusted, selected, onSelect }) {
       <g role="group" clipPath={`url(#plot-${id})`} aria-label="Same four provider configurations, connected in descending score order">
         {shape.path && <path data-provider-shape="paired" data-anchor-ids={shape.order.join(',')} d={shape.path} fill="#626262" fillOpacity=".055" stroke="#626262" strokeWidth="2" strokeLinejoin="round" />}
       </g>
-      <text x={left} y="16" className="axis-caption">Coding Agent Index ↑</text>
+      <text x={left} y="16" className="axis-caption">Agent score ↑</text>
       {scoreTicks.map(({v:t,y}) => <g key={t}>
         <line x1={left} x2={right} y1={y} y2={y} stroke="#e5e5e5" />
         <text x={left - 10} y={y + 5} textAnchor="end">{t}</text>
@@ -35,22 +35,19 @@ function Plot({ models, adjusted, selected, onSelect }) {
       </g>)}
       <line x1={left} x2={right} y1={bottom} y2={bottom} stroke="#a9a9a9" />
       <text x={(left + right) / 2} y={height-5} textAnchor="middle">USD per benchmark attempt</text>
-      {adjusted && <text x={left+8} y="56" className="scenario-note"><tspan x={left+8}>7 current subscription costs unknown</tspan><tspan x={left+8} dy="22">Including top Sonnet 5.5 and Sol 6.1</tspan><tspan x={left+8} dy="22">Sep proxies; GLM off-peak → peak</tspan></text>}
       {points.map(p => {
         const r=p.row,px=p.x,py=p.y,active=selected===r.short,c=COLORS[r.provider],b=p.label;
-        const labelText=p.text,labelX=b.x,labelY=b.y+14;
+        const labelText=p.text,labelX=b.x,labelY=b.y+16;
         const endX=Math.max(b.x,Math.min(b.x+b.w,px)),endY=Math.max(b.y,Math.min(b.y+b.h,py));
         const cursor = r.group === 'Cursor';
         return <g key={r.short} data-model={r.short} data-anchor={p.anchor || undefined} data-offscale={p.offscale || undefined} tabIndex="0" role="button" aria-pressed={active} className="agent-point" aria-label={`${r.benchmark_label || r.label}. Score ${r.score.toFixed(2)}. ${adjusted ? 'Subscription estimate' : 'API cost'} ${money(adjusted ? r.price : r.api)} per task.${adjusted ? ` Range ${money(r.lo)} to ${money(r.hi)}.` : ''}${p.offscale ? ' Beyond the displayed cost axis.' : ''}`}
           onClick={() => onSelect(r.short)} onFocus={() => onSelect(r.short)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(r.short); } }}>
           <title>{`${r.benchmark_label || r.label}: ${r.score.toFixed(2)} points, ${money(adjusted ? r.price : r.api)} per task${adjusted ? `; estimate range ${money(r.lo)}–${money(r.hi)}` : ''}${p.offscale ? '; beyond the displayed cost axis' : ''}`}</title>
-          {adjusted && !p.offscale && <line x1={p.lo} x2={p.hi} y1={py} y2={py} stroke={c} strokeWidth="1.5" opacity=".45" />}
-          {adjusted && p.hiClipped && !p.offscale && <path d={`M ${right-5} ${py-4} L ${right} ${py} L ${right-5} ${py+4}`} fill="none" stroke={c}><title>{`Estimate range continues above ${money(layout.costMax)}`}</title></path>}
           <circle cx={px} cy={py} r="22" fill="transparent" />
           {active && !p.offscale && <circle cx={px} cy={py} r={p.anchor?14:8} fill="none" stroke={c} strokeWidth="1.5" />}
           {p.offscale ? <path className="offscale-arrow" d={`M ${right-22} ${py} H ${right} M ${right-7} ${py-6} L ${right} ${py} L ${right-7} ${py+6}`} fill="none" stroke={c} strokeWidth="2" /> : <circle className="visible-marker" cx={px} cy={py} r={p.anchor?10:3.5} fill={c} stroke={p.anchor?'white':c} strokeWidth={p.anchor?2:1.2} />}
           <line className="label-leader" x1={px} y1={py} x2={endX} y2={endY} stroke="#929292" strokeWidth=".8" />
-          <text className="point-label" x={labelX} y={labelY}>{p.lines.map((line,i)=><tspan key={i} x={labelX} dy={i?18:0}>{line}</tspan>)}</text>
+          <text className="point-label" x={labelX} y={labelY}>{p.lines.map((line,i)=><tspan key={i} className={i?'point-cost':undefined} x={labelX} dy={i?layout.lineHeight:0}>{line}</tspan>)}</text>
         </g>;
       })}
     </svg>
@@ -58,18 +55,17 @@ function Plot({ models, adjusted, selected, onSelect }) {
 }
 
 export default function CodingAgentComparison({ models }) {
-  const [selected, setSelected] = useState('29a1cdad0d140781d05b9b4746cfdd0d');
+  const [selected, setSelected] = useState(null);
   models = frontierRows(models);
   return <section className="agent-comparison" aria-label="Original and subscription-adjusted coding agent comparison">
-    <p className="shape-rule">Shape: best scored configuration per provider with a subscription scenario. Identical configurations and score order in both panels.</p>
     <div className="agent-panels">
-      <section><h2>Original · API pricing</h2><Plot models={models} selected={selected} onSelect={setSelected} /></section>
-      <section><h2>Estimated · subscriptions</h2><Plot models={models} adjusted selected={selected} onSelect={setSelected} /></section>
+      <section><h2>API pricing</h2><Plot models={models} selected={selected} onSelect={setSelected} /></section>
+      <section><h2>Subscription estimates</h2><Plot models={models} adjusted selected={selected} onSelect={setSelected} /></section>
     </div>
-    <p className="shape-scale">Independent linear USD scales; shape area has no quantitative meaning. Large dots are paired anchors; small dots show other current agent results.</p>
     <div className="agent-legend" aria-label="AI labs">
       {LABS.filter(([key])=>models.some(r=>r.provider===key)).map(([key,label]) => <span key={key}><i style={{background:key==='google'?'linear-gradient(135deg,#4285f4,#34a853,#fbbc05,#ea4335)':COLORS[key]}} />{label}</span>)}
     </div>
+    <p className="shape-scale">Same best matched agent per provider; independent linear cost scales. GLM uses off-peak credits, others use September capacity proxies. Seven subscription costs are unknown. Area is not a metric; ranges and full configurations are below.</p>
     <style>{`
       .agent-comparison { margin:32px 0; color:#252525; }
       .agent-comparison .shape-rule,.agent-comparison .shape-scale {font:15px/1.5 system-ui,sans-serif;margin:0 0 20px;max-width:1000px;}
@@ -79,6 +75,7 @@ export default function CodingAgentComparison({ models }) {
       .agent-plot { width:100%; min-width:0; }
       .agent-plot svg { display:block; width:100%; height:auto; overflow:visible; font:15px system-ui,sans-serif; fill:#252525; }
       .agent-plot .point-label { font-size:15px; paint-order:stroke; stroke:white; stroke-width:5px; stroke-linejoin:round; }
+      .agent-plot .point-cost {fill:#626262;}
       .agent-plot .scenario-note {font-size:13px;fill:#626262;}
       .agent-point { cursor:pointer; outline:none; }
       .agent-point:focus-visible circle:first-of-type { stroke:#252525; stroke-width:2; }

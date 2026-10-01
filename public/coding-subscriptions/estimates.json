@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-01",
-  "version": 11,
+  "version": 12,
   "benchmark_version": "1.5",
   "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
   "source_html_sha256": "600ebc51f020ae691ffec0d9604ed3fa330168e0a87d0aab2ba90a1fae24dd1d",
@@ -1889,7 +1889,9 @@
       "base": 7000,
       "low": 5000,
       "high": 10000,
-      "color": "#181818"
+      "color": "#181818",
+      "capacity_status": "Historical September scenario; current new-buyer Pro 200 allowance is lower and uncalibrated. Eligible existing accounts retain the old allowance only through 2026-10-29.",
+      "current_source": "https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers"
     },
     "Claude / Opus": {
       "fee": 200,
@@ -2011,7 +2013,8 @@
     "subscription_cost_min": 0.03,
     "subscription_cost_max": 1.05,
     "rank_scope": "Four same-configuration central full-use scenarios; missing prices excluded",
-    "provider_shape": "Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels"
+    "provider_shape": "Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels",
+    "annotation_mode": "Short model labels and central costs only; effort, harness, ratios, ranks, sensitivity and evidence in article/data"
   },
   "sources": [
     {
@@ -2079,5 +2082,34 @@
       "title": "Current Claude lineup",
       "checked_at": "2026-10-01"
     }
-  ]
+  ],
+  "glm_credit_rules": {
+    "verified_as_of": "2026-10-01",
+    "source": "https://docs.z.ai/devpack/overview",
+    "applies_to": "Coding Plan model credit consumption; not pay-as-you-go API dollar prices",
+    "timezone": "Asia/Singapore",
+    "utc_offset_hours": 8,
+    "regular_peak_days": [
+      "MO",
+      "TU",
+      "WE",
+      "TH",
+      "FR"
+    ],
+    "regular_peak_hours_local": [
+      "14:00",
+      "18:00"
+    ],
+    "regular_peak_hours_utc": [
+      "06:00",
+      "10:00"
+    ],
+    "regular_peak_hours_per_week": 20,
+    "regular_offpeak_hours_per_week": 148,
+    "regular_offpeak_time_fraction": 0.8809523809523809,
+    "offpeak_credit_multiplier": 0.5,
+    "promotion_all_hours_offpeak_start": "2026-09-25",
+    "promotion_all_hours_offpeak_end": "2026-10-07",
+    "chart_assumption": "Schedule all modeled GLM use off peak at the standard $80 Pro fee; fully consume weekly credits. Does not assume the temporary all-hours campaign lasts a whole month."
+  }
 }

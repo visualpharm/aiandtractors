@@ -10,7 +10,8 @@
     "GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce",
     "September snapshot is archived separately; historical personal usage unchanged",
     "Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded",
-    "One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; five overall provider bests explicitly unpaired"
+    "One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; five overall provider bests explicitly unpaired",
+    "GLM off-peak discount applied once to subscription credits; 20/148 peak/off-peak hours and schedule sensitivities reproduce; five usage anecdotes are separate from model calibration; no Plus-to-Pro extrapolation"
   ],
   "images": {
     "chart.png": [

@@ -47,6 +47,38 @@ def extract(path):
     assert 'Coding Agent Index v1.5' in html
     return rows, hashlib.sha256(path.read_bytes()).hexdigest()
 
+def apply_sonnet_scenario(data):
+    """Apply one explicitly provisional same-model report; never transfer an old quota."""
+    report=json.loads((OUT/'usage-evidence.json').read_text())['reports'][-1]
+    assert report['model']=='Sonnet 5.5' and report['apply_to_chart_capacity']
+    assert not report['quota_comment_not_independently_accessible']
+    fee=report['monthly_fee_usd_official']
+    value=report['api_equivalent_usd_30_second_video']
+    share=report['weekly_utilization_percent_reported_approximate']/100
+    months=52/12
+    base=value/share*months
+    low=value/.03*months
+    high=report['api_equivalent_usd_both_video_versions']/.01*months
+    plan='Claude / Sonnet provisional'
+    data['plans'][plan]=dict(fee=fee,base=base,low=low,high=high,color='#db7549',
+        method='Reported $30.46 video / approximately 2% weekly share × 52/12; selected sensitivity $30.46–$35.40 and 1–3% share.',
+        capacity_status='One rounded self-report, not measured entitlement; Creator Ultracode differs from AA max.',
+        source=report['source'],quota_source=report['quota_comment_source'],fee_source=report['fee_source'])
+    selected=[r for r in data['models'] if r['id']=='a2c87c062f3cef73d8525e7578f14742']
+    assert len(selected)==1 and selected[0]['model']=='Sonnet 5.5 (max)' and selected[0]['harness']=='Claude Code'
+    row=selected[0]
+    row.update(group=plan,plan=plan,price=row['api']*fee/base,lo=row['api']*fee/high,hi=row['api']*fee/low,
+        provisional=True,scenario_only=True,scenario_as_of='2026-10-01',
+        range_type='Selected 1–3% quota-share and $30.46–$35.40 workload-scope sensitivity; not a confidence interval.',
+        capacity_status='One self-reported Max 20x workload; not verified benchmark subscription capacity.',
+        reason='Central pairing assumes $30.46 final-video API-equivalent value and approximately 2% weekly share. Full use, unchanged workload economics, no unlogged quota consumption, same-model capacity transfer from creator Ultracode to AA max are unverified. Sensitivity does not bound all structural uncertainty.')
+    data['sonnet_provisional_scenario']=dict(configuration_id=row['id'],report_source=report['source'],quota_source=report['quota_comment_source'],fee_source=report['fee_source'],central_sample_api_value_usd=value,central_weekly_share=share,selected_weekly_share_sensitivity=[.01,.03],selected_sample_api_value_usd_sensitivity=[value,report['api_equivalent_usd_both_video_versions']],monthly_api_equivalent_usd=dict(central=base,low=low,high=high),not_confidence_interval=True)
+    for url,title in [(report['quota_comment_source'],'Sonnet creator approximately 2% weekly-limit report'),(report['fee_source'],'Official Claude Max 20x monthly fee')]:
+        if url not in [ref['url'] for ref in data['sources']]:data['sources'].append(dict(url=url,title=title,checked_at=data['as_of']))
+    data['chart_view']['subscription_configurations']=sum(r['chart_visible'] and r['price'] is not None for r in data['models'])
+    data['chart_view']['rank_scope']='Five same-configuration central full-use scenarios; Sonnet provisional; missing prices excluded'
+    data['chart_view']['annotation_mode']='Names only; exact costs in source/table. Sonnet provisional marker and selected sensitivity range visible.'
+
 def main():
     p = argparse.ArgumentParser();p.add_argument('html',type=Path);p.add_argument('--as-of',required=True)
     args = p.parse_args();rows,digest = extract(args.html)
@@ -114,7 +146,7 @@ def main():
         ('https://x.ai/pricing','SuperGrok plan fees'),
         ('https://www.kimi.com/code/docs/kimi-code/membership.html','Kimi membership and quota accounting'),
         ('https://platform.claude.com/docs/en/models/overview','Current Claude lineup')]
-    data=dict(as_of=args.as_of,version=12,benchmark_version='1.5',benchmark_source=AA,
+    data=dict(as_of=args.as_of,version=13,benchmark_version='1.5',benchmark_source=AA,
               source_html_sha256=digest,benchmark_records=len(rows),models=models,plans=old['plans'],
               own_usage=old['own_usage'],usage_as_of='2026-09-06',
               method=old['method'],range_type='Scenario ranges, not confidence intervals.',
@@ -122,7 +154,7 @@ def main():
               assumptions=['Scores and API costs use one current v1.5 snapshot; no September scores are mixed in.',
                'Each record is a particular harness/model/effort configuration, not model-only intelligence.',
                'September community capacity scenarios are retained only for previously calibrated model families and explicitly dated.',
-               'New model generations and new harnesses have null subscription costs.',
+               'New model generations and new harnesses remain null unless an explicit same-model scenario is reviewed; Sonnet max is provisional.',
                'Full usage allocates the entire fee to one alternative; consuming half the assumed usage doubles cost per task.',
                'No taxes, overages, review labor, infrastructure or other plan benefits are included. Attempts include failures.',
                'GLM credit estimates use pooled mean counters and published credit rules; they are approximate, not a measured benchmark subscription invoice.',
@@ -134,7 +166,7 @@ def main():
     data['glm_credit_rules']=json.loads((OUT/'estimates.json').read_text())['glm_credit_rules']
     data['plans']['Codex']['capacity_status']='Historical September scenario; current new-buyer Pro 200 capacity uncalibrated; eligible old allowance ends 2026-10-29.'
     data['plans']['Codex']['current_source']='https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers'
-    data['chart_view']['annotation_mode']='Short labels and central costs; methodology and sensitivity in article/data'
+    apply_sonnet_scenario(data)
     (OUT/'estimates.json').write_text(json.dumps(data,indent=2)+'\n')
     print(f'Validated {len(rows)} current configurations; {n} available default variants; {sum(m["price"] is not None for m in models)} explicit scenarios.')
 

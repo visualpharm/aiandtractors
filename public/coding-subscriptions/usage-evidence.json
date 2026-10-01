@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-01",
-  "use_for_chart_calibration": false,
+  "use_for_chart_calibration": true,
   "reports": [
     {
       "provider": "zai",
@@ -138,7 +138,7 @@
       "provider": "anthropic",
       "author": "oxmannnn",
       "source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/",
-      "quota_comment_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/comment/pcsnpqx/",
+      "quota_comment_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/comment/pcsnpqx/",
       "report_date": null,
       "plan": "Claude Max 20x, self-reported",
       "monthly_fee_usd_reported": null,
@@ -148,14 +148,46 @@
       "sample_duration_hours_reported": 2.4,
       "tool_calls_reported": 779,
       "weekly_utilization_percent_measured": null,
-      "quota_comment_not_independently_accessible": true,
+      "quota_comment_not_independently_accessible": false,
       "cash_cost_for_sample": null,
-      "apply_to_chart_capacity": false,
+      "apply_to_chart_capacity": true,
       "limitations": [
-        "Transcript-based list-price valuation; no subscription invoice for sample",
-        "Related rounded ~2% weekly quota comment could not be independently read in this pass; no capacity derived",
-        "Percentage scope across the 15-second and 30-second versions is uncertain",
-        "Same-token counterfactual Opus valuation is not an observed Opus run"
+        "One self-reported rounded ~2% weekly share; no raw before/after quota-meter logs",
+        "Unclear whether quota share covers the $30.46 final video or $35.40 both-version total",
+        "Creator Ultracode/subagent workload differs from AA Claude Code max benchmark configuration",
+        "Transcript-based API valuation is not a billed amount or guaranteed quota",
+        "Selected 1\u20133% / $30.46\u2013$35.40 sensitivity envelope is not a confidence interval; structural uncertainty remains unquantified",
+        "Same-token counterfactual Opus valuation is not an observed Opus transcript ledger"
+      ],
+      "weekly_utilization_percent_reported_approximate": 2,
+      "monthly_fee_usd_official": 200,
+      "fee_source": "https://support.anthropic.com/en/articles/11049741-what-is-the-max-plan",
+      "harness": "Claude Desktop / Claude Code, self-reported Ultracode and 14 subagents",
+      "calibration_status": "Provisional selected scenario only; rounded self-report with workload-scope and harness/effort transfer uncertainty",
+      "corroboration_without_priced_ledger": [
+        {
+          "source": "https://www.reddit.com/r/ClaudeCode/comments/1wt2vw6/sonnet_55_is_good/?sort=new",
+          "author": "Dingenjor",
+          "plan": "Max 20x, self-reported",
+          "model": "Sonnet 5.5",
+          "effort": "medium",
+          "hours_reported": 6,
+          "weekly_meter_start_percent_reported": 92,
+          "weekly_meter_end_percent_reported": 93,
+          "api_equivalent_usd": null,
+          "apply_to_chart_capacity": false
+        },
+        {
+          "source": "https://www.reddit.com/r/ClaudeCode/comments/1wt2vw6/sonnet_55_is_good/?sort=new",
+          "author": "thehoundtrainer",
+          "plan": "Max 20x, self-reported",
+          "model": "Sonnet 5.5",
+          "effort": "max",
+          "hours_reported": 8,
+          "weekly_share_percent_reported": 15,
+          "api_equivalent_usd": null,
+          "apply_to_chart_capacity": false
+        }
       ]
     }
   ],
@@ -167,5 +199,6 @@
     "uniform_168_hour_week_per_attempt": 0.46378342031761943,
     "all_peak_per_attempt": 0.8288895171634049,
     "method": "Weighted credit multiplier holding AA token mix and full weekly utilization fixed; percentages are assumptions, not observed benchmark timing"
-  }
+  },
+  "calibration_scope": "Only the Sonnet Max 20x report supplies an explicitly provisional scenario; other four reports remain outside chart capacity calibration."
 }

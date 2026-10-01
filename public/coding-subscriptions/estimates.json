@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-01",
-  "version": 12,
+  "version": 13,
   "benchmark_version": "1.5",
   "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
   "source_html_sha256": "600ebc51f020ae691ffec0d9604ed3fa330168e0a87d0aab2ba90a1fae24dd1d",
@@ -48,9 +48,9 @@
       },
       "score": 68.35783373750832,
       "api": 14.190800796369649,
-      "price": null,
-      "lo": null,
-      "hi": null,
+      "price": 0.43004598605090105,
+      "lo": 0.1850169595354583,
+      "hi": 0.6450689790763516,
       "benchmark_as_of": "2026-10-01",
       "benchmark_version": "1.5",
       "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
@@ -61,10 +61,16 @@
         "cacheTokens": 26006027.66886688,
         "outputTokens": 600968.2744774478
       },
-      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
-      "group": "anthropic",
+      "reason": "Central pairing assumes $30.46 final-video API-equivalent value and approximately 2% weekly share. Full use, unchanged workload economics, no unlogged quota consumption, same-model capacity transfer from creator Ultracode to AA max are unverified. Sensitivity does not bound all structural uncertainty.",
+      "group": "Claude / Sonnet provisional",
       "chart_visible": true,
-      "chart_number": 1
+      "chart_number": 1,
+      "plan": "Claude / Sonnet provisional",
+      "provisional": true,
+      "scenario_only": true,
+      "scenario_as_of": "2026-10-01",
+      "range_type": "Selected 1\u20133% quota-share and $30.46\u2013$35.40 workload-scope sensitivity; not a confidence interval.",
+      "capacity_status": "One self-reported Max 20x workload; not verified benchmark subscription capacity."
     },
     {
       "id": "ab5074e404be48bbd4ac3c488ad9a3e2",
@@ -1946,6 +1952,18 @@
       "high": 489.03423529411765,
       "confidence": "Low: five usage rows; quota percentage rounded to one decimal; token-mix transfer",
       "method": "Same-model measured token usage at current published Cursor rates divided by 0.9% of Cursor Models quota; 0.85%-0.95% rounding envelope. Full plan fee assigned to this alternative alone."
+    },
+    "Claude / Sonnet provisional": {
+      "fee": 200,
+      "base": 6599.666666666666,
+      "low": 4399.777777777777,
+      "high": 15339.999999999998,
+      "color": "#db7549",
+      "method": "Reported $30.46 video / approximately 2% weekly share \u00d7 52/12; selected sensitivity $30.46\u2013$35.40 and 1\u20133% share.",
+      "capacity_status": "One rounded self-report, not measured entitlement; Creator Ultracode differs from AA max.",
+      "source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/",
+      "quota_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/comment/pcsnpqx/",
+      "fee_source": "https://support.anthropic.com/en/articles/11049741-what-is-the-max-plan"
     }
   },
   "own_usage": [
@@ -1993,18 +2011,19 @@
     "Scores and API costs use one current v1.5 snapshot; no September scores are mixed in.",
     "Each record is a particular harness/model/effort configuration, not model-only intelligence.",
     "September community capacity scenarios are retained only for previously calibrated model families and explicitly dated.",
-    "New model generations and new harnesses have null subscription costs.",
+    "New model generations and new harnesses remain null unless an explicit same-model scenario is reviewed; Sonnet max is provisional.",
     "Full usage allocates the entire fee to one alternative; consuming half the assumed usage doubles cost per task.",
     "No taxes, overages, review labor, infrastructure or other plan benefits are included. Attempts include failures.",
     "GLM credit estimates use pooled mean counters and published credit rules; they are approximate, not a measured benchmark subscription invoice.",
     "Gemini 4 Argon is flagged unavailable by AA and retained only in the full dataset.",
-    "July/August Kimi fee and quota scenario is historical; current international fee not independently confirmed."
+    "July/August Kimi fee and quota scenario is historical; current international fee not independently confirmed.",
+    "Sonnet max uses a provisional same-model creator report and visible selected sensitivity, not an inherited September quota or confirmed entitlement."
   ],
   "chart_view": {
     "selection": "AA available default configurations with score at least 50; all 31 configurations retained in data",
     "available_default_configurations": 13,
     "visible_configurations": 11,
-    "subscription_configurations": 4,
+    "subscription_configurations": 5,
     "cost_scale": "linear",
     "score_min": 50,
     "score_max": 72,
@@ -2012,9 +2031,9 @@
     "api_cost_max": 16,
     "subscription_cost_min": 0.03,
     "subscription_cost_max": 1.05,
-    "rank_scope": "Four same-configuration central full-use scenarios; missing prices excluded",
+    "rank_scope": "Five same-configuration central full-use scenarios; Sonnet provisional; missing prices excluded",
     "provider_shape": "Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels",
-    "annotation_mode": "Short model labels and central costs only; effort, harness, ratios, ranks, sensitivity and evidence in article/data"
+    "annotation_mode": "Names only; exact costs in source/table. Sonnet provisional marker and selected sensitivity range visible."
   },
   "sources": [
     {
@@ -2081,6 +2100,16 @@
       "url": "https://platform.claude.com/docs/en/models/overview",
       "title": "Current Claude lineup",
       "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/comment/pcsnpqx/",
+      "title": "Sonnet creator approximately 2% weekly-limit report",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://support.anthropic.com/en/articles/11049741-what-is-the-max-plan",
+      "title": "Official Claude Max 20x monthly fee",
+      "checked_at": "2026-10-01"
     }
   ],
   "glm_credit_rules": {
@@ -2111,5 +2140,27 @@
     "promotion_all_hours_offpeak_start": "2026-09-25",
     "promotion_all_hours_offpeak_end": "2026-10-07",
     "chart_assumption": "Schedule all modeled GLM use off peak at the standard $80 Pro fee; fully consume weekly credits. Does not assume the temporary all-hours campaign lasts a whole month."
+  },
+  "sonnet_provisional_scenario": {
+    "configuration_id": "a2c87c062f3cef73d8525e7578f14742",
+    "report_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/",
+    "quota_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/comment/pcsnpqx/",
+    "fee_source": "https://support.anthropic.com/en/articles/11049741-what-is-the-max-plan",
+    "central_sample_api_value_usd": 30.46,
+    "central_weekly_share": 0.02,
+    "selected_weekly_share_sensitivity": [
+      0.01,
+      0.03
+    ],
+    "selected_sample_api_value_usd_sensitivity": [
+      30.46,
+      35.4
+    ],
+    "monthly_api_equivalent_usd": {
+      "central": 6599.666666666666,
+      "low": 4399.777777777777,
+      "high": 15339.999999999998
+    },
+    "not_confidence_interval": true
   }
 }

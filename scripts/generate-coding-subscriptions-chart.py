@@ -91,10 +91,13 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
             ax.plot([x,x],[p['scoreHigh'],p['scoreLow']],color=c,alpha=.55,lw=1.2*scale,zorder=2)
         endx=p.get('leaderEnd',{}).get('x',max(b['x'],min(b['x']+b['w'],x)));endy=p.get('leaderEnd',{}).get('y',max(b['y'],min(b['y']+b['h'],y)))
         ax.plot([x,endx],[y,endy],color='#626262' if options else '#929292',lw=(1 if options else .8)*scale,zorder=3)
+        if p['provisional']:
+            ax.plot([p['lo'],p['hi']],[y,y],color=c,lw=1.6*scale,ls=(0,(4,3)),zorder=3)
+            for bound in [p['lo'],p['hi']]:ax.plot([bound,bound],[y-6,y+6],color=c,lw=scale,zorder=3)
         if p['offscale']:
             ax.plot([right-22,right],[y,y],color=c,lw=2*scale,zorder=4)
             ax.plot([right-7,right,right-7],[y-6,y,y+6],color=c,lw=2*scale,zorder=4)
-        else:ax.scatter([x],[y],s=((20 if p['anchor'] else 7)*scale)**2,facecolor=c,edgecolor='white' if p['anchor'] else c,lw=(2 if p['anchor'] else 1.2)*scale,zorder=4)
+        else:ax.scatter([x],[y],s=((20 if p['anchor'] else 7)*scale)**2,facecolor='white' if p['provisional'] else c,edgecolor=c if p['provisional'] else 'white' if p['anchor'] else c,lw=(2 if p['anchor'] else 1.2)*scale,zorder=4)
         if p['row']['provider']=='google':
             clip=Circle((x,y),4.5,transform=ax.transData)
             im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)
@@ -118,7 +121,7 @@ def main_chart():
     for adjusted,pos in [(False,[.05,.14,.43,.635]),(True,[.54,.14,.43,.635])]:
         draw_panel(fig.add_axes(pos),adjusted)
     fig.text(.05,.081,'Same best matched agent per provider · Independent linear USD scales; area is not a metric.',fontsize=14)
-    fig.text(.05,.051,'GLM off-peak; other estimates use September capacity proxies. Seven subscription costs are unknown; ranges are in the methodology.',fontsize=14)
+    fig.text(.05,.051,'*Sonnet: single-report scenario; whisker = selected sensitivity, not CI. GLM off-peak; others: September proxies. Six costs unknown.',fontsize=14)
     fig.text(.05,.020,'Sources + full configurations: aiandtractors.com/coding-agent-subscription-costs/',fontsize=13)
     validate_text(fig)
     save(fig,'chart',140)
@@ -130,7 +133,7 @@ def phone_chart():
     legend(fig,True)
     draw_panel(fig.add_axes([.05,.48,.90,.31]),False,True)
     draw_panel(fig.add_axes([.05,.105,.90,.31]),True,True)
-    fig.text(.1,.013,'Same best matched agent per provider.\nIndependent linear scales; area is not a metric.\nGLM off-peak · others: Sep capacity proxies.\n7 subscription costs unknown; ranges + sources:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=12,linespacing=1.35)
+    fig.text(.1,.013,'Same best matched agent per provider.\nIndependent linear scales; area is not a metric.\n*Sonnet: single-report scenario; selected range, not CI.\nGLM off-peak · others: Sep proxies · 6 costs unknown.\nSources + full configurations:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=12,linespacing=1.35)
     validate_text(fig)
     save(fig,'chart-phone',160)
 
@@ -163,7 +166,7 @@ def cost_difference_report():
     api=sorted(matched,key=lambda r:r['api']);subscription=sorted(matched,key=lambda r:r['price'])
     def frontier(rows,key):
         return [r['id'] for r in rows if not any(q[key]<=r[key] and q['score']>=r['score'] and (q[key]<r[key] or q['score']>r['score']) for q in rows)]
-    report=dict(as_of=DATA['as_of'],benchmark_version=DATA['benchmark_version'],rank_scope='Four central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering',rows=[dict(id=r['id'],label=r['label'],score=r['score'],api=r['api'],subscription=r['price'],ratio=r['api']/r['price'],apiRank=api.index(r)+1,subscriptionRank=subscription.index(r)+1,rankScope='Four same-configuration central full-use scenarios; not verified entitlements',scenarioAsOf=r['scenario_as_of']) for r in matched],frontier_scope='The same four configurations with central subscription scenarios; not all current models',api_frontier_ids=frontier(matched,'api'),subscription_frontier_ids=frontier(matched,'price'),all_current_frontier_api_ids=frontier(ROWS,'api'))
+    report=dict(as_of=DATA['as_of'],benchmark_version=DATA['benchmark_version'],rank_scope='Five central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering',rows=[dict(id=r['id'],label=r['label'],score=r['score'],api=r['api'],subscription=r['price'],ratio=r['api']/r['price'],apiRank=api.index(r)+1,subscriptionRank=subscription.index(r)+1,rankScope='Five same-configuration central full-use scenarios; not verified entitlements',scenarioAsOf=r['scenario_as_of']) for r in matched],frontier_scope='The same five configurations with central subscription scenarios; not all current models',api_frontier_ids=frontier(matched,'api'),subscription_frontier_ids=frontier(matched,'price'),all_current_frontier_api_ids=frontier(ROWS,'api'))
     overall={}
     for r in DATA['models']:
         if r.get('unavailable') or r['score']<50:continue
@@ -177,7 +180,7 @@ def cost_difference_report():
     (OUT/'cost-differences.json').write_text(json.dumps(report,indent=2)+'\n')
 
 if __name__=='__main__':
-    assert len(ROWS)==11 and sum(r['price'] is not None for r in ROWS)==4
+    assert len(ROWS)==11 and sum(r['price'] is not None for r in ROWS)==5
     cost_difference_report()
     main_chart();phone_chart()
     for name in ['chart','chart-phone']:

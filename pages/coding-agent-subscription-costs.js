@@ -14,17 +14,17 @@ export default function CodingAgentSubscriptionCosts() {
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
       <meta property="og:type" content="article" /><meta property="og:title" content={TITLE} /><meta property="og:description" content={DESCRIPTION} /><meta property="og:url" content={PAGE_URL} />
-      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=12" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1820" /><meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=13" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1820" /><meta name="twitter:card" content="summary_large_image" />
     </Head>
     <article className="subscription-article">
       <h1>{TITLE}</h1>
       <p className="intro">Artificial Analysis’s current agent benchmark: published API costs beside conditional subscription scenarios. Updated 1 October 2026.</p>
       <CodingAgentComparison models={data.models} />
-      <p className="view-note">Linear axes. The frontier extends to 50 to include GLM and Kimi; API costs extend to $16, and subscription estimates to $1.05 so every shape anchor uses its actual cost. Sensitivity ranges and full configurations are in the methodology. All 31 configurations remain below.</p>
+      <p className="view-note">Linear axes. The frontier extends to 50 to include GLM and Kimi; API costs extend to $16, and subscription estimates to $1.05 so every shape anchor uses its actual cost. Sonnet’s selected sensitivity range is visible; other ranges and full configurations are in the methodology. All 31 configurations remain below.</p>
       <nav className="article-links" aria-label="Comparison files">
         <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis original</a>
-        <a href="/coding-subscriptions/chart.png?v=12">Desktop PNG</a>
-        <a href="/coding-subscriptions/chart-phone.png?v=12">Phone PNG</a>
+        <a href="/coding-subscriptions/chart.png?v=13">Desktop PNG</a>
+        <a href="/coding-subscriptions/chart-phone.png?v=13">Phone PNG</a>
         <a href="/coding-subscriptions/aa-agent-snapshot.json">Benchmark snapshot</a>
         <a href="/coding-subscriptions/usage.png?v=6">Usage graph</a>
         <a href="/coding-subscriptions/estimates.json">Calculation data</a>
@@ -36,13 +36,17 @@ export default function CodingAgentSubscriptionCosts() {
       <div className="reading">
         <section>
           <h2>API and subscription pricing change the order</h2>
-          <p>The shape connects one best scored configuration per provider from the subset with a subscription scenario: Fable, Astra, GLM and Kimi. The same four harness/model/effort configurations appear in both panels, connected in descending score order without crossings. The overall best Anthropic and OpenAI results, Sonnet 5.5 and GPT-6.1 Sol, have unknown subscription costs and remain separate small API dots. The polygon is a comparison guide, not an area or volume metric.</p>
-          <p>Among the four matched configurations with conditional full-use estimates, Astra moves from third-cheapest by API cost to first by subscription estimate; Fable moves from fourth to second. GLM moves from first to third, and Kimi from second to fourth. Cost ratios and the rank comparison are in the calculation download. These ranks compare the four central scenarios; their sensitivity ranges can change the ordering.</p>
-          <p>The latest Sonnet 5.5, Opus 5.5 and GPT-6.1 Sol agent results are on the API panel. Their subscription costs remain unknown, so this evidence does not establish a subscription winner among the newest models.</p>
+          <p>The shape connects one best scored configuration per provider from the subset with a subscription scenario: Sonnet, Astra, GLM and Kimi. The same four harness/model/effort configurations appear in both panels, connected in descending score order without crossings. Sonnet 5.5 max is the highest-scoring available configuration in this AA snapshot; it is the Anthropic anchor in both panels. GPT-6.1 Sol’s subscription cost remains unknown and its API result stays visible. The polygon is a comparison guide, not an area or volume metric.</p>
+          <p>Among the five configurations with conditional full-use estimates, Astra moves from third-cheapest by API cost to first by subscription estimate. Sonnet moves from fifth to fourth in the central scenario; its selected sensitivity can move it from second to fourth. Fable remains a separate estimated dot. Cost ratios and the rank comparison are in the calculation download. These ranks compare central scenarios; their sensitivity ranges can change the ordering.</p>
+          <p>Sonnet’s open marker and whisker identify a provisional scenario from one subscriber report. It is not a measured benchmark allowance. Opus 5.5 and GPT-6.1 Sol subscription costs remain unknown, so this evidence does not establish a subscription winner among all newest models.</p>
+          <h2>Sonnet: highest score, provisional subscription cost</h2>
+          <p><a href="https://artificialanalysis.ai/agents/coding-agents">Sonnet 5.5 max leads this agent-index snapshot</a>, not every benchmark or workload. For example, <a href="https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex">Codex / Sol has a slightly higher DeepSWE component</a> and is faster and cheaper by API cost.</p>
+          <p>A <a href="https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/comment/pcsnpqx/">Max 20× creator reports about 2% of their weekly limit</a> for a Sonnet video, valued at $30.46 of API tokens. Pairing those figures with the <a href="https://support.anthropic.com/en/articles/11049741-what-is-the-max-plan">official $200 monthly fee</a> gives a conditional estimate of about <strong>$0.43 per AA attempt</strong> at full use.</p>
+          <p>The visible <strong>roughly $0.19–$0.65 range</strong> tests selected 1–3% quota shares and $30.46–$35.40 workload scopes. It is a sensitivity envelope, not a confidence interval. Rounded self-report, heavy caching, creator Ultracode/subagents versus benchmark max, and unlogged usage leave further uncertainty. Exact inputs and calculations are below.</p>
           <h2>What changed on 1 October</h2>
           <p><strong>31 published configurations, with one current Coding Agent Index v1.5 snapshot.</strong> The chart shows 11 available default variants in a 50–72 frontier view. Qwen and DeepSeek remain in the full dataset below. Sonnet 5.5, Opus 5.5, GPT-6.1 Sol, Grok 4.7, Muse Spark 1.3 and GLM-5.3 now appear with their actual agent configurations.</p>
           <p>Sonnet 5.5 max scores 68.36 at $14.191 per API attempt; Opus 5.5 max scores 65.99 at $13.036; Codex / GPT-6.1 Sol xhigh scores 62.91 at $1.040. Different effort settings can change both score and cost substantially. The full table includes all settings.</p>
-          <p><strong>Subscription cost is unknown for seven of the 11 configurations in the frontier view.</strong> New model generations and Devin Fusion configurations do not inherit September’s quotas. Astra, Fable and Kimi retain explicitly dated community scenarios; their ranges are not confidence intervals or verified October allowances.</p>
+          <p><strong>Subscription cost is unknown for six of the 11 configurations in the frontier view.</strong> Sonnet max has a new provisional scenario; other new model generations and Devin Fusion configurations do not inherit September’s quotas. Astra, Fable and Kimi retain explicitly dated community scenarios; their ranges are not confidence intervals or verified October allowances.</p>
           <p>The benchmark changed its task suite and grading. <a href="https://artificialanalysis.ai/methodology/coding-agents-benchmarking">AA’s version history</a> explains the change. <a href="/coding-subscriptions/archive/2026-09-06/estimates.json">September’s 21 configurations</a> remain archived separately.</p>
         </section>
         <section>
@@ -57,9 +61,9 @@ export default function CodingAgentSubscriptionCosts() {
             <tr><td><a href="https://www.reddit.com/r/codex/comments/1wtlkg6/gpt_61_brought_another_nerf_to_usage_table_update/">Codex Plus · $20</a></td><td data-label="Use">$7.50 with GPT-6.1 Sol</td><td data-label="Share">One fresh 5-hour limit test. Weekly/monthly values are projections; Pro was not measured.</td></tr>
             <tr><td><a href="https://www.remakebench.com/capacity/plans/claude-max-20x">Claude · owner reports $200 Max</a></td><td data-label="Use">$1,249.83; 96.3% Opus 5.5</td><td data-label="Share">58% of a weekly pool. App says Pro; plan identity and missing activity remain unresolved.</td></tr>
             <tr><td><a href="https://www.remakebench.com/capacity/plans/supergrok-heavy">SuperGrok Heavy · $300</a></td><td data-label="Use">$76.10; mostly Grok 4.7 XHigh</td><td data-label="Share">Meter rose 56% → 75%: 19 percentage points of a shared weekly pool.</td></tr>
-            <tr><td><a href="https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/">Claude Max 20× · Sonnet 5.5</a></td><td data-label="Use">$30.46 for a 30-second coded video</td><td data-label="Share">Transcript valuation. A reliable quota denominator was not established.</td></tr>
+            <tr><td><a href="https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/">Claude Max 20× · Sonnet 5.5</a></td><td data-label="Use">$30.46 for a 30-second coded video</td><td data-label="Share">About 2% of weekly usage, self-reported. Provisional scenario; rounded share and workload scope remain uncertain.</td></tr>
           </tbody></table>
-          <p>Dollar figures above value logged tokens at API prices; they are not charges for the sample. We keep these reports outside the main shape calibration. <a href="https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers">OpenAI now gives new Pro 200 subscriptions a lower allowance</a>; eligible existing users keep the old allowance only through 29 October. The chart’s September scenario does not establish today’s new-buyer capacity.</p>
+          <p>Dollar figures above value logged tokens at API prices; they are not charges for the sample. Only the Sonnet report supplies a provisional shape scenario; the other reports remain outside capacity calibration. <a href="https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers">OpenAI now gives new Pro 200 subscriptions a lower allowance</a>; eligible existing users keep the old allowance only through 29 October. The chart’s September scenario does not establish today’s new-buyer capacity.</p>
           <p>The <a href="/terminal-bench-subscriptions/chart.png">separate Terminal-Bench comparison</a> remains a historical artifact with its own task percentages and assumptions; its values do not supply this index’s scores.</p>
         </section>
         <section className="usage-chart" aria-labelledby="usage-title">
@@ -75,7 +79,7 @@ export default function CodingAgentSubscriptionCosts() {
           <summary>Full dataset · {data.models.length} current configurations</summary>
           <table><thead><tr><th>Agent configuration</th><th>Score</th><th>API / task</th><th>Estimated subscription / task</th></tr></thead>
             <tbody>{[...data.models].sort((a,b)=>b.score-a.score).map(r => <tr key={r.short}>
-              <td>{r.label}{r.unavailable ? ' (AA: unavailable)' : ''}</td><td data-label="Score">{r.score == null ? 'Unknown' : r.score.toFixed(2)}</td><td data-label="API / task">{money(r.api)}</td><td data-label="Subscription / task">{money(r.price)}{r.price != null ? (r.group === 'GLM' ? ' · credit scenario' : ' · September proxy') : ''}</td>
+              <td>{r.label}{r.unavailable ? ' (AA: unavailable)' : ''}</td><td data-label="Score">{r.score == null ? 'Unknown' : r.score.toFixed(2)}</td><td data-label="API / task">{money(r.api)}</td><td data-label="Subscription / task">{money(r.price)}{r.price != null ? (r.provisional ? ' · provisional; selected '+money(r.lo)+'–'+money(r.hi) : r.group === 'GLM' ? ' · credit scenario' : ' · September proxy') : ''}</td>
             </tr>)}</tbody>
           </table>
         </details>

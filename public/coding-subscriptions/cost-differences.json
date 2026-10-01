@@ -1,8 +1,20 @@
 {
   "as_of": "2026-10-01",
   "benchmark_version": "1.5",
-  "rank_scope": "Four central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering",
+  "rank_scope": "Five central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering",
   "rows": [
+    {
+      "id": "a2c87c062f3cef73d8525e7578f14742",
+      "label": "Claude Code \u00b7 Sonnet 5.5 (max)",
+      "score": 68.35783373750832,
+      "api": 14.190800796369649,
+      "subscription": 0.43004598605090105,
+      "ratio": 32.99833333333333,
+      "apiRank": 5,
+      "subscriptionRank": 4,
+      "rankScope": "Five same-configuration central full-use scenarios; not verified entitlements",
+      "scenarioAsOf": "2026-10-01"
+    },
     {
       "id": "29a1cdad0d140781d05b9b4746cfdd0d",
       "label": "Claude Code \u00b7 Fable 5.1 (max) (with fallback)",
@@ -12,7 +24,7 @@
       "ratio": 37.49999999999999,
       "apiRank": 4,
       "subscriptionRank": 2,
-      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "rankScope": "Five same-configuration central full-use scenarios; not verified entitlements",
       "scenarioAsOf": "2026-09-04"
     },
     {
@@ -24,7 +36,7 @@
       "ratio": 35.0,
       "apiRank": 3,
       "subscriptionRank": 1,
-      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "rankScope": "Five same-configuration central full-use scenarios; not verified entitlements",
       "scenarioAsOf": "2026-09-04"
     },
     {
@@ -36,7 +48,7 @@
       "ratio": 10.233899080461505,
       "apiRank": 1,
       "subscriptionRank": 3,
-      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "rankScope": "Five same-configuration central full-use scenarios; not verified entitlements",
       "scenarioAsOf": "2026-10-01"
     },
     {
@@ -47,18 +59,20 @@
       "subscription": 0.9565637078254914,
       "ratio": 5.276381909547739,
       "apiRank": 2,
-      "subscriptionRank": 4,
-      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "subscriptionRank": 5,
+      "rankScope": "Five same-configuration central full-use scenarios; not verified entitlements",
       "scenarioAsOf": "2026-09-04"
     }
   ],
-  "frontier_scope": "The same four configurations with central subscription scenarios; not all current models",
+  "frontier_scope": "The same five configurations with central subscription scenarios; not all current models",
   "api_frontier_ids": [
+    "a2c87c062f3cef73d8525e7578f14742",
     "29a1cdad0d140781d05b9b4746cfdd0d",
     "9e810ff3c6cce5ebaaff7c744c687a47",
     "45493c2782f1bd94f6d30d4911f317a0"
   ],
   "subscription_frontier_ids": [
+    "a2c87c062f3cef73d8525e7578f14742",
     "29a1cdad0d140781d05b9b4746cfdd0d",
     "9e810ff3c6cce5ebaaff7c744c687a47"
   ],
@@ -71,7 +85,7 @@
     "selection_rule": "Best scored available configuration per provider among configurations with a subscription scenario",
     "order_rule": "Descending score, fixed across both panels",
     "configuration_ids": [
-      "29a1cdad0d140781d05b9b4746cfdd0d",
+      "a2c87c062f3cef73d8525e7578f14742",
       "9e810ff3c6cce5ebaaff7c744c687a47",
       "45493c2782f1bd94f6d30d4911f317a0",
       "55b029d6971b4d378335bb168eb98b3b"
@@ -86,7 +100,6 @@
       "moonshotai": "55b029d6971b4d378335bb168eb98b3b"
     },
     "overall_best_without_subscription": [
-      "a2c87c062f3cef73d8525e7578f14742",
       "ed8c1d0b0a2fe4560bbfa0a9f47e8941",
       "34970c963bdfd318e46205514d46ea4f",
       "f927d9c41b5c3021996eb14c3dd1341e",

@@ -40,13 +40,14 @@ function Plot({ models, adjusted, selected, onSelect }) {
         const labelText=p.text,labelX=b.x,labelY=b.y+16;
         const endX=Math.max(b.x,Math.min(b.x+b.w,px)),endY=Math.max(b.y,Math.min(b.y+b.h,py));
         const cursor = r.group === 'Cursor';
-        return <g key={r.short} data-model={r.short} data-anchor={p.anchor || undefined} data-offscale={p.offscale || undefined} tabIndex="0" role="button" aria-pressed={active} className="agent-point" aria-label={`${r.benchmark_label || r.label}. Score ${r.score.toFixed(2)}. ${adjusted ? 'Subscription estimate' : 'API cost'} ${money(adjusted ? r.price : r.api)} per task.${adjusted ? ` Range ${money(r.lo)} to ${money(r.hi)}.` : ''}${p.offscale ? ' Beyond the displayed cost axis.' : ''}`}
+        return <g key={r.short} data-model={r.short} data-anchor={p.anchor || undefined} data-offscale={p.offscale || undefined} tabIndex="0" role="button" aria-pressed={active} className="agent-point" aria-label={`${r.benchmark_label || r.label}. Score ${r.score.toFixed(2)}. ${adjusted ? 'Subscription estimate' : 'API cost'} ${money(adjusted ? r.price : r.api)} per task.${adjusted ? ` Range ${money(r.lo)} to ${money(r.hi)}.` : ''}${r.provisional ? ' Provisional single-report scenario; selected sensitivity is not a confidence interval.' : ''}${p.offscale ? ' Beyond the displayed cost axis.' : ''}`}
           onClick={() => onSelect(r.short)} onFocus={() => onSelect(r.short)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(r.short); } }}>
           <title>{`${r.benchmark_label || r.label}: ${r.score.toFixed(2)} points, ${money(adjusted ? r.price : r.api)} per task${adjusted ? `; estimate range ${money(r.lo)}–${money(r.hi)}` : ''}${p.offscale ? '; beyond the displayed cost axis' : ''}`}</title>
+          {p.provisional && <g className="provisional-range" aria-label="Selected sensitivity range, not a confidence interval"><line x1={p.lo} x2={p.hi} y1={py} y2={py} stroke={c} strokeWidth="1.6" strokeDasharray="4 3" /><line x1={p.lo} x2={p.lo} y1={py-6} y2={py+6} stroke={c} /><line x1={p.hi} x2={p.hi} y1={py-6} y2={py+6} stroke={c} /></g>}
+          <line className="label-leader" x1={px} y1={py} x2={endX} y2={endY} stroke="#929292" strokeWidth=".8" />
           <circle cx={px} cy={py} r="22" fill="transparent" />
           {active && !p.offscale && <circle cx={px} cy={py} r={p.anchor?14:8} fill="none" stroke={c} strokeWidth="1.5" />}
-          {p.offscale ? <path className="offscale-arrow" d={`M ${right-22} ${py} H ${right} M ${right-7} ${py-6} L ${right} ${py} L ${right-7} ${py+6}`} fill="none" stroke={c} strokeWidth="2" /> : <circle className="visible-marker" cx={px} cy={py} r={p.anchor?10:3.5} fill={c} stroke={p.anchor?'white':c} strokeWidth={p.anchor?2:1.2} />}
-          <line className="label-leader" x1={px} y1={py} x2={endX} y2={endY} stroke="#929292" strokeWidth=".8" />
+          {p.offscale ? <path className="offscale-arrow" d={`M ${right-22} ${py} H ${right} M ${right-7} ${py-6} L ${right} ${py} L ${right-7} ${py+6}`} fill="none" stroke={c} strokeWidth="2" /> : <circle className="visible-marker" cx={px} cy={py} r={p.anchor?10:3.5} fill={p.provisional?'white':c} stroke={p.provisional?c:p.anchor?'white':c} strokeWidth={p.anchor?2:1.2} />}
           <text className="point-label" x={labelX} y={labelY}>{p.lines.map((line,i)=><tspan key={i} className={i?'point-cost':undefined} x={labelX} dy={i?layout.lineHeight:0}>{line}</tspan>)}</text>
         </g>;
       })}
@@ -65,7 +66,7 @@ export default function CodingAgentComparison({ models }) {
     <div className="agent-legend" aria-label="AI labs">
       {LABS.filter(([key])=>models.some(r=>r.provider===key)).map(([key,label]) => <span key={key}><i style={{background:key==='google'?'linear-gradient(135deg,#4285f4,#34a853,#fbbc05,#ea4335)':COLORS[key]}} />{label}</span>)}
     </div>
-    <p className="shape-scale">Same best matched agent per provider; independent linear cost scales. GLM uses off-peak credits, others use September capacity proxies. Seven subscription costs are unknown. Area is not a metric; ranges and full configurations are below.</p>
+    <p className="shape-scale">Same best matched agent per provider; independent linear cost scales. *Sonnet: provisional single-report scenario; whisker shows selected sensitivity, not a confidence interval. GLM uses off-peak credits; others use September proxies. Six costs are unknown. Area is not a metric.</p>
     <style>{`
       .agent-comparison { margin:32px 0; color:#252525; }
       .agent-comparison .shape-rule,.agent-comparison .shape-scale {font:15px/1.5 system-ui,sans-serif;margin:0 0 20px;max-width:1000px;}

@@ -4,14 +4,15 @@
   "checks": [
     "31 scores and API costs exactly match source configuration IDs",
     "All scores reproduce equal-weight average of the three v1.5 components",
-    "7 modeled configurations reproduce adopted scenario formula; 24 subscription values remain null",
-    "13 available default variants; 11 in the 50\u201372 frontier, with 4 estimates and 7 unknowns",
+    "8 modeled configurations reproduce adopted scenario formula; 23 subscription values remain null",
+    "13 available default variants; 11 in the 50\u201372 frontier, with 5 estimates and 6 unknowns",
     "No new generation, third-party harness or unavailable configuration inherits old quota",
     "GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce",
     "September snapshot is archived separately; historical personal usage unchanged",
-    "Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded",
-    "One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; five overall provider bests explicitly unpaired",
-    "GLM off-peak discount applied once to subscription credits; 20/148 peak/off-peak hours and schedule sensitivities reproduce; five usage anecdotes are separate from model calibration; no Plus-to-Pro extrapolation"
+    "Same-configuration API/subscription ratios and five central-scenario ranks reproduce; missing prices excluded",
+    "One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; four overall provider bests explicitly unpaired",
+    "GLM off-peak discount applied once to subscription credits; 20/148 peak/off-peak hours and schedule sensitivities reproduce; four usage anecdotes remain separate; one Sonnet report supplies an explicit provisional scenario; no Plus-to-Pro extrapolation",
+    "Sonnet is highest available snapshot score; exactly one source-linked provisional max scenario, selected 1\u20133% / scope sensitivity reproduces, no precise mark-cost labels"
   ],
   "images": {
     "chart.png": [
@@ -29,6 +30,7 @@
     "GLM uses pooled token means; precision does not imply exact telemetry coverage",
     "GLM advertised standard pricing conflicts with an older migration example; temporary offer not monthly extrapolated",
     "AA marks Gemini 4 Argon unavailable; no chart position",
-    "Scores reflect the current benchmark suite; no cross-version performance trend inferred"
+    "Scores reflect the current benchmark suite; no cross-version performance trend inferred",
+    "Sonnet uses one rounded quota report, selected sensitivity is not a CI, and creator-to-benchmark capacity transfer remains uncertain"
   ]
 }

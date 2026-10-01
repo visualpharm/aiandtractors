@@ -1,0 +1,32 @@
+{
+  "source": "https://alldonesites.com/data/claude-usage.json",
+  "tracker": "https://alldonesites.com/claude-usage-tracker/",
+  "formula": "W=(input-cache)+5*output+k*cache; cost=(200/(52/12))*reported_weekly_share*W_AA/W_Reddit",
+  "cache_read_weight": 0.003269985677448766,
+  "cache_read_weight_interval_80pct": [
+    0.0013503093,
+    0.0063516696
+  ],
+  "input_write_weight": 1,
+  "output_weight": 5,
+  "output_weight_held_not_fitted": true,
+  "sonnet_rate_provisional": true,
+  "sonnet_rate_relative_to_old_opus": 0.4300255,
+  "sonnet_stretches": 17,
+  "all_stretches": 235,
+  "weighted_tokens": {
+    "aa": 4225222.000820822,
+    "final_cut": 5732568.696647838,
+    "whole_session": 7097230.544828795
+  },
+  "cost_at_two_percent": {
+    "final_cut": 0.6803590380199507,
+    "whole_session": 0.5495389925971031
+  },
+  "selected_one_to_three_percent_sensitivity": [
+    0.2747694962985516,
+    1.020538557029926
+  ],
+  "not_confidence_interval": true,
+  "limitations": "Tracker weights are empirical pooled assumptions, not official billing or Sonnet-only matched workload calibration. Same-model rate cancels only for a same-model mix; AA 45 fallback attempts remain unresolved."
+}

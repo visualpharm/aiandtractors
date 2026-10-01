@@ -188,7 +188,32 @@
           "api_equivalent_usd": null,
           "apply_to_chart_capacity": false
         }
-      ]
+      ],
+      "crosspost_deduplication": {
+        "author": "oxmannnn",
+        "independent_priced_quota_samples": 1,
+        "crossposts": [
+          "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/",
+          "https://www.reddit.com/r/ClaudeCode/comments/1wtapu5/sonnet_55_built_a_30_s_motiongraphics_reel_same/",
+          "https://www.reddit.com/r/vibecoding/comments/1wtajpx/sonnet_55_is_the_same_quality_as_opus_55_but/"
+        ],
+        "note": "Same video/run/token ledger across three communities. Third post associates Max20x, about $35 whole-session API equivalent and around 2% weekly meter explicitly. This improves scope interpretation but is not a replicate."
+      },
+      "normalization_scenarios": {
+        "api_dollar_transfer": [
+          0.3700339190709166,
+          0.43004598605090105
+        ],
+        "token_weight_transfer": [
+          0.5495389925971031,
+          0.6803590380199507
+        ]
+      },
+      "selected_band": [
+        0.1850169595354583,
+        1.020538557029926
+      ],
+      "alternate_normalization_source": "https://alldonesites.com/data/claude-usage.json"
     }
   ],
   "glm_schedule_sensitivities": {

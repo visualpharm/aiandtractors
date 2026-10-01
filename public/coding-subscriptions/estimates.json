@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-01",
-  "version": 13,
+  "version": 14,
   "benchmark_version": "1.5",
   "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
   "source_html_sha256": "600ebc51f020ae691ffec0d9604ed3fa330168e0a87d0aab2ba90a1fae24dd1d",
@@ -50,7 +50,7 @@
       "api": 14.190800796369649,
       "price": 0.43004598605090105,
       "lo": 0.1850169595354583,
-      "hi": 0.6450689790763516,
+      "hi": 1.020538557029926,
       "benchmark_as_of": "2026-10-01",
       "benchmark_version": "1.5",
       "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
@@ -61,7 +61,7 @@
         "cacheTokens": 26006027.66886688,
         "outputTokens": 600968.2744774478
       },
-      "reason": "Central pairing assumes $30.46 final-video API-equivalent value and approximately 2% weekly share. Full use, unchanged workload economics, no unlogged quota consumption, same-model capacity transfer from creator Ultracode to AA max are unverified. Sensitivity does not bound all structural uncertainty.",
+      "reason": "One author/workload, cross-posted three times. API-dollar transfer and provisional token-weight transfer differ; fallback tokens, output/cache mix, effort and unlogged usage remain unresolved. Full use is assumed.",
       "group": "Claude / Sonnet provisional",
       "chart_visible": true,
       "chart_number": 1,
@@ -69,8 +69,19 @@
       "provisional": true,
       "scenario_only": true,
       "scenario_as_of": "2026-10-01",
-      "range_type": "Selected 1\u20133% quota-share and $30.46\u2013$35.40 workload-scope sensitivity; not a confidence interval.",
-      "capacity_status": "One self-reported Max 20x workload; not verified benchmark subscription capacity."
+      "range_type": "Selected 1\u20133% share, two workload scopes and two normalization methods; not observed scatter or a confidence interval.",
+      "capacity_status": "One self-reported Max 20x workload; not verified benchmark subscription capacity.",
+      "normalization_scenarios": {
+        "api_dollar_transfer": [
+          0.3700339190709166,
+          0.43004598605090105
+        ],
+        "token_weight_transfer": [
+          0.5495389925971031,
+          0.6803590380199507
+        ]
+      },
+      "price_interpretation": "Retained API-dollar-transfer scenario only; chart shows the combined scenario band without a central point."
     },
     {
       "id": "ab5074e404be48bbd4ac3c488ad9a3e2",
@@ -308,7 +319,7 @@
       },
       "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
       "group": "anthropic",
-      "chart_visible": false
+      "chart_visible": true
     },
     {
       "id": "29a1cdad0d140781d05b9b4746cfdd0d",
@@ -1033,7 +1044,7 @@
       },
       "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
       "group": "anthropic",
-      "chart_visible": false
+      "chart_visible": true
     },
     {
       "id": "709f801275dedae5675b1f56e97c9df3",
@@ -1213,7 +1224,7 @@
         "cacheTokens": 14007356.268426869,
         "outputTokens": 74259.26072607259
       },
-      "reason": "Input includes cached tokens, counted once. Pooled means may have differing telemetry coverage. Full weekly utilization, no MCP use, identical benchmark token mix. The $56 offer and temporary all-day off-peak campaign are not assumed to last a full month.",
+      "reason": "Input includes cached tokens, counted once. Pooled means may have differing telemetry coverage. Full weekly utilization, no MCP use, identical benchmark token mix. The $56 effective monthly fee requires yearly billing. The temporary all-day off-peak campaign is not assumed to last a full month.",
       "group": "GLM",
       "plan": "z.ai Pro standard-price scenario",
       "scenario_only": true,
@@ -1221,12 +1232,13 @@
       "credits_per_task": 2693.890930781066,
       "monthly_credits": 260000.0,
       "fee": 80,
-      "promotional_fee": 56,
-      "promotional_offpeak_price": 0.2901113310071917,
       "range_type": "All-off-peak to all-peak schedule scenarios at the $80 standard monthly fee; no statistical interval.",
       "capacity_status": "Published credit schedule applied approximately to pooled benchmark token counters",
       "chart_visible": true,
-      "chart_number": 10
+      "chart_number": 10,
+      "yearly_effective_monthly_fee": 56,
+      "yearly_offpeak_price": 0.2901113310071917,
+      "yearly_billing_required": true
     },
     {
       "id": "55b029d6971b4d378335bb168eb98b3b",
@@ -1956,10 +1968,10 @@
     "Claude / Sonnet provisional": {
       "fee": 200,
       "base": 6599.666666666666,
-      "low": 4399.777777777777,
+      "low": 2781.041578217122,
       "high": 15339.999999999998,
       "color": "#db7549",
-      "method": "Reported $30.46 video / approximately 2% weekly share \u00d7 52/12; selected sensitivity $30.46\u2013$35.40 and 1\u20133% share.",
+      "method": "Retained API-dollar scenario; selected band additionally includes provisional token-weight normalization. Equivalent capacity fields are scenario algebra, not a contractual allowance.",
       "capacity_status": "One rounded self-report, not measured entitlement; Creator Ultracode differs from AA max.",
       "source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/sonnet_55_did_this_opus_55_quality_with_half_price/",
       "quota_source": "https://www.reddit.com/r/ClaudeAI/comments/1wtagdd/comment/pcsnpqx/",
@@ -2020,9 +2032,9 @@
     "Sonnet max uses a provisional same-model creator report and visible selected sensitivity, not an inherited September quota or confirmed entitlement."
   ],
   "chart_view": {
-    "selection": "AA available default configurations with score at least 50; all 31 configurations retained in data",
+    "selection": "AA available defaults scoring at least 50 plus published Sonnet high/xhigh; all 31 configurations retained",
     "available_default_configurations": 13,
-    "visible_configurations": 11,
+    "visible_configurations": 13,
     "subscription_configurations": 5,
     "cost_scale": "linear",
     "score_min": 50,
@@ -2031,9 +2043,9 @@
     "api_cost_max": 16,
     "subscription_cost_min": 0.03,
     "subscription_cost_max": 1.05,
-    "rank_scope": "Five same-configuration central full-use scenarios; Sonnet provisional; missing prices excluded",
-    "provider_shape": "Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels",
-    "annotation_mode": "Names only; exact costs in source/table. Sonnet provisional marker and selected sensitivity range visible."
+    "rank_scope": "Four non-provisional central scenarios; Sonnet normalization scenarios excluded from ranks",
+    "provider_shape": "Best non-provisional matched configuration per provider; Sonnet band is separate; same IDs in both panels",
+    "annotation_mode": "Names only; exact values in source/table. Sonnet subscription band has no central point or polygon anchor."
   },
   "sources": [
     {
@@ -2077,8 +2089,8 @@
       "checked_at": "2026-10-01"
     },
     {
-      "url": "https://zcode.z.ai/en",
-      "title": "z.ai advertised standard and promotional plan prices",
+      "url": "https://z.ai/subscribe",
+      "title": "z.ai monthly versus yearly plan prices",
       "checked_at": "2026-10-01"
     },
     {
@@ -2109,6 +2121,16 @@
     {
       "url": "https://support.anthropic.com/en/articles/11049741-what-is-the-max-plan",
       "title": "Official Claude Max 20x monthly fee",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://alldonesites.com/data/claude-usage.json",
+      "title": "Provisional empirical token-weight normalization",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://www.reddit.com/r/vibecoding/comments/1wtajpx/sonnet_55_is_the_same_quality_as_opus_55_but/",
+      "title": "Same-author cross-post clarifying whole-workload scope",
       "checked_at": "2026-10-01"
     }
   ],
@@ -2158,9 +2180,25 @@
     ],
     "monthly_api_equivalent_usd": {
       "central": 6599.666666666666,
-      "low": 4399.777777777777,
+      "low": 2781.041578217122,
       "high": 15339.999999999998
     },
-    "not_confidence_interval": true
+    "normalization_scenarios": {
+      "api_dollar_transfer": [
+        0.3700339190709166,
+        0.43004598605090105
+      ],
+      "token_weight_transfer": [
+        0.5495389925971031,
+        0.6803590380199507
+      ]
+    },
+    "display_band": [
+      0.1850169595354583,
+      1.020538557029926
+    ],
+    "independent_report_count": 1,
+    "not_confidence_interval": true,
+    "central_point_plotted": false
   }
 }

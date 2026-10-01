@@ -92,12 +92,13 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
         endx=p.get('leaderEnd',{}).get('x',max(b['x'],min(b['x']+b['w'],x)));endy=p.get('leaderEnd',{}).get('y',max(b['y'],min(b['y']+b['h'],y)))
         ax.plot([x,endx],[y,endy],color='#626262' if options else '#929292',lw=(1 if options else .8)*scale,zorder=3)
         if p['provisional']:
+            ax.fill_between([p['lo'],p['hi']],y-7,y+7,color=c,alpha=.16,zorder=2)
             ax.plot([p['lo'],p['hi']],[y,y],color=c,lw=1.6*scale,ls=(0,(4,3)),zorder=3)
             for bound in [p['lo'],p['hi']]:ax.plot([bound,bound],[y-6,y+6],color=c,lw=scale,zorder=3)
         if p['offscale']:
             ax.plot([right-22,right],[y,y],color=c,lw=2*scale,zorder=4)
             ax.plot([right-7,right,right-7],[y-6,y,y+6],color=c,lw=2*scale,zorder=4)
-        else:ax.scatter([x],[y],s=((20 if p['anchor'] else 7)*scale)**2,facecolor='white' if p['provisional'] else c,edgecolor=c if p['provisional'] else 'white' if p['anchor'] else c,lw=(2 if p['anchor'] else 1.2)*scale,zorder=4)
+        elif not p['provisional']:ax.scatter([x],[y],s=((20 if p['anchor'] or p['prominent'] else 7)*scale)**2,facecolor=c,edgecolor='white' if p['anchor'] or p['prominent'] else c,lw=(2 if p['anchor'] or p['prominent'] else 1.2)*scale,zorder=4)
         if p['row']['provider']=='google':
             clip=Circle((x,y),4.5,transform=ax.transData)
             im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)
@@ -120,8 +121,8 @@ def main_chart():
     legend(fig)
     for adjusted,pos in [(False,[.05,.14,.43,.635]),(True,[.54,.14,.43,.635])]:
         draw_panel(fig.add_axes(pos),adjusted)
-    fig.text(.05,.081,'Same best matched agent per provider · Independent linear USD scales; area is not a metric.',fontsize=14)
-    fig.text(.05,.051,'*Sonnet: single-report scenario; whisker = selected sensitivity, not CI. GLM off-peak; others: September proxies. Six costs unknown.',fontsize=14)
+    fig.text(.05,.081,'Same four configurations connected · Independent linear USD scales; full use assumed; area is not a metric.',fontsize=14)
+    fig.text(.05,.051,'*Sonnet band: n=1 workload · two normalization methods · selected sensitivity, not CI. GLM off-peak; others: Sep proxies. 8 costs unknown.',fontsize=14)
     fig.text(.05,.020,'Sources + full configurations: aiandtractors.com/coding-agent-subscription-costs/',fontsize=13)
     validate_text(fig)
     save(fig,'chart',140)
@@ -133,7 +134,7 @@ def phone_chart():
     legend(fig,True)
     draw_panel(fig.add_axes([.05,.48,.90,.31]),False,True)
     draw_panel(fig.add_axes([.05,.105,.90,.31]),True,True)
-    fig.text(.1,.013,'Same best matched agent per provider.\nIndependent linear scales; area is not a metric.\n*Sonnet: single-report scenario; selected range, not CI.\nGLM off-peak · others: Sep proxies · 6 costs unknown.\nSources + full configurations:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=12,linespacing=1.35)
+    fig.text(.1,.013,'Same four configurations connected.\nIndependent linear scales; full use assumed.\n*Sonnet: n=1 · two normalization methods.\nSelected sensitivity, not CI; area is not a metric.\nGLM off-peak · others: Sep proxies · 8 costs unknown.\nSources + full configurations:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=12,linespacing=1.35)
     validate_text(fig)
     save(fig,'chart-phone',160)
 
@@ -162,27 +163,28 @@ def validate_text(fig):
                     assert min(a.x1,b.x1)-max(a.x0,b.x0)<1 or min(a.y1,b.y1)-max(a.y0,b.y0)<1,(ka,kb,'overlapping rendered labels')
 
 def cost_difference_report():
-    matched=[r for r in ROWS if r['price'] is not None]
+    matched=[r for r in ROWS if r['price'] is not None and not r.get('provisional')]
     api=sorted(matched,key=lambda r:r['api']);subscription=sorted(matched,key=lambda r:r['price'])
     def frontier(rows,key):
         return [r['id'] for r in rows if not any(q[key]<=r[key] and q['score']>=r['score'] and (q[key]<r[key] or q['score']>r['score']) for q in rows)]
-    report=dict(as_of=DATA['as_of'],benchmark_version=DATA['benchmark_version'],rank_scope='Five central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering',rows=[dict(id=r['id'],label=r['label'],score=r['score'],api=r['api'],subscription=r['price'],ratio=r['api']/r['price'],apiRank=api.index(r)+1,subscriptionRank=subscription.index(r)+1,rankScope='Five same-configuration central full-use scenarios; not verified entitlements',scenarioAsOf=r['scenario_as_of']) for r in matched],frontier_scope='The same five configurations with central subscription scenarios; not all current models',api_frontier_ids=frontier(matched,'api'),subscription_frontier_ids=frontier(matched,'price'),all_current_frontier_api_ids=frontier(ROWS,'api'))
+    report=dict(as_of=DATA['as_of'],benchmark_version=DATA['benchmark_version'],rank_scope='Four non-provisional central scenarios; Sonnet band and unknown prices excluded; ranges may change ordering',rows=[dict(id=r['id'],label=r['label'],score=r['score'],api=r['api'],subscription=r['price'],ratio=r['api']/r['price'],apiRank=api.index(r)+1,subscriptionRank=subscription.index(r)+1,rankScope='Four non-provisional same-configuration scenarios; not verified entitlements',scenarioAsOf=r['scenario_as_of']) for r in matched],frontier_scope='Four non-provisional configurations; Sonnet normalization scenarios separate; not all current models',api_frontier_ids=frontier(matched,'api'),subscription_frontier_ids=frontier(matched,'price'),all_current_frontier_api_ids=frontier(ROWS,'api'))
     overall={}
     for r in DATA['models']:
         if r.get('unavailable') or r['score']<50:continue
         if r['provider'] not in overall or r['score']>overall[r['provider']]['score']:overall[r['provider']]=r
     paired={}
     for r in DATA['models']:
-        if r.get('unavailable') or r['score']<50 or r['price'] is None:continue
+        if r.get('unavailable') or r['score']<50 or r['price'] is None or r.get('provisional'):continue
         if r['provider'] not in paired or r['score']>paired[r['provider']]['score']:paired[r['provider']]=r
     anchors=sorted(paired.values(),key=lambda r:-r['score'])
-    report['provider_shape']={'selection_rule':'Best scored available configuration per provider among configurations with a subscription scenario','order_rule':'Descending score, fixed across both panels','configuration_ids':[r['id'] for r in anchors],'overall_best_ids':{p:r['id'] for p,r in overall.items()},'overall_best_without_subscription':[r['id'] for r in overall.values() if r['price'] is None],'scale_note':'Independent linear USD scales; area has no quantitative meaning','not_all_provider_bests':True}
+    report['provider_shape']={'selection_rule':'Best scored available configuration per provider among non-provisional subscription scenarios; Sonnet band is separate','order_rule':'Descending score, fixed across both panels','configuration_ids':[r['id'] for r in anchors],'overall_best_ids':{p:r['id'] for p,r in overall.items()},'overall_best_without_subscription':[r['id'] for r in overall.values() if r['price'] is None],'scale_note':'Independent linear USD scales; area has no quantitative meaning','not_all_provider_bests':True}
+    report['provisional_scenarios']=[dict(id=r['id'],label=r['label'],normalization_scenarios=r['normalization_scenarios'],selected_band=[r['lo'],r['hi']],included_in_ranks=False) for r in ROWS if r.get('provisional')]
     (OUT/'cost-differences.json').write_text(json.dumps(report,indent=2)+'\n')
 
 if __name__=='__main__':
-    assert len(ROWS)==11 and sum(r['price'] is not None for r in ROWS)==5
+    assert len(ROWS)==13 and sum(r['price'] is not None for r in ROWS)==5
     cost_difference_report()
     main_chart();phone_chart()
     for name in ['chart','chart-phone']:
         f=OUT/f'{name}.svg';f.write_text('\n'.join(s.rstrip() for s in f.read_text().splitlines())+'\n')
-    print('Rendered 11 directly labeled frontier configurations with linear axes, a paired-provider shape, large coded anchors and explicit independent scales.')
+    print('Rendered 13 directly labeled frontier configurations with linear axes, a paired-provider shape, large coded anchors and explicit independent scales.')

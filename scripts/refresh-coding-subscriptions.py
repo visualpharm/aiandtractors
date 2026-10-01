@@ -72,12 +72,25 @@ def apply_sonnet_scenario(data):
         range_type='Selected 1–3% quota-share and $30.46–$35.40 workload-scope sensitivity; not a confidence interval.',
         capacity_status='One self-reported Max 20x workload; not verified benchmark subscription capacity.',
         reason='Central pairing assumes $30.46 final-video API-equivalent value and approximately 2% weekly share. Full use, unchanged workload economics, no unlogged quota consumption, same-model capacity transfer from creator Ultracode to AA max are unverified. Sensitivity does not bound all structural uncertainty.')
-    data['sonnet_provisional_scenario']=dict(configuration_id=row['id'],report_source=report['source'],quota_source=report['quota_comment_source'],fee_source=report['fee_source'],central_sample_api_value_usd=value,central_weekly_share=share,selected_weekly_share_sensitivity=[.01,.03],selected_sample_api_value_usd_sensitivity=[value,report['api_equivalent_usd_both_video_versions']],monthly_api_equivalent_usd=dict(central=base,low=low,high=high),not_confidence_interval=True)
+    normalization=json.loads((OUT/'sonnet-normalization.json').read_text())
+    k=normalization['cache_read_weight'];t=row['mean_tokens']
+    W=t['inputTokens']-t['cacheTokens']+5*t['outputTokens']+k*t['cacheTokens']
+    scopes={'final_cut':2790000+5*529000+k*91000000,'whole_session':3070000+5*739000+k*101600000}
+    costs={scope:fee/months*share*W/w for scope,w in scopes.items()}
+    weighted_low=min(costs.values())*.5;weighted_high=max(costs.values())*1.5
+    row['hi']=max(row['hi'],weighted_high)
+    row['normalization_scenarios']=dict(api_dollar_transfer=[row['api']*fee/(35.4/share*months),row['price']],token_weight_transfer=list(sorted(costs.values())))
+    row['price_interpretation']='Retained API-dollar-transfer scenario only; chart shows the combined scenario band without a central point.'
+    row['range_type']='Selected 1–3% share, two workload scopes and two normalization methods; not observed scatter or a confidence interval.'
+    row['reason']='One author/workload, cross-posted three times. API-dollar transfer and provisional token-weight transfer differ; fallback tokens, output/cache mix, effort and unlogged usage remain unresolved. Full use is assumed.'
+    data['plans'][plan]['low']=row['api']*fee/row['hi']
+    data['plans'][plan]['method']='Retained API-dollar scenario; selected band additionally includes provisional token-weight normalization. Equivalent capacity fields are scenario algebra, not a contractual allowance.'
+    data['sonnet_provisional_scenario']=dict(configuration_id=row['id'],report_source=report['source'],quota_source=report['quota_comment_source'],fee_source=report['fee_source'],central_sample_api_value_usd=value,central_weekly_share=share,selected_weekly_share_sensitivity=[.01,.03],selected_sample_api_value_usd_sensitivity=[value,report['api_equivalent_usd_both_video_versions']],monthly_api_equivalent_usd=dict(central=base,low=data['plans'][plan]['low'],high=high),normalization_scenarios=row['normalization_scenarios'],display_band=[row['lo'],row['hi']],independent_report_count=1,not_confidence_interval=True,central_point_plotted=False)
     for url,title in [(report['quota_comment_source'],'Sonnet creator approximately 2% weekly-limit report'),(report['fee_source'],'Official Claude Max 20x monthly fee')]:
         if url not in [ref['url'] for ref in data['sources']]:data['sources'].append(dict(url=url,title=title,checked_at=data['as_of']))
     data['chart_view']['subscription_configurations']=sum(r['chart_visible'] and r['price'] is not None for r in data['models'])
-    data['chart_view']['rank_scope']='Five same-configuration central full-use scenarios; Sonnet provisional; missing prices excluded'
-    data['chart_view']['annotation_mode']='Names only; exact costs in source/table. Sonnet provisional marker and selected sensitivity range visible.'
+    data['chart_view']['rank_scope']='Four non-provisional central scenarios; Sonnet normalization scenarios excluded from ranks'
+    data['chart_view']['annotation_mode']='Names only; exact values in source/table. Sonnet subscription band has no central point or polygon anchor.'
 
 def main():
     p = argparse.ArgumentParser();p.add_argument('html',type=Path);p.add_argument('--as-of',required=True)
@@ -122,15 +135,15 @@ def main():
             monthly=60000*52/12
             m.update(group='GLM',plan='z.ai Pro standard-price scenario',price=80*credits*.5/monthly,lo=80*credits*.5/monthly,hi=80*credits/monthly,
                      scenario_only=True,scenario_as_of=args.as_of,credits_per_task=credits,monthly_credits=monthly,fee=80,
-                     promotional_fee=56,promotional_offpeak_price=56*credits*.5/monthly,
+                     yearly_effective_monthly_fee=56,yearly_offpeak_price=56*credits*.5/monthly,yearly_billing_required=True,
                      range_type='All-off-peak to all-peak schedule scenarios at the $80 standard monthly fee; no statistical interval.',
                      capacity_status='Published credit schedule applied approximately to pooled benchmark token counters',
-                     reason='Input includes cached tokens, counted once. Pooled means may have differing telemetry coverage. Full weekly utilization, no MCP use, identical benchmark token mix. The $56 offer and temporary all-day off-peak campaign are not assumed to last a full month.')
+                     reason='Input includes cached tokens, counted once. Pooled means may have differing telemetry coverage. Full weekly utilization, no MCP use, identical benchmark token mix. The $56 effective monthly fee requires yearly billing. The temporary all-day off-peak campaign is not assumed to last a full month.')
         models.append(m)
     models.sort(key=lambda m:m['score'] if m['score'] is not None else -1,reverse=True)
     n=0
     for m in models:
-        m['chart_visible']=m['default'] and not m['unavailable'] and m['score'] is not None and m['score']>=50 and m['api'] is not None
+        m['chart_visible']=(m['default'] or m['model'] in ['Sonnet 5.5 (high)','Sonnet 5.5 (xhigh)']) and not m['unavailable'] and m['score'] is not None and m['score']>=50 and m['api'] is not None
         if m['chart_visible']: n+=1;m['chart_number']=n
     sources=[
         (AA,'Artificial Analysis current agent configurations and API costs'),
@@ -141,12 +154,12 @@ def main():
         ('https://developers.openai.com/api/docs/pricing','OpenAI API model pricing'),
         ('https://docs.z.ai/devpack/overview','z.ai weekly credits, model multipliers and temporary campaign'),
         ('https://docs.z.ai/guides/overview/pricing','z.ai API rates'),
-        ('https://zcode.z.ai/en','z.ai advertised standard and promotional plan prices'),
+        ('https://z.ai/subscribe','z.ai monthly versus yearly plan prices'),
         ('https://docs.x.ai/developers/pricing','Grok API pricing and Fast variant'),
         ('https://x.ai/pricing','SuperGrok plan fees'),
         ('https://www.kimi.com/code/docs/kimi-code/membership.html','Kimi membership and quota accounting'),
         ('https://platform.claude.com/docs/en/models/overview','Current Claude lineup')]
-    data=dict(as_of=args.as_of,version=13,benchmark_version='1.5',benchmark_source=AA,
+    data=dict(as_of=args.as_of,version=14,benchmark_version='1.5',benchmark_source=AA,
               source_html_sha256=digest,benchmark_records=len(rows),models=models,plans=old['plans'],
               own_usage=old['own_usage'],usage_as_of='2026-09-06',
               method=old['method'],range_type='Scenario ranges, not confidence intervals.',
@@ -160,7 +173,7 @@ def main():
                'GLM credit estimates use pooled mean counters and published credit rules; they are approximate, not a measured benchmark subscription invoice.',
                'Gemini 4 Argon is flagged unavailable by AA and retained only in the full dataset.',
                'July/August Kimi fee and quota scenario is historical; current international fee not independently confirmed.'],
-              chart_view=dict(selection='AA available default configurations with score at least 50; all 31 configurations retained in data',available_default_configurations=sum(m['default'] and not m['unavailable'] for m in models),visible_configurations=n,subscription_configurations=sum(m['chart_visible'] and m['price'] is not None for m in models),cost_scale='linear',score_min=50,score_max=72,api_cost_min=1,api_cost_max=16,subscription_cost_min=.03,subscription_cost_max=1.05,provider_shape="Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels",rank_scope='Four same-configuration central full-use scenarios; missing prices excluded'),
+              chart_view=dict(selection='AA available defaults scoring at least 50 plus published Sonnet high/xhigh; all 31 configurations retained',available_default_configurations=sum(m['default'] and not m['unavailable'] for m in models),visible_configurations=n,subscription_configurations=sum(m['chart_visible'] and m['price'] is not None for m in models),cost_scale='linear',score_min=50,score_max=72,api_cost_min=1,api_cost_max=16,subscription_cost_min=.03,subscription_cost_max=1.05,provider_shape="Best non-provisional matched configuration per provider; Sonnet band is separate; same IDs in both panels",rank_scope='Four same-configuration central full-use scenarios; missing prices excluded'),
               sources=[dict(url=u,title=t,checked_at=args.as_of) for u,t in sources])
     (OUT/'aa-agent-snapshot.json').write_text(json.dumps(dict(as_of=args.as_of,source=AA,benchmark_version='1.5',html_sha256=digest,rows=rows),indent=2)+'\n')
     data['glm_credit_rules']=json.loads((OUT/'estimates.json').read_text())['glm_credit_rules']

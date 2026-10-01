@@ -17,38 +17,38 @@ for r in d['models']:
    t=r['mean_tokens'];c=((t['inputTokens']-t['cacheTokens'])*6.9+t['cacheTokens']*1.7+t['outputTokens']*24)/10000
    assert abs(c-r['credits_per_task'])<1e-9
    assert abs(r['price']-80*c*.5/(60000*52/12))<1e-12
-   assert abs(r['promotional_offpeak_price']-56*c*.5/(60000*52/12))<1e-12
+   assert abs(r['yearly_offpeak_price']-56*c*.5/(60000*52/12))<1e-12
   else:
    p=d['plans'][r['plan']]
    for field,capacity in [('price','base'),('lo','high'),('hi','low')]:assert math.isclose(r[field],r['api']*p['fee']/p[capacity],rel_tol=1e-12)
  else:assert r['lo'] is None and r['hi'] is None
  if not r.get('provisional') and (any(m in r['model'] for m in ['GPT-6.1','GPT-6 Sol','GPT-6 Luna','5.5','Grok 4.','Muse','DeepSeek','Qwen']) or 'Devin' in r['harness']):assert r['price'] is None
-checks=['31 scores and API costs exactly match source configuration IDs','All scores reproduce equal-weight average of the three v1.5 components','8 modeled configurations reproduce adopted scenario formula; 23 subscription values remain null','13 available default variants; 11 in the 50–72 frontier, with 5 estimates and 6 unknowns','No new generation, third-party harness or unavailable configuration inherits old quota','GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce','September snapshot is archived separately; historical personal usage unchanged']
+checks=['31 scores and API costs exactly match source configuration IDs','All scores reproduce equal-weight average of the three v1.5 components','8 modeled configurations reproduce adopted scenario formula; 23 subscription values remain null','13 available defaults; chart shows 11 scoring at least 50 plus Sonnet high/xhigh, with 4 non-provisional estimates, 1 Sonnet band and 8 unknowns','No new generation, third-party harness or unavailable configuration inherits old quota','GLM credit arithmetic, cache subtraction and explicitly yearly fee scenario reproduce','September snapshot is archived separately; historical personal usage unchanged']
 old=json.loads((OUT/'archive/2026-09-06/estimates.json').read_text());assert d['own_usage']==old['own_usage']
-assert sum(r['chart_visible'] for r in d['models'])==11
+assert sum(r['chart_visible'] for r in d['models'])==13
 assert sum(r['default'] and not r['unavailable'] for r in d['models'])==13
 assert sum(r['chart_visible'] and r['price'] is not None for r in d['models'])==5
 frontier=[r for r in d['models'] if r['chart_visible'] and r['score']>=50 and not r.get('unavailable')]
-assert d['chart_view']['cost_scale']=='linear' and d['chart_view']['visible_configurations']==11
-assert len(frontier)==11 and sum(r['price'] is not None for r in frontier)==5
+assert d['chart_view']['cost_scale']=='linear' and d['chart_view']['visible_configurations']==13
+assert len(frontier)==13 and sum(r['price'] is not None for r in frontier)==5
 difference_report=json.loads((OUT/'cost-differences.json').read_text());comparisons=difference_report['rows']
-assert len(comparisons)==5 and {r['id'] for r in comparisons}=={r['id'] for r in frontier if r['price'] is not None}
+assert len(comparisons)==4 and {r['id'] for r in comparisons}=={r['id'] for r in frontier if r['price'] is not None and not r.get('provisional')}
 source={r['id']:r for r in frontier}
 for r in comparisons:
  assert r['api']==source[r['id']]['api'] and r['subscription']==source[r['id']]['price']
  assert math.isclose(r['ratio'],r['api']/r['subscription'],rel_tol=1e-12)
-assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['apiRank'])]==['GLM','Kimi','Codex','Claude / Fable','Claude / Sonnet provisional']
-assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['subscriptionRank'])]==['Codex','Claude / Fable','GLM','Claude / Sonnet provisional','Kimi']
-assert {source[i]['group'] for i in difference_report['api_frontier_ids']}=={'GLM','Codex','Claude / Fable','Claude / Sonnet provisional'}
-assert {source[i]['group'] for i in difference_report['subscription_frontier_ids']}=={'Codex','Claude / Fable','Claude / Sonnet provisional'}
-checks.append('Same-configuration API/subscription ratios and five central-scenario ranks reproduce; missing prices excluded')
+assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['apiRank'])]==['GLM','Kimi','Codex','Claude / Fable']
+assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['subscriptionRank'])]==['Codex','Claude / Fable','GLM','Kimi']
+assert {source[i]['group'] for i in difference_report['api_frontier_ids']}=={'GLM','Codex','Claude / Fable'}
+assert {source[i]['group'] for i in difference_report['subscription_frontier_ids']}=={'Codex','Claude / Fable'}
+checks.append('Same-configuration API/subscription ratios and four non-provisional ranks reproduce; missing prices excluded')
 shape=difference_report['provider_shape'];anchor_ids=shape['configuration_ids']
 assert len(anchor_ids)==4 and len({source[i]['provider'] for i in anchor_ids})==4
 assert anchor_ids==sorted(anchor_ids,key=lambda i:-source[i]['score'])
 for i in anchor_ids:
  r=source[i]
  assert r['price'] is not None
- assert all(q['score']<=r['score'] for q in d['models'] if q['provider']==r['provider'] and not q['unavailable'] and q['price'] is not None)
+ assert all(q['score']<=r['score'] for q in d['models'] if q['provider']==r['provider'] and not q['unavailable'] and q['price'] is not None and not q.get('provisional'))
 assert d['chart_view']['subscription_cost_max']==1.05 and all(source[i]['price']<=1.05 for i in anchor_ids)
 def cross(a,b,c):return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])
 def crosses(a,b,c,e):return cross(a,b,c)*cross(a,b,e)<0 and cross(c,e,a)*cross(c,e,b)<0
@@ -76,24 +76,31 @@ assert math.isclose(sens['offpeak_fraction_95_percent_per_attempt'],glm_price*1.
 assert math.isclose(sens['uniform_168_hour_week_per_attempt'],glm_price*(148+20*2)/168)
 checks.append('GLM off-peak discount applied once to subscription credits; 20/148 peak/off-peak hours and schedule sensitivities reproduce; four usage anecdotes remain separate; one Sonnet report supplies an explicit provisional scenario; no Plus-to-Pro extrapolation')
 sonnet=next(r for r in d['models'] if r.get('provisional'))
-assert sonnet['id']=='a2c87c062f3cef73d8525e7578f14742' and sonnet['id']==anchor_ids[0]
+assert sonnet['id']=='a2c87c062f3cef73d8525e7578f14742' and sonnet['id'] not in anchor_ids
 assert sonnet['score']==max(r['score'] for r in d['models'] if not r['unavailable'])
 report=evidence['reports'][-1];assert report['weekly_utilization_percent_reported_approximate']==2 and not report['quota_comment_not_independently_accessible']
 assert math.isclose(sonnet['price'],sonnet['api']*200/(30.46/.02*52/12),rel_tol=1e-12)
 assert math.isclose(sonnet['lo'],sonnet['api']*200/(35.4/.01*52/12),rel_tol=1e-12)
-assert math.isclose(sonnet['hi'],sonnet['api']*200/(30.46/.03*52/12),rel_tol=1e-12)
+normalization=json.loads((OUT/'sonnet-normalization.json').read_text());k=normalization['cache_read_weight'];t=sonnet['mean_tokens']
+W=t['inputTokens']-t['cacheTokens']+5*t['outputTokens']+k*t['cacheTokens']
+weighted_hi=200/(52/12)*.03*W/(2790000+5*529000+k*91000000)
+assert math.isclose(sonnet['hi'],weighted_hi,rel_tol=1e-12)
+assert d['sonnet_provisional_scenario']['independent_report_count']==1 and not d['sonnet_provisional_scenario']['central_point_plotted']
+assert difference_report['provisional_scenarios'][0]['selected_band']==[sonnet['lo'],sonnet['hi']]
+for effort in ['Sonnet 5.5 (high)','Sonnet 5.5 (xhigh)']:
+ r=next(r for r in d['models'] if r['model']==effort);assert r['chart_visible'] and r['price'] is None
 assert d['sonnet_provisional_scenario']['not_confidence_interval']
 script="import {chartLayout} from './lib/coding-subscription-chart-layout.js';import fs from 'fs';const d=JSON.parse(fs.readFileSync(0,'utf8'));console.log(JSON.stringify([false,true].map(a=>chartLayout(d.models,350,a))));"
 layouts=json.loads(subprocess.run(['node','--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','--input-type=module','-e',script],input=json.dumps(d),text=True,capture_output=True,cwd=ROOT,check=True).stdout)
 assert all(not any('$' in line for line in p['lines']) for layout in layouts for p in layout['points'])
-assert len(layouts[0]['points'])==11 and len(layouts[1]['points'])==5
+assert len(layouts[0]['points'])==13 and len(layouts[1]['points'])==5
 assert layouts[0]['shape']['order']==layouts[1]['shape']['order']==anchor_ids
 assert sum(p['provisional'] for p in layouts[1]['points'])==1
-checks.append('Sonnet is highest available snapshot score; exactly one source-linked provisional max scenario, selected 1–3% / scope sensitivity reproduces, no precise mark-cost labels')
+checks.append('Sonnet is highest available snapshot score; exactly one source-linked max scenario band outside ranks and polygon, selected 1–3% / scope / normalization sensitivity reproduces; lower-effort subscription costs unknown, no precise mark-cost labels')
 images={f:list(Image.open(OUT/f).size) for f in ['chart.png','chart-phone.png']}
 for f in images:assert Image.open(OUT/f).verify() is None
 page=(ROOT/'pages/coding-agent-subscription-costs.js').read_text()
 assert 'GLM 5.3: used, but not yet scored here' not in page and '21 configurations</summary>' not in page
 assert not any(x in page for x in ['ridiculously expensive','A worse Astra','worth 3×'])
-audit=dict(as_of=d['as_of'],passed=True,checks=checks,images=images,known_limitations=['Community proxies are dated September and not October entitlements','Kimi international fee and quota calibration remain historical','GLM uses pooled token means; precision does not imply exact telemetry coverage','GLM advertised standard pricing conflicts with an older migration example; temporary offer not monthly extrapolated','AA marks Gemini 4 Argon unavailable; no chart position','Scores reflect the current benchmark suite; no cross-version performance trend inferred','Sonnet uses one rounded quota report, selected sensitivity is not a CI, and creator-to-benchmark capacity transfer remains uncertain'])
+audit=dict(as_of=d['as_of'],passed=True,checks=checks,images=images,known_limitations=['Community proxies are dated September and not October entitlements','Kimi international fee and quota calibration remain historical','GLM uses pooled token means; precision does not imply exact telemetry coverage','GLM $56 Pro fee is effective monthly with yearly billing; chart keeps $80 monthly; temporary off-peak campaign not monthly extrapolated','AA marks Gemini 4 Argon unavailable; no chart position','Scores reflect the current benchmark suite; no cross-version performance trend inferred','Sonnet uses one rounded quota report and two alternative normalization methods, selected sensitivity is not a CI, fallback and creator-to-benchmark transfer unresolved'])
 (OUT/'calculation-audit.json').write_text(json.dumps(audit,indent=2)+'\n');print(json.dumps(audit,indent=2))

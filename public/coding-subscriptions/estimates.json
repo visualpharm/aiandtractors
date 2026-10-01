@@ -1,6 +1,1888 @@
 {
-  "as_of": "2026-09-06",
-  "version": 8,
+  "as_of": "2026-10-01",
+  "version": 9,
+  "benchmark_version": "1.5",
+  "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+  "source_html_sha256": "600ebc51f020ae691ffec0d9604ed3fa330168e0a87d0aab2ba90a1fae24dd1d",
+  "benchmark_records": 31,
+  "models": [
+    {
+      "id": "a2c87c062f3cef73d8525e7578f14742",
+      "short": "a2c87c062f3cef73d8525e7578f14742",
+      "label": "Claude Code \u00b7 Sonnet 5.5 (max)",
+      "benchmark_label": "Claude Code - Sonnet 5.5 (max)",
+      "harness": "Claude Code",
+      "model": "Sonnet 5.5 (max)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 68.35783373750832,
+      "api": 14.190800796369649,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 27141368.959295932,
+        "cacheTokens": 26006027.66886688,
+        "outputTokens": 600968.2744774478
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "anthropic",
+      "chart_visible": true,
+      "chart_number": 1
+    },
+    {
+      "id": "ab5074e404be48bbd4ac3c488ad9a3e2",
+      "short": "ab5074e404be48bbd4ac3c488ad9a3e2",
+      "label": "Claude Code \u00b7 Opus 5.5 (max)",
+      "benchmark_label": "Claude Code - Opus 5.5 (max)",
+      "harness": "Claude Code",
+      "model": "Opus 5.5 (max)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 65.9885802549234,
+      "api": 13.036383418426828,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 15218206.418041805,
+        "cacheTokens": 14568923.550055025,
+        "outputTokens": 333176.801980198
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "anthropic",
+      "chart_visible": true,
+      "chart_number": 2
+    },
+    {
+      "id": "ef63fafa9b4a635522183c879ae8435b",
+      "short": "ef63fafa9b4a635522183c879ae8435b",
+      "label": "Antigravity CLI \u00b7 Gemini 4 Argon",
+      "benchmark_label": "Antigravity CLI - Gemini 4 Argon (high)",
+      "harness": "Antigravity CLI",
+      "model": "Gemini 4 Argon",
+      "provider": "google",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "1.2.10",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "1.2.10",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "1.2.10",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "1.2.10",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "1.2.10",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "1.2.10",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 63.7577603035782,
+      "api": 5.8439053894448145,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": true,
+      "mean_tokens": {
+        "inputTokens": 13621672.650110375,
+        "cacheTokens": 11850855.205596024,
+        "outputTokens": 112121.13134657839
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "google",
+      "chart_visible": false
+    },
+    {
+      "id": "ed8c1d0b0a2fe4560bbfa0a9f47e8941",
+      "short": "ed8c1d0b0a2fe4560bbfa0a9f47e8941",
+      "label": "Codex \u00b7 GPT-6.1 Sol (xhigh)",
+      "benchmark_label": "Codex - GPT-6.1 Sol (xhigh) ({'reasoning_effort': 'xhigh'})",
+      "harness": "Codex",
+      "model": "GPT-6.1 Sol (xhigh)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 62.90776736822983,
+      "api": 1.0397081014409635,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 3177125.49569875,
+        "cacheTokens": 3036065.628757956,
+        "outputTokens": 35402.61375317859
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": true,
+      "chart_number": 3
+    },
+    {
+      "id": "666605c66ad569c503ce53c01682e285",
+      "short": "666605c66ad569c503ce53c01682e285",
+      "label": "Claude Code \u00b7 Sonnet 5.5 (xhigh)",
+      "benchmark_label": "Claude Code - Sonnet 5.5 (xhigh)",
+      "harness": "Claude Code",
+      "model": "Sonnet 5.5 (xhigh)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 62.8713868151493,
+      "api": 3.3333865348734886,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 6961982.357535753,
+        "cacheTokens": 6693763.679867986,
+        "outputTokens": 125696.03850385037
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "anthropic",
+      "chart_visible": false
+    },
+    {
+      "id": "29a1cdad0d140781d05b9b4746cfdd0d",
+      "short": "29a1cdad0d140781d05b9b4746cfdd0d",
+      "label": "Claude Code \u00b7 Fable 5.1 (max) (with fallback)",
+      "benchmark_label": "Claude Code - Fable 5.1 (max) (with fallback)",
+      "harness": "Claude Code",
+      "model": "Fable 5.1 (max) (with fallback)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          },
+          "max": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.259",
+            "dateReleased": "2026-09-02"
+          },
+          "max": {
+            "version": "2.1.259",
+            "dateReleased": "2026-09-02"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          },
+          "max": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          }
+        }
+      },
+      "score": 62.22249615769457,
+      "api": 12.388092375137534,
+      "price": 0.3303491300036676,
+      "lo": 0.26080194473973756,
+      "hi": 1.2388092375137534,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 5581622.259625964,
+        "cacheTokens": 5205555.651265128,
+        "outputTokens": 133631.59955995603
+      },
+      "reason": "Retained September scenario only. Model effort, cache mix, pricing and quota accounting may change effective cost.",
+      "group": "Claude / Fable",
+      "scenario_only": true,
+      "scenario_as_of": "2026-09-04",
+      "plan": "Claude / Fable",
+      "capacity_status": "Retained September community proxy; not revalidated October capacity",
+      "chart_visible": true,
+      "chart_number": 4
+    },
+    {
+      "id": "34970c963bdfd318e46205514d46ea4f",
+      "short": "34970c963bdfd318e46205514d46ea4f",
+      "label": "Devin Fusion CLI \u00b7 Claude Fable 5.1 XHigh + SWE-2 Medium",
+      "benchmark_label": "Devin Fusion CLI - Claude Fable 5.1 XHigh + SWE-2 Medium",
+      "harness": "Devin Fusion CLI",
+      "model": "Claude Fable 5.1 XHigh + SWE-2 Medium",
+      "provider": "cognition",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 61.68255492406223,
+      "api": 7.897126985217273,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 9590504.44719472,
+        "cacheTokens": 9279592.760176014,
+        "outputTokens": 101043.72662266226
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "cognition",
+      "chart_visible": true,
+      "chart_number": 5
+    },
+    {
+      "id": "9e810ff3c6cce5ebaaff7c744c687a47",
+      "short": "9e810ff3c6cce5ebaaff7c744c687a47",
+      "label": "Codex \u00b7 GPT-6 Astra (max)",
+      "benchmark_label": "Codex - GPT-6 Astra (max)",
+      "harness": "Codex",
+      "model": "GPT-6 Astra (max)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.151.0",
+            "dateReleased": "2026-08-29"
+          },
+          "max": {
+            "version": "0.151.0",
+            "dateReleased": "2026-08-29"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        }
+      },
+      "score": 61.64504498789397,
+      "api": 7.46709735138597,
+      "price": 0.2133456386110277,
+      "lo": 0.1493419470277194,
+      "hi": 0.2986838940554388,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 3299549.915435806,
+        "cacheTokens": 3141588.9050659174,
+        "outputTokens": 47061.09677361179
+      },
+      "reason": "Retained September scenario only. Model effort, cache mix, pricing and quota accounting may change effective cost.",
+      "group": "Codex",
+      "scenario_only": true,
+      "scenario_as_of": "2026-09-04",
+      "plan": "Codex",
+      "capacity_status": "Retained September community proxy; not revalidated October capacity",
+      "chart_visible": true,
+      "chart_number": 6
+    },
+    {
+      "id": "93acd59f31f8e5478686d650aa650f79",
+      "short": "93acd59f31f8e5478686d650aa650f79",
+      "label": "Codex \u00b7 GPT-6.1 Sol (medium)",
+      "benchmark_label": "Codex - GPT-6.1 Sol (medium) ({'reasoning_effort': 'medium'})",
+      "harness": "Codex",
+      "model": "GPT-6.1 Sol (medium)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 61.41474695571183,
+      "api": 0.7046746644898908,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 2275866.5144006205,
+        "cacheTokens": 2176436.9277894986,
+        "outputTokens": 22412.23102310231
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": false
+    },
+    {
+      "id": "4aee8aa2d4a0bad6068644f40edae235",
+      "short": "4aee8aa2d4a0bad6068644f40edae235",
+      "label": "Codex \u00b7 GPT-6.1 Sol (high)",
+      "benchmark_label": "Codex - GPT-6.1 Sol (high) ({'reasoning_effort': 'high'})",
+      "harness": "Codex",
+      "model": "GPT-6.1 Sol (high)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 60.14923716179784,
+      "api": 0.8892413135295484,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 2791163.2548648305,
+        "cacheTokens": 2665415.3918375443,
+        "outputTokens": 28748.735486663423
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": false
+    },
+    {
+      "id": "ea296ce785422d3b97cfff4427f2e0d2",
+      "short": "ea296ce785422d3b97cfff4427f2e0d2",
+      "label": "Codex \u00b7 GPT-6.1 Sol (max)",
+      "benchmark_label": "Codex - GPT-6.1 Sol (max)",
+      "harness": "Codex",
+      "model": "GPT-6.1 Sol (max)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 60.14750704302517,
+      "api": 1.554119528390054,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 3937843.0564663024,
+        "cacheTokens": 3740552.1873072563,
+        "outputTokens": 61658.55432920342
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": false
+    },
+    {
+      "id": "409518818f1e9ad21995d70631ab05b6",
+      "short": "409518818f1e9ad21995d70631ab05b6",
+      "label": "Claude Code \u00b7 Opus 5 (max)",
+      "benchmark_label": "Claude Code - Opus 5 (max)",
+      "harness": "Claude Code",
+      "model": "Opus 5 (max)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          },
+          "max": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.218",
+            "dateReleased": "2026-07-22"
+          },
+          "max": {
+            "version": "2.1.227",
+            "dateReleased": "2026-08-10"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          },
+          "max": {
+            "version": "2.1.263",
+            "dateReleased": "2026-09-06"
+          }
+        }
+      },
+      "score": 59.726367298448366,
+      "api": 10.789154699257413,
+      "price": 0.3082615628359261,
+      "lo": 0.2697288674814353,
+      "hi": 0.5394577349628706,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 11238194.40979098,
+        "cacheTokens": 10929014.04565457,
+        "outputTokens": 136656.0792079208
+      },
+      "reason": "Retained September scenario only. Model effort, cache mix, pricing and quota accounting may change effective cost.",
+      "group": "Claude / Opus",
+      "scenario_only": true,
+      "scenario_as_of": "2026-09-04",
+      "plan": "Claude / Opus",
+      "capacity_status": "Retained September community proxy; not revalidated October capacity",
+      "chart_visible": false
+    },
+    {
+      "id": "fa2595093fa640e73d072e7d1aa7df82",
+      "short": "fa2595093fa640e73d072e7d1aa7df82",
+      "label": "Devin Fusion CLI \u00b7 GPT-6 Astra XHigh + SWE-2 Medium",
+      "benchmark_label": "Devin Fusion CLI - GPT-6 Astra XHigh + SWE-2 Medium",
+      "harness": "Devin Fusion CLI",
+      "model": "GPT-6 Astra XHigh + SWE-2 Medium",
+      "provider": "cognition",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "3000.10.7",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 58.8884131062264,
+      "api": 4.536492777821779,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 6017554.665016501,
+        "cacheTokens": 5695796.99229923,
+        "outputTokens": 56579.83003300329
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "cognition",
+      "chart_visible": true,
+      "chart_number": 7
+    },
+    {
+      "id": "fa589dad83ffcdd6cce72a467e552063",
+      "short": "fa589dad83ffcdd6cce72a467e552063",
+      "label": "Codex \u00b7 GPT-6.1 Sol (low)",
+      "benchmark_label": "Codex - GPT-6.1 Sol (low) ({'reasoning_effort': 'low'})",
+      "harness": "Codex",
+      "model": "GPT-6.1 Sol (low)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 57.21634943016617,
+      "api": 0.49880364510270725,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 1699123.8601417518,
+        "cacheTokens": 1627295.6717524226,
+        "outputTokens": 14695.05805334632
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": false
+    },
+    {
+      "id": "7a0dfd2a7a9d93056f860d4675586d66",
+      "short": "7a0dfd2a7a9d93056f860d4675586d66",
+      "label": "Codex \u00b7 GPT-6 Sol (max)",
+      "benchmark_label": "Codex - GPT-6 Sol (max)",
+      "harness": "Codex",
+      "model": "GPT-6 Sol (max)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 56.662591275779974,
+      "api": 2.989729004180416,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 9778602.140814083,
+        "cacheTokens": 9598928.887788778,
+        "outputTokens": 62175.62266226623
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": false
+    },
+    {
+      "id": "f927d9c41b5c3021996eb14c3dd1341e",
+      "short": "f927d9c41b5c3021996eb14c3dd1341e",
+      "label": "Grok Build \u00b7 Grok 4.7 (xhigh)",
+      "benchmark_label": "Grok Build - Grok 4.7 (xhigh)",
+      "harness": "Grok Build",
+      "model": "Grok 4.7 (xhigh)",
+      "provider": "xai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "1.0.40",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "1.0.40",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "1.0.40",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "1.0.40",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "1.0.40",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "1.0.40",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 56.26764360706693,
+      "api": 8.817468730473037,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 14201447.955995597,
+        "cacheTokens": 13550056.765676552,
+        "outputTokens": 123276.32783278328
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "xai",
+      "chart_visible": true,
+      "chart_number": 8
+    },
+    {
+      "id": "33e80f383dc644527161435b076798ad",
+      "short": "33e80f383dc644527161435b076798ad",
+      "label": "Claude Code \u00b7 Sonnet 5.5 (high)",
+      "benchmark_label": "Claude Code - Sonnet 5.5 (high)",
+      "harness": "Claude Code",
+      "model": "Sonnet 5.5 (high)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 55.01249049636148,
+      "api": 1.235497127172719,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 2610884.190319032,
+        "cacheTokens": 2507283.205720573,
+        "outputTokens": 41496.37513751376
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "anthropic",
+      "chart_visible": false
+    },
+    {
+      "id": "709f801275dedae5675b1f56e97c9df3",
+      "short": "709f801275dedae5675b1f56e97c9df3",
+      "label": "Codex \u00b7 GPT-5.6 Sol (max)",
+      "benchmark_label": "Codex - GPT-5.6 Sol (max) ({'reasoning_effort': 'max'})",
+      "harness": "Codex",
+      "model": "GPT-5.6 Sol (max)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.139.0",
+            "dateReleased": "2026-06-09"
+          },
+          "max": {
+            "version": "0.147.0",
+            "dateReleased": "2026-08-07"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        }
+      },
+      "score": 54.559127289644,
+      "api": 6.353318230693071,
+      "price": 0.18152337801980203,
+      "lo": 0.12706636461386142,
+      "hi": 0.25413272922772284,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 10120981.254675467,
+        "cacheTokens": 9784083.974697473,
+        "outputTokens": 49155.37788778878
+      },
+      "reason": "Retained September scenario only. Model effort, cache mix, pricing and quota accounting may change effective cost.",
+      "group": "Codex",
+      "scenario_only": true,
+      "scenario_as_of": "2026-09-04",
+      "plan": "Codex",
+      "capacity_status": "Retained September community proxy; not revalidated October capacity",
+      "chart_visible": false
+    },
+    {
+      "id": "f2de07373c3626f1b9269a6ecad7804c",
+      "short": "f2de07373c3626f1b9269a6ecad7804c",
+      "label": "Muse Code \u00b7 Muse Spark 1.3 (max)",
+      "benchmark_label": "Muse Code - Muse Spark 1.3 (max)",
+      "harness": "Muse Code",
+      "model": "Muse Spark 1.3 (max)",
+      "provider": "meta",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "1.0.3-R2198.1",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "1.0.3-R2198.1",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "1.0.3-R2198.1",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "1.0.3-R2198.1",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "1.0.3-R2198.1",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "1.0.3-R2198.1",
+            "dateReleased": "2026-09-04"
+          }
+        }
+      },
+      "score": 54.30273329930766,
+      "api": 3.977504096947204,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 16445971.068206819,
+        "cacheTokens": 16090656.487898799,
+        "outputTokens": 263473.5055005501
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "meta",
+      "chart_visible": true,
+      "chart_number": 9
+    },
+    {
+      "id": "45493c2782f1bd94f6d30d4911f317a0",
+      "short": "45493c2782f1bd94f6d30d4911f317a0",
+      "label": "Opencode \u00b7 GLM-5.3 (max)",
+      "benchmark_label": "Opencode - GLM-5.3 ({'reasoning_effort': 'max'})",
+      "harness": "Opencode",
+      "model": "GLM-5.3",
+      "provider": "zai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "1.18.29",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "1.18.29",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "1.18.29",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "1.18.29",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "1.18.29",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "1.18.29",
+            "dateReleased": "2026-09-04"
+          }
+        }
+      },
+      "score": 53.55484140097326,
+      "api": 4.241385833751375,
+      "price": 0.41444475858170243,
+      "lo": 0.41444475858170243,
+      "hi": 0.8288895171634049,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 14202165.166116614,
+        "cacheTokens": 14007356.268426869,
+        "outputTokens": 74259.26072607259
+      },
+      "reason": "Input includes cached tokens, counted once. Pooled means may have differing telemetry coverage. Full weekly utilization, no MCP use, identical benchmark token mix. The $56 offer and temporary all-day off-peak campaign are not assumed to last a full month.",
+      "group": "GLM",
+      "plan": "z.ai Pro standard-price scenario",
+      "scenario_only": true,
+      "scenario_as_of": "2026-10-01",
+      "credits_per_task": 2693.890930781066,
+      "monthly_credits": 260000.0,
+      "fee": 80,
+      "promotional_fee": 56,
+      "promotional_offpeak_price": 0.2901113310071917,
+      "range_type": "All-off-peak to all-peak schedule scenarios at the $80 standard monthly fee; no statistical interval.",
+      "capacity_status": "Published credit schedule applied approximately to pooled benchmark token counters",
+      "chart_visible": true,
+      "chart_number": 10
+    },
+    {
+      "id": "55b029d6971b4d378335bb168eb98b3b",
+      "short": "55b029d6971b4d378335bb168eb98b3b",
+      "label": "Kimi Code CLI \u00b7 Kimi K3",
+      "benchmark_label": "Kimi Code CLI - Kimi K3",
+      "harness": "Kimi Code CLI",
+      "model": "Kimi K3",
+      "provider": "moonshotai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.36.0",
+            "dateReleased": "2026-08-13"
+          },
+          "max": {
+            "version": "0.36.1",
+            "dateReleased": "2026-08-14"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.26.0",
+            "dateReleased": "2026-07-16"
+          },
+          "max": {
+            "version": "0.26.0",
+            "dateReleased": "2026-07-16"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.36.1",
+            "dateReleased": "2026-08-14"
+          },
+          "max": {
+            "version": "0.36.1",
+            "dateReleased": "2026-08-14"
+          }
+        }
+      },
+      "score": 51.9259105470924,
+      "api": 5.047195443300332,
+      "price": 0.9565637078254914,
+      "lo": 0.669594595477844,
+      "hi": 1.339189190955688,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 8387890.666666667,
+        "cacheTokens": 7968496.133333323,
+        "outputTokens": 93230.86688668867
+      },
+      "reason": "Retained September scenario only. Model effort, cache mix, pricing and quota accounting may change effective cost.",
+      "group": "Kimi",
+      "scenario_only": true,
+      "scenario_as_of": "2026-09-04",
+      "plan": "Kimi",
+      "capacity_status": "Retained September community proxy; not revalidated October capacity",
+      "chart_visible": true,
+      "chart_number": 11
+    },
+    {
+      "id": "cd60470c35fd626a116af80fd5915dfa",
+      "short": "cd60470c35fd626a116af80fd5915dfa",
+      "label": "Muse Code \u00b7 Muse Spark 1.3 (xhigh)",
+      "benchmark_label": "Muse Code - Muse Spark 1.3 (xhigh)",
+      "harness": "Muse Code 1.0.2 RC",
+      "model": "Muse Spark 1.3 (xhigh)",
+      "provider": "meta",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "1.0.2-R2040.1",
+            "dateReleased": "2026-09-02"
+          },
+          "max": {
+            "version": "1.0.2-R2040.1",
+            "dateReleased": "2026-09-02"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "1.0.2-R2040.1",
+            "dateReleased": "2026-09-02"
+          },
+          "max": {
+            "version": "1.0.2-R2040.1",
+            "dateReleased": "2026-09-02"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "1.0.2-R2040.1",
+            "dateReleased": "2026-09-02"
+          },
+          "max": {
+            "version": "1.0.2-R2040.1",
+            "dateReleased": "2026-09-02"
+          }
+        }
+      },
+      "score": 48.2993172759088,
+      "api": 3.467754041474145,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 16091465.103960397,
+        "cacheTokens": 15709288.80143016,
+        "outputTokens": 145629.2480748075
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "meta",
+      "chart_visible": false
+    },
+    {
+      "id": "70a5d300021b9986f77d4198272ef1a5",
+      "short": "70a5d300021b9986f77d4198272ef1a5",
+      "label": "Grok Build \u00b7 Grok 4.6 (xhigh)",
+      "benchmark_label": "Grok Build - Grok 4.6 (xhigh)",
+      "harness": "Grok Build",
+      "model": "Grok 4.6 (xhigh)",
+      "provider": "xai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "1.0.13",
+            "dateReleased": "2026-08-28"
+          },
+          "max": {
+            "version": "1.0.13",
+            "dateReleased": "2026-08-28"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "1.0.13",
+            "dateReleased": "2026-08-28"
+          },
+          "max": {
+            "version": "1.0.13",
+            "dateReleased": "2026-08-28"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "1.0.13",
+            "dateReleased": "2026-08-28"
+          },
+          "max": {
+            "version": "1.0.13",
+            "dateReleased": "2026-08-28"
+          }
+        }
+      },
+      "score": 46.96895205744764,
+      "api": 3.5701432805280535,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 5487669.762376238,
+        "cacheTokens": 5160616.836083612,
+        "outputTokens": 55954.83498349835
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "xai",
+      "chart_visible": false
+    },
+    {
+      "id": "4d6aa9e9c8df931d54dba5956d94973c",
+      "short": "4d6aa9e9c8df931d54dba5956d94973c",
+      "label": "Claude Code \u00b7 Sonnet 5.5 (medium)",
+      "benchmark_label": "Claude Code - Sonnet 5.5 (medium)",
+      "harness": "Claude Code",
+      "model": "Sonnet 5.5 (medium)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 45.88397535157457,
+      "api": 0.6187507753025301,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 1232830.7183718372,
+        "cacheTokens": 1173805.1144114407,
+        "outputTokens": 20520.774477447743
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "anthropic",
+      "chart_visible": false
+    },
+    {
+      "id": "cd4c865dc2f539b650d741fd2ebf7f2d",
+      "short": "cd4c865dc2f539b650d741fd2ebf7f2d",
+      "label": "Claude Code \u00b7 Qwen3.8 Max",
+      "benchmark_label": "Claude Code - Qwen3.8 Max",
+      "harness": "Claude Code",
+      "model": "Qwen3.8 Max",
+      "provider": "alibaba_cloud",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.261",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "2.1.261",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.224",
+            "dateReleased": "2026-08-07"
+          },
+          "max": {
+            "version": "2.1.236",
+            "dateReleased": "2026-08-19"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.261",
+            "dateReleased": "2026-09-04"
+          },
+          "max": {
+            "version": "2.1.261",
+            "dateReleased": "2026-09-04"
+          }
+        }
+      },
+      "score": 43.26529641259874,
+      "api": 3.478965577837015,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 8600561.252779894,
+        "cacheTokens": 8290829.75631717,
+        "outputTokens": 106332.54533299482
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "alibaba_cloud",
+      "chart_visible": true,
+      "chart_number": 12
+    },
+    {
+      "id": "b3c56ec69185d544992fd578edb75e8c",
+      "short": "b3c56ec69185d544992fd578edb75e8c",
+      "label": "Codex \u00b7 GPT-5.6 Luna (max)",
+      "benchmark_label": "Codex - GPT-5.6 Luna (max)",
+      "harness": "Codex",
+      "model": "GPT-5.6 Luna (max)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 43.22468668029613,
+      "api": 0.43802256393839384,
+      "price": 0.012514930398239825,
+      "lo": 0.008760451278767878,
+      "hi": 0.017520902557535755,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 14783219.74807481,
+        "cacheTokens": 14535765.897689763,
+        "outputTokens": 71304.79097909792
+      },
+      "reason": "Retained September scenario only. Model effort, cache mix, pricing and quota accounting may change effective cost.",
+      "group": "Codex",
+      "scenario_only": true,
+      "scenario_as_of": "2026-09-04",
+      "plan": "Codex",
+      "capacity_status": "Retained September community proxy; not revalidated October capacity",
+      "chart_visible": false
+    },
+    {
+      "id": "542590ecc1aa12a718d158565d464daa",
+      "short": "542590ecc1aa12a718d158565d464daa",
+      "label": "Codex \u00b7 DeepSeek V4 Pro 0813 (max)",
+      "benchmark_label": "Codex - DeepSeek V4 Pro 0813 (max)",
+      "harness": "Codex",
+      "model": "DeepSeek V4 Pro 0813 (max)",
+      "provider": "deepseek",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.153.2",
+            "dateReleased": "2026-09-03"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.147.0",
+            "dateReleased": "2026-08-07"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.153.2",
+            "dateReleased": "2026-09-03"
+          },
+          "max": {
+            "version": "0.153.4",
+            "dateReleased": "2026-09-04"
+          }
+        }
+      },
+      "score": 43.05203524444174,
+      "api": 0.23804610720792058,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": true,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 24063625.627062704,
+        "cacheTokens": 23948932.43564355,
+        "outputTokens": 116482.400990099
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "deepseek",
+      "chart_visible": true,
+      "chart_number": 13
+    },
+    {
+      "id": "e9f9d3ae5b03aa060114dd4b3275d67d",
+      "short": "e9f9d3ae5b03aa060114dd4b3275d67d",
+      "label": "Claude Code \u00b7 Sonnet 5.5 (low)",
+      "benchmark_label": "Claude Code - Sonnet 5.5 (low)",
+      "harness": "Claude Code",
+      "model": "Sonnet 5.5 (low)",
+      "provider": "anthropic",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "2.1.280",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "2.1.280",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 42.0593075103495,
+      "api": 0.48311011474147336,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 961481.2431243125,
+        "cacheTokens": 917182.5137513754,
+        "outputTokens": 15803.526952695267
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "anthropic",
+      "chart_visible": false
+    },
+    {
+      "id": "d1003684d8f29b95a3b14d2a7722221a",
+      "short": "d1003684d8f29b95a3b14d2a7722221a",
+      "label": "Antigravity SDK \u00b7 Gemini 3.8 Flash (high)",
+      "benchmark_label": "Antigravity SDK - Gemini 3.8 Flash (high)",
+      "harness": "Antigravity SDK v0.1.12",
+      "model": "Gemini 3.8 Flash (high)",
+      "provider": "google",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.1.16",
+            "dateReleased": "2026-09-02"
+          },
+          "max": {
+            "version": "0.1.16",
+            "dateReleased": "2026-09-02"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.1.12",
+            "dateReleased": "2026-08-13"
+          },
+          "max": {
+            "version": "0.1.12",
+            "dateReleased": "2026-08-13"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.1.16",
+            "dateReleased": "2026-09-02"
+          },
+          "max": {
+            "version": "0.1.16",
+            "dateReleased": "2026-09-02"
+          }
+        }
+      },
+      "score": 41.86315529449987,
+      "api": 2.4673922004125437,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 13395246.748624865,
+        "cacheTokens": 11871691.682068229,
+        "outputTokens": 115826.40649064905
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "google",
+      "chart_visible": false
+    },
+    {
+      "id": "ac8276cd5d15ac2daacb9956ad44c132",
+      "short": "ac8276cd5d15ac2daacb9956ad44c132",
+      "label": "Codex \u00b7 GPT-6 Luna (max)",
+      "benchmark_label": "Codex - GPT-6 Luna (max) ({'reasoning_effort': 'max'})",
+      "harness": "Codex",
+      "model": "GPT-6 Luna (max)",
+      "provider": "openai",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.154.0",
+            "dateReleased": null
+          },
+          "max": {
+            "version": "0.154.0",
+            "dateReleased": null
+          }
+        }
+      },
+      "score": 41.07438934016153,
+      "api": 0.17591172304455457,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 10119727.864136413,
+        "cacheTokens": 9897312.69911991,
+        "outputTokens": 98341.38393839383
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "openai",
+      "chart_visible": false
+    },
+    {
+      "id": "28ef65135f08f035dc93a97d324fea73",
+      "short": "28ef65135f08f035dc93a97d324fea73",
+      "label": "Codex \u00b7 DeepSeek V4 Flash 0731 (max)",
+      "benchmark_label": "Codex - DeepSeek V4 Flash 0731 (max)",
+      "harness": "Codex",
+      "model": "DeepSeek V4 Flash 0731 (max)",
+      "provider": "deepseek",
+      "versions": {
+        "deep-swe-v1.1": {
+          "min": {
+            "version": "0.153.2",
+            "dateReleased": "2026-09-03"
+          },
+          "max": {
+            "version": "0.153.2",
+            "dateReleased": "2026-09-03"
+          }
+        },
+        "swe-atlas-qna": {
+          "min": {
+            "version": "0.146.0",
+            "dateReleased": "2026-07-29"
+          },
+          "max": {
+            "version": "0.146.1",
+            "dateReleased": "2026-08-05"
+          }
+        },
+        "terminal-bench-v4": {
+          "min": {
+            "version": "0.153.2",
+            "dateReleased": "2026-09-03"
+          },
+          "max": {
+            "version": "0.153.2",
+            "dateReleased": "2026-09-03"
+          }
+        }
+      },
+      "score": 38.74247758775307,
+      "api": 0.08506419165060494,
+      "price": null,
+      "lo": null,
+      "hi": null,
+      "benchmark_as_of": "2026-10-01",
+      "benchmark_version": "1.5",
+      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
+      "default": false,
+      "unavailable": false,
+      "mean_tokens": {
+        "inputTokens": 15269826.30913091,
+        "cacheTokens": 15142136.818481851,
+        "outputTokens": 80398.9900990099
+      },
+      "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
+      "group": "deepseek",
+      "chart_visible": false
+    }
+  ],
   "plans": {
     "Codex": {
       "fee": 200,
@@ -64,410 +1946,36 @@
       "method": "Same-model measured token usage at current published Cursor rates divided by 0.9% of Cursor Models quota; 0.85%-0.95% rounding envelope. Full plan fee assigned to this alternative alone."
     }
   },
-  "models": [
-    {
-      "label": "GPT-5.6 Luna · max",
-      "short": "Luna max",
-      "score": 57.166142236563445,
-      "api": 0.2882767483844579,
-      "group": "Codex",
-      "price": 0.008236478525270225,
-      "lo": 0.005765534967689157,
-      "hi": 0.011531069935378314,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Codex - GPT-5.6 Luna (max)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "Gemini 3.7 Flash · high",
-      "short": "Gemini 3.7 Flash",
-      "score": 56.57152973570364,
-      "api": 1.396316917192255,
-      "group": "Antigravity",
-      "price": 0.036935881654254765,
-      "lo": 0.02462392110283651,
-      "hi": 0.07387176330850953,
-      "color": "#277F59",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Antigravity SDK - Gemini 3.7 Flash (high)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "GPT-6 Astra · low",
-      "short": "Astra low",
-      "score": 62.6,
-      "api": 1.41,
-      "group": "Codex",
-      "price": 0.040285714285714286,
-      "lo": 0.0282,
-      "hi": 0.0564,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-04",
-      "benchmark_note": "Original supplied screenshot; preserved configuration."
-    },
-    {
-      "label": "Gemini 3.8 Flash · high",
-      "short": "Gemini 3.8 Flash",
-      "score": 59.0851412183529,
-      "api": 2.0089751539110456,
-      "group": "Antigravity",
-      "price": 0.05314213959421635,
-      "lo": 0.035428093062810896,
-      "hi": 0.1062842791884327,
-      "color": "#277F59",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Antigravity SDK - Gemini 3.8 Flash (high)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "GPT-5.6 Terra · max",
-      "short": "Terra max",
-      "score": 60.420103617266875,
-      "api": 1.9300146631901811,
-      "group": "Codex",
-      "price": 0.05514327609114803,
-      "lo": 0.03860029326380362,
-      "hi": 0.07720058652760724,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Codex - GPT-5.6 Terra (max)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "GPT-6 Astra · medium",
-      "short": "Astra medium",
-      "score": 65.2,
-      "api": 2.19,
-      "group": "Codex",
-      "price": 0.06257142857142857,
-      "lo": 0.0438,
-      "hi": 0.0876,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-04",
-      "benchmark_note": "Original supplied screenshot; preserved configuration."
-    },
-    {
-      "label": "GPT-6 Astra · high",
-      "short": "Astra high",
-      "score": 65.5,
-      "api": 2.89,
-      "group": "Codex",
-      "price": 0.08257142857142857,
-      "lo": 0.0578,
-      "hi": 0.1156,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-04",
-      "benchmark_note": "Original supplied screenshot; preserved configuration."
-    },
-    {
-      "label": "GPT-6 Astra · xhigh",
-      "short": "Astra xhigh",
-      "score": 66.9,
-      "api": 3.27,
-      "group": "Codex",
-      "price": 0.09342857142857143,
-      "lo": 0.0654,
-      "hi": 0.1308,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-04",
-      "benchmark_note": "Original supplied screenshot; preserved configuration."
-    },
-    {
-      "label": "GPT-6 Astra · max",
-      "short": "Astra max",
-      "score": 66.9713903153459,
-      "api": 4.7173294306044475,
-      "group": "Codex",
-      "price": 0.13478084087441278,
-      "lo": 0.09434658861208896,
-      "hi": 0.18869317722417792,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Codex - GPT-6 Astra (max)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "GPT-5.6 Sol · max",
-      "short": "Sol max",
-      "score": 65.05240024334411,
-      "api": 4.995463274846626,
-      "group": "Codex",
-      "price": 0.14272752213847503,
-      "lo": 0.09990926549693253,
-      "hi": 0.19981853099386507,
-      "color": "#181818",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Codex - GPT-5.6 Sol (max)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "Grok 4.5 · high ($30 plan)",
-      "short": "Grok 4.5 high · $30 plan",
-      "score": 64.08998279698193,
-      "api": 2.4389824437627774,
-      "group": "Grok",
-      "price": 0.14633894662576666,
-      "lo": 0.0975592977505111,
-      "hi": 0.24389824437627775,
-      "color": "#65764D",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Grok Build - Grok 4.5 (high)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "Opus 5 · xhigh",
-      "short": "Opus 5 xhigh",
-      "score": 68.14975428587518,
-      "api": 8.170783921523505,
-      "group": "Claude / Opus",
-      "price": 0.23345096918638586,
-      "lo": 0.2042695980380876,
-      "hi": 0.4085391960761752,
-      "color": "#C35D3B",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-06",
-      "benchmark_label": "Claude Code - Opus 5 (xhigh)"
-    },
-    {
-      "label": "Fable 5.1 · max + fallback",
-      "short": "Fable 5.1 max",
-      "score": 70.43078467074591,
-      "api": 9.183238026073614,
-      "group": "Claude / Fable",
-      "price": 0.24488634736196302,
-      "lo": 0.19333132686470766,
-      "hi": 0.9183238026073614,
-      "color": "#C35D3B",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Claude Code - Fable 5.1 (max) (with fallback)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "Fable 5 · max + fallback",
-      "short": "Fable 5 max",
-      "score": 67.17276042685724,
-      "api": 11.687407620910026,
-      "group": "Claude / Fable",
-      "price": 0.31166420322426736,
-      "lo": 0.24605068675600053,
-      "hi": 1.1687407620910026,
-      "color": "#C35D3B",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Claude Code - Fable 5 (max) (with fallback)",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "Kimi K3",
-      "short": "Kimi K3",
-      "score": 62.63880112748013,
-      "api": 3.0816355416104315,
-      "group": "Kimi",
-      "price": 0.584043307409977,
-      "lo": 0.40883031518698393,
-      "hi": 0.8176606303739679,
-      "color": "#1673C9",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Kimi Code CLI - Kimi K3",
-      "benchmark_as_of": "2026-09-06"
-    },
-    {
-      "label": "GLM 5.1 · historical agent",
-      "short": "GLM 5.1 historical",
-      "score": 36.91032797641257,
-      "api": 4.282000252842536,
-      "group": "GLM historical scenario",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Claude Code - GLM-5.1",
-      "benchmark_as_of": "2026-09-06",
-      "historical": true,
-      "scenario_only": true,
-      "price": 0.5288672131910594,
-      "lo": 0.32467914005069787,
-      "hi": 0.8614675064890309,
-      "color": "#466779"
-    },
-    {
-      "label": "GLM 5.2 · historical agent",
-      "short": "GLM 5.2 historical",
-      "score": 43.3101571936022,
-      "api": 1.9093995639405217,
-      "group": "GLM historical scenario",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Claude Code - GLM-5.2",
-      "benchmark_as_of": "2026-09-06",
-      "historical": true,
-      "scenario_only": true,
-      "price": 0.23582876380707735,
-      "lo": 0.1447786482548308,
-      "hi": 0.3841395572424718,
-      "color": "#466779"
-    },
-    {
-      "label": "Cursor CLI · Composer 2.5 Fast",
-      "short": "Composer 2.5 Fast",
-      "score": 38.300753803677466,
-      "api": 0.5573437730061354,
-      "group": "Cursor",
-      "price": 0.06591849785482554,
-      "lo": 0.06225635908511302,
-      "hi": 0.06958063662453808,
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_label": "Cursor CLI - Composer 2.5 Fast",
-      "benchmark_as_of": "2026-09-06",
-      "api_repricing_source": "https://cursor.com/docs/models-and-pricing",
-      "scenario_only": true,
-      "method": "Transfer the same model quota economics from five real Composer2.5Fast usage events to the benchmark token mix. AA benchmark tokens repriced at current Cursor input/cache/output rates before subscription conversion. This is not a measured benchmark subscription cost. Pooled benchmark token counters may cover different attempts; current-rate repricing is approximate and assumes input includes cache.",
-      "adjustment_api": 1.522274547869212,
-      "range_type": "Range accounts only for rounding of displayed 0.9% quota use, not full uncertainty in workload or future quotas."
-    },
-    {
-      "label": "Cursor CLI - GPT-5.5 (medium)",
-      "score": 47.08693600598457,
-      "price": null,
-      "reason": "No matched per-model quota inference adopted. OtherModels pool cannot be combined with CursorModels pool; current selectable configuration and consistent valuation remain to be verified.",
-      "api": 1.9980312342194944,
-      "short": "Cursor GPT-5.5 medium",
-      "group": "Cursor",
-      "benchmark_label": "Cursor CLI - GPT-5.5 (medium)",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-06",
-      "lo": null,
-      "hi": null
-    },
-    {
-      "label": "Cursor CLI - Opus 4.7 (medium)",
-      "score": 46.6554082589455,
-      "price": null,
-      "reason": "No matched per-model quota inference adopted. OtherModels pool cannot be combined with CursorModels pool; current selectable configuration and consistent valuation remain to be verified.",
-      "api": 2.7249057110173838,
-      "short": "Cursor Opus 4.7 medium",
-      "group": "Cursor",
-      "benchmark_label": "Cursor CLI - Opus 4.7 (medium)",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-06",
-      "lo": null,
-      "hi": null
-    },
-    {
-      "label": "Cursor CLI - Composer 2.5",
-      "score": 38.300753803677466,
-      "price": null,
-      "reason": "No separate same-model quota observation for Composer 2.5. Composer 2.5 Fast credit economics are not transferred to this variant.",
-      "api": 0.08505141359918204,
-      "short": "Cursor Composer 2.5",
-      "group": "Cursor",
-      "benchmark_label": "Cursor CLI - Composer 2.5",
-      "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
-      "benchmark_as_of": "2026-09-06",
-      "lo": null,
-      "hi": null
-    }
-  ],
-  "method": "cost_per_task = benchmark_API_cost_per_task * subscription_fee / estimated_monthly_API_equivalent_usage",
-  "range_type": "Analyst sensitivity envelope; not a confidence interval.",
-  "assumptions": [
-    "Heavy use of allowance; no overage.",
-    "Astra inherits 5.6 quota economics as an unmeasured proxy.",
-    "Fable 5.1 inherits July Fable 5 quota economics as an unmeasured proxy.",
-    "Gemini uses the native Antigravity SDK benchmark, not OpenCode. The 3.7 benchmark token mix values a community raw-token estimate; 3.8 transfers that monetary allowance.",
-    "Each model is an alternative use of the same plan, not an additive allowance.",
-    "Four Astra settings retain the original screenshot values; seventeen rows use exact AA agent data fetched on 6 September 2026.",
-    "Codex token totals use per-call deltas; cumulative session counters are resume-inherited and inflate.",
-    "Historical GLM 5.1/5.2 agent results are plotted as open squares using current Pro quota scenarios, not as GLM 5.3 results. The author reports hitting GLM plan caps; a five-hour cap does not establish monthly saturation.",
-    "Cursor Pro uses actual $20 invoice and observed same-model quota consumption. Composer2.5Fast benchmark tokens and personal tokens are valued at identical current Cursor rates for conversion; the original panel retains AA published API costs. Three other Cursor agent results have no adopted subscription estimate.",
-    "Cursor range is quota-percentage rounding only; other intervals are sensitivity scenarios. All estimates have additional unquantified uncertainty."
-  ],
-  "calibration": {
-    "Antigravity": {
-      "weekly_raw_tokens": 5000000000.0,
-      "weekly_scenario_low": 2500000000.0,
-      "weekly_scenario_high": 7500000000.0,
-      "reference_model": "Antigravity SDK - Gemini 3.7 Flash (high)",
-      "raw_tokens_per_benchmark_task": 8002774.358421867,
-      "api_cost_per_benchmark_task": 1.396316917192255,
-      "source": "https://www.reddit.com/r/LLMDevs/comments/1vwhiab/gemini_pro_ultra_claude_pro_opencode_go/"
-    }
-  },
-  "unpriced": [
-    {
-      "platform": "z.ai",
-      "model": "GLM 5.3",
-      "observed_tier": "Lite",
-      "fee": 18,
-      "reported_tokens": 48000000.0,
-      "reported_weekly_fraction": 0.44,
-      "reported_cache_hit_rate": 0.95,
-      "monthly_raw_token_scenario": 472727272.72727275,
-      "price": null,
-      "score": null,
-      "reason": "No matched GLM 5.3 Coding Agent Index row as of 6 September. GLM 5.1/5.2 are historical model configurations; current Coding Plan routes those aliases to 5.3.",
-      "source": "https://www.reddit.com/r/ZaiGLM/comments/1vpxdr9/comment/p410fu5/",
-      "observed_local_usage": {
-        "api_value_usd": 194.66823236,
-        "raw_tokens": 617144217,
-        "glm53_value_usd": 75.49212504,
-        "glm53_raw_tokens": 233749965,
-        "provenance": "Fresh local token ledger query; 5.2, 5.3 and Turbo; provider IDs are not proven to share a subscription."
-      },
-      "official_pro_capacity_scenario": {
-        "monthly_credits": 260000.0,
-        "peak_api_value_low": 397.64705882352945,
-        "peak_api_value_high": 527.5362318840579,
-        "offpeak_api_value_low": 795.2941176470589,
-        "offpeak_api_value_high": 1055.0724637681158,
-        "qualification": "Mathematical all-token-mix bounds; full weekly utilization, no MCP use. Official schedule scenario, not measured subscriber allowance.",
-        "source": "https://docs.z.ai/devpack/overview",
-        "price_source": "https://docs.z.ai/guides/overview/pricing"
-      }
-    },
-    {
-      "platform": "Muse Code",
-      "model": "Muse Spark 1.3",
-      "plan_fees": [
-        5,
-        15,
-        50
-      ],
-      "price": null,
-      "reason": "No token totals tied to native subscription quota consumption found.",
-      "source": "https://www.reddit.com/r/opencode/comments/1w6co97/meta_muse_code_plan_does_muse_spark_13/"
-    }
-  ],
   "own_usage": [
     {
       "key": "claude_august",
-      "label": "Claude · mixed models",
-      "period_label": "1–31 August 2026",
-      "scope_label": "Priced subtotal · 2 plans + overages",
+      "label": "Claude \u00b7 mixed models",
+      "period_label": "1\u201331 August 2026",
+      "scope_label": "Priced subtotal \u00b7 2 plans + overages",
       "api_value_usd": 19380.1,
       "provenance": "Recovered independent audit; missing fresh-input volumes and Opus 4.8 excluded."
     },
     {
       "key": "codex_august",
-      "label": "Codex · Sol + Terra",
-      "period_label": "1–31 August 2026",
-      "scope_label": "Priced subtotal · minor models excluded",
+      "label": "Codex \u00b7 Sol + Terra",
+      "period_label": "1\u201331 August 2026",
+      "scope_label": "Priced subtotal \u00b7 minor models excluded",
       "api_value_usd": 5327.9679936,
       "provenance": "Fresh deduplicated per-call session scan; reconstructed API value."
     },
     {
       "key": "astra_september",
-      "label": "Codex · Astra",
-      "period_label": "1–5 September 2026 · UTC",
-      "scope_label": "5 complete days · per-call usage",
+      "label": "Codex \u00b7 Astra",
+      "period_label": "1\u20135 September 2026 \u00b7 UTC",
+      "scope_label": "5 complete days \u00b7 per-call usage",
       "api_value_usd": 1461.995498,
       "provenance": "Fresh deduplicated per-call session scan."
     },
     {
       "key": "glm_family",
-      "label": "GLM · mixed models",
-      "period_label": "10 August–5 September 2026 · UTC",
-      "scope_label": "27 days · 2 provider IDs · 617.14M tokens",
+      "label": "GLM \u00b7 mixed models",
+      "period_label": "10 August\u20135 September 2026 \u00b7 UTC",
+      "scope_label": "27 days \u00b7 2 provider IDs \u00b7 617.14M tokens",
       "api_value_usd": 194.66823236,
       "raw_tokens": 617144217,
       "glm53_value_usd": 75.49212504,
@@ -475,95 +1983,98 @@
       "provenance": "Fresh local token ledger query; 5.2, 5.3 and Turbo; provider IDs are not proven to share a subscription."
     }
   ],
-  "audit_corrections": [
-    "Removed unsupported measured Fable and Astra allowance points.",
-    "GLM cached tokens are a subset of input, counted once.",
-    "Local usage includes mixed models and provider IDs.",
-    "Current weekly credit ceiling replaces unsupported $1000-2500 GLM monthly extrapolation."
+  "usage_as_of": "2026-09-06",
+  "method": "cost_per_task = benchmark_API_cost_per_task * subscription_fee / estimated_monthly_API_equivalent_usage",
+  "range_type": "Scenario ranges, not confidence intervals.",
+  "archive": "/coding-subscriptions/archive/2026-09-06/estimates.json",
+  "assumptions": [
+    "Scores and API costs use one current v1.5 snapshot; no September scores are mixed in.",
+    "Each record is a particular harness/model/effort configuration, not model-only intelligence.",
+    "September community capacity scenarios are retained only for previously calibrated model families and explicitly dated.",
+    "New model generations and new harnesses have null subscription costs.",
+    "Full usage allocates the entire fee to one alternative; consuming half the assumed usage doubles cost per task.",
+    "No taxes, overages, review labor, infrastructure or other plan benefits are included. Attempts include failures.",
+    "GLM credit estimates use pooled mean counters and published credit rules; they are approximate, not a measured benchmark subscription invoice.",
+    "Gemini 4 Argon is flagged unavailable by AA and retained only in the full dataset.",
+    "July/August Kimi fee and quota scenario is historical; current international fee not independently confirmed."
   ],
-  "cursor_subscription": {
-    "fee": 20,
-    "plan": "Pro",
-    "period": "10 August–10 September 2026",
-    "observed_at": "2026-09-06T11:10:01.747556+00:00",
-    "utilization": {
-      "cursor_models_used_percent": 100.0,
-      "cursor_models_reported_tokens": 757600000,
-      "other_models_used_percent": 88.8,
-      "other_models_reported_tokens": 107400000,
-      "on_demand_enabled": false,
-      "on_demand_billed_usd": 0
-    },
-    "export_rows": 827,
-    "included_tokens": 827123207,
-    "free_tokens": 37885478,
-    "same_model_observation": {
-      "model": "composer-2.5-fast",
-      "billing_dashboard_quota_percent": 0.9,
-      "percentage_display_decimal_places": 1,
-      "tokens": {
-        "calls": 5,
-        "Input (w/ Cache Write)": 0,
-        "Input (w/o Cache Write)": 506495,
-        "Cache Read": 3932352,
-        "Output Tokens": 44742,
-        "Total Tokens": 4483589
-      },
-      "api_value_at_current_cursor_rates_usd": 4.156791,
-      "current_rates_usd_per_million": {
-        "fresh_input": 3,
-        "cache_read": 0.5,
-        "output": 15
-      },
-      "implied_full_pool_usd_if_linear": 461.8656666666667,
-      "implied_full_pool_low_usd_from_percentage_rounding": 437.55694736842105,
-      "implied_full_pool_high_usd_from_percentage_rounding": 489.03423529411765,
-      "aa_task_cost_at_current_cursor_rates_usd": 1.522274547869212,
-      "candidate_cost_per_benchmark_task_current_rates": 0.06591849785482554,
-      "caution": "AA retained API task cost does not reproduce current Cursor published cache pricing; any plotted conversion must reprice numerator and usage denominator consistently. Quota percentage may use model-specific credits; aggregate pool dollar equivalence is not established."
-    },
-    "fee_allocation": "The two pools belong to the same $20 plan. A full-fee scenario for one model is an alternative allocation, not an additional subscription charge or additive allowance.",
-    "limitations": [
-      "Five Composer2.5Fast usage events are a small sample.",
-      "The benchmark and personal workload have different cache/output mixtures; proportional retail-value quota consumption is assumed.",
-      "Current Composer cache rates materially differ from retained AA API task-cost valuation.",
-      "Pro cancellation is scheduled for September10,2026; amounts describe current cycle only."
-    ],
-    "official_source": "https://cursor.com/docs/models-and-pricing"
-  },
-  "glm_recheck": {
-    "checked_at": "2026-09-06T11:02:33+00:00",
-    "agent_records": 68,
-    "glm_agent_versions": [
-      "5.1",
-      "5.2"
-    ],
-    "glm53_agent_score": null,
-    "glm53_catalog_present": true,
-    "reason": "GLM 5.3 references in the page are generic model catalog metadata, without an agent result or indexScore."
-  },
   "chart_view": {
-    "label": "Frontier segment",
-    "score_min": 55,
+    "selection": "AA default variants available in its current snapshot",
+    "visible_configurations": 13,
+    "subscription_configurations": 4,
+    "cost_scale": "logarithmic",
+    "score_min": 35,
     "score_max": 72,
-    "api_cost_min": 1,
-    "api_cost_max": 12,
+    "api_cost_min": 0.07,
+    "api_cost_max": 20,
     "subscription_cost_min": 0.03,
-    "subscription_cost_max": 0.35,
-    "cost_scale": "linear",
-    "excluded": "Luna max, Composer and historical GLM; other configurations below 55 remain outside the view",
-    "visible_configurations": 14,
-    "labels": "Every dot: harness and model",
-    "same_score_axis": true,
-    "same_cost_axis": false,
-    "clusters": [
-      "Astra medium, high, xhigh, max and Sol max",
-      "All Anthropic configurations",
-      "Both Gemini configurations"
-    ],
-    "range_note": "An arrow labels Kimi at its actual $0.584 cost beyond the displayed subscription axis. Clipped sensitivity ranges also use arrows; full ranges remain in point tooltips and the methodology.",
-    "offscale_subscription_configurations": [
-      "Kimi K3"
-    ]
-  }
+    "subscription_cost_max": 2
+  },
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "title": "Artificial Analysis current agent configurations and API costs",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "title": "AA index v1.5 methodology and version history",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "title": "Anthropic model API pricing",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://claude.com/pricing",
+      "title": "Claude subscription tiers and Fable weekly limits",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/pricing",
+      "title": "Codex plans, model credit rates and speed multipliers",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "title": "OpenAI API model pricing",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://docs.z.ai/devpack/overview",
+      "title": "z.ai weekly credits, model multipliers and temporary campaign",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://docs.z.ai/guides/overview/pricing",
+      "title": "z.ai API rates",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://zcode.z.ai/en",
+      "title": "z.ai advertised standard and promotional plan prices",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://docs.x.ai/developers/pricing",
+      "title": "Grok API pricing and Fast variant",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://x.ai/pricing",
+      "title": "SuperGrok plan fees",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://www.kimi.com/code/docs/kimi-code/membership.html",
+      "title": "Kimi membership and quota accounting",
+      "checked_at": "2026-10-01"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/models/overview",
+      "title": "Current Claude lineup",
+      "checked_at": "2026-10-01"
+    }
+  ]
 }

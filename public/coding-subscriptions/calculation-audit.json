@@ -1,0 +1,31 @@
+{
+  "as_of": "2026-10-01",
+  "passed": true,
+  "checks": [
+    "31 scores and API costs exactly match source configuration IDs",
+    "All scores reproduce equal-weight average of the three v1.5 components",
+    "7 modeled configurations reproduce adopted scenario formula; 24 subscription values remain null",
+    "13 available default variants; 4 plotted estimates and 9 unknowns",
+    "No new generation, third-party harness or unavailable configuration inherits old quota",
+    "GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce",
+    "September snapshot is archived separately; historical personal usage unchanged"
+  ],
+  "images": {
+    "chart.png": [
+      2400,
+      2400
+    ],
+    "chart-phone.png": [
+      1161,
+      5983
+    ]
+  },
+  "known_limitations": [
+    "Community proxies are dated September and not October entitlements",
+    "Kimi international fee and quota calibration remain historical",
+    "GLM uses pooled token means; precision does not imply exact telemetry coverage",
+    "GLM advertised standard pricing conflicts with an older migration example; temporary offer not monthly extrapolated",
+    "AA marks Gemini 4 Argon unavailable; no chart position",
+    "Scores reflect the current benchmark suite; no cross-version performance trend inferred"
+  ]
+}

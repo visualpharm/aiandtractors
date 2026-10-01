@@ -6,58 +6,48 @@ import data from '../public/coding-subscriptions/estimates.json';
 
 const PAGE_URL = 'https://aiandtractors.com/coding-agent-subscription-costs/';
 const TITLE = 'What coding agents cost on a subscription';
-const DESCRIPTION = 'Artificial Analysis coding-agent results beside subscription-adjusted costs, including our Cursor Pro data and audited GLM 5.3 usage.';
-const money = n => n == null ? 'Not established' : `$${n.toFixed(3)}`;
+const DESCRIPTION = 'Artificial Analysis coding-agent results beside subscription-adjusted costs, updated with current agent configurations and explicitly dated capacity scenarios.';
+const money = n => n == null ? 'Unknown' : `$${n.toFixed(3)}`;
 
 export default function CodingAgentSubscriptionCosts() {
   return <Layout>
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
       <meta property="og:type" content="article" /><meta property="og:title" content={TITLE} /><meta property="og:description" content={DESCRIPTION} /><meta property="og:url" content={PAGE_URL} />
-      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=8" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1820" /><meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=9" /><meta property="og:image:width" content="2400" /><meta property="og:image:height" content="2400" /><meta name="twitter:card" content="summary_large_image" />
     </Head>
     <article className="subscription-article">
       <h1>{TITLE}</h1>
-      <p className="intro">Artificial Analysis’s coding-agent benchmark, priced two ways: its original API costs and our estimates for subscription users.</p>
-      <CodingAgentComparison models={data.models} />
+      <p className="intro">Artificial Analysis’s current agent benchmark: published API costs beside conditional subscription scenarios. Updated 1 October 2026.</p>
+      <CodingAgentComparison />
       <nav className="article-links" aria-label="Comparison files">
         <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis original</a>
-        <a href="/coding-subscriptions/chart.png?v=8">Comparison image</a>
+        <a href="/coding-subscriptions/chart.png?v=9">Desktop PNG</a>
+        <a href="/coding-subscriptions/chart-phone.png?v=9">Phone PNG</a>
+        <a href="/coding-subscriptions/aa-agent-snapshot.json">Benchmark snapshot</a>
         <a href="/coding-subscriptions/usage.png?v=6">Usage graph</a>
         <a href="/coding-subscriptions/estimates.json">Calculation data</a>
+        <a href="/coding-subscriptions/calculation-audit.json">Calculation audit</a>
         <a href="/terminal-bench-subscriptions/chart.png">Terminal-Bench comparison</a>
       </nav>
       <div className="reading">
-        <section className="conclusions">
-          <h2>Conclusions</h2>
-          <p>API price versus our estimated subscription price:</p>
-          <ol>
-            <li>A $12 API task costs about 30 cents on a subscription.</li>
-            <li>Kimi is ridiculously expensive. About 14.5× Astra Low, with almost the same benchmark score.</li>
-            <li>Grok isn’t cheaper than Astra High. It’s expensive. A worse Astra.</li>
-            <li>Are Claude’s couple of extra index points worth 3× the price? (Opus 5 xhigh versus Astra High.)</li>
-          </ol>
+        <section>
+          <h2>What changed on 1 October</h2>
+          <p><strong>31 published configurations, with one current Coding Agent Index v1.5 snapshot.</strong> The chart shows 13 available default variants. Sonnet 5.5, Opus 5.5, GPT-6.1 Sol, Grok 4.7, Muse Spark 1.3 and GLM-5.3 now appear with their actual agent configurations.</p>
+          <p>Sonnet 5.5 max scores 68.36 at $14.191 per API attempt; Opus 5.5 max scores 65.99 at $13.036; Codex / GPT-6.1 Sol xhigh scores 62.91 at $1.040. Different effort settings can change both score and cost substantially. The full table includes all settings.</p>
+          <p><strong>Subscription cost is unknown for nine of the 13 plotted configurations.</strong> New model generations and Devin Fusion configurations do not inherit September’s quotas. Astra, Fable and Kimi retain explicitly dated community scenarios; their ranges are not confidence intervals or verified October allowances.</p>
+          <p>The benchmark changed its task suite and grading. <a href="https://artificialanalysis.ai/methodology/coding-agents-benchmarking">AA’s version history</a> explains the change. <a href="/coding-subscriptions/archive/2026-09-06/estimates.json">September’s 21 configurations</a> remain archived separately.</p>
         </section>
         <section>
-          <h2>GLM 5.3: used, but not yet scored here</h2>
-          <p><strong>Our logs contain 233.75 million GLM 5.3 tokens, worth $75.49 at API rates.</strong> That is part of 617.14 million tokens and $194.67 across the GLM family, recorded from 10 August to 5 September 2026. A later <a href="/coding-agent-feature-eval/">feature eval</a> measured the weekly allowance directly: $250 to $510 API-equivalent burned per weekly window before the 429.</p>
-          <p>I rechecked all 68 <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis coding-agent results</a> on 6 September 2026. The GLM entries are 5.1 and 5.2. <a href="https://artificialanalysis.ai/models/glm-5-3">GLM 5.3 has a separate model benchmark</a>, but no published agent score in that dataset.</p>
-          <p>Hitting a GLM plan limit confirms quota use; it cannot fill in the missing benchmark score.</p>
-          <p><a href="https://www.tbench.ai/">Terminal-Bench 4.0</a> does publish a matched Claude Code / GLM 5.3 max result: <strong>41.82% of tasks resolved.</strong> The <a href="/terminal-bench-subscriptions/chart.png">separate comparison</a> uses its own scores and API costs with our existing subscription assumptions. Its percentages are not Artificial Analysis index points.</p>
-          <p><a href="/terminal-bench-subscriptions/chart.svg">Terminal-Bench vector image</a> · <a href="/terminal-bench-subscriptions/estimates.json">Terminal-Bench calculations and scope</a></p>
-        </section>
-        <section>
-          <h2>Our Cursor Pro subscription</h2>
-          <p><strong>$20 for the 10 August–10 September 2026 cycle.</strong> Our billing page and paid invoice confirm the plan. The two usage pools are separate:</p>
-          <div className="pool"><div><span>Cursor Models</span><strong>100% used</strong></div><progress max="100" value="100" aria-label="Cursor Models: 100 percent used" /></div>
-          <div className="pool"><div><span>Other Models</span><strong>88.8% used</strong></div><progress max="100" value="88.8" aria-label="Other Models: 88.8 percent used" /></div>
-          <p><strong>Composer 2.5 Fast: about $0.066 per benchmark task, at 38.30 points.</strong> This is a conditional estimate from five recorded calls and their displayed quota use. Its $0.062–$0.070 range covers percentage rounding only; workload and quota uncertainty are wider.</p>
-          <p>Artificial Analysis’s original API cost is $0.557. For the subscription calculation, we estimate $1.522 from pooled benchmark token counters at <a href="https://cursor.com/docs/models-and-pricing">current Cursor rates</a>; our usage is valued at those same rates. The full $20 fee is assigned to this one alternative.</p>
-          <p>The full dataset retains Cursor’s GPT-5.5 medium, Opus 4.7 medium and Composer 2.5 results outside this frontier view. Their subscription costs remain unpriced. Most of our Cursor tokens went to Grok, which has no matched Cursor CLI result in this agent dataset.</p>
+          <h2>GLM-5.3 now has an agent result</h2>
+          <p><strong>OpenCode / GLM-5.3 max: 53.55 points and $4.241 per API attempt.</strong> This is a complete AA agent result, with its own harness and effort setting.</p>
+          <p>Applying <a href="https://docs.z.ai/devpack/overview">z.ai’s published Pro credits</a> to AA’s pooled token counters gives an approximate full-use scenario of <strong>$0.414 per attempt entirely off peak, or $0.829 entirely at peak</strong>, using the $80 standard fee. This assumes identical token mix, full weekly use and no MCP consumption; five-hour limits can reduce achievable usage.</p>
+          <p>The <a href="https://zcode.z.ai/en">advertised $56 Pro offer</a> would lower the off-peak scenario to $0.290. The all-day off-peak campaign ends 7 October. Neither temporary offer is extrapolated into a whole month in the chart. See the methodology for a conflicting older plan-price example.</p>
+          <p>The <a href="/terminal-bench-subscriptions/chart.png">separate Terminal-Bench comparison</a> remains a historical artifact with its own task percentages and assumptions; its values do not supply this index’s scores.</p>
         </section>
         <section className="usage-chart" aria-labelledby="usage-title">
           <h2 id="usage-title">Our recorded usage</h2>
-          <p>API-equivalent consumption over the periods shown. These totals do not establish included subscription allowances.</p>
+          <p>Historical consumption, audited 6 September. These totals do not establish included subscription allowances.</p>
           {data.own_usage.map(r => <div className="usage-row" key={r.key}>
             <div><strong>{r.label}</strong><strong>${r.api_value_usd.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>
             <p>{r.period_label}</p><p>{r.scope_label}</p>
@@ -65,10 +55,10 @@ export default function CodingAgentSubscriptionCosts() {
           </div>)}
         </section>
         <details>
-          <summary>Full dataset · 21 configurations</summary>
-          <table><thead><tr><th>Agent configuration</th><th>Score</th><th>API / task</th><th>Subscription / task</th></tr></thead>
+          <summary>Full dataset · {data.models.length} current configurations</summary>
+          <table><thead><tr><th>Agent configuration</th><th>Score</th><th>API / task</th><th>Estimated subscription / task</th></tr></thead>
             <tbody>{[...data.models].sort((a,b)=>b.score-a.score).map(r => <tr key={r.short}>
-              <td>{r.benchmark_label || r.label}{r.historical ? ' (historical)' : ''}</td><td data-label="Score">{r.score.toFixed(2)}</td><td data-label="API / task">{money(r.api)}</td><td data-label="Subscription / task">{money(r.price)}</td>
+              <td>{r.label}{r.unavailable ? ' (AA: unavailable)' : ''}</td><td data-label="Score">{r.score == null ? 'Unknown' : r.score.toFixed(2)}</td><td data-label="API / task">{money(r.api)}</td><td data-label="Subscription / task">{money(r.price)}{r.price != null ? (r.group === 'GLM' ? ' · credit scenario' : ' · September proxy') : ''}</td>
             </tr>)}</tbody>
           </table>
         </details>
@@ -89,6 +79,7 @@ export default function CodingAgentSubscriptionCosts() {
       .subscription-article p {margin:0 0 20px;}
       .subscription-article strong {font-weight:600;}
       .subscription-article a {color:#344abb;text-decoration:none;}
+      .subscription-article .reading a {text-decoration:underline;text-underline-offset:3px;}
       .subscription-article a:hover {color:#5064cf;text-decoration:none;}
       .subscription-article a:focus-visible,.subscription-article summary:focus-visible {outline:2px solid currentColor;outline-offset:4px;}
       .subscription-article .article-links {display:flex;gap:18px 28px;flex-wrap:wrap;margin:28px 0;}
@@ -113,6 +104,7 @@ export default function CodingAgentSubscriptionCosts() {
       @media(max-width:700px) {
         .subscription-article {padding:28px 20px 48px;}
         .subscription-article h1 {font-size:30px;}
+        .subscription-article table {width:calc(100% + 40px);margin-left:-20px;padding:0 20px;}
         .subscription-article table,.subscription-article tbody,.subscription-article tr,.subscription-article td {display:block;}
         .subscription-article thead {display:none;}
         .subscription-article tr {padding:16px 0;border-bottom:1px solid #ddd;}

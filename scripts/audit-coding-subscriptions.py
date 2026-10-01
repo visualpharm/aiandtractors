@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+import json, math, re
+from pathlib import Path
+from PIL import Image
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'public/coding-subscriptions'
+d=json.loads((OUT/'estimates.json').read_text());s=json.loads((OUT/'aa-agent-snapshot.json').read_text());by={r['id']:r for r in s['rows']}
+checks=[]
+assert d['as_of']==s['as_of']=='2026-10-01' and d['benchmark_version']==s['benchmark_version']=='1.5'
+assert len(by)==len(d['models'])==31
+for r in d['models']:
+ src=by[r['id']]
+ assert r['score']==src['indexScore']*100 and r['api']==src['mean']['costUsd']
+ assert abs(r['score']-sum(e['mean']['reward'] for e in src['evals'])/3*100)<1e-9
+ if r['price'] is not None:
+  assert 0<r['lo']<=r['price']<=r['hi']
+  if r['group']=='GLM':
+   t=r['mean_tokens'];c=((t['inputTokens']-t['cacheTokens'])*6.9+t['cacheTokens']*1.7+t['outputTokens']*24)/10000
+   assert abs(c-r['credits_per_task'])<1e-9
+   assert abs(r['price']-80*c*.5/(60000*52/12))<1e-12
+   assert abs(r['promotional_offpeak_price']-56*c*.5/(60000*52/12))<1e-12
+  else:
+   p=d['plans'][r['plan']]
+   for field,capacity in [('price','base'),('lo','high'),('hi','low')]:assert math.isclose(r[field],r['api']*p['fee']/p[capacity],rel_tol=1e-12)
+ else:assert r['lo'] is None and r['hi'] is None
+ if any(m in r['model'] for m in ['GPT-6.1','GPT-6 Sol','GPT-6 Luna','5.5','Grok 4.','Muse','DeepSeek','Qwen']) or 'Devin' in r['harness']:assert r['price'] is None
+checks=['31 scores and API costs exactly match source configuration IDs','All scores reproduce equal-weight average of the three v1.5 components','7 modeled configurations reproduce adopted scenario formula; 24 subscription values remain null','13 available default variants; 4 plotted estimates and 9 unknowns','No new generation, third-party harness or unavailable configuration inherits old quota','GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce','September snapshot is archived separately; historical personal usage unchanged']
+old=json.loads((OUT/'archive/2026-09-06/estimates.json').read_text());assert d['own_usage']==old['own_usage']
+assert sum(r['chart_visible'] for r in d['models'])==13
+assert sum(r['chart_visible'] and r['price'] is not None for r in d['models'])==4
+images={f:list(Image.open(OUT/f).size) for f in ['chart.png','chart-phone.png']}
+for f in images:assert Image.open(OUT/f).verify() is None
+page=(ROOT/'pages/coding-agent-subscription-costs.js').read_text()
+assert 'GLM 5.3: used, but not yet scored here' not in page and '21 configurations</summary>' not in page
+assert not any(x in page for x in ['ridiculously expensive','A worse Astra','worth 3×'])
+audit=dict(as_of=d['as_of'],passed=True,checks=checks,images=images,known_limitations=['Community proxies are dated September and not October entitlements','Kimi international fee and quota calibration remain historical','GLM uses pooled token means; precision does not imply exact telemetry coverage','GLM advertised standard pricing conflicts with an older migration example; temporary offer not monthly extrapolated','AA marks Gemini 4 Argon unavailable; no chart position','Scores reflect the current benchmark suite; no cross-version performance trend inferred'])
+(OUT/'calculation-audit.json').write_text(json.dumps(audit,indent=2)+'\n');print(json.dumps(audit,indent=2))

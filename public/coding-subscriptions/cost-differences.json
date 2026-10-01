@@ -1,0 +1,70 @@
+{
+  "as_of": "2026-10-01",
+  "benchmark_version": "1.5",
+  "rank_scope": "Four central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering",
+  "rows": [
+    {
+      "id": "29a1cdad0d140781d05b9b4746cfdd0d",
+      "label": "Claude Code \u00b7 Fable 5.1 (max) (with fallback)",
+      "score": 62.22249615769457,
+      "api": 12.388092375137534,
+      "subscription": 0.3303491300036676,
+      "ratio": 37.49999999999999,
+      "apiRank": 4,
+      "subscriptionRank": 2,
+      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "scenarioAsOf": "2026-09-04"
+    },
+    {
+      "id": "9e810ff3c6cce5ebaaff7c744c687a47",
+      "label": "Codex \u00b7 GPT-6 Astra (max)",
+      "score": 61.64504498789397,
+      "api": 7.46709735138597,
+      "subscription": 0.2133456386110277,
+      "ratio": 35.0,
+      "apiRank": 3,
+      "subscriptionRank": 1,
+      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "scenarioAsOf": "2026-09-04"
+    },
+    {
+      "id": "45493c2782f1bd94f6d30d4911f317a0",
+      "label": "Opencode \u00b7 GLM-5.3 (max)",
+      "score": 53.55484140097326,
+      "api": 4.241385833751375,
+      "subscription": 0.41444475858170243,
+      "ratio": 10.233899080461505,
+      "apiRank": 1,
+      "subscriptionRank": 3,
+      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "scenarioAsOf": "2026-10-01"
+    },
+    {
+      "id": "55b029d6971b4d378335bb168eb98b3b",
+      "label": "Kimi Code CLI \u00b7 Kimi K3",
+      "score": 51.9259105470924,
+      "api": 5.047195443300332,
+      "subscription": 0.9565637078254914,
+      "ratio": 5.276381909547739,
+      "apiRank": 2,
+      "subscriptionRank": 4,
+      "rankScope": "Four same-configuration central full-use scenarios; not verified entitlements",
+      "scenarioAsOf": "2026-09-04"
+    }
+  ],
+  "frontier_scope": "The same four configurations with central subscription scenarios; not all current models",
+  "api_frontier_ids": [
+    "29a1cdad0d140781d05b9b4746cfdd0d",
+    "9e810ff3c6cce5ebaaff7c744c687a47",
+    "45493c2782f1bd94f6d30d4911f317a0"
+  ],
+  "subscription_frontier_ids": [
+    "29a1cdad0d140781d05b9b4746cfdd0d",
+    "9e810ff3c6cce5ebaaff7c744c687a47"
+  ],
+  "all_current_frontier_api_ids": [
+    "a2c87c062f3cef73d8525e7578f14742",
+    "ab5074e404be48bbd4ac3c488ad9a3e2",
+    "ed8c1d0b0a2fe4560bbfa0a9f47e8941"
+  ]
+}

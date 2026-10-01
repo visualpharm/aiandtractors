@@ -23,10 +23,25 @@ for r in d['models']:
    for field,capacity in [('price','base'),('lo','high'),('hi','low')]:assert math.isclose(r[field],r['api']*p['fee']/p[capacity],rel_tol=1e-12)
  else:assert r['lo'] is None and r['hi'] is None
  if any(m in r['model'] for m in ['GPT-6.1','GPT-6 Sol','GPT-6 Luna','5.5','Grok 4.','Muse','DeepSeek','Qwen']) or 'Devin' in r['harness']:assert r['price'] is None
-checks=['31 scores and API costs exactly match source configuration IDs','All scores reproduce equal-weight average of the three v1.5 components','7 modeled configurations reproduce adopted scenario formula; 24 subscription values remain null','13 available default variants; 4 plotted estimates and 9 unknowns','No new generation, third-party harness or unavailable configuration inherits old quota','GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce','September snapshot is archived separately; historical personal usage unchanged']
+checks=['31 scores and API costs exactly match source configuration IDs','All scores reproduce equal-weight average of the three v1.5 components','7 modeled configurations reproduce adopted scenario formula; 24 subscription values remain null','13 available default variants; 11 in the 50–72 frontier, with 4 estimates and 7 unknowns','No new generation, third-party harness or unavailable configuration inherits old quota','GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce','September snapshot is archived separately; historical personal usage unchanged']
 old=json.loads((OUT/'archive/2026-09-06/estimates.json').read_text());assert d['own_usage']==old['own_usage']
-assert sum(r['chart_visible'] for r in d['models'])==13
+assert sum(r['chart_visible'] for r in d['models'])==11
+assert sum(r['default'] and not r['unavailable'] for r in d['models'])==13
 assert sum(r['chart_visible'] and r['price'] is not None for r in d['models'])==4
+frontier=[r for r in d['models'] if r['chart_visible'] and r['score']>=50 and not r.get('unavailable')]
+assert d['chart_view']['cost_scale']=='linear' and d['chart_view']['visible_configurations']==11
+assert len(frontier)==11 and sum(r['price'] is not None for r in frontier)==4
+difference_report=json.loads((OUT/'cost-differences.json').read_text());comparisons=difference_report['rows']
+assert len(comparisons)==4 and {r['id'] for r in comparisons}=={r['id'] for r in frontier if r['price'] is not None}
+source={r['id']:r for r in frontier}
+for r in comparisons:
+ assert r['api']==source[r['id']]['api'] and r['subscription']==source[r['id']]['price']
+ assert math.isclose(r['ratio'],r['api']/r['subscription'],rel_tol=1e-12)
+assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['apiRank'])]==['GLM','Kimi','Codex','Claude / Fable']
+assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['subscriptionRank'])]==['Codex','Claude / Fable','GLM','Kimi']
+assert {source[i]['group'] for i in difference_report['api_frontier_ids']}=={'GLM','Codex','Claude / Fable'}
+assert {source[i]['group'] for i in difference_report['subscription_frontier_ids']}=={'Codex','Claude / Fable'}
+checks.append('Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded')
 images={f:list(Image.open(OUT/f).size) for f in ['chart.png','chart-phone.png']}
 for f in images:assert Image.open(OUT/f).verify() is None
 page=(ROOT/'pages/coding-agent-subscription-costs.js').read_text()

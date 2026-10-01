@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-01",
-  "version": 9,
+  "version": 10,
   "benchmark_version": "1.5",
   "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
   "source_html_sha256": "600ebc51f020ae691ffec0d9604ed3fa330168e0a87d0aab2ba90a1fae24dd1d",
@@ -1520,7 +1520,7 @@
       },
       "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
       "group": "alibaba_cloud",
-      "chart_visible": true,
+      "chart_visible": false,
       "chart_number": 12
     },
     {
@@ -1643,7 +1643,7 @@
       },
       "reason": "No verified same-model subscription capacity calibration; API cost does not establish an included allowance.",
       "group": "deepseek",
-      "chart_visible": true,
+      "chart_visible": false,
       "chart_number": 13
     },
     {
@@ -1999,16 +1999,18 @@
     "July/August Kimi fee and quota scenario is historical; current international fee not independently confirmed."
   ],
   "chart_view": {
-    "selection": "AA default variants available in its current snapshot",
-    "visible_configurations": 13,
+    "selection": "AA available default configurations with score at least 50; all 31 configurations retained in data",
+    "available_default_configurations": 13,
+    "visible_configurations": 11,
     "subscription_configurations": 4,
-    "cost_scale": "logarithmic",
-    "score_min": 35,
+    "cost_scale": "linear",
+    "score_min": 50,
     "score_max": 72,
-    "api_cost_min": 0.07,
-    "api_cost_max": 20,
+    "api_cost_min": 1,
+    "api_cost_max": 16,
     "subscription_cost_min": 0.03,
-    "subscription_cost_max": 2
+    "subscription_cost_max": 0.5,
+    "rank_scope": "Four same-configuration central full-use scenarios; missing prices excluded"
   },
   "sources": [
     {

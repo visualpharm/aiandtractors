@@ -5,19 +5,20 @@
     "31 scores and API costs exactly match source configuration IDs",
     "All scores reproduce equal-weight average of the three v1.5 components",
     "7 modeled configurations reproduce adopted scenario formula; 24 subscription values remain null",
-    "13 available default variants; 4 plotted estimates and 9 unknowns",
+    "13 available default variants; 11 in the 50\u201372 frontier, with 4 estimates and 7 unknowns",
     "No new generation, third-party harness or unavailable configuration inherits old quota",
     "GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce",
-    "September snapshot is archived separately; historical personal usage unchanged"
+    "September snapshot is archived separately; historical personal usage unchanged",
+    "Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded"
   ],
   "images": {
     "chart.png": [
-      2400,
-      2400
+      2800,
+      1820
     ],
     "chart-phone.png": [
-      1161,
-      5983
+      960,
+      3360
     ]
   },
   "known_limitations": [

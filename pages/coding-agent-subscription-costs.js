@@ -14,28 +14,33 @@ export default function CodingAgentSubscriptionCosts() {
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
       <meta property="og:type" content="article" /><meta property="og:title" content={TITLE} /><meta property="og:description" content={DESCRIPTION} /><meta property="og:url" content={PAGE_URL} />
-      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=9" /><meta property="og:image:width" content="2400" /><meta property="og:image:height" content="2400" /><meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=10" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1820" /><meta name="twitter:card" content="summary_large_image" />
     </Head>
     <article className="subscription-article">
       <h1>{TITLE}</h1>
       <p className="intro">Artificial Analysis’s current agent benchmark: published API costs beside conditional subscription scenarios. Updated 1 October 2026.</p>
-      <CodingAgentComparison />
+      <CodingAgentComparison models={data.models} />
+      <p className="view-note">Linear axes. The frontier extends to 50 to include GLM and Kimi; API costs extend to $16, and subscription estimates to $0.50. Kimi is shown off-scale. All 31 configurations remain below.</p>
       <nav className="article-links" aria-label="Comparison files">
         <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis original</a>
-        <a href="/coding-subscriptions/chart.png?v=9">Desktop PNG</a>
-        <a href="/coding-subscriptions/chart-phone.png?v=9">Phone PNG</a>
+        <a href="/coding-subscriptions/chart.png?v=10">Desktop PNG</a>
+        <a href="/coding-subscriptions/chart-phone.png?v=10">Phone PNG</a>
         <a href="/coding-subscriptions/aa-agent-snapshot.json">Benchmark snapshot</a>
         <a href="/coding-subscriptions/usage.png?v=6">Usage graph</a>
         <a href="/coding-subscriptions/estimates.json">Calculation data</a>
         <a href="/coding-subscriptions/calculation-audit.json">Calculation audit</a>
+        <a href="/coding-subscriptions/cost-differences.json">API → subscription differences</a>
         <a href="/terminal-bench-subscriptions/chart.png">Terminal-Bench comparison</a>
       </nav>
       <div className="reading">
         <section>
+          <h2>API and subscription pricing change the order</h2>
+          <p>Among the four matched configurations with conditional full-use estimates, Astra moves from third-cheapest by API cost to first by subscription estimate; Fable moves from fourth to second. GLM moves from first to third, and Kimi from second to fourth. The plotted labels show each cost conversion and ratio. These ranks compare the four central scenarios; their sensitivity ranges can change the ordering.</p>
+          <p>The latest Sonnet 5.5, Opus 5.5 and GPT-6.1 Sol agent results are on the API panel. Their subscription costs remain unknown, so this evidence does not establish a subscription winner among the newest models.</p>
           <h2>What changed on 1 October</h2>
-          <p><strong>31 published configurations, with one current Coding Agent Index v1.5 snapshot.</strong> The chart shows 13 available default variants. Sonnet 5.5, Opus 5.5, GPT-6.1 Sol, Grok 4.7, Muse Spark 1.3 and GLM-5.3 now appear with their actual agent configurations.</p>
+          <p><strong>31 published configurations, with one current Coding Agent Index v1.5 snapshot.</strong> The chart shows 11 available default variants in a 50–72 frontier view. Qwen and DeepSeek remain in the full dataset below. Sonnet 5.5, Opus 5.5, GPT-6.1 Sol, Grok 4.7, Muse Spark 1.3 and GLM-5.3 now appear with their actual agent configurations.</p>
           <p>Sonnet 5.5 max scores 68.36 at $14.191 per API attempt; Opus 5.5 max scores 65.99 at $13.036; Codex / GPT-6.1 Sol xhigh scores 62.91 at $1.040. Different effort settings can change both score and cost substantially. The full table includes all settings.</p>
-          <p><strong>Subscription cost is unknown for nine of the 13 plotted configurations.</strong> New model generations and Devin Fusion configurations do not inherit September’s quotas. Astra, Fable and Kimi retain explicitly dated community scenarios; their ranges are not confidence intervals or verified October allowances.</p>
+          <p><strong>Subscription cost is unknown for seven of the 11 configurations in the frontier view.</strong> New model generations and Devin Fusion configurations do not inherit September’s quotas. Astra, Fable and Kimi retain explicitly dated community scenarios; their ranges are not confidence intervals or verified October allowances.</p>
           <p>The benchmark changed its task suite and grading. <a href="https://artificialanalysis.ai/methodology/coding-agents-benchmarking">AA’s version history</a> explains the change. <a href="/coding-subscriptions/archive/2026-09-06/estimates.json">September’s 21 configurations</a> remain archived separately.</p>
         </section>
         <section>
@@ -72,6 +77,7 @@ export default function CodingAgentSubscriptionCosts() {
       body { text-wrap:pretty; }
       .subscription-article {max-width:1296px;margin:0 auto;padding:40px 28px 64px;color:#252525;font:18px/1.6 system-ui,sans-serif;}
       .subscription-article h1 {font:600 36px/1.2 system-ui,sans-serif;max-width:900px;margin:0 0 20px;text-wrap:balance;}
+      .subscription-article .view-note {max-width:780px;margin:24px auto 0;font-size:16px;}
       .subscription-article .intro {max-width:780px;}
       .subscription-article .reading {max-width:780px;margin:40px auto 0;}
       .subscription-article h2 {font:600 24px/1.3 system-ui,sans-serif;margin:40px 0 16px;text-wrap:balance;}

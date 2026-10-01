@@ -74,6 +74,10 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
             vs=np.array(vertices);xmin=max(left,vs[:,0].min());xmax=min(right,vs[:,0].max());ymin=vs[:,1].min();ymax=vs[:,1].max()
             im=ax.imshow(gradient,extent=[xmin,xmax,ymax,ymin],origin='lower',aspect='auto',alpha=.27,zorder=1)
             im.set_clip_path(patch)
+    shape=layout['shape']
+    if shape['path']:
+        vs=[(p['x'],p['y']) for p in shape['anchors']]
+        ax.add_patch(plt.Polygon(vs,closed=True,facecolor='#6262620e',edgecolor='#626262',linewidth=2*scale,zorder=1,joinstyle='round'))
     label(left,16,ylabel)
     for tick in layout['scoreTicks']:
         y=tick['y'];ax.plot([left,right],[y,y],color=GRID,lw=.7,zorder=0);label(left-10,y+5,str(tick['v']),ha='right')
@@ -82,8 +86,8 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
     ax.plot([left,right],[bottom,bottom],color='#a9a9a9',lw=.8)
     label((left+right)/2,615,xlabel,ha='center')
     if adjusted:
-        label(left+8,56,'Cost ranks: 4 full-use scenarios',size=13,color='#626262')
-        label(left+8,78,'7 subscription estimates unknown',size=13,color='#626262')
+        label(left+8,56,'7 current subscription costs unknown',size=13,color='#626262')
+        label(left+8,78,'Including top Sonnet 5.5 and Sol 6.1',size=13,color='#626262')
         label(left+8,100,'Sep proxies; GLM off-peak → peak',size=13,color='#626262')
     for p in layout['points']:
         c=COLORS[p['row']['provider']];x,y=p['x'],p['y'];b=p['label']
@@ -97,7 +101,7 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
         if p['offscale']:
             ax.plot([right-22,right],[y,y],color=c,lw=2*scale,zorder=4)
             ax.plot([right-7,right,right-7],[y-6,y,y+6],color=c,lw=2*scale,zorder=4)
-        else:ax.scatter([x],[y],s=((6 if options else 8)*scale)**2,facecolor=c,edgecolor=c,lw=1.2*scale,zorder=4)
+        else:ax.scatter([x],[y],s=((20 if p['anchor'] else 7)*scale)**2,facecolor=c,edgecolor='white' if p['anchor'] else c,lw=(2 if p['anchor'] else 1.2)*scale,zorder=4)
         if p['row']['provider']=='google':
             clip=Circle((x,y),4.5,transform=ax.transData)
             im=ax.imshow(gradient,extent=[x-4.5,x+4.5,y+4.5,y-4.5],origin='lower',aspect='auto',zorder=4);im.set_clip_path(clip)
@@ -111,15 +115,18 @@ def draw_panel(ax, adjusted=False, phone=False, options=None, title=None, ylabel
 
 
 def legend(fig,phone=False):
-    fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor=COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in LABS if any(r['provider']==k for r in ROWS)],loc='upper left',bbox_to_anchor=(.08,.896) if phone else (.045,.89),ncol=3 if phone else 7,frameon=False,fontsize=11 if phone else 15,columnspacing=1.2,handletextpad=.5)
+    fig.legend(handles=[Line2D([0],[0],marker='o',linestyle='',markerfacecolor=COLORS[k],markeredgecolor=COLORS[k],markersize=8,label=n) for k,n in LABS if any(r['provider']==k for r in ROWS)],loc='upper left',bbox_to_anchor=(.08,.853) if phone else (.045,.83),ncol=3 if phone else 7,frameon=False,fontsize=11 if phone else 15,columnspacing=1.2,handletextpad=.5)
 
 def main_chart():
     fig=plt.figure(figsize=(20,13),facecolor='white')
     fig.text(.05,.958,'Coding agents: API → subscriptions',fontsize=29,weight='bold')
     fig.text(.05,.922,'1 October 2026 · Artificial Analysis Coding Agent Index v1.5 · linear axes',fontsize=16)
+    fig.text(.05,.890,'Shape: best scored configuration per provider with a subscription scenario; identical agents in both panels.',fontsize=15)
+    fig.text(.05,.858,'Independent linear USD scales; area is not a metric. Large dots = paired anchors; small dots = other current results.',fontsize=15)
     legend(fig)
-    for adjusted,pos in [(False,[.05,.045,.43,.73]),(True,[.54,.045,.43,.73])]:
+    for adjusted,pos in [(False,[.05,.045,.43,.67]),(True,[.54,.045,.43,.67])]:
         draw_panel(fig.add_axes(pos),adjusted)
+    fig.text(.05,.011,'Source: Artificial Analysis v1.5 · Sources + assumptions: aiandtractors.com/coding-agent-subscription-costs/',fontsize=12)
     validate_text(fig)
     save(fig,'chart',140)
 
@@ -127,9 +134,12 @@ def phone_chart():
     fig=plt.figure(figsize=(6,21),facecolor='white')
     fig.text(.1,.977,'Coding agents:\nAPI → subscriptions',fontsize=22,weight='bold',va='top',linespacing=1.2)
     fig.text(.1,.925,'1 October 2026 · AA index v1.5\nLinear axes · USD per benchmark attempt',fontsize=13,linespacing=1.5)
+    fig.text(.1,.885,'Shape: best scored config per provider with\na subscription scenario; same agents and order.',fontsize=12,linespacing=1.4)
     legend(fig,True)
-    draw_panel(fig.add_axes([.05,.47,.90,.34]),False,True)
-    draw_panel(fig.add_axes([.05,.04,.90,.34]),True,True)
+    draw_panel(fig.add_axes([.05,.465,.90,.32]),False,True)
+    draw_panel(fig.add_axes([.05,.04,.90,.32]),True,True)
+    fig.text(.1,.405,'Independent USD scales; area is not a metric.\nLarge dots = paired anchors; small = other results.',fontsize=12,linespacing=1.4)
+    fig.text(.1,.006,'Source: Artificial Analysis v1.5\nSources + assumptions:\naiandtractors.com/coding-agent-subscription-costs/',fontsize=11,linespacing=1.3)
     validate_text(fig)
     save(fig,'chart-phone',160)
 
@@ -163,6 +173,16 @@ def cost_difference_report():
     def frontier(rows,key):
         return [r['id'] for r in rows if not any(q[key]<=r[key] and q['score']>=r['score'] and (q[key]<r[key] or q['score']>r['score']) for q in rows)]
     report=dict(as_of=DATA['as_of'],benchmark_version=DATA['benchmark_version'],rank_scope='Four central same-configuration full-use scenarios; unknown prices excluded; ranges may change ordering',rows=[dict(id=r['id'],label=r['label'],score=r['score'],api=r['api'],subscription=r['price'],ratio=r['api']/r['price'],apiRank=api.index(r)+1,subscriptionRank=subscription.index(r)+1,rankScope='Four same-configuration central full-use scenarios; not verified entitlements',scenarioAsOf=r['scenario_as_of']) for r in matched],frontier_scope='The same four configurations with central subscription scenarios; not all current models',api_frontier_ids=frontier(matched,'api'),subscription_frontier_ids=frontier(matched,'price'),all_current_frontier_api_ids=frontier(ROWS,'api'))
+    overall={}
+    for r in DATA['models']:
+        if r.get('unavailable') or r['score']<50:continue
+        if r['provider'] not in overall or r['score']>overall[r['provider']]['score']:overall[r['provider']]=r
+    paired={}
+    for r in DATA['models']:
+        if r.get('unavailable') or r['score']<50 or r['price'] is None:continue
+        if r['provider'] not in paired or r['score']>paired[r['provider']]['score']:paired[r['provider']]=r
+    anchors=sorted(paired.values(),key=lambda r:-r['score'])
+    report['provider_shape']={'selection_rule':'Best scored available configuration per provider among configurations with a subscription scenario','order_rule':'Descending score, fixed across both panels','configuration_ids':[r['id'] for r in anchors],'overall_best_ids':{p:r['id'] for p,r in overall.items()},'overall_best_without_subscription':[r['id'] for r in overall.values() if r['price'] is None],'scale_note':'Independent linear USD scales; area has no quantitative meaning','not_all_provider_bests':True}
     (OUT/'cost-differences.json').write_text(json.dumps(report,indent=2)+'\n')
 
 if __name__=='__main__':
@@ -171,4 +191,4 @@ if __name__=='__main__':
     main_chart();phone_chart()
     for name in ['chart','chart-phone']:
         f=OUT/f'{name}.svg';f.write_text('\n'.join(s.rstrip() for s in f.read_text().splitlines())+'\n')
-    print('Rendered 11 directly labeled frontier configurations with linear axes, family regions and a Kimi offscale arrow. No table/footer.')
+    print('Rendered 11 directly labeled frontier configurations with linear axes, a paired-provider shape, large coded anchors and explicit independent scales.')

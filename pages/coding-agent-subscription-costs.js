@@ -14,17 +14,17 @@ export default function CodingAgentSubscriptionCosts() {
     <Head>
       <title>{TITLE} | Ivan Braun</title><meta name="description" content={DESCRIPTION} /><link rel="canonical" href={PAGE_URL} />
       <meta property="og:type" content="article" /><meta property="og:title" content={TITLE} /><meta property="og:description" content={DESCRIPTION} /><meta property="og:url" content={PAGE_URL} />
-      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=10" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1820" /><meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:image" content="https://aiandtractors.com/coding-subscriptions/chart.png?v=11" /><meta property="og:image:width" content="2800" /><meta property="og:image:height" content="1820" /><meta name="twitter:card" content="summary_large_image" />
     </Head>
     <article className="subscription-article">
       <h1>{TITLE}</h1>
       <p className="intro">Artificial Analysis’s current agent benchmark: published API costs beside conditional subscription scenarios. Updated 1 October 2026.</p>
       <CodingAgentComparison models={data.models} />
-      <p className="view-note">Linear axes. The frontier extends to 50 to include GLM and Kimi; API costs extend to $16, and subscription estimates to $0.50. Kimi is shown off-scale. All 31 configurations remain below.</p>
+      <p className="view-note">Linear axes. The frontier extends to 50 to include GLM and Kimi; API costs extend to $16, and subscription estimates to $1.05 so every shape anchor uses its actual cost. Scenario ranges extending beyond the view have arrows. All 31 configurations remain below.</p>
       <nav className="article-links" aria-label="Comparison files">
         <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis original</a>
-        <a href="/coding-subscriptions/chart.png?v=10">Desktop PNG</a>
-        <a href="/coding-subscriptions/chart-phone.png?v=10">Phone PNG</a>
+        <a href="/coding-subscriptions/chart.png?v=11">Desktop PNG</a>
+        <a href="/coding-subscriptions/chart-phone.png?v=11">Phone PNG</a>
         <a href="/coding-subscriptions/aa-agent-snapshot.json">Benchmark snapshot</a>
         <a href="/coding-subscriptions/usage.png?v=6">Usage graph</a>
         <a href="/coding-subscriptions/estimates.json">Calculation data</a>
@@ -35,6 +35,7 @@ export default function CodingAgentSubscriptionCosts() {
       <div className="reading">
         <section>
           <h2>API and subscription pricing change the order</h2>
+          <p>The shape connects one best scored configuration per provider from the subset with a subscription scenario: Fable, Astra, GLM and Kimi. The same four harness/model/effort configurations appear in both panels, connected in descending score order without crossings. The overall best Anthropic and OpenAI results, Sonnet 5.5 and GPT-6.1 Sol, have unknown subscription costs and remain separate small API dots. The polygon is a comparison guide, not an area or volume metric.</p>
           <p>Among the four matched configurations with conditional full-use estimates, Astra moves from third-cheapest by API cost to first by subscription estimate; Fable moves from fourth to second. GLM moves from first to third, and Kimi from second to fourth. The plotted labels show each cost conversion and ratio. These ranks compare the four central scenarios; their sensitivity ranges can change the ordering.</p>
           <p>The latest Sonnet 5.5, Opus 5.5 and GPT-6.1 Sol agent results are on the API panel. Their subscription costs remain unknown, so this evidence does not establish a subscription winner among the newest models.</p>
           <h2>What changed on 1 October</h2>

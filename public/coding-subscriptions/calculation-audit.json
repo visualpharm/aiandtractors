@@ -9,7 +9,8 @@
     "No new generation, third-party harness or unavailable configuration inherits old quota",
     "GLM credit arithmetic, cache subtraction and promotional fee sensitivity reproduce",
     "September snapshot is archived separately; historical personal usage unchanged",
-    "Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded"
+    "Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded",
+    "One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; five overall provider bests explicitly unpaired"
   ],
   "images": {
     "chart.png": [

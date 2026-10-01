@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-01",
-  "version": 10,
+  "version": 11,
   "benchmark_version": "1.5",
   "benchmark_source": "https://artificialanalysis.ai/agents/coding-agents",
   "source_html_sha256": "600ebc51f020ae691ffec0d9604ed3fa330168e0a87d0aab2ba90a1fae24dd1d",
@@ -2009,8 +2009,9 @@
     "api_cost_min": 1,
     "api_cost_max": 16,
     "subscription_cost_min": 0.03,
-    "subscription_cost_max": 0.5,
-    "rank_scope": "Four same-configuration central full-use scenarios; missing prices excluded"
+    "subscription_cost_max": 1.05,
+    "rank_scope": "Four same-configuration central full-use scenarios; missing prices excluded",
+    "provider_shape": "Best scored available configuration per provider among configurations with a subscription scenario; same IDs and descending-score order in both panels"
   },
   "sources": [
     {

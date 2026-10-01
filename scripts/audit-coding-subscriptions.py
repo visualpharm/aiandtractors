@@ -42,6 +42,22 @@ assert [source[r['id']]['group'] for r in sorted(comparisons,key=lambda r:r['sub
 assert {source[i]['group'] for i in difference_report['api_frontier_ids']}=={'GLM','Codex','Claude / Fable'}
 assert {source[i]['group'] for i in difference_report['subscription_frontier_ids']}=={'Codex','Claude / Fable'}
 checks.append('Same-configuration API/subscription ratios and four central-scenario ranks reproduce; missing prices excluded')
+shape=difference_report['provider_shape'];anchor_ids=shape['configuration_ids']
+assert len(anchor_ids)==4 and len({source[i]['provider'] for i in anchor_ids})==4
+assert anchor_ids==sorted(anchor_ids,key=lambda i:-source[i]['score'])
+for i in anchor_ids:
+ r=source[i]
+ assert r['price'] is not None
+ assert all(q['score']<=r['score'] for q in d['models'] if q['provider']==r['provider'] and not q['unavailable'] and q['price'] is not None)
+assert d['chart_view']['subscription_cost_max']==1.05 and all(source[i]['price']<=1.05 for i in anchor_ids)
+def cross(a,b,c):return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])
+def crosses(a,b,c,e):return cross(a,b,c)*cross(a,b,e)<0 and cross(c,e,a)*cross(c,e,b)<0
+for field in ['api','price']:
+ p=[(source[i][field],source[i]['score']) for i in anchor_ids]
+ assert not crosses(p[0],p[1],p[2],p[3]) and not crosses(p[1],p[2],p[3],p[0])
+assert len(shape['overall_best_without_subscription'])==5
+assert all(by[i]['mean']['costUsd'] is not None for i in shape['overall_best_without_subscription'])
+checks.append('One top-scoring matched configuration per provider selected once; identical four IDs/order in both panels; no crossings or clipped central anchors; five overall provider bests explicitly unpaired')
 images={f:list(Image.open(OUT/f).size) for f in ['chart.png','chart-phone.png']}
 for f in images:assert Image.open(OUT/f).verify() is None
 page=(ROOT/'pages/coding-agent-subscription-costs.js').read_text()

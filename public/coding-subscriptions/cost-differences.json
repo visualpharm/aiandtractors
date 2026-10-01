@@ -66,5 +66,33 @@
     "a2c87c062f3cef73d8525e7578f14742",
     "ab5074e404be48bbd4ac3c488ad9a3e2",
     "ed8c1d0b0a2fe4560bbfa0a9f47e8941"
-  ]
+  ],
+  "provider_shape": {
+    "selection_rule": "Best scored available configuration per provider among configurations with a subscription scenario",
+    "order_rule": "Descending score, fixed across both panels",
+    "configuration_ids": [
+      "29a1cdad0d140781d05b9b4746cfdd0d",
+      "9e810ff3c6cce5ebaaff7c744c687a47",
+      "45493c2782f1bd94f6d30d4911f317a0",
+      "55b029d6971b4d378335bb168eb98b3b"
+    ],
+    "overall_best_ids": {
+      "anthropic": "a2c87c062f3cef73d8525e7578f14742",
+      "openai": "ed8c1d0b0a2fe4560bbfa0a9f47e8941",
+      "cognition": "34970c963bdfd318e46205514d46ea4f",
+      "xai": "f927d9c41b5c3021996eb14c3dd1341e",
+      "meta": "f2de07373c3626f1b9269a6ecad7804c",
+      "zai": "45493c2782f1bd94f6d30d4911f317a0",
+      "moonshotai": "55b029d6971b4d378335bb168eb98b3b"
+    },
+    "overall_best_without_subscription": [
+      "a2c87c062f3cef73d8525e7578f14742",
+      "ed8c1d0b0a2fe4560bbfa0a9f47e8941",
+      "34970c963bdfd318e46205514d46ea4f",
+      "f927d9c41b5c3021996eb14c3dd1341e",
+      "f2de07373c3626f1b9269a6ecad7804c"
+    ],
+    "scale_note": "Independent linear USD scales; area has no quantitative meaning",
+    "not_all_provider_bests": true
+  }
 }

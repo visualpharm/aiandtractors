@@ -40,3 +40,6 @@ yarn-error.log*
 .vercel
 .env*
 !.env.example
+
+# internal agent notes and worktrees
+.claude/
